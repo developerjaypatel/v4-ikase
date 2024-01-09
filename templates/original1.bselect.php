@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>bselect</title>
+		<meta charset="UTF-8" />
+		<meta name="description" content="bselect - The select decorator component that was missing for Twitter Bootstrap." />
+
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet/less" href="../css/bselect.less" />
+		<link rel="stylesheet" href="http://gustavohenke.github.io/bselect/support/styles/prettify.css" />
+
+		<!--[if lte IE 8]>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<header class="hero-unit">
+			<div class="container">
+				<h1>bselect</h1>
+				<p class="lead">The select decorator component that was missing for Twitter Bootstrap.</p>
+				<iframe src="http://ghbtns.com/github-btn.html?user=gustavohenke&amp;repo=bselect&amp;type=watch&amp;count=true"
+						style="width:110px;height:20px;border:0"></iframe>
+				<iframe src="http://ghbtns.com/github-btn.html?user=gustavohenke&amp;repo=bselect&amp;type=fork&amp;count=true"
+						style="width:95px;height:20px;border:0"></iframe>
+				<iframe src="http://ghbtns.com/github-btn.html?user=gustavohenke&amp;type=follow&amp;count=true"
+						style="width:165px;height:20px;border:0"></iframe>
+			</div>
+		</header>
+		<div class="container">
+			<h2>Default functionality</h2>
+			<p>The following functionality of bselect is default of the <code>&lt;select&gt;</code>s you already know. You don't need to do any extra markup or configuration via JavaScript objects to have them working.</p>
+
+			<h3>Standard select</h3>
+			<div class="row">
+				<div class="span6">
+					<label for="select-standard">Turns this:</label>
+					<select class="languages span5" id="select-standard">
+						<option value="">Select an option</option>
+						<option value="Ada">Ada</option>
+						<option value="C">C</option>
+						<option value="C#">C#</option>
+						<option value="C++">C++</option>
+						<option value="C++">CoffeeScript</option>
+						<option value="Dart">Dart</option>
+						<option value="Delphi">Delphi</option>
+						<option value="Erlang">Erlang</option>
+						<option value="F#">F#</option>
+						<option value="FORTRAN">FORTRAN</option>
+						<option value="Go">Go</option>
+						<option value="Haskell">Haskell</option>
+						<option value="Java">Java</option>
+						<option value="JavaScript">JavaScript</option>
+						<option value="Kotlin">Kotlin</option>
+						<option value="Lisp">Lisp</option>
+						<option value="Lua">Lua</option>
+						<option value="MATLAB">MATLAB</option>
+						<option value="Objective-C">Objective-C</option>
+						<option value="Pascal">Pascal</option>
+						<option value="Perl">Perl</option>
+						<option value="PHP">PHP</option>
+						<option value="Python">Python</option>
+						<option value="Ruby">Ruby</option>
+						<option value="Scala">Scala</option>
+						<option value="Shell">Shell</option>
+						<option value="Tcl">Tcl</option>
+						<option value="Visual Basic">Visual Basic</option>
+					</select>
+				</div>
+
+				<div class="span6">
+					<label for="bselect-standard">Into this:</label>
+					<select class="languages span5" id="bselect-standard">
+						<option value="">Select an option</option>
+						<option value="Ada">Ada</option>
+						<option value="C">C</option>
+						<option value="C#">C#</option>
+						<option value="C++">C++</option>
+						<option value="C++">CoffeeScript</option>
+						<option value="Dart">Dart</option>
+						<option value="Delphi">Delphi</option>
+						<option value="Erlang">Erlang</option>
+						<option value="F#">F#</option>
+						<option value="FORTRAN">FORTRAN</option>
+						<option value="Go">Go</option>
+						<option value="Haskell">Haskell</option>
+						<option value="Java">Java</option>
+						<option value="JavaScript">JavaScript</option>
+						<option value="Kotlin">Kotlin</option>
+						<option value="Lisp">Lisp</option>
+						<option value="Lua">Lua</option>
+						<option value="MATLAB">MATLAB</option>
+						<option value="Objective-C">Objective-C</option>
+						<option value="Pascal">Pascal</option>
+						<option value="Perl">Perl</option>
+						<option value="PHP">PHP</option>
+						<option value="Python">Python</option>
+						<option value="Ruby">Ruby</option>
+						<option value="Scala">Scala</option>
+						<option value="Shell">Shell</option>
+						<option value="Tcl">Tcl</option>
+						<option value="Visual Basic">Visual Basic</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="span6">
+					<h3>&lt;optgroup&gt; support</h3>
+					<select class="span5" id="bselect-optgroup" data-placeholder="Select a rock band">
+						<option value="">Select a rock band</option>
+						<option value="No">I don't like rock</option>
+						<optgroup label="Hard Rock">
+							<option value="AC/DC">AC/DC</option>
+							<option value="Led Zeppelin">Led Zeppelin</option>
+							<option value="The Who">The Who</option>
+							<option value="Van Halen">Van Halen</option>
+						</optgroup>
+						<optgroup label="Heavy Metal">
+							<option value="Black Sabbath">Black Sabbath</option>
+							<option value="Dio">Dio</option>
+							<option value="Iron Maiden">Iron Maiden</option>
+							<option value="Metallica">Metallica</option>
+							<option value="Motorhead">Motorhead</option>
+						</optgroup>
+						<optgroup label="Punk">
+							<option value="Sex Pistols">Sex Pistols</option>
+							<option value="The Clash">The Clash</option>
+							<option value="The Ramones">The Ramones</option>
+						</optgroup>
+					</select>
+				</div>
+
+				<div class="span6">
+					<h3>Disabled select</h3>
+					<select class="span5" id="bselect-disabled" data-placeholder="Select a rock band" disabled="disabled">
+						<option value="">Select a band</option>
+						<option value="AC/DC">AC/DC</option>
+						<option value="Led Zeppelin">Led Zeppelin</option>
+						<option value="The Who">The Who</option>
+						<option value="Van Halen">Van Halen</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.3.3/less.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://gustavohenke.github.io/bselect/src/bselect.js"></script>
+		<script src="http://gustavohenke.github.io/bselect/support/scripts/prettify.js"></script>
+		<script src="http://gustavohenke.github.io/bselect/support/scripts/example.js"></script>
+	</body>
+</html>

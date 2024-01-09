@@ -1,0 +1,7 @@
+<div id="event_list">
+<% _.each( events, function(event) {%>
+<a href='#events/<%= event.id %>'>
+    <p class="list-item"><%= event.title %></p>
+</a>
+<% }); %>
+</div>

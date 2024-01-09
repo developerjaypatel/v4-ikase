@@ -1,0 +1,2518 @@
+function addForm(event, subform, api_url) {
+//alert("hello");
+	blnKaseChangesDetected = true;
+	
+	if (subform=="chat") {
+		if (event.keyCode!=13 && typeof event.keyCode != "undefined") {
+			return false;
+		}
+	}
+	
+	var self = this;
+	var blnIntake = (subform=="intake");
+	var blnAutoIntake = (subform=="intake_auto");
+	if (blnIntake || blnAutoIntake) {
+		subform = "kase";
+	}
+	event.preventDefault(); // Don't let this button submit the form
+
+	var kase = kases.findWhere({case_id : current_case_id});
+	var kase_type = "";
+	if (typeof kase!="undefined") {
+		kase_type = kase.get("case_type");
+	}
+	
+	if (typeof subform == "undefined") {
+		var form_name = $("#sub_category_holder").attr("class");
+	} else {
+		form_name = subform;
+	}
+	
+	if (typeof api_url == "undefined") {
+		api_url = form_name.toLowerCase();
+	}
+	
+	var blnIntake =  (document.location.hash.indexOf("#intake") > -1);
+	var blnValid = true;
+	
+	//validate the form, except for venue (part of kase save)
+	if (form_name != "kase_venue") {
+		/*
+		$blnValid = $("#" + form_name + "_form").parsley('validate');
+		
+		var id = $("." + form_name + " #table_id").val();
+		if (id < 0) {
+			//special case for person
+			if (form_name=="person") {
+				if ($blnValid) {
+					//we need to save the additional info as well
+					//$blnValid = $("#kai_form").parsley('validate');
+				}
+			}
+		}
+		*/
+		//for now
+		if (!blnIntake) {
+			blnValid = validateForm(form_name);
+		}
+		//get out if invalid			
+		if (!blnValid) {
+			if (form_name=="person") {
+				form_name = "person_view";
+			}
+				//$("." + form_name + " .alert-warning").show();
+				//$("." + form_name + " .alert-text").html("Please fill in the required fields in the correct format.");
+				//$("." + form_name + " .alert-warning").html("");
+			
+			$("." + form_name + " .custom-error-message").css('display', 'none');
+			$("." + form_name + " .token-input-list-person").css('border', 'solid 1px red');
+			//$("." + form_name + " .input_class parsley-validated parsley-error").css('border', 'red');
+			/*
+			//mark any requiremd field as red
+			markRequiredRed(form_name);
+			*/
+			//$("#gifsave").hide();
+			$("." + form_name + " #gifsave").hide();
+			$("#modal_save_holder").show();
+			
+			return false;
+		}
+		$("#partie_type_holder").css("color", "#45CC42");
+		$("#panel_title").css("color", "#45CC42");
+		$(".kai #panel_title").css("color", "#45CC42");
+		setTimeout(function() {
+			$("#partie_type_holder").css("color", "white");
+			$("#panel_title").css("color", "white");
+			$(".kai #panel_title").css("color", "white");
+		}, 3000);
+		$( "." + form_name + " .reset" ).trigger( "click" );
+		
+		$("." + form_name + " .alert-warning").hide();
+		$("." + form_name + " .alert-error").hide(); // Hide any errors on a new submit
+		
+		var id = $("." + form_name + " #table_id").val();
+		/*
+		if (billing_time=="") {
+			if (form_name == "person") {
+				if (customer_id == "1033") {
+					if (blnCustomerBillingPermission) {
+						if (kase_type == "NewPI") {
+							billing_time = prompt("Please enter minutes worked", $time.innerHTML);
+						 
+							if (billing_time != null) {
+								$("#billing_time").val(billing_time);
+							}
+							this.addForm(event, subform, api_url);
+							return;
+						}
+					}
+				}
+			}
+		}
+		
+		if (customer_id == "1033") {
+			if (billing_time!="") {
+				//billing_time = formatTime(billing_time);
+				var arrBillingTime = billing_time.split(":");
+				var total_minutes = 0;
+				if (Number(arrBillingTime[0]) > 0) {
+					total_minutes += Number(arrBillingTime[0]) * 60;
+				}
+				if (Number(arrBillingTime[1]) > 0) {
+					total_minutes += Number(arrBillingTime[1]);
+				}
+				if (Number(arrBillingTime[2]) > 0) {
+					total_minutes += Number(arrBillingTime[0]) / 60;
+				}
+				billing_time = total_minutes;
+			}
+		}*/
+		
+		//we're making changes, clear the cache
+		resetCurrentContent();
+		
+		if (id > 0) {
+			updateForm(event, subform, api_url, blnIntake, blnAutoIntake);
+			return true;
+		}
+		
+		$("." + form_name + " #gifsave").show();
+		//break up any setting
+		if (form_name == "setting") {
+			api_url = "setting/" + $("#setting_type").val();
+		}
+		if (form_name == "additional_case_number") {
+			api_url = "injury_number";
+		}
+		var url = "api/" + api_url + "/add";
+		var formValues = $("#" + form_name + "_form").serialize();
+		var find = "Input";
+		var regEx = new RegExp(find, 'g');
+		formValues = formValues.replace(regEx, '');
+		
+		//special case for person
+		if (form_name=="person") {
+			//we need to save the additional info as well
+			var additionalFormValues = $("#kai_form").serialize();
+			additionalFormValues = additionalFormValues.substr(additionalFormValues.indexOf("ageInput"));
+			additionalFormValues = additionalFormValues.replace(regEx, '');
+			formValues += "&" + additionalFormValues;
+		}
+		if (form_name=="kase") {
+			formValues += "&special_instructions=" + encodeURIComponent($("#special_instructions").val());
+			formValues += "&case_note=" + encodeURIComponent($("#case_note").val());
+			//suit and jurisdiction
+			formValues += "&suit=" + $("#suit").val();
+			formValues += "&jurisdiction=" + $("#jurisdiction").val();
+		}
+		
+		//maybe we have reminder
+		if (form_name=="event") {
+			//do we have a josn for reminder
+			//add reminder info to formData
+			formValues = addReminderValues(formValues);
+		}
+	} else {
+		//save venue as corporation, it will be attched to case
+		var id = -1;
+		var parent_corporation_uuid = $(".kase #venueInput").val();
+		var case_id = $(".kase #table_id").val();
+		var case_uuid = $(".kase #table_uuid").val();
+		
+		var venue = venues.findWhere({"venue_uuid": parent_corporation_uuid});
+		
+		if (typeof venue != "undefined") {
+			formValues = "table_name=corporation&type=venue&adhoc_fields=&case_id=" + case_id + "&case_uuid=" + case_uuid + "&parent_corporation_uuid=" + parent_corporation_uuid + "&company_name=" + venue.get("venue") + "&street=" + encodeURIComponent(venue.get("address1")) + "&suite=" + venue.get("address2") + "&city=" + venue.get("city") + "&state=CA&zip=" + venue.get("zip") + "&phone=" + venue.get("phone") + "&preferred_name=" + venue.get("venue_abbr") + "&full_address=" + venue.get("address1") + (" " + venue.get("address2")).trim() + ", " + venue.get("city") + ", CA " + venue.get("zip");
+			
+			var url = "api/corporation/add";
+		}
+	}
+	
+	var streetValues = "";
+	if ($("#street_" + form_name).length > 0) {
+		//get the address details
+		streetValues = "&street=" + encodeURIComponent($("#street_" + form_name).val());
+		streetValues += "&city=" + encodeURIComponent($("#city_" + form_name).val());
+		streetValues += "&state=" + $("#administrative_area_level_1_" + form_name).val();
+		streetValues += "&zip=" + $("#postal_code_" + form_name).val();
+	}
+	if ($("#additional_street_" + form_name).length > 0) {
+		//get the address details
+		streetValues += "&additional_street=" + encodeURIComponent($("#additional_street_" + form_name).val());
+		streetValues += "&additional_city=" + encodeURIComponent($("#additional_city_" + form_name).val());
+		streetValues += "&additional_state=" + $("#additional_administrative_area_level_1_" + form_name).val();
+		streetValues += "&additional_zip=" + $("#additional_postal_code_" + form_name).val();
+	}
+	formValues += streetValues;
+	/*
+	if (form_name == "contact") {
+		var id = $(".contact #table_id").val();
+		if (id > 0) {
+			self.updateForm(event, "contact", "contact");
+		}
+		var first_name = $(".contact #first_nameInput").val();
+		var last_name = $(".contact #last_nameInput").val();
+		var full_address = $(".contact #full_addressInput").val();
+		var phone = $(".contact #phoneInput").val();
+		var notes = $(".contact #notesInput").val();
+		//perform an ajax call to track views by current user
+		var url = 'api/contact/add';
+		formValues = "&table_name=contact&first_nameInput=" + first_name + "&last_nameInput=" + last_name + "&full_addressInput=" + full_address + "&phoneInput=" + phone + "&notesInput=" + notes;
+		
+		$.ajax({
+			url:url,
+			type:'POST',
+			dataType:"json",
+			data: formValues,
+			success:function (data) {
+				if(data.error) {  // If there is an error, show the error messages
+					saveFailed(data.error.text);
+				} else {
+					document.location.href = "#contacts";
+				}
+			}
+		});
+	}
+	*/
+	//return;
+	
+	if (form_name=="user") {
+		var activated = "N";
+		if ($("#activatedInput").prop("checked")) {
+			activated = "Y";
+		}
+		formValues += "&activated=" + activated;
+	}
+	
+	if (blnPiReady) {
+		if (billing_time!="") {
+			formValues += "&billing_time=" + billing_time;
+			billing_time = "";
+		}
+	}
+	
+	if (form_name=="check" && formValues.indexOf("attachments=") < 0) {
+		if ($("#queue .filename").length > 0) {
+			//attachments
+			var arrAttach = [];
+			var arrAttachments = $("#queue .filename").children();
+			var arrayLength = arrAttachments.length;
+			for (var i = 0; i < arrayLength; i++) {
+				arrAttach[i] = arrAttachments[i].href.replace(hrefHost, "");
+			}
+			
+			formValues += "&attachments=" + encodeURIComponent(arrAttach.join("|"));
+		}
+	}
+	
+	formValues = formValues.replace("&user_id=undefined", "&user_id=");
+	
+	$.ajax({
+		url:url,
+		type:'POST',
+		dataType:"json",
+		data: formValues,
+		  error: function (xhr, ajaxOptions, thrownError) {
+			alert(xhr.status);
+			alert(thrownError);
+		  },
+		success:function (data) {
+			if(data.error) {  // If there is an error, show the error messages
+				console.log(data.error.text);
+				saveFormFailed(data.error.text);
+			} else { 
+				$("." + form_name + " #gifsave").hide();
+				
+				if (form_name == "Medical_provider") {
+					var blnMatrixSave = ($("#specialInstructionsGrid").css("display")!="none");
+					if (blnMatrixSave) {
+						$("#partie_type_holder").css("color", "#45CC42");
+						var corporation_id = data.id;
+						setTimeout(function() {
+							document.location.href = "#parties/" + current_case_id + "/" + corporation_id + "/medical_provider";
+						}, 2500);
+						return;
+					}
+				}
+				
+				if (form_name == "event") {	
+					if (blnShowBilling) {
+						if ($("#billing_holder").length > 0) {							
+							if ($("#billing_holder").html().trim() != "") {
+								//update the activity id
+								$("#billing_form #table_id").val(data.activity_id);
+								//is there billing
+								saveActivityBilling();
+							}
+						}
+					}
+				}
+				if (form_name == "email") {
+					setTimeout(function() {
+						window.Router.prototype.loginEmail();
+					}, 2500);
+				}
+				if (blnIntake) {
+					if (form_name == "event" || form_name == "task") {
+						$('#myModal4').modal('toggle');
+						return;
+					}
+					blnDoNotCloseModal = true; 
+				}
+				if (form_name == "check") {
+					blnDoNotCloseModal = true;
+				}
+				if (form_name == "kase" || form_name == "event" || form_name == "setting" || form_name == "calendar" || form_name == "check" || form_name == "blocked") {
+					if (!blnDoNotCloseModal) {
+						$('#myModal4').modal('toggle');
+						
+						$("." + form_name + " #gifsave").hide();
+					} else {					
+						if (form_name == "event") {
+							$("#table_id").val(data.id);
+							//get assignee stuff form event_details.js 863
+							if (customer_id == 1033 || customer_id == 1096) {
+								var assignees = $("#assigneeInput").val();
+								var arrPersons = assignees.split(",");
+								var arrAssignees = [];
+								for(var i = 0; i < arrPersons.length; i++){
+									arrAssignees.push(["assignee", arrPersons[i]]);
+								}
+
+								var users_json = $("#store_users").val() + JSON.stringify(arrAssignees);
+								var event_id = $("#table_id").val();
+								var event_date = $("#event_dateandtimeInput").val();
+								var url = "../sms/case_worker_reminder.php?event_date=" + event_date + "&users=" + users_json + "&event_id=" + event_id;
+								
+								document.getElementById("reminder_holder").src = url;
+								$("#iframe_holder").fadeIn();
+								$("#event_screen").fadeOut();
+								$("#billing_holder").fadeOut();
+								//add fades
+							}							
+						}
+					}
+					//reset default behavior
+					blnDoNotCloseModal = false;
+					
+					if (form_name == "setting") {
+						$(".list_title").css("color","#45CC42");
+						setTimeout(function() {
+							refreshCustomerSettings();
+						}, 555);
+					}
+					if (form_name == "calendar") {
+						$(".list_title").css("color","#45CC42");
+						setTimeout(function() {
+							refreshCalendars();
+						}, 555);
+					}
+					if (form_name == "check") {
+						var url = "api/settings/fresh";
+						//refresh the settings, for next check_number
+						$.ajax({
+							url:url,
+							type:'GET',
+							dataType:"json",
+							success:function (data) {
+								if(data.error) {  // If there is an error, show the error messages
+									saveFailed(data.error.text);
+								} else {
+									customer_settings.set(data);
+								}
+							}
+						});
+						if (document.location.hash.indexOf("#bankaccount/list/") > -1) {
+							$(".modal-dialog").css("width", "300px");
+							$("#myModalLabel").html("<span style='color:lime'>Print Receipt?</span>");
+							$("#myModalBody").html('<button id="print_receipt" class="btn" onClick="printReceipt(' + data.id + ')">Yes, Print Receipt</button>');
+							$("#myModalBody").prepend('<div style="float:right"><button id="no_receipt" class="btn btn-primary" onClick="noPrintReceipt()">No, Continue</button></div>');
+							
+							setTimeout(function() {
+								var html = $("#myModalLabel").html();
+								if (html.indexOf("Print Receipt?") > -1) {
+									$("#myModalLabel").html("Print Receipt?");
+								}
+							}, 2500);
+							return;
+						}
+						
+						//default behavior
+						$('#myModal4').modal('toggle');
+						if (document.location.hash.indexOf("#accounts/receivable")==0) {
+							window.Router.prototype.listAccounts("receivable");
+							return;
+						}
+						if (document.location.hash.indexOf("#billables")==0) {
+							window.Router.prototype.listBillables();
+							return;
+						} 
+						if (document.location.hash.indexOf("#settlement")==0) {
+							var arrHash = document.location.hash.split("/");
+							window.Router.prototype.showSettlement(arrHash[1], arrHash[2]);
+							return;
+							/*	
+							var kase_disbursments = new ChecksCollection([], { case_id: current_case_id, ledger: "OUT" });
+							kase_disbursments.fetch({
+								success: function(data) {
+									var kase = kases.findWhere({case_id: current_case_id});
+									var newkase = kase.clone();
+									newkase.set("holder", "#settlement_costs_holder");
+									newkase.set("page_title", "Disbursement");
+									//newkase.set("embedded", true);
+									$('#settlement_costs_holder').html(new check_listing_view({collection: data, model: newkase}).render().el);
+								}
+							});
+							return;
+							*/
+						} 
+						
+						var recipient = data.recipient;
+						if (typeof current_case_id == "undefined") {
+							current_case_id = -1;
+						}
+						if (current_case_id > 0) {
+							setTimeout(function() {							
+								var kase = kases.findWhere({case_id: current_case_id});
+								refreshChecks(kase, recipient);
+							}, 555);
+						}
+					}
+					//refresh kalendar
+					/*
+					if (document.location.href.indexOf("#kalendar") > 0) {
+						var kase = kases.findWhere({case_id: current_case_id});
+						renderCalendar(kase);
+					}
+					*/
+				}
+				if (form_name != "chat") {
+					// redraw the screen
+					//redrawEditScreen(formValues, form_name);
+					displaySavedInfo(formValues, form_name);
+				}
+				
+				//insert the id, so we can update right away
+				$("." + form_name + " #table_id").val(data.id);
+				if (api_url.indexOf("/") < -1) {
+					$("." + form_name + " #" + api_url + "_uuid").val(data.uuid);
+				}
+				
+				if (form_name == "kase") {
+					current_case_id = data.id;
+					
+					if (!blnIntake) {
+						//ssn
+						if ($("#case_typeInput").val()=="social_security") {
+							//save the ssn stuff
+							saveSSN(current_case_id);
+						}					
+					} else {
+						var injury_id = data.injury_id;
+						$("#kase_form #table_id").val(current_case_id);
+						
+						if ($("#case_typeInput").val()=="social_security") {
+							var note = $("#intake_notes").val();
+							if (note != "") {
+								//add a note
+								var url = 'api/notes/add';
+								
+								formValues = "table_name=notes";
+								formValues += "&case_id="  + current_case_id;
+								
+								formValues += "&noteInput=" + note;
+								formValues += "&status=INTAKE";
+								if (document.getElementById("intake_quick").checked) {
+									formValues += "&type=quick";
+								} else {
+									formValues += "&type=phone intake";
+								}
+								//formValues += "&subject=Intake Notes";
+								var subject = $("#intake_notes_subject").val();
+								formValues += "&dateandtime=" + moment().format("MM/DD/YYYY h:mmA");
+								
+								//return;
+								$.ajax({
+								url:url,
+								type:'POST',
+								dataType:"json",
+								data: formValues,
+									success:function (data) {
+										if(data.error) {  // If there is an error, show the error messages
+											saveFailed(data.error.text);
+										}
+										if (data.success) {
+											
+										}
+									}
+								});
+							}
+							$("#injury_form #table_id").val(injury_id);
+							$("#injury_form #case_id").val(current_case_id);
+							
+							$("#Plaintiff_form #case_id").val(current_case_id);
+							
+							//trigger saves
+							if ($("#Plaintiff_form #company_nameInput").val()!="") {
+								setTimeout(function() {	
+									blnSaveIntakePartie = true;
+									if ($("#Plaintiff_form .save").length > 1) {
+										$("#Plaintiff_form .save")[1].remove();
+									}
+									$("#Plaintiff_form .save").trigger("click");
+								}, 300);
+							}
+							
+							if ($("#start_dateInput").val()!="") {
+								setTimeout(function() {	
+									$("#injury_form .save").trigger("click");	
+								}, 400);						
+							}
+						}
+						if ($("#case_typeInput").val()=="NewPI") {
+							var note = $("#intake_notes").val();
+							if (note != "") {
+								//add a note
+								var url = 'api/notes/add';
+								
+								formValues = "table_name=notes";
+								formValues += "&case_id="  + current_case_id;
+								
+								formValues += "&noteInput=" + note;
+								formValues += "&status=INTAKE";
+								if (document.getElementById("intake_quick").checked) {
+									formValues += "&type=quick";
+								} else {
+									formValues += "&type=phone intake";
+								}
+								//formValues += "&subject=Intake Notes";
+								var subject = $("#intake_notes_subject").val();
+								formValues += "&dateandtime=" + moment().format("MM/DD/YYYY h:mmA");
+								
+								//return;
+								$.ajax({
+								url:url,
+								type:'POST',
+								dataType:"json",
+								data: formValues,
+									success:function (data) {
+										if(data.error) {  // If there is an error, show the error messages
+											saveFailed(data.error.text);
+										}
+										if (data.success) {
+											
+										}
+									}
+								});
+							}
+							//$("#injury_form #table_id").val(injury_id);
+							//$("#injury_form #case_id").val(current_case_id);
+							
+							var representing = $("#representingInput").val().capitalize();
+							$("#" + representing + "_form #case_id").val(current_case_id);
+							$("#Carrier_form #case_id").val(current_case_id);
+							
+							//trigger saves
+							if ($("#" + representing + "_form #company_nameInput").val()!="") {
+								setTimeout(function() {	
+									blnSaveIntakePartie = true;
+									if ($("#" + representing + "_form .save").length > 1) {
+										$("#" + representing + "_form .save")[1].remove();
+									}
+									$("#" + representing + "_form .save").trigger("click");
+								}, 300);
+							}
+							
+							if ($("#Carrier_form #company_nameInput").val()!="") {
+								setTimeout(function() {	
+									blnSaveIntakePartie = true;
+									if ($("#Carrier_form .save").length > 1) {
+										$("#Carrier_form .save")[1].remove();
+									}
+									$("#Carrier_form .save").trigger("click");
+								}, 400);
+							}
+							
+							if ($("#personal_injury_dateInput").val()!="") {
+								setTimeout(function() {	
+									//$("#injury_form .save").trigger("click");	
+									$("#personal_injury_form .save").trigger("click");	
+								}, 500);						
+							}
+						}
+						if ($("#case_typeInput").val()=="WCAB") {
+							var note = $("#intake_notes").val();
+							if (note != "") {
+								//add a note
+								var url = 'api/notes/add';
+								
+								formValues = "table_name=notes";
+								formValues += "&case_id="  + current_case_id;
+								
+								formValues += "&noteInput=" + note;
+								formValues += "&status=INTAKE";
+								if (document.getElementById("intake_quick").checked) {
+									formValues += "&type=quick";
+								} else {
+									formValues += "&type=phone intake";
+								}
+								var subject = $("#intake_notes_subject").val();
+								formValues += "&subject=" + subject;
+								formValues += "&dateandtime=" + moment().format("MM/DD/YYYY h:mmA");
+								
+								//return;
+								$.ajax({
+								url:url,
+								type:'POST',
+								dataType:"json",
+								data: formValues,
+									success:function (data) {
+										if(data.error) {  // If there is an error, show the error messages
+											saveFailed(data.error.text);
+										}
+										if (data.success) {
+											
+										}
+									}
+								});
+							}
+							$("#injury_form #table_id").val(injury_id);
+							$("#injury_form #case_id").val(current_case_id);
+							$("#Employer_form #case_id").val(current_case_id);
+							$("#Carrier_form #case_id").val(current_case_id);
+							
+							$(".person #case_id").val(current_case_id);
+							
+							//trigger saves
+							if ($(".person #full_nameInput").val()!="") {
+								//save the applicant
+								setTimeout(function() {
+									$(".person .save").trigger("click");
+								}, 300);
+							}
+							
+							if ($("#start_dateInput").val()!="") {
+								setTimeout(function() {	
+									$("#injury_form .save").trigger("click");	
+								}, 400);						
+							}
+							
+							if ($("#Carrier_form #company_nameInput").val()!="") {
+								setTimeout(function() {	
+									blnSaveIntakePartie = true;
+									if ($("#Carrier_form .save").length > 1) {
+										$("#Carrier_form .save")[1].remove();
+									}
+									$("#Carrier_form .save").trigger("click");
+								}, 500);
+							} else {
+								if ($("#Employer_form #company_nameInput").length > 0) {
+									if ($("#Employer_form #company_nameInput").val()!="") {
+										blnSaveIntakePartie = true;
+										//save employer last, avert workflow problems
+										if ($("#Employer_form .save").length > 1) {
+											$("#Employer_form .save")[1].remove();
+										}
+										$("#Employer_form .save").trigger("click");
+									}
+								} else {
+									//all done
+									checkIntakes()
+									blnSaveIntakePartie = false;
+									document.location.href = "#kase/" + current_case_id;
+								}
+							}
+							
+							if ($("#Carrier_form #company_nameInput").val()=="" && $("#Employer_form #company_nameInput").val()=="") {
+								setTimeout(function() {
+									checkIntakes()
+									blnSaveIntakePartie = false;
+									document.location.href = "#kase/" + current_case_id;
+								}, 1234);
+							}
+						}
+						
+						return;
+					}
+					//redirect to new applicant
+					var new_kase = new Kase();
+					$(".kase #table_id").val(data.id);
+					$(".kase #case_id").val(data.id);
+					//update the next case number
+					customer_settings.set("case_number_next", data.case_number_next);
+					
+					if (customer_id == 1042) {	//task workflow
+						newKaseWorkFlow1042(data);
+					}
+					if (customer_id == 1049) {	//task workflow
+						newKaseWorkFlow1049();
+					}
+					
+					if (customer_id == 1121) {
+						//newKaseWorkFlow1121();
+						//newKaseWorkFlow(data);
+						//alert("hello");
+					}
+					
+					if ($("#workerInput").val() != "") {
+						//add task
+						var task_url = 'api/task/add';
+						
+						var tasksformValues = "table_name=task";
+						tasksformValues += "&task_title=Send Records to Matrix";
+						tasksformValues += "&task_descriptionInput=Send Request to Matrix for records needed  -  Employment, Claim, and All Medical, Cal Osha , etc.  30-day period has expired.  If you have received any records, please do not request to pickup from Location.";
+						tasksformValues += "&assignee=" + $("#workerInput").val();
+						
+						var todayDate = new Date();
+						var someDate = new Date();
+						var numberOfDaysToAdd = 30;
+						someDate.setDate(todayDate.getDate() + numberOfDaysToAdd);
+						while (someDate.getDay() == 0 || someDate.getDay() == 6) {
+							someDate.setDate(someDate.getDate()+1)
+						}
+						
+						tasksformValues += "&task_dateandtime=" + moment(someDate).format("MM/DD/YYYY") + " 08:30AM";
+						tasksformValues += "&case_id=" + current_case_id;
+						
+						//return;
+						$.ajax({
+						url:task_url,
+						type:'POST',
+						dataType:"json",
+						data: tasksformValues,
+							success:function (data) {
+								if(data.error) {  // If there is an error, show the error messages
+									saveFailed(data.error.text);
+								} else {
+									//
+								}
+							}
+						});
+					}
+					new_kase.set("id", current_case_id);
+					new_kase.fetch({
+						success: function(kase) {
+							kases.remove(kase.id); kases.add(kase);
+							$(".kase #table_uuid").val(kase.get("uuid"));
+														//add homemedical if it's open
+							if ($("#homemedical_form").length > 0) {
+								//save the form after adding the case_id
+								$(".homemedical#case_id").val(kase.get("case_id"));
+								addForm(event, "homemedical", "homemedical");
+							}
+							var kase_type = kase.get("case_type");
+							var blnWCAB = isWCAB(kase_type);
+							if (blnWCAB) {
+								setTimeout(function() {
+									document.location.href="#applicant/" + kase.get("case_id");
+								}, 10);
+							} else {
+								var injury_type = kase.get("injury_type");
+								var representing = "";
+								var arrInjury = injury_type.split("|");
+								injury_type = arrInjury[0];
+								if (arrInjury.length==2) {
+									representing = arrInjury[1];
+								}
+								/*
+								if (kase_type=="immigration") {
+									representing = "new";
+								}
+								*/ 
+								document.location.href = '#parties/' + current_case_id + '/-1/' + representing;
+									
+								hideEditRow();
+							}
+							/*
+							setTimeout(function() {
+								//using settimeout for async behavior, i want to save the venue as corporation in the background
+								//this affects the new kase logic
+								addForm(event, "kase_venue", "corporation");
+							}, 2000);
+							*/
+						}
+					});
+					
+					
+					return true;
+				}
+				
+				if (form_name=="fee") {
+					$("#myModalLabel").css("color", "lime");
+					
+					setTimeout(function() {
+						$("#myModal4").modal("toggle");
+						var hash = document.location.hash
+						if (hash.indexOf("#settlement/") > -1) {
+							var arrHash = hash.split("/");
+							
+							window.Router.prototype.showSettlement(arrHash[1], arrHash[2]);
+						}
+					}, 2500);
+					return;
+				}
+				//if it's a homemedical, need to add it as a partie now
+				if (form_name == "homemedical") {
+					var corporation_id = $(".homemedical #corporation_id").val();
+					//perform an ajax call to track views by current user
+					var url = 'api/corporation/add';
+					formValues = "case_id=" + current_case_id + "&table_name=corporation&company_nameInput=" + $(".homemedical #provider_nameInput").val() + "&homemedical_uuidInput=" + data.uuid + "&type=homemedical&corporation_id=" + corporation_id;
+					
+					$.ajax({
+						url:url,
+						type:'POST',
+						dataType:"json",
+						data: formValues,
+						success:function (data) {
+							if(data.error) {  // If there is an error, show the error messages
+								saveFailed(data.error.text);
+							}
+						}
+					});
+				}
+				var kase = kases.findWhere({case_id : current_case_id});
+				var kase_type = "";
+				if (typeof kase!="undefined") {
+					kase_type = kase.get("case_type");
+				}
+				var blnWCAB = isWCAB(kase_type);
+				if (blnWCAB) {
+					if (form_name == "Defendant") {
+						var corporation_id = $("#corporation_id").val();
+						if (corporation_id == "" || corporation_id == "undefined") {
+							corporation_id = "-1";
+						}
+						var corporations = new Corporations([], { case_id: current_case_id });
+						corporations.fetch({
+							success: function(corporations) {
+								carrier_partie = corporations.findWhere({"type": "carrier"});
+									if (typeof carrier_partie == "undefined") {
+										document.location.href="#parties/" + current_case_id + "/-1/carrier";
+										return true;
+								}					
+							}
+						});
+					}
+				} else {
+					if (!blnIntake) {
+						if (form_name == "Defendant" || form_name == "Plaintiff") {
+							//is there a case name
+							var case_name = kase.get("name");
+							
+							document.location.href="#kases/" + current_case_id;
+						}
+					}
+				}
+				if (form_name == "Carrier") {
+					//intake ?
+					if (blnIntake) {
+						if ($("#case_typeInput").val()=="WCAB") {
+							if ($("#Employer_form #company_nameInput").length > 0) {
+								if ($("#Employer_form #company_nameInput").val()!="") {
+									blnSaveIntakePartie = true;
+									if ($("#Employer_form .save").length > 1) {
+										$("#Employer_form .save")[1].remove();
+									}
+									//save employer last, avert workflow problems
+									$("#Employer_form .save").trigger("click");
+								}
+							}
+						}
+						return true;
+					} else {
+						//save financial
+						if ($("#financial_form").length == 1) {
+							$("#financial_form .save").trigger("click");
+						}
+						document.location.href = "#kase/" + current_case_id;
+						return;
+					}
+					/*
+					var kase = kases.findWhere({case_id: current_case_id});
+					var kase_type = kase.get("case_type");
+					if (kase_type == "Personal Injury") {
+						document.location.href="#parties/" + current_case_id + "/-1/carrier";
+					} else {
+						document.location.href = "#kases/" + current_case_id;
+					}
+					*/
+				}
+				if (form_name == "person") {
+					var case_id = $(".person #case_id").val();
+					
+					//intake ?
+					if (!blnIntake) {	
+						if (case_id=="") {
+							//must be rolodex
+							document.location.href = "#rolodexsearch/" + $("#full_nameInput").val();
+							return true;
+						}
+						//owner?
+						var blnOwner = (document.location.hash.indexOf("#owner") > -1);
+						if (blnOwner) {
+							//patients go directly to the dashboard
+							document.location.href = "#personal_injury/" + case_id;
+							return true;
+						}
+					}
+					
+					var kase = kases.findWhere({case_id: case_id});
+					if (typeof kase == "undefined") {
+						//get it
+						var kase =  new Kase({id: case_id});
+						kase.fetch({
+							success: function (kase) {
+								kases.remove(kase.id); kases.add(kase);
+								kase.set("applicant_id", data.id);	
+							}
+						});
+						return;
+					} else {
+						var kase_type = kase.get("case_type");
+						kase.set("applicant_id", data.id);
+					}
+					$(".person #person_id").val(data.id);
+
+					if (blnIntake) {	
+						
+						return true;
+					}
+					if (blnPatient) {
+						//patients go directly to the dashboard
+						document.location.href = "#kase/" + case_id;
+						return true;
+					}
+					//check for an employer?
+					var corporations = new Corporations([], { case_id: case_id });
+					corporations.fetch({
+						success: function(corporations) {
+							var blnWCAB = isWCAB(kase_type);
+							//if we have no parties and no applicant
+							var next_partie_type = "employer";
+							if (!blnWCAB) {
+								next_partie_type = "defendant";
+							}
+							employer_partie = corporations.findWhere({"type": next_partie_type});
+								if (typeof employer_partie == "undefined") {
+									//alert("here");
+									document.location.href="#parties/" + case_id + "/-1/" + next_partie_type;
+									return true;
+							}
+							//make sure we have doi
+							var kase_dois = dois.findWhere({case_id: case_id});
+							
+							if (typeof kase_dois == "Object" || typeof kase_dois == "object") {
+								var doi = kase_dois.toJSON();
+								if (doi.start_date=="0000-00-00") {
+									document.location.href = "#injury/" + case_id + "/" + doi.injury_id;
+									return;
+								}
+							} else {
+								document.location.href = "#newinjury/" + case_id;
+								return true;
+							}					
+						}
+					});
+				}
+				//we need injury
+				if (form_name == "Employer") {
+					var employer_id = data.id;
+					var event_url = 'api/event/add';
+					//eventformValues = formValues.replace("table_name=message", "table_name=event");
+					//var kase = kases.findWhere({case_id: current_case_id});
+					
+					var kase = new Kase();
+					kase.set("id", current_case_id);
+					kase.fetch({
+						success: function(kase) {
+							//add the kase to the kases
+							kases.add(kase, {merge:true});
+							//lookup the calendar id
+							var thecalendar = customer_calendars.findWhere({calendar_id: calendar_id});
+							var calendar_id = -1;
+							if (typeof thecalendar != "undefined") {
+								calendar_id = thecalendar.get("calendar_id");
+							}
+							eventformValues = "table_name=event";
+							eventformValues += "&event_title=" + encodeURIComponent(kase.get("name"));
+							eventformValues += "&event_descriptionInput=Kase Intake by " + login_username;
+							eventformValues += "&event_kind=intake";
+							eventformValues += "&event_type=intake";
+							eventformValues += "&calendar_id=" + calendar_id;
+							eventformValues += "&event_dateandtime=" + moment().format("MM/DD/YYYY h:mm a");
+							eventformValues += "&end_date=" + moment().format("MM/DD/YYYY h:mm a");
+							eventformValues += "&case_id=" + current_case_id;
+							
+							//return;
+							$.ajax({
+							url:event_url,
+							type:'POST',
+							dataType:"json",
+							data: eventformValues,
+								success:function (data) {
+									if(data.error) {  // If there is an error, show the error messages
+										saveFailed(data.error.text);
+									} else {
+										//intake ?
+										if (blnIntake) {
+											return true;
+										}
+									}
+								}
+							});
+							//intake ?
+							if (blnIntake) {
+								checkIntakes()
+								blnSaveIntakePartie = false;
+								document.location.href = "#kase/" + current_case_id;
+								return true;
+							}
+							//make sure we have doi
+							var kase_dois = dois.findWhere({case_id: current_case_id});
+							
+							if (typeof kase_dois == "Object" || typeof kase_dois == "object") {
+								var doi = kase_dois.toJSON();
+								if (doi.start_date=="0000-00-00") {
+									document.location.href = "#injury/" + current_case_id + "/" + doi.injury_id;
+									return;
+								}
+							} else {
+								var kase_dois = new KaseInjuryCollection({case_id: current_case_id});
+								kase_dois.fetch({
+									success: function(kase_dois) {
+										if (kase_dois.length > 0) {
+											document.location.href = "#injury/" + current_case_id + "/" + kase_dois.toJSON()[0].injury_id;
+										} else {
+											document.location.href = "#newinjury/" + current_case_id;
+										}
+									}
+								});
+								
+								return true;
+							}
+							if ($(".override_partie").length > 0) {
+								//go to to edit mode
+								//document.location.href = "#parties/" + current_case_id + "/" + employer_id + "/employer";	
+								self.editPartie(current_case_id, employer_id, "employer");
+							}
+						}
+					});
+					
+					
+					return true;
+				}
+				//
+				if (form_name == "checkrequest") {
+					refreshOutstandingInvoices();
+					
+					var checkrequests = new CheckRequestsCollection({case_id: current_case_id});
+					checkrequests.fetch({
+						success: function(data) {
+							var reqkase = new Backbone.Model();
+							var holder_id = "#checkrequest_holder";
+							if ($("#settlement_checkrequests_holder").length > 0) {
+								holder_id = "#settlement_checkrequests_holder";
+								var checkreqs = data.toJSON();
+								if (checkreqs.length > 0) {
+									setTimeout(function() {
+										$("#settlement_checkrequests_button").html("Check Requests (" + checkreqs.length + ")");
+									}, 2000);
+								}
+							}
+							reqkase.set("holder", holder_id);
+							reqkase.set("page_title", "Check Requests");
+							reqkase.set("embedded", true);
+							$(holder_id).html(new checkrequest_listing_view({collection: data, model: reqkase}).render().el);
+						}
+					});
+					$('#myModal4').modal('toggle');				
+				}
+				//this might be a new injury
+				if (form_name == "injury") {
+					//intake ?
+					if (blnIntake) {
+						return true;
+					}
+					//let's trigger the other save events
+					$(".bodyparts #injury_id").val(data.id);
+					$(".injury_number #injury_id").val(data.id);
+					$(".additional_case_number #injury_id").val(data.id);
+					
+					$(".bodyparts .save").trigger("click");
+					$(".injury_number .save").trigger("click");
+					/*
+					if (customer_id==1121) {
+						var blnWCAB = isWCAB(kase_type);
+						var blnSS = (kase_type.indexOf("social_security") == 0 || kase_type=="SS");
+						if (!blnWCAB && !blnSS) {
+							//newKaseWorkFlow1121(data.id);
+						}
+					}
+					*/
+					saveFormSuccessful(form_name);
+					return true;
+				}
+				if (form_name == "injury_number") {
+					$(".additional_case_number #table_id").val(data.id);
+					$(".additional_case_number .save").trigger("click");
+					
+					saveFormSuccessful(form_name);
+					return true;
+				}
+				if (form_name == "additional_case_number") {
+					//do we have a carrier
+					var corporations = new Corporations([], { case_id: case_id });
+					corporations.fetch({
+						success: function(corporations) {
+							//if we have no parties and no applicant
+							carrier_partie = corporations.findWhere({"type": "carrier"});
+				
+							if (typeof carrier_partie == "undefined") {
+								//document.location.href="#parties/" + case_id + "/-1/carrier";
+								document.location.href="#kases/" + case_id;
+								return true;
+							}
+						}
+					});
+					//return true;
+					//if not, need to go new partie carrier screen
+					//parties/case_id/-1/carrier
+				}
+				
+				if (form_name == "settlement_fees") {
+					var fee_ids = data.fee_ids;
+					var arrFeeTypes = ["attorney", "depo", "referral", "other", "rehab", "ss"];
+					for(var fint = 0; fint < arrFeeTypes.length; fint++) {
+						var fee_type = arrFeeTypes[fint];
+						var fee_id = data.fee_ids[fee_type];
+						if (typeof fee_id != "undefined") {
+							$("#fee_id_" + fee_type).val(fee_id);
+						} else {
+							fee_id = "";
+						}
+						$(".fee_save").hide();
+						if (fee_id!="") {
+							$("#payment_" + fee_type).show();
+							$("#delete_" + fee_type).show();
+						}
+						
+						$(".settlement_list_fees #panel_title").css("background", "white");
+						$(".settlement_list_fees #panel_title").css("color", "green");
+						$(".settlement_list_fees #panel_title").css("font-weight", "bold");
+						$(".settlement_list_fees #panel_title").css("padding", "2px");
+						setTimeout(function(){
+							$(".settlement_list_fees #panel_title").css("background", "none");
+							$(".settlement_list_fees #panel_title").css("color", "white");
+							$(".settlement_list_fees #panel_title").css("font-weight", "lighter");
+						}, 2500);
+					}
+				}
+				//intake ?
+				if (blnIntake) {
+					return true;
+				}
+				
+				//hide animation
+				if (form_name != "kase_venue") {
+					//special case
+					saveFormSuccessful(form_name);
+				} else {
+					return true;
+				}
+				if (form_name == "chat") {
+					//erase the message
+					$('#chatInput').val('').blur();
+					renderChat(data.success);
+					$(".chat #thread_id").val(data.success);
+					$("#thread_id_holder").html(data.success);
+				}
+				
+				if (form_name == "medicalbilling") {
+					if (document.location.hash.indexOf("#settlement")==0) {
+						var medical_billings = new MedicalBillingCollection({case_id: current_case_id});
+						medical_billings.fetch({
+							success: function(data) {
+								var my_model = new Backbone.Model;
+								my_model.set("holder", "settlement_med_holder");
+								my_model.set("case_id", current_case_id);
+								my_model.set("partie_id", "");
+								my_model.set("embedded", true);
+								$('#settlement_med_holder').html(new medical_billing_listing_view({collection: data, model: my_model}).render().el);	
+							}
+						});
+						$("#myModal4").modal("toggle");
+						return true;
+					}
+					var hash = document.location.hash;
+					var arrHash = hash.split("/");
+					$("#myModal4").modal("toggle");
+					
+					window.Router.prototype.editPartie(arrHash[1], arrHash[2], arrHash[3]);
+				}
+				return true;
+			}
+		}
+	});
+	
+	//this might be a phone message
+	if (formValues.indexOf("event_kind=phone_call") > -1) {
+
+			var url = 'api/messages/add';
+			formValues = formValues.replace("&end_date=", "");
+			formValues = formValues.replace("&full_address=&event_type=phone_call", "");
+			formValues = formValues.replace("event_kind=", "message_type=");
+			formValues = formValues.replace("assignee=", "message_to=");
+			formValues = formValues.replace("event_title=", "subject=");
+			formValues = formValues.replace("event_from=", "from=");
+			formValues = formValues.replace("table_name=event", "table_name=message");
+			//formValues = formValues.replace("event_dateandtime=", "dateandtime=");
+			//formValues = formValues.replace("case_fileInput=", "case_id=");
+			formValues = formValues.replace("event_description=", "messageInput=");
+			$.ajax({
+			url:url,
+			type:'POST',
+			dataType:"json",
+			data: formValues,
+				success:function (data) {
+					if(data.error) {  // If there is an error, show the error messages
+						saveFailed(data.error.text);
+					}
+				}
+			});	
+	}
+}
+function updateForm(event, subform, api_url, blnIntake, blnAutoIntake) {
+	blnKaseChangesDetected = true;
+	
+	event.preventDefault(); // Don't let this button submit the form
+	var self = this;
+	
+	if (typeof subform == "undefined") {
+		var form_name = $("#sub_category_holder").attr("class");
+	} else {
+		form_name = subform;
+	}
+	if (typeof api_url == "undefined") {
+		api_url = form_name.toLowerCase();
+	}
+	if (typeof blnIntake == "undefined") {
+		blnIntake = false;
+	}
+	
+	$('.' + form_name + ' #gifsave').show();
+	if (form_name == "setting") {
+		api_url = "setting/" + $("#setting_type").val();
+	}
+	if (form_name == "additional_case_number") {
+		api_url = "injury_number";
+	}
+	var url = "api/" + api_url + "/update";
+	
+	var formValues = $("#" + form_name + "_form").serialize();
+	var find = "Input";
+	var regEx = new RegExp(find, "g");
+	formValues = formValues.replace(regEx, "");
+	var streetValues = "";
+	if ($("#street_" + form_name).length > 0) {
+		//get the address details
+		streetValues = "&street=" + encodeURIComponent($("#street_" + form_name).val());
+		streetValues += "&city=" + encodeURIComponent($("#city_" + form_name).val());
+		streetValues += "&state=" + $("#administrative_area_level_1_" + form_name).val();
+		streetValues += "&zip=" + $("#postal_code_" + form_name).val();
+	}
+	if ($("#additional_street_" + form_name).length > 0) {
+		//get the address details
+		streetValues += "&additional_street=" + encodeURIComponent($("#additional_street_" + form_name).val());
+		streetValues += "&additional_city=" + encodeURIComponent($("#additional_city_" + form_name).val());
+		
+		streetValues += "&additional_state=" + $("#additional_administrative_area_level_1_" + form_name).val();
+		streetValues += "&additional_zip=" + $("#additional_postal_code_" + form_name).val();
+	}
+	formValues += streetValues;
+	
+	//apply changes to parent to all children
+	if ($("#confirm_apply_decide").length > 0) {
+		if ($("#confirm_apply_decide").val() == "Y") {
+			formValues += "&confirm_apply_decide=" + $("#confirm_apply_decide").val();
+		}
+	}
+	if (form_name=="kase") {
+		formValues += "&special_instructions=" + encodeURIComponent($("#special_instructions").val());
+		formValues += "&case_note=" + encodeURIComponent($("#case_note").val());
+		//suit and jurisdiction
+		formValues += "&suit=" + $("#suit").val();
+		formValues += "&jurisdiction=" + $("#jurisdiction").val();
+	}
+	if (form_name=="user") {
+		var activated = "N";
+		
+		if ($("#activatedInput").prop("checked")) {
+			activated = "Y";
+		}
+		if (formValues.indexOf("activated=") < 0) {
+			formValues += "&activated=" + activated;
+		}
+	}
+	if (billing_time!="") {
+		formValues += "&billing_time=" + billing_time;
+		billing_time = "";
+	}
+	
+	//maybe we have reminder
+	if (form_name=="event") {
+		//do we have a josn for reminder
+		//add reminder info to formData
+		formValues = addReminderValues(formValues);
+	}
+	
+	if (form_name=="check" && formValues.indexOf("attachments=") < 0) {
+		if ($("#queue .filename").length > 0) {
+			//attachments
+			var arrAttach = [];
+			var arrAttachments = $("#queue .filename").children();
+			var arrayLength = arrAttachments.length;
+			for (var i = 0; i < arrayLength; i++) {
+				arrAttach[i] = arrAttachments[i].href.replace(hrefHost, "");
+			}
+			
+			formValues += "&attachments=" + encodeURIComponent(arrAttach.join("|"));
+		}
+	}
+	if (form_name == "checkrequest") {
+		var corporation_id = $(".checkrequest #corporation_id").val();
+		
+		
+		var amount = $(".checkrequest #amountInput").val();
+		
+		
+		//perform an ajax call to track views by current user
+		var url = 'api/checkrequest/update';
+		
+		
+	}
+	$.ajax({
+		url:url,
+		type:"POST",
+		dataType:"json",
+		data: formValues,
+		success:function (data) {
+			$("." + form_name + " #gifsave").hide();
+			if(data.error) {  // If there is an error, show the error messages
+				console.log("error" + data.error.text);
+				saveFormFailed(data.error.text);
+				$("." + form_name + " #gifsave").hide();
+			}
+			else { 
+				if (form_name=="fee") {
+					$("#myModalLabel").css("color", "lime");
+					
+					setTimeout(function() {
+						$("#myModal4").modal("toggle");
+						
+						var hash = document.location.hash
+						if (hash.indexOf("#settlement/") > -1) {
+							var arrHash = hash.split("/");
+							
+							window.Router.prototype.showSettlement(arrHash[1], arrHash[2]);
+						}
+					}, 2500);
+					return;
+				}
+				$('.' + form_name + ' #gifsave').hide();
+				
+				$("#billing_dropdown_holder").hide();
+				$("#applicant_row_links").show();
+				
+				$("#partie_type_holder").css("color", "#45CC42");
+				$("#panel_title").css("color", "#45CC42");
+				
+				
+				
+				$(".kai #panel_title").css("color", "#45CC42");
+				setTimeout(function() {
+					$("#partie_type_holder").css("color", "white");
+					$("#panel_title").css("color", "white");
+					$(".kai #panel_title").css("color", "white");
+				}, 3000);
+				if (form_name == "medicalbilling") {
+					if (document.location.hash.indexOf("#settlement")==0) {
+						var medical_billings = new MedicalBillingCollection({case_id: current_case_id});
+						medical_billings.fetch({
+							success: function(data) {
+								var my_model = new Backbone.Model;
+								my_model.set("holder", "settlement_med_holder");
+								my_model.set("case_id", current_case_id);
+								my_model.set("partie_id", "");
+								my_model.set("embedded", true);
+								$('#settlement_med_holder').html(new medical_billing_listing_view({collection: data, model: my_model}).render().el);	
+							}
+						});
+						$("#myModal4").modal("toggle");
+						return true;
+					}
+					
+					$("#billing_gifsave").hide();
+					$("#myModalLabel").css("color", "lime");
+					
+					setTimeout(function() {
+						var hash = document.location.hash;
+						var arrHash = hash.split("/");
+						$("#myModal4").modal("toggle");
+						//reload the window
+						window.Router.prototype.editPartie(arrHash[1], arrHash[2], arrHash[3]);
+					}, 1500);
+					return;
+				}
+				
+				if (form_name == "email") {
+					setTimeout(function() {
+						window.Router.prototype.loginEmail();
+					}, 2500);
+				}
+				
+				if (form_name == "kase" || form_name == "event" || form_name == "setting" || form_name == "calendar" || form_name == "check" || form_name == "checkrequest") {
+					$('#myModal4').modal('toggle');
+					
+					if (form_name == "setting") {
+						$(".list_title").css("color","#45CC42");
+						setTimeout(function() {
+							refreshCustomerSettings();
+						}, 555);
+					}
+					if (form_name == "calendar") {
+						$(".list_title").css("color","#45CC42");
+						setTimeout(function() {
+							refreshCalendars();
+						}, 555);
+					}
+					if (form_name == "checkrequest") {
+						$(".list_title").css("color","#45CC42");
+						setTimeout(function() {
+							location.reload();
+						}, 20);
+					}
+					if (form_name == "kase") {
+						
+						//save button clicked on intake form
+						if (blnIntake) {
+							var injury_id = $("#injury_form #table_id").val();
+							$("#kase_form #table_id").val(current_case_id);
+							
+							if ($("#case_typeInput").val()=="social_security") {
+								var note = $("#intake_notes").val();
+								if (note != "") {
+									//add a note
+									var url = 'api/notes/add';
+									
+									formValues = "table_name=notes";
+									formValues += "&case_id="  + current_case_id;
+									
+									formValues += "&noteInput=" + note;
+									formValues += "&status=INTAKE";
+									if (document.getElementById("intake_quick").checked) {
+										formValues += "&type=quick";
+									} else {
+										formValues += "&type=phone intake";
+									}
+									//formValues += "&subject=Intake Notes";
+									var subject = $("#intake_notes_subject").val();
+									formValues += "&dateandtime=" + moment().format("MM/DD/YYYY h:mmA");
+									
+									//return;
+									$.ajax({
+									url:url,
+									type:'POST',
+									dataType:"json",
+									data: formValues,
+										success:function (data) {
+											if(data.error) {  // If there is an error, show the error messages
+												saveFailed(data.error.text);
+											}
+											if (data.success) {
+												
+											}
+										}
+									});
+								}
+								
+								$("#Plaintiff_form #case_id").val(current_case_id);
+								
+								//trigger saves
+								if ($("#Plaintiff_form #company_nameInput").val()!="") {
+									setTimeout(function() {	
+										blnSaveIntakePartie = true;
+										if ($("#Plaintiff_form .save").length > 1) {
+											$("#Plaintiff_form .save")[1].remove();
+										}
+										$("#Plaintiff_form .save").trigger("click");
+									}, 300);
+								}
+								
+								if ($("#start_dateInput").val()!="") {
+									setTimeout(function() {	
+										$("#injury_form .save").trigger("click");	
+									}, 400);						
+								}
+							}
+							if ($("#case_typeInput").val()=="NewPI") {
+								var note = $("#intake_notes").val();
+								if (note != "") {
+									//add a note
+									var url = 'api/notes/add';
+									
+									formValues = "table_name=notes";
+									formValues += "&case_id="  + current_case_id;
+									
+									formValues += "&noteInput=" + note;
+									formValues += "&status=INTAKE";
+									if (document.getElementById("intake_quick").checked) {
+										formValues += "&type=quick";
+									} else {
+										formValues += "&type=phone intake";
+									}
+									//formValues += "&subject=Intake Notes";
+									var subject = $("#intake_notes_subject").val();
+									formValues += "&dateandtime=" + moment().format("MM/DD/YYYY h:mmA");
+									
+									//return;
+									$.ajax({
+									url:url,
+									type:'POST',
+									dataType:"json",
+									data: formValues,
+										success:function (data) {
+											if(data.error) {  // If there is an error, show the error messages
+												saveFailed(data.error.text);
+											}
+											if (data.success) {
+												
+											}
+										}
+									});
+								}
+								//$("#injury_form #table_id").val(injury_id);
+								//$("#injury_form #case_id").val(current_case_id);
+								
+								var representing = $("#representingInput").val().capitalize();
+								$("#" + representing + "_form #case_id").val(current_case_id);
+								$("#Carrier_form #case_id").val(current_case_id);
+								
+								//trigger saves
+								if ($("#" + representing + "_form #company_nameInput").val()!="") {
+									setTimeout(function() {	
+										blnSaveIntakePartie = true;
+										if ($("#" + representing + "_form .save").length > 1) {
+											$("#" + representing + "_form .save")[1].remove();
+										}
+										$("#" + representing + "_form .save").trigger("click");
+									}, 300);
+								}
+								
+								if ($("#Carrier_form #company_nameInput").val()!="") {
+									setTimeout(function() {	
+										blnSaveIntakePartie = true;
+										if ($("#Carrier_form .save").length > 1) {
+											$("#Carrier_form .save")[1].remove();
+										}
+										$("#Carrier_form .save").trigger("click");
+									}, 400);
+								}
+								
+								if ($("#personal_injury_dateInput").val()!="") {
+									setTimeout(function() {	
+										//$("#injury_form .save").trigger("click");	
+										$("#personal_injury_form .save").trigger("click");	
+									}, 500);						
+								}
+							}
+							if ($("#case_typeInput").val()=="WCAB") {
+								var note = $("#intake_notes").val();
+								if (note != "") {
+									//add a note
+									var url = 'api/notes/add';
+									
+									formValues = "table_name=notes";
+									formValues += "&case_id="  + current_case_id;
+									
+									formValues += "&noteInput=" + note;
+									formValues += "&status=INTAKE";
+									if (document.getElementById("intake_quick").checked) {
+										formValues += "&type=quick";
+									} else {
+										formValues += "&type=phone intake";
+									}
+									var subject = $("#intake_notes_subject").val();
+									formValues += "&subject=" + subject;
+									formValues += "&dateandtime=" + moment().format("MM/DD/YYYY h:mmA");
+									
+									//return;
+									$.ajax({
+									url:url,
+									type:'POST',
+									dataType:"json",
+									data: formValues,
+										success:function (data) {
+											if(data.error) {  // If there is an error, show the error messages
+												saveFailed(data.error.text);
+											}
+											if (data.success) {
+												
+											}
+										}
+									});
+								}
+								$("#injury_form #table_id").val(injury_id);
+								$("#injury_form #case_id").val(current_case_id);
+								$("#Employer_form #case_id").val(current_case_id);
+								$("#Carrier_form #case_id").val(current_case_id);
+								
+								$(".person #case_id").val(current_case_id);
+								
+								//trigger saves
+								if ($(".person #full_nameInput").val()!="") {
+									//save the applicant
+									setTimeout(function() {
+										$(".person .save").trigger("click");
+									}, 300);
+								}
+								
+								if ($("#start_dateInput").val()!="") {
+									setTimeout(function() {	
+										$("#injury_form .save").trigger("click");	
+									}, 400);						
+								}
+								
+								if ($("#Carrier_form #company_nameInput").val()!="") {
+									setTimeout(function() {	
+										blnSaveIntakePartie = true;
+										if ($("#Carrier_form .save").length > 1) {
+											$("#Carrier_form .save")[1].remove();
+										}
+										$("#Carrier_form .save").trigger("click");
+									}, 500);
+								} else {
+									if ($("#Employer_form #company_nameInput").length > 0) {
+										if ($("#Employer_form #company_nameInput").val()!="") {
+											blnSaveIntakePartie = true;
+											//save employer last, avert workflow problems
+											if ($("#Employer_form .save").length > 1) {
+												$("#Employer_form .save")[1].remove();
+											}
+											$("#Employer_form .save").trigger("click");
+										}
+									} else {
+										//all done
+										checkIntakes()
+										blnSaveIntakePartie = false;
+										document.location.href = "#kase/" + current_case_id;
+									}
+								}
+								
+								if ($("#Carrier_form #company_nameInput").val()=="" && $("#Employer_form #company_nameInput").val()=="") {
+									setTimeout(function() {
+										checkIntakes()
+										blnSaveIntakePartie = false;
+										document.location.href = "#kase/" + current_case_id;
+									}, 1234);
+								}
+							}
+							return;	
+						} 
+						//if this is an update to kase while intake
+						if (blnAutoIntake) {
+							//obsolete? i'm saving each field by itself
+							//indicate that it was autosaved
+							var label_element = document.getElementById("case_name_label").children[0];
+							label_element.style.color = "lime";
+							setTimeout(function() {
+								label_element.style.color = "white";
+							}, 1500);
+							
+							//cut it off here
+							return;
+						}
+						
+						if ($("#homemedical_form").length > 0) {
+							//save the form after adding the case_id
+							$(".homemedical#case_id").val($(".kase #table_id").val());
+							addForm(event, "homemedical", "homemedical");
+						}
+						
+						//ssn
+						if ($("#case_typeInput").val()=="social_security") {
+							//save the ssn stuff
+							saveSSN(data.success);
+						}
+						if (data.closing) {
+							//notify worker and supervising attorney
+							sendThirdPartyWarning();
+						}
+						//now refresh the kases
+						resetCurrentContent();
+						kases.fetch({
+							success: function (data) {
+								if (document.location.hash.indexOf("#parties/") > -1 || document.location.hash.indexOf("#kase/") > -1 || document.location.hash.indexOf("#personal_injury") > -1) {
+									if (document.location.hash.indexOf("#kase/") > -1) {
+										 window.Router.prototype.dashboardKase(current_case_id);
+									}
+									if (document.location.hash.indexOf("#parties/") > -1) {
+										window.Router.prototype.listParties(current_case_id);
+									}
+									if (document.location.hash.indexOf("#personal_injury/") > -1) {
+										window.Router.prototype.kasePersonalInjury(current_case_id);
+									}
+								} else {
+									showKaseAbstract(kase);
+								}
+								return;		
+							}
+						});
+					}
+					if (form_name == "check") {
+						if (document.location.hash.indexOf("#settlement")==0) {
+							var kase_disbursments = new ChecksCollection([], { case_id: current_case_id, ledger: "OUT" });
+							kase_disbursments.fetch({
+								success: function(data) {
+									var newkase = self.model.clone();
+									newkase.set("holder", "#settlement_costs_holder");
+									newkase.set("page_title", "Disbursement");
+									//newkase.set("embedded", true);
+									$('#settlement_costs_holder').html(new check_listing_view({collection: data, model: newkase}).render().el);
+								}
+							});
+							return;
+						} 
+						if (document.location.hash.indexOf("#bankaccount")==0) {
+							//current set of filters
+							var case_name = $("#case_nameInput").val();
+							var filter_ledger = $("#filter_ledger").val();
+							var filter_payee = $("#filter_payee").val();
+							var filter_start_date = $("#filter_start_date").val();
+							var filter_end_date = $("#filter_end_date").val();
+							var filter_start_number = $("#filter_start_number").val();
+							var filter_end_number = $("#filter_end_number").val();
+							
+							$(".review_transactions").trigger("click");
+							
+							setTimeout(function() {
+								if (case_name!="") {
+									var search_element = document.getElementById("case_filter");
+									search_element.value = case_name;
+									findIt(search_element, 'check_listing', 'check');
+								}
+								if (filter_ledger!="") {
+									$("#filter_ledger").val(filter_ledger);
+									$("#filter_ledger").trigger("click");
+								}
+								if (filter_payee!="") {
+									$("#filter_payee").val(filter_payee);
+									$("#filter_payee").trigger("click");
+								}
+								$("#filter_start_date").val(filter_start_date);
+								$("#filter_end_date").val(filter_end_date);
+								if (filter_start_date!="") {
+									$("#filter_start_date").trigger("change");
+								} else {
+									if (filter_start_date=="" && filter_end_date!="") {
+										$("#filter_end_date").trigger("change");
+									}
+								}
+								$("#filter_start_number").val(filter_start_number);
+								$("#filter_end_number").val(filter_end_number);
+								if (filter_start_number!="") {
+									$("#filter_start_number").trigger("keyup");
+								} else {
+									if (filter_start_number=="" && filter_end_number!="") {
+										$("#filter_end_number").trigger("keyup");
+									}
+								}
+							}, 1000);
+						}
+						if (current_case_id!=-1) {
+							var recipient = data.recipient;
+							setTimeout(function() {
+								var kase = kases.findWhere({case_id: current_case_id});
+								refreshChecks(kase, recipient);
+							}, 555);
+						}
+					}
+				}
+				if (form_name == "Carrier") {
+					//save financial
+					if ($("#financial_form").length == 1) {
+						$("#financial_form .save").trigger("click");
+					}
+				}
+				//if it's a homemedical, need to add it as a partie now
+				if (form_name == "homemedical") {
+					var corporation_id = $(".homemedical #corporation_id").val();
+					var company_name = $(".homemedical #provider_nameInput").val();
+					var full_address = $(".homemedical #full_addressInput").val();
+					var phone = $(".homemedical #phoneInput").val();
+					//perform an ajax call to track views by current user
+					var url = 'api/corporation/update';
+					if (corporation_id==-1) {
+						url = 'api/corporation/add';
+					}
+					formValues = "case_id=" + current_case_id + "&table_name=corporation&company_nameInput=" + company_name + "&full_addressInput=" + full_address + "&phoneInput=" + phone + "&homemedical_uuidInput=" + data.uuid + "&type=homemedical&corporation_id=" + corporation_id;
+					
+					$.ajax({
+						url:url,
+						type:'POST',
+						dataType:"json",
+						data: formValues,
+						success:function (data) {
+							if(data.error) {  // If there is an error, show the error messages
+								saveFailed(data.error.text);
+							}
+						}
+					});
+				}
+				
+				displaySavedInfo(formValues, form_name);
+				/*
+				// If no errors, go  back to read mode
+				var arrValues = formValues.split("&");
+				var ssn1 = "";
+				var ssn2 = "";
+				var ssn3 = "";
+				for(var i =0, len = arrValues.length; i < len; i++) {
+					var thevalue = arrValues[i];
+					var arrValuePair = thevalue.split("=");
+					field_name = arrValuePair[0];
+					fieldvalue = arrValuePair[1];
+					
+					//ssn is triple set
+					if (field_name.indexOf("ssn")==0) {
+						if (field_name=="ssn1") {
+							var ssn1 = String(fieldvalue);
+						}
+						if (field_name=="ssn2") {
+							var ssn2 = String(fieldvalue);
+						}
+						if (field_name=="ssn3") {
+							var ssn3 = String(fieldvalue);
+						}
+						continue;
+					}
+					
+					if ($("." + form_name + " #" + field_name + "Input").length != 0) {
+						//occupation
+						var blnSkipField = false;
+						if (field_name=="occupation") {
+							if (!isNaN($("." + form_name + " #" + field_name + "Input").val())) {
+								//this is a lookup
+								$("." + form_name + " #" + field_name + "Span").html($("." + form_name + " #occupation_title").val());
+							}
+							blnSkipField = true;
+						}
+						
+						if(form_name=="lien") {
+							if(field_name=="worker") {
+								blnSkipField = true;
+								
+								//show worker full name
+								if (!isNaN($("." + form_name + " #" + field_name + "Input").val())) {
+									//this is a lookup
+									$("." + form_name + " #" + field_name + "Span").html($("." + form_name + " #worker_full_name").val());
+								}
+
+							}
+						}
+						//never show password
+						if (field_name=="password" || field_name=="email_pwd") {
+							blnSkipField = true;
+						}
+						if (!blnSkipField) {
+							//treat text fields one way
+							if ($("." + form_name + " #" + field_name + "Input").prop("type")!= "select-one") {
+								if (field_name!="note" && field_name!="signature") {
+									//check for checkbox
+									if ($("." + form_name + " #" + field_name + "Input").prop("type")!= "checkbox") {						
+										$("." + form_name + " #" + field_name + "Span").html(escapeHtml($("." + form_name + " #" + field_name + "Input").val()));
+									} else {
+										//it is a checkbox
+										span_value = $("." + form_name + " #" + field_name + "Input").is(':checked');
+										if (span_value) {
+											span_value = "<span style='font-family:Wingdings; color:white'>ü</span>";
+										} else {
+											span_value = '';
+										}
+										$("." + form_name + " #" + field_name + "Span").html(span_value);
+									}
+								} else {
+									//the note is not escaped, except for script
+									var note_value = $("." + form_name + " #" + field_name + "Input").val();
+									var stringOfHtml = note_value;
+									var html = $(stringOfHtml);
+									html.find('script').remove();
+									
+									if (field_name=="note") {
+										note_value = html.wrap("<div>").parent().html(); // have to wrap for html to get the outer element
+									}
+
+									$("." + form_name + " #" + field_name + "Span").html(note_value);
+								}
+							} else {
+								//text value of the drop down
+								var dropdown_text = $("." + form_name + " #" + field_name + "Input :selected").text();
+								dropdown_text = dropdown_text.split(" - ")[0];
+								if (dropdown_text=="Select from List") {
+									dropdown_text = "";
+								}
+								$("." + form_name + " #" + field_name + "Span").html(escapeHtml(dropdown_text));
+							}
+						}
+					}
+					//toggleFormEdit(form_name);
+
+				}
+				*/
+				//we need injury
+				if (form_name == "Employer") {
+					if (document.location.hash.indexOf("#rolodex/") == 0) {
+						var arrHash = document.location.hash.split("/");
+						var rolodex_id = arrHash[1];
+						var rolodex_type = arrHash[2];
+						setTimeout(function() {
+							window.Router.prototype.editRoloPartie(rolodex_id, rolodex_type);
+						}, 2500);
+						return true;
+					}
+					var case_id = $(".partie #case_id").val();
+					//make sure we have doi
+					var kase_dois = dois.findWhere({case_id: case_id});
+					
+					//if (typeof injury_partie == "undefined") {
+					if (typeof kase_dois == "Object" || typeof kase_dois == "object") {
+						var doi = kase_dois.toJSON();
+						if (doi.start_date=="0000-00-00") {
+							document.location.href = "#injury/" + case_id + "/" + doi.injury_id;
+							return;
+						}
+					} else {
+						var kase_dois = new KaseInjuryCollection({case_id: case_id});
+						kase_dois.fetch({
+							success: function(kase_dois) {
+								if (kase_dois.length > 0) {
+									document.location.href = "#injury/" + current_case_id + "/" + kase_dois.toJSON()[0].injury_id;
+								} else {
+									document.location.href = "#newinjury/" + current_case_id;
+								}
+							}
+						});
+						return true;
+					}
+				}
+				//ssn special case
+				if (form_name=="person") {
+					$("." + form_name + " #ssnSpan").html(ssn1 + ssn2 + ssn3);
+					current_case_id = document.location.hash.split("/")[1];
+					
+					//check for an employer?
+					var corporations = new Corporations([], { case_id: current_case_id });
+					var kase = kases.findWhere({case_id: current_case_id});
+					var kase_type = kase.get("case_type");
+					corporations.fetch({
+						success: function(corporations) {
+							var blnWCAB = isWCAB(kase_type);
+							//if we have no parties and no applicant
+							var next_partie_type = "employer";
+							if (!blnWCAB) {
+								next_partie_type = "defendant";
+							}
+							employer_partie = corporations.findWhere({"type": next_partie_type});
+								if (typeof employer_partie == "undefined") {
+									document.location.href="#parties/" + current_case_id + "/-1/" + next_partie_type;
+									return true;
+							}
+							//make sure we have doi
+							var kase_dois = dois.findWhere({case_id: case_id});
+							
+							if (typeof kase_dois == "Object" || typeof kase_dois == "object") {
+								var doi = kase_dois.toJSON();
+								if (doi.start_date=="0000-00-00") {
+									document.location.href = "#injury/" + current_case_id + "/" + doi.injury_id;
+									return;
+								}
+							} else {
+								//document.location.href = "#newinjury/" + current_case_id;
+								document.location.href = "#applicant/" + current_case_id;
+								return true;
+							}					
+						}
+					});
+				}
+				if (form_name == "personal_injury") {
+					if (blnIntake) {
+						checkIntakes()
+						blnSaveIntakePartie = false;
+						document.location.href = "#kase/" + current_case_id;
+						return true;
+					}
+				}
+				if (form_name == "injury") {
+					if (blnIntake) {
+						var kase_type = $("#case_typeInput").val();
+						if (kase_type=="social_security" || kase_type=="NewPI") {
+							//all done
+							checkIntakes()
+							blnSaveIntakePartie = false;
+							document.location.href = "#kase/" + current_case_id;
+						}
+						return true;
+					}
+					//let's trigger the other save events
+					$(".bodyparts #injury_id").val(data.id);
+					$(".injury_number #injury_id").val(data.id);
+					$(".additional_case_number #injury_id").val(data.id);
+					if ($(".bodyparts .save").css("visibility")!="hidden") {
+						$(".bodyparts .save").trigger("click");
+					}
+					if ($(".injury_number .save").css("visibility")!="hidden") {
+						$(".injury_number .save").trigger("click");
+					}
+					
+					//refetch the dois
+					dois.reset();
+					dois.fetch({
+						success: function (data) {
+							//refresh the summary
+							if (current_case_id==-1) {
+								var hash = document.location.hash;
+								if (hash.indexOf("#injury/")==0) {
+									current_case_id = hash.split("/")[1];
+								}
+							}
+							if (current_case_id!=-1) {
+								var kase = kases.findWhere({case_id: current_case_id});
+								$('#kase_header').html("");
+								
+								$('#kase_header', this.el).html(new kase_summary_view({model:kase}).render().el);
+							}
+						}
+					});
+					saveFormSuccessful(form_name);
+					return true;
+				}
+				if (form_name == "injury_number") {
+					$(".additional_case_number #table_id").val(data.id);
+					if ($(".additional_case_number .save").css("visibility")!="hidden") {
+						$(".additional_case_number .save").trigger("click");
+						saveFormSuccessful(form_name);
+						return;
+					}
+				}
+				if (form_name == "additional_case_number") {
+					//do we have a carrier
+					var corporations = new Corporations([], { case_id: current_case_id });
+					corporations.fetch({
+						success: function(corporations) {
+							//if we have no parties and no applicant
+							carrier_partie = corporations.findWhere({"type": "carrier"});
+				
+							if (typeof carrier_partie == "undefined") {
+								//document.location.href="#parties/" + current_case_id + "/-1/carrier";
+								document.location.href="#kases/" + current_case_id;
+								return true;
+							}
+						}
+					});
+					//if not, need to go new partie carrier screen
+					//parties/case_id/-1/carrier
+				}
+				
+				if (form_name == "Defendant" || form_name == "person" || form_name == "Plaintiff") {
+					var new_kase = new Kase();
+					new_kase.set("id", current_case_id);
+					new_kase.fetch({
+						success: function(kase) {
+							kases.remove(kase.id); kases.add(kase);
+						}
+					});
+				}
+				saveFormSuccessful(form_name);
+				return true;
+			}
+		}
+	});
+}
+function saveFormSuccessful(form_name) {
+	resetCurrentContent();
+	
+	$("." + form_name + " #gifsave").hide();
+	//$("." + form_name + " .alert-success").fadeIn(function() { 
+		//setTimeout(function() {
+				//$("." + form_name + " .alert-success").fadeOut();
+			//},555);
+	//});
+	
+	//refresh recent kases
+	checkKases();
+	
+	if (form_name == "Employer"){
+		if ($(".Employer")[0].parentElement.parentElement.id=="employer_holder") {
+			//now go to partie screen
+			var id = $("." + form_name + " #case_id").val();
+			document.location.href = "#parties/" + id;
+		}
+	}
+	if (form_name == "injury"){
+		var case_id = $("." + form_name + " #case_id").val();
+		var corporations = new Corporations([], { case_id: case_id });
+		corporations.fetch({
+			success: function(corporations) {
+				//check for carrier
+				carrier_partie = corporations.findWhere({"type": "carrier"});
+	
+				if (typeof carrier_partie == "undefined") {
+					document.location.href="#parties/" + case_id + "/-1/carrier";
+					return true;
+				}
+			}
+		});
+	}
+	
+	if (form_name=="event") {
+		var arrWindow = window.location.href.split("#");
+		var blnWin = false;
+		if (arrWindow.length > 1) {
+			if (arrWindow[1].indexOf("kalendarbydate") > -1) {
+				blnWin = true;
+			}
+		}
+		if ($("#occurence_listing").length > 0 && blnWin) {
+			if ($(".calendar_title").length > 0) {
+				listCustomerEvents("", "", current_case_id);
+			}
+		} else {
+			if ($(".calendar_title").length > 0) {
+				resetCalendarAfterSave();
+				getUserEvents();
+			}
+		}
+		//are we in home page
+		
+		if (arrWindow[1]=="") {
+			$('#content').html(new dashboard_home_view().render().el);
+		}
+	}
+	
+	if (form_name=="contact") {
+		setTimeout(function() {
+			var contact_id = document.location.hash.split("/")[1];
+			window.Router.prototype.editContactEmail(contact_id);
+		}, 2500);
+	}
+	
+	if (form_name=="disability") {
+		setTimeout(function() {
+			document.location.href = "#disabilities/" + current_case_id;
+		}, 2500);
+	}
+}
+function saveFailed(text) {
+	/*
+	$('.alert-error').text(text)
+	$(".alert-error").fadeIn(function() { 
+		setTimeout(function() {
+				$(".alert-error").fadeOut();
+			},1500);
+	});
+	*/
+	//alert("iKase Error: " + text);
+	resetCurrentContent();
+}
+function deleteElement(event, id, form_name, remove_item) {
+	if (typeof remove_item == "undefined") {
+		remove_item = "";
+	}
+	$("#deleteModal #delete").html('<i class="icon-spin4 animate-spin" style="font-size:1.5em"></i>');
+	
+	//$("#deleteModal").modal('toggle');
+	
+	if (form_name == "occurence") { 
+		form_name = "event";
+	}
+	
+	if (form_name == "prior_medical") { 
+		form_name = "corporation";
+		$('#deleteModal').modal('toggle');
+	}
+	if (form_name == "documents_import") { 
+		form_name = "document";
+	}
+	
+	//empty the cache, content is going to need to be fetched
+	resetCurrentContent(form_name);
+	
+	var self = this;
+	if (typeof event != "undefined") {
+		event.preventDefault(); // Don't let this button submit the form
+	}
+	var switch_up = "";
+	if (form_name == "tasking") { 
+		switch_up = "now";
+		form_name = "task";
+	}
+	var url = 'api/' + form_name + '/delete';
+	formValues = "id=" + id + "&table_name=" + form_name;
+	if (remove_item!="") {
+		formValues += "&remove_item=" + remove_item;
+	}
+	if (form_name=="activity") {
+		formValues += "&case_id=" + current_case_id;
+	}
+	if (switch_up == "now") { 
+		switch_up = "";
+		form_name = "tasking";
+	}
+	$.ajax({
+		url:url,
+		type:'POST',
+		dataType:"json",
+		data: formValues,
+		success:function (data) {
+			if(data.error) {  // If there is an error, show the error messages
+				saveFailed(data.error.text);
+			} else { // If not
+				resetCurrentContent();
+				
+				if (typeof data.form_name != "undefined") {
+					form_name = data.form_name;
+				}
+				//hide the grid containing the element
+				if ($("#partie_nameGrid_" + id).length > 0) {
+					$("#partie_nameGrid_" + id).fadeOut();
+				}
+				if (form_name == "forms") {
+					return true;
+				}
+				
+				if (form_name == "fee") {
+					//reload the settlement list view
+					var hash = document.location.hash;
+					var arrHash = hash.split("/");
+					var case_id = arrHash[arrHash.length - 2];
+					var injury_id = arrHash[arrHash.length - 1];
+					window.Router.prototype.showSettlement(case_id, injury_id);
+					return true;
+				}
+				if (form_name == "task" || form_name == "check" || form_name == "event" || form_name == "document" || form_name == "letter" || form_name == "notes" || form_name == "webmail" || form_name == "messages" || form_name == "kase" || form_name == "kinvoice" || form_name == "rx" || form_name=="medicalbilling" || form_name=="deduction" || form_name=="negotiation") {
+					if (form_name!="letter" && $("#letter_listing").length==0 && $("#stack_listing").length==0) {
+						if (form_name != "tasking" && form_name != "task") {
+							$('#deleteModal').modal('toggle');
+						} else {
+							var classname = $('#deleteModal').attr("class");
+							if (classname == "modal fade in") {
+								$('#deleteModal').modal('toggle');
+							}
+						}
+					}
+					if ($(".modal-backdrop").length > 0) {
+						$(".modal-backdrop").remove();
+					}
+					if ($("#stack_listing").length > 0) {
+						form_name = "documents_import";
+					}
+					if (form_name == "tasking") { 
+						switch_up = "now";
+						form_name = "task";
+					}
+					//hide the row
+					if (form_name=="event") {
+						form_name = "occurence";
+						
+						resetCalendarAfterSave();
+						getUserEvents();
+					}
+					if (form_name=="documents_import") {
+						checkImports();
+						checkUnassigneds();
+					}
+					if (form_name=="document") {
+						var arrIDs = id.split(", ");
+						for(var i =0; i < arrIDs.length; i++) {	
+							var the_id = arrIDs[i];
+							$(".document_row_" + the_id).css("background", "red");
+							setTimeout(function() {
+								$(".document_row_" + the_id).fadeOut();
+							}, 2500);
+						}
+						var mass_change = document.getElementById("mass_change");
+						if (typeof mass_change != "undefined" && mass_change != null) {
+							document.getElementById("mass_change").selectedIndex = 0;
+						}
+						if ($("#letter_listing").length==0 && $("#picture_holder").length==0) {
+							form_name = "kase_document";
+						}
+						if($("#picture_holder").length > 0) {
+							$("#picture_holder").html("<span style='background:red;color:white'>deleted</span>");
+						}
+						if ($("#letterholder_" + id).length>0) {
+							$("#letterholder_" + id).css("background", "red");
+							$('#deleteModal').modal('toggle');
+						}
+					}
+					if (form_name=="notes") {
+						$(".note_data_row_" + id).css("background", "red");
+					}
+					if (form_name=="messages") {
+						$(".message_row_" + id).css("background", "red");
+					}
+					if (form_name=="check") {
+						$(".check_data_row_" + id).css("background", "red");
+					}
+					if (form_name=="medicalbilling") {
+						$(".billing_data_row_" + id).css("background", "red");
+					}
+					if (form_name=="deduction" || form_name=="negotiation") {
+						$("."  + form_name + "_data_row_" + id).css("background", "red");
+					}
+					if (form_name=="kase") {
+						$(".kase_data_row_" + id).css("background", "red");
+						
+						//now find the kase in kases and remove it
+						var kase = kases.findWhere({case_id: id});
+						if (typeof kase != "undefined") {
+							kases.remove(kase);
+						}
+					}
+					if (form_name=="kinvoice") {
+						$(".invoice_data_row_" + id).css("background", "red");
+					}
+					if (form_name=="documents_import") {
+						var arrIDs = id.split(", ");
+						for(var i =0; i < arrIDs.length; i++) {	
+							var the_id = arrIDs[i];
+							$(".document_row_" + the_id).css("background", "red");
+						}
+						//now hide the red ones
+						setTimeout(function() {
+							var arrIDs = id.split(", ");
+							for(var k =0; k < arrIDs.length; k++) {	
+								var row_id = arrIDs[k];
+								$(".document_row_" + row_id).fadeOut();
+							}
+						}, 2500);
+						document.getElementById("mass_change").selectedIndex = 0;
+					}
+					if (form_name=="webmail") {
+						var arrIDs = id.split(", ");
+						for(var i =0; i < arrIDs.length; i++) {	
+							var the_id = arrIDs[i];
+							$(".webmail_row_" + the_id).css("background", "red");
+						}
+						//now hide the red ones
+						setTimeout(function() {
+							var arrIDs = id.split(", ");
+							for(var k =0; k < arrIDs.length; k++) {	
+								var row_id = arrIDs[k];
+								$(".webmail_row_" + row_id).fadeOut();
+							}
+						}, 2500);
+						document.getElementById("mass_change").selectedIndex = 0;
+					}
+					$("." + form_name + "_row_" + id).css("background", "red");
+					setTimeout(function() {
+						//hide the processed row, no longer a batch scan
+						if (form_name=="letter") {
+							$("#letterholder_" + id).fadeOut();
+						}
+						if (form_name=="document" && $("#letter_listing").length>0) {
+							$("#letterholder_" + id).fadeOut();
+						}
+						if (form_name=="check") {
+							$(".check_data_row_" + id).fadeOut();
+						}
+						if (form_name=="medicalbilling") {
+							$(".billing_data_row_" + id).fadeOut();
+						}
+						if (form_name=="kinvoice") {
+							$(".invoice_data_row_" + id).fadeOut();
+						}
+						if (form_name=="notes") {
+							$(".note_data_row_" + id).fadeOut();
+						}
+						if (form_name=="messages") {
+							$(".message_row_" + id).fadeOut();
+						}
+						if (form_name=="kase") {
+							$(".kase_data_row_" + id).fadeOut();
+						}
+						if (form_name=="deduction" || form_name=="negotiation") {
+							$("."  + form_name + "_data_row_" + id).fadeOut();
+						}
+						$("." + form_name + "_row_" + id).fadeOut();
+					}, 2500);
+				}
+			}
+		}
+	});
+	if (form_name == "forms") {
+		return true;
+	}
+	if (form_name=="document" && $("#letter_listing").length==0 && $("#stack_listing").length==0 && $("#picture_holder").length==0) {
+		form_name = "kase_document";
+	}
+	if (form_name == "webmail") {
+		var arrIDs = id.split(", ");
+		var arrlength = arrIDs.length;
+		if (arrlength > 1) {
+			return true;
+		}
+	}
+	if (form_name == "task" || form_name == "tasking") {
+		if (switch_up == "") { 
+			switch_up = "now";
+			form_name = "task";
+		}
+	}
+	$("." + form_name + "_row_" + id).css("background", "red");
+	setTimeout(function() {
+			if (form_name=="threads") {
+				$("#preview_pane_holder").fadeOut(function() {
+					$("#thread_list_outer_div").css("width", "100%");		
+				});
+			}
+			//hide the processed row, no longer a batch scan
+			$("." + form_name + "_row_" + id).fadeOut();
+			if (form_name == "task" || form_name == "tasking") {
+				if (switch_up == "now") { 
+				switch_up = "";
+				form_name = "tasking";
+			}
+		}
+	}, 2500);
+	
+	if (form_name!="letter" && form_name!="event" && form_name!="task" && form_name!="tasking" && form_name!="corporation" && form_name!="notes" && form_name!="webmail" && form_name!="messages" && form_name!="kase" && form_name!="user" && form_name!="forms") {
+		if ($("#letter_listing").length==0 && $("#picture_holder").length==0) {
+			hideDelete();
+		}
+	}
+	
+	if (form_name=="injury") {
+		var kase = kases.findWhere({id: id});
+		if (typeof kase != "undefined") {
+			kases.remove(kase);
+		}
+		var doi = dois.where({id: id});
+		if (typeof doi != "undefined") {
+			dois.remove(doi);
+		}
+		
+		if ($("#related_row_" + id).length > 0) {
+			$("#related_row_" + id).css("background", "red");
+			setTimeout(function() {
+				$("#related_row_" + id).fadeOut();
+			}, 2500);
+		}
+		if ($(".injury_view #injury_form").length > 0) {
+			$("#sub_category_holder_injury").css("background", "red");
+			setTimeout(function() {
+				document.location.href = "#kases/" + current_case_id;
+			}, 2500);
+		}
+	}
+	
+	return true;
+}
+function closeElement(event, id, form_name) {
+	var self = this;
+	event.preventDefault(); // Don't let this button submit the form
+	var url = 'api/' + form_name + '/update';
+	formValues = "id=" + id + "&table_name=" + form_name + "&task_type=closed";
+
+	$.ajax({
+		url:url,
+		type:'POST',
+		dataType:"json",
+		data: formValues,
+		success:function (data) {
+			if(data.error) {  // If there is an error, show the error messages
+				saveFailed(data.error.text);
+			} else { // If not
+				var row_background = $(".task_row_" + id).css("background");
+				$(".task_row_" + id).css("background", "green");
+				$(".type_holder_" + id).html("closed");
+				setTimeout(function() {
+					//hide the processed row, no longer a batch scan
+					$(".task_row_" + id).fadeOut();
+				}, 2500);
+			}
+		}
+	});
+	return true;
+}
+function printReceipt(check_id) {
+	var url = "reports/print_deposits.php?id=" + check_id;
+	window.open(url);
+	
+	noPrintReceipt();
+}
+function noPrintReceipt() {
+	$('#myModal4').modal('toggle');
+	
+	var arrHash = document.location.hash.split("/");
+	window.Router.prototype.listBankAccounts(arrHash[arrHash.length - 1]);
+}

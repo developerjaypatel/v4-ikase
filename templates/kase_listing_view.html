@@ -1,0 +1,98 @@
+<div class="glass_header" id="list_kases_header">
+    <span style="font-size:1.2em; color:#FFFFFF">List of Kases</span>
+</div>
+<table id="kase_listing" class="tablesorter kase_listing" border="0" cellpadding="0" cellspacing="1" width="100%" style="-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px;">
+    <thead>
+    <tr>
+        <th>
+            Kase
+        </th>
+        <th>
+            ADJ&nbsp;#
+        </th>
+        <th>
+            DOI
+        </th>
+        <th>
+            Venue
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            SSN
+        </th>
+        <th>
+            DOB
+        </th>
+        <th>
+            Language
+        </th>
+        <th>
+            Occupation
+        </th>
+        <th>
+            Atty
+        </th>
+        <th>
+            Worker
+        </th>
+    </tr>
+    </thead>
+    <tbody class="listing_item">
+    <% var intCounter = 0;
+        _.each( kases, function(kase) {
+    %>
+    <tr class="kase_data_row" style="height:35px; font-family:Arial, Helvetica, sans-serif; font-size:1em;">
+        <td> 	
+        	<span style="float:right">
+                <a title="Click to compose a new note" class="compose_kase" id="compose_kase_<%= kase.case_id %>" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="cursor:pointer"><i class="glyphicon glyphicon-edit" style="color:#0033FF"></i></a>
+                &nbsp;<a title="Click to compose a new note" class="compose_new_note" id="compose_note_<%= kase.case_id %>" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="cursor:pointer"><i class="glyphicon glyphicon-plus" style="color:#99FFFF"></i></a>
+                &nbsp;<a title="Click to compose a new message" class="compose_message" id="compose_<%= kase.case_id %>" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="cursor:pointer"><i class="glyphicon glyphicon-pencil" style="color:#00FFFF"></i></a>
+                &nbsp;<a href="#documents/<%= kase.case_id %>" title="Click to manage documents"><i style="color:#FFFFFF" class="glyphicon glyphicon-upload"></i></a>
+                
+                &nbsp;<a href="#kalendar/<%= kase.case_id %>"><i style="color:#FF9999" class="glyphicon glyphicon-calendar" title="Click to view kalendar"></i></a>
+                &nbsp;<a title="Click to create a task" class="compose_task" id="compose_task_<%= kase.case_id %>" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="cursor:pointer"><i style="color:#66FF33" class="glyphicon glyphicon-inbox" title="Click to add task"></i></a>
+                &nbsp;<!--<a href="#phone/<%= kase.case_id %>/-1">-->
+                <a title="Click to add phone message" class="compose_phone" id="compose_phone_<%= kase.case_id %>" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="cursor:pointer"><i style="color:#3C9" class="glyphicon glyphicon-earphone" title="Click to add phone message"></i></a>
+                &nbsp;
+                <a href="#letters/<%= kase.case_id %>" title="Click to compose a new letter" id="compose_letter_<%= kase.case_id %>" style="cursor:pointer"><i class="glyphicon glyphicon-envelope" style="color:#99FFFF">&nbsp;</i></a>
+            </span>
+            <a id="link_<%= kase.case_id %>" href='#kases/<%= kase.case_id %>' class="list-item_kase kase_link"><%=highLight(kase.case_number, key) %><% if (kase.injury_number>1) { %>-<%=kase.injury_number %><% } %></a>
+            &nbsp;<a id="windowlink_<%= kase.case_id %>" href='#kases/<%= kase.case_id %>' class="list-item_kase kase_windowlink" target="_blank" title="Click to open this kase in its own window" style="display:none">Open in new window</a>
+            <br />
+            <%=kase.full_name %>
+        </td>
+        <td><span class="listing_item"><%=highLight(kase.adj_number, key) %></span></td>
+        <td><span class="listing_item"><%=kase.start_date %></span></td>
+        <td><span class="listing_item"><%=highLight(kase.venue_abbr, key) %></span></td>
+        <td><span class="listing_item"><%=highLight(kase.case_status, key) %></span></td>
+        <td><span class="listing_item"><%=highLight(kase.case_date, key) %></span></td>
+        <td><span class="listing_item"><%=highLight(kase.ssn, key) %></span></td>
+        <td><span class="listing_item"><%=highLight(kase.dob, key) %></span></td>
+        <td><span class="listing_item"><%=highLight(kase.language, key) %></span></td>
+        <td><span class="listing_item"><%=highLight(kase.occupation, key) %></span></td>
+        <td><span class="listing_item"><%=highLight(kase.attorney, key) %></span></td>
+        <td><span class="listing_item"><%=highLight(kase.worker, key) %></span></td>
+    </tr>
+    <% }); %>
+    </tbody>
+</table>
+        <div id="pager" class="pager">
+                <form>
+                    <img src="img/first.png" class="first"/>
+                    <img src="img/prev.png" class="prev"/>
+                    <input type="text" class="pagedisplay"/>
+                    <img src="img/next.png" class="next"/>
+                    <img src="img/last.png" class="last"/>
+                    <select class="pagesize">
+                        <option selected="selected" value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option  value="40">40</option>
+                    </select>
+                </form>
+            </div>

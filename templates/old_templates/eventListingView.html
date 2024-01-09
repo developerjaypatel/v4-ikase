@@ -1,0 +1,55 @@
+<div class="row">
+	<div class="title_header">
+        <div style="float:right;">
+            <input id="events_searchList" type="text" class="search-field" placeholder="Search" autocomplete="off" onkeyup="findIt(this, 'event_listing', 'event')">
+        </div>
+        <span style="font-size:1.2em">Events</span>
+    </div>
+    <table id="event_listing" class="tablesorter event_listing" border="0" cellpadding="0" cellspacing="1">
+        <thead>
+        <tr>
+            <th>
+            	Event #
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Date
+            </th>
+           
+        </tr>
+        </thead>
+        <tbody>
+        <% _.each( events, function(event) {%>
+        <tr class="event_data_row">
+            <td>
+                <a href='#events/<%= event.id %>'><%= event.id %></a>
+            </td>
+            <td><%= event.event_name %></td>
+            <td><%= event.description %></td>
+            <td><%= moment(event.start).format('MM/DD/YYYY') %></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+    <div id="pager" class="pager">
+        <form>
+            <img src="img/first.png" class="first"/>
+            <img src="img/prev.png" class="prev"/>
+            <input type="text" class="pagedisplay"/>
+            <img src="img/next.png" class="next"/>
+            <img src="img/last.png" class="last"/>
+            <select class="pagesize">
+                <option selected="selected" value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option  value="40">40</option>
+            </select>
+        </form>
+    </div>
+
+</div>

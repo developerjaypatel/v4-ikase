@@ -1,0 +1,78 @@
+
+<div class="row-fluid">
+    <div style="text-align:left">
+        <table width="100%" border="0">
+        	<tr>
+            	<td><h3><% if (!isNaN(id)) { %>Edit<% } else { %>New<% } %> Kase</h3></td>
+            	<td align="right">
+                <div  class="edit_row"><button class="edit btn btn-primary">Edit</button>&nbsp;<button class="calendar btn"><i class="icon-calendar"></i></button></div>
+                <div class="button_row hidden">
+                <input id="id" name="id" type="hidden" value="<%= id %>" />
+                    <button class="reset btn">Reset</button>&nbsp;<button class="btn btn-primary save">Save</button>&nbsp;<button class="btn btn-danger delete" style="color:white">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<form id="kase_form" parsley-validate>
+<div class="row-fluid">
+    <div class="span5">
+    	<div class="gridster">
+        <ul>
+            <li id="case_numberGrid" data-row="1" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField('case_number')">
+              <h6>Case Number</h6>
+              <div style="float:right;" class="hidden" id="case_numberSave">
+              &nbsp;<a class="save_field" id="case_numberSaveLink"><i class="icon-share"></i></a>
+              </div>
+              <input value="<%= case_number %>" name="case_numberInput" id="case_numberInput" class="kase input_class hidden" placeholder="Case Number" parsley-error-message="" required />
+              <span id="case_numberSpan" class="kase span_class"><%= case_number %></span>
+            </li>
+            <li id="titleGrid" data-row="2" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField('title')">
+              <h6>Title</h6>
+              <div style="float:right;" class="hidden" id="titleSave">
+              &nbsp;<a class="save_field" id="titleSaveLink"><i class="icon-share"></i></a>
+              </div>
+              <input value="<%= title %>" name="titleInput" id="titleInput" class="kase input_class hidden" />
+              <span class="kase span_class" id="titleSpan"><%= title %></span>
+            </li>
+            <li id="case_dateGrid" data-row="3" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField('case_date')">
+                <h6>Case&nbsp;Date:</h6>
+                <div style="float:right;" class="hidden" id="case_dateSave">
+              &nbsp;<a class="save_field" id="case_dateSaveLink"><i class="icon-share"></i></a>
+              </div>
+                <input value="<%= case_date %>" name="case_dateInput" id="case_dateInput" class="kase input_class hidden" />
+                <span id="case_dateSpan" class="kase span_class"><i class="icon-home"></i><%= case_date %></span>
+            </li>
+            <li id="case_typeGrid" data-row="4" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField('case_type')">
+                <h6>Case&nbsp;Type:</h6>
+                <div style="float:right;" class="hidden" id="case_typeSave">
+              &nbsp;<a class="save_field" id="case_typeSaveLink"><i class="icon-share"></i></a>
+              </div>
+                <input value="<%= case_type %>" name="case_typeInput" id="case_typeInput" class="kase input_class hidden" />
+                <span id="case_typeSpan" class="kase span_class"><i class="icon-headphones"></i><%= case_type %></span>
+            </li>
+            <li id="case_statusGrid" data-row="5" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField('case_status')">
+                <h6>Case&nbsp;Status:</h6>
+                <div style="float:right;" class="hidden" id="case_statusSave">
+              &nbsp;<a class="save_field" id="case_statusSaveLink"><i class="icon-share"></i></a>
+              </div>
+                <input value="<%= case_status %>" name="case_statusInput" id="case_statusInput" class="kase input_class case_status_class hidden" />
+                <span id="case_statusSpan" class="kase span_class"><i class="icon-envelope"></i>
+                <a href="mailto:<%= case_status %>"><%= case_status %></a></span>
+            </li>
+            <li id="submittedonGrid" data-row="6" data-col="1" data-sizex="1" data-sizey="1">
+                <h6>Submitted On:</h6>
+                <input value="<%= submittedOn %>" name="submittedonInput" id="submittedonInput" class="hidden" />
+                <span id="submittedonSpan" class="kase span_class kase input_class"><i class="icon-envelope"></i>
+                <%= submittedOn %></span>
+            </li>
+        </ul>
+        </div>
+        <div class="alert alert-warning" style="display:none">
+          <h4 class="alert-heading">Warning</h4>
+          <span class="alert-text"></span>
+        </div>
+        <div class="alert alert-success" style="display:none;">Saved</div>
+    </div>
+</div>
+</form>

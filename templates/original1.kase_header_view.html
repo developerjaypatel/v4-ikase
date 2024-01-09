@@ -1,0 +1,148 @@
+<div class="glass_header">
+<form id="kase_form" parsley-validate>
+<input id="id" name="id" type="hidden" value="<%= id %>" />
+<div class="kase">    
+    <div class="gridster row-fluid" id="gridster_flat" style="display:none">
+        <ul>
+            <li class="glass" id="case_numberGrid" data-row="1" data-col="1" data-sizex="1" data-sizey="1" style="border:0px #999999 solid;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:3px; background:url(img/glass.png) left top;-ms-filter:'alpha(opacity=50)'; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px;
+padding:5px;
+font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+              <h6><div class="form_label_vert">Case Number</div></h6>
+              <div style="float:right; margin-top:-5px" class="hidden" id="case_numberSave">
+              &nbsp;<a class="save_field" title="Click to save" id="case_numberSaveLink"><i style="font-size:15px" class="glyphicon glyphicon-save"></i></a>
+              </div>
+              <input value="<%= case_number %>" name="case_numberInput" id="case_numberInput" class="kase input_class hidden floatlabel" placeholder="Case Number" parsley-error-message="Case Number is a required field" required />
+              <span id="case_numberSpan" class="kase span_class form_span_vert"><%= case_number %></span>
+            </li>
+            <li class="glass" id="venueGrid" data-row="1" data-col="2" data-sizex="1" data-sizey="1" style="border:0px #999999 solid;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:3px; background:url(img/glass.png) left top;
+-ms-filter:'alpha(opacity=50)';
+border:#FFFFFF solid 1px;
+border-radius: 3px;
+padding:5px;
+font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+              <h6><div class="form_label_vert">Venue</div></h6>
+              <div style="float:right; margin-top:-5px" class="hidden" id="venueSave">
+              &nbsp;<a class="save_field" venue="Click to save" id="venueSaveLink"><i class="glyphicon glyphicon-save"></i></a>
+              </div>
+              <input value="<%= venue %>" name="venueInput" id="venueInput" class="kase input_class hidden" />
+              <span class="kase span_class form_span_vert" id="venueSpan"><%= venue %></span>
+        </li>
+        <li class="glass" id="case_dateGrid" data-row="1" data-col="3" data-sizex="1" data-sizey="1" style="border:0px #999999 solid;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:3px;background:url(img/glass.png) left top;
+-ms-filter:'alpha(opacity=50)';
+border:#FFFFFF solid 1px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+-khtml-border-radius: 3px;
+border-radius: 3px;
+padding:5px;
+font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Case&nbsp;Date</div></h6>
+                <div style="float:right; margin-top:-5px;" class="hidden" id="case_dateSave">
+              &nbsp;<a class="save_field" title="Click to save" id="case_dateSaveLink"><i class="glyphicon glyphicon-save"></i></a>
+              </div>
+                <input value="<%= moment(case_date).format('MM/DD/YYYY') %>" name="case_dateInput" id="case_dateInput" class="kase input_class hidden" onkeyup="mask(this, mdate);" onblur="mask(this, mdate);" placeholder="mm/dd/yyyy" />
+                <span id="case_dateSpan" class="kase span_class form_span_vert"><%= moment(case_date).format('MM/DD/YYYY') %></span>
+            </li>
+            <li class="glass" id="case_typeGrid" data-row="1" data-col="4" data-sizex="1" data-sizey="1" style="border:0px #999999 solid;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:3px; background:url(img/glass.png) left top;
+-ms-filter:'alpha(opacity=50)';
+border:#FFFFFF solid 1px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+-khtml-border-radius: 3px;
+border-radius: 3px;
+padding:5px;
+font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Case&nbsp;Type</div></h6>
+                <div style="float:right; margin-top:-5px;" class="hidden" id="case_typeSave">
+              &nbsp;<a class="save_field" title="Click to save" id="case_typeSaveLink"><i class="glyphicon glyphicon-save"></i></a>
+              </div>
+                <input value="<%= case_type %>" name="case_typeInput" id="case_typeInput" class="kase input_class hidden" />
+                <span id="case_typeSpan" class="kase span_class form_span_vert"><%= case_type %></span>
+            </li>
+            <li class="glass" id="case_statusGrid" data-row="1" data-col="5" data-sizex="1" data-sizey="1" style="border:0px #999999 solid;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:3px;background:url(img/glass.png) left top;
+-ms-filter:'alpha(opacity=50)';
+border:#FFFFFF solid 1px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+-khtml-border-radius: 3px;
+border-radius: 3px;
+padding:5px;
+font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Case&nbsp;Status</div></h6>
+                <div style="float:right; margin-top:-5px;" class="hidden" id="case_statusSave">
+              &nbsp;<a class="save_field" title="Click to save" id="case_statusSaveLink"><i class="glyphicon glyphicon-save"></i></a>
+              </div>
+                <input value="<%= case_status %>" name="case_statusInput" id="case_statusInput" class="kase input_class case_status_class hidden" />
+                <span id="case_statusSpan" class="kase span_class form_span_vert">
+                    <%= case_status %>
+                </span>
+            </li>
+            <li id="submittedonGrid" data-row="1" data-col="6" data-sizex="1" data-sizey="1" style="border:0px #999999 solid;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:3px; background:url(img/glass.png) left top;
+-ms-filter:'alpha(opacity=50)';
+border:#FFFFFF solid 1px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+-khtml-border-radius: 3px;
+border-radius: 3px;
+padding:5px;
+font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Submitted On</div></h6>
+                <input value="<%= submittedOn %>" name="submittedonInput" id="submittedonInput" class="hidden" />
+                <span id="submittedonSpan" class="span_class kase form_span_vert">
+                	<%= moment(submittedOn).format('MM/DD/YY') %>                
+                </span>
+            </li>
+            <li id="attorneyGrid" class="glass" data-row="1" data-col="7" data-sizex="1" data-sizey="1" style="border:0px #999999 solid;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:3px; background:url(img/glass.png) left top;
+-ms-filter:'alpha(opacity=50)';
+border:#FFFFFF solid 1px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+-khtml-border-radius: 3px;
+border-radius: 3px;
+padding:5px;
+font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Attorney</div></h6>
+                <div style="float:right; margin-top:-5px;" class="hidden" id="attorneySave">
+              &nbsp;<a class="save_field" title="Click to save" id="attorneySaveLink"><i class="glyphicon glyphicon-save"></i></a>
+              </div>
+                <input value="<%= attorney %>" name="attorneyInput" id="attorneyInput" class="kase input_class hidden" />
+                <span id="attorneySpan" class="span_class kase form_span_vert">
+                	  <%= attorney %>              
+                </span>
+            </li>
+            <li id="workerGrid" class="glass" data-row="1" data-col="8" data-sizex="1" data-sizey="1" style="border:0px #999999 solid;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:3px; background:url(img/glass.png) left top;
+-ms-filter:'alpha(opacity=50)';
+border:#FFFFFF solid 1px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+-khtml-border-radius: 3px;
+border-radius: 3px;
+padding:5px;
+font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Worker</div></h6>
+                <div style="float:right; margin-top:-5px;" class="hidden" id="workerSave">
+              &nbsp;<a class="save_field" title="Click to save" id="workerSaveLink"><i class="glyphicon glyphicon-save"></i></a>
+              </div>
+                <input value="<%= worker %>" name="workerInput" id="workerInput" class="kase input_class hidden" />
+                <span id="workerSpan" class="span_class kase form_span_vert">
+                	   <%= worker %>             
+                </span>
+            </li>
+            <!--
+            <li data-row="1" data-col="7" data-sizex="1" data-sizey="1" style="border:0px #999999 solid;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:3px; background:url(img/glass.png) left top;
+-ms-filter:'alpha(opacity=50)';
+border:#FFFFFF solid 1px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+-khtml-border-radius: 3px;
+border-radius: 3px;
+padding:5px;
+font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+            	<a href="#kases/events/edit/<%=id %>/-1/<%= case_number %>" class="note" style="color:#FFFFFF; padding:1px; padding-left:5px;"><i class="glyphicon glyphicon-folder-open">&nbsp;</i>New Activity</a>
+            </li>
+            -->
+        </ul>
+    </div>
+</div>
+</form>
+</div>

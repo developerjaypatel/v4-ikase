@@ -1,0 +1,7 @@
+<div id="applicant_list">
+<% _.each( applicants, function(applicant) {%>
+<a href='#applicants/<%= applicant.id %>'>
+    <p class="list-item"><%= applicant.title %></p>
+</a>
+<% }); %>
+</div>

@@ -1,0 +1,70 @@
+<div>
+	<div class="glass_header">
+        <!--
+        <div style="float:right;">
+        
+        <input id="case_id" name="case_id" type="hidden" value="<%=case_id %>" />
+            <input id="parties_searchList" type="text" class="search-field" placeholder="Search" autocomplete="off" onkeyup="findIt(this, 'partie_listing', 'partie')">
+        </div>
+       
+        
+        <span style="font-size:1.2em; color:#FFFFFF">Parties</span>
+         
+        <a title="new partie" id="new_partie" href='#parties/<%=case_id %>/-1/new' style="color:#FFFFFF; text-decoration:none; margin-left:50px">
+            <button class="kase edit btn btn-transparent border-blue">
+                <i class="glyphicon glyphicon-edit">&nbsp;</i>New
+            </button>
+        </a>
+        -->
+    </div>
+    <table id="partie_listing" class="tablesorter partie_listing" border="0" cellpadding="0" cellspacing="1">
+        <thead>
+        <tr>
+            <th style="font-size:1.5em">
+            	Name
+            </th>
+            <th style="font-size:1.5em">
+            	Type
+            </th>
+            <th style="font-size:1.5em">
+            	Phone
+            </th>
+            <th style="font-size:1.5em">
+                Email
+            </th>
+            <th style="font-size:1.5em">
+                Address
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <% _.each( parties, function(partie) {
+        	var thehref = "#parties/" + partie.case_id + "/" + partie.parties_id + "/" + partie.type;
+            if (partie.type=="applicant") { 
+                thehref = "#kases/" + partie.case_id;
+            }
+            var arrAddress = new Array();
+            if (partie.street!="") {
+            	arrAddress[arrAddress.length] = partie.street;
+                //address = partie.street;
+            }
+            if (partie.city!="") {
+            	arrAddress[arrAddress.length] = partie.city;
+            }
+            if (partie.state!="") {
+            	arrAddress[arrAddress.length] = partie.state;
+            }
+			address = arrAddress.join(", ");
+        %>
+        <tr class="partie_data_row">
+            <td style="font-size:1.5em"><a href='<%= thehref %>' style="color:#000099; text-decoration:none"><%= partie.company_name %></a></td>
+            <td style="font-size:1.5em"><%= partie.type %></td>
+            <td style="font-size:1.5em"><%= partie.phone %></td>
+            <td style="font-size:1.5em"><%= partie.email %></td>
+            <td style="font-size:1.5em"><%= address %></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>

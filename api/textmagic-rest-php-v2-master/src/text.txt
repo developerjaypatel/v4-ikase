@@ -1,0 +1,9 @@
+{
+    "id": 935352108,
+    "href": "\/api\/v2\/messages\/935352108",
+    "type": "message",
+    "sessionId": 346505646,
+    "messageId": 935352108,
+    "chatId": 30510677
+}
+ Skies are blue

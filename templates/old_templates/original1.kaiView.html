@@ -1,0 +1,241 @@
+<div style="text-align:left; margin-top:13px;">
+         <span style="color:#FFFFFF; font-size:1.6em; font-weight:lighter; margin-left:10px;"><% if (!isNaN(id)) { %>Review<% } else { %>New<% } %> KAI</span>
+         <div style="z-index:2356">
+                <span class="alert alert-success" style="display:none; float:right; height:35px; width:300px;font-size:14px; z-index:3356; margin-top:-45px;">Saved</span>
+                </div>
+         <div style="position:absolute; left:380px; top:190px;" class="edit_row kai"><button class="edit btn btn-transparent border-blue"><i class="glyphicon glyphicon-edit">&nbsp;</i>Edit</button></div>
+         <div class="button_row kai hidden" style="border:#FF0000 0px solid;position:absolute; left:380px; top:190px; font-size:16px; padding:0px">        
+            <button class="reset btn btn-transparent border-white"><i class="glyphicon glyphicon-repeat">&nbsp;</i>Reset</button>&nbsp;<button class="btn btn-transparent border-green save"><i class="glyphicon glyphicon-save"></i>Save</button>&nbsp;<button class="btn btn-transparent border-red delete" style="color:white"><i class="glyphicon glyphicon-remove-sign">&nbsp;</i>Delete</button>
+        </div>
+	</div>
+    	
+    <div class="kai">
+    	<form id="kai_form" parsley-validate>
+        <input id="id" name="id" type="hidden" value="<%= id %>" />
+        <input id="uuid" name="uuid" type="hidden" value="<%= uuid %>" />
+        <input id="case_id" name="case_id" type="hidden" value="<%= case_id %>" />
+        <input id="case_uuid" name="case_uuid" type="hidden" value="<%= case_uuid %>" />
+        <div class="gridster kai" id="gridster_kai" style="display:none">
+            <ul>
+                <li id="ssnGrid" data-row="1" data-col="1" data-sizex="1" data-sizey="1" class="kai gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                    <h6><div class="form_label_vert">SSN/row="1",col="1"</div></h6>
+                  <div style="" class="save_holder hidden" id="ssnSave">
+                    <a class="save_field" title="Click to save this field" id="ssnSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                  <input value="<%= ssn %>" name="ssnInput" id="ssnInput" class="kai input_class hidden" placeholder="XXX-XX-XXXX" parsley-error-message="Social Security Number is a required field" style="margin-top:-2px;" size="50" required />
+                  <span id="ssnSpan" class="kai span_class form_span_vert"><%= ssn %></span>            
+                </li>
+            <li id="case_salutationGrid" data-row="2" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top;">
+                <h6><div class="form_label_vert">Salutation/data-row="2" data-col="1"</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="case_salutationSave">
+                    <a class="save_field" title="Click to save this field" id="case_salutationSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                  <select name="case_salutationInput" id="case_salutationInput" class="input_class hidden" style="height:30px; margin-top:-5px; width:180px">
+                  <option value="" selected="selected">Select from List</option>
+                  <option value="Mr">Mr</option>
+                  <option value="Ms">Ms</option>
+                  <option value="Mrs">Mrs</option>
+                </select>
+                  <span id="case_salutationSpan" class="kase span_class form_span_vert"></span>
+                </li>
+            
+                <li id="birth_cityGrid" data-row="3" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Birth City/row="3" ,col="1"</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="birth_citySave">
+                    <a class="save_field" title="Click to save this field" id="birth_citySaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                <input value="" name="birth_cityInput" id="birth_cityInput" style="margin-top:-2px" class="hidden" />
+                <span id="birth_citySpan" class="span_class" style="margin-top:0px">
+                
+                </span>
+                </li>
+                <li id="dlGrid" data-row="4" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">DL#/row="4" ,col="1"</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="dlSave">
+                    <a class="save_field" title="Click to save this field" id="dlSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                <input value="" name="dlInput" id="dlInput" style="margin-top:-2px" class="hidden" />
+                <span id="dlSpan" class="span_class" style="margin-top:0px">
+                
+                </span></h6>
+                </li>
+                <li id="case_genderGrid" data-row="5" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top;">
+                <h6><div class="form_label_vert">Gender/row="5" ,col="1"</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="case_genderSave">
+                    <a class="save_field" title="Click to save this field" id="case_genderSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                  <select name="case_genderInput" id="case_genderInput" class="input_class hidden" style="height:30px; margin-top:-5px; width:180px">
+                  <option value="" selected="selected">Select from List</option>
+                  <option value="Mr">Male</option>
+                  <option value="Ms">Female</option>
+                </select>
+                  <span id="case_genderSpan" class="kase span_class form_span_vert"></span>
+                </li>
+                <li id="dobGrid" data-row="1" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">DOB/row="1" ,col="2"</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="dobSave">
+                    <a class="save_field" title="Click to save this field" id="dobSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                <input value="<%= dob %>" name="dobInput" id="dobInput" style="margin-top:-2px" class="hidden" />
+                <span id="dobSpan" class="span_class" style="margin-top:0px">
+                <%= dob %>
+                </span>
+                </li>
+                <li id="ageGrid" data-row="2" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Age/row="2" ,col="2"</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="ageSave">
+                    <a class="save_field" title="Click to save this field" id="ageSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                <input value="" name="ageInput" style="margin-top:-2px" id="ageInput" class="input_class hidden" />
+                <span id="ageSpan" class="span_class" style="margin-top:0px"></span>
+                </li>
+                <li id="case_languageGrid" data-row="3" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top;">
+                <h6><div class="form_label_vert">Language/row="3" ,col="2"</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="case_languageSave">
+                    <a class="save_field" title="Click to save this field" id="case_languageSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                  <select name="case_languageInput" id="case_languageInput" class="input_class hidden" style="height:30px; margin-top:-5px; width:180px">
+                  <option value="" selected="selected">Select from List</option>
+                  <option value="Mr">English</option>
+                  <option value="Ms">Spanish</option>
+                  <option value="Mrs">French</option>
+                </select>
+                  <span id="case_languageSpan" class="kase span_class form_span_vert"></span>
+                </li>                
+                <li id="birth_stateGrid" data-row="4" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Birth State/row="4" ,col="2"</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="birth_stateSave">
+                    <a class="save_field" title="Click to save this field" id="birth_stateSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                <input value="" name="birth_stateInput" id="birth_stateInput" style="margin-top:-2px" class="input_class hidden" />
+                <span id="birth_stateSpan" class="span_class" style="margin-top:0px">
+                
+                </span>
+                </li>
+                <li id="legal_statusGrid" data-row="5" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top;">
+                <h6><div class="form_label_vert">Legal Status/data-row="5" ,col="2"</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="legal_statusSave">
+                    <a class="save_field" title="Click to save this field" id="legal_statusSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                  <select name="legal_statusInput" id="legal_statusInput" class="input_class hidden" style="height:30px; margin-top:-5px; width:180px">
+                  <option value="" selected="selected">Select from List</option>
+                  <option value="Mr">Legal</option>
+                  <option value="Ms">Not Legal</option>
+                  <option value="Mrs">Other</option>
+                </select>
+                  <span id="legal_statusSpan" class="kase span_class form_span_vert"></span>
+                </li>
+                <li id="marital_statusGrid" data-row="1" data-col="3" data-sizex="1" data-sizey="1" class="gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Marital Status/row="1" ,col="3"</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="marital_statusSave">
+                    <a class="save_field" title="Click to save this field" id="marital_statusSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                <input value="" name="marital_statusInput" id="marital_statusInput" style="margin-top:-2px" class="hidden" />
+                <span id="marital_statusSpan" class="span_class" style="margin-top:0px">
+                
+                </span>
+                </li>
+                <li id="spouseGrid" data-row="2" data-col="3" data-sizex="1" data-sizey="1" class="gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Spouse/row="2" ,col="3"</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="spouseSave">
+                    <a class="save_field" title="Click to save this field" id="spouseSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                <input value="" name="spouseInput" id="spouseInput" style="margin-top:-2px" class="hidden" />
+                <span id="spouseSpan" class="span_class" style="margin-top:0px">
+                
+                </span>
+                </li>
+                <li id="spouse_contactGrid" data-row="3" data-col="3" data-sizex="1" data-sizey="1" class="gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Contact/row="3" ,col="3"</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="spouse_contactSave">
+                    <a class="save_field" title="Click to save this field" id="spouse_contactSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                <input value="" name="spouse_contactInput" id="spouse_contactInput" style="margin-top:-2px" class="hidden" />
+                <span id="spouse_contactSpan" class="span_class" style="margin-top:0px">
+                
+                </span>
+                </li>
+                <!--
+                <li id="workerGrid" data-row="4" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border">
+                
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">Worker:</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="workerSave">
+                <a class="save_field" title="Click to save this field" id="workerSaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= worker %>" name="workerInput" id="workerInput" style="margin-top:-2px" class="input_class hidden" />
+                <span id="workerSpan" class="span_class" style="margin-top:0px"><%= worker %></span></h6>
+                </li>
+                <li id="occupationGrid" data-row="4" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border">
+                
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">Occupation:</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="occupationSave">
+                <a class="save_field" title="Click to save this field" id="occupationSaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%	//= occupation %>" name="occupationInput" id="occupationInput" style="margin-top:-2px" class="input_class hidden" />
+                <span id="occupationSpan" class="span_class" style="margin-top:0px"><%	//= occupation %></span></h6>
+                </li>
+                <li id="attorneyGrid" data-row="1" data-col="2" data-sizex="2" data-sizey="1" class="gridster_border">
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">Attorney</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="attorneySave">
+                <a class="save_field" title="Click to save this field" id="attorneySaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= attorney %>" name="attorneyInput" id="attorneyInput" style="margin-top:-2px" class="hidden" />
+                <span id="attorneySpan" class="span_class" style="margin-top:0px">
+                <%= dob %>
+                </span></h6>
+                </li>
+                <li id="license_numberGrid" data-row="1" data-col="1" data-sizex="2" data-sizey="1" class="gridster_border">
+                
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">License #</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="license_numberSave">
+                <a class="save_field" title="Click to save this field" id="license_numberSaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= license_number %>" name="license_numberInput" id="license_numberInput" style="margin-top:-2px" class="hidden" />
+                <span id="license_numberSpan" class="span_class" style="margin-top:0px"><%= license_number %></span></h6>
+                </li>
+                <li id="priority_flagGrid" data-row="1" data-col="2" data-sizex="2" data-sizey="1" class="gridster_border">
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">Priority Flag</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="priority_flagSave">
+                <a class="save_field" title="Click to save this field" id="priority_flagSaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= priority_flag %>" name="priority_flagInput" id="priority_flagInput" style="margin-top:-2px" class="hidden" />
+                <span id="priority_flagSpan" class="span_class" style="margin-top:0px">
+                <%= priority_flag %>
+                </span></h6>
+                </li> -->
+           </ul>
+        </div>
+        </form>
+	</div>
+</div>    

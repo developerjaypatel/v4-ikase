@@ -1,0 +1,38 @@
+	<h1 style="color:#FFFFFF">Upload Documents</h1>
+	<!--<form>
+		<div id="queue"></div>
+		<input id="file_upload" name="file_upload" type="file" multiple="true">
+        <input id="file_upload_kase_id" value="<%= id %>" type="hidden" />
+        <input id="file_upload_table_name" value="<%= table_name %>" type="hidden" />
+		<a style="position: relative; top: 8px;" href="javascript:$('#file_upload').uploadifive('upload')">Upload Files</a>
+	</form> -->
+    
+    <iframe src="fileupload/index.html" allowtransparency="0" frameborder="0" style="height:250px; width:800px"></iframe>
+
+	<script type="text/javascript">
+		/*
+		$(function() {
+			var timestamp = moment().format('YYYY-MM-DD h:mm:ss a');
+			//console.log("timestamp:" + timestamp);
+			var token = md5('ikase_system' + timestamp);
+			var id = $("#file_upload_kase_id").val();
+			var table_name = $("#file_upload_table_name").val();
+			//console.log("token:" + token);
+			$('#file_upload').uploadifive({
+				'auto'             : false,
+				'checkScript'      : 'check-exists.php',
+				'formData'         : {
+									   'timestamp' 	: timestamp,
+									   'token'     	: token,
+									   'table_name'	: table_name,
+									   'id'     	: id
+				                     },
+				'queueID'          : 'queue',
+				'uploadScript'     : '../api/uploadifive.php',
+				'onUploadComplete' : function(file, data) { 
+						showComplete(data); 
+					}
+			});
+		});
+		*/
+	</script>

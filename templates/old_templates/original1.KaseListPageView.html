@@ -1,0 +1,26 @@
+<div class="row">
+    <div id="kase_listing" class="well" style="text-align:left">
+        <h3>Kases</h3>
+        <!--<input id="kases_searchList" type="text" class="search-field" placeholder="Search" style="height:30px" autocomplete="off" onkeyup="sortIt(this, 'kase')">-->
+        <input class="search" placeholder="Search" />
+        <div style="padding-left:20px">
+            <div style="display:inline-block; width:50px; text-align:left">
+            <a class="sort" data-sort="kase_number">Kase #</a></div>
+            <div style="display:inline-block; width:50px; text-align:left">
+            <a class="sort" data-sort="kase_title">
+            Title
+            </a>
+            </div>
+        </div>
+        <ul id="kase_list_table" class="list zebra_stripe">
+             <% _.each( kases, function(kase) {%>
+                <li class="kase_data_row">
+                    <div class="kase_number" style="display:inline-block; width:50px; text-align:left">
+                    <a href='#kases/<%= kase.id %>'><%= kase.case_number %></a>
+                    </div>
+                    <div class="kase_title" style="display:inline-block; width:50px; text-align:left"><%= kase.title %></div>
+                </li>
+             <% }); %>
+        </ul>
+    </div>
+</div>

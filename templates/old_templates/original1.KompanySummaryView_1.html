@@ -1,0 +1,193 @@
+<div class="row-fluid">
+    <div class="span5" style="text-align:left">
+        <div style="float:right;"><button class="edit btn btn-primary">Edit</button>&nbsp;<button class="calendar btn"><i class="icon-calendar"></i></button></div>
+   		<div style="float:right;" class="button_row hidden">        
+            <input id="id" name="id" type="hidden" value="<%= id %>" />
+            <button class="reset btn">Reset</button>&nbsp;<button class="btn btn-primary save">Save</button>&nbsp;<button class="btn btn-danger delete" style="color:white">Delete</button>
+        </div>
+        <h3><% if (!isNaN(id)) { %>Edit<% } else { %>New<% } %> Kompany</h3>
+    </div>
+</div>
+<form id="kase_form" parsley-validate>
+<div class="row-fluid">
+    <div class="span5">
+    	<div class="gridster">
+        <ul>
+            <li id="case_numberGrid" data-row="1" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField('case_number')">
+              <h6>Salutation</h6>
+              <div style="float:right;" class="hidden" id="case_numberSave">
+              &nbsp;<a class="save_field" id="case_numberSaveLink">save</a>              </div>
+              <select value="Select One" name="case_salutationInput" id="case_salutationInput" class="input_class hidden" >
+              <option id="" selected="selected" />
+              <option value="Mr" />
+              <option value="Ms" />
+              <option value="Mrs" />
+              </select>
+            </li>
+            <li id="NameGrid" data-row="2" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField('name')">
+              <h6>First Name</h6>
+              <div style="float:right;" class="hidden" id="nameSave">
+              &nbsp;<a class="save_field" id="titleSaveLink">save</a>              </div>
+              <input value="<%= name %>" name="nameInput" id="nametitleInput" class="input_class hidden" />
+              <span class="span_class" id="titleSpan"><%= name %></span>            </li>
+            <li id="last_nameGrid" data-row="3" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField('last_name')">
+                <h6>Last Name:</h6>
+                <div style="float:right;" class="hidden" id="last_nameSave">
+              &nbsp;<a class="save_field" id="last_nameSaveLink">save</a>              </div>
+                <input value="<%= last_name %>" name="last_nameInput" id="last_nameInput" class="input_class hidden" />
+                <span id="last_nameSpan" class="span_class"><i class="icon-home"></i><%= last_name %></span>            </li>
+            <li id="preferred_nameGrid" data-row="4" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField('preferred_name')">
+                <h6>Preferred Name:</h6>
+                <div style="float:right;" class="hidden" id="preferred_nameSave">
+              &nbsp;<a class="save_field" id="preferred_nameSaveLink">save</a>              </div>
+                <input value="<%= preferred_name %>" name="preferred_nameInput" id="preferred_nameInput" class="input_class hidden" />
+                <span id="preferred_nameSpan" class="span_class"><i class="icon-headphones"></i><%= preferred_name %></span>            </li>
+            <li id="titleGrid" data-row="2" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField('title')">
+              <h6>Title</h6>
+              <div style="float:right;" class="hidden" id="titleSave">
+              &nbsp;<a class="save_field" id="titleSaveLink">save</a>              </div>
+              <input value="<%= title %>" name="titleInput" id="titleInput" class="input_class hidden" />
+              <span class="span_class" id="titleSpan"><%= title %></span>            </li>
+            <li id="company_nameGrid" data-row="5" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField('company_name')">
+                <h6>Company Name:</h6>
+                <div style="float:right;" class="hidden" id="company_nameSave">
+              &nbsp;<a class="save_field" id="company_nameSaveLink">save</a>              </div>
+                <input value="<%= company_name %>" name="company_nameInput" id="company_nameInput" class="input_class hidden" />
+                <span id="company_nameSpan" class="span_class"><i class="icon-envelope"></i>
+                <%= company_name %></span>            </li>
+                <h2>Email:</h2>
+            <li id="officeGrid" data-row="6" data-col="1" data-sizex="1" data-sizey="1">
+                <h6>Office:</h6>
+                <input value="<%= office %>" name="officeInput" id="officeInput" class="hidden" />
+                <span id="officeSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= office %></span>            
+            </li>
+            <li id="homeGrid" data-row="6" data-col="1" data-sizex="1" data-sizey="1">
+                <h6>Home:</h6>
+                <input value="<%= home %>" name="homeInput" id="homeInput" class="hidden" />
+                <span id="homeSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= home %></span>            
+            </li>
+            <li id="skypeGrid" data-row="6" data-col="1" data-sizex="1" data-sizey="1">
+                <h6>Skype:</h6>
+                <input value="<%= skype %>" name="skypeInput" id="skypeInput" class="hidden" />
+                <span id="skypeSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= skype %></span>
+                <h2>Phone:</h2>
+            </li>
+            <li id="officepGrid" data-row="6" data-col="1" data-sizex="1" data-sizey="1">
+                <h6>Office:</h6>
+                <input value="<%= office_phone %>" name="officepInput" id="officepInput" class="hidden" />
+                <span id="officepSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= office_phone %></span>            
+            </li>
+            <li id="officeextGrid" data-row="6" data-col="1" data-sizex="1" data-sizey="1">
+                <h6>Office Ext:</h6>
+                <input value="<%= office_ext %>" name="officeextInput" id="officeextInput" class="hidden" />
+                <span id="officeextSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= office_ext %></span>            
+            </li>
+            <li id="mobileGrid" data-row="6" data-col="1" data-sizex="1" data-sizey="1">
+                <h6>Mobile:</h6>
+                <input value="<%= mobile %>" name="mobileInput" id="mobileInput" class="hidden" />
+                <span id="mobileSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= mobile %></span>            
+            </li>
+            <li id="faxGrid" data-row="6" data-col="1" data-sizex="1" data-sizey="1">
+                <h6>Fax:</h6>
+                <input value="<%= fax %>" name="faxInput" id="faxInput" class="hidden" />
+                <span id="faxSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= fax %></span>            
+            </li>
+            <li id="homepGrid" data-row="6" data-col="1" data-sizex="1" data-sizey="1">
+                <h6>Home:</h6>
+                <input value="<%= homep %>" name="homepInput" id="homepInput" class="hidden" />
+                <span id="homepSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= homep %></span>            
+            </li>
+            <li id="addressGrid" data-row="2" data-col="2" data-sizex="1" data-sizey="1" ondblclick="editField('address')">
+              <h6>Address</h6>
+              <div style="float:right;" class="hidden" id="addressSave">
+              &nbsp;<a class="save_field" id="addressSaveLink">save</a>              </div>
+              <input value="<%= address %>" name="addressInput" id="addressInput" class="input_class hidden" />
+              <span class="span_class" id="addressSpan"><%= address %></span>            </li>
+            <li id="address2Grid" data-row="3" data-col="2" data-sizex="1" data-sizey="1" ondblclick="editField('address2')">
+                <h6>Address 2:</h6>
+                <div style="float:right;" class="hidden" id="address2Save">
+              &nbsp;<a class="save_field" id="address2SaveLink">save</a>              </div>
+                <input value="<%= address2 %>" name="address2Input" id="addressInput" class="input_class hidden" />
+                <span id="address2Span" class="span_class"><i class="icon-home"></i><%= address2 %></span>            </li>
+            <li id="cityGrid" data-row="4" data-col="2" data-sizex="1" data-sizey="1" ondblclick="editField('city')">
+                <h6>City:</h6>
+                <div style="float:right;" class="hidden" id="preferred_nameSave">
+              &nbsp;<a class="save_field" id="citySaveLink">save</a>              </div>
+                <input value="<%= city %>" name="cityInput" id="cityInput" class="input_class hidden" />
+                <span id="citySpan" class="span_class"><i class="icon-headphones"></i><%= city %></span>            </li>
+            <li id="stateGrid" data-row="2" data-col="2" data-sizex="1" data-sizey="1" ondblclick="editField('state')">
+              <h6>State:</h6>
+              <div style="float:right;" class="hidden" id="stateSave">
+              &nbsp;<a class="save_field" id="stateSaveLink">save</a>              </div>
+              <input value="<%= state %>" name="stateInput" id="stateInput" class="input_class hidden" />
+              <span class="span_class" id="stateSpan"><%= state %></span>            </li>
+            <li id="zipGrid" data-row="5" data-col="2" data-sizex="1" data-sizey="1" ondblclick="editField('company_name')">
+                <h6>Zip:</h6>
+                <div style="float:right;" class="hidden" id="zipSave">
+              &nbsp;<a class="save_field" id="zipSaveLink">save</a>              </div>
+                <input value="<%= zip %>" name="zipInput" id="zipInput" class="input_class hidden" />
+                <span id="zipSpan" class="span_class"><i class="icon-envelope"></i>
+                <%= zip %></span>            </li>
+                
+                
+            <li id="countryGrid" data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+                <h6>Country:</h6>
+                <input value="<%= country %>" name="countryInput" id="countryInput" class="hidden" />
+                <span id="countrySpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= country %></span>            
+            </li>
+            <h2>Home Address:</h2>
+            <li id="address1hGrid" data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+                <h6>Address:</h6>
+                <input value="<%= address1h %>" name="address1hInput" id="address1hInput" class="hidden" />
+                <span id="address1hSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= address1h %></span>            
+            </li>
+            <li id="address2hGrid" data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+                <h6>Address 2:</h6>
+                <input value="<%= address2h %>" name="address2hInput" id="address2hInput" class="hidden" />
+                <span id="address2hSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= address2h %></span>
+            </li>
+            <li id="cityhGrid" data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+                <h6>City:</h6>
+                <input value="<%= cityh %>" name="cityhInput" id="cityhInput" class="hidden" />
+                <span id="cityhSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= cityh %></span>            
+            </li>
+            <li id="statehGrid" data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+                <h6>State:</h6>
+                <input value="<%= stateh %>" name="statehInput" id="statehInput" class="hidden" />
+                <span id="statehSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= stateh %></span>            
+            </li>
+            <li id="ziphGrid" data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+                <h6>Zip:</h6>
+                <input value="<%= ziph %>" name="ziphInput" id="ziphInput" class="hidden" />
+                <span id="ziphSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= ziph %></span>            
+            </li>
+            <li id="countryhGrid" data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+                <h6>Country:</h6>
+                <input value="<%= countryh %>" name="countryhInput" id="countryhInput" class="hidden" />
+                <span id="countryhSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= countryh %></span>            
+            </li>
+        </ul>
+      </div>
+        <div class="alert alert-warning" style="display:none">
+          <h4 class="alert-heading">Warning</h4>
+          <span class="alert-text"></span>
+        </div>
+        <div class="alert alert-success" style="display:none;">Saved</div>
+    </div>
+</div>
+</form>

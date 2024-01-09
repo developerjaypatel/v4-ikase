@@ -1,0 +1,101 @@
+diff -rwZ api/Slim/Environment.php vendor/slim/slim/Slim/Environment.php
+140c140
+<                 $env['SCRIPT_NAME'] = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']) ); //With URL rewrite
+---
+>                 $env['SCRIPT_NAME'] = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME); //With URL rewrite
+161d160
+<                 $value = is_string($value) ? trim($value) : $value;
+diff -rwZ api/Slim/Http/Request.php vendor/slim/slim/Slim/Http/Request.php
+226,227d225
+<             } else {
+<                 $this->env['slim.request.form_hash'] = Slim_Http_Util::stripSlashesIfMagicQuotes($_POST);
+251,259d248
+<      * Fetch DELETE data (alias for Slim_Http_Request::post)
+<      * @param   string $key
+<      * @return  array|mixed|null
+<      */
+<     public function delete( $key = null ) {
+<         return $this->post($key);
+<     }
+< 
+<     /**
+407,410d395
+<             if ( strpos($this->env['HOST'], ':') !== false ) {
+<                 $hostParts = explode(':', $this->env['HOST']);
+<                 return $hostParts[0];
+<             }
+498,502d482
+<         if ( isset($this->env['X_FORWARDED_FOR']) ) {
+<             return $this->env['X_FORWARDED_FOR'];
+<         } else if ( isset($this->env['CLIENT_IP']) ) {
+<             return $this->env['CLIENT_IP'];
+<         }
+diff -rwZ api/Slim/Http/Util.php vendor/slim/slim/Slim/Http/Util.php
+186c186
+<         $iv = self::get_iv($expires, $secret);
+---
+>         $iv = md5($expires);
+214c214
+<                 $iv = self::get_iv($value[0], $secret);
+---
+>                 $iv = md5($value[0]);
+364,380d363
+< 
+<     /**
+<      * Generate a random IV
+<      *
+<      * This method will generate a non-predictable IV for use with
+<      * the cookie encryption
+<      *
+<      * @param   int     $expires    The UNIX timestamp at which this cookie will expire
+<      * @param   string  $secret     The secret key used to hash the cookie value
+<      * @return  binary string with length 40
+<      */
+<     private static function get_iv($expires, $secret) {
+<         $data1 = hash_hmac('sha1', 'a'.$expires.'b', $secret);
+<         $data2 = hash_hmac('sha1', 'z'.$expires.'y', $secret);
+<         return pack("h*", $data1.$data2);
+<     }
+< 
+diff -rwZ api/Slim/LogFileWriter.php vendor/slim/slim/Slim/LogFileWriter.php
+66d65
+<      * @param   int         $level
+69c68
+<     public function write( $message, $level = null ) {
+---
+>     public function write( $message ) {
+diff -rwZ api/Slim/Log.php vendor/slim/slim/Slim/Log.php
+214c214
+<             return $this->writer->write($object, $level);
+---
+>             return $this->writer->write($object);
+diff -rwZ api/Slim/Middleware/Flash.php vendor/slim/slim/Slim/Middleware/Flash.php
+67c67
+<             'prev' => array(), //flash messages from prev request (loaded when middleware called)
+---
+>             'prev' => isset($_SESSION[$this->settings['key']]) ? $_SESSION[$this->settings['key']] : array(), //flash messages from prev request
+78,81d77
+<         //Read flash messaging from previous request if available
+<         $this->loadMessages();
+< 
+<         //Prepare flash messaging for current request
+132,142d127
+<     }
+< 
+<     /**
+<      * Load messages
+<      *
+<      * Load messages from previous request if available
+<      */
+<     public function loadMessages() {
+<         if ( isset($_SESSION[$this->settings['key']]) ) {
+<             $this->messages['prev'] = $_SESSION[$this->settings['key']];
+<         }
+diff -rwZ api/Slim/Middleware/SessionCookie.php vendor/slim/slim/Slim/Middleware/SessionCookie.php
+105d104
+<         session_start();
+143d141
+<         session_destroy();
+diff -rwZ api/Slim/Slim.php vendor/slim/slim/Slim/Slim.php
+159d158
+< 		

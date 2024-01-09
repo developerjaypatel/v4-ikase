@@ -1,0 +1,156 @@
+<div class="note_listing">
+	<div class="glass_header">
+        <div style="float:right;">
+        	<% if (display_mode=="full") { %>
+            <select id="typeFilter" class="modal_input" style="margin-top:-2px;">
+                <option value="">Filter by Type</option>
+                <option value="applicant">Applicant Note</option>
+                <option value="quick">Quick Note</option>
+                <!--<option value="partie">Partie Note</option>-->
+                <option value="general">General Note</option>
+                <% arrTypes = [];
+                _.each( notes, function(note) { 
+                	if (note.attribute!="" && note.attribute!="main") {
+                        if (arrTypes.indexOf(note.attribute) < 0) {
+                            arrTypes[arrTypes.length] = note.attribute;
+                    %>
+                	<option value="<%=note.attribute %>"><%=note.attribute.capitalize() %> Note</option>
+                <% 		}
+               		}
+                }); %>
+                <option value="billing">Billing</option>
+                <option value="hr">Human Resources</option>
+              </select>
+            <% } %>
+            <input id="case_id" name="case_id" type="hidden" value="<%=case_id %>" />
+            <input id="notes_searchList" type="text" class="search-field" placeholder="Search Notes" autocomplete="off" onkeyup="findIt(this, 'note_listing', 'note')">
+        </div>
+       
+        <span style="font-size:1.2em; color:#FFFFFF">Notes</span>
+        <!--
+        <a title="Click for new note" id="new_note" href='#notes/<%=case_id %>/-1/new' style="color:#FFFFFF; text-decoration:none; margin-left:50px">
+            <button class="kase edit btn btn-transparent" style="color:white; border:0px solid; width:20px">
+                <i class="glyphicon glyphicon-plus-sign" style="color:#00FFFF">&nbsp;</i>
+            </button>
+        </a>
+        -->
+        <a title="Click to compose a new note" class="compose_new_note" id="compose_note" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="cursor:pointer"><i class="glyphicon glyphicon-plus" style="color:#99FFFF">&nbsp;</i></a>          
+        
+    </div>
+    <div id="note_preview_panel" style="position:absolute; width:200px; display:none; z-index:2; background:white; border:1px solid pink" class="attach_preview_panel"></div>
+    <table id="note_listing" class="tablesorter note_listing" border="1" cellpadding="0" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th style="font-size:1.5em; width:150px; text-align:left">
+                Time
+            </th>
+            <th style="font-size:1.5em; width:220px; text-align:left;">
+                By
+            </th>
+            <th style="font-size:1.5em; width:240px; text-align:left">
+                Subject
+            </th>
+            <th style="font-size:1.5em; text-align:left; width:280px">
+                Type
+            </th>
+            <th style="font-size:1.5em; text-align:left; width:25px">
+                &nbsp;
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+       <% 
+       var current_day;
+       _.each( notes, function(note) {
+       	title = note.title;
+        attribute = note.attribute;
+        if (attribute=="main") {
+        	attribute = "";
+        }
+        if (display_mode=="full") {
+            if (attribute!="") {
+                note.type = attribute;
+            }
+		}
+        //we might have a new day
+        var the_day = moment(note.dateandtime).format("MMDDYY");
+        
+        var attach_indicator = "hidden";
+        if (note.attachments!="") {
+            attach_indicator = "visible";
+        }
+        var edit_indicator = "hidden";
+        if (note.entered_by == login_username) {
+        	edit_indicator = "visible";
+        }
+        if (current_day != the_day) {
+            current_day = the_day;
+        %>
+        	<tr>
+                <td colspan="5">
+                    <div style="width:100%; 
+	text-align:left; 
+	font-size:1.8em; 
+	background:#CFF; 
+	color:red;"><%= moment(note.dateandtime).format("dddd, MMMM Do YYYY") %></div>
+                </td>
+            </tr>
+        <% } %>
+       	<tr class="note_data_row" style="border:#00CC00 0px solid;">
+        	<td colspan="4">
+            	<table style="width:100%" border="1">
+                <tr>
+                    <td style="font-size:1.5em; width:150px;" align="left">
+                    	<div style="float:right; margin-left:5px;">
+                        	<span onmouseover="showAttachmentPreview('note', event, '<%=note.attachments%>', <%=note.case_id%>, <%=note.customer_id%>)" onmouseout="hideMessagePreview()">
+                            <i style="font-size:15px;color:#FFFFFF; cursor:pointer; visibility:<%=attach_indicator%>" class="glyphicon glyphicon-paperclip"></i>
+                            </span>
+                        </div>
+                        <div style="float:right;">
+                        	<a id="open_note_<%= note.id %>" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" class="edit_note" style="; cursor:pointer"><i style="font-size:15px;color:#06f; cursor:pointer; visibility:<%= edit_indicator %>" class="glyphicon glyphicon-edit" title="Click to Edit Note"></i></a>
+                        </div>
+                        
+                        <%= moment(note.dateandtime).format('h:mm a') %>
+                    </td>
+                    <td style="font-size:1.5em; width:220px;" align="left">
+                        <%= note.entered_by %>
+                    </td>
+                    <td style="font-size:1.5em; width:240px;" align="left">
+                        <%= note.subject %>
+                    </td>
+                    <td style="font-size:1.5em; width:280px" class="note_type_cell" align="left"><%= note.type.capitalize() %></td>
+		        </tr>
+        		<tr>
+        			<td colspan="4" style="font-size:1.5em;">
+                        <% if (title!="") { %>
+                            <%= title %>
+                            <br />
+                        <% } %>
+                        <%= note.note %>
+                    </td>
+                    
+                </tr>
+            </table>
+          </td>
+          <td><i style="font-size:15px; color:#FF3737; cursor:pointer" class="glyphicon glyphicon-trash delete_note" id="delete_<%= note.id %>" title="Click to delete"></i></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+    <div id="pager" class="pager">
+        <form>
+            <img src="img/first.png" class="first"/>
+            <img src="img/prev.png" class="prev"/>
+            <input type="text" class="pagedisplay"/>
+            <img src="img/next.png" class="next"/>
+            <img src="img/last.png" class="last"/>
+            <select class="pagesize">
+                <option selected="selected" value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option  value="40">40</option>
+            </select>
+        </form>
+    </div>
+
+</div>

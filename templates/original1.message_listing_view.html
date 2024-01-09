@@ -1,0 +1,61 @@
+<div>
+	<div class="glass_header">
+        <div style="float:right;">
+            <input id="messages_searchList" type="text" class="search-field" placeholder="Search" autocomplete="off" onkeyup="findIt(this, 'message_listing', 'user')">
+        </div>
+       
+        <span style="font-size:1.2em; color:#FFFFFF">Users</span>
+         
+        <a title="new message" id="new_message" href='#users/-1' style="color:#FFFFFF; text-decoration:none; margin-left:50px">
+            <button class="kase edit btn btn-transparent border-blue">
+                <i class="glyphicon glyphicon-edit">&nbsp;</i>New
+            </button>
+        </a>
+    </div>
+    <table id="message_listing" class="tablesorter user_listing" border="0" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th style="font-size:1.5em; width:200px">
+                From
+            </th>
+            <th style="font-size:1.5em">
+                Destination
+            </th>
+            <th style="font-size:1.5em; width:200px">
+                Subject
+            </th>
+            <th style="font-size:1.5em">
+                Message
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+       <% _.each( users, function(user) {%>
+       	<tr class="user_data_row">
+                <td style="font-size:1.5em; width:200px"><a href='#users/<%= user.id %>' style="color:#000099; text-decoration:none"><%= user.from %></a></td>
+                <td style="font-size:1.5em"><%= user.message_to %></td>
+                <td style="font-size:1.5em"><%= user.subject %></td>
+                <td style="font-size:1.5em"><%= user.message %></td>
+
+        </tr>
+        
+        <% }); %>
+        </tbody>
+    </table>
+    <div id="pager" class="pager">
+        <form>
+            <img src="img/first.png" class="first"/>
+            <img src="img/prev.png" class="prev"/>
+            <input type="text" class="pagedisplay"/>
+            <img src="img/next.png" class="next"/>
+            <img src="img/last.png" class="last"/>
+            <select class="pagesize">
+                <option selected="selected" value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option  value="40">40</option>
+            </select>
+        </form>
+    </div>
+
+</div>

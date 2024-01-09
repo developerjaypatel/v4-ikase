@@ -1,0 +1,255 @@
+<ul class="nav nav-tabs">
+  <li><a href="#edit" data-toggle="tab" class="edit">Edit</a></li>
+  <li><a href="#kai" class="kai" data-toggle="tab">KAI</a></li>
+  <li><a href="#misc" data-toggle="tab">Misc.</a></li>
+ </ul>
+<div class="tab-content">
+  <div class="tab-pane active fade in" id="edit">
+  	<div class="row-fluid">
+    <div class="span5" style="text-align:left">
+        <div style="float:right;" class="edit_row"><button class="edit kompany btn btn-primary">Edit</button></div>
+   		<div style="float:right;" class="button_row kompany hidden">        
+            <input id="id" name="id" type="hidden" value="<%= id %>" />
+            <button class="reset btn">Reset</button>&nbsp;<button class="btn btn-primary save">Save</button>&nbsp;<button class="btn btn-danger delete" style="color:white">Delete</button>
+        </div>
+        <h3><% if (!isNaN(id)) { %>Edit<% } else { %>New<% } %> Applicant</h3>
+    </div>
+</div>
+<form id="kase_form" parsley-validate>
+<div class="row-fluid">
+    <div class="span5">
+    	<div class="gridster kompany" id="gridster_tall">
+        <ul>
+            <li id="notesGrid" data-row="1" data-col="3" data-sizex="1" data-sizey="12" ondblclick="editField(this)" style="border:1px #999999 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; padding:3px">
+              <h6>Notes</h6>
+              <div style="float:right;" class="hidden" id="notesSave">
+              &nbsp;<a class="save_field" id="notesSaveLink"><i class="icon-share"></i></a>              </div>
+              <textarea style="-moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px;"></textarea>
+            </li>
+            <li id="case_salutationGrid" data-row="1" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField(this)" style="border:1px #999999 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; padding:3px">
+              <h6>Salutation</h6>
+              <div style="float:right;" class="hidden" id="case_salutationSave">
+              &nbsp;<a class="save_field" id="case_salutationSaveLink"><i class="icon-share"></i></a>              </div>
+              <select value="Select One" name="case_salutationInput" id="case_salutationInput" class="input_class hidden" >
+              <option id="" selected="selected" />
+              <option value="Mr" />
+              <option value="Ms" />
+              <option value="Mrs" />
+              </select>
+            </li>
+            <li id="NameGrid" data-row="2" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField(this)" style="border:1px #999999 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; padding:3px">
+              <h6>First Name</h6>
+              <div style="float:right;" class="hidden" id="nameSave">
+              &nbsp;<a class="save_field" id="nameSaveLink"><i class="icon-share"></i></a>              </div>
+              <input value="<%= name %>" name="nameInput" id="nameInput" class="input_class hidden" />
+              <span class="span_class input_class" id="nameSpan"><i class="icon-user"></i><%= name %></span>            </li>
+            <li id="last_nameGrid" data-row="2" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField(this)" style="border:1px #999999 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; padding:3px">
+                <h6>Last Name:</h6>
+                <div style="float:right;" class="hidden" id="last_nameSave">
+              &nbsp;<a class="save_field" id="last_nameSaveLink"><i class="icon-share"></i></a>              </div>
+                <input value="<%= last_name %>" name="last_nameInput" id="last_nameInput" class="input_class hidden" />
+                <span id="last_nameSpan" class="span_class input_class"><i class="icon-user"></i><%= last_name %></span>            </li>
+            <li id="preferred_nameGrid" data-row="3" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField(this)" style="border:1px #999999 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; padding:3px">
+                <h6>Preferred Name:</h6>
+                <div style="float:right;" class="hidden" id="preferred_nameSave">
+              &nbsp;<a class="save_field" id="preferred_nameSaveLink"><i class="icon-share"></i></a>              </div>
+                <input value="<%= preferred_name %>" name="preferred_nameInput" id="preferred_nameInput" class="input_class hidden" />
+                <span id="preferred_nameSpan" class="span_class input_class"><i class="icon-user"></i><%= preferred_name %></span>            
+            </li>
+            <li id="titleGrid" data-row="2" data-col="2" data-sizex="1" data-sizey="1" ondblclick="editField(this)" style="border:1px #999999 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; padding:3px">
+              <h6>Title</h6>
+              <div style="float:right;" class="hidden" id="titleSave">
+              &nbsp;<a class="save_field" id="titleSaveLink"><i class="icon-share"></i></a>              </div>
+              <input value="<%= title %>" name="titleInput" id="titleInput" class="input_class hidden" />
+              <span class="span_class input_class" id="titleSpan"><i class="icon-th-list"></i><%= title %></span>            </li>
+            <li id="company_nameGrid" data-row="4" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField(this)" style="border:1px #999999 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; padding:3px">
+                <h6>Company Name:</h6>
+                <div style="float:right;" class="hidden" id="company_nameSave">
+              &nbsp;<a class="save_field" id="company_nameSaveLink"><i class="icon-share"></i></a>              </div>
+                <input value="<%= company_name %>" name="company_nameInput" id="company_nameInput" class="input_class hidden" />
+                <span id="company_nameSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= company_name %></span>            </li>
+            <li id="officeGrid" data-row="5" data-col="1" data-sizex="1" data-sizey="3" style="border:1px #999999 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; padding:3px">
+                <h6>Office:</h6>
+                <input value="<%= office %>" name="officeInput" id="officeInput" class="hidden" />
+                <span id="officeSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= office %></span>            
+           
+                <h6>Home:</h6>
+                <input value="<%= home %>" name="homeInput" id="homeInput" class="hidden" />
+                <span id="homeSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= home %></span>            
+            
+                <h6>Skype:</h6>
+                <input value="<%= skype %>" name="skypeInput" id="skypeInput" class="hidden" />
+                <span id="skypeSpan" class="span_class input_class"><i class="icon-envelope"></i>
+                <%= skype %></span>
+            </li>
+            <li id="officepGrid" data-row="3" data-col="2" data-sizex="1" data-sizey="5" style="border:1px #999999 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; padding:3px">
+                <h6>Office Phone:</h6>
+                <input value="<%= office_phone %>" name="officepInput" id="officepInput" class="hidden" />
+                <span id="officepSpan" class="span_class input_class"><i class="icon-bell"></i>
+                <%= office_phone %></span>            
+            
+                <h6>Office Ext:</h6>
+                <input value="<%= office_ext %>" name="officeextInput" id="officeextInput" class="hidden" />
+                <span id="officeextSpan" class="span_class input_class"><i class="icon-bell"></i>
+                <%= office_ext %></span>            
+           
+                <h6>Mobile:</h6>
+                <input value="<%= mobile %>" name="mobileInput" id="mobileInput" class="hidden" />
+                <span id="mobileSpan" class="span_class input_class"><i class="icon-bell"></i>
+                <%= mobile %></span>            
+            
+                <h6>Fax:</h6>
+                <div style="float:right;" class="hidden" id="faxSave">
+	                &nbsp;<a class="save_field" id="faxSaveLink"><i class="icon-share"></i></a>              
+                </div>
+                <input value="<%= fax %>" name="faxInput" id="faxInput" class="input_class hidden" />
+                <span id="faxSpan" class="span_class"><i class="icon-bell"></i>
+                <%= fax %></span>            
+                <h6>Home:</h6>
+                <input value="<%= home_phone %>" name="home_phoneInput" id="home_phoneInput" class="hidden" />
+                <span id="home_phoneSpan" class="span_class input_class"><i class="icon-bell"></i>
+                <%= home_phone %></span>            
+            </li>
+            <li id="addressGrid" data-row="5" data-col="1" data-sizex="1" data-sizey="5" ondblclick="editField(this)" style="border:1px #999999 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; padding:3px">
+              <h6>Address</h6>
+              <div style="float:right;" class="hidden" id="addressSave">
+              &nbsp;<a class="save_field" id="addressSaveLink"><i class="icon-share"></i></a>              </div>
+              <input value="<%= address %>" name="addressInput" id="addressInput" class="input_class hidden" />
+              <span class="span_class input_class" id="addressSpan"><i class="icon-inbox"></i><%= address %></span>        
+                <h6>Address 2:</h6>
+                <div style="float:right;" class="hidden" id="address2Save">
+              &nbsp;<a class="save_field" id="address2SaveLink"><i class="icon-share"></i></a>              </div>
+                <input value="<%= address2 %>" name="address2Input" id="addressInput" class="input_class hidden" />
+                <span id="address2Span" class="span_class input_class"><i class="icon-inbox"></i><%= address2 %></span>            
+                <h6>City:</h6>
+                <div style="float:right;" class="hidden" id="preferred_nameSave">
+              &nbsp;<a class="save_field" id="citySaveLink"><i class="icon-share"></i></a>              </div>
+                <input value="<%= city %>" name="cityInput" id="cityInput" class="input_class hidden" />
+                <span id="citySpan" class="span_class input_class"><i class="icon-inbox"></i><%= city %></span>           
+              <h6>State:</h6>
+              <div style="float:right;" class="hidden" id="stateSave">
+              &nbsp;<a class="save_field" id="stateSaveLink"><i class="icon-share"></i></a>              </div>
+              <input value="<%= state %>" name="stateInput" id="stateInput" class="input_class hidden" />
+              <span class="span_class input_class" id="stateSpan"><i class="icon-inbox"></i><%= state %></span>            
+                <h6>Zip:</h6>
+                <div style="float:right;" class="hidden" id="zipSave">
+              &nbsp;<a class="save_field" id="zipSaveLink"><i class="icon-share"></i></a>              </div>
+                <input value="<%= zip %>" name="zipInput" id="zipInput" class="input_class hidden" />
+                <span id="zipSpan" class="span_class input_class"><i class="icon-inbox"></i>
+                <%= zip %></span>                       
+            </li>
+        <li id="addressGrid" data-row="5" data-col="2" data-sizex="1" data-sizey="5" ondblclick="editField(this)" style="border:1px #999999 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; padding:3px">
+              <h6>Home Address:</h6>
+              <div style="float:right;" class="hidden" id="addressSave">
+              &nbsp;<a class="save_field" id="addressSaveLink"><i class="icon-share"></i></a>              </div>  
+                <input value="<%= address1h %>" name="address1hInput" id="address1hInput" class="hidden" />
+                <span id="address1hSpan" class="span_class input_class"><i class="icon-home"></i>
+                <%= address1h %></span>
+                <h6>Home Address 2:</h6>
+                <div style="float:right;" class="hidden" id="address2Save">
+              &nbsp;<a class="save_field" id="address2SaveLink"><i class="icon-share"></i></a>              </div>
+                <input value="<%= address2h %>" name="address2hInput" id="address2hInput" class="hidden" />
+                <span id="address2hSpan" class="span_class input_class"><i class="icon-home"></i></i>
+                <%= address2h %></span>            
+                <h6>Home City:</h6>
+                <div style="float:right;" class="hidden" id="preferred_nameSave">
+              &nbsp;<a class="save_field" id="citySaveLink"><i class="icon-share"></i></a>              </div>
+                <input value="<%= cityh %>" name="cityhInput" id="cityhInput" class="hidden" />
+                <span id="cityhSpan" class="span_class input_class"><i class="icon-home"></i>
+                <%= cityh %></span>            
+              <h6>Home State:</h6>
+              <div style="float:right;" class="hidden" id="stateSave">
+              &nbsp;<a class="save_field" id="stateSaveLink"><i class="icon-share"></i></a>              </div>
+              <input value="<%= stateh %>" name="statehInput" id="statehInput" class="hidden" />
+                <span id="statehSpan" class="span_class input_class"><i class="icon-home"></i>
+                <%= stateh %></span>    
+                <h6>Home Zip:</h6>
+                <div style="float:right;" class="hidden" id="zipSave">
+              &nbsp;<a class="save_field" id="zipSaveLink"><i class="icon-share"></i></a>              </div>
+            	<input value="<%= ziph %>" name="ziphInput" id="ziphInput" class="hidden" />
+                <span id="ziphSpan" class="span_class input_class"><i class="icon-home"></i>
+                <%= ziph %></span>                       
+            </li>
+            
+            <!--
+            <li id="address1hGrid" data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+                <h6>Address:</h6>
+                <input value="<%= address1h %>" name="address1hInput" id="address1hInput" class="hidden" />
+                <span id="address1hSpan" class="span_class input_class"><i class="icon-home"></i>
+                <%= address1h %></span>            
+            </li>
+            <li id="address2hGrid" data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+                <h6>Address 2:</h6>
+                <input value="<%= address2h %>" name="address2hInput" id="address2hInput" class="hidden" />
+                <span id="address2hSpan" class="span_class input_class"><i class="icon-home"></i></i>
+                <%= address2h %></span>
+            </li>
+            <li id="cityhGrid" data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+                <h6>City:</h6>
+                <input value="<%= cityh %>" name="cityhInput" id="cityhInput" class="hidden" />
+                <span id="cityhSpan" class="span_class input_class"><i class="icon-home"></i>
+                <%= cityh %></span>            
+            </li>
+            <li id="statehGrid" data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+                <h6>State:</h6>
+                <input value="<%= stateh %>" name="statehInput" id="statehInput" class="hidden" />
+                <span id="statehSpan" class="span_class input_class"><i class="icon-home"></i>
+                <%= stateh %></span>            
+            </li>
+            <li id="ziphGrid" data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+                <h6>Zip:</h6>
+                <input value="<%= ziph %>" name="ziphInput" id="ziphInput" class="hidden" />
+                <span id="ziphSpan" class="span_class input_class"><i class="icon-home"></i>
+                <%= ziph %></span>            
+            </li>
+            <li id="countryhGrid" data-row="6" data-col="2" data-sizex="1" data-sizey="1">
+                <h6>Country:</h6>
+                <input value="<%= countryh %>" name="countryhInput" id="countryhInput" class="hidden" />
+                <span id="countryhSpan" class="span_class input_class"><i class="icon-home"></i>
+                <%= countryh %></span>            
+            </li>
+            -->
+        </ul>
+      </div>
+        <div class="alert alert-warning" style="display:none">
+          <h4 class="alert-heading">Warning</h4>
+          <span class="alert-text"></span>
+        </div>
+        <div class="alert alert-success" style="display:none;">Saved</div>
+    </div>
+</div>
+</form>
+  </div>
+  <div class="tab-pane" id="kai">
+  	<div class="gridster" id="gridster_tab">
+        <ul>
+            <li id="ssnGrid" data-row="1" data-col="1" data-sizex="1" data-sizey="1" ondblclick="editField(this)" style="border:1px #999999 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; padding:3px">
+            
+              <h6>SSN</h6>
+              <div style="float:right;" class="hidden" id="ssnSave">
+              <a class="save_field" id="ssnSaveLink">
+              <i class="icon-share"></i>
+             </a>              </div>
+              <input value="<%= ssn %>" name="ssnInput" id="ssnInput" class="hidden" />
+              <span id="ssnSpan" class="span_class input_class"><%= ssn %></span>
+            </li>
+            <li id="dobGrid" data-row="1" data-col="2" data-sizex="1" data-sizey="1" ondblclick="editField(this)" style="border:1px #999999 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; padding:3px">
+              <h6>DOB</h6>
+              <div style="float:right;" class="hidden" id="dobSave">
+              <a class="save_field" id="dobSaveLink">
+             <i class="icon-share"></i>
+              </a>              </div>
+              <input value="<%= dob %>" name="dobInput" id="dobInput" class="hidden" />
+              <span id="ssnSpan" class="span_class input_class">
+              <%= dob %>
+              </span> 
+            </li>
+   		</ul>
+      </div>
+   </div>
+  <div class="tab-pane" id="misc">Yup</div>
+</div>
+

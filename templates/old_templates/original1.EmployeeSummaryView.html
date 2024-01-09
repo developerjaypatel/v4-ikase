@@ -1,0 +1,65 @@
+<div class="row-fluid">
+    <div class="span12" style=" border:0px black solid">
+    	<p><img src="pics/<%= firstName %>_<%= lastName %>.jpg" width="160" height="160"/></p>
+        <div style="float:right; border:0px black solid"><button class="edit">Edit</button>&nbsp;|&nbsp;<button class="events">Calendar</button></div>
+   		<div style="float:right; border:0px black solid" class="button_row hidden">        
+            <input id="employeeId" name="id" type="hidden" value="<%= id %>" />
+            <button class="reset">Reset</button>&nbsp;|&nbsp;<button class="save">Save</button>&nbsp;|&nbsp;<button class="delete">Delete</button>
+        </div>
+        <div>
+            <h1><span id="nameSpan" class="span_class"><%= firstName %> <%= lastName %></span></h1>
+        </div>
+        <div>
+            <input value="<%= firstName %> <%= lastName %>" name="nameInput" id="nameInput" class="input_class hidden" placeholder="Full Name" />
+        </div>
+        <div>
+            <h3 id="titleSpan" class="span_class"><%= title %></h3>
+            <input value="<%= title %>" name="titleInput" id="titleInput" class="input_class hidden required" placeholder="Job Title" />
+        </div>
+    </div>
+</div>
+<form id="employee_form" parsley-validate>
+<div class="row-fluid">
+    <div class="span12" style=" border:0px black solid">
+        <table class="table table-striped">
+            <tr>
+                <td><h6>Office&nbsp;Phone:</h6></td>
+                <td><span id="phoneSpan" class="span_class"><i class="icon-home"></i><%= officePhone %></span>
+                	<input value="<%= officePhone %>" name="phoneInput" id="phoneInput" class="input_class hidden" />
+                    
+                </td>
+            </tr>
+            <tr>
+                <td><h6>Cell&nbsp;Phone:</h6></td>
+                <td><span id="cellphoneSpan" class="span_class"><i class="icon-headphones"></i><%= cellPhone %></span>
+                <input value="<%= cellPhone %>" name="cellphoneInput" id="cellphoneInput" class="input_class hidden" />
+                </td>
+            </tr>
+            <tr>
+                <td><h6>Email:</h6></td>
+                <td><span id="emailSpan" class="span_class"><i class="icon-envelope"></i>
+                <a href="mailto:<%= email %>"><%= email %></a></span>
+                	
+                    <input value="<%= email %>" name="emailInput" id="emailInput" class="input_class email_class hidden" parsley-type="email" parsley-trigger="blur" required />
+                </td>
+            </tr>
+            <tr>
+              <td><h6>Upload</h6></td>
+              <td>
+              	<input id="file_upload" name="file_upload" type="file" multiple="true" />
+              </td>
+            </tr>
+            <tr>
+            	<td colspan="2">
+                	<span id="message_panel">&nbsp;</span>
+	                <span class="alert-success employee" style="display:none"></span>
+                </td>
+            </tr>
+        </table>
+        <div class="alert alert-warning" style="display:none">
+          <h4 class="alert-heading">Warning</h4>
+          <span class="alert-text"></span>
+        </div>
+    </div>
+</div>
+</form>

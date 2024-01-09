@@ -1,0 +1,63 @@
+<div class="row">
+	<div class="glass_header">
+        <div style="float:right;">
+            <input id="kaseNotes_searchList" type="text" class="search-field" placeholder="Search" autocomplete="off" onkeyup="findIt(this, 'kase_note_listing', 'kaseNote')">
+            <input id="case_uuid" name="case_uuid" type="text" value="<%= kaseNote.case_uuid %>" />
+        </div>
+        <span style="font-size:1.2em; color:#FFFFFF">Notes</span>
+    </div>
+    <table id="kase_note_listing" class="tablesorter note_listing" border="0" cellpadding="0" cellspacing="1">
+        <thead>
+        <tr>
+            <th>
+            	Notes ID
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Atty
+            </th>
+            <th>
+                Emp
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <% _.each( kaseNotes, function(kaseNote) {%>
+        <tr class="note_data_row">
+            <td>
+                <a href='#notes/<%= kaseNote.note_id %>'><%= kaseNote.case_uuid %></a>
+            </td>
+            <td><%= kaseNote.title %></td>
+            <td><%= kaseNote.note %></td>
+            <td><%= kaseNote.dateandtime %></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+    <div id="pager" class="pager">
+        <form>
+            <img src="img/first.png" class="first"/>
+            <img src="img/prev.png" class="prev"/>
+            <input type="text" class="pagedisplay"/>
+            <img src="img/next.png" class="next"/>
+            <img src="img/last.png" class="last"/>
+            <select class="pagesize">
+                <option selected="selected" value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option  value="40">40</option>
+            </select>
+        </form>
+    </div>
+
+</div>

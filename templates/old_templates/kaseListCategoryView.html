@@ -1,0 +1,20 @@
+<div id="kase_category_listing" style="margin-left:-50px">
+    <ul id="kase_list_table" class="list">
+        <li style="background:#666">
+            <div style="display:inline-block; width:75px; text-align:left">
+                <a class="sort list-item" data-sort="kase_number">Kase #</a>
+            </div>
+            <div style="display:inline-block; width:125px; text-align:left">
+                <a class="sort list-item" data-sort="kase_title">Title</a>
+            </div>
+        </li>
+         <% _.each( kases, function(kase) {%>
+            <li class="kase_data_row">
+                <div class="kase_number data_cell" style="width:75px">
+                <a href='#kases/<%= kase.id %>' class="list-item_kase"><%= kase.case_number %></a>
+                </div>
+                <div class="kase_title data_cell" style="width:125px"><%= kase.title %></div>
+            </li>
+         <% }); %>
+    </ul>
+</div>

@@ -1,0 +1,12 @@
+# Ignore everything in repository root 
+/*
+
+# Files to not ignore
+!/.gitignore
+!/*.php
+
+# Folder to not ignore
+!/api/
+!/js/
+!/templates/
+!/barcode/

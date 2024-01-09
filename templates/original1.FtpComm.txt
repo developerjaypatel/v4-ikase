@@ -1,0 +1,6 @@
+user tommy admin527#
+cd iKase.website/uploads/fromclient
+bin
+put "C:\Users\Gerry Asher\Documents\Websites\ikase_test\web\templates\This is a test by nick.docx" "This is a test by nick.docx"
+close
+quit

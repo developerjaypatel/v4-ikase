@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.7/index.global.min.js"></script>
+  
+  
+<div class="calendar" style="margin-left:10px">
+<form id="calendar_form" name="calendar_form" method="post" action="">
+<input id="table_name" name="table_name" type="hidden" value="calendar" />
+<input id="table_id" name="table_id" type="hidden" value="<%=calendar_id %>" />
+<table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
+  <tr>
+    <th width="18%" align="left" valign="top" id="calendar_label" scope="row">Calendar:</th>
+    <td width="90%"><input name="calendarInput" type="text" id="calendarInput" style="width:433px" class="modalInput calendar input_class" value="<%=calendar%>" placeholder="Enter Calendar Name" required /></td>
+  </tr>
+  <tr>
+    <th align="left" valign="top" scope="row" id="value_label">Active:</th>
+    <td>
+      <%=active%>
+    </td>
+  </tr>
+  <tr id="sort_order_holder" style="display:none">
+    <th align="left" valign="top" scope="row" id="value_label">Sort Order:</th>
+    <td>
+      <input name="sort_orderInput" type="text" id="sort_orderInput" style="width:433px" class="modalInput calendar input_class" autocomplete"off" value="<%=sort_order%>" />
+      </td>
+  </tr>
+</table>
+</form>
+</div>
+
+<div id='calendar'></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    timeZone: 'UTC',
+    themeSystem: 'bootstrap5',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+    },
+    weekNumbers: true,
+    dayMaxEvents: true, // allow "more" link when too many events
+    events: 'https://fullcalendar.io/api/demo-feeds/events.json'
+  });
+
+  calendar.render();
+});
+</script>

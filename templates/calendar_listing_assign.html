@@ -1,0 +1,32 @@
+<div style="border:green 0px solid; height:100%; width:388; margin-left:0px;">
+    <table id="user_listing" style="width:500px" class="tablesorter user_listing" border="1" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th style="font-size:1.5em; width:200px">
+                Calendar
+            </th>
+            <th style="font-size:1.5em; width:60px">
+                Assign
+            </th>
+            <th style="font-size:1.5em; width:40px">
+                Permissions
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+       <% _.each( users, function(user) {%>
+       	<tr class="user_data_row">
+            <td style="font-size:1.5em;">
+                <span id='calendar_user_name_<%= user.id %>'><%= user.name.capitalizeWords() %></span>
+            </td>
+            <td style="font-size:1.5em;">
+            	<input type="checkbox" id="assign_user_<%= user.id %>" value="Y" class="assign_user" <% if(user.assigned==1) { %>checked<% } %> />
+            </td>
+            <td style="font-size:1.5em;">
+            	<%=user.readwrite %>
+            </td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>

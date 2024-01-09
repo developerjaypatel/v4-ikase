@@ -1,0 +1,75 @@
+<div>
+	<div class="glass_header">
+        <div style="float:right;">
+            <input id="user_setting_searchList" type="text" class="search-field" placeholder="Search" autocomplete="off" onkeyup="findIt(this, 'user_setting_listing', 'user_setting')">
+        </div>
+       
+        <span style="font-size:1.2em; color:#FFFFFF">User Settings</span>
+         
+        <a title="new setting" id="new_setting" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="color:#FFFFFF; text-decoration:none; margin-left:50px;cursor:pointer">
+            <button class="kase edit btn btn-transparent" style="color:white; border:0px solid; width:20px">
+                <i class="glyphicon glyphicon-plus-sign" style="color:#00FFFF">&nbsp;</i>
+            </button>
+        </a>
+    </div>
+    <table id="user_setting_listing" class="tablesorter user_setting_listing" border="0" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th style="font-size:1.5em; width:300px">
+                Setting
+            </th>
+            <th style="font-size:1.5em; width:200px">
+                Value
+            </th>
+            <th style="font-size:1.5em">
+                Default
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+       <% 
+       var current_category;
+       _.each( users_setting, function(user_setting) {
+	       //we might have a new category
+            var the_category = user_setting.category;
+            if (current_category != the_category) {
+                current_category = the_category;
+            %>
+                <tr>
+                    <td colspan="3">
+                    <div style="width:100%; 
+	text-align:left; 
+	font-size:1.8em; 
+	background:#CFF; 
+	color:red;"><%= the_category.replaceAll("_", " ").capitalizeWords() %></div>
+                    </td>
+                </tr>
+            <% } %>
+       	<tr class="user_setting_data_row">
+           <td style="font-size:1.5em">
+                <a title="Click to edit setting" class="compose_new_setting white_text" id="compose_setting_<%= user_setting.id %>" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="cursor:pointer"><%=user_setting.setting %></a>
+            </td>
+                <td style="font-size:1.5em">
+                	<% 
+                     if (the_category == "calendar_colors") {
+                    %>
+                    	<div id="color_swatch" style="background:<%=user_setting.setting_value%>; border:#FFFFFF; height:20px; width:100px; margin-left:0px; margin-top:0px">&nbsp;</div>
+                    <%  } else {  %>
+                    	<%=user_setting.setting_value%>
+                    <%  }  %>
+                </td>
+                <td style="font-size:1.5em">
+                	<% 
+                     if (the_category == "calendar_colors") {
+                    %>
+                    	<div id="color_swatch" style="background:<%=user_setting.default_value%>; border:#FFFFFF; height:20px; width:100px; margin-left:0px; margin-top:0px">&nbsp;</div>
+                    <%  } else {  %>
+                    	<%=user_setting.default_value%>
+                    <%  }  %>
+                </td>
+
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>

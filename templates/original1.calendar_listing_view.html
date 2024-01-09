@@ -1,0 +1,36 @@
+<div>
+	<div class="glass_header">
+        <span style="font-size:1.2em; color:#FFFFFF">Calendars</span>
+         
+        <a title="new calendar" id="new_calendar"  data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="cursor:pointer">
+            <button class="kase edit btn btn-transparent" style="color:white; border:0px solid; width:20px">
+                <i class="glyphicon glyphicon-plus-sign" style="color:#00FFFF">&nbsp;</i>
+            </button>
+        </a>
+    </div>
+    <table id="calendar_listing" class="tablesorter calendar_listing" border="0" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th style="font-size:1.5em; width:200px">
+                Calendar
+            </th>
+            <th style="font-size:1.5em; width:40px">
+                Active
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+       <% _.each( calendars, function(calendar) {%>
+       	<tr class="calendar_data_row">
+            <td style="font-size:1.5em;">
+                <%= calendar.calendar_link %>
+            </td>
+            <td style="font-size:1.5em;">
+            	<%= calendar.active %>
+            </td>
+        </tr>
+        
+        <% }); %>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,185 @@
+<?php
+require_once('../shared/legacy_session.php');
+set_time_limit(3000);
+error_reporting(E_ALL);
+ini_set('display_errors', '1');	
+die();
+$time = microtime();
+$time = explode(' ', $time);
+$time = $time[1] + $time[0];
+$header_start_time = $time;
+
+include("connection.php");
+
+?>
+<script language="javascript">
+parent.setFeedback("check import started");
+</script>
+<?php
+$db = getConnection();
+/*
+TRUNCATE leyva.leyva_check;
+TRUNCATE leyva.leyva_case_check;
+*/
+
+try {
+	include("customer_lookup.php");
+	
+	$sql = "SELECT DISTINCT mc.case_id, mc.case_uuid, mc.cpointer 
+	FROM " . $data_source . ".costs
+	INNER JOIN `" . $data_source . "`.`" . $data_source . "_case` mc 
+	ON costs.costpnt = mc.cpointer
+	INNER JOIN (
+		SELECT costpnt, MIN(`date`) mindate
+		FROM " . $data_source . ".costs
+		WHERE 1
+		AND `date` IS NOT NULL
+		AND `date` NOT LIKE '%/010'
+		AND `date` != '/  /'
+		AND `date` NOT LIKE '%5200'
+		AND `date` != '06/31/2013'
+		AND `date` NOT LIKE '  /  /'
+		AND `date` NOT LIKE '20/07/'
+		AND INSTR(`date`, '/') > 0
+		GROUP BY costpnt
+	) mincost
+	ON costs.costpnt = mincost.costpnt
+	WHERE 1
+	#AND costs.costpnt = '2027495'
+	AND (
+		`date` LIKE '%/010'
+		OR `date` LIKE '%5200'
+		OR `date` = '06/31/2013'
+		OR `date` LIKE '  /  /'
+		OR `date` = '/  /'
+		OR `date` LIKE '20/07/'
+		OR INSTR(`date`, '/') = 0
+	)";
+	
+	//
+	$stmt = $db->prepare($sql);
+	//echo $sql . "<br /><br />\r\n\r\n";
+	$stmt->execute();
+	
+	
+	$cases = $stmt->fetchAll(PDO::FETCH_OBJ);
+	$arrCaseUUID =  array();
+	if (count($cases)==0) {
+		die("done");
+	}
+	//die(print_r($cases));
+	foreach($cases as $key=>$case){
+		//get the bad costs for this order
+		
+		$time = microtime();
+		$time = explode(' ', $time);
+		$time = $time[1] + $time[0];
+		$row_start_time = $time;
+		
+		$cpointer = $case->cpointer;
+		$case_uuid = $case->case_uuid;
+		echo "Processing -> " . $key. " == " . $cpointer . "<br /><br />\r\n\r\n";
+		if (in_array($cpointer, $arrCaseUUID)) {
+			//one time per pointer
+			continue;
+		} 
+		$arrCaseUUID[] = $cpointer;
+		
+		$sql = "INSERT INTO `ikase_" . $data_source . "`.`cse_case_check` 
+		(`case_check_uuid`, `case_uuid`,  `check_uuid`, `attribute`, `last_updated_date`, `last_update_user`, `deleted`, `customer_id`)
+		SELECT 
+	'', '" . $case_uuid . "',
+		CONCAT(@curRow, '_', '" . $cpointer . "', 'BD') AS `check_uuid`,  
+		'main', 
+		STR_TO_DATE(REPLACE(`mindate`, '/  /', '/01/'), '%m/%d/%Y' ) check_date, 'system', 'N', '" . $customer_id . "'
+		FROM " . $data_source . ".costs
+		JOIN    (SELECT @curRow := 0) r
+		INNER JOIN `" . $data_source . "`.`" . $data_source . "_case` mc 
+		ON costs.costpnt = mc.cpointer
+		INNER JOIN (
+			SELECT costpnt, MIN(`date`) mindate
+			FROM " . $data_source . ".costs
+			WHERE 1
+			AND `date` IS NOT NULL
+			AND `date` NOT LIKE '%/010'
+			AND `date` != '/  /'
+			AND `date` NOT LIKE '%5200'
+			AND `date` != '06/31/2013'
+			AND `date` NOT LIKE '  /  /'
+			AND `date` NOT LIKE '20/07/'
+			AND INSTR(`date`, '/') > 0
+			GROUP BY costpnt
+		) mincost
+		ON costs.costpnt = mincost.costpnt
+		WHERE 1
+		AND costs.costpnt = '" . $cpointer . "'
+		AND (
+			`date` LIKE '%/010'
+			OR `date` LIKE '%5200'
+			OR `date` = '06/31/2013'
+			OR `date` LIKE '  /  /'
+			OR `date` = '/  /'
+			OR `date` LIKE '20/07/'
+			OR INSTR(`date`, '/') = 0
+		)";
+		//echo $sql . "<br /><br />\r\n\r\n";
+		$stmt = DB::run($sql);
+		
+		$sql = "INSERT INTO `ikase_" . $data_source . "`.`cse_check` 
+		(`check_uuid`, `check_number`, `check_date`, `check_type`, `amount_due`, `payment`, `balance`, 
+		`transaction_date`, `memo`, `customer_id`)
+		SELECT CONCAT(@curRow, '_', '" . $cpointer . "', 'BD') AS `check_uuid`,  
+		IFNULL(checkno, '') `checkno`, 
+		STR_TO_DATE(REPLACE(`mindate`, '/  /', '/01/'), '%m/%d/%Y' ) check_date,
+		 'standard', `amount`, `payment`, `balance`, 
+		STR_TO_DATE(REPLACE(`mindate`, '/  /', '/01/'), '%m/%d/%Y' ) transaction_date, `descriptio`, '" . $customer_id . "'
+		FROM " . $data_source . ".costs
+		JOIN    (SELECT @curRow := 0) r
+		INNER JOIN `" . $data_source . "`.`" . $data_source . "_case` mc 
+		ON costs.costpnt = mc.cpointer
+		INNER JOIN (
+			SELECT costpnt, MIN(`date`) mindate
+			FROM " . $data_source . ".costs
+			WHERE 1
+			AND `date` IS NOT NULL
+			AND `date` NOT LIKE '%/010'
+			AND `date` != '/  /'
+			AND `date` NOT LIKE '%5200'
+			AND `date` != '06/31/2013'
+			AND `date` NOT LIKE '  /  /'
+			AND `date` NOT LIKE '20/07/'
+			AND INSTR(`date`, '/') > 0
+			GROUP BY costpnt
+		) mincost
+		ON costs.costpnt = mincost.costpnt
+		WHERE 1
+		AND costs.costpnt = '" . $cpointer . "'
+		AND (
+			`date` LIKE '%/010'
+			OR `date` LIKE '%5200'
+			OR `date` = '06/31/2013'
+			OR `date` LIKE '  /  /'
+			OR `date` = '/  /'
+			OR `date` LIKE '20/07/'
+			OR INSTR(`date`, '/') = 0
+		)";
+		
+		//echo $sql . "<br /><br />\r\n\r\n";
+		$stmt = DB::run($sql);
+		
+		$time = microtime();
+		$time = explode(' ', $time);
+		$time = $time[1] + $time[0];
+		$finish_time = $time;
+		$total_time = round(($finish_time - $row_start_time), 4);
+
+		//die("one");
+	}
+	echo "done " . date("H:i:s");
+	die();
+} catch(PDOException $e) {
+	$error = array("error"=> array("text"=>$e->getMessage()));
+	echo json_encode($error);
+	die();
+}	
+?>

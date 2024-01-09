@@ -1,0 +1,60 @@
+<div class="gridster email_view email" id="gridster_email" style="display:none">
+     <div style="background:url(img/glass<%=glass %>.png) left top repeat-y; padding:5px; width:480px;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px;">
+    <form id="email_form" parsley-validate>
+    	<input id="table_name" name="table_name" type="hidden" value="email" />
+        <input id="table_id" name="table_id" type="hidden" value="<%= id %>" />
+        <input id="email_uuid" name="email_uuid" type="hidden" value="<%= uuid %>" />
+        <input id="case_id" name="case_id" type="hidden" value="<%= case_id %>" />
+        <input id="case_uuid" name="case_uuid" type="hidden" value="<%= case_uuid %>" />
+         <div style="margin-top:0px; margin-right:10px; padding-top:5px">            
+		<!--	<?php 
+            $form_name = "email"; 
+            include("dashboard_view_navigation.php"); 
+            ?> -->
+        </div>
+        <ul>
+            <li id="email_nameGrid" data-row="1" data-col="1" data-sizex="1" data-sizey="1" class="kai gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+            <h6><div class="form_label_vert" style="margin-top:10px;">First</div></h6>
+            <div style="margin-top:-12px" class="save_holder hidden" id="email_nameSave">
+                <a class="save_field" style="margin-top:0px" title="Click to save this field" id="email_nameSaveLink">
+                    <i class="glyphicon glyphicon-save"></i>
+                </a>
+            </div>
+              <input value="<%= email_name %>" name="email_nameInput" id="email_nameInput" class="kase email_view input_class hidden" placeholder="Name" style="margin-top:-26px; margin-left:60px" />
+              <span id="email_nameSpan" class="kase email_view span_class form_span_vert" style="margin-top:-30px; margin-left:60px"><%= email_name %></span>
+            </li>
+            <li id="email_pwdGrid" data-row="1" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+            <h6><div class="form_label_vert" style="margin-top:10px;">PWD</div></h6>
+              <div style="margin-top:-23px" class="save_holder hidden" id="email_pwdSave">
+                <a class="save_field" style="margin-top:0px" title="Click to save this field" id="email_pwdSaveLink">
+                    <i class="glyphicon glyphicon-save"></i>
+                </a>
+            </div>
+              <input value="<%= email_pwd %>" name="email_pwdInput" id="email_pwdInput" class="kase email_view input_class hidden" placeholder="Last Name" style="margin-top:-26px; margin-left:60px" />
+              <span id="email_pwdSpan" class="kase email_view span_class form_span_vert" style="margin-top:-28px; margin-left:60px"><%= email_pwd %></span>
+            </li>
+            <li id="email_addressGrid" data-row="2" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+            <h6><div class="form_label_vert" style="margin-top:10px;">Email</div></h6>
+            <div style="float:right; margin-right:0px; margin-top:-23px" class="hidden" id="email_addressSave">
+                <a class="save_field" style="margin-top:0px" title="Click to save this field" id="email_addressSaveLink">
+                    <i class="glyphicon glyphicon-save"></i>
+                </a>
+            </div>
+            <input value="<%= email_address %>" name="email_addressInput" id="email_addressInput" class="kase input_class kase hidden" style="margin-top:-26px; margin-left:60px" onkeyup="mask(this, mdate);" onblur="mask(this, mdate);" />
+            <span id="email_addressSpan" class="kase email_view span_class form_span_vert" style="border:#FFFFFF solid 0px; margin-top:-28px; margin-left:60px"><%= moment(email_address).format('MM/DD/YYYY') %></span>
+            </li>
+		</ul>
+        <% if (!gridster_me) { %>
+			<a href="#applicant/<%= case_id %>"><img src="img/glass_add.png" width="20" height="20" border="0" /></a>
+        <% } %>
+    </form>
+</div>
+</div>
+
+<% if (gridster_me || grid_it) { %>
+<script language="javascript">
+setTimeout(function() {
+	gridsterById('gridster_email');
+}, 10);
+</script>
+<% } %>

@@ -1,0 +1,61 @@
+<div>
+	<div class="glass_header">
+        <div style="float:right;">
+            <input id="customer_setting_searchList" type="text" class="search-field" placeholder="Search" autocomplete="off" onkeyup="findIt(this, 'customer_setting_listing', 'customer_setting')">
+        </div>
+       
+        <span style="font-size:1.2em; color:#FFFFFF">Customer Settings</span>
+         
+        <a title="new setting" id="new_cus_setting" href='#customer_settings/-1' style="color:#FFFFFF; text-decoration:none; margin-left:50px">
+            <button class="kase edit btn btn-transparent" style="color:white; border:0px solid; width:20px">
+                <i class="glyphicon glyphicon-plus-sign" style="color:#00FFFF">&nbsp;</i>
+            </button>
+        </a>
+    </div>
+    <table id="customer_setting_listing" class="tablesorter customer_setting_listing" border="0" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th style="font-size:1.5em; width:200px">
+                User
+            </th>
+            <th style="font-size:1.5em">
+                Email
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+       <% _.each( customers_setting, function(customer_setting) {%>
+       	<tr class="customer_setting_data_row">
+                <td style="font-size:1.5em; width:400px">
+                <span style="float:right">
+                <a href="#" title="Click to manage documents"><i style="font-size:15px;color:#FFFFFF" class="glyphicon glyphicon-upload"></i></a>
+                &nbsp;<a href="#"><i style="font-size:15px;color:#3C9" class="glyphicon glyphicon-earphone" title="Click to add phone message"></i></a>
+            </span>
+                <a href='#customer_settings/<%= customer_setting.id %>' class="list-item_kase kase_link"><%= customer_setting.category %></a>
+                <br />
+            <span style="font-size:10px;">Role:</span> <a href='#customer_settings/<%= customer_setting.id %>' class="list-item_kase" style="color:white; font-size:10px"><%=customer_setting.setting %></a>
+                </td>
+                <td style="font-size:1.5em"><%= customer_setting.value %><div style="float:right; margin-right:10px"><a href="#" style="color:#FFFFFF">Email</a></div></td>
+
+        </tr>
+        
+        <% }); %>
+        </tbody>
+    </table>
+    <div id="pager" class="pager">
+        <form>
+            <img src="img/first.png" class="first"/>
+            <img src="img/prev.png" class="prev"/>
+            <input type="text" class="pagedisplay"/>
+            <img src="img/next.png" class="next"/>
+            <img src="img/last.png" class="last"/>
+            <select class="pagesize">
+                <option selected="selected" value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option  value="40">40</option>
+            </select>
+        </form>
+    </div>
+
+</div>

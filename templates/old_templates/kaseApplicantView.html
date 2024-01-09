@@ -1,0 +1,133 @@
+<div style="font-family: 'Source Sans Pro', sans-serif;"> 
+    <div class="tab-content" style="font-size:1.3em" id="edit_applicant_holder"></div>
+    <!--
+    <div class="active glass_header_no_padding" id="kai" style="display:">KAI content  
+        <div class="gridster" id="gridster_kai">
+            <ul>
+              <li id="ssnGrid" data-row="1" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border">
+                
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">SSN</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="ssnSave">
+                <a class="save_field" title="Click to save this field" id="ssnSaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= ssn %>" name="ssnInput" id="ssnInput" style="margin-top:-2px" class="hidden" />
+                <span id="ssnSpan" class="span_class" style="margin-top:0px"><%= ssn %></span></h6>
+                </li>
+                <li id="dobGrid" data-row="1" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border">
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">DOB</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="dobSave">
+                <a class="save_field" title="Click to save this field" id="dobSaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= dob %>" name="dobInput" id="dobInput" style="margin-top:-2px" class="hidden" />
+                <span id="ssnSpan" class="span_class" style="margin-top:0px">
+                <%= dob %>
+                </span></h6>
+                </li>
+                <li id="sub_category_1Grid" data-row="2" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border">
+                
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">Sub Cat.</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="sub_category_1Save">
+                <a class="save_field" title="Click to save this field" id="sub_category_1SaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= sub_category_1 %>" name="sub_category_1Input" id="sub_category_1Input" style="margin-top:-2px" class="hidden" />
+                <span id="sub_category_1Span" class="span_class" style="margin-top:0px"><%= sub_category_1 %></span></h6>
+                </li>
+                <li id="sub_category_2Grid" data-row="2" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border">
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">Sub Cat. 2</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="sub_category_2Save">
+                <a class="save_field" title="Click to save this field" id="sub_category_2SaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= sub_category_2 %>" name="sub_category_2Input" id="sub_category_2Input" style="margin-top:-2px" class="hidden" />
+                <span id="sub_category_2Span" class="span_class" style="margin-top:0px">
+                <%= sub_category_2 %>
+                </span></h6>
+                </li>
+                <li id="referral_sourceGrid" data-row="3" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border">
+                
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">Referral Source</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="referral_sourceSave">
+                <a class="save_field" title="Click to save this field" id="referral_sourceSaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= referral_source %>" name="referral_sourceInput" style="margin-top:-2px" id="referral_sourceInput" class="input_class hidden" />
+                <span id="referral_sourceSpan" class="span_class" style="margin-top:0px"><%= referral_source %></span></h6>
+                </li>
+                <li id="languageGrid" data-row="3" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border">
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">Language</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="languageSave">
+                <a class="save_field" title="Click to save this field" id="languageSaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= language %>" name="languageInput" id="languageInput" style="margin-top:-2px" class="input_class hidden" />
+                <span id="languageSpan" class="span_class" style="margin-top:0px">
+                <%= language %>
+                </span>
+                </li>
+                <li id="workerGrid" data-row="4" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border">
+                
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">Worker:</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="workerSave">
+                <a class="save_field" title="Click to save this field" id="workerSaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= worker %>" name="workerInput" id="workerInput" style="margin-top:-2px" class="input_class hidden" />
+                <span id="workerSpan" class="span_class" style="margin-top:0px"><%= worker %></span></h6>
+                </li>
+                <li id="occupationGrid" data-row="4" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border">
+                
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">Occupation:</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="occupationSave">
+                <a class="save_field" title="Click to save this field" id="occupationSaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%	//= occupation %>" name="occupationInput" id="occupationInput" style="margin-top:-2px" class="input_class hidden" />
+                <span id="occupationSpan" class="span_class" style="margin-top:0px"><%	//= occupation %></span></h6>
+                </li>
+                <li id="attorneyGrid" data-row="1" data-col="2" data-sizex="2" data-sizey="1" class="gridster_border">
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">Attorney</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="attorneySave">
+                <a class="save_field" title="Click to save this field" id="attorneySaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= attorney %>" name="attorneyInput" id="attorneyInput" style="margin-top:-2px" class="hidden" />
+                <span id="attorneySpan" class="span_class" style="margin-top:0px">
+                <%= dob %>
+                </span></h6>
+                </li>
+                <li id="license_numberGrid" data-row="1" data-col="1" data-sizex="2" data-sizey="1" class="gridster_border">
+                
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">License #</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="license_numberSave">
+                <a class="save_field" title="Click to save this field" id="license_numberSaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= license_number %>" name="license_numberInput" id="license_numberInput" style="margin-top:-2px" class="hidden" />
+                <span id="license_numberSpan" class="span_class" style="margin-top:0px"><%= license_number %></span></h6>
+                </li>
+                <li id="priority_flagGrid" data-row="1" data-col="2" data-sizex="2" data-sizey="1" class="gridster_border">
+                <h6 style="margin-top:10px"><div class="form_label"  style="font-size:14px">Priority Flag</div>
+                <div style="float:right; margin-right:10px" class="hidden" id="priority_flagSave">
+                <a class="save_field" title="Click to save this field" id="priority_flagSaveLink">
+                <i class="glyphicon glyphicon-save"></i>
+                </a>              </div>
+                <input value="<%= priority_flag %>" name="priority_flagInput" id="priority_flagInput" style="margin-top:-2px" class="hidden" />
+                <span id="priority_flagSpan" class="span_class" style="margin-top:0px">
+                <%= priority_flag %>
+                </span></h6>
+                </li>
+           </ul>
+       </div>
+        </div>
+         -->  
+    </div>
+
+    <div class="alert alert-warning" style="display:none">
+        <h4 class="alert-heading">Warning</h4>
+        <span class="alert-text"></span>
+    </div>
+    <div class="alert alert-success" style="display:none;">Saved</div>
+</div>

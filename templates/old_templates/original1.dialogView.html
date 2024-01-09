@@ -1,0 +1,123 @@
+<!--<div  style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:2px; font-family: 'Source Sans Pro', sans-serif; color:#FFFFFF; font-size:14px">-->
+<div class="active fade in" id="edit_dialog_section">
+	<div style="text-align:left; margin-top:13px;">
+         <span style="color:#FFFFFF; font-size:2.1em; font-weight:lighter; margin-left:10px;"><% if (!isNaN(id)) { %>Review<% } else { %>New<% } %> Event</span>
+         <div style="z-index:2356">
+                <span class="alert alert-success" style="display:none; float:right; height:35px; width:300px;font-size:14px; z-index:3356; margin-top:-45px;">Saved</span>
+                </div>
+         <div style="position:absolute; left:380px; top:176px;" class="edit_row dialog"><button class="edit btn btn-transparent border-blue"><i class="glyphicon glyphicon-edit">&nbsp;</i>Edit</button></div>
+         <div class="button_row dialog hidden" style="border:#FF0000 0px solid;position:absolute; left:380px; top:176px; font-size:16px; padding:0px">        
+            <button class="reset btn btn-transparent border-white"><i class="glyphicon glyphicon-repeat">&nbsp;</i>Reset</button>&nbsp;<button class="btn btn-transparent border-green save"><i class="glyphicon glyphicon-save"></i>Save</button>&nbsp;<button class="btn btn-transparent border-red delete" style="color:white"><i class="glyphicon glyphicon-remove-sign">&nbsp;</i>Delete</button>
+        </div>
+	</div>
+      <div id='kaseEventDioalogView' class='glass_header_no_padding_clear' style="overflow:hidden; margin-top:10px; margin-left:10px">
+           <div class="event_dialog">
+        <form id="event_form">
+            <input name="id" id='id' class="field" type="hidden" value="<%= id %>"></input>
+            <input name="case_id" id='case_id' class="field" type="hidden" value="<%= case_id %>"></input>
+          <div style="display:inline-block; width:550px; margin-left:0px">
+          	
+              	<div class="gridster event_dialog" id="gridster_dialog">
+            		<ul>
+              		<li id="case_numberGrid" data-row="1" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top;">
+                	<h6><div class="form_label_vert">Case:</div></h6>
+                    <div style="" class="event_dialog save_holder hidden" id="case_numberSave">
+                        <a class="save_field" title="Click to save this field" id="case_numberSaveLink">
+                            <i class="glyphicon glyphicon-save"></i>
+                        </a>
+                    </div>
+                  <input value="<%= case_number %>" name="case_numberInput" id="case_numberInput" class="event_dialog input_class hidden" placeholder="Case Number" />
+                  <span id="case_numberSpan" class="event_dialog span_class form_span_vert"><%= case_number %></span>
+                	</li>
+                     <li id="titleGrid" data-row="2" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top;">
+                	<h6><div class="form_label_vert">Title:</div></h6>
+                    <div style="" class="event_dialog save_holder hidden" id="titleSave">
+                        <a class="save_field" title="Click to save this field" id="titleSaveLink">
+                            <i class="glyphicon glyphicon-save"></i>
+                        </a>
+                    </div>
+                  <input value="<%= title %>" name="titleInput" id="titleInput" class="event_dialog input_class hidden" placeholder="Title" />
+                  <span id="titleSpan" class="event_dialog span_class form_span_vert"><%= title %></span>
+                	</li>   
+                    <li id="start_dateGrid" data-row="3" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top;">
+                	<h6><div class="form_label_vert">When:</div></h6>
+                    <div style="" class="event_dialog save_holder hidden" id="start_dateSave">
+                        <a class="save_field" title="Click to save this field" id="start_dateSaveLink">
+                            <i class="glyphicon glyphicon-save"></i>
+                        </a>
+                    </div>
+                  <input value="<%= event_dateandtime %>" name="start_dateInput" id="start_dateInput" class="event_dialog input_class hidden" placeholder="Time" />
+                  <span id="event_dateandtimeSpan" class="event_dialog span_class form_span_vert"><%= moment(event_dateandtime).format('MM/DD/YY hh:mm a') %></span>
+                	</li>
+                    <li id="whereGrid" data-row="1" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top;">
+                	<h6><div class="form_label_vert">Where:</div></h6>
+                    <div style="" class="event_dialog save_holder hidden" id="whereSave">
+                        <a class="save_field" title="Click to save this field" id="whereSaveLink">
+                            <i class="glyphicon glyphicon-save"></i>
+                        </a>
+                    </div>
+                  <input value="" name="whereInput" id="whereInput" class="event_dialog input_class hidden" placeholder="Where" />
+                  <span id="whereSpan" class="event_dialog span_class form_span_vert"></span>
+                	</li>
+                    <li id="typeGrid" data-row="2" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top;">
+                	<h6><div class="form_label_vert">Type:</div></h6>
+                    <div style="" class="event_dialog save_holder hidden" id="typeSave">
+                        <a class="save_field" title="Click to save this field" id="typeSaveLink">
+                            <i class="glyphicon glyphicon-save"></i>
+                        </a>
+                    </div>
+                  <select name="type" id="type">
+                  <option value="" <% if(event_type=="") {%>selected<%} %>>Select from List</option>
+                  <option value="hearing" <% if(event_type=="hearing") {%>selected<% } %>>Hearing</option>
+                  <option value="phone_call" <% if(event_type=="phone_call") {%>selected<% } %>>Phone Call</option>
+                  </select>
+                	</li>
+                    <li id="assigneeGrid" data-row="3" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top;">
+                	<h6><div class="form_label_vert">Assignee:</div></h6>
+                    <div style="" class="event_dialog save_holder hidden" id="assigneeSave">
+                        <a class="save_field" title="Click to save this field" id="assigneeSaveLink">
+                            <i class="glyphicon glyphicon-save"></i>
+                        </a>
+                    </div>
+                  <input value="" name="assigneeInput" id="assigneeInput" class="event_dialog input_class hidden" placeholder="Assignee" />
+                  <span id="assigneeSpan" class="event_dialog span_class form_span_vert"></span>
+                	</li>
+                    <li id="colorGrid" data-row="1" data-col="3" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top;">
+                	<h6><div class="form_label_vert">Color:</div></h6>
+                    <div style="" class="event_dialog save_holder hidden" id="colorSave">
+                        <a class="save_field" title="Click to save this field" id="colorSaveLink">
+                            <i class="glyphicon glyphicon-save"></i>
+                        </a>
+                    </div>
+                  <input value="<%= color %>" name="colorInput" id="colorInput" class="event_dialog input_class hidden" placeholder="Title" />
+                  <span id="colorSpan" class="event_dialog span_class form_span_vert"><%= color %></span>
+                	</li>
+                    <li id="whoGrid" data-row="2" data-col="3" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top;">
+                	<h6><div class="form_label_vert">Who:</div></h6>
+                    <div style="" class="event_dialog save_holder hidden" id="whoSave">
+                        <a class="save_field" title="Click to save this field" id="whoSaveLink">
+                            <i class="glyphicon glyphicon-save"></i>
+                        </a>
+                    </div>
+                  <input value="<%= event_first_name %> <%= event_last_name %>" name="whoInput" id="whoInput" class="event_dialog input_class hidden" placeholder="Who" />
+                  <span id="whoSpan" class="event_dialog span_class form_span_vert"><%= event_first_name %> <%= event_last_name %></span>
+                	</li>
+                    <li id="detailsGrid" data-row="3" data-col="3" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top;">
+                	<h6><div class="form_label_vert">Details:</div></h6>
+                    <div style="" class="event_dialog save_holder hidden" id="detailsSave">
+                        <a class="save_field" title="Click to save this field" id="detailsSaveLink">
+                            <i class="glyphicon glyphicon-save"></i>
+                        </a>
+                    </div>
+                    <textarea name="details" id="details" type="text" class="event_dialog input_class hidden" cols="20" rows="3"><%= event_description %></textarea>
+                  <span id="detailsSpan" class="event_dialog span_class form_span_vert"><%= event_description %></span>
+                	</li>
+                            
+                   </ul>
+                </div>
+              </div>
+                </form>
+                </div>
+            </div>
+
+<!-- </div> -->

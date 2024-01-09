@@ -1,0 +1,83 @@
+<div>
+	<div class="glass_header">
+        <span style="font-size:1.2em; color:#FFFFFF"><%=title%></span>
+            <button title="new message" id="new_message" class="btn btn-transparent" style="color:white; border:0px solid; width:20px" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false">
+                <i class="glyphicon glyphicon-plus-sign" style="color:#00FFFF">&nbsp;</i>
+            </button>
+    </div>
+    <div id="message_preview_panel" style="position:absolute; width:200px; display:none; z-index:2; background:white"></div>
+    <table id="message_listing" class="tablesorter message_listing" border="0" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th style="font-size:1.5em; width:200px">
+                From
+            </th>
+            <th style="font-size:1.5em; width:50%">
+                Subject
+            </th>
+            <th style="font-size:1.5em">
+                To
+            </th>
+            <th style="font-size:1.5em">
+                <%=receive_label%>
+            </th>
+            <th style="font-size:1.5em">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+       <% _.each( messages, function(message) {
+       		var holder_display = "";
+            var read_display = "none";
+            if (title=="Inbox") {
+                if (message.read_status=="N") {
+                    holder_display = "none";
+                    read_display = "";
+                }
+            }
+            var attach_indicator = "none";
+            if (message.attachments!="") {
+            	attach_indicator = "";
+            }
+       %>
+       	<tr class="message_data_row message_row_<%= message.id %>">
+                <td style="font-size:1.5em; width:200px">
+                <span style="float:right; display:<%=holder_display %>" id="action_holder_<%= message.id %>">
+                    <a id="reply_<%= message.id %>" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="cursor:pointer" class="message_action"><i style="font-size:15px;color:#FCC" class="glyphicon glyphicon-arrow-left" title="Click to Reply"></i></a>
+                    <a id="replyall_<%= message.id %>" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="cursor:pointer" class="message_action"><i style="font-size:15px;color:#FCC" class="glyphicon glyphicon-circle-arrow-left" title="Click to Reply All"></i></a>
+                    <a id="forward_<%= message.id %>" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="cursor:pointer" class="message_action"><i style="font-size:15px;color:#66FF99" class="glyphicon glyphicon-arrow-right" title="Click to Forward"></i></a>
+               </span>
+               <span style="float:right; display:<%=read_display %>" id="read_holder_<%= message.id %>"><a id="openmessage_<%= message.id %>" class="read_holders" style="cursor:pointer"><img src="img/oie_18213048iZ53Q7Hz.gif" width="15px" height="15px" /></a>
+               </span> 
+    <a href='#messages/<%= message.id %>' class="list-item_kase kase_link"><%= message.from %></a></td>
+                <td style="font-size:1.5em"><%= message.subject %></td>
+                <td style="font-size:1.5em"><%= message.message_to %>
+                <span style="margin-left:10px"  onmouseover="showAttachmentPreview(event, '<%=message.attachments%>', <%=message.case_id%>, <%=message.customer_id%>)" onmouseout="hideMessagePreview()">
+                <i style="font-size:15px;color:#FFFFFF; display:<%=attach_indicator%>" class="glyphicon glyphicon-paperclip"></i>
+                </span>
+                </td>
+                <td style="font-size:1.5em"><%= moment(message.dateandtime).format("MM/DD/YY hh:mm a") %></td>
+                <td><i style="font-size:15px; color:#FF3737; cursor:pointer" class="glyphicon glyphicon-trash delete_message" id="delete_<%= message.id %>" title="Click to delete"></i></td>
+        </tr>
+        <tr class="message_row_<%= message.id %>" id="message_row_<%= message.id %>" style="display:<%=holder_display %>">
+        	<td style="font-size:1.5em" colspan="5"><%= message.message %></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+    <div id="pager" class="pager">
+        <form>
+            <img src="img/first.png" class="first"/>
+            <img src="img/prev.png" class="prev"/>
+            <input type="text" class="pagedisplay"/>
+            <img src="img/next.png" class="next"/>
+            <img src="img/last.png" class="last"/>
+            <select class="pagesize">
+                <option selected="selected" value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option  value="40">40</option>
+            </select>
+        </form>
+    </div>
+
+</div>
