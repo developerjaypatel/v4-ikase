@@ -7,7 +7,7 @@ include ("../text_editor/ed/datacon.php");
 
 $list_reference = "";
 if ($customer_id == "1072") {
-	$list_reference = "`ikase`.";
+  $list_reference = "`ikase`.";
 }
 $query_case_type = "SELECT DISTINCT case_type `case_type` 
 FROM " . $list_reference . "cse_case
@@ -18,70 +18,70 @@ $result_case_type = DB::runOrDie($query_case_type);
 $case_type_options = "<option value=''>Select from List</option><option value='WCAB'>WCAB</option><option value='NewPI'>DUI</option>";
 $arrCaseTypes = array(0=>"wcab", 1=>"wc");
 while ($row = $result_case_type->fetch()) {
-	$case_type = $row->case_type;
-	if (in_array(strtolower($case_type), $arrCaseTypes)) {
-		continue;
-	} 
-	$arrCaseTypes[] = strtolower($case_type);
-	
-	//skip personal injury, using newpi
-	if ($case_type=="Personal Injury") {
-		continue;
-	}
-	//no ready
-	if ($case_type=="employment_law") {
-		//continue;
-	}
-	$display_type = str_replace("_", " ", $case_type);
-	if ($display_type=="NewPI") {
-		$display_type = "personal injury";
-	}
-	$display_type = ucwords($display_type);
-	if (substr($display_type, 0, 2) == "Wc") {
-		$display_type = strtoupper($display_type);
-	}
-	
-	$option = "<option value='" . $case_type . "'>" . $display_type . "</option>";
-	$case_type_options .= "" . $option;
+  $case_type = $row->case_type;
+  if (in_array(strtolower($case_type), $arrCaseTypes)) {
+    continue;
+  } 
+  $arrCaseTypes[] = strtolower($case_type);
+  
+  //skip personal injury, using newpi
+  if ($case_type=="Personal Injury") {
+    continue;
+  }
+  //no ready
+  if ($case_type=="employment_law") {
+    //continue;
+  }
+  $display_type = str_replace("_", " ", $case_type);
+  if ($display_type=="NewPI") {
+    $display_type = "personal injury";
+  }
+  $display_type = ucwords($display_type);
+  if (substr($display_type, 0, 2) == "Wc") {
+    $display_type = strtoupper($display_type);
+  }
+  
+  $option = "<option value='" . $case_type . "'>" . $display_type . "</option>";
+  $case_type_options .= "" . $option;
 }
 //if ($numbs_case_type==0) {
 if (!in_array("wcab", $arrCaseTypes)){
-	$option = "<option value='WCAB' selected>WCAB</option>";
-	$case_type_options .= "" . $option;
+  $option = "<option value='WCAB' selected>WCAB</option>";
+  $case_type_options .= "" . $option;
 }
 if (!in_array("newpi", $arrCaseTypes)){
-	$option = "<option value='NewPI'>Personal Injury</option>";
-	$case_type_options .= "" . $option;
+  $option = "<option value='NewPI'>Personal Injury</option>";
+  $case_type_options .= "" . $option;
 }
 if (!in_array("class_action", $arrCaseTypes)){
-	$option = "<option value='class_action'>Class Action</option>";
-	$case_type_options .= "" . $option;
+  $option = "<option value='class_action'>Class Action</option>";
+  $case_type_options .= "" . $option;
 }
 if (!in_array("civil", $arrCaseTypes)){
-	$option = "<option value='civil'>Civil</option>";
-	$case_type_options .= "" . $option;
+  $option = "<option value='civil'>Civil</option>";
+  $case_type_options .= "" . $option;
 }
 if (!in_array("employment_law", $arrCaseTypes)){
-	$option = "<option value='employment_law'>Employment</option>";
-	$case_type_options .= "" . $option;
+  $option = "<option value='employment_law'>Employment</option>";
+  $case_type_options .= "" . $option;
 }
 if (!in_array("immigration", $arrCaseTypes)){
-	$option = "<option value='immigration'>Immigration</option>";
-	$case_type_options .= "" . $option;
+  $option = "<option value='immigration'>Immigration</option>";
+  $case_type_options .= "" . $option;
 }
 if (!in_array("wcab_defense", $arrCaseTypes)){
-	$option = "<option value='WCAB_Defense'>WCAB Defense</option>";
-	$case_type_options .= "" . $option;
+  $option = "<option value='WCAB_Defense'>WCAB Defense</option>";
+  $case_type_options .= "" . $option;
 }
 if (!in_array("social_security", $arrCaseTypes)){
-	$option = "<option value='social_security'>Social Security</option>";
-	$case_type_options .= "" . $option;
+  $option = "<option value='social_security'>Social Security</option>";
+  $case_type_options .= "" . $option;
 }
 
 //special case for cardio, maybe move to all doctor offices
 if ($_SESSION["user_customer_type"]=="Medical Office") {
-	$case_type_options = "<option value=''>Select from List</option><option value='WCAB' selected>WCAB</option>";
-	$case_type_options .= "<option value='CALPERS'>CALPERS</option><option value='OCERA'>OCERA</option><option value='Sx CLEARANCE'>Sx CLEARANCE</option><option value='PQME'>PQME</option><option value='AME'>AME</option><option value='IME'>IME</option><option value='LACERA'>LACERA</option><option value='SBCERA'>SBCERA</option><option value='DEPO'>DEPO</option><option value='RECORD REVIEW'>RECORD REVIEW</option><option value='OTHER'>OTHER</option>";
+  $case_type_options = "<option value=''>Select from List</option><option value='WCAB' selected>WCAB</option>";
+  $case_type_options .= "<option value='CALPERS'>CALPERS</option><option value='OCERA'>OCERA</option><option value='Sx CLEARANCE'>Sx CLEARANCE</option><option value='PQME'>PQME</option><option value='AME'>AME</option><option value='IME'>IME</option><option value='LACERA'>LACERA</option><option value='SBCERA'>SBCERA</option><option value='DEPO'>DEPO</option><option value='RECORD REVIEW'>RECORD REVIEW</option><option value='OTHER'>OTHER</option>";
 }
 
 $result = DB::runOrDie("SELECT * FROM `cse_venue` ORDER BY venue");
@@ -93,35 +93,35 @@ $query_cus = 'SELECT data_source FROM ikase.cse_customer WHERE customer_id = ?';
 $data_source = DB::run($query_cus, [$_SESSION["user_customer_id"]])->fetchColumn();
 /*
 if ($_SESSION["user_customer_id"]=="1070") {
-	$data_source = "_leyva";
+  $data_source = "_leyva";
 }
 if ($_SESSION["user_customer_id"]=="1075") {
-	$data_source = "_dordulian3";
+  $data_source = "_dordulian3";
 }
 */
 $db_name = "ikase";
 if ($data_source!="") {
-	$db_name .= "_" . $data_source;
+  $db_name .= "_" . $data_source;
 }
 $order_by = "ORDER BY casestatus";
 if ($_SESSION["user_customer_id"]=="1070" || $_SESSION["user_customer_id"]=="1075") {
-	$order_by = "ORDER BY casestatus_id";
+  $order_by = "ORDER BY casestatus_id";
 }
 $query_status = "SELECT casestatus_id,  casestatus_uuid, casestatus, law, deleted
-	FROM `" . $db_name . "`.cse_casestatus cstat
-	WHERE 1
-	AND deleted = 'N'
-	" . $order_by;
+  FROM `" . $db_name . "`.cse_casestatus cstat
+  WHERE 1
+  AND deleted = 'N'
+  " . $order_by;
 
 if ($_SERVER['REMOTE_ADDR']=='47.153.51.181') {
-	//echo $query;
+  //echo $query;
 }
 $result = DB::runOrDie($query_status);
 if ($result->rowCount() ==0) {
-	//fill it from ikase
+  //fill it from ikase
     DB::runOrDie("INSERT INTO `" . $db_name . "`.cse_casestatus SELECT * FROM ikase.cse_casestatus");
     //requery
-	$result = DB::runOrDie($query_status);
+  $result = DB::runOrDie($query_status);
 }
 $casestatus_options = "<option value='' class='defaultselected'>Select from List</option>";
 // $option_intake = "<option value='Intake'>Intake</option>";
@@ -129,17 +129,17 @@ $casestatus_options = "<option value='' class='defaultselected'>Select from List
 
 $arrDeletedKaseStatus = array();
 while ($row = $result->fetch()) {
-	$casestatus_id = $row->casestatus_id;
-	$casestatus_uuid = $row->casestatus_uuid;
-	$casestatus = $row->casestatus;
-	$law = $row->law;
-	$deleted = $row->deleted;
-	
-	$option = "<option value='" . str_replace("'", "`", $casestatus) . "' class='" . $law . "_status_option'>" . $casestatus . "</option>";
-	$casestatus_options .= "" . $option;
-	if ($deleted=="Y") {
-		$arrDeletedKaseStatus[] = $casestatus;
-	}
+  $casestatus_id = $row->casestatus_id;
+  $casestatus_uuid = $row->casestatus_uuid;
+  $casestatus = $row->casestatus;
+  $law = $row->law;
+  $deleted = $row->deleted;
+  
+  $option = "<option value='" . str_replace("'", "`", $casestatus) . "' class='" . $law . "_status_option'>" . $casestatus . "</option>";
+  $casestatus_options .= "" . $option;
+  if ($deleted=="Y") {
+    $arrDeletedKaseStatus[] = $casestatus;
+  }
 }
 
 // $option_intake = "<option value='REJECTED'>Rejected</option>";
@@ -150,7 +150,7 @@ $casesubstatus_options = "" . $option_sub;
 
 $order_by = "ORDER BY casesubstatus";
 if ($_SESSION["user_customer_id"]=="1070") {
-	$order_by = "ORDER BY abbr";
+  $order_by = "ORDER BY abbr";
 }
 
 $option_sub = "<option value='' class='defaultselected'>Select from List</option>";
@@ -158,26 +158,26 @@ $casesubstatus_options = "" . $option_sub;
 
 $order_by = "ORDER BY casesubstatus";
 if ($_SESSION["user_customer_id"]=="1070") {
-	$order_by = "ORDER BY abbr";
+  $order_by = "ORDER BY abbr";
 }
 
 $query_sub = "SELECT * 
-	FROM `" . $db_name . "`.cse_casesubstatus csubstat
-	WHERE 1
-	AND deleted = 'N'
+  FROM `" . $db_name . "`.cse_casesubstatus csubstat
+  WHERE 1
+  AND deleted = 'N'
   " . $order_by;
 
 $result_sub = DB::runOrDie($query_sub);
 
 while ($row = $result_sub->fetch()) {
-	$casesubstatus_id = $row->casesubstatus_id;
-	
-	$casesubstatus_uuid = $row->casesubstatus_uuid;
-	$casesubstatus = $row->casesubstatus;
-	$deleted = $row->deleted;
-	$law =$row->law;
-	if ($_SESSION["user_customer_id"]=="1070") {
-		$abbr = $row->abbr . " - ";
+  $casesubstatus_id = $row->casesubstatus_id;
+  
+  $casesubstatus_uuid = $row->casesubstatus_uuid;
+  $casesubstatus = $row->casesubstatus;
+  $deleted = $row->deleted;
+  $law =$row->law;
+  if ($_SESSION["user_customer_id"]=="1070") {
+    $abbr = $row->abbr . " - ";
   }
     $option_sub = "<option value='" . str_replace("'", "`", $casesubstatus) . "' class='" . $law . "_substatus_option'>" . $abbr . $casesubstatus . "</option>";
     $casesubstatus_options .= "" . $option_sub;
@@ -197,23 +197,23 @@ $casesubsubstatus_options = "" . $option_sub_sub;
 
 $order_by = "ORDER BY casesubsubstatus";
 if ($_SESSION["user_customer_id"]=="1070") {
-	$order_by = "ORDER BY abbr";
+  $order_by = "ORDER BY abbr";
 }
 
 $query_sub = "SELECT * 
-	FROM `" . $db_name . "`.cse_casesubsubstatus csubsubstat
-	WHERE 1
-	AND deleted = 'N'
+  FROM `" . $db_name . "`.cse_casesubsubstatus csubsubstat
+  WHERE 1
+  AND deleted = 'N'
   " . $order_by;
 
 $result_sub_sub = DB::runOrDie($query_sub);
 
 while ($row = $result_sub->fetch()) {
-	$casesubsubstatus = $row->casesubsubstatus;
-	$deleted = $row->deleted;
-	$law =$row->law;
-	if ($_SESSION["user_customer_id"]=="1070") {
-		$abbr = $row->abbr . " - ";
+  $casesubsubstatus = $row->casesubsubstatus;
+  $deleted = $row->deleted;
+  $law =$row->law;
+  if ($_SESSION["user_customer_id"]=="1070") {
+    $abbr = $row->abbr . " - ";
   }
     $option_sub_sub = "<option value='" . str_replace("'", "`", $casesubsubstatus) . "' class='" . $law . "_subsubstatus_option'>" . $abbr . $casesubsubstatus . "</option>";
     $casesubsubstatus_options .= "" . $option_sub_sub;
@@ -243,14 +243,14 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
     <div id="special_instructions_holder" style="width:370px;display:none">
         <div style="width:140px; display:inline-block"><strong>Special Instructions:</strong></div>
         <div>
-        	<textarea id='special_instructions' style="width:325px" rows="8"><%= special_instructions %></textarea>
+          <textarea id='special_instructions' style="width:325px" rows="8"><%= special_instructions %></textarea>
         </div>
         <div  class="injury_fields">
             <hr />
             <div style="width:140px; display:inline-block"><strong>Suit:</strong></div>
             <div>
                 <select name="suit" id="suit">
-                	<option value="">Individual or Class?</option>
+                  <option value="">Individual or Class?</option>
                     <option  value="Individual">Individual</option>
                     <option  value="Class">Class</option>
                 </select>
@@ -258,7 +258,7 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
             <div style="width:140px; display:inline-block"><strong>Jurisdiction:</strong></div>
             <div>
                 <select name="jurisdiction" id="jurisdiction">
-                	<option value="">State or Federal?</option>
+                  <option value="">State or Federal?</option>
                     <option  value="State">State</option>
                     <option  value="Federal">Federal</option>
                 </select>
@@ -273,13 +273,13 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
 
 <div id="intake_holder_top">
     <div id="claim_holder" class="intake_holder" style="margin-left:10px; float:right; width:601px; border-left:1px white solid; display:none; text-align:left; padding-left:10px"></div>
-	
+  
     <div id="intake_top_right_holder" class="intake_holder" style="margin-left:10px; float:right; width:501px; border-left:1px white solid; display:none; text-align:left; padding-left:10px; margin-top:50px;"></div>
         
     <div id="intake_top_center_holder" class="intake_holder" style="margin-left:10px; float:right; width:501px; border-left:1px white solid; display:none; text-align:left; padding-left:10px"></div>
     
     <div id="intake_title" style="font-size:2.6em; font-weight:bold; display:none; border-bottom:1px white solid">
-    	<div style="float:right;font-size: 0.5em;font-weight: normal;" id="phone_intake_feedback_div"></div>
+      <div style="float:right;font-size: 0.5em;font-weight: normal;" id="phone_intake_feedback_div"></div>
         Phone Intake
         &nbsp;
         <button title="Save Kase" class="kase save_intake btn btn-primary" onClick="saveIntake(event)" style="cursor:pointer" id="intake_save">Save</button>
@@ -305,7 +305,7 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
         <table width="500px" border="0" align="left" cellpadding="3" cellspacing="0" id="new_kase_field_table">
             <tr class="kase_fields case_name_holder">
                 <th align="right" valign="top" nowrap="nowrap" scope="row" id="case_name_label">
-                	<span id="actual_case_label">Case:</span>
+                  <span id="actual_case_label">Case:</span>
                 </th>
                 <td valign="top" style="font-weight:bold">
                     <div style="float:right">
@@ -334,8 +334,8 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
                  </td>
             </tr>
             <tr id="kase_injury_description_holder" style="display:none">
-            	<th align="right" valign="top" scope="row">Injury Description</th>
-            	<td valign="top" id="kase_injury_description" style="background:white; color:black; font-weight:bold"></td>
+              <th align="right" valign="top" scope="row">Injury Description</th>
+              <td valign="top" id="kase_injury_description" style="background:white; color:black; font-weight:bold"></td>
             </tr>
             <% if (blnPiReady) { %>
             <tr id="pi_type_row" class="injury_fields">
@@ -404,11 +404,11 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
           <tr class="kase_fields">
             <th align="right" valign="top" scope="row" nowrap>Case Date:</th>
             <td width="46%" valign="top">
-            	<div style="float:right; display:none" id="filing_date_holder">
-                	<strong>Filing Date:</strong>&nbsp;&nbsp;
+              <div style="float:right; display:none" id="filing_date_holder">
+                  <strong>Filing Date:</strong>&nbsp;&nbsp;
                     <input type="date" id="filing_dateInput" name="filing_dateInput" value="<%=filing_date %>" />
                 </div>
-            	<input value="<%= moment(case_date).format('MM/DD/YYYY') %>" name="case_dateInput" id="case_dateInput" class="kase input_class date_input" onkeyup="mask(this, mdate);" onblur="mask(this, mdate);" placeholder="mm/dd/yyyy" style="width:510px"  parsley-error-message="" required />        
+              <input value="<%= moment(case_date).format('MM/DD/YYYY') %>" name="case_dateInput" id="case_dateInput" class="kase input_class date_input" onkeyup="mask(this, mdate);" onblur="mask(this, mdate);" placeholder="mm/dd/yyyy" style="width:510px"  parsley-error-message="" required />        
             </td>
           </tr>  
           <tr class="kase_fields">
@@ -454,7 +454,7 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
           <tr class="kase_fields">
             <th align="right" valign="top" scope="row">Case&nbsp;Rating:</th>
             <td valign="top">
-            	<select name="ratingInput" id="ratingInput" class="kase input_class" style="width:110px">
+              <select name="ratingInput" id="ratingInput" class="kase input_class" style="width:110px">
                     <% var status_options = rating_options;
                   status_options = status_options.replace("value='" + rating + "'",  "value='" + rating + "' selected");
                   %>
@@ -464,11 +464,11 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
                     <strong>Sub In:</strong>&nbsp;&nbsp;<input type="checkbox" id="sub_in" name="sub_in" value="Y" <%if (sub_in=="Y") { %>checked="checked"<% } %> />
                 </div>
                 <div style="display:none; margin-top: 10px; margin-bottom: 5px;" id="sub_dates">
-                	<div style="float:right">
-                    	 <strong>Sub Out Date:</strong>&nbsp;&nbsp;
-	                    <input type="date" id="sub_out_date" name="sub_out_date" value="<%=sub_out_date %>" width="130px" />
+                  <div style="float:right">
+                       <strong>Sub Out Date:</strong>&nbsp;&nbsp;
+                      <input type="date" id="sub_out_date" name="sub_out_date" value="<%=sub_out_date %>" width="130px" />
                     </div>
-                	<strong>Sub In Date:</strong>&nbsp;&nbsp;
+                  <strong>Sub In Date:</strong>&nbsp;&nbsp;
                     <input type="date" id="sub_in_date" name="sub_in_date" value="<%=sub_in_date %>" width="130px" />
                 </div>
             </td>
@@ -482,7 +482,7 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
           <tr class="kase_fields">
             <th align="right" valign="top" scope="row">Attorney:</th>
             <td valign="top">
-            	<div id="supervising_attorney_holder">
+              <div id="supervising_attorney_holder">
                     <input autocomplete="off" value="<%= supervising_attorney %>" name="supervising_attorneyInput" style="width:510px" id="supervising_attorneyInput" class="kase input_class" title="This Attorney is the main firm attorney" />
                     <span style="font-size:0.8em; font-style:italic; color:white">This Attorney is the main firm attorney</span>
                 </div>
@@ -492,7 +492,7 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
           <tr class="kase_fields">
             <th align="right" valign="top" scope="row">Supv Atty:</th>
             <td valign="top">
-            	<div id="attorney_holder">
+              <div id="attorney_holder">
                     <input autocomplete="off" value="<%= attorney %>" name="attorneyInput" style="width:510px" id="attorneyInput" class="kase input_class" title="This Attorney handles the details of the Kase" />
                     <span style="font-size:0.8em; font-style:italic; color:white">This Attorney will be used to sign letters and forms</span>
                 </div>
@@ -509,7 +509,7 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
                 <% } %>
             </th>
             <td valign="top">
-            	<input value="<%= worker %>" name="workerInput" id="workerInput" style="width:510px" class="kase input_class" />
+              <input value="<%= worker %>" name="workerInput" id="workerInput" style="width:510px" class="kase input_class" />
                 <span id="workderSpan" style="display:none"></span>
             </td>
           </tr>
@@ -552,16 +552,16 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
           <tr class="kase_fields">
             <th align="right" valign="top" scope="row">Claims:</th>
             <td valign="top">
-            	<% 
+              <% 
                 var third_party_style = "";
                 if (customer_id == 1064) { 
-                	third_party_style = "background:red; padding:2px";
+                  third_party_style = "background:red; padding:2px";
                 }
                 %>
                 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
                   <tr>
                     <td width="20%" align="center" valign="top" nowrap="nowrap" class="left_right_border">
-                    	<span style="<%=third_party_style %>">
+                      <span style="<%=third_party_style %>">
                         Third Party
                         <input type="checkbox" class="claims third_132" name="third_party_claimsInput" id="third_partyInput" value="3P" <% if (claims.indexOf('3P') > -1) { %>checked<% } %> />
                         </span>
@@ -611,20 +611,20 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
     </div>
 </div>
 <div id="intake_holder_bottom" style="position:absolute; width:100%">
-	<div id="intake_bottom_left_holder" class="intake_holder" style="margin-left:10px; width:501px; border-left:1px white solid; display:none; text-align:left; padding-left:10px; margin-top:50px;"></div>
+  <div id="intake_bottom_left_holder" class="intake_holder" style="margin-left:10px; width:501px; border-left:1px white solid; display:none; text-align:left; padding-left:10px; margin-top:50px;"></div>
     
     <div id="intake_bottom_right_holder" style="margin-left:10px; float:right; width:501px; border-left:1px white solid; border-top:1px white solid; display:none; text-align:left; padding-left:10px; margin-top:10px;">
-    	<div id="panel_title" style="font-weight: normal; font-size: 1.25em; margin-top:10px">
-        	<div style="float:right; font-size:0.8em">
-            	<input type="checkbox" id="intake_quick" class="intake_notes" value="Y" /> Add as Quick Notes
+      <div id="panel_title" style="font-weight: normal; font-size: 1.25em; margin-top:10px">
+          <div style="float:right; font-size:0.8em">
+              <input type="checkbox" id="intake_quick" class="intake_notes" value="Y" /> Add as Quick Notes
             </div>
-        	Notes
+          Notes
         </div>
         <div>
-        	<input type="text" id="intake_notes_subject" class="intake_notes" value="Phone Intake" placeholder="Subject" style="width:90%;" />
+          <input type="text" id="intake_notes_subject" class="intake_notes" value="Phone Intake" placeholder="Subject" style="width:90%;" />
         </div>
         <div style="margin-top:20px">
-        	<textarea id="intake_notes" style="width:90%; height:150px" class="intake_notes"></textarea>
+          <textarea id="intake_notes" style="width:90%; height:150px" class="intake_notes"></textarea>
             <input type="hidden" id="intake_notes_id" value="" />
         </div>
     </div>
@@ -778,5 +778,100 @@ async function call_for_remove_drop_value0()
     }
   }
   // console.log(document.getElementById("case_substatusInput").options);
+}
+
+// for selecting status, sub status and sub status2 in drop down
+ $("#case_statusInput").val("<%= case_status %>");
+ $("#case_substatusInput").val("<%= case_substatus %>");
+ $("#case_subsubstatusInput").val("<%= case_subsubstatus %>");
+</script>
+<script>
+/* 
+  By: Mukesh
+  Date: 23-January-2024
+  Description: added below code for showing status, sub status and sub status 2 according to case type (like WCAB)
+*/
+var case_type = "<%= case_type %>"; 
+  $(document).ready(function() {
+  setTimeout(function() {  
+    loadStatus();
+    loadSubStatus();
+    loadSubSubStatus();   
+  }, 3000);
+});
+
+// retrieves status from "cse_casestatus" table according to case type and deleted = 'N'
+async function loadStatus()
+{
+  var case_type = "<%= case_type %>";
+  var status = "<%= case_status %>";
+  $.get("api/statusfilters",{},function(data){
+    data = JSON.parse(data);
+    $("#case_statusInput").html("<option value=''>Select from List</option>");
+    for(i=0;i<data.length;i++){      
+      if(case_type.toUpperCase() == data[i].law.toUpperCase()  && data[i].deleted.toUpperCase() == "N") 
+      {
+        if(status == data[i].status)
+        {
+          var option = "<option selected value='"+ data[i].status +"'>"+ data[i].status +"</option>";
+        }
+        else
+        {
+          var option = "<option value='"+ data[i].status +"'>"+ data[i].status +"</option>";
+        }
+        $("#case_statusInput").append(option);
+      }
+    }
+  });  
+}
+
+// retrieves sub status from "cse_casesubstatus" table according to case type and deleted = 'N'
+async function loadSubStatus()
+{
+  var case_type = "<%= case_type %>";
+  var status = "<%= case_substatus %>";
+  $.get("api/substatusfilters",{},function(data){
+    data = JSON.parse(data);
+    $("#case_substatusInput").html("<option value=''>Select from List</option>");
+    for(i=0;i<data.length;i++){       
+      if(case_type.toUpperCase() == data[i].law.toUpperCase()  && data[i].deleted.toUpperCase() == "N") 
+      {
+        if(status == data[i].status)
+        {
+          var option = "<option selected value='"+ data[i].status +"'>"+ data[i].status +"</option>";
+        }
+        else
+        {
+          var option = "<option value='"+ data[i].status +"'>"+ data[i].status +"</option>";
+        }
+        $("#case_substatusInput").append(option);
+      }
+    }
+  });  
+}
+
+// retrieves sub status 2 from "cse_casesubsubstatus" table according to case type and deleted = 'N'
+async function loadSubSubStatus()
+{
+  var case_type = "<%= case_type %>";
+  var status = "<%= case_subsubstatus %>";
+  $.get("api/subsubstatusfilters",{},function(data){
+    data = JSON.parse(data);
+    $("#case_subsubstatusInput").html("<option value=''>Select from List</option>");
+    for(i=0;i<data.length;i++){      
+      if(case_type.toUpperCase() == data[i].law.toUpperCase() && data[i].deleted.toUpperCase() == "N") 
+      {
+        if(status == data[i].status)
+        {
+          var option = "<option selected value='"+ data[i].status +"'>"+ data[i].status +"</option>";
+        }
+        else
+        {
+          var option = "<option value='"+ data[i].status +"'>"+ data[i].status +"</option>";
+        }
+        $("#case_subsubstatusInput").append(option);
+      }
+    }
+  });  
 }
 </script>
