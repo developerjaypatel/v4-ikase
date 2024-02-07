@@ -1,0 +1,60 @@
+{
+    "name": "dms/ikase",
+    "description": "Legal Case Manager",
+    "type": "project",
+    "require": {
+        "php": "^7.4",
+        "ext-bcmath": "*",
+        "ext-calendar": "*",
+        "ext-com_dotnet": "*",
+        "ext-curl": "*",
+        "ext-dbase": "*",
+        "ext-ftp": "*",
+        "ext-gd": "*",
+        "ext-imagick": "*",
+        "ext-iconv": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-mysql": "*",
+        "ext-pdo": "*",
+        "ext-simplexml": "*",
+        "ext-xmlrpc": "*",
+
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.0",
+        "phpdocx/pro": "dev-master"
+    },
+    "require-dev": {
+        "kint-php/kint": "^3.3",
+        "maximebf/debugbar": "^1.16",
+        "codeception/codeception": "^4.1",
+        "codeception/module-rest": "^1.0.0",
+        "codeception/module-phpbrowser": "^1.0.0",
+        "codeception/module-asserts": "^1.2",
+        "codeception/module-db": "^1.0",
+        "codeception/module-filesystem": "^1.0",
+        "codeception/module-datafactory": "^1.0",
+        "fzaninotto/faker": "^1.9",
+        "league/factory-muffin-faker": "^2.2.3"
+    },
+    "repositories": [
+        {
+            "type": "github",
+            "url": "https://github.com/dms-inc/phpdocx_pro"
+        },
+        {
+            "type": "github",
+            "url": "https://github.com/igorsantos07/factory-muffin-faker"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "": "shared/" },
+        "files": ["shared/functions.php"]
+    },
+    "scripts": {
+        "test": "codecept run"
+    },
+    "scripts-descriptions": {
+        "test": "Run Codeception tests"
+    }
+}

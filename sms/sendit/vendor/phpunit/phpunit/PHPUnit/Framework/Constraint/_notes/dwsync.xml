@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="And.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="ArrayHasKey.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="Attribute.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="Callback.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="ClassHasAttribute.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="ClassHasStaticAttribute.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="Composite.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="Count.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="Exception.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="ExceptionCode.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="ExceptionMessage.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="FileExists.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="GreaterThan.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="IsAnything.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="IsEmpty.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="IsEqual.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="IsFalse.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="IsIdentical.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="IsInstanceOf.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="IsJson.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="IsNull.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="IsTrue.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="IsType.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="JsonMatches.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="LessThan.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="Not.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="ObjectHasAttribute.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="Or.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="PCREMatch.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="SameSize.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="StringContains.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="StringEndsWith.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="StringMatches.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="StringStartsWith.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="TraversableContains.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="TraversableContainsOnly.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+<file name="Xor.php" server="ftp.simplicityunleashed.com/public_html/" local="130595591360000000" remote="130596117600000000" />
+</dwsync>

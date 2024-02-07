@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="iKase Test Server" uuid="57cbcc76-1526-416b-84e0-d19162727552">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://ikase.website:3306</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="iKase Docker" uuid="c30cfc95-712e-4b3a-9e96-69307a5e113d">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:43306</jdbc-url>
+    </data-source>
+  </component>
+</project>

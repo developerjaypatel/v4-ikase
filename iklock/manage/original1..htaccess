@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Restricted"
+AuthUserFile "/home/cstmwb/.htpasswds/public_html/autho/web/manage/passwd"
+require valid-user

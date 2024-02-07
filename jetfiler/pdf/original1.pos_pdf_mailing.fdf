@@ -1,0 +1,21 @@
+%FDF-1.2
+%‚„œ”
+1 0 obj
+<</FDF<</Fields[
+<</T(participants2)/V([[PARTICIPANTS 2]])>>
+<</T(applicant_defendant)/V([[APPLICANT DEFENDANT]])>>
+<</T(participants1)/V([[PARTICIPANTS 1]])>>
+<</T(document_date)/V([[TODAYS DATE]])>>
+<</T(county)/V([[COUNTY]])>>
+<</T(mailing_county)/V([[MAILING COUNTY]])>>
+<</T(mail_city)/V([[CITY]])>>
+<</T(description)/V([[DESCRIPTION]])>>
+<</T(s_signature)/V([[S SIGNATURE]])>>
+<</T(service_date)/V([[TODAYS DATE]])>>
+<</T(signature)/V([[SIGNATURE]])>>
+<</T(business_address)/V([[ADDRESS]])>>]
+/F(https://[[DESTINATION]]/pdf/pos_mailing.pdf)>>>>
+endobj
+trailer
+<</Root 1 0 R>>
+%%EOF

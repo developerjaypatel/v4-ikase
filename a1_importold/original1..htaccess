@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# Some hosts may require you to use the `RewriteBase` directive.
+# If you need to use the `RewriteBase` directive, it should be the
+# absolute physical path to the directory that contains this htaccess file.
+#
+# RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Use PHP 5.3
+# Use PHP53 as default
+AddHandler application/x-httpd-php53 .php
+<IfModule mod_suphp.c>
+    suPHP_ConfigPath /opt/php53/lib
+</IfModule>

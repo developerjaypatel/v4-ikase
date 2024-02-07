@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Non-dependency PHP files" pattern="(file[iKase]:*.php||file[iKase]:*.inc)&amp;&amp;!file[iKase]:vendor//*" />
+</component>

@@ -1,0 +1,6 @@
+index.php
+.DS_Store
+vendor
+notes
+build
+doc/example_params.json

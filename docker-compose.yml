@@ -1,0 +1,48 @@
+########################################################################
+##
+##      General docs: https://docs.docker.com/compose/compose-file
+##
+##       Most images here are based on Alpine Linux, which is a
+##        minimal Linux install, perfect for Docker images, but
+##      if you ever want to jump on it, use `sh` instead of `bash`
+##
+########################################################################
+
+version: '3.6'
+services:
+
+######## https://hub.docker.com/_/mysql/ ######################################
+  db:
+    image: mysql:5.5
+    environment:
+      MYSQL_DATABASE: ikase
+      MYSQL_ROOT_PASSWORD: admin527#
+#    user: ${USERID-1000}:${GROUPID-1000}
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+#      - ./docker/db/my.cnf:/etc/my.cnf
+      - ./docker/db/dumps:/docker-entrypoint-initdb.d
+    ports:
+      - 43306:3306
+
+######## https://hub.docker.com/_/php/ ########################################
+##  We're not serving anything useful from this here, but the built-in server
+##   is executed so the container is already up when we run tests against it
+###############################################################################
+  php:
+    build:
+      context: ./docker
+    image: ikase:dev
+    environment:
+      DOCKER: 1 # must be either 1 or 0, but here it's obviously 1
+      ENVIRONMENT: test
+    command: php -S 0.0.0.0:45273
+    user: ${USERID-1000}:${GROUPID-1000}
+    volumes:
+      - .:/home/www-data
+#      - ./docker/logs:/var/log
+      - ./docker/php/user.ini:/usr/local/etc/php/conf.d/99-user.ini
+    ports:
+      - 45273:45273 # "45273=IKASE"
+    depends_on:
+      - db

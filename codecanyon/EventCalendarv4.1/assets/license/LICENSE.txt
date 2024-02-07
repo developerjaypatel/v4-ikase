@@ -1,0 +1,78 @@
+License
+
+The licensing depends on whether you're using FullCalendar Standard or FullCalendar Premium.
+FullCalendar Standard
+
+The non-premium plugins and the fullcalendar bundle are released under the MIT license. This license permits a wide range of use, including free use in commercial projects, assuming all copyright headers are preserved.
+
+Read the MIT license agreement »
+FullCalendar Premium
+
+The premium plugins and the fullcalendar-scheduler bundle have more complicated licensing. Their licensing depends on the type of use:
+Commercial Use
+
+For-profit companies and individuals intending to use FullCalendar Premium for commercial use must purchase a commercial license. This license allows source code modifications, but does not permit redistribution of modifications.
+
+Read the Commercial license agreement »
+
+Purchase a Commercial license »
+Non-Commercial Use
+
+Registered non-profit organization (also known as "not-for-profit" or NGO) are able to use FullCalendar Premium with a free, non-commercial license. Governmental entities and universities are not covered by this non-commercial license. This license does not permit source code modifications.
+
+Read the Non-commercial license agreement »
+
+If you meet the criteria for this license, you may begin using FullCalendar Premium with this license key:
+
+var calendar = new Calendar(calendarEl, {
+  schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives'
+});
+
+Use in GPLv3 open-source projects
+
+Open-source projects that are fully GPLv3-compliant may use FullCalendar Premium freely under the GPLv3 license.
+
+Read the GPLv3 license agreement »
+
+If you meet the criteria for this license, you may begin using FullCalendar Premium with this license key:
+
+var calendar = new Calendar(calendarEl, {
+  schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source'
+});
+
+Use in other types of open-source projects
+
+Open-source projects released under licenses other than GPLv3 can leverage FullCalendar Premium in the following way:
+
+    Do not include FullCalendar Premium directly into your repository’s source code. Instead, use a package manager such as NPM or Yarn to reference the premium plugins as dependencies and have an install script initiate download.
+    Do not hardcode any type of license key. Instead, leave the schedulerLicenseKey property undefined, as FullCalendar Premium is technically considered “unlicensed” at this point. This will cause a warning message to show on the widget.
+    Provide a convenient way for the developer installing your app to enter their own license key. Either do this via a prompt in an install script, or through a well-documented config file.
+
+For questions about more complex scenarios, please contact sales@fullcalendar.io
+
+==========================================================//==========================================================
+
+MIT License
+
+Copyright (c) 2021 Adam Shaw
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+==========================================================//==========================================================

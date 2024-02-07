@@ -586,3 +586,12 @@ transfer customer  @ 01/21/24 23:51:00
 transfer customer  @ 01/22/24 23:51:00
 transfer customer  @ 01/23/24 23:51:00
 transfer customer  @ 01/24/24 23:51:00
+transfer customer  @ 01/25/24 23:51:01
+transfer customer  @ 01/28/24 23:50:59
+transfer customer  @ 01/29/24 23:50:59
+transfer customer  @ 01/30/24 23:50:59
+transfer customer  @ 01/31/24 23:51:00
+transfer customer  @ 02/01/24 23:51:00
+transfer customer  @ 02/04/24 23:51:01
+transfer customer  @ 02/05/24 23:51:00
+transfer customer  @ 02/06/24 23:51:00

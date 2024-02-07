@@ -1,0 +1,18 @@
+.headwarning {color: #FF0000;
+	font-weight: bold;
+	background-color:#FFFFFF;
+}
+.admintitle {	color: #FFFFFF;
+	font-size: 18px;
+	font-weight: bold;
+}
+.hide_me {
+	display:none;
+}
+.info_holder td {
+	height:35px;
+}
+.td_label {
+	background:#CCC;
+	border-bottom:1px solid white;
+}

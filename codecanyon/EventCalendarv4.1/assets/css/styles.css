@@ -1,0 +1,532 @@
+/* 
+===============================================================
+
+	Event Calendar By EZCode
+	-------
+	For more details --> http://themeforest.net/user/ezcode
+	
+	Version: 4.1
+	
+===============================================================
+ */
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+	background-color:#DADDE6; 
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+td {
+    word-break: break-word;
+}
+.topnav {
+    font-size: 14px; 
+}
+
+#features img{
+width: 80%;
+}
+
+.close-navbar-toggler{
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  z-index:1;
+  cursor:pointer;
+}
+.close-navbar-toggler.collapsed{
+  z-index:-1;
+}
+
+.lead {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.modal-dialog {
+  max-width: 45% !important;
+  margin: 1.75rem auto;
+}
+
+.intro-header {
+    padding-top: 100px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 100px;
+    xtext-align: center;
+    color: #f8f8f8;
+    background: url(../img/intro-bg.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+.sub-header {
+    padding: 20px;
+}
+
+#imageDiv img {
+    width: 100%;
+}
+
+/* .popover { pointer-events: none !important; } */
+
+.well .markup,
+.example-content .example-code {
+  background: #2B2B2B;
+  color: #BABABA;
+  position: relative;
+  padding: 15px 15px 15px;
+  margin: 15px 0 0 0;
+  border-radius: 0 0 4px 4px;
+  box-shadow: none;
+  font-size: 12px;
+  line-height: 1.42857143;
+  word-break: break-all;
+  word-wrap: break-word;
+  border: 1px solid #000;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  white-space: pre;
+  overflow: auto;
+}
+
+.well .markup::after {
+  content: "Source code";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #eee;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.share-btn {
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+.example-title{
+  font-size: 14px;
+  margin: 10px 0 10px 2px;
+  font-weight: bold;
+}
+.example-description{
+  margin: 10px 0 10px 2px;
+}
+.example-code{
+  display:none;
+}
+.example-content-widget{
+  margin-bottom: 2px;
+}
+
+@media(max-width:767px) {
+    .intro-message {
+        padding-bottom: 15%;
+    }
+
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+
+    ul.intro-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.intro-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .intro-divider {
+        width: 100%;
+    }
+}
+
+.network-name {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.content-section-a {
+    padding: 100px 0;
+    background-color: #f8f8f8;
+}
+
+.content-section-b {
+    padding: 100px 0;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading-spacer {
+    float: left;
+    width: 200px;
+    border-top: 3px solid #e7e7e7;
+}
+
+.banner {
+    padding: 100px 0;
+    color: #f8f8f8;
+    background: url(../img/banner-bg.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.banner h2 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 3em;
+}
+
+.banner ul {
+    margin-bottom: 0;
+}
+
+.banner-social-buttons {
+    float: right;
+    margin-top: 0;
+}
+
+@media(max-width:1199px) {
+    ul.banner-social-buttons {
+        float: left;
+        margin-top: 15px;
+    }
+}
+
+@media(max-width:767px) {
+    .banner h2 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+        font-size: 3em;
+    }
+
+    ul.banner-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.banner-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+}
+
+footer {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+p.copyright {
+    margin: 15px 0 0;
+}
+img {  
+  font-family: 'Helvetica';
+  font-weight: 300;
+  line-height: 2;  
+  text-align: center;
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  -moz-force-broken-image-icon: 1;
+}
+
+img:after {  
+  content: attr(alt);
+  display: block;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  -moz-force-broken-image-icon: 1;
+}
+.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
+    padding: 3px !important;
+}
+.fc-day-grid-event {
+	margin: 0 !important;
+	padding: 0 1px !important;
+	border-radius: 10px !important;
+}
+.fc-day-grid-event .fc-content {
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	margin-left: 8px;
+}
+.fc th, .fc td {
+    border-style: dotted !important;
+    border-width: 0.5px !important;
+    padding: 1px !important;
+    vertical-align: top;
+}
+.fc-widget-content {
+    border-color: #d0d0d0 !important;
+}
+
+.colorpicker-element .input-group-addon i, .colorpicker-element .add-on i {
+    display: list-item !important;
+    cursor: pointer;
+    height: 40px !important;
+    vertical-align: text-top;
+    width: 40px !important;
+}
+.dropdown-menu {
+    font-size: 12px !important;
+}
+
+
+.fl-left {
+    float: left
+}
+
+.fl-right {
+    float: right
+}
+
+h1 {
+    text-transform: uppercase;
+    font-weight: 900;
+    border-left: 10px solid #fec500;
+    padding-left: 10px;
+}
+
+.row {
+    overflow: hidden
+}
+
+.card {
+    display: table-row;
+    width: 100%;
+    background-color: #fff;
+    color: #989898;
+    margin-bottom: 10px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    border-radius: 10px;
+    position: relative
+}
+
+.dates {
+    display: table-cell;
+    width: 25%;
+    position: relative;
+    text-align: center;
+    border-right: 2px dashed #dadde6
+}
+
+.dates:before,
+.dates:after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: #DADDE6;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    z-index: 1;
+    border-radius: 50%
+}
+
+.dates:after {
+    top: auto;
+    bottom: -15px
+}
+
+.dates time {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
+
+.dates time span {
+    display: block
+}
+
+.dates time span:first-child {
+    color: #2b2b2b;
+    font-weight: 600;
+    font-size: 90%
+}
+
+.dates time span:last-child {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 0px
+}
+
+.card-cont {
+    display: table-cell;
+    width: 365px;
+    font-size: 85%;
+    padding: 10px 10px 15px 35px
+}
+
+.card-cont h3 {
+    color: #3C3C3C;
+    font-size: 130%
+}
+
+
+.card-cont>div {
+    display: inline
+}
+
+.card-cont .even-date i,
+.card-cont .even-info i,
+.card-cont .even-date time,
+.card-cont .even-info p {
+    display: inline
+}
+
+.card-cont .even-date i,
+.card-cont .even-info i {
+    padding: 5% 5% 0 0
+}
+
+.card-cont .even-info p {
+   padding: 30px 0 0 0;
+font-size: 10px;
+}
+
+.card-cont .even-date time span {
+    display: block
+}
+
+.card-cont a {
+    display: block;
+    text-decoration: none;
+    width: 50px;
+    height: 30px;
+    background-color: #D8DDE0;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 2px;
+    position: absolute;
+    right: 10px;
+    bottom: 75px
+}
+
+.card-cont a {
+    background-color: #037FDD
+}
+
+@media screen and (max-width: 860px) {
+    .card {
+        display: block;
+        float: none;
+        width: 100%;
+        margin-bottom: 10px
+    }
+    .card+.card {
+        margin-left: 0
+    }
+    .card-cont .even-date,
+    .card-cont .even-info {
+        font-size: 75%
+    }
+}
+
+
+/* ---- isotope ---- */
+
+/* clear fix */
+.isotope:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .element-item ---- */
+
+
+.element-item > * {
+  margin: 0;
+  padding: 0;
+}
+
+.element-item .name {
+  position: absolute;
+
+  left: 10px;
+  top: 60px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.element-item .symbol {
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  font-size: 42px;
+  font-weight: bold;
+  color: white;
+}
+
+.element-item .number {
+  position: absolute;
+  right: 8px;
+  top: 5px;
+}
+
+.element-item .weight {
+  position: absolute;
+  left: 10px;
+  top: 76px;
+  font-size: 12px;
+}
+

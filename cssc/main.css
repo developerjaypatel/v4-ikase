@@ -1,0 +1,175 @@
+:root {
+    --blue: #03a9f4;
+    --turqoise: #1abc9c;
+    --orange: #ff7a00;
+    --purple: #9b59b6;
+    --pink: #e91e63;
+    --yellow: #f1c40f;
+    --tableHead: #1abc9c;
+
+    --blue_dim: #e5f5fc;
+    --turqoise_dim: #e4f6f2;
+    --orange_dim: #fef6ee;
+    --purple_dim: #f3ecf6;
+    --pink_dim: #fbe4ec;
+    --yellow_dim: #ede4bd;
+
+    --blue_dark: #1379a7;
+    --turqoise_dark: #137e69;
+    --orange_dark: #9d510b;
+    --purple_dark: #6f1993;
+    --pink_dark: #970e3c;
+    --yellow_dark: #93780d;
+
+    --background_dim: #e4f6f2;
+    --background_dark: #137e69;
+}
+  
+html[data-theme='th_blue'] {
+    --tableHead: var(--blue);
+    --background_dim : var(--blue_dim);
+    --background_dark : var(--blue_dark);
+}
+
+html[data-theme='th_turqoise'] {
+    --tableHead: var(--turqoise);
+    --background_dim : var(--turqoise_dim);
+    --background_dark : var(--turqoise_dark);
+}
+
+html[data-theme='th_orange'] {
+    --tableHead: var(--orange);
+    --background_dim : var(--orange_dim);
+    --background_dark : var(--orange_dark);
+}
+
+html[data-theme='th_purple'] {
+    --tableHead: var(--purple);
+    --background_dim : var(--purple_dim);
+    --background_dark : var(--purple_dark);
+}
+
+html[data-theme='th_pink'] {
+    --tableHead: var(--pink);
+    --background_dim : var(--pink_dim);
+    --background_dark : var(--pink_dark);
+}
+
+html[data-theme='th_yellow'] {
+    --tableHead: var(--yellow);
+    --background_dim : var(--yellow_dim);
+    --background_dark : var(--yellow_dark);
+}
+
+html[data-theme*= 'th'] body, html[data-theme*= 'th'] .fc-table{
+  background: var(--background_dim) !important;
+}
+
+html[data-theme*= 'th'] table thead tr th{
+  background: var(--tableHead) !important;
+}
+ 
+html[data-theme*= 'th'] table{
+  background: var(--tableHead) !important;
+}
+
+.modal-backdrop{
+  z-index: 1000; 
+}
+
+.Palette_Color {
+  width: 90px;
+  float: left;
+  height: 60px;
+  cursor: pointer;
+  margin: 3px;
+}
+.Palette_Color--blue {
+  background: var(--blue);
+}
+.Palette_Color--turqoise {
+  background: var(--turqoise);
+}
+.Palette_Color--orange {
+  background: var(--orange);
+}
+.Palette_Color--purple {
+  background: var(--purple);
+}
+.Palette_Color--pink {
+  background: var(--pink);
+}
+.Palette_Color--darkBlue {
+  background: var(--darkBlue);
+}
+.Palette_Color--yellow {
+  background: var(--yellow);
+}
+
+.Palette_Color--default {
+  background: black;
+}
+
+.themepickerModal{
+  top: 25% !important;
+  left: 35% !important;
+}
+
+html[data-theme*= 'th'] .navbar-inverse{
+    background: var(--tableHead) !important;
+}
+
+html[data-theme*= 'th'] .glass_header_no_padding{
+  background: none;
+}
+
+html[data-theme*= 'th'] .dashboard_home{
+  border: 2px solid var(--tableHead) !important;
+}
+
+html[data-theme*= 'th'] .glass_header{
+  background-color: var(--tableHead) !important;
+}
+
+html[data-theme*= 'th'] .fc-toolbar h2, html[data-theme*= 'th'] #homepage_overdue_tasks_notification, html[data-theme*= 'th'] .white_text, html[data-theme*= 'th'] .large_white_text, html[data-theme*= 'th'] #bodyparts_warning div, html[data-theme*= 'th'] #bodyparts_warning p{
+  color:black !important;
+}
+
+html[data-theme*= 'th'] .modal-body, html[data-theme*= 'th'] .modal-dialog, html[data-theme*= 'th'] .modal-content{
+  background-image: none !important;
+}
+
+html[data-theme*= 'th'] .modal-content{
+  background-color: var(--tableHead);
+}
+
+html[data-theme*= 'th'] .modal-body table{
+  border-collapse: inherit !important;
+  padding: 10px !important;
+}
+
+html[data-theme*= 'th'] .navbar-inverse .navbar-nav>li>a, html[data-theme*= 'th'] .navbar-inverse .navbar-brand:hover, html[data-theme*= 'th'] .navbar-inverse .navbar-brand:focus, html[data-theme*= 'th'] #nav_customer_name, html[data-theme*= 'th'] .navbar-inverse .navbar-brand, html[data-theme*= 'th'], html[data-theme*= 'th'] div#unattended_case_count div a div, html[data-theme*= 'th'] div#inactive_wcab_count div a div, html[data-theme*= 'th'] div#inactiveall_pi_count div a div, html[data-theme*= 'th'] div#noworkers_count div a div {
+  color: white !important;
+}
+
+html[data-theme*= 'th'] .related_row .white_text{
+  color: white !important;
+  background: #5f788f !important;
+}
+
+html[data-theme*= 'th'] .partie{
+  background-image: linear-gradient(to bottom right, var(--background_dark) 35%, white 120%) !important;
+}
+
+html[data-theme*= 'th'] .navbar-inverse .navbar-nav>.open>a, html[data-theme*= 'th'] .navbar-inverse .navbar-nav>.open>a:hover, html[data-theme*= 'th'] .navbar-inverse .navbar-nav>.open>a:focus{
+  background-color: var(--background_dark) !important;
+}
+
+html[data-theme*= 'th'] #page_title{
+  font-weight: bold;
+  color: var(--background_dark) !important;
+}
+
+html[data-theme*= 'th'] .themepickerModal .modal-content{
+  background: white !important;
+}

@@ -1,0 +1,88 @@
+<div id="sub_category_holder" class="notes" style="text-align:left; margin-top:13px;">
+	<div style="text-align:left; float:right">
+        <div class="edit_row notes" style="display:inline-block"><button class="edit btn btn-transparent border-blue"><i class="glyphicon glyphicon-edit">&nbsp;</i>Edit</button>
+        </div>
+        <div class="button_row notes hidden" style="display:inline-block">
+            <button class="reset btn btn-transparent border-white"><i class="glyphicon glyphicon-repeat">&nbsp;</i>Reset</button>&nbsp;<button class="save btn btn-transparent border-green"><i class="glyphicon glyphicon-save">&nbsp;</i>Save</button>&nbsp;<button class="btn btn-transparent border-red delete" style="color:white"><i class="glyphicon glyphicon-remove-sign">&nbsp;</i>Delete</button>&nbsp;
+        </div>
+    </div>
+
+     <span style="color:#FFFFFF; font-size:1.6em; font-weight:lighter; margin-left:10px;"><% if (!isNaN(id) && id!=-1) { %>Edit<% } else { %>New<% } %> Note &nbsp; <img src="img/loading_spinner_1.gif" name="gifsave" width="20" height="20" id="gifsave" style="display:none; opacity:50%" /> &nbsp; 
+       <span class="alert alert-success" style="display:none; height:25px; width:50px;font-size:14px; z-index:4251; margin-top:-35px; margin-left:-10px;">Saved</span></span>      
+</div>
+    	
+    <div class="notes">
+    	<form id="notes_form" parsley-validate>
+        <input id="table_name" name="table_name" type="hidden" value="notes" />
+        <input id="table_id" name="table_id" type="hidden" value="<%= id %>" />
+        <input id="case_id" name="case_id" type="hidden" value="<%= case_id %>" />
+        <input id="case_uuid" name="case_uuid" type="hidden" value="<%= case_uuid %>" />
+        <input type="hidden" name="noteInput" id="noteInput" value="<%= note %>" />
+        <div class="gridster notes" id="gridster_notes" style="display:none">
+            <ul style="margin-bottom:10px">
+                <li id="titleGrid" data-row="1" data-col="1" data-sizex="3" data-sizey="1" class="gridster_border kase" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                    <h6><div class="form_label_vert">Title</div></h6>
+                  <div style="" class="save_holder hidden" id="titleSave">
+                    <a class="save_field" title="Click to save this field" id="titleSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                  <input value="<%= title %>" name="titleInput" id="titleInput" class="notes input_class hidden" placeholder="Note Title" parsley-error-message="Title is a required field" style="margin-top:-2px;" required />
+                  <span id="titleSpan" class="kase notes span_class form_span_vert"><%= title %></span>
+                </li>
+                <li id="typeGrid" data-row="2" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border kase" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Type</div></h6>
+                <div style="float:right; margin-right:5px" class="hidden" id="typeSave">
+                    <a class="save_field" title="Click to save this field" id="typeSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                  <input value="<%= type %>" name="typeInput" id="typeInput" class="notes input_class hidden" placeholder="" style="margin-top:-2px;" required />
+                  <span id="dateandtimeSpan" class="kase notes span_class form_span_vert"><%= type %></span>
+                </li>
+            <li id="dateandtimeGrid" data-row="2" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border kase" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Date</div></h6>
+                <div style="float:right; margin-right:5px" class="hidden" id="dateandtimeSave">
+                    <a class="save_field" title="Click to save this field" id="dateandtimeSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                  <input value="<%= moment(dateandtime).format('MM/DD/YYYY hh:mmA') %>" name="dateandtimeInput" id="dateandtimeInput" class="notes input_class hidden" placeholder="" parsley-error-message="Tax ID is a required field" style="margin-top:-2px;" required />
+                  <span id="dateandtimeSpan" class="notes span_class form_span_vert"><%= moment(dateandtime).format('MM/DD/YYYY hh:mmA') %></span>
+                </li>
+            
+                
+                
+                <li id="statusGrid" data-row="2" data-col="3" data-sizex="1" data-sizey="1" class="gridster_border kase" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Status</div></h6>
+                <div style="float:right; margin-right:5px" class="hidden" id="statusSave">
+                    <a class="save_field" title="Click to save this field" id="statusSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                  <input value="<%= status %>" name="statusInput" style="margin-top:-2px" id="statusInput" class="input_class hidden" />
+                  <span id="statusSpan" class="kase notes span_class form_span_vert"><%= status %>
+                  </span>
+                </li>  
+                <li id="noteGrid" data-row="2" data-col="1" data-sizex="3" data-sizey="5" class="gridster_border kase" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert">Note</div></h6>
+                <div style="float:right; margin-right:10px" class="hidden" id="noteSave">
+                    <a class="save_field" title="Click to save this field" id="noteSaveLink">
+	                    <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                
+                <span id="noteInput" name="notesInput" class="note input_class hidden" style="width:94%; height:100%">
+					<iframe src="text_editor/ed/text_editor.php?case_id=<%= case_id %>&notes_id=<%= notes_id %>" frameborder="0" style="width:100%; height:80%" allowtransparency="true"></iframe>
+                </span>
+                
+                  <span id="noteSpan" class="notes kase form_span_vert span_class">
+                  	<%= note %>
+                  </span>
+                </li>       
+                       
+           </ul>
+        </div>
+        </form>
+	</div>
+</div>    

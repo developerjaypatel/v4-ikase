@@ -1,0 +1,52 @@
+{
+  "name": "fontawesome",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "c64623255a4a7c72436b199b05296c4f",
+      "css": "emo-happy",
+      "code": 59396,
+      "src": "fontelico"
+    },
+    {
+      "uid": "53ed8570225581269cd7eff5795e8bea",
+      "css": "emo-unhappy",
+      "code": 59393,
+      "src": "fontelico"
+    },
+    {
+      "uid": "fd59eac4d575b48eb156590b63a355fd",
+      "css": "emo-sleep",
+      "code": 59397,
+      "src": "fontelico"
+    },
+    {
+      "uid": "9bd60140934a1eb9236fd7a8ab1ff6ba",
+      "css": "spin4",
+      "code": 59398,
+      "src": "fontelico"
+    },
+    {
+      "uid": "51fb22f9ff9d7f60c95ef31e4c59502d",
+      "css": "comment",
+      "code": 59392,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "889a8bd0b481e3523ede8a7d75164cd1",
+      "css": "comment-1",
+      "code": 59394,
+      "src": "websymbols"
+    },
+    {
+      "uid": "b52aa05c9c55c41f1768cdaa940401a8",
+      "css": "comment-alt",
+      "code": 59395,
+      "src": "websymbols"
+    }
+  ]
+}

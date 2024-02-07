@@ -1,0 +1,89 @@
+<div class="gridster parties_new" id="gridster_parties_new" style="display:none; text-align:left; margin-top:13px; border:0px solid red; width:900px">
+	<span class="form_title">New Kase Partie</span>
+      	<ul>
+        <% 
+        var row_counter = 1;
+        var column_counter = 1;
+        _.each( parties, function(partie) {
+        	var thehref = "#parties/" + partie.case_id + "/" + partie.parties_id + "/" + partie.type;
+            if (partie.type=="applicant") { 
+                thehref = "#kases/" + partie.case_id;
+            }
+            var partie_type = partie.type;
+            partie_type = partie_type.replaceAll("_", " ");
+            partie_type = partie_type.capitalize();
+            
+            var glass = "";
+            switch(partie.type) {
+            	case "applicant":
+                	glass = "_card_fade";
+                    break;
+                case "carrier":
+                	glass = "card_fade_1";
+                    break;
+                case "defendant":
+                	glass = "card_fade_2";
+                	break;
+                case "employer":
+                	glass = "_card_fade_3";
+                	break;
+                case "enforcement":
+                	glass = "_card_fade_4";
+                	break;
+                case "expert":
+                	glass = "_card_fade_5";
+                	break;
+                case "referral":
+                	glass = "_card_fade_6";
+                	break;
+                case "voc_rehab":
+                	glass = "_card_fade_7";
+                	break;
+                case "witness":
+                	glass = "_card_fade";
+                	break;
+                
+                
+            }
+        %>
+        	<li id="partie_type_nameGrid" data-row="<%=row_counter %>" data-col="<%=column_counter %>" data-sizex="1" data-sizey="1" class="partie gridster_border gridster_holder" style="background:url(img/glass<%=glass %>.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+            <h3><a style="color:white; text-decoration:none" href="<%= thehref %>" title="Click to edit <%= partie.type.capitalize() %>"><%= partie_type %></a></h3>
+              <div><%= partie.partie_type %> <%= row_counter + " - " + column_counter %></div>
+            </li>
+        <%	column_counter++;        	
+            if ((column_counter % 4) == 0) {
+                //new row
+                row_counter++;
+                column_counter = 1;
+            }
+        
+ %>
+        <% }); %>
+		</ul>
+	</div>
+<!--
+<div class="gridster parties_new" id="gridster_parties_new" style="display:none; text-align:left; margin-top:13px; border:0px solid red; width:900px">
+	<span class="form_title">New Kase Partie</span>
+	<ul>
+    	<li id="attorneyGrid" data-row="1" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"></li>
+        <li id="defendantGrid" data-row="1" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"><a style="color:white; text-decoration:none" href="#parties/<%=id%>/-1/defendant" title="Click to add Defendant to Kase Parties">Defense Attorney</a></li>
+        <li id="defendantGrid" data-row="1" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"><a style="color:white; text-decoration:none" href="#parties/<%=id%>/-1/defendant" title="Click to add Defendant to Kase Parties">Prior Attorney</a></li>
+        <li id="employerGrid" data-row="1" data-col="3" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"><a style="color:white; text-decoration:none" href="#parties/<%=id%>/-1/employer" title="Click to add Employer to Kase Parties">Employer/Defendant</a></li>
+        <li id="enforcementGrid" data-row="2" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"><a style="color:white; text-decoration:none" href="#parties/<%=id%>/-1/enforcement" title="Click to add Law Enforcement to Kase Parties">Law Enforcement</a></li>
+        <li id="carrierGrid" data-row="2" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"><a style="color:white; text-decoration:none" href="#parties/<%=id%>/-1/carrier" title="Click to add Carrier to Kase Parties">Insurance Carrier</a></li>
+        <li id="witnessGrid" data-row="2" data-col="3" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"><a style="color:white; text-decoration:none" href="#parties/<%=id%>/-1/witness" title="Click to add Witness to Kase Parties">Witnesses</a></li>
+        
+        <li id="providerGrid" data-row="3" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"><a style="color:white; text-decoration:none" href="#parties/<%=id%>/-1/provider" title="Click to add Provider to Kase Parties">Medical Provider</a></li>
+        <li id="referralGrid" data-row="3" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"><a style="color:white; text-decoration:none" href="#parties/<%=id%>/-1/referral" title="Click to add Referral to Kase Parties">Referring</a></li>
+        <li id="expertGrid" data-row="3" data-col="3" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"><a style="color:white; text-decoration:none" href="#parties/<%=id%>/-1/expert" title="Click to add Expert to Kase Parties">Expert</a></li>
+        
+        
+        <li id="voc_rehabGrid" data-row="4" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"><a style="color:white; text-decoration:none" href="#parties/<%=id%>/-1/voc_rehab" title="Click to add Voc Rehab to Kase Parties">Vocational Rehab</a></li>
+        <li id="wcabGrid" data-row="4" data-col="2" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"><a style="color:white; text-decoration:none" href="#parties/<%=id%>/-1/wcab" title="Click to add WCAB to Kase Parties">WCAB</a></li>
+        <li id="lien_holderGrid" data-row="4" data-col="3" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"><a style="color:white; text-decoration:none" href="#parties/<%=id%>/-1/lien_holder" title="Click to add Lien Holder to Kase Parties">Lien Holder</a></li>
+        
+        <li id="otherGrid" data-row="5" data-col="1" data-sizex="1" data-sizey="1" class="gridster_border gridster_holder" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-size: 1.2em; text-align:center; font-family: 'Open Sans', sans-serif; color:#FFFFFF"><a style="color:white; text-decoration:none" href="#parties/<%=id%>/-1/other" title="Click to add Ohter to Kase Parties">Other</a></li>
+        
+    </ul>
+</div>
+-->

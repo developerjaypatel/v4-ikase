@@ -1,0 +1,80 @@
+@media screen and (max-width:1300px)
+{
+	.table-responsivea {
+
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    border: 1px solid #ddd;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-overflow-scrolling: touch;
+
+    
+    }
+    .margin-top{
+    	margin-top:30px; 
+    }
+
+}
+@media screen and (max-width:1280px)
+{
+	
+	
+}
+
+
+@media screen and (max-width:1200px)
+{
+
+	
+}
+
+	
+	
+	
+
+
+
+@media screen and (max-width:1024px)
+{	
+
+	
+}
+
+@media screen and (max-width:992px)
+{
+	
+}
+
+@media screen and (max-width:768px)
+
+{
+
+	
+}
+
+
+@media screen and (max-width:767px)
+{
+	
+}
+
+@media screen and (max-width:479px)
+{
+}
+
+@media screen and (max-width:360px)
+{
+	
+}
+@media screen and (max-width:320px)
+{
+	
+	
+}
+
+
+
+
+

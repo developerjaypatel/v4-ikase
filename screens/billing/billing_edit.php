@@ -1,0 +1,160 @@
+<body unselectable="on" id="sw-el-4">
+    <form>
+    <input name="teDetail_IsActivityCodes" type="hidden" id="teDetail_IsActivityCodes" value="True">
+    <input name="teDetail_IsUTBMSCodes" type="hidden" id="teDetail_IsUTBMSCodes" value="False">
+    <div class="body-timeentry">
+        <div class="headerPanelName ui-corner-top">
+            <img src="/images/time-entry-icon_16x15.png" class="headerImage" alt=""><span class="headerName">Cooperman v. Cooperman</span><div class="aa-header-elpsFade" style="display:none"></div></div>
+        <div id="timeentry-body" class="cr-body-timeentrydetail" style="position: relative;">
+            <div style="position: relative">
+                <table class="formTable">
+                    <colgroup>
+                        <col>
+                        <col style="width: 10px;">
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                    </colgroup>
+                    <tbody><tr>
+                        <td class="td-label">
+                            <label>
+                                Date</label>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <div style="float:left;height:38px;margin-left:10px;">
+                                <span class="k-widget k-datepicker k-header"><span class="k-picker-wrap k-state-default"><input id="date_picker" data-role="datepicker" style="width: 100%;" type="text" class="k-input" role="textbox" aria-haspopup="true" aria-expanded="false" aria-owns="date_picker_dateview" aria-disabled="false" aria-readonly="false" aria-label="Current focused date is Wednesday, February 08, 2017"><span unselectable="on" class="k-select" role="button" aria-controls="date_picker_dateview"><span unselectable="on" class="k-icon k-i-calendar">select</span></span></span></span>
+                            </div>
+                            
+                        </td>
+                        <td>
+                        </td>
+                        <td colspan="2">
+                            <div style="float: right; margin-right: 5px; position: relative;" class="ctrl-duration" id="sw-el-9">
+                            <div class="amicus-textfield" style="float:left;font-size: 12px;line-height:15px; width:65px; padding:2px; margin-right:2px"><span id="hourTimerElemt" style="display:none;padding:0px;border-style:none;" class="amicus-timer-hour"><input id="hourTimerInpt" class="amicus-timer-hourinput amicus-timer-input" readonly="readonly" maxlength="2" type="text" style="float:left;width:15px;border-style:none;outline-style:none;height:15px;margin-left:2px;padding:0px;background:none repeat scroll 0 0 #FFFFFF;"><label style="float:left;margin-left:1px">:</label></span><span id="minTimerElemt" style="display:none;padding:0px;border-style:none;" class="amicus-timer-minute"><input id="minTimerInpt" class="amicus-timer-minuteinput amicus-timer-input" readonly="readonly" maxlength="2" type="text" style="float:left;width:15px;border-style:none;outline-style:none;height:15px;margin-left:2px;padding:0px;background:none repeat scroll 0 0 #FFFFFF;"><label style="float:left;margin-left:1px">:</label></span><span id="secTimerElemt" style="display:none;padding:0px;border-style:none;" class="amicus-timer-second"><input id="secTimerInpt" class="amicus-timer-secondinput amicus-timer-input" readonly="readonly" maxlength="2" type="text" style="float:left;width:15px;border-style:none;outline-style:none;height:15px;margin-left:2px;padding:0px;background:none repeat scroll 0 0 #FFFFFF;"></span><span id="timeTimerElemt" style="padding:0px;border-style:none;" class="amicus-timer-time"><input id="timeTimerInpt" class="amicus-timer-timeinput" vtype="tenths_hours" type="text" style="float:left;border-style:none;outline-style:none;width:55px;height:15px;margin-left:2px;padding:0px"></span></div><div class="ctrl-stopbtn" style="float:left;"></div><div style="clear:both;"></div></div>
+                            <label style="float: right; padding-top: 5px; margin-right: 10px">
+                                Duration</label>
+                            <div style="clear: both;">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-label">
+                            <label>
+                                File</label>
+                        </td>
+                        <td>
+                            <div style="float: right">
+                                <img id="fileicon" src="/images/icon_92.png" alt="" style="display: none;"></div>
+                        </td>
+                        <td colspan="4">
+                            <div class="marginBottom15 ACDiv    ACDivDisabled" id="cr-file-autocomplete" style="border: 1px solid rgb(176, 176, 176); height: 18px; width: 482px; margin-left: 10px; overflow: hidden; cursor: default;"><input type="hidden" name="" value="" id="sw-el-8"><a class="sw-ac-span-text sw-ac-span-text-nounderline" tabindex="-1" id="sw-el-11" style="cursor: default;"><span id="sw-el-12"><span><span><span><input type="hidden" name="MatterIdentifier" value="1e02057d-ce7a-450c-a16e-d95448ea76bc" id="sw-el-13">Cooperman v. Cooperman<span class="x" onmouseover="this.className='x_hover'" onmouseout="this.className='x'" style="top: -1px;"></span></span></span></span></span></a><textarea rows="1" style="overflow: auto; font-size: 12px; height: 100%; width: 100%; border-style: none; padding: 0px 0px 0px 3px; margin: 2px 0px 0px; cursor: default;" name="" autocomplete="off" id="cr-file-autocomplete-ac-input" value="" class="sw-acInput sw-empty-input sw-hide-display" disabled="disabled"></textarea><img class="sw-indicator sw-hide-display" src="/images/AjaxLoaders/ajax-loader3.gif"><div style="clear:both"></div></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="td-label">
+                            <label>
+                                Billing Status</label>
+                        </td>
+                        <td>
+                            <select title="BillingStatusList" title2="BillingStatusList" name="BillingStatusIdentifier" id="teDetail_ddBillingStatus"><option selected="selected" value="69b0635b-a5b3-43be-801d-87b20cc321d4">Regular Billable</option><option value="77493437-f5c7-433a-99a8-de93dac6854c">Special Billable</option><optgroup label="----------"></optgroup><option value="4e385c21-3632-47ab-b0cd-480c75e09d33">Firm Administration</option><option value="b1d16089-d324-448e-ae15-bb2ef6f7d265">Business Development</option><option value="a30ec4d3-50c2-4f6a-b072-88d87b791929">Professional Development</option><optgroup label="----------"></optgroup><option value="75770eea-4feb-4f9f-b862-58e4273b4c36">Personal</option><optgroup type="Static" label="----------"></optgroup><option type="Static" value="Edit">Manage this list...</option></select>
+                        </td>
+                        <td colspan="2" class="td-label" style="padding-top: 6px; width: 100px">
+                            <label style="padding-top: 5px; padding-left: 22px;">
+                                Billing Rate</label>
+                        </td>
+                        <td>
+                           <select name="UserBillingRateIdentifier" title="BillingRateList" title2="BillingRateList" id="teDetail_ddUserBillingRate"><option value="774c89bb-50e1-4f05-b57b-48f45d452b2e">Contingency</option><option value="52603bb5-c13a-446f-994a-6e8d36bfae03">Discount</option><option selected="selected" value="1a34a710-2f3e-407f-a047-83322c05d7c3">Normal</option><option value="83814d28-2e04-464f-adbf-26a8fba6e580">Premium</option><option value="577dad4b-83a5-4ec3-b446-2154f459ef1c">Fixed Fee</option><option value="cc2dfa3d-5db0-4d0c-985e-bb13411f9638">Flat Rate Activity</option><option value="e582b2d0-6e3b-4c61-a646-d16e9ee4384a">Non-Billable</option><optgroup type="Static" label="----------"></optgroup><option type="Static" value="Edit">Manage this list...</option></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="teDetail_TaskCode" style="padding-top: 5px; padding-left: 4px; display: none;">
+                                <label>Task Code</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="teDetail_TaskCode" style="display: none;">
+                                <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input class="amicus-textfield marginBottom15 ui-autocomplete-input" id="teDetail_txtTaskCode" name="UTBMSCode" style="margin-left:10px;height:20px" autocomplete="off">
+                                <select style="display: none" title="FirmTaskCodeList" title2="FirmTaskCodeList" name="FirmTaskCodeIdentifier" id="teDetail_ddFirmTaskCode"><option selected="selected" value="00000000-0000-0000-0000-000000000000">Not Specified</option><option value="4b9b9439-0430-4ec0-99b7-d3d24fe516f5">Fact Investigation/Development</option><option value="893a96cd-a339-49c0-902f-c3413e688978">Analysis/Strategy</option><option value="6d7cb77e-cb3b-4118-8828-1c515f6f1921">Experts/Consultants</option><option value="ee5b4851-76e0-4904-9817-17f14762ca53">Document/File Management</option><option value="0de75354-ae3c-43a4-9b8e-ea5c1148d54b">Budgeting</option><option value="f6c293f4-da94-4f17-b8d6-be84e63232c2">Settlement/Non-Binding ADR</option><option value="f8ba32d0-3ac3-4b06-9eef-2c67ecc9d102">Other Case Assessment, Development and Administration</option><option value="214b9cc9-9925-4f2a-9f05-c5bb21420dbf">Pleadings</option><option value="3b83b126-6b99-4020-9a84-47a054750c9b">Preliminary Injunctions/Provisional Remedies</option><option value="6092e195-3f5c-4dca-a653-fb554dfd405d">Court Mandated Conferences</option><option value="f1dd56c4-054a-46b5-9e41-e16b4c1968c2">Dispositive Motions</option><option value="f3d73086-674f-4a05-bee2-3ce7a291c4e3">Other Written Motions and Submissions</option><option value="e3240695-be35-42ec-84ae-b20f0bc9c7a0">Class Action Certification and Notice</option><option value="233d3593-b28d-4dc9-b979-3c0ad349c273">Written Discovery</option><option value="409bfc40-8682-4e11-95b9-c445e78346f1">Document Production</option><option value="8e6b8322-53f3-402e-b8d8-73cf041d79d5">Depositions</option><option value="00b30bc4-bd79-46ef-b5d8-78dd45a4e949">Expert Discovery</option><option value="44c7e0be-971b-40db-bb86-fd4ff91fff58">Discovery Motions</option><option value="138128f0-c68a-44ad-a829-f17a628f779a">Other Discovery</option><option value="008a3ea2-7581-497c-b0c8-0efdddae4e00">Fact Witnesses</option><option value="e6b320d4-359a-4f37-adf7-53bb42f2b2da">Expert Witnesses</option><option value="0790650c-c9d5-48fa-8bd3-00ee00425050">Written Motions and Submissions</option><option value="c471b144-5711-418e-8a1c-87d8da946b6c">Other Trial Preparation and Support</option><option value="7c302716-fbd4-44fa-8f55-40583e876173">Trial and Hearing Attendance</option><option value="4b13cee2-ac6d-47fe-9c8a-af7a9cc6a708">Post-Trial Motions and Submissions</option><option value="45be59d9-59ba-4f5d-ab3b-a53e490183e0">Enforcement</option><option value="f706e0a5-a7be-44cb-9195-b47138bb3e4a">Appellate Motions and Submissions</option><option value="b9a22a3f-0215-4377-9bd4-9d7123cbf716">Appellate Briefs</option><option value="2d427393-549b-4f6b-9068-8f9eb9817748">Oral Argument</option><option value="9615104e-8c31-46cf-b7d5-b3deda2be7d3">Case Administration</option><option value="d0490c5a-7896-439c-bb01-5a13fcd8748e">Asset Analysis and Recovery</option><option value="cbd62941-480e-4f32-ab9c-4a303b90591d">Asset Disposition</option><option value="91c17edd-8a58-4e74-b0a2-ee45add4e559">Relief from Stay/Adequate Protection Proceedings</option><option value="4a6d4d40-b274-4a0b-b762-a9c81d9e523b">Meetings of and Communications with Creditors</option><option value="f590fcba-c494-4a8a-a00c-0e4d51df0ca5">Fee/Employment Applications</option><option value="fec9f8c0-9fc7-48ee-8d0e-6bcf367bf9e1">Fee/Employment Objections</option><option value="d8918f33-803e-4873-abb5-6112c583cda6">Avoidance Action Analysis</option><option value="f39bc6f4-c8cf-4501-8085-34c907861099">Assumption/Rejection of Leases and Contracts</option><option value="81a7f2ec-abf7-43df-8fcb-c4e26a212db2">Other Contested Matters (excluding assumption/rejection motions)</option><option value="1b4ff257-4018-415c-b349-c0df0f2c2ac1">Non-Working Travel</option><option value="af02755f-70b0-4f07-92fa-06787b37ac47">Business Operations</option><option value="8787f7e8-afd3-42f4-beab-e0bb4402b5b9">Employee Benefits/Pensions</option><option value="51c0b6b5-f94e-4b55-9dd3-079c23e89c73">Financing/Cash Collections</option><option value="8232e7c9-8b34-4537-a2e1-6b2eb6bf1024">Tax Issues</option><option value="6aef3dce-0470-4a1d-9ae3-0cd398a03e9d">Real Estate</option><option value="4ad503e9-0165-4102-89e2-676d33ecebcb">Board of Directors Matters</option><option value="0bdfa828-ad72-4ca6-9d48-5993ac127402">Claims Administration and Objections</option><option value="952acecc-fbda-4066-8022-8aef139ddd08">Plan and Disclosure Statement (including Business Plan)</option><option value="dbbaa6ff-0a3c-4ea4-b179-b8081e2e7e07">General Bankruptcy Advice/Opinions</option><option value="7728e44b-38d4-4211-98d6-ec65efce8ac2">Restructurings</option><option value="7051d59b-7ffe-4846-8988-f3b34d51fb9b">Fact Gathering</option><option value="ccd2abe7-4a97-4ed9-8fb2-8a496f3acb53">Researching Law</option><option value="fe547371-5ad5-42e3-acdc-656a9645ad3c">Analysis and Advice</option><option value="074bf8d6-984c-4fa1-aea8-e01135ee474e">Third Party Communication</option><option value="b321841d-f547-49bf-a4a9-25c2f934f691">Project Administration</option><option value="9495dc66-5564-4bca-8cef-661473a68d8f">Fact Gathering/Due Diligence</option><option value="cbd32b07-a5fb-4ca7-aefb-230ccc79b24d">Corporate Review</option><option value="e2650eee-b40c-4e88-b968-d863cfcca538">Tax</option><option value="134fc311-38da-4184-89ee-bb67fa7eb1c7">Environmental</option><option value="9418274e-1499-4b06-9b76-e0baf8626d0e">Real and Personal Property</option><option value="f4874cf1-32e6-4f61-86dd-911f45bf9e53">Employee/Labor</option><option value="d66f7f30-27eb-492a-b22e-f9b99929a346">Intellectual Property</option><option value="dc4fbf3f-737b-4a47-ba83-0d3554c0e3aa">Regulatory Reviews</option><option value="0315594f-7244-4a8c-a172-d308a7959285">Other</option><option value="040d3f83-bae7-4d4c-88b0-504858cb6aa7">Structure/Strategy/Analysis</option><option value="fd236e6e-8b2f-43e3-b161-de42ed876cac">Initial Document Preparation/Filing</option><option value="325cf9ef-ad05-4305-a149-137995fcbb2b">Negotiation/Revision/Responses</option><option value="012befe5-a46e-4d0e-92ad-05e78b28d350">Completion/Closing</option><option value="cdf0ad30-e278-42fd-be82-cde45aa13bd7">Post-Completion/Post-Closing</option><option value="d77f3aa3-bc18-4830-bb4c-11661372d706">Maintenance and Renewal</option><optgroup type="Static" label="----------"></optgroup><option type="Static" value="Edit">Manage this list...</option></select>
+                            </div>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td rowspan="2">
+                            <div class="teDetail_divNoCharge"><input id="teDetail_chkIsNoCharge" name="IsNoCharge" type="checkbox" value="false"><label id="teDetail_lblIsNoCharge" for="teDetail_chkIsNoCharge">No Charge</label></div>
+                            <input id="txt_TE_FlatRateValue" vtype="money" allownegative="true" class="amicus-textfield marginBottom15" name="FlatRateAmount" value="0" style="float: right; width: 90px; text-align: right; display: none;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="teDetail_ActivityCode" style="padding-top:5px;padding-left:4px;">
+                                <label>Activity Code</label>
+                            </div>
+                        </td>
+                        <td>
+                            <select class="teDetail_ActivityCode" title="" title2="FirmActivityCodeList" name="FirmActivityCodeIdentifier" id="teDetail_ddFirmActivityCode"><option selected="selected" value="00000000-0000-0000-0000-000000000000">Not Specified</option><option value="398087da-44a7-418b-9deb-f39890a2cea9">Consultation with</option><option value="d971bae8-1a3e-471f-b19c-3124db828a7d">Correspondence with</option><option value="9ae7291c-82d0-4fc9-8d56-7fa9abf218d5">Discussion with</option><option value="d18e6b09-a046-46d5-8f5a-2196c1cc0b78">Drafting documents</option><option value="de83a2e2-92f5-4b03-a03f-86ddea0b33dc">Filing Documentation</option><option value="909b7286-fa44-4cca-9f7c-98405c388927">Lunch with</option><option value="bdc32d74-f284-4b8d-9acc-bd82a12461cb">Meeting with</option><option value="60ed1acd-80a6-4ece-ac8f-ed9ea910303b">Negotiations</option><option value="b55efef8-fc31-4149-b9ce-dd6363c39561">Prepare opinion</option><option value="ad262a84-35db-4c8d-a990-2dff9dd47d51">Reporting</option><option value="3133bec0-c0ed-4591-b671-2a6951269a1f">Research</option><option value="4ffd5629-2c25-42c8-8902-98ba768575c3">Reviewing</option><option value="692f128a-6e32-47e0-8558-dcdb47ffe05a">Reviewing Documents</option><option value="1a13cbae-87ad-43a7-8771-8d6f0db57fa7">Telephone Conference with</option><option value="c2375f26-2a45-490c-bad9-860ff04eff5a">Motions</option><option value="77f9a56b-c282-4f8a-8521-7f864d23b1aa">Interview witness</option><option value="ac86a19b-ea3f-475c-95b9-3a2123fde20c">Consultations with expert witness</option><option value="21681748-fe81-49ac-807c-00753442459a">Brief witness</option><option value="74fb9200-e2f5-4291-b9b0-d3453dd97543">Discovery preparations</option><option value="e597434d-aa25-4b0d-a005-f3054a00359b">Attend discovery</option><option value="4d372c88-6540-4af3-ac87-d3320dd96d14">Trial preparations</option><option value="abf10a6f-40ca-4a11-a90c-f71b87998b30">Attend Trial</option><option value="8fa4e8c7-3c6d-4978-8118-6cc045e5e87c">Taxation advice</option><option value="e00753f3-d782-44e7-8195-da0cff9e1fa9">Telephone - exchange of voice mail</option><option value="cbf992ea-6f4d-4510-9472-6c7952faa32c">Telephone conference with client</option><option value="479205f3-3b4e-4184-ba4b-416081435a1c">Telephone conference with other side</option><option value="6f9d8e59-08a2-4462-a726-7a6e1f104d64">Incorporate company</option><option value="8ee8d265-4398-47d0-a710-5d67b1e2de89">Instructing research assistant</option><option value="e39550bb-2ccd-4c45-a99a-974f71af290e">On-line research</option><option value="1f294c00-1e79-43a1-895b-2e52d549f34e">Reviewing case-law</option><option value="b1714f44-34fb-413f-8896-822fa3feec4c">Plan and prepare for</option><option value="8071a61a-d165-4693-ae41-f28c8b4f13ff">Research</option><option value="df6b850e-e413-4a60-a49d-bbdc04ed5cdf">Draft/revise</option><option value="f1c081b8-622d-4b55-a9cf-3078a9c42920">Review/analyze</option><option value="59b39650-512d-4651-a22a-30a1ad50dc16">Communicate (in firm)</option><option value="7663f710-bf40-4206-bed3-5abe3a827a24">Communicate (with client)</option><option value="b696dd9d-fbb2-4c80-b23d-e7b7160ef10e">Communicate (other outside counsel)</option><option value="5ef5a862-7d12-4673-9771-2f97d10439c2">Communicate (other external)</option><option value="3912cf8c-e224-4284-aede-2c59f44eb771">Appear for/attend</option><option value="2b9b471a-5b14-4667-a3b1-11247773a044">Manage data/files</option><option value="de2f61c7-7148-4e82-9378-821cdff90d08">Billable Travel Time</option><option value="e3b5f1af-ceb1-45d2-b2bb-7d7e62231804">Medical Record and Medical Bill Management</option><option value="30f6b6e1-1e9e-43c2-ad44-199117f50221">Training</option><option value="002d905b-7a41-4312-b07d-6d606453ac83">Special Handling Copying/Scanning/Imaging (Internal)</option><option value="84c8facc-cc75-44d2-bd4c-61be744d2be3">Collection-Forensic</option><option value="bd9b4a01-6b95-443b-bfaa-daf776d824d8">Culling &amp; Filtering</option><option value="f8bfd31f-3461-4a52-919b-2fd7d1964a0f">Processing</option><option value="ff6b8f77-c897-4bf8-91b1-cd552bf6449d">Review and Analysis</option><option value="4130d181-fa13-4afd-a3b1-feac770f36b9">Quality Assurance and Control</option><option value="46c58d7d-cab8-4800-a5ed-483d4b31341b">Search Creation and Execution</option><option value="c7c4652d-f737-4571-b0b2-6a0393dde358">Privilege Review Culling and Log Creation</option><option value="37e931e3-2384-49c4-8cbc-20dcbbb6b65d">Document Production Creation and Preparation</option><option value="ab84e885-1c17-4b4c-ad49-1fef8ed953b8">Evidence/Exhibit Creation and Preparation</option><option value="bfa1eeb1-dbb0-41d9-857a-0eea12972d1a">Project Management</option><option value="3dda6652-f5e6-43fb-bac3-abefd4bab11c">Collection Closing Activities</option><option value="b3464ce1-99c2-4064-a161-0035afa79268">Other</option><optgroup type="Static" label="----------"></optgroup><option type="Static" value="Edit">Manage this list...</option></select>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                    <tr style="height: 100%">
+                        <td colspan="6">
+                            <textarea rows="3" name="Description" id="description" class="amicus-field ipad-editor" style="position: relative; height: 158px; z-index: auto;"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-label">
+                            <label>
+                                Timekeeper</label>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <select name="OutLawUserIdentifier" id="teDetail_ddOutLawUser"><option value="5159950b-4a2c-4226-b3c4-0b54760e1ee6">Matthew Perera</option></select>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+        </div>
+        <div class="ui-corner-bottom panelFooter" style="clear: both;">
+            <div class="footerLeftButtons">
+                <div class="footerImages">
+                    <a href="#" class="footerTrashButton" title="Delete"></a>
+                    <a href="#" class="footerPrintButton" title="Print"></a>
+                    <a href="#" class="footerHelpButton" title="Help"></a>
+                </div>
+                
+                <img id="img_TEDetail_unpostSeparator" src="/images/seperator.png" style="width: 1px; height: 12px; margin: 0px 8px; display:none">
+                <a href="#" id="btn_TEDetail_Unpost" style="display:none">Unpost</a>
+                <img id="img_TEDetail_saveAndNewSeparator" src="/images/seperator.png" style="width: 1px; height: 12px; margin: 0px 8px;">
+                <a href="#" id="btn_TEDetail_saveAndNew">Save &amp; New</a>
+            </div>
+            <div class="footerRightButtons">
+                <button type="button" class="button-generic-rounded" id="btn_TEDetail_Minimize" title="Save &amp; Minimize" style="display:none">
+                    Minimize</button>
+                <button type="button" class="button-blue" id="btn_TEDetail_SaveAndClose">
+                    Save &amp; Close</button>
+                <button type="button" class="button-generic-rounded" id="btn_TEDetail_Close">Cancel</button>
+            </div>
+        </div>
+    </div>
+    </form>
+
+
+<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" tabindex="0" style="display: none;"></ul><div id="a62f17b6-8e93-4c9e-a177-081fe144608d" data-role="calendar" style="display: none;" class="k-widget k-calendar"><div class="k-header"><a href="#" role="button" class="k-link k-nav-prev" aria-disabled="false"><span class="k-icon k-i-arrow-w"></span></a><a href="#" role="button" aria-live="assertive" aria-atomic="true" class="k-link k-nav-fast" aria-disabled="false">February 2017</a><a href="#" role="button" class="k-link k-nav-next" aria-disabled="false"><span class="k-icon k-i-arrow-e"></span></a></div><table tabindex="0" role="grid" class="k-content" cellspacing="0" aria-activedescendant="a62f17b6-8e93-4c9e-a177-081fe144608d_cell_selected"><thead><tr role="row"><th scope="col" title="Sunday">Su</th><th scope="col" title="Monday">Mo</th><th scope="col" title="Tuesday">Tu</th><th scope="col" title="Wednesday">We</th><th scope="col" title="Thursday">Th</th><th scope="col" title="Friday">Fr</th><th scope="col" title="Saturday">Sa</th></tr></thead><tbody><tr role="row"><td class="k-other-month k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/0/29" title="Sunday, January 29, 2017">29</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/0/30" title="Monday, January 30, 2017">30</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/0/31" title="Tuesday, January 31, 2017">31</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/1" title="Wednesday, February 01, 2017">1</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/2" title="Thursday, February 02, 2017">2</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/3" title="Friday, February 03, 2017">3</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/4" title="Saturday, February 04, 2017">4</a></td></tr><tr role="row"><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/5" title="Sunday, February 05, 2017">5</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/6" title="Monday, February 06, 2017">6</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/7" title="Tuesday, February 07, 2017">7</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/8" title="Wednesday, February 08, 2017">8</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/9" title="Thursday, February 09, 2017">9</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/10" title="Friday, February 10, 2017">10</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/11" title="Saturday, February 11, 2017">11</a></td></tr><tr role="row"><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/12" title="Sunday, February 12, 2017">12</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/13" title="Monday, February 13, 2017">13</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/14" title="Tuesday, February 14, 2017">14</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/15" title="Wednesday, February 15, 2017">15</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/16" title="Thursday, February 16, 2017">16</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/17" title="Friday, February 17, 2017">17</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/18" title="Saturday, February 18, 2017">18</a></td></tr><tr role="row"><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/19" title="Sunday, February 19, 2017">19</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/20" title="Monday, February 20, 2017">20</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/21" title="Tuesday, February 21, 2017">21</a></td><td class="k-today" role="gridcell" aria-selected="true" id="a62f17b6-8e93-4c9e-a177-081fe144608d_cell_selected"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/22" title="Wednesday, February 22, 2017">22</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/23" title="Thursday, February 23, 2017">23</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/24" title="Friday, February 24, 2017">24</a></td><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/25" title="Saturday, February 25, 2017">25</a></td></tr><tr role="row"><td class="k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/26" title="Sunday, February 26, 2017">26</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/27" title="Monday, February 27, 2017">27</a></td><td role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/1/28" title="Tuesday, February 28, 2017">28</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/2/1" title="Wednesday, March 01, 2017">1</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/2/2" title="Thursday, March 02, 2017">2</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/2/3" title="Friday, March 03, 2017">3</a></td><td class="k-other-month k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/2/4" title="Saturday, March 04, 2017">4</a></td></tr><tr role="row"><td class="k-other-month k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/2/5" title="Sunday, March 05, 2017">5</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/2/6" title="Monday, March 06, 2017">6</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/2/7" title="Tuesday, March 07, 2017">7</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/2/8" title="Wednesday, March 08, 2017">8</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/2/9" title="Thursday, March 09, 2017">9</a></td><td class="k-other-month" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/2/10" title="Friday, March 10, 2017">10</a></td><td class="k-other-month k-weekend" role="gridcell"><a tabindex="-1" class="k-link" href="#" data-value="2017/2/11" title="Saturday, March 11, 2017">11</a></td></tr></tbody></table><div class="k-footer"><a href="#" class="k-link k-nav-today" title="Wednesday, February 22, 2017">Wednesday, February 22, 2017</a></div></div><div aria-hidden="true" class="k-calendar-container k-popup k-group k-reset" id="date_picker_dateview" data-role="popup" style="display: none; position: absolute;"></div><div id="cr-file-autocomplete-ac-wrapper" class="sw-acWrapper sw-hide-display" style="width: 482px;"></div><iframe id="sw-el-3" class="sw-acIframe"></iframe></body>

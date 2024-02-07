@@ -1,0 +1,47 @@
+<div id="kase_category_listing" style="margin-left:0px">
+    <table id="kase_list_table" class="list">
+    	<tr>
+        	<th>
+            	<a class="sort list-item" data-sort="kase_number">Kase #</a>
+            </th>
+            <th>
+            	<a class="sort list-item" data-sort="kase_title">Venue</a>
+            </th>
+        </tr>
+        <% _.each( kases, function(kase) {%>
+        <tr>
+        	<td align="left" valign="top">
+            	<a href='#kases/<%= kase.id %>' class="list-item_kase"><%= kase.case_number %></a>
+            </td>
+            <td align="left" valign="top" style="color:#FFFFFF">
+            	<%= kase.venue_abbr %>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" valign="top" colspan="2" style="color:#FFFFFF; font-size:0.74em;">
+            	<% if (kase.first_name != "" || kase.last_name != "") { %>
+                
+            	<a href='#applicant/<%= kase.id %>' class="list-item_kase" style="color:white"><%= kase.first_name + " " + kase.last_name %></a> vs<br />
+                    <% if (kase.employer!=null) { %>
+                    <a href='#parties/<%= kase.id %>' class="list-item_kase" style="color:white"><%= kase.employer %></a>
+                    <% } %>
+                <% } %>
+                <% 
+                var show_doi = "none";
+                var start_date;
+                var end_date = "";
+                if (kase.start_date != "" && kase.end_date != "" && kase.start_date != "null" && kase.end_date != "null") { 
+                	start_date = moment(kase.start_date).format('MM/DD/YYYY');
+                    show_doi = "";
+                    if (kase.end_date != "null" || kase.end_date != "") {
+                    	end_date = "&nbsp;-&nbsp;" + moment(kase.end_date).format('MM/DD/YYYY');
+                    }
+                }
+				%>
+                <div style="display:<%=show_doi %>;"><a href='#injury/<%= kase.id %>' class="list-item_kase" style="color:white">DOI</a>: <%= start_date %><%= end_date %></div>         
+                <div style="margin-top:-15px; margin-bottom:-20px"><hr/></div>
+            </td>
+      </tr>
+        <% }); %>
+    </table>
+</div>

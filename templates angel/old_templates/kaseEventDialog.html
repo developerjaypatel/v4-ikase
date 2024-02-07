@@ -1,0 +1,68 @@
+<div id='eventDialog' class='dialog ui-helper-hidden' style="overflow:auto; width:500px">
+    <form id="event_form">
+        <input name="id" id='id' class="field" type="text" value="<%= id %>"></input>
+        <input name="case_id" id='case_id' class="field" type="hidden"></input>
+        <div style="display:inline-block; width:300px">
+            <div id="left" style="float:left; width:250px">
+                <div style="text-align:left; margin-left:-10px">
+                    <label>Case:</label>
+                        <div style="text-align:right; margin-right:-10px; margin-top:-30px; height:45px">
+                            <input name="case_number" id='case_number' class="field" type="text"></input>
+                        </div>
+                </div>
+                <div style="text-align:left; margin-left:-10px">
+                    <label>Title:</label>
+                        <div style="text-align:right; margin-right:-10px; margin-top:-30px; height:45px">
+                            <input name="event_name" id='event_name' class="field" type="text"></input>
+                        </div>
+                </div>
+                <div style="text-align:left; margin-left:-10px">
+                   <label>When:</label>
+                        <div style="text-align:right; margin-right:-10px; margin-top:-30px; height:45px">
+                            <input name="start_date" id="start_date" type="text" class="field"></input>
+                        </div>
+                </div>
+                <div style="text-align:left; margin-left:-10px">
+                    <label>Color:</label>
+                        <div style="text-align:right; margin-right:-10px; margin-top:-30px; height:45px">
+                            <input name="color" id='color' class="field" type="text"></input>
+                        </div>
+                </div>
+                <div style="text-align:left; margin-left:-10px">
+                    <label>Who:</label>
+                        <div style="text-align:right; margin-right:-10px; margin-top:-30px; height:45px">
+                            <input name="who" id='who' class="field" type="text"></input>
+                        </div>
+                </div>
+                <div style="text-align:left; margin-left:-10px">
+                    <label>Where:</label>
+                        <div style="text-align:right; margin-right:-10px; margin-top:-30px; height:45px">
+                            <input name="where" id="where" type="text" class="field"></input>
+                        </div>
+                </div>
+                <div style="text-align:left; margin-left:-10px">
+                    <label>Type:</label>
+                        <div style="text-align:left; margin-left:85px; margin-top:-30px; height:45px">
+                            <select name="type" id="type" class="field">
+                                <option value="">Select from List</option>
+                                <option value="hearing">Hearing</option>
+                                <option value="phone_call">Phone Call</option>
+                            </select>
+                        </div>
+                </div>
+                <div style="text-align:left; margin-left:-10px">
+                    <label>Assignee:</label>
+                        <div style="text-align:right; margin-right:0px; margin-top:-30px; height:45px;">
+                            <input name="assignee" id="assignee" class="field" type="text" style="width:100px"></input>
+                        </div>
+                </div>
+                <div style="text-align:left; margin-left:-10px">
+                    <label>Details:</label>
+                        <div style="text-align:right; margin-right:-10px; margin-top:-30px; height:45px">
+                            <textarea name="details" id="details" type="text" class="field" cols="20" rows="5"></textarea>
+                        </div>
+                </div>
+            </div>
+		</div>
+	</form>
+</div>

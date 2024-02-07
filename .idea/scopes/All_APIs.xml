@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="All APIs" pattern="file[iKase]:api//*||file[iKase]:iklock/api//*||file[iKase]:iklock/api/*||file[iKase]:remind/api//*||file[iKase]:remind/api/*||file[iKase]:remind/developer/api//*||file[iKase]:remind/developer/api/*" />
+</component>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Event Calendar - Documentation</title>
+<link href="http://fonts.googleapis.com/css?family=Raleway:700,300" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/prettify.css">
+</head>
+<body>
+<div class="wrapper">
+<nav>
+ 
+  	<div class="pull-left">
+    	<h1><a href="#">Event Calendar - Documentation</a></h1>
+		<br/>
+			<div class="info">
+					
+					<p><b>Created:</b> 01 January 2017</p> | <p><b>Updated:</b> 31 January 2022</p>
+					<p><b>Version:</b> 4.1</p>
+					<p><b>By:</b> EZCode</p>
+					<p><b>Email:</b> <a href="mailto:geral@ezcode.pt">geral@ezcode.pt</a></p>
+									
+			</div>		
+    </div>
+    
+</nav>
+<header>
+  <div class="container">
+    <h2 class="lone-header">Event Calendar - Documentation</h2>
+  </div>
+</header>
+<section>
+  <div class="container">
+    <ul class="docs-nav">
+      <li><strong>Getting Started</strong></li>
+      <li><a href="#introduction" class="cc-active">Introduction</a></li>
+	  <li><a href="#license" class="cc-active">License</a></li>
+	  <li><a href="#requirements" class="cc-active">System Requirements</a></li>
+	  <li><a href="#structure" class="cc-active">File Structure</a></li>
+      <li><a href="#installation" class="cc-active">Installation</a></li>
+	  <li><a href="#update" class="cc-active">Script Update</a></li> 
+	  <li><a href="#integration" class="cc-active">Integration</a></li>  
+	  <li class="separator"></li>
+	   <li><strong>Final</strong></li>
+	  <li><a href="#conclusion" class="cc-active">Conclusion</a></li>
+    </ul>
+    <div class="docs-content">
+	<br/>
+	<p><img src="img/imac.png" alt=""/></p>
+	<br/>
+      <h3 id="introduction"> Introduction</h3>
+      <p>Event Calendar is a plugin that you can use on your own projects. This plugin is fully compatible with bootstrap 5.
+		So if you plan to use it as a feature on your website or Backoffice you'll be able to implement it without any problems.</p>
+		
+		<hr/>
+	  
+	  <h3 id="license"> License</h3>
+		<p>What is Personal Use, Commercial Work, Contracted Work, Client Work, etc.?
+		Both the Standard and Extended Licenses allow for Personal Use and Commercial Work of many kinds. However, if purchased Items are used in an End Product For Sale (whether by you or a client), special terms apply (a limit of 500 units sold under the Standard License, and an unlimited amount of units sold under the Extended License).</p>
+
+		<h4>Personal Use:</h4>
+		<p>Personal Use is defined as using purchased Items in a manner that has no potential monetary gain. Personal Use projects cannot be related to any business, non-profit, or other organization of any kind. All purchased Items may be used in an unlimited number of Personal Use Projects. Examples of Personal Use include using a graphic to create t-shirts for a family reunion, using a template to create a birthday card that you send in celebration of a friend's special day, using a photo in a piece of wall art that you create for family member as a gift (no money changes hands), etc.</p>
+
+		<h4>Commercial Work:</h4>
+		<p>We define Commercial Work to be any work done that is not for Personal Use. Synonymous terms include Contracted Work and Client Work.</p>
+
+		<h4>How many times can I use a purchased item?</h4>
+		<p>A purchased Item may be used in one Project. As an exception, Installable Items may be used in an unlimited number of Projects on a one seat per license basis. A Project is defined as a complete and cohesive undertaking that may result in one or more End Products. Any End Products included in the one Project must be directly related under a single concept. However, all purchased Items may be used in an unlimited number of Personal Use Projects.
+		</p>
+		
+		<hr/>
+	  
+	  <h3 id="requirements"> System Requirements</h3>
+      <p><table style="margin:10px; width:100%;">
+			<thead>
+				<tr class="the_table">
+					<th style="width:200px;">Software</th>
+					<th style="width:200px;">Minimum requirements</th>
+					<th style="width:120px;">Recommended</th>
+					<th style="width:200px;">Web Site</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="the_table">
+					<td>PHP, Multibyte String support</td>
+					<td>PHP 5.3</td>
+					<td>PHP latest</td>
+					<td><a href="http://www.php.net/" target="_blank">http//php.net</a></td>
+				</tr>
+				<tr class="the_table">
+					<td>MySQL</td>
+					<td>5</td>
+					<td>PHP</td>
+					<td><a href="http://www.mysql.com/" target="_blank">http://www.mysql.com</a></td>
+				</tr>
+				<tr class="the_table">
+					<td>Apache</td>
+					<td>2.0</td>
+					<td>2.4</td>
+					<td><a href="http://httpd.apache.org/" target="_blank">http://httpd.apache.org</a></td>
+				</tr>
+				<tr class="the_table">
+					<td>or nginx</td>
+					<td>1.5.9</td>
+					<td>1.7.6</td>
+					<td><a href="http://nginx.org/" target="_blank">http//nginx.org</a></td>
+				</tr>
+				<tr class="the_table">
+					<td>Apache Module mod_rewrite</td>
+					<td></td>
+					<td></td>
+					<td><a href="http://httpd.apache.org/docs/current/mod/mod_rewrite.html" target="_blank">mod_rewrite</a></td>
+				</tr>
+			</tbody>
+		</table></p>
+		
+		<hr/>
+		
+	  <h3 id="structure"> File Structure</h3>
+		<p>This plugin already comes with a default bootstrap html template that you can use for your projects.
+		But this is the file structure:</p>
+		<p><img src="img/tree.jpg" alt=""/></p>
+		<h4>What is inside each folder?</h4>
+		<ul>
+			<li><b>css folder</b> - All css files used on this project (plugin and website template).</li>
+				<p><img src="img/css.jpg" alt=""/></p>
+			<li><b>font-awesome folder</b> - Font used on the website template.</li>
+				<p><img src="img/font-awesome.jpg" alt=""/></p>
+			<li><b>fonts folder</b> -  All fonts files used on this project (plugin and website template).</li>
+				<p><img src="img/fonts.jpg" alt=""/></p>
+			<li><b>functions folder</b> - Folder for the existing PHP/MYSQL functions.</li>
+				<p><img src="img/functions.jpg" alt=""/></p>			
+			<li><b>images folder</b> - Folder with images for DataTables and ColorPicker.</li>
+				<p><img src="img/images.jpg" alt=""/></p>			
+			<li><b>img folder</b> -Images used on the website template.</li>
+				<p><img src="img/img.jpg" alt=""/></p>				
+			<li><b>js folder</b> -  All js files used on this project (plugin and website template).</li>
+				<p><img src="img/js.jpg" alt=""/></p>
+			<li><b>license folder</b> -  All licenses to the use of the FullCalendar.</li>
+				<p><img src="img/licenses.jpg" alt=""/></p>
+			<li><b>uploads folder</b> - Folder which will get all image uploads from the created events.</li>
+				<p><img src="img/uploads.jpg" alt=""/></p>
+			<li><b>lang folder</b> - Folder with all the javascript language settings.</li>
+				<p><img src="img/lang.jpg" alt=""/></p>
+		</ul>
+		
+		<hr/>
+      
+	  <h3 id="installation"> Installation</h3>
+		<ol>
+			<li>Download the plugin from Themeforest;</li>
+			<li>Unzip it into your computer;</li>
+			<li>Open the folder, and select the files from it and upload them into your Webserver, just by using an FTP program like <a href="https://filezilla-project.org/download.php" target="_blank">Filezilla</a> (for MAC and Windows);</li>
+			<li>These files should be uploaded into the folder you plan to use, or you can use this same extracted folder name or you can rename it.</li>
+			<li>Now that you've already uploaded Event Calendar into your webserver (or Local Server), you just need to navigate to the folder you've upload, that should be something like <strong>http://yourwebsitename/eventcalendar/</strong>.</li>
+			<li>Now that you've come to here, just follow these next steps.
+				<ul>
+					<li>If you are integrating this plugin on some other work you might be working on, just open the default MYSQL Database you are currently using and import the database .SQL file, or copy/paste the database file content and paste it into your own created database.</li>
+					<li>For setting the connection to your database you need to go to <b>assets/functions/config.php</b> and make the proper changes on the following lines:
+					<p><img src="img/connection.jpg" alt="" ></p></li>
+					<p>Now, you just need to replace the following items:</p>
+					<ul>
+						<li><b>Line 4</b> - Set your server database username.</li>
+						<li><b>Line 5</b> - Set your server database password.</li>
+						<li><b>Line 6</b> - Set your server database Hostname. Sometimes this can be the IP.</li>
+						<li><b>Line 7</b> - This is the database name you've created previously.</li>
+					</ul><br/>
+					<li>Well... installation's done, and now everything should be prepared for you to use the Event Calendar for the first time.</li>
+				</ul>
+			</li>
+			<li><b>Added a functionality for changing language according to your own language settings.</b></li>
+			<li>Changing this is quite simple:
+				<ol>
+					<li>Open index.php and go to line 636. There you'll be having the language type that is defined.</li>
+					<li>Now you need to replace this with the default language js file you want to use. (For example if you want to use the Spanish js file, you should rename  <b>src='assets/lang/en.js'</b> with <b>src='assets/lang/en.js'</b>).</li>
+					<li>After this you need to change also the language type to be defined on EventCalendar under assets/functions/functions.php under line 85. You need to rename that according to the language type you want to use. For example if you want to use the Spanish language version, you should rename that with <b>es</b> so it becomes like <b>lang: 'en',</b>.</li>
+					<li>Easy as this :)</li>
+				</ol>
+			</li>
+			<li><b>Added a method for saving Drag and Drop Events.</b></li>			
+			<ul>
+				<li>This setting was fixed. Now it will get the database connection from the config.php file with no need of setting it also on the events_update.php file.</li>
+			</ul>
+			<li><b>Edit Events.</b></li>
+			<li><b>Popover View.</b></li>
+			<ul>
+				<li>Notice that you can have both views on Event Calendar (Both functions have comments for helping you changing what you want).</li>
+				<li>For displaying only the Popover view, you need to have the <strong>eventRender function</strong> active.</li>
+				<li>For displaying only the Modal Box view, you need to have the <strong>eventClick function</strong> active.</li>
+			</ul>
+			<li><b>NEW SETTING - Create New event with Calendar day Click.</b></li>
+			<ul>
+				<li>This feature has been added as the Selectable date to create events under funtions.php from line 137 to line 150.</li>
+				<li>For having the date selector under your calendar with a click on it, you need to have the <strong>selectable: true,</strong> active.</li>
+			</ul>
+			<li><b>NEW SETTING - Cron Job for Past Events Deleting</b></li>
+			<ul>
+				<li>For setting this to work you need to use the following cron job on your cPanel:</li>
+				<br/>
+				<strong><code>/usr/local/bin/php /home/johndoe/public_html/path/to/cron/script</code></strong>
+				<br/><br/>
+				<li><img src="img/cron.jpg" alt=""/></li>
+				For more detail you can visite the following <a href="https://www.hivelocity.net/kb/what-is-cron-job/" target="_blank">link</a>
+				<li>You need to go to del_event.php and replace the database conection with your own credentials the same way you changed under config.php.</li>
+				<li><img src="img/conection.jpg" alt=""/></li>
+			</ul>
+			<li><b>NEW SETTING - Display events as ticket events</b></li>
+			
+		</ol>
+		
+		<hr/>
+		
+		<h3 id="update"> Script Update (Version 4.0.1 to Version 4.1)</h3>
+		   <div class="update">
+				<br/>
+				Many files have been changed:
+			<h4>Files changed</h4>
+			<ol>
+				<li>functions.php</li>
+				<li>jQuery.js</li>
+				<li>Bootstrap.css</li>
+				<li>Bootstrap.js</li>
+				<li>dataTables.js</li>
+				<li>dataTables.css</li>
+				<li>index.php</li>
+				<li>events_edit.php</li>
+				<li>events_del.php</li>
+				<li>del_event.php</li>
+				<li>events_update.php</li>
+				<li>types_del.php</li>
+				<li>isotope.pkgd.min.js</li>
+			</ol>					
+		   </div>
+		 <hr/>
+		
+		<h3 id="update"> Script Update (Version 4.0 to Version 4.0.1)</h3>
+		   <div class="update">
+				<br/>
+				Removed link from Popover View.
+			<h4>Files changed</h4>
+			<ol>
+				<li>functions.php</li>
+			</ol>
+			<h4>Where to make changes from Version 4.0 to Version 4.0.1</h4>
+			<ol>
+				<li><b>functions.php</b>
+				<p>-> Go to assets/functions/functions.php and on the eventRender near line 112, just add the following code:</p>
+				<strong>
+				element.on('click', e => e.preventDefault());
+				</strong>
+				</li>
+				
+			</ol>		
+		   </div>
+		 <hr/>
+		
+		<h3 id="update"> Script Update (Version 3.9 to Version 4.0)</h3>
+		   <div class="update">
+				Added new method for displaying events - Now Events can be displayed with a Popover View.<br/>
+				Fixed date on modal box with Start Hour and End Hour time for events.
+			<h4>Files changed</h4>
+			<ol>
+				<li>functions.php</li>
+			</ol>
+			<h4>Where to make changes from Version 3.9 to Version 4.0</h4>
+			<ol>
+				<li><b>functions.php</b>
+				<p>-> Go to assets/functions/functions.php and after the eventDrop function you need to add the code from line 125 to 137, for displaying the Popover View.</p></li>
+				<p>-> Go to line 102 and 103 and change the values YYYY-MM-DD to HH:mm</p>
+			</ol>		
+		   </div>
+		 <hr/>
+		
+		<h3 id="update"> Script Update (Version 3.8 to Version 3.9)</h3>
+		   <div class="update">
+				Important updates concerning SQL Injection variables.
+			<h4>Files changed</h4>
+			<ol>
+				<li>index.php</li>
+				<li>events_edit.php</li>				
+			</ol>
+			<h4>Where to make changes from Version 3.8 to Version 3.9</h4>
+			<ol>
+				<li><b>index.php</b>
+				<p>-> Go to lines 395 and 396 (variables) and replace the whole lines with the new ones:</p>
+				<strong>
+					$description = trim(preg_replace('/\s+/', ' ',nl2br(str_replace( "'", "´", $_POST['description'])))); <br/>		
+					$url = antiSQLInjection($_POST['url']);
+				</strong>
+				</li>				
+				<li><b>index.php</b>
+				<p>-> Go to line 498 and replace the whole line with the new one:</p>
+				<strong>
+					$title = antiSQLInjection($_POST['title']);
+				</strong>
+				</li>
+				<li><b>events_edit.php</b>
+				<p>-> Go to line 112 and replace the whole line with the new one:</p>
+				<strong>
+					echo getTitle(antiSQLInjection($_GET['id']));
+				</strong>
+				</li>
+				<li><b>events_edit.php</b>
+				<p>-> Go to line 133 and replace the whole line with the new one:</p>
+				<strong>
+					echo editEvent(antiSQLInjection($_GET['id']));
+				</strong>
+				</li>
+				<li><b>events_edit.php</b>
+				<p>-> Go to line 153 and replace the whole function with the new one:</p>
+				<strong>
+					updateEvent($_GET['id'],$_POST['title'],trim(preg_replace('/\s+/', ' ',nl2br(str_replace( "'", "´", $_POST['description'])))),$_POST['start'],$_POST['end'],antiSQLInjection($_POST['url']),$_POST['color']);
+				</strong>
+				</li>							
+			</ol>		
+		   </div>
+		 <hr/>
+		
+		<h3 id="update"> Script Update (Version 3.7.3 to Version 3.8)</h3>
+		   <div class="update">
+				Updated FullCalendar js and css files
+			<h4>Files changed</h4>
+			<ol>
+				<li>fullcalendar.js</li>
+				<li>fullcalendar.min.js</li>
+				<li>fullcalendar.css</li>
+				<li>fullcalendar.min.css</li>
+			</ol>
+			<h4>Where to make changes from Version 3.7.3 to Version 3.8</h4>
+			<ol>
+				<li><b>fullcalendar.js</b> and <b>fullcalendar.min.js</b>
+				<p>-> Go to assets/js and replace the files fullcalendar.js and fullcalendar.min.js with the new ones.</p></li>
+				<li><b>fullcalendar.css</b> and <b>fullcalendar.min.css</b>
+				<p>-> Go to assets/css and replace the files fullcalendar.css and fullcalendar.min.css with the new ones.</p></li>
+			</ol>		
+		   </div>
+		 <hr/>
+		
+		<h3 id="update"> Script Update (Version 3.7.3 to Version 3.7.4)</h3>
+		   <div class="update">
+				Fixed datatables under each button. Now it displays information such as delete types, edit events and delete events with pagination;
+				Important update of the description under events_edit.php. Added the str_replace() function;
+				Fixed issue concerning description when drag and dropping any created event. it would create a new < p >.
+			<h4>Files changed</h4>
+			<ol>
+				<li>events_edit.php</li>
+				<li>functions.php</li>
+				<li>index.php</li>
+			</ol>
+			<h4>Where to make changes from Version 3.7.3 to Version 3.7.4</h4>
+			<ol>
+				<li><b>events_edit.php</b>
+				<p>-> Go to line 153 and replace the whole line with the new one;</p></li>
+				<li><b>functions.php</b>
+				<p>-> Go to line 133 and delete the < p > and the < / p >.</p></li>
+				<li><b>functions.php</b>
+				<p>-> Add <b>dataTables-example</b> as a class under lines 196, 142 and 288;</li>
+				<li><b>events_edit.php</b>
+				<p>-> Go to line 211 and replace id with class, like this <b>.dataTables-example</b> where you should have <b>#dataTables-example</b>;</p></li>
+				<li><b>index.php</b>
+				<p>-> Go to line 684 and replace id with class, like this <b>.dataTables-example</b> where you should have <b>#dataTables-example</b>;</p></li>
+			</ol>		
+		   </div>
+		 <hr/>
+		
+		<h3 id="update"> Script Update (Version 3.7.2 to Version 3.7.3)</h3>
+		   <div class="update">
+				Fixed the GET title options under the title dropdown for selecting the title on events_edit.php.
+				Now if you edit any event the currently select title won't be changed, unless you select another one;
+			<h4>Files changed</h4>
+			<ol>
+				<li>events_edit.php</li>
+				<li>functions.php</li>
+			</ol>
+			<h4>Where to make changes from Version 3.7.2 to Version 3.7.3</h4>
+			<ol>
+				<li><b>events_edit.php</b>
+				<p>-> Go to line 112 and add <b>echo getTitle($_GET['id']);</b></p></li>
+				<li><b>functions.php</b>
+				<p>-> Go to line 322 to 329 from the 3.7.3 version and copy that function into your current functions.php file.</p></li>
+			</ol>		
+		   </div>
+		 <hr/>
+		
+		<h3 id="update"> Script Update (Version 3.7.1 to Version 3.7.2)</h3>
+		   <div class="update">
+				Error fixed under events_edit.php, when user uses the enter key as break, stoped calendar to malfunction.
+				Added the nl2br() function for inserting HTML line breaks.
+			<h4>Files changed</h4>
+			<ol>
+				<li>events_edit.php</li>
+			</ol>
+			<h4>Where to make changes from Version 3.7.1 to Version 3.7.2</h4>
+			<ol>
+				<li><b>events_edit.php</b>
+				<p>-> Go to line 151 and replace the <b>$_POST['description']</b> with <b>trim(preg_replace('/\s+/', ' ',nl2br($_POST['description'])))</b></p></li>
+			</ol>		
+		   </div>
+		 <hr/>
+		
+		<h3 id="update"> Script Update (Version 3.0 to Version 3.7.0)</h3>
+		   <div class="update">
+				FullCalendar version update and all language javascript files we're replaced with the new ones.
+				Also we've updated our EventCalendar version number so that it can be relative to FullCalendar script version.
+			<h4>Files changed</h4>
+			<ol>
+				<li>assets/js/fullcalendar.js</li>
+				<li>assets/js/fullcalendar.min.js</li>
+				<li>assets/lang/</li>
+			</ol>
+			<h4>Where to make changes from Version 3.0 to Version 3.7.0</h4>
+			<ol>
+				<li><b>assets/js/</b>
+				<p>-> Replace fullcalendar.js and fullcalendar.min.js with the newly javascript versions;</p></li>							
+				<li><b>assets/lang/</b>
+				<p>-> Replace all these language javascript files with the new ones.</p></li>			
+			</ol>		
+		   </div>
+		 <hr/>
+		
+		<h3 id="integration"> Integration</h3>
+		<p>You should maintain the order of the files either you are trying to use the file as it is, or if you plan to integrate it on other project.</p>
+		<p>The order is set as the following image explains:</p>
+		<h5>For the &lt;HEAD&gt; Section</h5>
+		<p><img src="img/1.jpg" alt="" ></p>
+		<h5>For the &lt;/BODY&gt; Section</h5>
+		<p><img src="img/2.jpg" alt=""/></p>
+		<p>Setting other order rather than is shown on the image above will probably get your plugin to malfunction.</p>
+		<p>For using it on your own projects you'll need to use the whole css and js files from each folder and also maintain the same folders configuration tree.</p>
+		
+		<hr/>
+      
+	  <h3 id="conclusion"> Conclusion</h3>
+		<p>We hope this documentation help you on every steps of this plugin installation and customization. If you have any other doubt or issues, you can contact us at our <a href="http://themeforest.net/user/ezcode">Themeforest</a> account, or you can use our online support at <a href="http://support.ezcode.pt/" target="_blank">http://support.ezcode.pt/</a> or also via email. You're welcome to email us at any time, at <a href="mailto:geral@ezcode.pt">geral@ezcode.pt</a>.</p> 
+		<p>For any question or technical issue, and we will aim to get back to you within 2 working day.</p>
+		<p>Best regards!</p>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="">
+    <p> &copy; Copyright <a href="#" target="_blank">EZCode</a> | All Rights Reserved.</p>
+  </div>
+</footer>
+</div>
+<script src="js/jquery.min.js"></script> 
+<script type="text/javascript" src="js/prettify/prettify.js"></script> 
+<script src="js/layout.js"></script>
+</body>
+</html>

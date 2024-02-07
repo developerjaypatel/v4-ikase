@@ -1,0 +1,12 @@
+[06-Oct-2014 12:59:17 America/Los_Angeles] PHP Warning:  Invalid argument supplied for foreach() in /home/cstmwb/public_html/autho/web/reports/demographics_sheet.php on line 247
+[06-Oct-2014 12:59:17 America/Los_Angeles] PHP Warning:  Invalid argument supplied for foreach() in /home/cstmwb/public_html/autho/web/reports/demographics_sheet.php on line 308
+[06-Oct-2014 12:59:17 America/Los_Angeles] PHP Warning:  Invalid argument supplied for foreach() in /home/cstmwb/public_html/autho/web/reports/demographics_sheet.php on line 406
+[06-Oct-2014 12:59:41 America/Los_Angeles] PHP Warning:  Invalid argument supplied for foreach() in /home/cstmwb/public_html/autho/web/reports/demographics_sheet.php on line 247
+[06-Oct-2014 12:59:41 America/Los_Angeles] PHP Warning:  Invalid argument supplied for foreach() in /home/cstmwb/public_html/autho/web/reports/demographics_sheet.php on line 308
+[06-Oct-2014 12:59:41 America/Los_Angeles] PHP Warning:  Invalid argument supplied for foreach() in /home/cstmwb/public_html/autho/web/reports/demographics_sheet.php on line 406
+[25-Nov-2014 16:09:00 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home/cstmwb/public_html/autho/web/reports/demographics_sheet.php on line 322
+[25-Nov-2014 16:09:47 America/Chicago] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/cstmwb/public_html/autho/web/reports/demographics_sheet.php on line 322
+[25-Nov-2014 15:16:47 America/Los_Angeles] PHP Warning:  mysql_result() expects parameter 1 to be resource, integer given in /home/cstmwb/public_html/autho/web/reports/demographics_sheet.php on line 150
+[25-Nov-2014 15:18:15 America/Los_Angeles] PHP Warning:  mysql_result() expects parameter 1 to be resource, integer given in /home/cstmwb/public_html/autho/web/reports/demographics_sheet.php on line 150
+[25-Nov-2014 15:20:18 America/Los_Angeles] PHP Warning:  mysql_result() expects parameter 1 to be resource, integer given in /home/cstmwb/public_html/autho/web/reports/demographics_sheet.php on line 150
+[25-Nov-2014 15:20:20 America/Los_Angeles] PHP Warning:  mysql_result() expects parameter 1 to be resource, integer given in /home/cstmwb/public_html/autho/web/reports/demographics_sheet.php on line 150

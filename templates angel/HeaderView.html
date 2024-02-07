@@ -1,0 +1,42 @@
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+			<div>
+            	<div style="float:right">
+                    <div id="connected"><img src="img/green_dot.png" width="12" height="12" /></div>
+                    <div id="disconnected" style="display:none"><img src="img/red_dot.png" width="12" height="12" /></div>
+                </div>
+            <a class="brand" href="#"><img src="img/ikase_logo_header.png" alt="iKase Legal Case Management System" width="64" height="18" border="0"></a>
+			</div>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="home-menu active"><a href="#">Home</a></li>
+                    <li class="contact-menu"><a href="#contact">Contact</a></li>
+                    <li class="employees-list-menu"><a href="#list">User List</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                          Kases <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" style="overflow:auto; width:98px; margin-top:-5px; overflow:auto">
+                         <li class="kases-list-menu" style="text-align:left; width:97px"><a href="#kases">Kase List</a></li> 
+                         <li class="kases-new-menu" style="text-align:left; width:97px"><a href="#kases_new">New Kase</a></li>
+                        </ul>
+                    </li>
+                    <li class="applicant-new-menu"><a href="#applicants">Applicant</a></li>
+                    <li class="kases-new-menu"><a href="#rolodex">Rolodex</a></li>
+                    <li class="kases-new-menu"><a href="#events">Events</a></li>
+                    <li class="todo-new-menu"><a href="#todo">To Do</a></li>
+                    <li class="kases-new-menu"><a href="#inbox">Inbox</a></li>
+                    
+                    <li class="login-menu"><a href="#login" id="loginLink" style="display:none">Login</a></li>
+                    <li class="logout-menu"><a href="#logout" id="logoutLink" style="display:none">Logout</a></li>
+                    <li><span class="logged-in-as"></span></li>
+                </ul>
+                <input id="logged_in" name="logged_in" type="hidden" value="" />
+                <form class="navbar-search pull-right dropdown">
+                    <input id="searchText" type="text" class="search-query dropdown-toggle" placeholder="Search" autocomplete="off">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+create definer = root@`%` procedure update_schemas()
+BEGIN
+    DECLARE done INT DEFAULT 0;
+    DECLARE db VARCHAR(255);
+
+    DECLARE appDBs CURSOR FOR SELECT `schema_name` FROM information_schema.schemata WHERE schema_name LIKE 'ikase%';
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+    SET @output = "";
+
+    OPEN appDBs;
+    REPEAT
+        FETCH appDBs INTO db;
+        IF NOT done THEN
+            -- Replace this procedure declaration with your procedure.
+            -- Make sure to keep the ',db,' syntax there.
+            -- You should really only have to change the parameters
+            -- and the stuff between the BEGIN and END clauses.
+            /*SET @output = CONCAT(@output, ' -> ', db);*/
+            /*
+            SET @output = CONCAT(@output, '
+            DROP TABLE IF EXISTS `',db,'`.`cse_lien_track`;','
+			CREATE TABLE IF NOT EXISTS IF NOT EXISTS `', db, '`.`cse_lien_track` (
+			`lien_track_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_uuid` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `user_logon` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `operation` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `lien_id` int(11) NOT NULL,
+  `lien_uuid` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `date_filed` DATE NOT NULL,
+  `amount_of_lien` DECIMAL(9,2) COLLATE utf8_unicode_ci NOT NULL DEFAULT 0,
+  `amount_of_fee` DECIMAL(9,2) COLLATE utf8_unicode_ci NOT NULL DEFAULT 0,
+  `worker` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `deleted` enum(\'Y\',\'N\') COLLATE utf8_unicode_ci NOT NULL DEFAULT \'N\',
+  PRIMARY KEY (`lien_track_id`)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+            ');
+            */
+            /*
+            SET @output = CONCAT(@output, '
+            ALTER TABLE `', db , '`.`cse_injury_notes`
+CHANGE COLUMN `injury_notes_id` `injury_notes_id` INT(11) NOT NULL AUTO_INCREMENT ,
+ADD PRIMARY KEY (`injury_notes_id`);');
+		*/
+            SET @output = CONCAT(@output, '
+        DELETE FROM `', db, '`.cse_setting where category = \'calendar_type\'  and setting_value = \'Appearance\'');
+
+
+        END IF;
+    UNTIL done END REPEAT;
+
+    CLOSE appDBs;
+
+    SET @output = CONCAT(@output,';
+    ');
+    SELECT @output as tables;
+
+END;

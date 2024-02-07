@@ -1,0 +1,7 @@
+{
+    "require": {
+        "clegginabox/pdf-merger": "dev-master",
+        "dompdf/dompdf": "^1.0",
+        "phpoffice/phpword": "^0.18.1"
+    }
+}

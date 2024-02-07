@@ -1,12 +1,45 @@
 # Ignore everything in repository root 
-/*
+#/*
 
 # Files to not ignore
-!/.gitignore
-!/*.php
+#!/.gitignore
+#!/*.php
 
 # Folder to not ignore
-!/api/
-!/js/
-!/templates/
-!/barcode/
+#!/api/
+#!/js/
+#!/templates/
+#!/barcode/
+
+# Updated on 7-Feb-2024
+# Ignore below data
+/a1
+/api - Copy
+/api 03-29-2020
+/api- 4-20-2020
+/api 5-06-2020
+/api_migration
+/api-bad
+/api-bad2
+/api--not working
+/demo/LibreOffice_4.2.4.2_Win_x86.msi
+/eams_forms
+/exports
+/fromclient
+/iKase.org
+/images
+/js - Copy
+/meruscase
+/pdfimage
+/phpdocx
+/phpdocx_pro
+/remind
+/scans
+/third
+/uploads
+/vendor
+/wreck
+/*.jpg
+/*.jpeg
+/*.png
+/*.pdf

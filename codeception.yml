@@ -1,0 +1,46 @@
+suites:
+    api:
+        actor: ApiTester
+        path: .
+        modules:
+            enabled:
+                - \Helper\Api
+                - Asserts
+                - Filesystem
+                - \Module\PlainFactory
+                - REST:
+                    url: &url http://localhost:45273/
+                    depends: PhpBrowser
+                    part: Json
+                - &db \Module\ExtendedDb:
+                    dsn: mysql:host=db;dbname=ikase
+                    user: root
+                    password: admin527#
+            config:
+                PhpBrowser:
+                    url: *url
+                    headers:
+                        Accept: application/json
+    unit:
+        actor: UnitTester
+        modules:
+            enabled:
+                - \Helper\Unit
+                - \Module\PlainFactory
+                - *db
+
+paths:
+    tests: tests
+    output: tests/_output
+    data: tests/_data
+    support: tests/_support
+
+bootstrap: bootstrap.php
+settings:
+    shuffle: true
+    lint: false # runs all test files through php -l... we're confident of not commiting bad stuff... right??? :)
+
+# FIXME: doesn't really work... coverage file doesn't report anything?
+#coverage:
+#    enabled: true
+#    work_dir: /var/www-data/

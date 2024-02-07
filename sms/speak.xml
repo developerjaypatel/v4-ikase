@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Response><GetDigits action="https://www.ikase.org/sms/answer.php"><Speak loop="3">Hello this is written on the X M L</Speak></GetDigits></Response>

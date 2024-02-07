@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>iKase
+    </title>
+    <!-- FontAwewsome -->
+    <link rel="stylesheet" type="text/css" href="fonts/css/font-awesome.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- datatble -->
+    <link href="css/datatables.min.css" rel="stylesheet">
+    <!-- Custom styles-->
+    <link href="css/my-style.css" rel="stylesheet">
+    <link href="css/media.css" rel="stylesheet">
+    <!-- resize styles-->
+    <link href="css/layout-default.css" rel="stylesheet">
+  </head>
+  <body class="back_color" >
+    <div>
+      <img src="img/img-a.jpg" width="100%">
+    </div>
+    <div class="fullcontainer" style="height: 94%; padding: 30px;">
+      <div class="col-md-6 pdf width-100" id="table-1">
+        <div class="bg-white1">
+        
+          <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+            <li class="nav-item active">
+              <a class="nav-link " id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Recent Pdfs
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Search
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade  active in" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"> 
+              <div class="table-responsive  bg-white">
+                <table class="table table-striped table-bordered dataTables-example" >
+                  <thead>
+                    <tr>
+                      <th>ID
+                      </th>
+                      <th>Case
+                      </th>
+                      <th>Description
+                      </th>
+                      <th>Date
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="myTable">
+                    <tr>
+                      <td>1
+                      </td>
+                      <td>Employement
+                      </td>
+                      <td>Lorem ipsum
+                      </td>
+                      <td>17/06/2019     22:00 
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>2
+                      </td>
+                      <td>Employement
+                      </td>
+                      <td>Lorem ipsum
+                      </td>
+                      <td>17/06/2019     22:00 
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"> 
+              <div class="  pos-rel">
+                <img src="img/imga.jpg" class="abs">
+                <input class="form-control" id="myInput" type="text" placeholder="Search..">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 bg-white pdf-1 click-none"  id="pagination"> 
+        <div class=" bg-white  padding_bottom">
+          <div class="">
+            <span class="close1">&times;
+            </span>
+            <h4 class="left-30">Preview
+            </h4>
+          </div>
+
+          <div class="pdf-view ">
+
+           <iframe src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" width="100%" height="100%"></iframe>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </body>
+ 
+  <script src="js/jquery-2.2.4.min.js">
+  </script>
+  <script src="js/jquery-ui.min.js">
+  </script>
+  <script src="js/popper.min.js">
+  </script>
+  <script src="js/bootstrap.min.js">
+  </script>
+  <script src="js/datatables.min.js">
+  </script>
+  <script>
+    $(document).ready(function(){
+      $('.dataTables-example').DataTable({
+      }
+                                        );
+    }
+                     );
+  </script>
+  <script src="js/jquery.layout_and_plugins.min.js">
+  </script>
+  <script type="text/javascript">
+    $('#myTab a').on('click', function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    }
+                    )
+  </script>
+  <script type="text/javascript">
+
+    function openPdf(e, path, redirect) {
+        // stop the browser from going to the href
+        e = e || window.event; // for IE
+        e.preventDefault(); 
+
+        // launch a new window with your PDF
+        window.open(path, 'somename', ... /* options */);
+
+        // redirect current page to new location
+        window.location = redirect;
+    }
+
+</script>
+<!-- pdf view script -->
+<script type="text/javascript">
+  $('.close1').on('click', function(){
+
+    $('.col-md-6.bg-white.pdf-1').addClass('click-none');
+     $('.col-md-6.pdf').addClass('width-100');
+   
+   
+   
+});
+   $('#myTable tr').on('click', function(){
+    
+    $('.col-md-6.bg-white.pdf-1').removeClass('click-none');
+     $('.col-md-6.pdf').removeClass('width-100');
+   
+   
+   
+});
+
+</script>
+<!-- //pdf view script -->
+  </body>
+</html>

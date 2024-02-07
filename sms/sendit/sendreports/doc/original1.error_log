@@ -1,0 +1,6 @@
+[15-Jan-2016 15:17:23 America/Chicago] PHP Warning:  require(./../vendor/autoload.php): failed to open stream: No such file or directory in /home1/infoaccount/public_html/sendit/sendreports/doc/example.php on line 3
+[15-Jan-2016 15:17:23 America/Chicago] PHP Warning:  require(./../vendor/autoload.php): failed to open stream: No such file or directory in /home1/infoaccount/public_html/sendit/sendreports/doc/example.php on line 3
+[15-Jan-2016 15:17:23 America/Chicago] PHP Fatal error:  require(): Failed opening required './../vendor/autoload.php' (include_path='.:/opt/php54/lib/php') in /home1/infoaccount/public_html/sendit/sendreports/doc/example.php on line 3
+[15-Jan-2016 15:17:45 America/Chicago] PHP Fatal error:  Class 'Fcosrno\SendGridReport\SendGrid' not found in /home1/infoaccount/public_html/sendit/sendreports/doc/example.php on line 21
+[15-Jan-2016 15:21:28 America/Chicago] PHP Fatal error:  Class 'Fcosrno\SendGridReport\SendGrid' not found in /home1/infoaccount/public_html/sendit/sendreports/doc/example.php on line 21
+[15-Jan-2016 15:23:00 America/Chicago] PHP Fatal error:  Class 'Fcosrno\SendGridReport\SendGrid' not found in /home1/infoaccount/public_html/sendit/sendreports/doc/example.php on line 21

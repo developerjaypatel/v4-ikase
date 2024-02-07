@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>iKase
+    </title>
+    <!-- FontAwewsome -->
+  
+    <link rel="stylesheet" type="text/css" href="fonts/css/font-awesome.css">
+ 
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+   <!-- calender -->
+   <link href='css/core/main.css' rel='stylesheet' />
+<link href='css/daygrid/main.css' rel='stylesheet' />
+<link href='css/timegrid/main.css' rel='stylesheet' />
+<link href='css/list/main.css' rel='stylesheet' />
+    <!-- Custom styles-->
+    <link href="css/my-style.css" rel="stylesheet">
+    <link href="css/media.css" rel="stylesheet">
+
+     <!-- resize styles-->
+    <link href="css/layout-default.css" rel="stylesheet">
+  </head>
+  <body class="back_color" >
+    <div>
+      <img src="img/img-a.jpg" width="100%">
+    </div>
+   <div class="container-fluid-a " >
+    <div class="list-bg">
+     <div class="row ">
+      <div class="col-md-6 col-sm-6"><img src="img/img-1.jpg" width="100%" height="auto"></div>
+      <div class="col-md-6 col-sm-6  border-left-1">
+       <img src="img/img-2.png" width="100%" height="auto"></div>
+       
+     </div>
+      <div class="row ">
+        <div class="border-top-1">
+      <div class="col-md-6 col-sm-6 row-eq-height"> <div class="">
+                <div id='calendar-container'>
+             <div id='calendar'></div>
+                 </div>
+                </div></div>
+      <div class="col-md-6 col-sm-6 row-eq-height border-left-1"><img src="img/img-3.png" width="100%" height="auto"></div>
+       
+     </div>
+     </div>
+    </div>
+    </div>
+   
+
+   
+<script src="js/jquery-2.2.4.min.js">
+  </script>
+   
+    <script src="js/popper.min.js">
+</script>
+  <script src="js/jquery-ui.min.js">
+  </script>
+  <script src="js/jquery.layout_and_plugins.min.js">
+  </script>
+ 
+      <!-- calender -->
+      <script src='js/core/main.js'></script>
+<script src='js/interaction/main.js'></script>
+<script src='js/daygrid/main.js'></script>
+<script src='js/timegrid/main.js'></script>
+<script src='js/list/main.js'></script>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid', 'timeGrid' ,'list'],
+      height: 'parent',
+      header: {
+        // left: 'prev,next today',
+        // center: 'title',
+        right: 'timeGridWeek,timeGridDay,listMonth'
+           // right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      defaultView: 'listMonth',
+      defaultDate: '2019-06-12',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      selectable: true,
+      selectMirror: true,
+    
+     
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event,All Day Event,All Day Event,All Day Event,All Day Event,All Day Event,All Day Event,All Day Event,All Day Event,All Day Event,All Day Event,All Day Event',
+          start: '2019-06-01',
+        },
+        {
+          title: 'Long Event',
+          start: '2019-06-07'
+         
+        },
+        {
+          groupId: 999,
+          title: 'Repeating Event',
+          start: '2019-06-09T16:00:00',
+          color: '#ff0000'
+        },
+        {
+          groupId: 999,
+          title: 'Repeating Event',
+          start: '2019-06-16T16:00:00',
+          color: '#4de795'
+        },
+        {
+          title: 'Conference',
+          start: '2019-06-11',
+          color: '#257e4a',
+          description: 'long description'
+        
+        },
+        
+      ],
+      
+    });
+
+    calendar.render();
+  });
+
+</script>
+      
+      </body>
+    </html>

@@ -1,0 +1,2 @@
+[30-Dec-2022 22:42:24 -0800]: <nndbdk9t> DB Error: SQLSTATE[HY000] [1045] Access denied for user 'roundcube'@'localhost' (using password: NO) in D:\iKase.org\email\program\lib\Roundcube\rcube_db.php on line 194 (GET /email/)
+[30-Dec-2022 22:42:24 -0800]: <nndbdk9t> PHP Error: config.inc.php was not found. (GET /email/)

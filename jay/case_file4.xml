@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<case-file>
+  <side-represented>plaintiff</side-represented>
+  <case-jurisdiction nil="true"/>
+  <name>Baker, Andre v. Pomona Apartment Complex</name>
+  <case-name-is-customized>false</case-name-is-customized>
+  <case-file-number>21</case-file-number>
+  <file-number nil="true"/>
+  <file-location nil="true"/>
+  <budget-group-id>1429</budget-group-id>
+  <rate-attorney-responsible nil="true"/>
+  <senior-associate-handling nil="true"/>
+  <rate-senior-associate-handling nil="true"/>
+  <rate-attorney-handling nil="true"/>
+  <rate-paralegal-handling nil="true"/>
+  <rate-secretary-handling nil="true"/>
+  <hearing-rep nil="true"/>
+  <rate-hearing-rep nil="true"/>
+  <attorney-4 nil="true"/>
+  <rate-attorney-4 nil="true"/>
+  <staff-4 nil="true"/>
+  <rate-staff-4 nil="true"/>
+  <date-entered nil="true"/>
+  <date-opened nil="true"/>
+  <date-closed nil="true"/>
+  <date-referred nil="true"/>
+  <referred-by nil="true"/>
+  <follow-up nil="true"/>
+  <permanent-and-stationary-date nil="true"/>
+  <date-mmi-hide-until nil="true"/>
+  <custom-data nil="true"/>
+  <is-protected>false</is-protected>
+  <is-master-file>false</is-master-file>
+  <caption>Andre Baker v. Pomona Apartment Complex (PI - Slip and Fall)</caption>
+  <comments>Client:: Andre Baker
+Matter: Andre Baker v. Pomona Apartment Complex (PI - Slip and Fall)
+Type: Contingency
+Status: Open
+SOL: N/A
+Most recent activity: 7/18/2011
+home_address_line_1: 11871 S. San Pedro
+home_city: Los Angeles
+home_state: CA
+home_postalcode: 90061</comments>
+  <case-details-display-party-id>0</case-details-display-party-id>
+  <billto-contact-id nil="true"/>
+  <invoice-attn-contact-id nil="true"/>
+  <billing-utbms-choice-id>0</billing-utbms-choice-id>
+  <invoice-cycle-id nil="true"/>
+  <invoice-delivery-method-id nil="true"/>
+  <invoice-min>0.0</invoice-min>
+  <invoice-max>0.0</invoice-max>
+  <billing-increment-minutes nil="true"/>
+  <pref-ledes-client-id-source nil="true"/>
+  <pref-ledes-client-matter-id-source nil="true"/>
+  <pref-ledes-law-firm-id-source nil="true"/>
+  <pref-ledes-law-firm-matter-id-source nil="true"/>
+  <pref-ledes-timekeeper-id-source nil="true"/>
+  <deleted>false</deleted>
+  <created>2014-01-14T22:55:55Z</created>
+  <modified>2015-02-18T22:39:16Z</modified>
+  <type>Personal Injury - Motor Vehicle Accident</type>
+  <attorney-handling-initials nil="true"/>
+  <attorney-responsible-initials nil="true"/>
+  <paralegal-handling-initials nil="true"/>
+  <secretary-handling-initials nil="true"/>
+  <activities>
+    <activity>
+      <copy-service-order-id nil="true"/>
+      <contact-name nil="true"/>
+      <date>2015-02-18T22:39:16Z</date>
+      <activity>Status set to: Closed</activity>
+      <created-by nil="true"/>
+      <token nil="true"/>
+      <deleted>false</deleted>
+      <created>2015-02-18T22:39:16Z</created>
+      <modified>2015-02-18T22:39:16Z</modified>
+      <type/>
+      <file-name nil="true"/>
+      <source-key nil="true"/>
+      <initials>JR</initials>
+      <message nil="true"/>
+    </activity>
+  </activities>
+  <case-ledgers/>
+  <invoices/>
+  <general-incidents/>
+  <malpractices/>
+  <vehicle-accidents/>
+  <premise-liabilities>
+    <premise-liability>
+      <id>437785</id>
+      <date-of-incident nil="true"/>
+      <incident-description></incident-description>
+      <incident-location></incident-location>
+      <map-data></map-data>
+      <police-report-number></police-report-number>
+      <citation-number></citation-number>
+      <citation-details></citation-details>
+      <court-case-number></court-case-number>
+      <alternate-court-case-number></alternate-court-case-number>
+      <ambulance-required>false</ambulance-required>
+      <hospital></hospital>
+      <weather-conditions nil="true"/>
+      <lighting-conditions nil="true"/>
+      <other-circumstances nil="true"/>
+      <similar-incidents nil="true"/>
+      <similar-incidents-notes nil="true"/>
+      <notes></notes>
+      <deleted>false</deleted>
+      <created>2014-01-19T16:13:11Z</created>
+      <modified>2014-01-21T20:00:41Z</modified>
+    </premise-liability>
+  </premise-liabilities>
+  <injuries>
+    <injury>
+      <injury-type-id>2</injury-type-id>
+      <amended-application nil="true"/>
+      <application-status nil="true"/>
+      <office nil="true"/>
+      <carrier-claim-number nil="true"/>
+      <alternate-carrier-claim-number nil="true"/>
+      <carrier-billing-id nil="true"/>
+      <carrier-billing-description nil="true"/>
+      <insurance-policy-number nil="true"/>
+      <alternate-insurance-policy-number nil="true"/>
+      <dor-date nil="true"/>
+      <dor-due-date nil="true"/>
+      <sw-date nil="true"/>
+      <sw-due-date nil="true"/>
+      <other-sol-date nil="true"/>
+      <follow-up-date nil="true"/>
+      <liab-date nil="true"/>
+      <liab-due-date nil="true"/>
+      <date-of-injury nil="true"/>
+      <date-of-injury-end nil="true"/>
+      <date-132a-termination nil="true"/>
+      <date-132a-filed nil="true"/>
+      <date-132a-due nil="true"/>
+      <date-adj-filed nil="true"/>
+      <date-adj-due nil="true"/>
+      <date-new-and-further-filed nil="true"/>
+      <date-new-and-further-due nil="true"/>
+      <wcab-case-number nil="true"/>
+      <eams-case-number nil="true"/>
+      <q1-occupation nil="true"/>
+      <q1-date nil="true"/>
+      <q1-location nil="true"/>
+      <map-data nil="true"/>
+      <q1-injury-description-text nil="true"/>
+      <q1-injury-description-1-lr nil="true"/>
+      <q1-injury-description-2-lr nil="true"/>
+      <q1-injury-description-3-lr nil="true"/>
+      <q1-injury-description-4-lr nil="true"/>
+      <q1-injury-description-5-lr nil="true"/>
+      <q1-injury-description-6-lr nil="true"/>
+      <q1-injury-description-7-lr nil="true"/>
+      <q1-injury-description-8-lr nil="true"/>
+      <q1-injury-description-9-lr nil="true"/>
+      <q1-injury-description-10-lr nil="true"/>
+      <q2-injury-occurrence nil="true"/>
+      <q3-earnings nil="true"/>
+      <q3-earnings-frequency-id nil="true"/>
+      <q4-disability nil="true"/>
+      <q5-compensation-paid nil="true"/>
+      <q5-compensation-paid-additional nil="true"/>
+      <q5-compensation-paid-permanent nil="true"/>
+      <q5-date-of-first-payment nil="true"/>
+      <q5-date-of-first-payment-additional nil="true"/>
+      <q5-date-of-first-payment-permanent nil="true"/>
+      <q5-date-of-last-payment-additional nil="true"/>
+      <q5-date-of-last-payment-permanent nil="true"/>
+      <q5-earnings-frequency-id-additional nil="true"/>
+      <q5-earnings-frequency-id-permanent nil="true"/>
+      <q5-earnings-frequency-id-return nil="true"/>
+      <q5-earnings-frequency-id-plan nil="true"/>
+      <q5-total-paid nil="true"/>
+      <q5-rate-of-pay nil="true"/>
+      <q5-rate-of-pay-additional nil="true"/>
+      <q5-rate-of-pay-permanent nil="true"/>
+      <q5-rate-of-pay-return nil="true"/>
+      <q5-rate-of-pay-plan nil="true"/>
+      <q5-rate-of-pay-frequency-id nil="true"/>
+      <q5-date-of-last-payment nil="true"/>
+      <temp-disability-last-payment nil="true"/>
+      <q6-unemployment-disability nil="true"/>
+      <q7-doctors nil="true"/>
+      <q7-treatment-received nil="true"/>
+      <q7-date-of-last-treatment nil="true"/>
+      <q7-treatment-furnished nil="true"/>
+      <q7-other-treatment nil="true"/>
+      <q7-medi-cal nil="true"/>
+      <q8-other-cases nil="true"/>
+      <q9-temporary-disability nil="true"/>
+      <q9-permanent-disability nil="true"/>
+      <q9-reimbursement nil="true"/>
+      <q9-medical-treatment nil="true"/>
+      <q9-compensation nil="true"/>
+      <q9-rehabilitation nil="true"/>
+      <q9-other nil="true"/>
+      <q10-date nil="true"/>
+      <q10-city nil="true"/>
+      <venue-choice-id nil="true"/>
+      <permanent-start-date nil="true"/>
+      <permanent-start-date-additional nil="true"/>
+      <permanent-end-date nil="true"/>
+      <permanent-end-date-additional nil="true"/>
+      <is-temporary nil="true"/>
+      <is-temporary-additional nil="true"/>
+      <is-permanent nil="true"/>
+      <permanent-percentage nil="true"/>
+      <vr-summary-total-paid nil="true"/>
+      <vr-summary-weeks nil="true"/>
+      <vr-summary-pd nil="true"/>
+      <vr-summary-qrr nil="true"/>
+      <vr-withheld nil="true"/>
+      <is-return nil="true"/>
+      <return-type-id nil="true"/>
+      <return-title nil="true"/>
+      <is-plan-developed nil="true"/>
+      <plan-type-id nil="true"/>
+      <plan-title nil="true"/>
+      <plan-start-date nil="true"/>
+      <plan-end-date nil="true"/>
+      <pi-settlement-gross-description-1 nil="true"/>
+      <pi-settlement-gross-description-2 nil="true"/>
+      <pi-settlement-gross-description-3 nil="true"/>
+      <pi-settlement-gross-settlement-1 nil="true"/>
+      <pi-settlement-gross-settlement-2 nil="true"/>
+      <pi-settlement-gross-settlement-3 nil="true"/>
+      <pi-settlement-legal-fee-percentage-1 nil="true"/>
+      <pi-settlement-legal-fee-percentage-2 nil="true"/>
+      <pi-settlement-legal-fee-percentage-3 nil="true"/>
+      <pi-settlement-reduction nil="true"/>
+      <pi-settlement-final-costs nil="true"/>
+      <pi-settlement-other-deductions nil="true"/>
+      <pi-settlement-insurance-subrogation nil="true"/>
+      <pi-settlement-settled-date nil="true"/>
+      <pi-settlement-legal-fee-amount-1 nil="true"/>
+      <pi-settlement-legal-fee-amount-2 nil="true"/>
+      <pi-settlement-legal-fee-amount-3 nil="true"/>
+      <pi-settlement-release-received-date nil="true"/>
+      <pi-settlement-release-returned-date nil="true"/>
+      <pi-settlement-estimated-distribution-date nil="true"/>
+      <pi-settlement-draft-received-date nil="true"/>
+      <pi-settlement-draft-approved-date nil="true"/>
+      <pi-settlement-approved-for-distribution-date nil="true"/>
+      <pi-settlement-distributed-date nil="true"/>
+      <pi-settlement-worksheet-comments nil="true"/>
+      <notes nil="true"/>
+      <comments nil="true"/>
+      <source-key nil="true"/>
+      <deleted>false</deleted>
+      <created>2013-12-23T14:21:30Z</created>
+      <modified>2014-01-21T20:00:41Z</modified>
+      <q1-injury-description-1 nil="true"/>
+      <q1-injury-description-2 nil="true"/>
+      <q1-injury-description-3 nil="true"/>
+      <q1-injury-description-4 nil="true"/>
+      <q1-injury-description-5 nil="true"/>
+      <q1-injury-description-6 nil="true"/>
+      <q1-injury-description-7 nil="true"/>
+      <q1-injury-description-8 nil="true"/>
+      <q1-injury-description-9 nil="true"/>
+      <q1-injury-description-10 nil="true"/>
+    </injury>
+    <injury>
+      <injury-type-id>116</injury-type-id>
+      <amended-application nil="true"/>
+      <application-status></application-status>
+      <office nil="true"/>
+      <carrier-claim-number></carrier-claim-number>
+      <alternate-carrier-claim-number></alternate-carrier-claim-number>
+      <carrier-billing-id nil="true"/>
+      <carrier-billing-description nil="true"/>
+      <insurance-policy-number nil="true"/>
+      <alternate-insurance-policy-number nil="true"/>
+      <dor-date nil="true"/>
+      <dor-due-date nil="true"/>
+      <sw-date nil="true"/>
+      <sw-due-date nil="true"/>
+      <other-sol-date nil="true"/>
+      <follow-up-date nil="true"/>
+      <liab-date nil="true"/>
+      <liab-due-date nil="true"/>
+      <date-of-injury nil="true"/>
+      <date-of-injury-end nil="true"/>
+      <date-132a-termination nil="true"/>
+      <date-132a-filed nil="true"/>
+      <date-132a-due nil="true"/>
+      <date-adj-filed nil="true"/>
+      <date-adj-due nil="true"/>
+      <date-new-and-further-filed nil="true"/>
+      <date-new-and-further-due nil="true"/>
+      <wcab-case-number></wcab-case-number>
+      <eams-case-number></eams-case-number>
+      <q1-occupation nil="true"/>
+      <q1-date nil="true"/>
+      <q1-location></q1-location>
+      <map-data></map-data>
+      <q1-injury-description-text></q1-injury-description-text>
+      <q1-injury-description-1-lr nil="true"/>
+      <q1-injury-description-2-lr nil="true"/>
+      <q1-injury-description-3-lr nil="true"/>
+      <q1-injury-description-4-lr nil="true"/>
+      <q1-injury-description-5-lr nil="true"/>
+      <q1-injury-description-6-lr nil="true"/>
+      <q1-injury-description-7-lr nil="true"/>
+      <q1-injury-description-8-lr nil="true"/>
+      <q1-injury-description-9-lr nil="true"/>
+      <q1-injury-description-10-lr nil="true"/>
+      <q2-injury-occurrence></q2-injury-occurrence>
+      <q3-earnings nil="true"/>
+      <q3-earnings-frequency-id nil="true"/>
+      <q4-disability nil="true"/>
+      <q5-compensation-paid nil="true"/>
+      <q5-compensation-paid-additional nil="true"/>
+      <q5-compensation-paid-permanent nil="true"/>
+      <q5-date-of-first-payment nil="true"/>
+      <q5-date-of-first-payment-additional nil="true"/>
+      <q5-date-of-first-payment-permanent nil="true"/>
+      <q5-date-of-last-payment-additional nil="true"/>
+      <q5-date-of-last-payment-permanent nil="true"/>
+      <q5-earnings-frequency-id-additional nil="true"/>
+      <q5-earnings-frequency-id-permanent nil="true"/>
+      <q5-earnings-frequency-id-return nil="true"/>
+      <q5-earnings-frequency-id-plan nil="true"/>
+      <q5-total-paid nil="true"/>
+      <q5-rate-of-pay nil="true"/>
+      <q5-rate-of-pay-additional nil="true"/>
+      <q5-rate-of-pay-permanent nil="true"/>
+      <q5-rate-of-pay-return nil="true"/>
+      <q5-rate-of-pay-plan nil="true"/>
+      <q5-rate-of-pay-frequency-id nil="true"/>
+      <q5-date-of-last-payment nil="true"/>
+      <temp-disability-last-payment nil="true"/>
+      <q6-unemployment-disability nil="true"/>
+      <q7-doctors nil="true"/>
+      <q7-treatment-received nil="true"/>
+      <q7-date-of-last-treatment nil="true"/>
+      <q7-treatment-furnished>false</q7-treatment-furnished>
+      <q7-other-treatment></q7-other-treatment>
+      <q7-medi-cal nil="true"/>
+      <q8-other-cases></q8-other-cases>
+      <q9-temporary-disability nil="true"/>
+      <q9-permanent-disability nil="true"/>
+      <q9-reimbursement nil="true"/>
+      <q9-medical-treatment nil="true"/>
+      <q9-compensation nil="true"/>
+      <q9-rehabilitation nil="true"/>
+      <q9-other></q9-other>
+      <q10-date nil="true"/>
+      <q10-city nil="true"/>
+      <venue-choice-id nil="true"/>
+      <permanent-start-date nil="true"/>
+      <permanent-start-date-additional nil="true"/>
+      <permanent-end-date nil="true"/>
+      <permanent-end-date-additional nil="true"/>
+      <is-temporary nil="true"/>
+      <is-temporary-additional nil="true"/>
+      <is-permanent nil="true"/>
+      <permanent-percentage nil="true"/>
+      <vr-summary-total-paid nil="true"/>
+      <vr-summary-weeks nil="true"/>
+      <vr-summary-pd nil="true"/>
+      <vr-summary-qrr nil="true"/>
+      <vr-withheld nil="true"/>
+      <is-return nil="true"/>
+      <return-type-id nil="true"/>
+      <return-title nil="true"/>
+      <is-plan-developed nil="true"/>
+      <plan-type-id nil="true"/>
+      <plan-title nil="true"/>
+      <plan-start-date nil="true"/>
+      <plan-end-date nil="true"/>
+      <pi-settlement-gross-description-1 nil="true"/>
+      <pi-settlement-gross-description-2 nil="true"/>
+      <pi-settlement-gross-description-3 nil="true"/>
+      <pi-settlement-gross-settlement-1 nil="true"/>
+      <pi-settlement-gross-settlement-2 nil="true"/>
+      <pi-settlement-gross-settlement-3 nil="true"/>
+      <pi-settlement-legal-fee-percentage-1 nil="true"/>
+      <pi-settlement-legal-fee-percentage-2 nil="true"/>
+      <pi-settlement-legal-fee-percentage-3 nil="true"/>
+      <pi-settlement-reduction nil="true"/>
+      <pi-settlement-final-costs nil="true"/>
+      <pi-settlement-other-deductions nil="true"/>
+      <pi-settlement-insurance-subrogation nil="true"/>
+      <pi-settlement-settled-date nil="true"/>
+      <pi-settlement-legal-fee-amount-1 nil="true"/>
+      <pi-settlement-legal-fee-amount-2 nil="true"/>
+      <pi-settlement-legal-fee-amount-3 nil="true"/>
+      <pi-settlement-release-received-date nil="true"/>
+      <pi-settlement-release-returned-date nil="true"/>
+      <pi-settlement-estimated-distribution-date nil="true"/>
+      <pi-settlement-draft-received-date nil="true"/>
+      <pi-settlement-draft-approved-date nil="true"/>
+      <pi-settlement-approved-for-distribution-date nil="true"/>
+      <pi-settlement-distributed-date nil="true"/>
+      <pi-settlement-worksheet-comments nil="true"/>
+      <notes nil="true"/>
+      <comments></comments>
+      <source-key nil="true"/>
+      <deleted>false</deleted>
+      <created>2014-01-19T16:13:11Z</created>
+      <modified>2014-01-21T20:00:41Z</modified>
+      <q1-injury-description-1 nil="true"/>
+      <q1-injury-description-2 nil="true"/>
+      <q1-injury-description-3 nil="true"/>
+      <q1-injury-description-4 nil="true"/>
+      <q1-injury-description-5 nil="true"/>
+      <q1-injury-description-6 nil="true"/>
+      <q1-injury-description-7 nil="true"/>
+      <q1-injury-description-8 nil="true"/>
+      <q1-injury-description-9 nil="true"/>
+      <q1-injury-description-10 nil="true"/>
+    </injury>
+  </injuries>
+  <parties>
+    <party>
+      <people-type-id-deprecated>1</people-type-id-deprecated>
+      <people-type-detail nil="true"/>
+      <group-label nil="true"/>
+      <is-primary>true</is-primary>
+      <notes nil="true"/>
+      <testimony nil="true"/>
+      <insurance-policy-number nil="true"/>
+      <insurance-claim-number nil="true"/>
+      <insurance-claim-status nil="true"/>
+      <insurance-policy-notes nil="true"/>
+      <alternate-insurance-policy-number nil="true"/>
+      <alternate-insurance-claim-number nil="true"/>
+      <alternate-insurance-claim-status nil="true"/>
+      <alternate-insurance-policy-notes nil="true"/>
+      <geo-lat nil="true"/>
+      <geo-lng nil="true"/>
+      <vehicle-id nil="true"/>
+      <placement-in-vehicle nil="true"/>
+      <is-hidden>false</is-hidden>
+      <deleted>false</deleted>
+      <created>2014-01-14T22:56:01Z</created>
+      <modified>2014-01-14T22:56:01Z</modified>
+      <type>Applicant</type>
+      <contact>
+        <id>2167799</id>
+        <address-id-deprecated>1935252</address-id-deprecated>
+        <parent-id nil="true"/>
+        <people-type-id-deprecated>12</people-type-id-deprecated>
+        <sex-id nil="true"/>
+        <marital-status-id nil="true"/>
+        <letter-salutation nil="true"/>
+        <first-name>Andre</first-name>
+        <middle-name nil="true"/>
+        <last-name>Baker</last-name>
+        <name nil="true"/>
+        <suffix nil="true"/>
+        <social-security-number nil="true"/>
+        <ssn-encrypted-base64 nil="true"/>
+        <sb-number nil="true"/>
+        <uan-code nil="true"/>
+        <eams-ref-number nil="true"/>
+        <tax-id-number nil="true"/>
+        <taxid-encrypted-base64 nil="true"/>
+        <title nil="true"/>
+        <birth-date nil="true"/>
+        <dob-encrypted-base64 nil="true"/>
+        <date-of-death nil="true"/>
+        <interpreter>false</interpreter>
+        <language nil="true"/>
+        <license nil="true"/>
+        <license-state nil="true"/>
+        <specialty nil="true"/>
+        <mother-maiden nil="true"/>
+        <alien-registration-number nil="true"/>
+        <immigration-status nil="true"/>
+        <birth-city nil="true"/>
+        <birth-country nil="true"/>
+        <nationality nil="true"/>
+        <is-billing-contact>false</is-billing-contact>
+        <electronic-billing-id nil="true"/>
+        <invoice-cycle-id nil="true"/>
+        <invoice-delivery-method-id nil="true"/>
+        <invoice-min>0.0</invoice-min>
+        <invoice-max>0.0</invoice-max>
+        <billing-increment-minutes nil="true"/>
+        <pref-ledes-client-id-source nil="true"/>
+        <pref-ledes-client-matter-id-source nil="true"/>
+        <pref-ledes-law-firm-id-source nil="true"/>
+        <pref-ledes-law-firm-matter-id-source nil="true"/>
+        <pref-ledes-timekeeper-id-source nil="true"/>
+        <rate-attorney-responsible nil="true"/>
+        <rate-attorney-handling nil="true"/>
+        <rate-senior-associate-handling nil="true"/>
+        <rate-paralegal-handling nil="true"/>
+        <rate-secretary-handling nil="true"/>
+        <rate-hearing-rep nil="true"/>
+        <rate-attorney-4 nil="true"/>
+        <rate-staff-4 nil="true"/>
+        <deleted>false</deleted>
+        <comments>home_address_line_1: 11871 S. San Pedro
+home_city: Los Angeles
+home_state: CA
+home_postalcode: 90061</comments>
+        <website nil="true"/>
+        <facebook-handle nil="true"/>
+        <linkedin-handle nil="true"/>
+        <twitter-handle nil="true"/>
+        <height-inches nil="true"/>
+        <weight-pounds nil="true"/>
+        <demographic-ethnicity-id nil="true"/>
+        <demographic-races nil="true"/>
+        <demographic-eye-color-id nil="true"/>
+        <demographic-hair-color-id nil="true"/>
+        <third-party-service-uid nil="true"/>
+        <date-indexed-es>2017-12-05</date-indexed-es>
+        <created>2014-01-14T22:54:48Z</created>
+        <modified>2016-01-21T15:38:35Z</modified>
+        <type>Other</type>
+        <dob nil="true"/>
+        <ssn nil="true"/>
+        <taxid nil="true"/>
+        <addresses>
+          <address>
+            <id>1935252</id>
+            <entity-id nil="true"/>
+            <entity-type nil="true"/>
+            <is-primary>1</is-primary>
+            <label>Physical</label>
+            <street-1>11871 S. San Pedro</street-1>
+            <street-2 nil="true"/>
+            <city>Los Angeles</city>
+            <state>CA</state>
+            <zip>90061</zip>
+            <county nil="true"/>
+            <country>United States</country>
+            <residency-start-date nil="true"/>
+            <residency-end-date nil="true"/>
+            <phone-deprecated>(323) 743-5279</phone-deprecated>
+            <alternate-phone-deprecated>(323) 535-8714</alternate-phone-deprecated>
+            <alternate-phone-2-deprecated nil="true"/>
+            <fax-deprecated nil="true"/>
+            <alternate-fax-deprecated nil="true"/>
+            <email-deprecated></email-deprecated>
+            <alternate-email-deprecated nil="true"/>
+            <website-deprecated nil="true"/>
+            <deleted>0</deleted>
+            <created>2014-01-14T22:54:48Z</created>
+            <modified>2014-01-14T22:54:48Z</modified>
+          </address>
+        </addresses>
+        <phones>
+          <phone>
+            <id>946773</id>
+            <entity-id nil="true"/>
+            <entity-type nil="true"/>
+            <label>Phone</label>
+            <digits>(323) 743-5279</digits>
+            <line-type>voice</line-type>
+            <is-primary>true</is-primary>
+            <source-key nil="true"/>
+            <deleted>false</deleted>
+            <created>2014-01-14T22:54:48Z</created>
+            <modified>2014-01-14T22:54:48Z</modified>
+          </phone>
+          <phone>
+            <id>2051039</id>
+            <entity-id nil="true"/>
+            <entity-type nil="true"/>
+            <label>Alt Phone</label>
+            <digits>(323) 535-8714</digits>
+            <line-type>voice</line-type>
+            <is-primary>false</is-primary>
+            <source-key nil="true"/>
+            <deleted>false</deleted>
+            <created>2014-01-14T22:54:48Z</created>
+            <modified>2014-01-14T22:54:48Z</modified>
+          </phone>
+        </phones>
+        <emails/>
+      </contact>
+    </party>
+    <party>
+      <people-type-id-deprecated>15</people-type-id-deprecated>
+      <people-type-detail></people-type-detail>
+      <group-label nil="true"/>
+      <is-primary>false</is-primary>
+      <notes></notes>
+      <testimony nil="true"/>
+      <insurance-policy-number nil="true"/>
+      <insurance-claim-number nil="true"/>
+      <insurance-claim-status nil="true"/>
+      <insurance-policy-notes nil="true"/>
+      <alternate-insurance-policy-number nil="true"/>
+      <alternate-insurance-claim-number nil="true"/>
+      <alternate-insurance-claim-status nil="true"/>
+      <alternate-insurance-policy-notes nil="true"/>
+      <geo-lat nil="true"/>
+      <geo-lng nil="true"/>
+      <vehicle-id nil="true"/>
+      <placement-in-vehicle nil="true"/>
+      <is-hidden>false</is-hidden>
+      <deleted>false</deleted>
+      <created>2014-01-14T22:56:18Z</created>
+      <modified>2014-01-19T16:13:43Z</modified>
+      <type>Defendant</type>
+      <contact>
+        <id>2168490</id>
+        <address-id-deprecated>1935943</address-id-deprecated>
+        <parent-id>-1</parent-id>
+        <people-type-id-deprecated>5</people-type-id-deprecated>
+        <sex-id nil="true"/>
+        <marital-status-id nil="true"/>
+        <letter-salutation nil="true"/>
+        <first-name nil="true"/>
+        <middle-name nil="true"/>
+        <last-name nil="true"/>
+        <name>Pomona Apartment Complex</name>
+        <suffix nil="true"/>
+        <social-security-number nil="true"/>
+        <ssn-encrypted-base64 nil="true"/>
+        <sb-number nil="true"/>
+        <uan-code></uan-code>
+        <eams-ref-number></eams-ref-number>
+        <tax-id-number></tax-id-number>
+        <taxid-encrypted-base64 nil="true"/>
+        <title nil="true"/>
+        <birth-date></birth-date>
+        <dob-encrypted-base64 nil="true"/>
+        <date-of-death></date-of-death>
+        <interpreter nil="true"/>
+        <language nil="true"/>
+        <license nil="true"/>
+        <license-state nil="true"/>
+        <specialty nil="true"/>
+        <mother-maiden nil="true"/>
+        <alien-registration-number nil="true"/>
+        <immigration-status nil="true"/>
+        <birth-city nil="true"/>
+        <birth-country nil="true"/>
+        <nationality nil="true"/>
+        <is-billing-contact>false</is-billing-contact>
+        <electronic-billing-id></electronic-billing-id>
+        <invoice-cycle-id nil="true"/>
+        <invoice-delivery-method-id nil="true"/>
+        <invoice-min>0.0</invoice-min>
+        <invoice-max>0.0</invoice-max>
+        <billing-increment-minutes nil="true"/>
+        <pref-ledes-client-id-source nil="true"/>
+        <pref-ledes-client-matter-id-source nil="true"/>
+        <pref-ledes-law-firm-id-source nil="true"/>
+        <pref-ledes-law-firm-matter-id-source nil="true"/>
+        <pref-ledes-timekeeper-id-source nil="true"/>
+        <rate-attorney-responsible nil="true"/>
+        <rate-attorney-handling nil="true"/>
+        <rate-senior-associate-handling nil="true"/>
+        <rate-paralegal-handling nil="true"/>
+        <rate-secretary-handling nil="true"/>
+        <rate-hearing-rep nil="true"/>
+        <rate-attorney-4 nil="true"/>
+        <rate-staff-4 nil="true"/>
+        <deleted>false</deleted>
+        <comments></comments>
+        <website></website>
+        <facebook-handle nil="true"/>
+        <linkedin-handle nil="true"/>
+        <twitter-handle nil="true"/>
+        <height-inches nil="true"/>
+        <weight-pounds nil="true"/>
+        <demographic-ethnicity-id nil="true"/>
+        <demographic-races nil="true"/>
+        <demographic-eye-color-id nil="true"/>
+        <demographic-hair-color-id nil="true"/>
+        <third-party-service-uid nil="true"/>
+        <date-indexed-es>2017-12-05</date-indexed-es>
+        <created>2014-01-14T22:55:43Z</created>
+        <modified>2016-01-21T15:38:35Z</modified>
+        <type>Employer</type>
+        <dob nil="true"/>
+        <ssn nil="true"/>
+        <taxid nil="true"/>
+        <addresses>
+          <address>
+            <id>1935943</id>
+            <entity-id nil="true"/>
+            <entity-type nil="true"/>
+            <is-primary>1</is-primary>
+            <label>Physical</label>
+            <street-1></street-1>
+            <street-2></street-2>
+            <city></city>
+            <state></state>
+            <zip></zip>
+            <county></county>
+            <country>United States</country>
+            <residency-start-date nil="true"/>
+            <residency-end-date nil="true"/>
+            <phone-deprecated></phone-deprecated>
+            <alternate-phone-deprecated></alternate-phone-deprecated>
+            <alternate-phone-2-deprecated></alternate-phone-2-deprecated>
+            <fax-deprecated></fax-deprecated>
+            <alternate-fax-deprecated></alternate-fax-deprecated>
+            <email-deprecated></email-deprecated>
+            <alternate-email-deprecated></alternate-email-deprecated>
+            <website-deprecated></website-deprecated>
+            <deleted>0</deleted>
+            <created>2014-01-14T22:55:43Z</created>
+            <modified>2014-01-19T16:13:43Z</modified>
+          </address>
+        </addresses>
+        <phones/>
+        <emails/>
+      </contact>
+    </party>
+  </parties>
+</case-file>

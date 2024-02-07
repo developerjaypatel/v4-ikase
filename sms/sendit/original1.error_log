@@ -1,0 +1,14 @@
+[15-Jan-2016 15:28:51 America/Chicago] PHP Fatal error:  Class 'Fcosrno\SendGridReport\SendGrid' not found in /home1/infoaccount/public_html/sendit/example_report.php on line 18
+[15-Jan-2016 15:29:17 America/Chicago] PHP Fatal error:  Class 'Fcosrno\SendGridReport\SendGrid' not found in /home1/infoaccount/public_html/sendit/example_report.php on line 18
+[15-Jan-2016 15:34:04 America/Chicago] PHP Fatal error:  Class 'Fcosrno\SendGridReport\SendGrid' not found in /home1/infoaccount/public_html/sendit/example_report.php on line 18
+[15-Jan-2016 15:34:09 America/Chicago] PHP Fatal error:  Class 'Fcosrno\SendGridReport\SendGrid' not found in /home1/infoaccount/public_html/sendit/example_report.php on line 18
+[15-Jan-2016 15:37:17 America/Chicago] PHP Fatal error:  Class 'Fcosrno\SendGridReport\SendGrid' not found in /home1/infoaccount/public_html/sendit/example_report.php on line 18
+[15-Jan-2016 15:37:24 America/Chicago] PHP Fatal error:  Class 'Fcosrno\SendGridReport\SendGrid' not found in /home1/infoaccount/public_html/sendit/example_report.php on line 18
+[15-Jan-2016 15:38:18 America/Chicago] PHP Fatal error:  Class 'Fcosrno\SendGridReport\SendGrid' not found in /home1/infoaccount/public_html/sendit/example_report.php on line 18
+[15-Jan-2016 15:43:16 America/Chicago] PHP Fatal error:  Class 'Fcosrno\SendGridReport\SendGrid' not found in /home1/infoaccount/public_html/sendit/example_report.php on line 18
+[15-Jan-2016 15:43:32 America/Chicago] PHP Fatal error:  Class 'Fcosrno\SendGridReport\SendGrid' not found in /home1/infoaccount/public_html/sendit/example_report.php on line 18
+[15-Jan-2016 15:47:31 America/Chicago] PHP Fatal error:  Class 'SendGridReport\SendGrid' not found in /home1/infoaccount/public_html/sendit/example_report.php on line 18
+[15-Jan-2016 15:50:46 America/Chicago] PHP Warning:  require_once(sendgrid/sendreports/src/Report.php): failed to open stream: No such file or directory in /home1/infoaccount/public_html/sendit/example_report.php on line 3
+[15-Jan-2016 15:50:46 America/Chicago] PHP Fatal error:  require_once(): Failed opening required 'sendgrid/sendreports/src/Report.php' (include_path='.:/opt/php54/lib/php') in /home1/infoaccount/public_html/sendit/example_report.php on line 3
+[15-Jan-2016 15:51:17 America/Chicago] PHP Fatal error:  Class 'SendGrid' not found in /home1/infoaccount/public_html/sendit/vendor/sendgrid/sendreports/src/SendGrid.php on line 21
+[20-Jan-2016 16:52:52 America/Chicago] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home1/infoaccount/public_html/sendit/example_report.php on line 47

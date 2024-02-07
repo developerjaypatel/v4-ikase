@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/model/ChartConfig.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/model/Point.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/model/XYDataSet.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/model/XYSeriesDataSet.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/view/caption/Caption.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/view/chart/HorizontalBarChart.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/view/chart/LineChart.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/view/color/Color.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/view/color/ColorSet.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/view/color/Palette.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/view/plot/Plot.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/view/primitive/Padding.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/view/primitive/Primitive.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/view/primitive/Rectangle.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/remind/libchart/classes/view/text/Text.php" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

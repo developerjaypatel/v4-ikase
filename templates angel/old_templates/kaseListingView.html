@@ -1,0 +1,62 @@
+<div class="row">
+	<div class="glass_header">
+        <div style="float:right;">
+            <input id="kases_searchList" type="text" class="search-field" placeholder="Search" autocomplete="off" onkeyup="findIt(this, 'kase_listing', 'kase')">
+        </div>
+        <span style="font-size:1.2em; color:#FFFFFF">Kases</span>
+    </div>
+    <table id="kase_listing" class="tablesorter kase_listing" border="0" cellpadding="0" cellspacing="1">
+        <thead>
+        <tr>
+            <th>
+            	Kase #
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Atty
+            </th>
+            <th>
+                Emp
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <% _.each( kases, function(kase) {%>
+        <tr class="kase_data_row">
+            <td>
+                <a href='#kases/<%= kase.id %>'><%= kase.case_number %></a>
+            </td>
+            <td><%= kase.title %></td>
+            <td><%= kase.case_status %></td>
+            <td><%= kase.case_date %></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+    <div id="pager" class="pager">
+        <form>
+            <img src="img/first.png" class="first"/>
+            <img src="img/prev.png" class="prev"/>
+            <input type="text" class="pagedisplay"/>
+            <img src="img/next.png" class="next"/>
+            <img src="img/last.png" class="last"/>
+            <select class="pagesize">
+                <option selected="selected" value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option  value="40">40</option>
+            </select>
+        </form>
+    </div>
+
+</div>

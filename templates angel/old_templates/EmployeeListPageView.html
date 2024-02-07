@@ -1,0 +1,33 @@
+<div class="row">
+    <div id="employee_listing" class="well">
+        <h3 class="modal-header">User Listing</h3>
+        <input class="search" placeholder="Search" />
+        <div>
+            <div style="display:inline-block; width:50px; text-align:left">
+            <button class="sort" data-sort="last_name">
+              Sort by name
+            </button>
+            </div>
+            <div style="display:inline-block; width:50px; text-align:left">
+            <button class="sort" data-sort="title">
+              Sort by title
+            </button>
+            </div>
+        </div>
+        <ul class="list">
+         <% _.each( employees, function(employee) {%>
+            <li class="employee_data_row">
+                <div class="full_name" style="display:inline-block; width:50px; text-align:left">
+                	<a href='#employees/<%= employee.id %>'><%= employee.firstName %> <%= employee.lastName %></a>
+                </div>
+                <div class="title" style="padding-left:5px; display:inline-block; width:70px; text-align:left">
+                	<%= employee.title %>
+                </div>
+                <div class="last_name" style="display:none">
+                	<%= employee.lastName %>
+                </div>
+            </li>
+         <% }); %>
+        </ul>
+    </div>
+</div>
