@@ -595,3 +595,14 @@ transfer customer  @ 02/01/24 23:51:00
 transfer customer  @ 02/04/24 23:51:01
 transfer customer  @ 02/05/24 23:51:00
 transfer customer  @ 02/06/24 23:51:00
+transfer customer  @ 02/07/24 23:50:59
+transfer customer  @ 02/08/24 23:51:00
+transfer customer  @ 02/11/24 23:51:00
+transfer customer  @ 02/12/24 23:50:59
+transfer customer  @ 02/13/24 23:50:59
+transfer customer  @ 02/14/24 23:51:00
+transfer customer  @ 02/15/24 23:51:00
+transfer customer  @ 02/18/24 23:51:00
+transfer customer  @ 02/19/24 23:51:00
+transfer customer  @ 02/20/24 23:51:00
+transfer customer  @ 02/21/24 23:51:00

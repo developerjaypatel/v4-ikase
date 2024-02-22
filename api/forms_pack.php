@@ -34,7 +34,7 @@ function getForms() {
 		AND customer_id = 0
 		AND deleted = 'N'";
 	}
-	
+	//die($sql);
 	try {
 		$db = getConnection();
 		$stmt = $db->query($sql);

@@ -1,3 +1,10 @@
+<style type="text/css">
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+</style>
+
 <div class="row-fluid">
 	<div id="kase_nav" class="span12">
     <ul class="nav nav-pills pill_color">
@@ -22,7 +29,7 @@
     	<div id="kase_invoices_indicator" style="position:absolute; z-index:539; top:5px; font-size:0.75em; background:white; color:black; border:1px solid white; height:16px; width:18px; text-align:center; vertical-align:bottom; display:none; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; margin-bottom:10px; left:73px" title="Outstanding Invoices on this Case"></div>
         <a href="#payments/<%=case_id %>" class="source" style="color:#FFFFFF; padding:1px; padding-left:2px;"><!--<i class="glyphicon glyphicon-list-alt" style="font-size:0.97em">&nbsp;</i>--><span style="font-size:0.97em">Books</span></a>
     </li>
-    <li style="background:url(img/glass_calendar.png) left top; width:96px; height:26px" class="pills pill_color navpill"><a href="#eams_forms/<%=case_id %>" class="stuff" style="color:#FFFFFF; padding:1px; padding-left:2px;"><!--<i class="glyphicon glyphicon-credit-card" style="font-size:0.97em">&nbsp;</i>--><span style="font-size:0.95em">Legal&nbsp;Forms</span></a></li>
+    <li style="background:url(img/glass_calendar.png) left top; width:96px; height:26px" class="pills pill_color navpill"><a href="#eams_forms/<%=case_id %>" class="stuff <?php //if ($_SERVER['REMOTE_ADDR'] != "47.153.53.102" || $_SERVER['REMOTE_ADDR'] != "47.181.13.80") { ?><?php //} ?>" style="color:#FFFFFF; padding:1px; padding-left:2px;"><!--<i class="glyphicon glyphicon-credit-card" style="font-size:0.97em">&nbsp;</i>--><span style="font-size:0.95em">Legal&nbsp;Forms</span></a></li>
     <li style="background:url(img/glass_calendar.png) left top; width:96px; height:26px" class="pills pill_color navpill"><a href="#letters/<%=case_id %>" class="info" style="color:white; padding:1px; padding-left:2px;"><!--<i class="glyphicon glyphicon-file" style="font-size:0.97em">&nbsp;</i>--><span style="font-size:1.01em">Letters</span></a></li>
 	<li style="background:url(img/glass_calendar.png) left top; width:96px; height:26px" class="pills pill_color navpill"><a href="#exams/<%=case_id %>" class="info" style="color:#FFFFFF; padding:1px; padding-left:5px;"><!--<i class="glyphicon glyphicon-heart" style="font-size:0.97em">&nbsp;</i>--><span style="font-size:0.97em">Med Index</span></a></li>
 	

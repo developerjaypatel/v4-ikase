@@ -321,7 +321,7 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
             <tr>
                 <th align="right" valign="top" scope="row">Type:</th>
                 <td valign="top">
-                    <select name="case_typeInput" id="case_typeInput" class="kase input_class" style="width:510px" parsley-error-message="" required >
+                    <select name="case_typeInput" id="case_typeInput" class="kase input_class" style="width:510px" parsley-error-message="" required onchange="setCase()">
                           <% var select_type_options = case_type_options;
                           if (case_type=="Personal Injury") {
                             case_type = "NewPI";
@@ -354,7 +354,7 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
             <tr id="pi_representing_row" class="injury_fields">
                 <th align="right" valign="top" scope="row">Representing:</th>
                 <td valign="top">
-                    <select name="representingInput" id="representingInput" class="kase input_class" style="width:510px" >
+                    <select onchange="setCase()" name="representingInput" id="representingInput" class="kase input_class" style="width:510px" >
                         <option value="">Plaintiff or Defendant?</option>
                         <option id="plaintiff" value="plaintiff">Plaintiff</option>
                         <option id="defendant" value="defendant">Defendant</option>
@@ -800,10 +800,25 @@ var case_type = "<%= case_type %>";
   }, 3000);
 });
 
+var type = "";
+function setCase()
+{
+  type = $("#case_typeInput").val();
+  setTimeout(function() {  
+    loadStatus();
+    loadSubStatus();
+    loadSubSubStatus();   
+  }, 3000);
+}
+
 // retrieves status from "cse_casestatus" table according to case type and deleted = 'N'
 async function loadStatus()
-{
+{  
   var case_type = "<%= case_type %>";
+  if(type!="")
+  {
+    case_type = type;
+  }
   var status = "<%= case_status %>";
   $.get("api/statusfilters",{},function(data){
     data = JSON.parse(data);
@@ -829,6 +844,10 @@ async function loadStatus()
 async function loadSubStatus()
 {
   var case_type = "<%= case_type %>";
+  if(type!="")
+  {
+    case_type = type;
+  }
   var status = "<%= case_substatus %>";
   $.get("api/substatusfilters",{},function(data){
     data = JSON.parse(data);
@@ -854,6 +873,10 @@ async function loadSubStatus()
 async function loadSubSubStatus()
 {
   var case_type = "<%= case_type %>";
+  if(type!="")
+  {
+    case_type = type;
+  }
   var status = "<%= case_subsubstatus %>";
   $.get("api/subsubstatusfilters",{},function(data){
     data = JSON.parse(data);

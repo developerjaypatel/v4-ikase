@@ -50,7 +50,10 @@ function loadTemplate(view, extension, self) {
 	}, 'html')
 	.fail(function() {
 		console.log( "template " + view + "." + extension + " could not be loaded" );
-		
+		if (view=="form_listing") {
+			//alert("There is a problem with Legal Forms, we are working on it.");
+			//return;
+		}
 		if (view=="kase_view") {
 			alert("There was a problem loading pages.  Please reload");
 		}

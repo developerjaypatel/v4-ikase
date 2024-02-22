@@ -915,7 +915,7 @@ var openSendForm = function() {
                   <!--default mode per Thomas 2/21/2019-->
                   <button class="btn btn-sm" onClick="showKaseDocs(event, this)" title="Click to list the kase documents" style="cursor:pointer">Kase Docs</button>
                   </div>
-                <input type="file" name="Filedata" /><br>
+                <input type="file" name="Filedata[]" multiple="multiple" /><br>
                 Attach Document
                 </td>
               </tr>
@@ -1934,12 +1934,12 @@ $stmt = null; $db = null;
 	}
 	$text_message = str_replace("<br>", "\r\n", $html_message);
 	
-	$subject = "iKase Copy Request from " . $_SESSION['user_customer_name']. " - " .$full_name;
-	$to_name = "nick@kustomweb.com,latommy1@gmail.com,mdisorders@gmail.com";
+	$subject = "Matrix/Cajetfile Online Order Request from " . $_SESSION['user_customer_name']. " - " .$full_name;
+	$to_name = "latommy1@gmail.com,mdisorders@gmail.com";
 	//$to_name = "nick@kustomweb.com";
 	
 	$url = "https://www.matrixdocuments.com/dis/sendit.php";
-	$send_fields = array("from_name"=>"iKase System", "from_address"=>"demographics@v2.ikase.org", "to_name"=>$to_name, "cc_name"=>"", "bcc_name"=>"", "html_message"=>urlencode($html_message), "text_message"=>urlencode($text_message), "subject"=>urlencode($subject), "attachments"=>"");
+	$send_fields = array("from_name"=>"Matrix System", "from_address"=>"demographics@v2.ikase.org", "to_name"=>$to_name, "cc_name"=>"", "bcc_name"=>"", "html_message"=>urlencode($html_message), "text_message"=>urlencode($text_message), "subject"=>urlencode($subject), "attachments"=>"");
 	//die(print_r($send_fields));
 	$send_fields_string = "";
 	foreach($send_fields as $key=>$value) { 
