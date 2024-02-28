@@ -1,8 +1,4 @@
 <?php
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-	header('Location:index_starlinkcms.php');
-}
 setcookie('samesite-test', '1', 0, '/', 'v2.ikase.org', 'SameSite=None; Secure');
 
 if ($_SERVER['REMOTE_ADDR'] == "47.153.49.83") {

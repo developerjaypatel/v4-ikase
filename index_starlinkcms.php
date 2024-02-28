@@ -1,9 +1,5 @@
 <?php
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-	header('Location:index_starlinkcms.php');
-}
-setcookie('samesite-test', '1', 0, '/', 'v2.ikase.org', 'SameSite=None; Secure');
+setcookie('samesite-test', '1', 0, '/', 'Starlinkcms.com', 'SameSite=None; Secure');
 
 if ($_SERVER['REMOTE_ADDR'] == "47.153.49.83") {
 	//phpinfo();
@@ -14,11 +10,11 @@ include("browser_detect.php");
 //$blnDebug = ($_SERVER['REMOTE_ADDR']=='47.153.51.181');
 $blnDebug = false;
 if($blnMobile) {
-	header("location:https://v2.ikase.org/index_mobile.php");
+	header("location:https://starlinkcms.com/index_mobile.php");
 }
 
 if($_SERVER["HTTPS"]=="off") {
-	header("location:https://v2.ikase.org");
+	header("location:https://starlinkcms.com");
 }
 
 $sixo = strtotime("2017-09-01 18:00:00");
@@ -41,11 +37,11 @@ $version_number = 8;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="ikase.org / kustomweb.com">
+    <meta name="author" content="starlinkcms.com / kustomweb.com">
     <meta name="robots" content="noindex, nofollow">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>iKase :: Legal Case Management Software</title>
+    <title>Starlinkcms.com :: Legal Case Management Software</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.3.0.3.min.css">
@@ -73,7 +69,7 @@ $version_number = 8;
 		$top = "100px";
 	}
 	
-	$ikase_logo = "img/ikase_logo_briefcase_blue.png";
+	$ikase_logo = "img/starlinkcms_logo_briefcase_blue.png";
 	?>
     <style>
 	body, html {
@@ -180,32 +176,33 @@ $version_number = 8;
   </head>
 
   <body onLoad="getQuote()">
-  	<?php include("website_nav.php"); ?>
+  	<?php include("website_nav_starlinkcms.php"); ?>
     <div class="forgot_password_holder" style="position: absolute;width: 368px; z-index: 9999;top: 50px;left: 65.5%;"><a class="forgot_password small_text" href="javascript:forgotPassword()">Forgot Password?</a></div>
     <div class="alert" role="alert" id="capsLockWarning" style="display:none; position: absolute;width: 268px; font-size: 0.9em; z-index: 9999;top: 75px;left: 65.5%; text-align:left;"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp;<span style="font-weight:bold">Caps Lock On!</span></div>
     <div class="alert alert-danger" style="display:none; position: absolute;width: 368px;margin-top: 10px;color: black;font-size: 0.9em;z-index: 9999;top: 50px;left: 55.5%;"></div>
     <div class="jumbotron">
       <div class="container" id="main_container">
       	<div style="background:orange; color:black; font-weight:bold; font-size:1.2em; margin-bottom:10px; text-align:center; line-height:20px; padding:5px; display:none">	
-        IKASE IS  DOWN FOR MAINTENANCE - WEEKEND OF 9/8-9/9/2018<br>
+        STARLINKCMS.COM IS  DOWN FOR MAINTENANCE - WEEKEND OF 9/8-9/9/2018<br>
       	</div>
       	<div  style="float:left; padding-right:50px; padding-bottom:10px" align="left">
-        	<img src="<?php echo $ikase_logo; ?>" width="215" height="197" alt="iKase" id="ikase_logo">
+        	<img src="<?php echo $ikase_logo; ?>" width="215" height="197" alt="Starlinkcms" id="ikase_logo">
             <!-- images/3d_logo.jpg -->
             </div>
         <h1 style="font-weight:200; font-family: 'Source Sans Pro', sans-serif;">
-        	Welcome to iKase
+        	Welcome to StarLinkCMS
         </h1>
         <p>
-        <div style="font:Arial, Helvetica, sans-serif; background:#6FF; color:#000; font-size:35px">Welcome to our new and improved version of Ikase</div></p>
+        <div style="font:Arial, Helvetica, sans-serif; background:#6FF; color:#000; font-size:35px">Welcome to our new and improved version of StarLinkCMS</div></p>
         <div id="main_text_content" style="opacity:0">
             <p>&nbsp;</p>
             
             <p <?php if ($blnDebug) { ?> style="font-weight:normal"<?php } ?>>
-                iKase is a Cloud-based Legal Case Management System, dedicated to supporting the legal case worker. Our software maximizes your firm's productivity by facilitating workflows and providing targeted reports.  We adapt to your needs, <em>always</em>.
+                StarLinkCMS
+ is a Cloud-based Legal Case Management System, dedicated to supporting the legal case worker. Our software maximizes your firm's productivity by facilitating workflows and providing targeted reports.  We adapt to your needs, <em>always</em>.
            </p>
             <p>The system is customized to match your firm's exact specifications. Your data resides in its own database on the Amazon Cloud, the screens and reports can all be optimized/created to your firm's specifications. </p>
-            <p>We specialize in importing legacy databases into iKase, including A1, Tritek, eCandidus, Meruscase, and Abacus. Everything is imported, including archived documents.
+            <p>We specialize in importing legacy databases into StarLinkCMS, including A1, Tritek, eCandidus, Meruscase, and Abacus. Everything is imported, including archived documents.
             </p>
             <p>
                 <a class="btn btn-primary btn-lg" href="features.php" role="button">Learn more &raquo;</a>
@@ -213,13 +210,14 @@ $version_number = 8;
             <hr />
             <p>
                 <div style="text-align:center; font-size:1.8em">BE MORE PRODUCTIVE</div>
-                <div style="text-align:center; font-size:0.9em; margin-top:-25px">TRIM COST AND SAVE TIME WITH IKASE</div>
+                <div style="text-align:center; font-size:0.9em; margin-top:-25px">TRIM COST AND SAVE TIME WITH StarLinkCMS</div>
     
             </p>
         </div>
         <div class="small_text" style="color:<?php echo $color; ?>">
         	<div style="float:right">
-            	&copy; iKase.website 2010 - <?php echo date("Y"); ?>
+            	&copy; Starlinkcms.com
+ 2010 - <?php echo date("Y"); ?>
             </div>
         	Version TRINITY 2.0
         </div>
