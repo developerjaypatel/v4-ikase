@@ -69,7 +69,8 @@ $version_number = 8;
 		$top = "100px";
 	}
 	
-	$ikase_logo = "img/starlinkcms_logo_briefcase_blue.png";
+	//$ikase_logo = "img/starlinkcms_logo_briefcase_blue.png";
+	$ikase_logo = "img/logo-starlinkcms.jpg";
 	?>
     <style>
 	body, html {
@@ -219,7 +220,7 @@ $version_number = 8;
             	&copy; Starlinkcms.com
  2010 - <?php echo date("Y"); ?>
             </div>
-        	Version TRINITY 2.0
+        	Version SL 3.0
         </div>
         <div id="quote_holder">
         	<div style="float:right;font-size:0.8em; display:"><span style="font-style:italic" id="artist_info_span"></span></div>
