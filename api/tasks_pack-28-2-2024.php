@@ -788,7 +788,7 @@ function getTaskSingleDayInbox($day, $all_users = "n") {
 		AND `ctu`.deleted = 'N'";
 		if ($all_users=="n") {
 			$sql .= " 
-			group by task_id ORDER BY tsk.task_dateandtime ASC, tsk.task_id ASC";
+			ORDER BY tsk.task_dateandtime ASC, tsk.task_id ASC";
 		} else {
 			$sql .= " 
 			ORDER BY tsk.assignee ASC, tsk.task_dateandtime ASC, tsk.task_id ASC";

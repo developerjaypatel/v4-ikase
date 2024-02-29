@@ -897,7 +897,7 @@ function newPhoneCalls($blnAll = false, $start = "", $end = "") {
 	AND `eve`.`deleted` ='N'
 	AND eve.customer_id = " . $_SESSION['user_customer_id'];
 	$sql .= " 
-	group by id ORDER BY eve.event_dateandtime DESC";
+	ORDER BY eve.event_dateandtime DESC";
 	
 	if ($_SERVER['REMOTE_ADDR']=='47.153.51.181') {
 		//die($sql);
@@ -2129,7 +2129,7 @@ function getUpcomingEvents() {
 	AND CAST( cse.event_dateandtime AS DATE ) <=  '" . $two_days . "'";
 	$sql .=	" AND `cse`.`deleted` ='N'
 	AND cse.customer_id = " . $_SESSION['user_customer_id'];
-	$sql .= " group by event_id ORDER BY cse.event_dateandtime ASC";
+	$sql .= " ORDER BY cse.event_dateandtime ASC";
 	//AND (cse.assignee LIKE '%" . $_SESSION['user_nickname'] . "%')
 	//cse.event_from =  '" . addslashes($_SESSION['user_name']) . "' OR 
 	if ($_SERVER['REMOTE_ADDR']=='47.153.51.181') {	
