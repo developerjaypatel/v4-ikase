@@ -4,19 +4,6 @@ session_write_close();
 
 include("sec.php");
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-  $application = "StarLinkCMS";
-  $application_logo = "logo-starlinkcms.jpg";
-  $application_url = "https://starlinkcms.com/";
-}
-else
-{
-  $application = "iKase";
-  $application_logo = "ikase_logo_login.png";
-  $application_url = "https://v2.ikase.org/";
-}
-
 $blnOwnerAdmin = ($_SESSION["user_role"] == "owner" && ($_SESSION["user_id"] == 11 || $_SESSION["user_id"] == 12));
 //die(print_r($_SESSION));
 
@@ -352,7 +339,7 @@ $invoices_ready = DB::select($sql); $dbPDO = null;
 <?php //echo $_SESSION["user_customer_id"] . " // " . $_SESSION["user_plain_id"] . " // " . $_SESSION["user"]; ?>
 <table width="1280" border="0" align="center" cellpadding="2" cellspacing="0">
   <tr>
-    <td colspan="2" bgcolor="#CCCCCC"><img src="../../img/<?= $application_logo; ?>" alt="<?= $application; ?>" height="32" /></td>
+    <td colspan="2" bgcolor="#CCCCCC"><img src="../../img/ikase_logo_login.png" alt="iKase" height="32" /></td>
   </tr>
   <tr>
     <td colspan="2" bgcolor="#CCCCCC">

@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="<?=$application;?> is a Legal Case Management System">
-     <meta name="author" content="<?=$application;?> / kustomweb.com">
+    <meta name="description" content="iKase is a Legal Case Management System">
+     <meta name="author" content="ikase.org / kustomweb.com">
     <meta name="robots" content="noindex, nofollow">
    <link rel="shortcut icon" href="img/favicon.png">
 
-    <title><?=$application;?> :: <?php echo $page_title; ?> :: Legal Case Management Software</title>
+    <title>iKase :: <?php echo $page_title; ?> :: Legal Case Management Software</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.3.0.3.min.css">

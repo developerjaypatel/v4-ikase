@@ -176,10 +176,10 @@ function sendReset() {
 				$("#inputEmail").hide();
 				$(".login_please").hide();
 				$("#this_email_label").hide();
-				$("#button_holder").html("&nbsp;<br><span class='white_text'>A password reset link has been sent to your email.  Please check your inbox and follow the instructions.</span><div><button class='btn btn-lg btn-primary btn-block' onClick='document.location.href=\"<?=$application_url; ?>\"' style='width:210px'>Login</button></div>");
+				$("#button_holder").html("&nbsp;<br><span class='white_text'>A password reset link has been sent to your email.  Please check your inbox and follow the instructions.</span><div><button class='btn btn-lg btn-primary btn-block' onClick='document.location.href=\"https://v2.ikase.org\"' style='width:210px'>Login</button></div>");
 				emptyReminderBuffer(data.success.text);
 				setTimeout(function() {
-					//document.location.href = "<?=$application_url; ?>/";
+					//document.location.href = "https://v2.ikase.org/";
 				}, 5500);
 			}
 		}

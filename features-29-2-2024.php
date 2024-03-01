@@ -1,36 +1,25 @@
 <?php
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-  $application = "StarLinkCMS";
-  $application_url = "https://starlinkcms.com/";
-}
-else
-{
-  $application = "iKase";
-  $application_url = "https://v2.ikase.org/";
-}
-
 include("browser_detect.php");
 
 if($blnMobile) {
-	header("location:" . $application_url . "index_mobile.php");
+	header("location:https://v2.ikase.org/index_mobile.php");
 }
 
 if($_SERVER["HTTPS"]=="off") {
-	header("location:$application_url");
+	header("location:https://v2.ikase.org");
 }
 //include ("text_editor/ed/datacon.php");
 //include("api/connection.php");
 $version_number = 8;
-$page_title = "Features $application";
+$page_title = "Features";
 ?>
 <?php include("site_nav.php"); ?>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron" style="border-bottom: 1px solid black;">
       <div class="container">
-        <h1><?=$application; ?> Features</h1>
-        <p><?=$application; ?> functionality has been crafted in conjunction with large and small legal firms, to best address the needs of the legal worker community. Moreover, these features can customized just for your firm, because the modular architecture allows us to build the software to match your exact needs.</p>
+        <h1>iKase Features</h1>
+        <p>iKase functionality has been crafted in conjunction with large and small legal firms, to best address the needs of the legal worker community. Moreover, these features can customized just for your firm, because the modular architecture allows us to build the software to match your exact needs.</p>
       </div>
     </div>
 
@@ -102,7 +91,7 @@ $page_title = "Features $application";
             <li>DOR</li>
             <li>DOR (E)</li>
             <li>Lien</li>
-            <li>All EAMS Legal Forms Can Be Filed Through <?=$application; ?></li>
+            <li>All EAMS Legal Forms Can Be Filed Through iKase</li>
             </li>
         </ul>
         <p>&nbsp;</p>

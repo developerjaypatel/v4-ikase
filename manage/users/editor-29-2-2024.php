@@ -6,19 +6,6 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 include ("../../text_editor/ed/functions.php");
 include ("../../text_editor/ed/datacon.php");
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-  $application = "StarLinkCMS";
-  $application_logo = "logo-starlinkcms.jpg";
-  $application_url = "https://starlinkcms.com/";
-}
-else
-{
-  $application = "iKase";
-  $application_logo = "ikase_logo.png";
-  $application_url = "https://v2.ikase.org/";
-}
-
 $cus_id = passed_var("cus_id");
 
 $user_id = passed_var("user_id");
@@ -118,7 +105,7 @@ while ($row = $result->fetch()) {
     <table width="980" border="0" align="center" cellpadding="2" cellspacing="0">
       <tr>
         <td colspan="2" bgcolor="#CCCCCC">
-        	<img src="../../img/<?=$application_logo;?>" alt="<?=$application;?>" height="90" />
+        	<img src="../../img/ikase_logo.png" alt="iKase" height="90" />
         </td>
       </tr>
       <tr>

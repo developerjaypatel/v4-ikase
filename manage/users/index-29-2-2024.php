@@ -11,19 +11,6 @@ if (count($_SESSION)==0) {
 	header("location:../../index.php");
 }
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-  $application = "StarLinkCMS";
-  $application_logo = "logo-starlinkcms.jpg";
-  $application_url = "https://starlinkcms.com/";
-}
-else
-{
-  $application = "iKase";
-  $application_logo = "ikase_logo.png";
-  $application_url = "https://v2.ikase.org/";
-}
-
 include("../customers/sec.php");
 
 $cus_id = passed_var("cus_id");
@@ -98,7 +85,7 @@ body {
 			}
 			?>
         </div>
-        <img src="../../img/<?=$application_logo;?>" alt="<?=$application_logo;?>" height="90" />
+        <img src="../../img/ikase_logo.png" alt="iKase" height="90" />
     </td>
   </tr>
   <tr>
