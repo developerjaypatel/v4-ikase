@@ -5,7 +5,8 @@
 ?>
 <style>
   .nav_link{
-  padding-right: 8px !important;
+  padding-left: 6px !important;
+  padding-right: 6px !important;
 }
 </style>
 <nav class="navbar navbar-inverse navbar-fixed-top">

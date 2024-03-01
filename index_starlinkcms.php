@@ -39,9 +39,9 @@ $version_number = 8;
     <meta name="description" content="">
     <meta name="author" content="starlinkcms.com / kustomweb.com">
     <meta name="robots" content="noindex, nofollow">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/logo-starlinkcms.png">
 
-    <title>Starlinkcms.com :: Legal Case Management Software</title>
+    <title>StarLinkCMS :: Legal Case Management Software</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.3.0.3.min.css">
@@ -70,7 +70,7 @@ $version_number = 8;
 	}
 	
 	//$ikase_logo = "img/starlinkcms_logo_briefcase_blue.png";
-	$ikase_logo = "img/logo-starlinkcms.jpg";
+	$ikase_logo = "img/logo-starlinkcms.png";
 	?>
     <style>
 	body, html {
@@ -177,7 +177,7 @@ $version_number = 8;
   </head>
 
   <body onLoad="getQuote()">
-  	<?php include("website_nav_starlinkcms.php"); ?>
+  	<?php include("website_nav.php"); ?>
     <div class="forgot_password_holder" style="position: absolute;width: 368px; z-index: 9999;top: 50px;left: 65.5%;"><a class="forgot_password small_text" href="javascript:forgotPassword()">Forgot Password?</a></div>
     <div class="alert" role="alert" id="capsLockWarning" style="display:none; position: absolute;width: 268px; font-size: 0.9em; z-index: 9999;top: 75px;left: 65.5%; text-align:left;"><i class="glyphicon glyphicon-warning-sign"></i>&nbsp;<span style="font-weight:bold">Caps Lock On!</span></div>
     <div class="alert alert-danger" style="display:none; position: absolute;width: 368px;margin-top: 10px;color: black;font-size: 0.9em;z-index: 9999;top: 50px;left: 55.5%;"></div>
@@ -187,7 +187,7 @@ $version_number = 8;
         STARLINKCMS.COM IS  DOWN FOR MAINTENANCE - WEEKEND OF 9/8-9/9/2018<br>
       	</div>
       	<div  style="float:left; padding-right:50px; padding-bottom:10px" align="left">
-        	<img src="<?php echo $ikase_logo; ?>" width="215" height="197" alt="Starlinkcms" id="ikase_logo">
+        	<img src="<?php echo $ikase_logo; ?>" width="165" height="165" alt="Starlinkcms" id="ikase_logo" style="margin-top:10px;" />
             <!-- images/3d_logo.jpg -->
             </div>
         <h1 style="font-weight:200; font-family: 'Source Sans Pro', sans-serif;">
