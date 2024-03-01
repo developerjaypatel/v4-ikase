@@ -15,19 +15,6 @@ if ($admin_id>0) {
 	$name = $row->name;
 	$owner_email = $row->owner_email;
 }
-
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-  $application = "StarLinkCMS";
-  $application_url = "https://starlinkcms.com/";
-  $application_logo = "logo-starlinkcms.jpg";
-}
-else
-{
-  $application = "iKase";
-  $application_url = "https://v2.ikase.org/";
-  $application_logo = "ikase_logo.png";
-}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -55,7 +42,7 @@ else
 <input type="hidden" value="<?php echo $suid; ?>" name="suid" id="suid" />
   <table width="980" border="0" align="center" cellpadding="2" cellspacing="0">
       <tr>
-        <td colspan="2" bgcolor="#CCCCCC"><img src="../../img/<?=$application_logo; ?>" alt="<?=$application;?>" height="90" /></td>
+        <td colspan="2" bgcolor="#CCCCCC"><img src="../../img/ikase_logo.png" alt="iKase" height="90" /></td>
       </tr>
       <tr>
         <td colspan="2" bgcolor="#CCCCCC"><div style="float:right"><a href="index.php?admin_client=<?php echo $admin_client; ?>&suid=<?php echo $suid; ?>">Administrators</a></div>

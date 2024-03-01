@@ -1,19 +1,6 @@
 <?php
 header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
-
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-  $application = "StarLinkCMS";
-  $application_url = "https://starlinkcms.com/";
-  $application_logo = "logo-starlinkcms.jpg";
-}
-else
-{
-  $application = "iKase";
-  $application_url = "https://v2.ikase.org/";
-  $application_logo = "ikase_logo.png";
-}
 ?>
 <?php
 include ("../../text_editor/ed/functions.php");
@@ -52,7 +39,7 @@ if ($host!="" && $admin_client=="") {
 <body class="yui-skin-sam">
 <table width="1280" border="0" align="center" cellpadding="2" cellspacing="0">
   <tr>
-    <td colspan="2" bgcolor="#CCCCCC"><img src="../../img/<?= $application_logo; ?>" alt="<?= $application; ?>" height="90" /></td>
+    <td colspan="2" bgcolor="#CCCCCC"><img src="../../img/ikase_logo.png" alt="iKase" height="90" /></td>
   </tr>
   <tr>
     <td colspan="2" bgcolor="#CCCCCC">

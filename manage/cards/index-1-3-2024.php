@@ -7,19 +7,6 @@ include ("../../text_editor/ed/datacon.php");
 
 $cus_id = -1;
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-  $application = "StarLinkCMS";
-  $application_url = "https://starlinkcms.com/";
-  $application_logo = "logo-starlinkcms.jpg";
-}
-else
-{
-  $application = "iKase";
-  $application_url = "https://v2.ikase.org/";
-  $application_logo = "ikase_logo.png";
-}
-
 $admin_client = passed_var("admin_client");
 $administrator = passed_var("administrator");
 ?>
@@ -47,7 +34,7 @@ $administrator = passed_var("administrator");
 <body class="yui-skin-sam">
 <table width="1280" border="0" align="center" cellpadding="2" cellspacing="0">
   <tr>
-    <td colspan="2" bgcolor="#CCCCCC"><img src="../../img/<?= $application_logo; ?>" alt="<?= $application; ?>" height="90" /></td>
+    <td colspan="2" bgcolor="#CCCCCC"><img src="../../img/ikase_logo.png" alt="iKase" height="90" /></td>
   </tr>
   <tr>
     <td colspan="2" bgcolor="#CCCCCC">

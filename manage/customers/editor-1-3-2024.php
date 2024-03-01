@@ -9,18 +9,6 @@ if (!isset($_SESSION["user_plain_id"])) {
 include ("../../text_editor/ed/functions.php");
 include ("../../text_editor/ed/datacon.php");
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-  $application = "StarLinkCMS";
-  $application_url = "https://starlinkcms.com/";
-  $application_logo = "logo-starlinkcms.jpg";
-}
-else
-{
-  $application = "iKase";
-  $application_url = "https://v2.ikase.org/";
-  $application_logo = "ikase_logo_login.png";
-}
 
 $cus_id = passed_var("cus_id");
 $admin_client = passed_var("admin_client");
@@ -196,7 +184,7 @@ $user_count = DB::runOrDie("SELECT COUNT(`user_id`) FROM cse_user WHERE customer
 <input type="hidden" value="<?php echo $admin_client; ?>" name="admin_client" id="admin_client" />
   <table width="980" border="0" align="center" cellpadding="2" cellspacing="0">
       <tr>
-        <td colspan="2" bgcolor="#CCCCCC"><img src="../../img/<?= $application_logo; ?>" alt="<?=$application; ?>" height="32" /></td>
+        <td colspan="2" bgcolor="#CCCCCC"><img src="../../img/ikase_logo_login.png" alt="iKase" height="32" /></td>
       </tr>
       <tr>
         <td colspan="2" bgcolor="#CCCCCC">

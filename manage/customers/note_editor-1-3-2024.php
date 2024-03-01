@@ -5,19 +5,6 @@ include ("../../text_editor/ed/datacon.php");
 $cus_id = passed_var("cus_id");
 $note_id = passed_var("note_id");
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-  $application = "StarLinkCMS";
-  $application_url = "https://starlinkcms.com/";
-  $application_logo = "logo-starlinkcms.jpg";
-}
-else
-{
-  $application = "iKase";
-  $application_url = "https://v2.ikase.org/";
-  $application_logo = "ikase_logo.png";
-}
-
 $query_notes = "SELECT cn . * FROM ikase.cse_notes cn WHERE cn.customer_id = 1033 AND notes_id = ?";
 $row = DB::runOrDie($query_notes, [$note_id])->fetch();
 // if (partie_array_type=='quick') { selected }
@@ -36,7 +23,7 @@ $row = DB::runOrDie($query_notes, [$note_id])->fetch();
 <input type="hidden" value="<?php echo $suid; ?>" name="suid" id="suid" />
 	<table width="700" border="0" align="center" cellpadding="2" cellspacing="0">
       <tr>
-        <td colspan="2" bgcolor="#CCCCCC"><img src="../../img/<?= $application_logo; ?>" alt="<?= $application ?>" height="90" /></td>
+        <td colspan="2" bgcolor="#CCCCCC"><img src="../../img/ikase_logo.png" alt="iKase" height="90" /></td>
       </tr>
       <tr>
         <td colspan="2" bgcolor="#CCCCCC"><div style="float:right"><a href="editor.php?suid=<?php echo $suid; ?>&cus_id=<?php echo $cus_id; ?>">Back to Customer</a></div>
