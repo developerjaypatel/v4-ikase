@@ -5,21 +5,6 @@ ini_set('display_errors', '1');
 require_once('../../shared/legacy_session.php');
 session_write_close();
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-  $application = "StarLinkCMS";
-  $application_logo = "logo-starlinkcms.png";
-  $application_url = "https://starlinkcms.com/";
-  $support_email = "support@starlinkcms.com";
-}
-else
-{
-  $application = "iKase";
-  $application_logo = "ikase_logo_login.png";
-  $application_url = "https://v2.ikase.org/";
-  $support_email = "support@ikase.org";
-}
-
 if (!isset($_SESSION["user_plain_id"])) {
 	die("no id");
 }
@@ -79,8 +64,8 @@ try {
 <form action="invoice_payment_insert.php" method="post" enctype="multipart/form-data">
 	<table width="850px" border="0" align="center" cellpadding="2" cellspacing="0">
 	  <tr>
-	    <td align="left" valign="top"><img src="../../img/<?=$application_logo;?>" alt="<?=$application;?>" height="32" /><br />
-	      <?=$support_email; ?></td>
+	    <td align="left" valign="top"><img src="https://www.ikase.org/img/ikase_logo_login.png" alt="iKase" height="32" /><br />
+	      support@ikase.org</td>
 	    <td align="center" valign="top" nowrap="nowrap"><span style="font-weight:bold; font-size:1.5em">Payment</span></td>
 	    <td align="right" valign="top"> Invoice #: <span id="invoice_number_holder"><?php echo $invoice->invoice_number; ?></span>
 	      <input type="hidden" name="invoice_number" id="invoice_number" value="" />
@@ -88,7 +73,7 @@ try {
 	      <br />
 	      Date:<?php echo date("m/d/Y", strtotime($invoice->invoice_date)); ?>
 	      
-	      <div> <a href="index.php?cus_id=<?php echo $cus_id; ?>">customers</a>&nbsp;|&nbsp;<a href="invoices.php?cus_id=<?php echo $cus_id; ?>">this customer invoices</a>&nbsp;|&nbsp;<a href="invoices_list.php">all <?= $application; ?> invoices</a> </div>
+	      <div> <a href="index.php?cus_id=<?php echo $cus_id; ?>">customers</a>&nbsp;|&nbsp;<a href="invoices.php?cus_id=<?php echo $cus_id; ?>">this customer invoices</a>&nbsp;|&nbsp;<a href="invoices_list.php">all ikase invoices</a> </div>
 	      </td>
       </tr>
 	  <tr align="left" valign="top">

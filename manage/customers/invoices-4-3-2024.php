@@ -5,19 +5,6 @@ ini_set('display_errors', '1');
 require_once('../../shared/legacy_session.php');
 session_write_close();
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-  $application = "StarLinkCMS";
-  $application_logo = "logo-starlinkcms.png";
-  $application_url = "https://starlinkcms.com/";
-}
-else
-{
-  $application = "iKase";
-  $application_logo = "ikase_logo_login.png";
-  $application_url = "https://v2.ikase.org/";
-}
-
 include("sec.php");
 
 include("../../api/connection.php");
@@ -159,7 +146,7 @@ if ($filter=="paid") {
 <div style="width:1082px; margin-left:auto; margin-right:auto">
 <table width="100%" border="0" cellspacing="0" cellpadding="2">
   <tr>
-    <td width="1%"><img src="../../img/<?= $application_logo; ?>" alt="<?= $application; ?>" height="32" /></td>
+    <td width="1%"><img src="../../img/ikase_logo_login.png" alt="iKase" height="32" /></td>
     <td nowrap><span style="font-weight:bold; font-size:1.5em">List of <?php echo $invoice_status; ?> Invoices :: <?php echo $customer->cus_name; ?></span></td>
     <td width="1%" nowrap="nowrap" align="right">
     	as of <?php echo date("m/d/Y"); ?>
@@ -168,7 +155,7 @@ if ($filter=="paid") {
   <tr>
   	<td colspan="3" align="right">
     <div>
-        	<a href="invoices.php?cus_id=<?php echo $cus_id; ?>&filter=paid">paid invoices</a>&nbsp;|&nbsp;<a href="invoices.php?cus_id=<?php echo $cus_id; ?>">outstanding invoices</a>&nbsp;|&nbsp;<a href="invoice.php?cus_id=<?php echo $cus_id; ?>">new invoice</a>&nbsp;|&nbsp;<a href="invoices_list.php">list all <?=$application;?> invoices</a>&nbsp;|&nbsp;<a href='index.php'>customers</a>
+        	<a href="invoices.php?cus_id=<?php echo $cus_id; ?>&filter=paid">paid invoices</a>&nbsp;|&nbsp;<a href="invoices.php?cus_id=<?php echo $cus_id; ?>">outstanding invoices</a>&nbsp;|&nbsp;<a href="invoice.php?cus_id=<?php echo $cus_id; ?>">new invoice</a>&nbsp;|&nbsp;<a href="invoices_list.php">list all ikase invoices</a>&nbsp;|&nbsp;<a href='index.php'>customers</a>
         </div>
     </td>
   </tr>

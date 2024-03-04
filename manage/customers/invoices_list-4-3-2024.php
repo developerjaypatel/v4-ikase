@@ -8,19 +8,6 @@ session_write_close();
 include("sec.php");
 include("../../api/connection.php");
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-  $application = "StarLinkCMS";
-  $application_logo = "logo-starlinkcms.png";
-  $application_url = "https://starlinkcms.com/";
-}
-else
-{
-  $application = "iKase";
-  $application_logo = "ikase_logo_login.png";
-  $application_url = "https://v2.ikase.org/";
-}
-
 $filter = passed_var("filter", "get");
 
 try {
@@ -139,7 +126,7 @@ if (count($invoices)==0) {
 <div style="width:1082px; margin-left:auto; margin-right:auto">
 <table width="100%" border="0" cellspacing="0" cellpadding="2">
   <tr>
-    <td width="1%"><img src="../../img/<?= $application_logo; ?>" alt="<?= $application; ?>" height="32" /></td>
+    <td width="1%"><img src="../../img/ikase_logo_login.png" alt="iKase" height="32" /></td>
     <td><span style="font-weight:bold; font-size:1.5em">List of <?php echo $subtitle; ?>Invoices</span></td>
     <td width="1%" nowrap="nowrap">
     	as of <?php echo date("m/d/Y"); ?>

@@ -5,21 +5,6 @@ ini_set('display_errors', '1');
 require_once('../../shared/legacy_session.php');
 include("../../api/connection.php");
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
-{
-  $application = "StarLinkCMS";
-  $application_logo = "logo-starlinkcms.png";
-  $application_url = "https://starlinkcms.com/";
-  $support_email = "support@starlinkcms.com";
-}
-else
-{
-  $application = "iKase";
-  $application_logo = "ikase_logo_login.png";
-  $application_url = "https://v2.ikase.org/";
-  $support_email = "support@ikase.org";
-}
-
 $suid = "";
 $lastmonth = mktime(0, 0, 0, date("m")-1, date("d"),   date("Y"));
 
@@ -260,7 +245,7 @@ $user_count = mysql_result($result_users, 0, "user_count");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="robots" content="noindex, nofollow" />
-<title><?= $application; ?> Invoice</title>
+<title>iKase Invoice</title>
 <link rel="stylesheet" type="text/css" href="../../css/jquery.datetimepicker.css" />
 <script language="javascript" src="../../lib/jquery.1.10.2.js"></script>
 <script language="javascript" src="../../lib/jquery.datetimepicker.js"></script>
@@ -275,8 +260,8 @@ $user_count = mysql_result($result_users, 0, "user_count");
 <body onload="init()">
 <table width="800px" border="0" cellspacing="0" cellpadding="2" align="center">
   <tr>
-    <td align="left" valign="top"><img src="../../img/<?= $application_logo; ?>" alt="<?= $application; ?>" height="32" /><br />
-      <?= $support_email; ?></td>
+    <td align="left" valign="top"><img src="https://www.ikase.org/img/ikase_logo_login.png" alt="iKase" height="32" /><br />
+      support@ikase.org</td>
     <td align="center" valign="top" nowrap="nowrap">
     	<span style="font-weight:bold; font-size:1.5em"><span id="invoice_qualifier">New </span>Invoice</span>
     </td>
