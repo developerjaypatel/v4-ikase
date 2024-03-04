@@ -11,7 +11,7 @@ if($_SERVER['SERVER_NAME']=="starlinkcms.com")
 {
   $application = "StarLinkCMS";
   $application_url = "https://starlinkcms.com/";
-  $application_logo = "logo-starlinkcms.jpg";
+  $application_logo = "logo-starlinkcms.png";
 }
 else
 {

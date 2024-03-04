@@ -14,7 +14,7 @@ if (count($_SESSION)==0) {
 if($_SERVER['SERVER_NAME']=="starlinkcms.com")
 {
   $application = "StarLinkCMS";
-  $application_logo = "logo-starlinkcms.jpg";
+  $application_logo = "logo-starlinkcms.png";
   $application_url = "https://starlinkcms.com/";
 }
 else
