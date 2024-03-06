@@ -14,12 +14,14 @@ if($_SERVER['SERVER_NAME']=="starlinkcms.com")
   $application = "StarLinkCMS";
   $application_url = "https://starlinkcms.com/";
   $application_logo = "logo-starlinkcms.png";
+  $new_customer_instruction_url = "new_customer_procedure_slcms.html";
 }
 else
 {
   $application = "iKase";
   $application_url = "https://v2.ikase.org/";
   $application_logo = "ikase_logo_login.png";
+  $new_customer_instruction_url = "new_customer_procedure.html";
 }
 
 $cus_id = passed_var("cus_id");
@@ -203,7 +205,7 @@ $user_count = DB::runOrDie("SELECT COUNT(`user_id`) FROM cse_user WHERE customer
         	<div style="float:right">
             	<a href="index.php?admin_client=<?php echo $admin_client; ?>&suid=<?php echo $suid; ?>">Customers</a>
                 &nbsp;|&nbsp;
-                <a href="new_customer_procedure.html">New Customer Instructions</a>
+                <a href="<?= $new_customer_instruction_url; ?>">New Customer Instructions</a>
         	</div>
             <strong>Customer Information</strong></td>
       </tr>
