@@ -89,7 +89,7 @@ ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 	$sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -353,7 +353,7 @@ ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 			LEFT OUTER JOIN cse_person app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -641,7 +641,7 @@ ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 	$sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')

@@ -96,7 +96,7 @@ window.message_listing = Backbone.View.extend({
 					if (message.message_type=="email") {
 						var strpos = attachment.indexOf("attachments");
 						if (strpos < 0) {
-							var attach_link = "https://v2.ikase.org/uploads/" + customer_id + "/webmail_previews/" + login_user_id + "/" + attachment;
+							var attach_link = "https://"+ location.hostname +"/uploads/" + customer_id + "/webmail_previews/" + login_user_id + "/" + attachment;
 						} else {
 							var attach_link = "https://www.ikase.xyz/ikase/gmail/ui/" + attachment;
 						}

@@ -65,7 +65,7 @@ fwrite($fp, 'convert xl  @ ' . date('m/d/y H:i:s') . chr(10));
 fclose($fp); 
 */
 $params = array();
-curl_post_async("https://www.ikase.org/api/scrape_read_csv.php", $params);
+curl_post_async("https://". $_SERVER['SERVER_NAME'] ."/api/scrape_read_csv.php", $params);
 
 //echo date('H:i:s') , " File written to " , str_replace('.php', '.csv', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
 //echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;

@@ -6,6 +6,17 @@ session_write_close();
 
 set_time_limit(3000);
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application = "StarLinkCMS";
+  $application_domain = "starlinkcms.com"; 
+}
+else
+{
+  $application = "iKase";
+  $application_domain = "ikase.org";
+}
+
 $time = microtime();
 $time = explode(' ', $time);
 $time = $time[1] + $time[0];
@@ -44,9 +55,9 @@ try {
 		$email_message=new email_message_class;
 		//$email_message->SetEncodedEmailHeader("To",$to_address,$to_name);
 		$tos = "nick@kustomweb.com";
-		$from_address = "donotreply@ikase.org";
-		$from_name = "iKase Client Birthday Announcements";
-		$subject = "iKase Client Birthday Announcement";
+		$from_address = "donotreply@". $application_domain;
+		$from_name = $application . " Client Birthday Announcements";
+		$subject = $application . " Client Birthday Announcement";
 		$attachments = "";
 		$tos = explode(";", $tos);
 		$arrEmailTo = array();

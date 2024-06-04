@@ -248,7 +248,7 @@ foreach($attorneys as $attorney) {
 }
 //die(print_r($arrRows));
 //drop down for venue
-$query = "SELECT `venue`, `venue_abbr` FROM `ikase`.`cse_venue` ORDER BY `venue_abbr`";
+$query = "SELECT `venue`, `venue_abbr` FROM `ikase`.`cse_venue` where deleted!=1 ORDER BY `venue_abbr`";
 $arrVenueRows = array();
 try {
 	$venues = DB::select($query);

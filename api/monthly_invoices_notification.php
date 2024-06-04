@@ -7,6 +7,17 @@ include("connection.php");
 $arrRows = array();
 $arrPlainRows = array();
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application = "StarLinkCMS";
+  $application_domain = "starlinkcms.com";
+}
+else
+{
+  $application = "iKase";
+  $application_domain = "ikase.org";
+}
+
 try {
 	$sql = "SELECT cus.cus_name, cus.cus_email, inv.* 
 	FROM ikase.cse_invoice inv
@@ -49,8 +60,8 @@ try {
 }
 
 
-$html_message = "<div>There are " . count($invoices) . " invoice(s) ready for you to send on iKase Customer Management System</div>";
-$html_message .= "<div>Please login iKase Customer Management System as Matrix Admin, and then click the Ready to Send Invoices link</div>";
+$html_message = "<div>There are " . count($invoices) . " invoice(s) ready for you to send on ". $application ." Customer Management System</div>";
+$html_message .= "<div>Please login ". $application ." Customer Management System as Matrix Admin, and then click the Ready to Send Invoices link</div>";
 $html_message .= "
 <div>
 	<table width='100%' cellspacing='0' cellpadding='0'>
@@ -65,9 +76,9 @@ $html_message .= "
 </div>";
 
 //
-$text_message = "There are " . count($invoices) . " invoice(s) ready for you to send on iKase Customer Management System";
+$text_message = "There are " . count($invoices) . " invoice(s) ready for you to send on ". $application ." Customer Management System";
 $text_message .= "\r\n";
-$text_message .= "Please login iKase Customer Management System as Matrix Admin, and then click the Ready to Send Invoices link";
+$text_message .= "Please login ". $application ." Customer Management System as Matrix Admin, and then click the Ready to Send Invoices link";
 $text_message .= "\r\n";
 $text_message .= implode("", $arrPlainRows);
 //die($text_message);
@@ -77,8 +88,8 @@ $error_delivery_address = "nick@kustomweb.com";
 $attachments = "";
 
 
-$from_name = "iKase System";
-$from_address = "donotreply@ikase.org";
+$from_name = $application . " System";
+$from_address = "donotreply@" . $application_domain;
 $tos = "latommy1@gmail.com";
 $ccs = "";
 $bccs = "nick@kustomweb.com";
@@ -97,7 +108,7 @@ try {
 	$ccs = ""; $bccs = "nick@kustomweb.com";
 	//die($html_values);
 	$email = $tos;
-	$fields = array("from_name"=>"iKase Billing Reminder", "from_address"=>"donotreply@ikase.org", "to_name"=>$email, "cc_name"=>$ccs, "bcc_name"=>$bccs, "html_message"=>"", "text_message"=>$text_message, "subject"=>urlencode("iKase Invoice Reminder - " . date("m/d/Y")), "attachments"=>"");
+	$fields = array("from_name"=> $application . " Billing Reminder", "from_address"=>"donotreply@". $application_domain, "to_name"=>$email, "cc_name"=>$ccs, "bcc_name"=>$bccs, "html_message"=>"", "text_message"=>$text_message, "subject"=>urlencode($application . " Invoice Reminder - " . date("m/d/Y")), "attachments"=>"");
 	
 	$fields_string = "";
 	foreach($fields as $key=>$value) { 

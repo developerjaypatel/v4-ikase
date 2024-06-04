@@ -21,6 +21,17 @@ $user_uuid = $arrToken[1];
 exportCalendar($token, $user_uuid);
 
 function exportCalendar($token, $user_uuid) {	
+	if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+	{
+	  $application = "StarLinkCMS";
+	  $application_domain = "starlinkcms.com";
+	}
+	else
+	{
+	  $application = "iKase";
+	  $application_domain = "ikase.org";
+	}
+
 	if ($token == "") {
 		$error = array("error"=> array("text"=>"no entry"));
         echo json_encode($error);
@@ -132,7 +143,7 @@ function exportCalendar($token, $user_uuid) {
 		$output = "BEGIN:VCALENDAR
 METHOD:PUBLISH
 VERSION:2.0
-PRODID:-//One Stop//iKase//EN\n";
+PRODID:-//One Stop//". $application ."//EN\n";
 		
         foreach($allcusevents as $ap_intex=>$appointment):
 			//put together the actual event details
@@ -156,7 +167,7 @@ PRODID:-//One Stop//iKase//EN\n";
 			$endTime   = date("Hi", strtotime($appointment->event_dateandtime));
 			
 			$output .= "BEGIN:VEVENT
-UID:" . $event_uuid. "ikase.org
+UID:" . $event_uuid.  "" . $application_domain ."
 DTSTAMP:" . gmdate('Ymd').'T'. gmdate('His') . "Z
 DTSTART:".$date."T".$startTime."00Z
 FDATE:" . $appointment->event_dateandtime . "
@@ -187,7 +198,7 @@ $output .= "
 DESCRIPTION:";
 $blnDescription = false;
 if ($appointment->case_number!="") {
-	$output .= "iKase Link: https://www.ikase.org/v7.php#kases/" . $appointment->case_id;
+	$output .= $application . " Link: https://". $_SERVER['SERVER_NAME'] ."/v7.php#kases/" . $appointment->case_id;
 	$output .= "\\n\\n";
 	$output .= "Case Number:" . $appointment->case_number . "\\n";
 	$blnDescription = true;

@@ -1,5 +1,5 @@
 <?php
-setcookie('samesite-test', '1', 0, '/', 'Starlinkcms.com', 'SameSite=None; Secure');
+setcookie('samesite-test', '1', 0, '/', 'v2.starlinkcms.com', 'SameSite=None; Secure');
 
 if ($_SERVER['REMOTE_ADDR'] == "47.153.49.83") {
 	//phpinfo();
@@ -10,11 +10,11 @@ include("browser_detect.php");
 //$blnDebug = ($_SERVER['REMOTE_ADDR']=='47.153.51.181');
 $blnDebug = false;
 if($blnMobile) {
-	header("location:https://starlinkcms.com/index_mobile.php");
+	header("location:https://v2.starlinkcms.com/index_mobile.php");
 }
 
 if($_SERVER["HTTPS"]=="off") {
-	header("location:https://starlinkcms.com");
+	header("location:https://v2.starlinkcms.com");
 }
 
 $sixo = strtotime("2017-09-01 18:00:00");
@@ -275,22 +275,40 @@ $version_number = 8;
 	setTimeout(function() {
 		getWeather();
 		
-		$("#password_holder").prepend('<div style="position:absolute; top:-27px; font-size:1.2em; width:20px; visibility:hidden; z-index: 9999;top: 17px;" id="eye_holder"><i class="glyphicon glyphicon-eye-open" style="color:black; cursor:pointer" id="show_password" title="Show Password"></i></div>');
+		$("#password_holder").prepend('<div style="position:absolute; top:-27px; font-size:1.2em; width:20px; visibility:hidden; z-index: 9999;top: 17px;margin-left:-20px;" id="eye_holder"><i class="glyphicon glyphicon-eye-close" style="color:black; cursor:pointer" id="show_password" title="Show Password"></i></div>');
 		
 		var added = $("#inputPassword").css("width").replace("px", "");
 		var started = $("#eye_holder").css("left").replace("px", "");
 		
 		$("#eye_holder").css("left", (Number(started) + Number(added) - 1) + "px");
 		
-		$('#show_password').on("mousedown", function() {
-			document.getElementById("inputPassword").type = "text";
-			$('#show_password').css("color", "white");
-		});
-		$('#show_password').on("mouseup", function() {
-			document.getElementById("inputPassword").type = "password";
-			$('#show_password').css("color", "black");
-		});
-		
+		// $('#show_password').on("mousedown", function() {
+		// 	document.getElementById("inputPassword").type = "text";
+		// 	$('#show_password').css("color", "black");
+		// });
+		// $('#show_password').on("mouseup", function() {
+		// 	document.getElementById("inputPassword").type = "password";
+		// 	$('#show_password').css("color", "black");
+		// });
+
+		// added this code for show/hide password till click again with changing eye open/close icon 
+		var flag = 0;
+		$("#show_password").on("click", function() {
+			if(flag == 0)
+			{
+				document.getElementById("inputPassword").type = "text";
+				flag = 1;
+				$("#show_password").removeClass("glyphicon-eye-close");
+				$("#show_password").addClass("glyphicon-eye-open");
+			}
+			else
+			{
+				document.getElementById("inputPassword").type = "password";
+				flag = 0;
+				$("#show_password").removeClass("glyphicon-eye-open");
+				$("#show_password").addClass("glyphicon-eye-close");
+			}
+		});		
 	}, 200);
 	
 	$('.form-control').keypress(function(e) {

@@ -51,7 +51,7 @@ if (($customer_id==1033)) {
 $sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN " . $db_name . "`cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN " . $db_name . "`cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN " . $db_name . "`cse_case_corporation` ccorp

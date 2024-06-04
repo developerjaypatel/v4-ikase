@@ -2683,7 +2683,7 @@ function addMessage() {
 			if ($specialty!="") {
 				$message .= "\r\n\r\nDoctor Type Needed: " . $specialty;
 			}
-			$message .= "\r\n\r\nhttps://www.ikase.org/down.php?key=" . $key;
+			$message .= "\r\n\r\nhttps://". $_SERVER['SERVER_NAME'] ."/down.php?key=" . $key;
 		}
 	}
 	$email_message = $message;
@@ -4060,7 +4060,7 @@ function trackMessage($operation, $message_id, $blnFromEmail = false, $return = 
 		recordActivity($operation, $activity, $case_uuid, $new_id, $activity_category, 0 , $ktags_value);
 	
 		//if ($_SERVER['REMOTE_ADDR']=='47.153.49.248') {
-			$url = "https://www.ikase.org/api/messages/setattachments";
+			$url = "https://". $_SERVER['SERVER_NAME'] ."/api/messages/setattachments";
 			$params = array("customer_id"=> $_SESSION['user_customer_id']);
 			/*
 			$result = post_curl($url, $params);

@@ -16,10 +16,10 @@ if ($admin_id>0) {
 	$owner_email = $row->owner_email;
 }
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
 {
   $application = "StarLinkCMS";
-  $application_url = "https://starlinkcms.com/";
+  $application_url = "https://v2.starlinkcms.com/";
   $application_logo = "logo-starlinkcms.png";
 }
 else

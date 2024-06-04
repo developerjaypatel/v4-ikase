@@ -598,10 +598,10 @@ function acceptMessageKase(message_id) {
 	}
 }
 function emptyBuffer(customer_id) { 
-	var url = 'https://v2.ikase.org/api/buffer';
+	var url = 'https://'+ location.hostname +'/api/buffer';
 	if (typeof customer_id != "undefined") {
-		 url = 'https://v2.ikase.org/api/buffer?customer_id=' + customer_id;
-	}
+		 url = 'https://'+ location.hostname +'/api/buffer?customer_id=' + customer_id;
+	}	
 	$.ajax({
 		url:url,
 		type:'GET',

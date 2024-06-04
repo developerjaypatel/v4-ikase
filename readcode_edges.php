@@ -76,32 +76,36 @@ $image_magick->writeImages($thumbnail_path, false);
 //die($thumbnail_path);
 //update the batchscan record with pages
 $sql = "UPDATE `cse_batchscan` 
-		SET `pages` = :pages,
+		SET `pages` = $pages,
 		separators = '',
 		processed = '0000-00-00 00:00:00'
-		WHERE batchscan_id = :batchscan_id
-		AND customer_id = :customer_id";
+		WHERE batchscan_id = $batchscan_id
+		AND customer_id = $customer_id";
 try {
-	$db = getConnection();
-	$stmt = $db->prepare($sql);  
-	$stmt->bindParam("pages", $pages);
-	$stmt->bindParam("batchscan_id", $batchscan_id);
-	$stmt->bindParam("customer_id", $customer_id);
-	$stmt->execute();
+	// $db = getConnection();
+	// $stmt = $db->prepare($sql);  
+	// $stmt->bindParam("pages", $pages);
+	// $stmt->bindParam("batchscan_id", $batchscan_id);
+	// $stmt->bindParam("customer_id", $customer_id);
+	// $stmt->execute();
+	$conn = getConnection_new();
+	$result = $conn->query($sql);
 	
 	$sql = "INSERT INTO cse_batchscan_track (`user_uuid`, `user_logon`, `operation`, `batchscan_id`, `dateandtime`, `filename`, `time_stamp`, `pages`, `consideration`, `attempted`, `completion`, `match`, `separators`, `stacks`, `stitched`, `customer_id`, `readimage`, `processed`, `separated`, `stacked`, `deleted`)
 	SELECT '" . $_SESSION['user_id'] . "', '" . addslashes($_SESSION['user_name']) . "', 'prep', `batchscan_id`, `dateandtime`, `filename`, `time_stamp`, `pages`, `consideration`, `attempted`, `completion`, `match`, `separators`, `stacks`, `stitched`, `customer_id`, `readimage`, `processed`, `separated`, `stacked`, `deleted`
 	FROM cse_batchscan
 	WHERE 1
-	AND batchscan_id = :batchscan_id
-	AND customer_id = :customer_id
+	AND batchscan_id = $batchscan_id
+	AND customer_id = $customer_id
 	LIMIT 0, 1";
 
-	$db = getConnection();
-	$stmt = $db->prepare($sql);  
-	$stmt->bindParam("batchscan_id", $batchscan_id);
-	$stmt->bindParam("customer_id", $customer_id);
-	$stmt->execute();
+	// $db = getConnection();
+	// $stmt = $db->prepare($sql);  
+	// $stmt->bindParam("batchscan_id", $batchscan_id);
+	// $stmt->bindParam("customer_id", $customer_id);
+	// $stmt->execute();
+	$conn = getConnection_new();
+	$result = $conn->query($sql);
 	
 } catch(PDOException $e) {	
 	echo '{"error":{"text":'. $e->getMessage() .'}}'; 

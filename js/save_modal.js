@@ -459,7 +459,7 @@ function saveBulkImportAssignModal() {
 						for (var k = 0; k < theid.length; k++) {
 							var row_id = theid[k];
 							//restore original backcolor
-							$(".document_row_" + row_id).css("background", "url(https://v2.ikase.org/img/glass_row.png)");
+							$(".document_row_" + row_id).css("background", "url(https://"+ location.hostname +"/img/glass_row.png)");
 						}
 					}, 2500);
 				}
@@ -3101,7 +3101,7 @@ $(document).on('click', '.sent_to_docusents', function (e) {
 		var fileDetails = {
 			jetfile_case_id : case_id,
 			jetfile_id : jetfile_id,
-			file:"C:/inetpub/wwwroot/iKase.website/uploads/"+custo_id+"/"+case_id+"/eams_forms/app_cover_final.pdf",
+			file:"C:/inetpub/wwwroot/iKase.org/uploads/"+custo_id+"/"+case_id+"/eams_forms/app_cover_final.pdf",
 			customer_id:custo_id
 		};
 		$.ajax({

@@ -34,7 +34,7 @@ function getAllDOIS() {
 			LEFT OUTER JOIN `cse_injury_venue` iven
 			ON inj.injury_uuid = iven.injury_uuid AND iven.deleted = 'N'
 			
-			LEFT OUTER JOIN `cse_venue` ven
+			LEFT OUTER JOIN `ikase`.`cse_venue` ven
 			ON iven.venue_uuid = ven.venue_uuid
 			
 			LEFT OUTER JOIN `cse_injury_lien` cil
@@ -154,7 +154,7 @@ function getInjury($case_id, $injury_id) {
 			LEFT OUTER JOIN `cse_injury_venue` iven
 			ON inj.injury_uuid = iven.injury_uuid AND iven.deleted = 'N'
 			
-			LEFT OUTER JOIN `cse_venue` ven
+			LEFT OUTER JOIN `ikase`.`cse_venue` ven
 			ON iven.venue_uuid = ven.venue_uuid
 			
 			INNER JOIN cse_case_injury ccinj
@@ -331,7 +331,7 @@ function getKaseInjuries($case_id, $blnReturn = false) {
 				LEFT OUTER JOIN `cse_injury_venue` iven
 				ON inj.injury_uuid = iven.injury_uuid AND iven.deleted = 'N'
 				
-				LEFT OUTER JOIN `cse_venue` ven
+				LEFT OUTER JOIN `ikase`.`cse_venue` ven
 				ON iven.venue_uuid = ven.venue_uuid
 				
 				WHERE 1
@@ -410,7 +410,7 @@ function getKaseInjuries($case_id, $blnReturn = false) {
 			LEFT OUTER JOIN `cse_injury_venue` iven
 			ON inj.injury_uuid = iven.injury_uuid AND iven.deleted = 'N'
 			
-			LEFT OUTER JOIN `cse_venue` ven
+			LEFT OUTER JOIN `ikase`.`cse_venue` ven
 			ON iven.venue_uuid = ven.venue_uuid
 			
 			WHERE 1

@@ -1,20 +1,24 @@
 <?php
 //Set no caching
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); 
-header("Cache-Control: no-store, no-cache, must-revalidate"); 
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
+// header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+// header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); 
+// header("Cache-Control: no-store, no-cache, must-revalidate"); 
+// header("Cache-Control: post-check=0, pre-check=0", false);
+// header("Pragma: no-cache");
 
 error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
 ini_set('display_errors', '1');
 
-include("api/manage_session.php");
+//include("api/manage_session.php");
+setcookie('samesite-test', '1', 0, 'samesite=strict', 'secure');
 
 if($_SERVER["HTTPS"]=="off") {
 	
 	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
 }
+
+require_once('shared/legacy_session.php');
+require_once('rootdata.php');
 
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
 	//die(print_r($_SESSION));
@@ -25,6 +29,19 @@ if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) 
 if ($_SESSION['user_customer_id']==-1 && $_SESSION['user_role']=="owner") {
 	header("location:../manage/customers/");
 	die();
+}
+
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application = "StarLinkCMS";
+  $application_logo = "logo-starlinkcms.png";
+  $application_url = "https://v2.starlinkcms.com/";  
+}
+else
+{
+  $application = "iKase";
+  $application_logo = "favicon.png";
+  $application_url = "https://v2.ikase.org/";  
 }
 
 $blnNewWindow = false;
@@ -703,9 +720,9 @@ $db = null;
     <meta name="description" content="">
     <meta name="theme-color" content="#000071">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="img/favicon.jpg">
+    <link rel="shortcut icon" href="img/<?= $application_logo; ?>">
 
-    <title>iKase - Legal Case Management System. Fast. Mobile</title>
+    <title><?=$application; ?> - Legal Case Management System. Fast. Mobile</title>
 
     
     <link rel="stylesheet" type="text/css" href="css/offline-theme-chrome.css" />

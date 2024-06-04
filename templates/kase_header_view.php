@@ -5,7 +5,7 @@ session_write_close();
 include ("../text_editor/ed/functions.php");
 include ("../text_editor/ed/datacon.php");
 
-$result = DB::runOrDie("SELECT * FROM `cse_venue` ORDER BY venue");
+$result = DB::runOrDie("SELECT * FROM `ikase`.`cse_venue` where deleted!=1 ORDER BY venue");
 $venue_options = "<option value=''>Select from List</option>";
 while ($row = $result->fetch()) {
     $venue_options .= "<option value='{$row->venue_uuid}'>{$row->venue_abbr}</option>";

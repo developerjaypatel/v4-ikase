@@ -9,10 +9,10 @@ if (!isset($_SESSION["user_plain_id"])) {
 include ("../../text_editor/ed/functions.php");
 include ("../../text_editor/ed/datacon.php");
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
 {
   $application = "StarLinkCMS";
-  $application_url = "https://starlinkcms.com/";
+  $application_url = "https://v2.starlinkcms.com/";
   $application_logo = "logo-starlinkcms.png";
   $new_customer_instruction_url = "new_customer_procedure_slcms.html";
 }

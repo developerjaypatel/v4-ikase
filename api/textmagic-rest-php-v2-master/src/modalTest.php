@@ -3,6 +3,12 @@
   <title>SMS Clients Module</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -14,8 +20,23 @@
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />  
-  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <script type="text/javascript" src="ajaxScript.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> 
+  
+
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>         -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
+
+
+        <script type="text/javascript" src="ajaxScript.js"></script>
+  
+
+
 
   <style>
        .ui-autocomplete {
@@ -130,6 +151,15 @@ input[type="search"]::-webkit-search-cancel-button {
     border:none;
 }
 
+
+
+.ui-front {
+    z-index: 9999;
+}
+.ui-autocomplete {
+  z-index: 215000000 !important;
+}
+
   </style>
 </head>
 <body>
@@ -143,6 +173,8 @@ input[type="search"]::-webkit-search-cancel-button {
    </div>
    <div class="col-sm-3"></div>
    <div class="col-sm-3"></div>
+
+   
    </div>
 
 <!-- Modal -->
@@ -190,11 +222,34 @@ input[type="search"]::-webkit-search-cancel-button {
   
               <form id="fupForm" enctype="multipart/form-data" method="POST">    
                   
+
+                   
+              <!-- <div class="form-group">
+                        <label>Enter Customer Name/Phone</label>
+                        <div class="input-group">
+                            <input type="text" id="search_data" placeholder="" autocomplete="off" class="form-control input-lg" />
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-primary btn-lg" id="search">Get Value</button>
+                            </div>
+                        </div>
+                        <br />
+                        <span id="country_name"></span>
+                    </div> -->
+
+
                   <div class="row" style="padding-bottom:5px;">
                   <!-- <div class="col-sm-1"></div> -->
                   <div class="col-sm-1"> <label for="recipient">Recipient:</label></div>
-                  <div class="col-sm-6"><input type="text" class="form-control" name='phone' id='phone' placeholder="Enter Phone Numbers | Format : +10000000000,+10000000000" /></div>
+                  <div class="col-sm-6"><input type="text" class="form-control" name='phone' id='phone'  autocomplete="off"  placeholder="" /></div>
+                 
                   <div class="col-sm-5">  Format : +10000000000,+10000000000 </div>
+                  
+                  <div class="input-group-btn">
+                                <!-- <button type="button" class="btn btn-primary btn-lg" id="search">Get Value</button> -->
+                            </div>
+                  
+                  <input type="hidden" class="form-control" name='formatted_phone_numbers' id='formatted_phone_numbers'  />
+                 
                   </div>
   
                   <div class="row" style="padding-bottom:5px;">
@@ -213,17 +268,22 @@ input[type="search"]::-webkit-search-cancel-button {
                   <!-- <div class="col-sm-1"></div> -->
                   <div class="col-sm-1"></div>
                   <div class="col-sm-3">
-                  <input type="submit" name="submit" class="btn btn-primary" value="Send SMS"/>
-                  <input type="reset" name="cancel" class="btn btn-secondary" value="Cancel"/>
+                  <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Send SMS"/>
+                  <input type="reset" name="cancel" id="configreset" class="btn btn-secondary" value="Cancel"/>
               </div>    
                   </div>
                               
                   </form> 
     
       
+
+                  
+
+
+
       </fieldset>
   
-  
+     
   
   </div>
   
@@ -288,6 +348,48 @@ input[type="search"]::-webkit-search-cancel-button {
           </fieldset>
   
       </div>
+
+      <script>
+  $(document).ready(function(){      
+    $('#phone').tokenfield({
+       // alert ("here");
+        autocomplete :{
+            source: function(request, response)
+            {
+                jQuery.get('searchCustomer.php', {
+                    query : request.term
+                }, function(data){
+                    data = JSON.parse(data);
+                    response(data);
+                });
+            },
+            delay: 100
+        }
+    });
+    $('#submit').click(function(){
+     
+        $('#formatted_phone_numbers').val('+'.concat( $('#phone').val().replace(/\(|\)|\-|\s/g, "").replaceAll(",",",+")));
+    });
+    $('#phone').on('tokenfield:createtoken', function (event) {
+        var tokens = $(this).tokenfield('getTokens');
+        $.each(tokens, function(index, token) {
+
+            token.value.replace(/\(|\)|\-|\s/g, "");
+             
+            //alert (token.value);
+            // if (token.value === event.attrs.value)
+            //     event.preventDefault();
+        });
+    });
+  });
+
+
+  $('#configreset').click(function(){
+        $('#fupForm')[0].reset();
+  });
+
+
+</script>
   
   </div>
   
@@ -314,3 +416,5 @@ input[type="search"]::-webkit-search-cancel-button {
 
 
 </body>
+
+

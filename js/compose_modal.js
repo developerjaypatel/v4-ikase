@@ -1907,7 +1907,10 @@ function composeMessage(object_id, jsonInvoice) {
 		}
 	}, 700);
 	
-	$("#myModal4 .modal-dialog").css("width", "620px");
+	// Changes by jay on march-1
+	// $("#myModal4 .modal-dialog").css("width", "620px");
+	$("#myModal4 .modal-dialog").css("width", "750px");
+
 	$("#myModal4 .modal-dialog").css("background-image", "url('img/glass_edit_header_new.png')");
 	$(".modal-content").css("background-image", "url('img/glass_edit_header_new.png')");
 }

@@ -8,6 +8,19 @@ session_write_close();
 include ("../api/connection.php");
 include ("../browser_detect.php");
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application = "StarLinkCMS";
+  $application_url = "https://starlinkcms.com/";
+  $application_fevicon = "logo-starlinkcms.png";
+}
+else
+{
+  $application = "iKase";
+  $application_url = "https://v2.ikase.org/";
+  $application_fevicon = "favicon.png";
+}
+
 $blnIPad = isPad();
 
 $arrCalendars = array();
@@ -168,7 +181,7 @@ foreach($personal_calendars as $personal_calendar) {
 ?>
 <nav class="navbar navbar-inverse" style="width:100%; border:0px solid yellow; margin-left:0px; ">
 <div class="navbar-header" style="display:; margin-top:-5px; border:0px solid yellow">
-    <a class="navbar-brand" href="#home" title="<%=customer_id %> - <%=dbname %> - <%=customer_name %> - <%=login_username %>"><img src="img/favicon.png" width="30" height="30" alt="iKase">&nbsp;<div style="font-size:1.5em; margin-top:-28px; margin-left:38px">iKase</div></a>
+    <a class="navbar-brand" href="#home" title="<%=customer_id %> - <%=dbname %> - <%=customer_name %> - <%=login_username %>"><img src="img/<?php echo $application_fevicon; ?>" width="30" height="30" alt="<?php echo $application; ?>">&nbsp;<div style="font-size:1.5em; margin-top:-28px; margin-left:38px"><?php echo $application; ?></div></a>
 </div>
        	  <div style="float:right; border:0px solid yellow; position:absolute; top:2px; right:10px; display:inline-block">
                 <div style="float:left">

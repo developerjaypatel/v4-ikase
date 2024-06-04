@@ -5,6 +5,15 @@ ini_set('display_errors', '1');
 require_once('../shared/legacy_session.php');
 session_write_close();
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application = "StarLinkCMS";
+}
+else
+{
+  $application = "iKase";
+}
+
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
 	header("location:index.html");
 	die();
@@ -157,7 +166,7 @@ foreach($arrStreets as $street) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>iKase Avery Labels (5160) Report</title>
+    <title><?php echo $application; ?> Avery Labels (5160) Report</title>
     <style>
     body {
         width: 8.5in;

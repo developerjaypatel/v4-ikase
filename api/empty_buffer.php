@@ -577,7 +577,7 @@ function emptyBuffer($blnReminders = false) {
 							if ($attachment_file!="") {
 								//$attachment_file = $_SERVER["DOCUMENT_ROOT"] . DC . str_replace("/", "\\", $attachment_file);
 								
-								$attachment_file = "https://www.ikase.org/" . $attachment_file;
+								$attachment_file = "https://". $_SERVER['SERVER_NAME'] ."/" . $attachment_file;
 								//die($attachment_file);
 								$attachment=array(
 									"FileName"=>$attachment_file,

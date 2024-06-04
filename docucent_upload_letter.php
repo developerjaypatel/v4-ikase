@@ -19,7 +19,7 @@ if(isset($_POST['call_intension']) && $_POST['call_intension']=="letter_upload")
 	$billingcode = $document_id.uniqid();
 	$poswording = "Document uploaded to docucents";
 	$obj->Submittals_AddForDelivery($_POST['caseid'].uniqid(),$billingcode , "LETTERID_-" . $document_id.uniqid(), "None", "comment:" . uniqid(), $poswording);
-	$obj->PartyData_AddForDelivery("ikase.org", "testSolulab2", "testSolulab2", "", 'address1', "", "testSolula2b", "testSolulab2", "test", "test");
+	$obj->PartyData_AddForDelivery($_SERVER['SERVER_NAME'], "testSolulab2", "testSolulab2", "", 'address1', "", "testSolula2b", "testSolulab2", "test", "test");
 	$origpdf = file_get_contents($file);
 	$filecontent = base64_encode($origpdf);
 	$filedate = date("Ymd", time());

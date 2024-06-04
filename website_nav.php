@@ -3,10 +3,10 @@
   $token = array("","312#3","6$213","23!45","43%23","3*233","8@!54","1921&","87%4","977@3","65@15");
   $csrf_token = $token[rand(1,10)];
 
-  if($_SERVER['SERVER_NAME']=="starlinkcms.com")
+  if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
   {
     $application = "StarLinkCMS";
-    $application_url = "https://starlinkcms.com/";
+    $application_url = "https://v2.starlinkcms.com/";
     $privacy_link = "privacy-starlinkcms.html";
     $application_fevicon = "logo-starlinkcms.png";
   }
@@ -37,7 +37,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-            <li <?php if ($_SERVER["URL"]=="/index.php") { echo 'class="active"'; } ?>><a class="nav_link" href="index.php">Home</a></li>
+            <li <?php if ($_SERVER["URL"]=="/index.php" || $_SERVER["URL"]=="/index_starlinkcms.php") { echo 'class="active"'; } ?>><a class="nav_link" href="index.php">Home</a></li>
             <li <?php if ($_SERVER["URL"]=="/about.php") { echo 'class="active"'; } ?>><a class="nav_link" href="about.php">About</a></li>
             <li><a href="<?=$privacy_link;?>" class="nav_link" target="_blank">Privacy Policy</a></li>
             <li <?php if ($_SERVER["URL"]=="/features.php") { echo 'class="active"'; } ?>><a class="nav_link" href="features.php">Features</a></li>

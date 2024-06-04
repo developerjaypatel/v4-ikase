@@ -1,13 +1,16 @@
 <?php
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
 {
   $application = "StarLinkCMS";
-  $application_url = "https://starlinkcms.com/";
+  $application_url = "https://v2.starlinkcms.com/";
+  $application_fevicon = "logo-starlinkcms.png";
+
 }
 else
 {
   $application = "iKase";
   $application_url = "https://v2.ikase.org/";
+  $application_fevicon = "favicon.png";
 }
 
 include("browser_detect.php");

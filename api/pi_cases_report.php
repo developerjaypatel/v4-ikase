@@ -20,8 +20,8 @@ try {
 		$source = $report->data_source;
 		$customer_id = $report->customer_id;
 		
-		//$url = "https://www.ikase.org/api/personalinjuryweekly";
-		$url = "https://www.ikase.org/api/" . $report->api;
+		//$url = "https://". $_SERVER['SERVER_NAME'] ."/api/personalinjuryweekly";
+		$url = "https://". $_SERVER['SERVER_NAME'] ."/api/" . $report->api;
 		$fields = array("source"=>$source, "customer_id"=>$customer_id);
 		//die(print_r($fields));
 		$result = post_curl($url, $fields);

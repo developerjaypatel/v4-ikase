@@ -1218,7 +1218,8 @@ window.partie_cards_view = Backbone.View.extend({
 	checkVocational: function() {
 		var self = this;
 		//is this case in matrix
-		var url = "https://v2.ikase.org/api/activity/refvocational/" + current_case_id;
+		//var url = "https://v2.ikase.org/api/activity/refvocational/" + current_case_id;
+		var url = "https://"+ location.hostname +"/api/activity/refvocational/" + current_case_id;
 		//return;
 		$.ajax({
 			url:url,
@@ -1235,7 +1236,8 @@ window.partie_cards_view = Backbone.View.extend({
 	checkExport: function() {
 		var self = this;
 		//is this case in matrix
-		var url = "https://v2.ikase.org/api/kases/matrix";
+		//var url = "https://v2.ikase.org/api/kases/matrix";		
+		var url = "https://" + location.hostname + "/api/kases/matrix";
 		var adj_number = this.model.get("adj_number");
 		var ssn = this.model.get("ssn");
 		var formValues = "id=" + current_case_id + "&adj_number=" + adj_number + "&nss=" + ssn;
@@ -1273,10 +1275,10 @@ window.partie_cards_view = Backbone.View.extend({
 		);
 		adj_number = arrAdjs.join("~");
 		if (adj_number!="") {
-			var url = "https://v2.ikase.org/api/kases/matrixadj/" + current_case_id + "/" + adj_number;
+			var url = "https://"+ location.hostname +"/api/kases/matrixadj/" + current_case_id + "/" + adj_number;
 		} else {	//if adj is empty
 			//is this case in matrix
-			var url = "https://v2.ikase.org/api/kases/matrixorder/" + current_case_id;
+			var url = "https://"+ location.hostname +"/api/kases/matrixorder/" + current_case_id;
 		}
 		//return;
 		$.ajax({
@@ -2767,7 +2769,7 @@ function checkRequestLocations(the_request_id) {
 		var id = element_id.split("_")[3];
 		var partie_name = $("#partie_name_" + id).html().trim();
 		//is this location in matrix
-		var url = "https://v2.ikase.org/api/kases/matrixrequestlocation";
+		var url = "https://"+ location.hostname +"/api/kases/matrixrequestlocation";
 		var formValues = "field_id=" + id + "&id=" + current_case_id + "&order_id=" + request_id + "&facility=" + encodeURIComponent(partie_name);
 		//return;
 		$.ajax({
@@ -2810,7 +2812,7 @@ function checkMatrixSysLocations(the_request_id) {
 		var id = element_id.split("_")[3];
 		var partie_name = $("#partie_name_" + id).html().trim();
 		//is this location in matrix
-		var url = "https://www.ikase.org/api/kases/matrixsyslocation";
+		var url = "https://"+ location.hostname +"/api/kases/matrixsyslocation";
 		var formValues = "field_id=" + id + "&id=" + current_case_id + "&order_id=" + request_id + "&facility=" + encodeURIComponent(partie_name);
 		//return;
 		$.ajax({
@@ -2846,7 +2848,7 @@ function checkLocations(the_request_id) {
 		var id = element_id.split("_")[3];
 		var partie_name = $("#partie_name_" + id).html();
 		//is this location in matrix
-		var url = "https://v2.ikase.org/api/kases/matrixlocation";
+		var url = "https://"+ location.hostname +"/api/kases/matrixlocation";
 		var formValues = "field_id=" + id + "&id=" + current_case_id + "&order_id=" + order_id + "&facility=" + encodeURIComponent(partie_name);
 		//return;
 		$.ajax({
@@ -2869,7 +2871,7 @@ function getAddOn(field_id) {
 	var partie_id = field_id;
 	var partie_type = "medical_provider";
 	//look up the partie
-	var url = "https://v2.ikase.org/api/corporation/" + partie_type + "/" + partie_id;
+	var url = "https://"+ location.hostname +"/api/corporation/" + partie_type + "/" + partie_id;
 	//return;
 	$.ajax({
 		url:url,
@@ -2884,7 +2886,7 @@ function getAddOn(field_id) {
 	});
 }
 function exportAddOn(corp_data, field_id) {
-	var url = "https://v2.ikase.org/api/kases/addon";
+	var url = "https://"+ location.hostname +"/api/kases/addon";
 	var formValues = "case_id=" + current_case_id + "&request_id=" + request_id + "&data=" + corp_data;
 	//return;
 	$.ajax({

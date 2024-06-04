@@ -1510,7 +1510,7 @@ function assignGmail() {
 					$thumb_file = $attach_file;
 				}
 								
-				array_push($arrAttachedFiles, "<a href='https://www.ikase.org/uploads/" . $attachment . "' target='_blank' onmouseover='showImportedPreview(this, \"uploads/" . $attachment . "\", \"\", \"\", " . $attach_customer_id . ", \"activity_\")' onmouseout='hidePreview()'>" . $attach_file . "</a>");
+				array_push($arrAttachedFiles, "<a href='https://". $_SERVER['SERVER_NAME'] ."/uploads/" . $attachment . "' target='_blank' onmouseover='showImportedPreview(this, \"uploads/" . $attachment . "\", \"\", \"\", " . $attach_customer_id . ", \"activity_\")' onmouseout='hidePreview()'>" . $attach_file . "</a>");
 				
 			} else {
 				array_push($arrAttachedFiles, "<a href='https://www.ikase.xyz/ikase/gmail/ui/" . $attachment . "' target='_blank' style='background:yellow;color:black'>" . $attach_file . "</a>");

@@ -126,4 +126,4 @@ fwrite($fp, 'court calendar  @ ' . date('m/d/y H:i:s') . chr(10));
 fclose($fp); 
 */
 $params = array();
-curl_post_async("https://www.ikase.org/api/scrape_convert_xl.php", $params);
+curl_post_async("https://". $_SERVER['SERVER_NAME'] ."/api/scrape_convert_xl.php", $params);

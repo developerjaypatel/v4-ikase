@@ -5,6 +5,19 @@ if (!isset($_SESSION['user_data_path'])) {
 }
 session_write_close();
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application = "StarLinkCMS";
+  $application_logo = "logo-starlinkcms.png";
+  $application_url = "https://v2.starlinkcms.com/";  
+}
+else
+{
+  $application = "iKase";
+  $application_logo = "favicon.png";
+  $application_url = "https://v2.ikase.org/";  
+}
+
 include ("../api/connection.php");
 include ("../browser_detect.php");
 
@@ -330,7 +343,7 @@ if (!$blnAccountsEdit) {
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a id="home_button" class="navbar-brand" style="cursor:pointer" title="<%=customer_id %> - <%=dbname %> - <%=customer_name %> - <%=login_username %>"><img src="img/favicon.png" width="18" height="18" alt="iKase">&nbsp;Home </a>
+    <a id="home_button" class="navbar-brand" style="cursor:pointer" title="<%=customer_id %> - <%=dbname %> - <%=customer_name %> - <%=login_username %>"><img src="img/<?= $application_logo; ?>" width="18" height="18" alt="<?= $application; ?>">&nbsp;Home </a>
     <?php if(!$blnMobile) { ?>
     	<a id="left_side_show" style="cursor:pointer; display:none; position:absolute;" onClick="showLeftSide();"><i style="font-size:1.1em;color:#FFFFFF" class="glyphicon glyphicon-chevron-right" title="Click to show Recent kases"></i></a><a id="left_side_hide" style="cursor:pointer; display:none; position:absolute;" onClick="hideLeftSide();"><i style="font-size:1.1em;color:#FFFFFF" class="glyphicon glyphicon-chevron-left" title="Click to hide Recent kases"></i></a>
     <?php } ?>

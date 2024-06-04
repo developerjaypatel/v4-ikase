@@ -59,7 +59,7 @@ LEFT OUTER JOIN `cse_corporation` defendant
 ON ccorp.corporation_uuid = defendant.corporation_uuid
 LEFT OUTER JOIN cse_case_venue ccven 
 ON ccase.case_uuid = ccven.case_uuid
-LEFT OUTER JOIN cse_venue cven
+LEFT OUTER JOIN `ikase`.cse_venue cven
 ON ccven.venue_uuid = cven.venue_uuid
 LEFT OUTER JOIN cse_personal_injury cpinj 
 ON ccase.case_id = cpinj.case_id

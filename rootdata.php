@@ -17,7 +17,18 @@ $document_root_dir = "D:\iKase.org";
 
 // // $document_servername = "https://www.ikase.org/";
 // $document_servername = "https://v2.ikase.org/";
+if($_SERVER['SERVER_NAME']=="starlinkcms.com")
+{
+	$server_name="https://starlinkcms.com";
+}
+elseif($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+	$server_name="https://v2.starlinkcms.com";
+}
+else
+{
+	$server_name="https://v2.ikase.org";
+}
 
-$server_name="https://v2.ikase.org";
 $css_server_name="https://www.ikase.website";
 ?>

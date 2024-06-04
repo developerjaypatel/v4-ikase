@@ -541,7 +541,7 @@ ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 	$sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -872,7 +872,7 @@ if (($_SESSION['user_customer_id']==1033)) {
 $sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -1016,7 +1016,7 @@ if (($_SESSION['user_customer_id']==1033)) {
 $sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -1358,7 +1358,7 @@ if (($_SESSION['user_customer_id']==1033)) {
 $sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -1800,7 +1800,7 @@ function getTokenInputKases() {
 		$sql .= " app ON ccapp.person_uuid = app.person_uuid
 				LEFT OUTER JOIN `cse_case_venue` cvenue
 				ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-				LEFT OUTER JOIN `cse_venue` venue
+				LEFT OUTER JOIN `ikase`.`cse_venue` venue
 				ON cvenue.venue_uuid = venue.venue_uuid
 				LEFT OUTER JOIN `cse_case_corporation` ccorp
 				ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -1949,7 +1949,7 @@ if (($_SESSION['user_customer_id']==1033)) {
 $sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -2058,7 +2058,7 @@ if (($_SESSION['user_customer_id']==1033)) {
 $sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -2466,7 +2466,7 @@ ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 	$sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -2841,7 +2841,7 @@ ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 			LEFT OUTER JOIN cse_person app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -3005,7 +3005,7 @@ ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 	$sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -3125,7 +3125,7 @@ ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 	$sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			INNER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -3225,7 +3225,7 @@ ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 	$sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
             
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
@@ -3550,7 +3550,7 @@ if (($_SESSION['user_customer_id']==1033)) {
 $sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -4344,7 +4344,7 @@ function getAbacusInfo($thumbnail_folder, $db_name) {
 	$sql .= " app ON ccapp.person_uuid = app.person_uuid
 				LEFT OUTER JOIN `ikase_" . $db_name . "`.`cse_case_venue` cvenue
 				ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-				LEFT OUTER JOIN `ikase_" . $db_name . "`.`cse_venue` venue
+				LEFT OUTER JOIN `ikase`.`cse_venue` venue
 				ON cvenue.venue_uuid = venue.venue_uuid
 				
 				LEFT OUTER JOIN `ikase_" . $db_name . "`.`cse_case_corporation` ccorp
@@ -4494,7 +4494,7 @@ if (($_SESSION['user_customer_id']==1033)) {
 $sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN " . $db_name . "`cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN " . $db_name . "`cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN " . $db_name . "`cse_case_corporation` ccorp
@@ -4653,7 +4653,7 @@ function getKaseInfoByRx($rx_id) {
 			INNER JOIN cse_rx crx ON cpr.rx_uuid = crx.rx_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -4759,7 +4759,7 @@ function getKaseInfoByApplicant($person_id) {
 			INNER JOIN cse_person app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -5799,7 +5799,7 @@ ccase.attorney, ccase.worker, ccase.interpreter_needed, ccase.file_location, cca
 	$sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
@@ -5954,7 +5954,7 @@ if (($_SESSION['user_customer_id']==1033)) {
 $sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -6549,7 +6549,7 @@ function addKase() {
 				//now save the venue as corporation for parties
 				$sql = "INSERT INTO cse_corporation (`corporation_uuid`, `parent_corporation_uuid`, `company_name`, `type`, `aka`, `employee_phone`, `full_address`, `street`, `city`, `state`, `zip`, `salutation`, `customer_id`, `copying_instructions`) 
 				SELECT '" . $table_uuid . "', '" . $venue . "', `venue`, 'venue', `venue_abbr`, `phone`, CONCAT(`address1`, ',', `address2`,',', `city`,' ', `zip`) full_address, CONCAT(`address1`,',', `address2`) street, `city`,'CA', `zip`, 'Your Honor', " . $_SESSION['user_customer_id'] . ", ''  
-				FROM `cse_venue`
+				FROM `ikase`.`cse_venue`
 				WHERE venue_uuid = '" . $venue . "'";
 
 				$stmt = DB::run($sql);
@@ -7622,7 +7622,7 @@ function updateKase() {
 				//now save the venue as corporation for parties
 				$sql = "INSERT INTO cse_corporation (`corporation_uuid`, `parent_corporation_uuid`, `company_name`, `type`, `aka`, `employee_phone`, `full_address`, `street`, `city`, `state`, `zip`, `salutation`, `copying_instructions`, `customer_id`) 
 				SELECT '" . $table_uuid . "', '" . $venue . "', `venue`, 'venue', `venue_abbr`, `phone`, CONCAT(`address1`, ',', `address2`,',', `city`,' ', `zip`) full_address, CONCAT(`address1`,',', `address2`) street, `city`,'CA', `zip`, 'Your Honor', ''," . $_SESSION['user_customer_id'] . " 
-				FROM `cse_venue`
+				FROM `ikase`.`cse_venue`
 				WHERE venue_uuid = '" . $venue . "'";
 				try {
 					$stmt = DB::run($sql);

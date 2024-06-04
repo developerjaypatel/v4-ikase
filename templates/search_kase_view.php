@@ -56,7 +56,7 @@ if ($_SESSION["user_customer_id"]==1033) {
 	$case_type_options .= "" . $option;
 }
 */
-$result = DB::runOrDie("SELECT * FROM `cse_venue` ORDER BY venue");
+$result = DB::runOrDie("SELECT * FROM `ikase`.`cse_venue` where deleted!=1 ORDER BY venue");
 $venue_options = "<option value=''>Select from List</option>";
 while ($row = $result->fetch()) {
     $venue_options .= "<option value='{$row->venue_uuid}'>{$row->venue_abbr}</option>";

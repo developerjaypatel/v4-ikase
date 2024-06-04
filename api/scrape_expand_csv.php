@@ -138,13 +138,13 @@ try {
 		*/
 		//next is scrape_transfer_csv
 		$params = array();
-		$url = "https://www.ikase.org/api/scrape_transfer_csv.php";
+		$url = "https://". $_SERVER['SERVER_NAME'] ."/api/scrape_transfer_csv.php";
 		//echo $url;
 		curl_post_async($url, $params);
 		//die("all done");
 	} else {
 		$params = array();
-		$url = "https://www.ikase.org/api/scrape_expand_csv.php";
+		$url = "https://". $_SERVER['SERVER_NAME'] ."/api/scrape_expand_csv.php";
 		//echo $url;
 		curl_post_async($url, $params);
 	}

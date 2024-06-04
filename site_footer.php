@@ -1,5 +1,5 @@
 <?php
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
 {
   $application_url = "StarLinkCMS.com";
 }

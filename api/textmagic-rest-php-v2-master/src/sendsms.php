@@ -32,13 +32,17 @@ try{
     echo $e->getMessage();
 }
 
+//echo $string = str_replace('/\(|\)|\-|\s/g', '', $_POST["phone"]);
 
 if(isset($_POST['phone']) || isset($_POST['message']) ){ 
 
-$phone_numbers = $_POST["phone"];
+
+    $phone_numbers = $_POST["formatted_phone_numbers"];
+
+    //$phone_numbers = $_POST["phone"];
 $message = $_POST["message"];
 
-
+print $phone_numbers ;
 
 // Simple ping request 
 // try {

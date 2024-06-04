@@ -98,5 +98,5 @@ if (($handle = fopen($targetFile, "r")) !== FALSE) {
 	//die("read");
 	//next is scrape_expand_csv
 	$params = array();
-	curl_post_async("https://www.ikase.org/api/scrape_expand_csv.php", $params);
+	curl_post_async("https://". $_SERVER['SERVER_NAME'] ."/api/scrape_expand_csv.php", $params);
 }

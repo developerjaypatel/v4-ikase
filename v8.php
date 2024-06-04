@@ -12,6 +12,19 @@ $sixo = strtotime("2017-09-01 18:00:00");
 $rightnow = mktime(date("H"), date("i"), date("s"), date("m")  , date("d"), date("Y"));
 $blnOpen = true;
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application = "StarLinkCMS";
+  $application_logo = "logo-starlinkcms.png";
+  $application_url = "https://v2.starlinkcms.com/";  
+}
+else
+{
+  $application = "iKase";
+  $application_logo = "favicon.png";
+  $application_url = "https://v2.ikase.org/";  
+}
+
 //if($_SERVER['REMOTE_ADDR']=='47.153.59.9') {
 	if ($sixo < $rightnow) {
 		//$blnOpen = false;
@@ -300,7 +313,7 @@ ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 			$sql_kases .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -445,7 +458,7 @@ $sql_injury .= " LEFT OUTER JOIN (
 		LEFT OUTER JOIN `cse_injury_venue` iven
 		ON inj.injury_uuid = iven.injury_uuid AND iven.deleted = 'N'
 		
-		LEFT OUTER JOIN `cse_venue` ven
+		LEFT OUTER JOIN `ikase`.`cse_venue` ven
 		ON iven.venue_uuid = ven.venue_uuid";	
 		
 $sql_injury .= " WHERE 1
@@ -764,8 +777,8 @@ if ($blnDebug) {
 
 
 //venues
-$sql = "SELECT * FROM `cse_venue` 
-WHERE 1
+$sql = "SELECT * FROM `ikase`.`cse_venue`   
+WHERE 1 AND deleted!=1
 ORDER BY venue ASC";
 try {
 	$db = getConnection();
@@ -871,7 +884,7 @@ if ($blnDebug) {
 $sql .= " app ON ccapp.person_uuid = app.person_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_case_corporation` ccorp
 			ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.attribute = 'employer' AND ccorp.deleted = 'N')
@@ -966,9 +979,9 @@ if ($blnDebug) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="img/favicon.jpg">
+    <link rel="shortcut icon" href="img/<?= $application_logo; ?>">
 
-    <title>iKase - Legal Case Management System. Fast. Mobile</title>
+    <title><?=$application; ?> - Legal Case Management System. Fast. Mobile</title>
 
     
     <link rel="stylesheet" type="text/css" href="css/offline-theme-chrome.css" />
@@ -2445,5 +2458,13 @@ if ($blnDebug) {
     -->
     <?php } ?>
     <textarea id="clipboard_info" style="display:none"></textarea>
+    <script type="text/javascript">
+    	// added this code for starlinkcms rebranding 8-May-2024
+    	$(document).ready(function() {
+   		setTimeout(function() {
+   			$(document).attr('title', "Welcome to <?= $application; ?>");
+   		}, 5000);
+		});
+    </script>
   </body>
 </html>

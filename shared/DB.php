@@ -347,4 +347,32 @@ abstract class DB {
         $result = self::$method("DELETE FROM $table WHERE ".self::makeWhere($clause), $clause);
         return $result instanceof PDOStatement? $result->rowCount() : 0;
     }
+
+    // created new getConnection_new & DB::conn_new function for batchscan, old getConnection function throwing Mysql server has gone away error
+    // old function working but batchscan issue was happen in only big pdfs(49pages, 15mb) so created new function
+    // created by jay on 7-march-2024
+    static function conn_new($db = self::DB_LOCALHOST, $enableUserDataSource = false){
+        $params = self::dbParams($db);
+        
+        if ($enableUserDataSource && !empty($_SESSION['user_data_source'])) {
+            $params['db'] .= "_{$_SESSION['user_data_source']}";
+        }
+        // if($_SERVER["REMOTE_ADDR"]=='103.238.106.102'){
+        //     echo "<pre>";
+        //     var_dump($params);
+        // }
+        $servername = $params['host'];
+        $username = $params['user'];
+        $password = $params['pwd'];
+        $dbname = $params['db'];
+        // var_dump($_SESSION);
+        // echo "<br>$dbname<br>";
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+        }
+        return $conn;
+    }
 }

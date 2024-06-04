@@ -19,7 +19,7 @@ if (strpos($file, "kase_invoice")!==false) {
 	$destination = $file;
 }
 if ($extension == "pdf") {
-	$iframe = '<iframe id="medindex_frame" src="https://www.ikase.org/uploads/' . $_SESSION["user_customer_id"] . "/" . $case_id . "/" . $folder . "/" . $destination . '".' . $extension . '" width="100%" height="800px"></iframe>';
+	$iframe = '<iframe id="medindex_frame" src="https://'. $_SERVER['SERVER_NAME'] .'/uploads/' . $_SESSION["user_customer_id"] . "/" . $case_id . "/" . $folder . "/" . $destination . '".' . $extension . '" width="100%" height="800px"></iframe>';
 	echo $iframe;
 	
 	die();

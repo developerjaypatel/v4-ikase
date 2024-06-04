@@ -46,7 +46,7 @@ if (!isset($_SESSION['user_id'])) {
                 <option value="http://">http://</option>
                 <option value="https://" selected="selected">https://</option>
             </select>
-            <input type="text" id="action" class="hover" value="www.ikase.org/api" style="width:81.5%; border-bottom:1px solid blue; border-left:0px; border-right:0px; border-top:0px; outline: none;; font-size:1.3em" />
+            <input type="text" id="action" class="hover" value="<?php echo $_SERVER['SERVER_NAME']; ?>/api" style="width:81.5%; border-bottom:1px solid blue; border-left:0px; border-right:0px; border-top:0px; outline: none;; font-size:1.3em" />
             
         </div>
         

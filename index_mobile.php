@@ -2,9 +2,26 @@
 
 //die("mobile");
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application = "StarLinkCMS";
+  $application_url = "https://starlinkcms.com/";
+  $application_fevicon = "logo-starlinkcms.png";
+}
+else
+{
+  $application = "iKase";
+  $application_url = "https://v2.ikase.org/";
+  $application_fevicon = "favicon.png";
+}
+
 if($_SERVER["HTTPS"]=="off") {
 	header("location:https://v2.ikase.org");
 }
+
+$token = array("","312#3","6$213","23!45","43%23","3*233","8@!54","1921&","87%4","977@3","65@15");
+  $csrf_token = $token[rand(1,10)];
+
 //include ("text_editor/ed/datacon.php");
 //include("api/connection.php");
 $version_number = 8;
@@ -17,11 +34,11 @@ $version_number = 8;
     <meta name="viewport" content="width=device-width, initial-scale=0.789, maximum-scale=1.0, user-scalable=0">
     <meta name="description" content="">
     <meta name="theme-color" content="#428bca">
-    <meta name="author" content="ikase.org / kustomweb.com">
+    <meta name="author" content="<?php echo $application;?> / kustomweb.com">
     <meta name="robots" content="noindex, nofollow">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/<?php echo $application_fevicon; ?>">
 
-    <title>iKase :: Legal Case Management Software</title>
+    <title><?php echo $application; ?> :: Legal Case Management Software</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.3.0.3.min.css">
@@ -93,7 +110,7 @@ $version_number = 8;
     <div class="container">
     	<div style="background:url(img/translucent_med.png) repeat-y top left; padding-left:0px; padding-top:20px; height:100%; width:100%; margin-left:-50.5%; border:0px solid white;">
             <div class="form-signin-heading" style="color:white; font-size:2.9em; font-weight:lighter; margin-left:14px">
-                <p><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Welcome to iKase</p>
+                <p><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Welcome to <?php echo $application; ?></p>
                 <p style="color:red; display:none; font-size:1.2em">DO NOT USE RIGHT NOW</p>
         </div>
             <!--<div>
@@ -110,6 +127,7 @@ $version_number = 8;
                 <div style="margin-top:5px" id="password_holder">
                 <!--<label for="inputPassword" id="this_password_label" style="font-size:2.1em; cursor:text; position:relative; top:45px; left:5px">Password</label>-->
                 <input type="password" class="form-control" id="inputPassword" name="inputPassword" onKeyPress="enterLogin(event)" required autocomplete="off" style="padding-bottom:0px; margin-bottom:0px;" onblur="changePasswordBack()" placeholder="Password">
+                <input type="hidden" name="inputToken" id="inputToken" value="<?php echo $csrf_token; ?>" >
                 </div>
                <div id="button_holder" style="margin-top:25px; width:375px">
                     <button class="btn btn-lg btn-primary btn-block" onClick="userLogin()" style="font-size:2.1em;">Sign in <?php if($_SERVER["HTTPS"]!="off") { ?>
@@ -312,7 +330,8 @@ $version_number = 8;
 		//}
         var formValues = {
             email: $('#inputEmail').val(),
-            password: $('#inputPassword').val()
+            password: $('#inputPassword').val(),
+            csrftoken: $('#inputToken').val()
         };
 		$("#button_holder").html("<i class='icon-spin4 animate-spin' style='font-size:2em; color:white'></i>");
 		$.ajax({
@@ -342,7 +361,7 @@ $version_number = 8;
                 else { // If not, send them back to the home page
 					//write cookie with session id
 					$('#logged_in').val(data.sess_id);
-					writeCookie('sess_id', data.sess_id, 60);
+					writeCookie('sess_id', data.sess_id, 8*60*60);
 					writeCookie('logged_in_as', data.user_name, 60);
 					
 					var origin = originCookie();

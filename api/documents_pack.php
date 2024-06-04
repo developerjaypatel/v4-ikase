@@ -172,7 +172,7 @@ function getLegacyArchive($case_id) {
 	$kase = getKaseInfo($case_id);
 	
 	$params = base64_encode($kase->cpointer . '|' . $_SESSION["user_data_source"]);
-	$path = 'http://kustomweb.xyz/a1_archive/archives.php?db=' . $_SESSION["user_data_source"] . '&params=' . $params . '&source=ikase.website';
+	$path = 'http://kustomweb.xyz/a1_archive/archives.php?db=' . $_SESSION["user_data_source"] . '&params=' . $params . '&source='. $_SERVER['SERVER_NAME'];
 	//die($path);
 	$homepage = file_get_contents($path);
 	echo $homepage;
@@ -3415,7 +3415,7 @@ function referVocation() {
 				$stmt = DB::run($sql);
 				
 				
-				$url = "https://www.ikase.org/vocational.php?key=" . $key;
+				$url = "https://". $_SERVER['SERVER_NAME'] ."/vocational.php?key=" . $key;
 				$short_url = make_bitly_url($url);
 				
 				//demographics
@@ -3426,7 +3426,7 @@ function referVocation() {
 				VALUES ('" . $key . "', '" . $_SESSION['user_plain_id'] . "', '" . $injury_id . "', '" . $path . "', '" . date("Y-m-d H:i:s", (time()+(60*60*24*7))) ."', '" . $customer_id ."')";
 				$stmt = DB::run($sql);
 				
-				$url = "https://www.ikase.org/demos.php?key=" . $key;
+				$url = "https://". $_SERVER['SERVER_NAME'] ."/demos.php?key=" . $key;
 				$demo_url = make_bitly_url($url);
 				
 				die(json_encode(array("success"=>true, "short_url"=>$short_url, "demo_url"=>$demo_url, "activity_id"=>$activity_id, "filepath"=>$targetFile)));
@@ -3441,7 +3441,7 @@ function downloadVocational($id) {
 	
 	//die($customer_id . " -- " . $activity_id);
 	$loc = "download_vocational.php?id=" . $id;
-	echo "<a href='https://www.ikase.org/api/" . $loc . "'>Click here to Download</a>";
+	echo "<a href='https://". $_SERVER['SERVER_NAME'] ."/api/" . $loc . "'>Click here to Download</a>";
 }
 
 //solulab code start - 27-05-2019
@@ -3461,7 +3461,7 @@ function docuFileupload(){
 	$billingcode = $_POST['jetfile_case_id'].uniqid();
 	$poswording = "Document uploaded to docucents";
 	$obj->Submittals_AddForDelivery($_POST['jetfile_case_id'],$billingcode , "APPFULLPDF_-" . uniqid(), "None", "comment:" . uniqid(), $poswording);
-	$obj->PartyData_AddForDelivery("ikase.org", "testSolulab2", "testSolulab2", "", 'address1', "", "testSolula2b", "testSolulab2", "test", "test");
+	$obj->PartyData_AddForDelivery($_SERVER['SERVER_NAME'], "testSolulab2", "testSolulab2", "", 'address1', "", "testSolula2b", "testSolulab2", "test", "test");
 	$origpdf = file_get_contents($file);
 	$filecontent = base64_encode($origpdf);
 	$filedate = date("Ymd", time());

@@ -1,0 +1,8649 @@
+//global collections
+var search_kases;  
+var notes;
+var noteKaseView;
+var new_kase;
+var new_applicant;
+var new_partie;
+var new_note;
+var applicants;
+var occurences;
+var stored_customer_events;
+var all_user_events;
+var corporations;
+var parties;
+var recent_occurences;
+var recent_tasks;
+var kaseKAIView;
+var partyKaseView;
+var occurencesView;
+
+//current content
+var current_case_id;
+var current_injury_id;
+var current_calendar_id = -1;
+var current_calendar_type = "";
+var current_employee_calendars;
+var current_calendar_view = "";
+var current_calendar_start = "";
+var current_calendar_end = "";
+var current_rolodex_search = "";
+
+//keep current dashboard in memory
+var current_dash_content = "";
+var current_dashboard_parties;
+var current_parties_content = "";
+var current_all_parties;
+var current_kase;
+var current_case_notes;
+var current_case_activities;
+var current_case_documents;
+
+var blnViewClicked = false;
+var blnBlockClicked = false;
+var global_calendar_element;
+
+				
+var calendar_element;
+var calendar_event;
+var word_templates;
+var kase_letters;
+var blnSearchingKases = false;
+var blnAssigning = false;
+var blnNotePane = false;	//show the note view as a side pane
+var blnTaskPane = false;	//show the task view as a side pane
+var blnUseRightPane = false;	//right pane on dash
+var blnUploadDash = false;	//drag/drop upload on dash
+var blnActivityPane = false;	//activity in right pane
+var blnShowBilling = (customer_id==1033 || customer_id==1116 || customer_id==1121);
+var blnShowInvoiceMenu = true;	//(customer_id==1033 || customer_id==1116 || customer_id==1100 || customer_id==1121);
+
+//GMAIL
+// NISHIT UPDATED THIS FOR TRUE
+var blnGmail = true; //(customer_id==1033 || customer_id==1064 || customer_id==1116);
+var blnGMailUser = false;	//will get updated in checkinbox
+var blnCheckingGmail = false;
+var blnGoogleToken = false;
+var blnGmailAccessRequested =  false;
+
+var blnShowMatrixInfo = (customer_id==1105 || customer_id==1103 || login_nickname == "MA");
+var blnShowNewSettlement = true;	//settlement for wcab with fees
+var last_announcement_date = '20160804';
+var billing_time = "";
+var workingWeekTimes = [
+	'06:00am', '06:30am', '07:00am', '07:30am', '08:00am', '08:30am',
+	'09:00am', '09:30am', '10:00am', '10:30am', '11:00am', '11:30am', 
+	'12:00pm', '12:30pm', '13:00pm', '13:30pm', '14:00pm',
+	'14:30pm', '15:00pm', '15:30pm', '16:00pm', '16:30pm',
+	'17:00pm', '17:30pm', '18:00pm', '18:30pm', '19:00pm'
+];
+var loading_image = '<div id="document_listing_loading" style="display:; text-align:center; font-size:0.8em" class="white_text"><i class="icon-spin4 animate-spin" style="font-size:6em; color:white"></i><br /><br />Loading <span id="loading_progress_span"></span>...</div>';
+
+var billing_dropdown_template = '<div style="color:white; margin-top:-25px; margin-left:200px; z-index:9999;" id="billing_dropdown_holder"><table><tr><td align="left" valign="top"><select name="billing_time_dropdownInput" id="billing_time_dropdownInput" style="height:19px; width:45px; margin-top:0px; margin-left:0px; background:white" tabindex="0" placeholder="15"><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="30">30</option><option value="45">45</option><option value="60">60</option></select></td><td align="left" valign="top">Minutes</td></tr></table></div>';
+
+//get webmails, keep track of count
+//var webmails = new WebmailCollection();
+var blnUseThreads = true;	//(login_ip_address=="...");
+var blnGetEmails = true;	//(login_user_id==1288 || login_user_id==29 || login_user_id==2);
+var webmails = new WebmailLimonade();
+var login_email_name = "";
+var login_read_messages = "N";
+var global_threads;	//preloaded inbox
+var global_threads_pending;	//preloaded inbox
+var blnReceiveWebmail = false;	//this is changed in kase_nav_bar.js
+var outboxCollection;
+
+var refreshdocument_id = false;
+//panel widths, undefined to start
+var cookie_left_width;
+var cookie_right_width;
+
+var blnPiReady = false;
+var blnShowIntroTitle = true;		//show the customer name big on home page just once per session
+
+var blnDoNotCloseModal = false;		//use this for partial save on modal to prevent toggle
+
+var mymodal = document.getElementById("myModal4").innerHTML;
+
+var blnValidSession = true;
+var arrDeletedKaseStatus = [];
+
+var relatedCount = 0;	//keep track of related cases for current case
+
+var blnMedicalBilling = true;	//(customer_id=="1033" || customer_id=="1121");
+var blnSaveDraft = (customer_id == "1033");
+var blnIntakeScreen = true;	//(customer_id == "1100" || customer_id == "1033");
+var blnSaveIntakePartie = false;
+
+var blnReassignCases = true;	//(customer_id==1064 || customer_id==1033);
+var blnDoNotAutoNotify = true;
+
+//if no activity when leaving kase, for 1109
+var blnLeavingKaseWarning = (customer_id == "1109");	//(customer_id == "1033" || login_user_id=="1763");
+var blnChangingKase = false;
+var blnKaseChangesDetected = false;
+
+var blnAfterHours = (customer_id == "1121");	//turn off access after hours
+var blnNoAutoFill = true;	//(customer_id == "1100" || login_user_id == "2");	//prevent chrome hijack autocomplete
+var blnSavePayableTo = true;	//(login_user_id == "2");
+
+var blnEmployer = true;		//wage loss (customer_id=="1033");
+var blnLossSummary = true;	//(customer_id=="1033" || login_user_id=="1568");
+var blnFeedback = false;
+
+var blnAutoSave = (customer_id == 1100 || customer_id == 1121);	//for now
+
+var blnBingSearch = true;	//(login_user_id==2 || login_user_id==1568) ;
+var search_bing_id = false;
+
+var blnTrustRequired = false;
+
+var zoomLevel = 100;
+window.Router = Backbone.Router.extend({
+    routes: {
+        "": "home",
+		"accident/:case_id": 									"kaseAccident",
+		"accident/:case_id/:accident_type": 					"kaseAccidentDash",
+		"accounts/:account_type":								"listAccounts",
+		"activity/:id": 										"kaseActivity",
+		"activities/:user_id/:start_date/:end_date": 			"userActivity",
+		"applicant/:id": 										"kaseApplicant",
+		"archives/:case_number" : 								"listArchives",
+		"archives_legacy/:case_id" : 							"listLegacyArchives",
+		"archives_a1_folders/:case_id":							"listA1LegacyFolders",
+		"archives_merus/:case_id":								"listMerusArchives",
+		"archives_ecand/:case_id":								"listEcandArchives",
+		"bankaccount/edit/:account_id":							"editBankAccount",
+		"bankaccount/new/:type":								"newBankAccount",
+		"bankaccount/list/:type":								"listBankAccounts",
+		"bankaccount/checks/:account_type/:account_id": 		"checksBankAccount",
+		"billables":											"listBillables",
+		"billing/:case_id/:kinvoice_id":						"kaseBilling",
+		"batchscans":											"listUploadedBatchscans",
+		"batchscans/assigned":									"listAssignedBatchscans",
+		"batchscans/dateassigned/:start_date/:end_date":		"listAssignedBatchscans",
+		"blocked":												"listBlockedDate",
+		"checks/cleared":										"listClearedChecks",
+		"checks/uncleared":										"listUnclearedChecks",
+		"checks/printed":										"listPrintedChecks",
+		"checks/unprinted":										"listUnprintedChecks",
+		"checkrequests":										"listCheckRequests",
+		"pendingrequests/:account":								"listPendingRequestsByAccount",
+		"checkrequests/approved":								"listApprovedCheckRequests",
+		"checkrequests/denied":									"listDeniedCheckRequests",
+		"checkrequests/mine":									"listMyCheckRequests",
+		"checkrequests/all":									"listAllCheckRequests",
+		"coa/:case_id": 										"kaseCOA",
+		"coas/:case_id":										"listCOAs",
+		"compose": 												"newMessage",
+		"conflict":												"newSession",
+		"currentusers":											"currentUsers",
+		"courtkalendar":										"listCourtCalendarEvents",
+		"contacts": 											"listContactEmails",
+		"contactsblocked":										"listContactSPAM",
+		"contacts/:id": 										"editContactEmail",
+		"contactparties":										"contactParties",
+		"dailytask/:day":										"listTaskInboxToday",
+		"dailytaskall/:day":									"listAllTaskInboxToday",
+		"disability/:case_id/:disability_id": 					"getDisability",
+		"disabilities/:case_id": 								"listDisabilities",
+		"documents/:case_id" : 									"listDocuments",
+		"document_search" : 									"searchDocuments",
+		"drafts":												"listDrafts",
+		"edit/:id": 											"editKase",
+		"eams_forms/:case_id" : 								"listEams",
+		"eams_search":											"searchEAMS",
+		"eams_case_search/:case_id":							"searchEAMSbyCase",
+		"eams_injury_search/:case_id/:injury_id":				"searchEAMSbyInjury",
+		"employment_law/:case_id": 								"employmentLaw",
+		"events": 												"listEvents",
+		"email":												"loginEmail",
+		"emailsettings":										"displayEmailSettings",
+		"employee_kalendar":									"listEmployeeEvents",
+		"exams/:case_id": 										"listExams",
+		"forms" : 												"listEamsForms",
+		"firmkalendar":											"kaseCustomerEvents",
+		"ikalendar/:calendar_id/:sort_order":					"displayCalendarEvents",
+		"firmkalendar/wcab":									"displayWCABEvents",
+		"firmkalendar/pi":										"displayPIEvents",
+		"import" : 												"documentImport",
+		"imports" : 											"listImports",
+		"importsnew":											"listNewImports",
+		"inactives/:type":										"listNoActivitiesByType",
+		"inactivesub/:type":									"listNoActivitiesSubOutByType",
+		"inbox": 												"listInbox",
+		"invoices/:id": 										"kaseActivityInvoices",
+		"invoices/activity/:id/:invoice_id": 					"kaseInvoiceActivities",
+		"invoices/edit/:id/:invoice_id": 						"editInvoice",
+		"inactive/:days":										"listInactives",
+		"inactives":											"listNoActivities",
+		"injury/:case_id" : 									"kaseInjury",
+		"injury/:case_id/:injury_id" : 							"kaseSpecificInjury",
+		"intakekalendar":										"kaseCustomerIntakes",
+		"intakes":												"listIntakes",
+		"jetfiles":												"listJetfiles",
+		"jetfiles/:injury_id":									"listInjuryJetfiles",
+		"kalendar/:id": 										"kaseEvents",
+		"kalendarlist/:id":										"listKaseEvents",
+		"kalendarbydate/:id/:start/:end":						"kaseEventsByDate",		
+		"kalendars": 											"listCalendars",
+		"kase/:id": 											"fetchKase",
+		"kasebillables/:id":									"kaseBillables",
+		"kases/:id": 											"fetchKase",	//"dashboardKase",
+		"kasesdash/:id": 										"dashboardKaseByPartyOption",
+		"kases": 												"listKases",
+		"kasesclosed": 											"listClosedKases",
+		"kasesnoemployees":										"listNoEmployeeKases",
+		"kaseslist/:corporation_id/:type": 						"listCompanyKases",
+		"kasesemplist/:employee/:type": 						"listEmployeeKases",
+		"kasesexaminerlist/:case_id/:carrier_id/:examiner":		"listExaminerKases",
+		"kases/events/edit/:case_id/:event_id/:day_date": 		"kaseEventDialog",
+        "kases/kai/:id": 										"kaseKAI",
+		"kasespi":												"listPIKases",
+		"kasesw":												"listWCKases",
+		"kases/related_cases/:id": 								"dashboardRelatedKase",
+		"employeekases":										"showKaseSummary",
+		"kasestransfer":										"transferKases",
+		"kontrol_panel/:id": 									"showKontrolPanel",
+		"letters/:case_id" : 									"listKaseLetters",
+		"lettersinv/:case_id" : 								"listKaseInvoices",
+		"lien/:case_id/:injury_id":								"showLien",
+		"listkalendar/:calendar_id/:sort_order/:start/:end":	"listCalendarEvents",
+		"listkustom/:calendar_id/:sort_order/:start/:end":		"displayCustomCalendarByDates",
+		"logout" : 												"logout",
+		"messages/:message_id": 								"editMessage",
+		"newinjury/:case_id":									"newInjury",
+		"newpartie":	 										"newRoloPartie",
+		"newpartie/:type":	 									"editRoloNewPartie",
+		"newoffices/:case_id":									"newKaseOffices",
+		"notes/:case_id" : 										"listNotes",
+		"notes/:case_id/:notes_id/:type" : 						"editNote",
+		"newnote/:case_id":										"newNote",
+		"notifications":										"listImportNotifications",
+		"outbox": 												"listOutbox",
+		"owner/:case_id/:owner_id/:representing":				"vehicleOwner",
+		"parties/:id" : 										"listParties",
+		"parties/:case_id/:id/:type" : 							"editPartie",
+		"partielist/:case_id/:type" : 							"listPartiesByType",
+		"partner_calendar":										"listPartnerEvents",
+		"payments/:id": 										"kaseChecks",
+		"personal_injury/:case_id": 							"kasePersonalInjury",
+		"personal_injury_financial/:case_id": 					"kaseFinancial",
+		"personalkalendar":										"kasePersonalEvents",
+		"phone/:case_id/:event_id": 							"kasePhone",
+		"phoneinbox":											"listPhoneInbox",
+		"phonereport":											"listFirmPhoneCalls",
+		"prior_treatment/:case_id/:corporation_id/:person_id":	"priorTreatment",
+		"qme/:zip":												"searchQME",
+		"recentkases":											"listRecentKases",
+		"rolodex/:id/:type" : 									"editRoloPartie",
+		"rolodex":												"listContacts",
+		"rolodexperson/:id" : 									"editRoloPerson",
+		"rolodexsearch/:search_term" : 							"searchRolo",		
+		"search_eams_firms/:search_term":						"searchEAMSFirms",
+		"settlement/:case_id/:injury_id":						"showSettlement",
+		"settlementsheet/:settlement_id/:injury_id":			"showSettlementSheet",
+		"settlements/report":									"searchSettlements",
+		"settings": 											"listCustomerSetting",
+		"subscribekalendar":									"showSubscriptionLink",
+		"submissions":											"listDemographics",
+		"taskcompleted": 										"listTaskCompleted",
+		"taskcompletedall/:day":								"listAllTaskCompleted",
+		"taskinbox": 											"listTaskInbox",
+		"taskoutbox": 											"listTaskOutbox",
+		"taskoverdue": 											"listTaskOverdue",
+		"taskfirmoverdue": 										"listTaskFirmOverdue",
+		"tasksummary":											"showTaskSummary",
+		"tasksupcoming/:day":									"listTaskInboxUpcoming",
+		"tasks/:case_id": 										"listCaseTasks",
+		"tasksclosed/:case_id": 								"listClosedCaseTasks",		
+		"taskbydates/:start/:end":								"kaseCustomerTasks",
+		"taskbydatesout/:start/:end":							"kaseCustomerOutTasks",		
+		"tasksdeleted/:case_id": 								"listDeletedCaseTasks",		
+		"templates" : 											"listTemplates",
+		"templatesinv":											"listInvoiceTemplates",
+		"thread/inboxnew": 										"listThreadInboxNew",
+		"thread/inbox": 										"listThreadInbox",
+		"thread/pendings": 										"listThreadInboxPendings",
+		"thread/outbox": 										"listOutbox",	//listThreadOutbox
+		"todo": 												"listEventsing",
+		"unassigned": 											"documentUnassigned",
+		"unassigneds" : 										"listUnassigneds",
+		"unattendeds":											"listUnattendedKases",
+		"userkalendar/:user_id":								"showUserCalendar",
+		"listuserkalendar/:user_id/:start/:end":				"listUserCalendarByDate",
+		"usersettings": 										"listUserSetting",
+		"upload/:id/:table_name": 								"documentUpload",
+		"users": 												"listUsers",
+		"users/:id" : 											"editUser",
+		"users/email/:user_id" : 								"userEmail",
+		"vservices/:case_id":									"listServices",
+		"webmail":												"loginEmail",	//listWebmails
+		"workflow/new":											"newWorkflow",
+		"workflow/edit/:workflow_id":							"editWorkflow",
+		"workflows":											"listWorkflows",
+	},
+    initialize: function () {
+		var self = this;
+		
+		//pi is ready
+		blnPiReady = true;
+		
+		//note pane is ready
+		blnNotePane = true;
+		
+		//task pane is ready
+		blnTaskPane = true;
+		
+		//dash right pane is ready
+		blnUseRightPane = true;
+		
+		//dash upload is ready 7/17/2017
+		blnUploadDash = true;
+		
+		//activity pane is not ready
+		blnActivityPane = true;	// (customer_id == 1033);
+		
+		zoomLevel = Number((screen.availWidth / document.documentElement.clientWidth).toFixed(1).replace(".", "") + "0");
+		
+		var current_location = document.location.href;
+		if (current_location.indexOf("?n=") > 0) {
+			/*
+			current_location = current_location.replace("?n=", "");
+			if (window.history.replaceState) {
+			   //prevents browser from storing history with each change:
+			   window.history.replaceState(document.location.hash, $(document).find("title").text(), current_location);
+			   blnShowIntroTitle = false;
+			}
+			*/
+		}
+		/*
+		if (current_location.indexOf("?session_id=") > 0) {
+			current_location = window.location.href.split('?')[0];
+			if (window.history.replaceState) {
+			   //prevents browser from storing history with each change:
+			   window.history.replaceState(document.location.hash, $(document).find("title").text(), current_location);
+			}
+		}
+		*/
+		readCookie();
+		writeCookie('origin', '');
+		//keep track for next restart
+		var cookie_customer_id = customerCookie();
+		current_max_track_id = maxTrackCookie("event");
+		if (typeof current_max_track_id == "undefined") {
+			current_max_track_id = 0;
+		}
+		setTimeout(function() {
+			clearStoredEvents(current_max_track_id, 0);
+			
+			getUserEvents();
+			
+			//check on pending court calendar cases count
+			var court_events = new CourtCalendarEvents();
+			court_events.fetch({
+				success: function (data) {
+					//then re-assign to calendar
+					$("#court_calendar_count").html("&nbsp;(" + data.length + "&nbsp;pending)");
+					
+					if (data.length > 0) {
+						var the_count = maxHundred(data.length);
+						$("#new_courtcalendar_indicator").html(the_count);
+						$("#new_courtcalendar_indicator").fadeIn();
+					}
+				}
+			});
+			
+			//overdue tasks
+			overdueTasksCount();
+		}, 1107);
+		
+		writeCookie('current_customer_id', customer_id, 24*60*60*1000);
+		
+		var arrWidths = getPanelWidthCookie();
+		if (arrWidths.length == 2) {
+			cookie_left_width = arrWidths[0];
+			cookie_right_width = arrWidths[1];
+		}
+		
+		// Close the search dropdown on click anywhere in the UI
+		$('body').click(function () {
+			$('.dropdown').removeClass("open");
+		});
+		$('.dropdown').click(function () {
+			$('.dropdown-toggle').dropdown("toggle");										  
+		});
+		
+		//navigation
+		var search_kases = new KaseRecentCollection();
+		this.headerView = new kase_nav_bar_view({model: search_kases});
+		$('.kase_header').html(this.headerView.render().el);								
+		
+		//left column navigation
+		//$('.left_sidebar').html(new kase_nav_left_view().render().el);								
+		
+		$('#left_sidebar').hide();
+		$("#search_results").removeClass("col-md-10");
+		$("#search_results").addClass("col-md-12");
+		$("#content").removeClass("col-md-10");
+		$("#content").addClass("col-md-12");
+		$("#content").css("margin-top", "65px");
+		if ($("#content").css("margin-top") != "65px") {
+			$("#content").css("margin-top", "0px");
+		}
+		$("#left_side_show").hide();
+		//$("#left_side_show").show();
+		//recent events
+		setTimeout(function() {
+			//recent kases		
+			$('#kases_recent').html(new kase_list_category_view({model: recent_kases}).render().el);
+			$('#occurences_recent').html(new kase_list_task_view({model: recent_tasks}).render().el);
+			self.recentOccurences();
+			self.recentTasks();
+		}, 5500);
+		
+		/*
+		if (blnGmail) {
+			//if there is a token?
+			refreshGmailToken();
+		}
+		*/
+		
+		//slight delay
+		setTimeout(function() {
+			//start polling inbox
+			//pollChat();
+			
+			if (!blnGMailUser) {
+				//gmail inbox  will be refreshed after login procedure
+				checkInbox();
+			}
+		}, 4300);
+		
+		setTimeout(function() {
+			//get the outbox
+			getOutbox();
+		}, 4505);
+		
+		//delay the pendings for 15 seconds in, secondary priority
+		setTimeout(function() {
+			var threads_pending = new ThreadInboxCollection({pending: "y"});
+			threads_pending.fetch({
+				success: function (data) {
+					global_threads_pending = data;
+					if (!blnGMailUser) {
+						//gmail users  will be refreshed after login procedure
+						refreshPendingMessagesIndicator();
+					}
+				}
+			});
+		}, 15606);
+		
+		//slight delay
+		setTimeout(function() {
+			checkTaskInbox();
+		}, 5700);
+		
+		setTimeout(function(){
+			pingMail();
+			self.loginEmail();
+		}, 911);
+		
+		//slight delay
+		setTimeout(function() {
+			checkIntakes();
+			checkImports();
+			checkDOBs();
+			//checkOrphanImports();
+		}, 6300);
+		setTimeout(function() {
+			if (blnGmail && blnGMailUser) {
+				//start a loop to keep token alive
+				setInterval(function() {
+					refreshGmailToken();
+				}, 70654);
+			}
+			checkUnassigneds();
+			refreshOutstandingInvoices();
+			checkClearedChecks();
+		}, 7300);
+		
+		setTimeout(function() {
+			getPopupReminders();
+		}, 1400);
+		
+		setTimeout(function() {
+			refreshInternetCalendars();
+			firmAccountCounts();
+		}, 333);
+		
+		//get the email now
+		//getMail();
+		/*
+		var event_counts = new EventCountCollection;
+		event_counts.fetch({
+			success: function (data) {
+				var counts = data.toJSON();
+	
+				var theyear = moment().format("YYYY");
+				var themonth = moment().format("M");
+				var blnAdjusted = false;
+				 _.each( counts, function(event_count) {
+					 if (!blnAdjusted) {
+						 if (event_count.event_year == theyear && event_count.event_month) {
+							calendarContentHeight = (event_count.event_counts * 92 * 5) + 200;
+							blnAdjusted = true;
+						 }
+					 }
+				 });
+			}
+		});
+		*/
+		setTimeout(function() {
+			if ($('#back-to-top').length) {
+				var scrollTrigger = 100, // px
+					backToTop = function () {
+						var scrollTop = $(window).scrollTop();
+						if (scrollTop > scrollTrigger) {
+							$('#back-to-top').addClass('show');
+						} else {
+							$('#back-to-top').removeClass('show');
+						}
+					};
+				backToTop();
+				$(window).on('scroll', function () {
+					backToTop();
+				});
+				$('#back-to-top').on('click', function (e) {
+					e.preventDefault();
+					$('html,body').animate({
+						scrollTop: 0
+					}, 700);
+				});
+			}
+		}, 2100);
+		
+		//for now, per thomas 2/25/2018
+		$("#left_side_show").hide();
+		
+		blnTrustRequired = (typeof customer_settings.get("trust_account_required") != "undefined")
+"Y"
+    },
+	change: function(trigger, args) { 
+		//clear the modal
+		if (!$("#myModal4").hasClass("in")) {
+			$("#myModalBody").html("");
+		}
+		
+		if (!executeMainChanges()) { return; };
+	},
+    home: function () {
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		$("#content").html(loading_image);
+		
+		current_case_id = -1;
+		readCookie();
+		var self = this;
+			
+		$(document).attr('title', "Welcome to iKase");
+		
+		setTimeout(function() {
+			$('#left_sidebar').hide();
+			var mymodel = new Backbone.Model();
+			mymodel.set("holder", "content");
+			$('#content').html(new dashboard_home_view({model: mymodel}).render().el);
+			//$("#left_side_show").show();
+			$("#left_side_show").hide();
+			
+			//nav	
+			if (typeof self.headerView != "undefined") {
+				self.headerView.select_menu('home-menu');
+			}
+		}, 300);
+    },
+	documentImport: function() {
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		var mymodel = new Backbone.Model();
+		mymodel.set("holder", "content");
+		mymodel.set("import_type", "batchscan");
+		$('#content').html(new import_remote_view({model: mymodel}).render().el);
+		
+		//start looking for remote imports
+		checkRemoteImports();
+	},
+	documentUnassigned: function() {
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		var mymodel = new Backbone.Model();
+		mymodel.set("holder", "content");
+		mymodel.set("import_type", "unassigned");
+		$('#content').html(new import_view({model: mymodel}).render().el);
+		
+		$("#content").addClass("glass_header_no_padding");
+	},
+	documentUpload:  function (case_id, table_name) {
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		current_case_id = case_id;
+		
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.documentUpload(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		
+		var mymodel = kases.findWhere({case_id: case_id});
+		mymodel.set({table_name: table_name});
+		// Since the home view never changes, we instantiate it and render it only once
+		this.DocumentUploadView = new document_upload_view({model:mymodel});
+		this.DocumentUploadView.render();
+
+		$("#upload_documents").html(this.DocumentUploadView.el);
+	},
+	editKase: function (case_id) {
+		current_case_id = case_id;
+		
+		readCookie();
+		var self = this;
+		
+		var kase = kases.findWhere({case_id: case_id});
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);			
+		//content
+		$("#kase_content").html(new kase_edit_view({model: kase}).render().el);
+	},
+	clearSearchResults: function() {
+		clearSearchResults();
+	},
+	fetchKase: function (case_id, blnDOIS) {
+		//alert("6");
+		if (typeof blnDOIS == "undefined") {
+			blnDOIS = false;
+		}
+		//alert("5");
+		var self = this;
+		//reset dois just in case
+		var kase_dois = dois.where({case_id: String(case_id)});
+		if (!blnDOIS) {
+			if (kase_dois.length==0 || typeof kase_dois == "undefined") {
+				var search_kase_dois = new KaseInjuryCollection({case_id: case_id});
+				search_kase_dois.fetch({
+					success: function(data) {
+						var list = data.toJSON();
+						_.each( list, function(kase_doi) {
+							dois.remove(kase_doi.id); dois.add(kase_doi);
+						});
+						
+						//dois.add(data.toJSON());
+						//try again
+						self.fetchKase(case_id, true);
+					}
+				});
+				return;
+			}
+		}
+		var kase =  new Kase({id: case_id});
+		kase.fetch({
+			success: function (kase) {
+				if (kase.toJSON().uuid!="") {
+					kases.remove(kase.id); kases.add(kase);
+										
+					//if there is no case name
+					var thekase = kase.toJSON();
+					if (thekase.case_name == "") {
+						//request a case name be generated
+						kase.rename();
+					}
+				
+					self.dashboardKase(case_id);
+				} else {
+					//case does not exist, get out
+					document.location.href = "#";
+				}
+				return;		
+			}
+		});
+	},
+	dashboardKase: function (case_id) {
+		$("#kase_content").removeClass("glass_header_no_padding");	
+		$("#kase_content").html(loading_image);
+		//clear out any search results
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		//alert("4");
+		//if we are still on the current case - optimization 12/7/2018		
+		if (case_id == current_case_id) {
+			//we are going back to dash
+			if (current_dash_content!="") {
+				//$('#content').html(current_dash_content);
+				$('#kase_content').html(new partie_cards_view({collection: current_dashboard_parties, model: current_kase}).render().el);
+				return;
+			}
+		}
+		
+		current_case_id = case_id;
+		
+		//reset current content
+		resetCurrentContent();
+		
+		readCookie();
+		var self = this;
+		
+		if (case_id > -1) {
+			if (typeof kases != "undefined") {
+				var kase = kases.findWhere({case_id: case_id});
+				
+				if (typeof kase == "undefined") {
+					//get it
+					var kase =  new Kase({id: case_id});
+					kase.fetch({
+						success: function (kase) {
+							if (kase.toJSON().uuid!="") {
+								kases.remove(kase.id); kases.add(kase);
+								if (case_id!=kase.get("case_id")) {
+									window.history.replaceState(null, null, "#kase/" + kase.get("case_id"));
+									app.navigate("kase/" + kase.get("case_id"), {trigger: false});
+								}
+								self.dashboardKase(kase.get("case_id"));
+							} else {
+								//case does not exist, get out
+								document.location.href = "#";
+							}
+							return;		
+						}
+					});
+					return;
+				}
+				//maybe a brand new ssn kase
+				if (kase.get("case_type")=="social_security" && kase.get("case_name")=="") {
+					kase.set("case_name", kase.get("case_number"));
+					if (kase.get("case_name")=="") {
+						kase.set("case_name", kase.get("file_number"));
+					}
+				}				
+			} else {
+				//get the kases
+				kases.fetch({
+					success: function (data) {
+						self.dashboardKase(case_id);
+						return;		
+					}
+				});
+				
+				return
+			}
+			//perform an ajax call to track views by current user
+			var url = 'api/kase/view';
+			formValues = "id=" + case_id;
+	
+			$.ajax({
+				url:url,
+				type:'POST',
+				dataType:"json",
+				data: formValues,
+				success:function (data) {
+					if(data.error) {  // If there is an error, show the error messages
+						saveFailed(data.error.text);
+					} else {
+						//refresh recent kases listing
+						self.recentKases();
+					}
+				}
+			});
+			//if (current_case_id	!= case_id) {
+				kase.set("header_only", true);
+				$('#content').html(new kase_view({model: kase}).render().el);
+			//}
+			$(document).attr('title', kase.name() + " :: iKase");
+			
+			if (typeof kase == "undefined") {
+				//case does not exist, get out
+				document.location.href = "#";
+				return;
+			}
+			//var kase =  new Kase({id: id});
+			var applicant_id = kase.get("applicant_id");
+			//we have a kase, do we have an applicant yet
+			if (applicant_id==null) {
+				var applicant_id = -1;
+			}
+		} else {
+			$(document).attr('title', "New Kase :: iKase");
+			//no kase, no applicant
+			var kase = new Kase();
+			case_number_next = String(customer_settings.get("case_number_next"));
+			if (customer_settings.get("case_number_next") < 10) {
+				case_number_next = "000" + case_number_next;
+			}
+			if (customer_settings.get("case_number_next") < 100) {
+				case_number_next = "00" + case_number_next;
+			}
+			if (customer_settings.get("case_number_next") < 1000) {
+				case_number_next = "0" + case_number_next;
+			}
+			kase.set("case_number", customer_settings.get("case_number_prefix") + case_number_next);
+			var applicant_id = -1;
+		}
+		kase.set("applicant_id", applicant_id);
+		
+		if (current_case_id != case_id) {
+			kase.set("header_only", true);
+			$('#content').html(new kase_view({model: kase}).render().el);
+		}
+		
+		//we need to set up the kase view and subviews
+		var type = "";
+		parties = new Parties([], { case_id: case_id, case_uuid: kase.get("uuid"), panel_title: "Dashboard" });
+		parties.fetch({
+			success: function(parties) {
+				//if we have no parties (except for venue, always venue with new kase) 
+				//and no applicant
+				var blnNoApplicant = false;
+				var kase_type = kase.get("case_type");
+				var blnWCAB = isWCAB(kase_type);
+				if (blnWCAB) {
+					if (parties.length > 0) {
+						var blnClient = (typeof parties.findWhere({"type":"client"}) == "object");
+						blnNoApplicant = (parties.toJSON()[0].type!="applicant" && !blnClient);
+					}
+					if ((parties.length < 2 && case_id > 0 && blnNoApplicant) || blnNoApplicant) {
+						self.kaseApplicant(case_id);
+						return;
+					}
+				}
+				//alert("3");
+				if (!blnWCAB) {
+					//who are we representing?
+					var injury_type = kase.get("injury_type");
+					if (injury_type == null) {
+						injury_type = "";
+					}
+					var representing = "";
+					var arrInjury = injury_type.split("|");
+					injury_type = arrInjury[0];
+					if (arrInjury.length==2) {
+						representing = arrInjury[1];
+					}
+					//no parties
+					if (parties.length == 0 && case_id > 0) {
+						if (representing=="" && kase_type == "PI") {
+							//fix on 3192017 for dordulian pi import
+							representing = "plaintiff";
+						}
+						if (representing=="plaintiff" && kase_type == "SSDI") {
+							//fix on 04202018 for dholakia a1 import
+							representing = "claimant";
+						}
+						self.editPartie(case_id, -1, representing);
+						Backbone.history.navigate('parties/' + current_case_id + '/-1/' + representing);
+						hideEditRow();
+						return;
+					}
+					/*
+					if (parties.length == 1 && case_id > 0) {
+						//opposing party
+						opposing = "defendant";
+						if (representing==opposing) {
+							opposing = "plaintiff";
+						}
+						//employement law
+						if (kase_type=="Employment Law") {
+							var employment_defendant = parties.findWhere({"type": "defendant"});
+							if (typeof employment_defendant != "undefined") {
+								opposing = "plaintiff";
+							}
+						}
+						self.editPartie(case_id, -1, opposing);
+						Backbone.history.navigate('parties/' + current_case_id + '/-1/' + opposing);
+						hideEditRow();
+						return;
+					}
+					*/
+				}
+				if (blnWCAB) {
+					if (parties.length == 2 && case_id > 0) {
+						//is the first partie the applicant?  the second is always the venue
+						if (parties.toJSON()[0].type=="applicant" && parties.toJSON()[1].type=="venue") {
+							//we must have the employer next, at least for WCAB
+							
+							self.editPartie(case_id, -1, "employer");
+							/*
+							if (kase_type == "civil") {
+								self.editPartie(case_id, -1, "defendant");
+							}
+							*/
+							//$("#content").removeClass("glass_header_no_padding");
+							//$('#content').html(new kase_view({model: kase}).render().el);
+							//alert("1");
+							hideEditRow();
+							return;
+						}
+					}
+				
+					//we have applicant, venue and 1 partie, we need employer
+					employer_partie = parties.findWhere({"type": "employer"});
+					var kase_type = kase.get("case_type");
+					var blnWCAB = isWCAB(kase_type);
+					if (blnWCAB && !blnPatient) {
+						if (typeof employer_partie == "undefined") {
+							self.editPartie(case_id, -1, "employer");
+							//alert("2");
+							return;
+						}		
+					}
+					if (!blnPatient) {
+						//we have employer, we need injury
+						var kase_dois = new KaseInjuryCollection({case_id: case_id});
+						kase_dois.fetch({
+							success: function(kase_dois) {
+								if (kase_dois.length == 0) {
+									self.newInjury(case_id);
+									return;
+								} else {
+									var doi = kase_dois.toJSON()[0];
+									if (doi.start_date=="0000-00-00") {
+										self.kaseSpecificInjury(case_id, doi.injury_id);
+										return;
+									}
+								}		
+							
+							}
+						});
+					}
+				}
+				if (parties.length > 0 || case_id==-1) {
+					kase.set("header_only", true);
+				}
+				//$("#content").removeClass("glass_header_no_padding");
+				//$('#content').html(new kase_view({model: kase}).render().el);
+				//$("#kase_content").html("<table align='center'><tr><td align='center' style=''><i class='icon-spin4 animate-spin' style='font-size:6em; color:white'></i><td><tr></table");
+				if (parties.length == 0) {
+					//we don't want the dashboard for a new kase without parties
+					return;
+				}
+				
+				//remove Venue from dashboard
+				if (parties.panel_title=="Dashboard") {
+					venue_partie = parties.findWhere({"type": "venue"});
+					parties.remove(venue_partie);
+				}
+				
+				current_dashboard_parties = parties;
+				current_kase = kase;
+				//cards view
+				$('#kase_content').html(new partie_cards_view({collection: parties, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+				hideEditRow();
+				
+				//put the notes in memory
+				current_case_notes = new NoteCollection([], { case_id: case_id });
+				current_case_notes.fetch({
+					success: function(data) {
+						//console.log(case_id + " notes preloaded");
+					}
+				});
+				
+				console.log(case_id+" Cassess IDDD");
+				//put the activities in memory
+				current_case_activities = new ActivitiesCollection([], {case_id: case_id});
+				current_case_activities.fetch({
+					success: function(data) {
+						console.log(case_id + " activities preloaded");
+						console.log(data + " activities preloaded");
+					}
+				});
+				
+				//put the documents in memory
+				current_case_documents = new DocumentCollection([], { case_id: case_id });
+				current_case_documents.fetch({
+					success: function(data) {
+						//console.log(case_id + " documents preloaded");
+					}
+				});
+			}
+		});
+		
+		current_case_id = case_id;
+		/*
+		setTimeout(function(){
+			self.recentKases();	
+		}, 700);
+		*/
+    },
+	dashboardKaseByPartyOption: function (case_id) {
+		//clear out any search results
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = case_id;
+		
+		readCookie();
+		var self = this;
+		
+		if (case_id > -1) {
+			var kase = kases.findWhere({case_id: case_id});
+			if (typeof kase == "undefined") {
+				//get it
+				var kase =  new Kase({id: case_id});
+				kase.fetch({
+					success: function (kase) {
+						if (kase.toJSON().uuid!="") {
+							kases.remove(kase.id); kases.add(kase);
+							self.dashboardKaseByPartyOption(case_id);
+						} else {
+							//case does not exist, get out
+							document.location.href = "#";
+						}
+						return;		
+					}
+				});
+				return;
+			}
+			
+			//perform an ajax call to track views by current user
+			var url = 'api/kase/view';
+			formValues = "id=" + case_id;
+	
+			$.ajax({
+				url:url,
+				type:'POST',
+				dataType:"json",
+				data: formValues,
+				success:function (data) {
+					if(data.error) {  // If there is an error, show the error messages
+						saveFailed(data.error.text);
+					} else {
+						self.recentKases();
+					}
+				}
+			});
+			if (current_case_id	!= case_id) {
+				kase.set("header_only", true);
+				$('#content').html(new kase_view({model: kase}).render().el);
+			}
+			
+			$(document).attr('title', kase.get("full_name") + " vs " + kase.get("employer") + " :: " + kase.get("case_number") + " :: iKase");
+			if (typeof kase == "undefined") {
+				//case does not exist, get out
+				document.location.href = "#";
+				return;
+			}
+			//var kase =  new Kase({id: id});
+			var applicant_id = kase.get("applicant_id");
+			//we have a kase, do we have an applicant yet
+			if (applicant_id==null) {
+				var applicant_id = -1;
+			}
+		} else {
+			$(document).attr('title', "New Kase :: iKase");
+			//no kase, no applicant
+			var kase = new Kase();
+			case_number_next = String(customer_settings.get("case_number_next"));
+			if (customer_settings.get("case_number_next") < 10) {
+				case_number_next = "000" + case_number_next;
+			}
+			if (customer_settings.get("case_number_next") < 100) {
+				case_number_next = "00" + case_number_next;
+			}
+			if (customer_settings.get("case_number_next") < 1000) {
+				case_number_next = "0" + case_number_next;
+			}
+			kase.set("case_number", customer_settings.get("case_number_prefix") + case_number_next);
+			var applicant_id = -1;
+		}
+		kase.set("applicant_id", applicant_id);
+		//we need to set up the kase view and subviews
+		var type = "";
+		parties = new Parties([], { case_id: case_id, case_uuid: kase.get("uuid"), panel_title: "Dashboard" });
+		parties.fetch({
+			success: function(parties) {
+				//if we have no parties (except for venue, always venue with new kase) 
+				//and no applicant
+				var blnNoApplicant = false;
+				if (parties.length > 0) {
+					blnNoApplicant = (parties.toJSON()[0].type!="applicant");
+				}
+				if ((parties.length < 2 && case_id > 0 && blnNoApplicant) || blnNoApplicant) {
+					self.kaseApplicant(case_id);
+					return;
+				}
+				if (parties.length == 2 && case_id > 0) {
+					//is the first partie the applicant?  the second is always the venue
+					if (parties.toJSON()[0].type=="applicant" && parties.toJSON()[1].type=="venue") {
+						//we must have the employer next, at least for WCAB
+						var kase_type = kase.get("case_type");
+						var blnWCAB = isWCAB(kase_type);
+						if (blnWCAB) {
+							self.editPartie(case_id, -1, "employer");
+						}
+						//$("#content").removeClass("glass_header_no_padding");
+						//$('#content').html(new kase_view({model: kase}).render().el);
+						hideEditRow();
+						return;
+					}
+				}
+				if (parties.length == 2 && case_id > 0) {
+					//is the first partie the applicant?  the second is always the venue
+					if (parties.toJSON()[0].type=="applicant" && parties.toJSON()[1].type=="venue") {
+						//we must have the employer next, at least for WCAB
+						var kase_type = kase.get("case_type");
+						var blnWCAB = isWCAB(kase_type);
+						if (blnWCAB) {
+							self.editPartie(case_id, -1, "employer");
+						}
+						//$("#content").removeClass("glass_header_no_padding");
+						//$('#content').html(new kase_view({model: kase}).render().el);
+						hideEditRow();
+						return;
+					}
+				}
+				if (parties.length > 2 && case_id > 0) {
+					//we have applicant, venue and 1 partie, we need employer
+					employer_partie = parties.findWhere({"type": "employer"});
+					var kase_type = kase.get("case_type");
+					var blnWCAB = isWCAB(kase_type);
+					if (blnWCAB) {
+						if (typeof employer_partie == "undefined") {
+							self.editPartie(case_id, -1, "employer");
+							return;
+						}		
+					}
+					//we have employer, we need injury
+					var kase_dois = new KaseInjuryCollection({case_id: case_id});
+					kase_dois.fetch({
+						success: function(kase_dois) {
+							var kase_type = kase.get("case_type");
+							var blnWCAB = isWCAB(kase_type);
+							if (blnWCAB) {
+								if (kase_dois.length == 0) {
+									self.newInjury(case_id);
+									return;
+								} else {
+									var doi = kase_dois.toJSON()[0];
+									if (doi.start_date=="0000-00-00") {
+										self.kaseSpecificInjury(case_id, doi.injury_id);
+										return;
+									}
+								}		
+							}
+						}
+					});
+				}
+				if (parties.length > 0 || case_id==-1) {
+					kase.set("header_only", true);
+				}
+				$("#content").removeClass("glass_header_no_padding");
+				$('#content').html(new kase_view({model: kase}).render().el);
+				//$("#kase_content").html("<table align='center'><tr><td align='center' style=''><i class='icon-spin4 animate-spin' style='font-size:6em; color:white'></i><td><tr></table");
+				if (parties.length == 0) {
+					//we don't want the dashboard for a new kase without parties
+					return;
+				}
+				
+				//remove Venue from dashboard
+				if (parties.panel_title=="Dashboard") {
+					venue_partie = parties.findWhere({"type": "venue"});
+					parties.remove(venue_partie);
+				}
+				
+				//cards view
+				$('#kase_content').html(new partie_option_cards_view({collection: parties, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});
+		//if (blnShowHeader) {
+			if (current_case_id!=case_id) {
+				kase.set("header_only", true);
+				$('#content').html(new kase_view({model: kase}).render().el);
+			}
+		//}
+		current_case_id = case_id;
+		
+		setTimeout(function(){
+			self.recentKases();	
+		}, 700);
+    },
+	dashboardRelatedKase: function (case_id) {
+		//clear out any search results
+		this.clearSearchResults();
+		//var case_id = current_case_id;
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		current_case_id = case_id;
+		
+		if (case_id > -1) {
+			var kase = kases.findWhere({case_id: case_id});
+			if (typeof kase == "undefined") {
+				//get it
+				var kase =  new Kase({id: case_id});
+				kase.fetch({
+					success: function (kase) {
+						if (kase.toJSON().uuid!="") {
+							kases.remove(kase.id); kases.add(kase);
+							self.dashboardRelatedKase(case_id);
+						} else {
+							//case does not exist, get out
+							document.location.href = "#";
+						}
+						return;		
+					}
+				});
+				return;
+			}
+			
+			if (current_case_id	!= case_id) {
+				kase.set("header_only", true);
+				$('#content').html(new kase_view({model: kase}).render().el);
+			}
+			
+			$(document).attr('title', "Related Kases :: " + kase.get("full_name") + " vs " + kase.get("employer") + " :: " + kase.get("case_number") + " :: iKase");
+			if (typeof kase == "undefined") {
+				//case does not exist, get out
+				document.location.href = "#";
+				return;
+			}
+		} 
+		var kase_dois = new KaseInjuryCollection({case_id: case_id});
+		kase_dois.fetch({
+			success: function(kase_dois) {
+				$("#content").removeClass("glass_header_no_padding");
+				$('#content').html(new kase_view({model: kase}).render().el);
+
+				//related cases list view
+				kase.set("holder", "kase_content");
+				$('#kase_content').html(new dashboard_related_cases_view({collection: kase_dois, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+				hideEditRow();		
+			}
+		});
+		
+		current_case_id = case_id;
+		self.recentKases();	
+    },
+	newKase: function () {
+		current_case_id = -1;
+		readCookie();
+		var self = this;
+		var blnProceed = true;
+		
+		
+		var kase = new Kase();
+		kase.set("header_only",true);
+		//we need to set up the kase view and subviews
+		$("#content").removeClass("glass_header_no_padding");
+		$('#content').html(new kase_view({model: kase}).render().el);
+    },
+	listJetfiles: function() {
+		$("#content").html(""); 
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		current_case_id = -1;
+		
+		$(document).attr('title', "List EAMS Submissions :: iKase");
+		
+		var jetfiles = new JetfileCollection();
+		jetfiles.searchRecent();
+		/*
+		jetfiles.fetch({
+			success: function (jetfiles) {
+				//var mycollection = new KaseCollection;
+				var mymodel = new Backbone.Model();
+				mymodel.set("holder", "content");
+				//mymodel.set("sort_by", "last_name");
+				$('#content').html(new jetfile_listing_view({collection: jetfiles, model:mymodel}).render().el);
+			}
+		});
+		*/
+		
+	},
+	listInjuryJetfiles: function(injury_id) {
+		$("#content").html(""); 
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		var jetfiles = new JetfileCollection({injury_id: injury_id});
+		jetfiles.fetch({
+			success: function (jetfiles) {
+				//var mycollection = new KaseCollection;
+				var mymodel = new Backbone.Model();
+				mymodel.set("holder", "content");
+				//mymodel.set("sort_by", "last_name");
+				$('#content').html(new jetfile_listing_view({collection: jetfiles, model:mymodel}).render().el);
+			}
+		});
+	},
+	listExaminerKases: function(case_id, carrier_id, examiner) {
+		$("#content").html(""); 
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		current_case_id = case_id;
+		
+		var formValues = "case_id=" + case_id + "&carrier_id=" + carrier_id + "&examiner=" + encodeURIComponent(examiner);
+		var url = "api/examinerkases";
+		$.ajax({
+			url:url,
+			type:'POST',
+			dataType:"json",
+			data: formValues,
+			success:function (data) {
+				if(data.error) {  // If there is an error, show the error messages
+					console.log(data.error.text);
+					saveFormFailed(data.error.text);
+				} else { 
+					$("#gifsave").hide();
+					
+					var my_kases = new Backbone.Collection;
+					my_kases.add(data)
+					$(document).attr('title', "Kases Search Results");
+					var mymodel = new Backbone.Model();
+					mymodel.set("key", "");
+					mymodel.set("search_parameters", this.data);
+					$("#content").css("margin-top", "0px");
+					$('#content').html(new kase_listing_view({collection: my_kases, model:mymodel}).render().el);
+					
+					setTimeout(function() {
+						$("#kase_status_title").html("Examiner");
+					}, 700);
+				}
+			}
+		});
+	},
+	listIntakes: function(filter, type) {
+		$(document).attr('title', "Phone Intake Kases :: iKase");
+		
+		if (typeof filter == "undefined") {
+			filter = "pending";
+		}
+		if (typeof type == "undefined") {
+			type = "";
+		}
+		$("#content").html(loading_image);
+		
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		current_case_id = -1;
+			
+		var my_kases = new IntakeCollection({filter: filter, type: type});
+		my_kases.fetch({
+			success: function (my_kases) {
+				//var mycollection = new KaseCollection;
+				var mymodel = new Backbone.Model();
+				mymodel.set("key", "");
+				//if (login_user_id=="1568") {					
+					//var mycollection = my_kases.toJSON():
+					$.get('templates/intake_listing_view.php', function(data) {
+						var view = "kase_listing_view";
+						window[view].prototype.template = _.template(data);
+						var new_view = window[view];
+						//console.log(self);
+						mymodel.set("filter_status", filter);
+						mymodel.set("filter_type", type);
+						mymodel.set("template_loaded", true);
+						mymodel.set("sort_by", "last_name");
+						var holder_id ="#content";
+						$(holder_id).html(new new_view({collection: my_kases, model: mymodel}).render().el);
+						
+						setTimeout(function() {
+							$("#kase_listing th").css("font-size", "1.1em");
+							$("#kase_listing td").css("font-size", "1.2em");
+						}, 1234);
+						
+					}, 'html')
+					.fail(function() {
+						alert( "template intake listing view could not be loaded" );
+					  });
+					  
+					return;
+				//}
+
+				//mymodel.set("sort_by", "last_name");
+				$('#content').html(new kase_listing_view({collection: my_kases, model:mymodel}).render().el);
+				setTimeout(function() {
+					$("#kase_status_title").html("Intake");
+					$("#closed_kases").hide();
+					$("#open_kases").hide();
+					$("#new_kase").hide();
+				}, 700);
+			}
+		});
+	},
+	listEmployeeKases: function(employee, partie_type) {
+		$("#content").html(""); 
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		current_case_id = -1;
+			
+		var my_kases = new KaseEmployeeCollection({name: employee, partie_type: partie_type});
+		my_kases.fetch({
+			success: function (my_kases) {
+				//var mycollection = new KaseCollection;
+				var mymodel = new Backbone.Model();
+				mymodel.set("key", "");
+				//mymodel.set("sort_by", "last_name");
+				$('#content').html(new kase_listing_view({collection: my_kases, model:mymodel}).render().el);
+				setTimeout(function() {
+					$("#kase_status_title").html("Kases by Employee - " + employee);
+					$("#closed_kases").hide();
+					$("#open_kases").hide();
+				}, 700);
+			}
+		});
+	},
+	listCompanyKases: function (corporation_id, corporation_type) {
+		$("#content").html(""); 
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		current_case_id = -1;
+		
+		if (corporation_type!="applicant") {
+			var corporation = new Corporation({id: corporation_id, type:corporation_type});
+			corporation.fetch({
+				success: function (corp) {
+					var key = corp.get("parent_corporation_uuid");
+					var modifier = corporation_type;
+					
+					kase_searching = true;
+					blnSearched = true;
+					$('#ikase_loading').html(loading_image);
+					var self = this;
+					//var key = $('#srch-term').val();
+					
+					if (typeof key =="undefined") {
+						return;
+					}
+					
+					var company_name = corp.get("company_name");
+					var my_kases = new KaseCollection({"company_name": company_name});
+					//look for modifiers
+					
+					blnSearchingKases = true;
+					search_kases = my_kases.searchDB(key, modifier, true);
+				}
+			});
+		} else {
+			var person = new Person({id: corporation_id});
+			person.fetch({
+				success: function (corp) {
+					var key = person.toJSON().parent_person_uuid;
+					var modifier = corporation_type;
+					
+					kase_searching = true;
+					blnSearched = true;
+					$('#ikase_loading').html(loading_image);
+					var self = this;
+					//var key = $('#srch-term').val();
+					
+					if (typeof key =="undefined") {
+						return;
+					}
+					var my_kases = new KaseCollection();
+					//look for modifiers
+					
+					blnSearchingKases = true;
+					search_kases = my_kases.searchDB(key, modifier);
+					var full_name = person.get("full_name");
+					setTimeout(function() {
+						$("#search_results").css("margin-top", "60px");
+						//$("#kase_status_title").html(corporation_type.replaceAll("_", " ").capitalizeWords());
+						$("#kase_status_title").html("`" + full_name.trim() + "`");
+					}, 700)
+				}
+			});
+		}
+	},
+	listKases: function () {
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		$(".search #srch-term").val("");
+		
+		kase_url = "api/kases";
+		
+		//return;
+		//$('#ikase_loading').html(loading_image);
+		$("#content").html(loading_image);
+		
+		current_case_id = -1;
+		
+		readCookie();
+		$(document).attr('title', "Kases List");
+		
+		var mymodel = new Backbone.Model();
+		mymodel.set("key", "");
+		listed_kases = kases_limit;
+		
+		$('#content').html(new kase_listing_view({collection: kases, model:mymodel}).render().el);
+		setTimeout(function() {
+			$("#kase_status_title").html("Active");
+		}, 700);
+		setTimeout(function() {
+			if (typeof arrKasePage[current_page] == "undefined") {
+				arrKasePage[current_page] = $('#content').html();
+			}
+		}, 1007);
+		
+		//run the query for export, afterwards so we don't waste time
+		kases.fetch({
+			success: function (data) {
+			
+				return;		
+			}
+		});
+    },
+	listPIKases: function () {
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		$("#srch-term").trigger("dblclick");
+		//return;
+		$('#ikase_loading').html(loading_image);
+
+		current_case_id = -1;
+		readCookie();
+		$(document).attr('title', "PI Kases List");
+		
+		var pikases = new KasePICollection();
+		pikases.fetch({
+			success: function (pikases) {
+				//var mycollection = new KaseCollection;
+				var mymodel = new Backbone.Model();
+				mymodel.set("key", "");
+				//mymodel.set("sort_by", "last_name");
+				$('#content').html(new kase_listing_view({collection: pikases, model:mymodel}).render().el);
+				setTimeout(function() {
+					$("#kase_status_title").html("Open Personal Injury");
+					$("#closed_kases").hide();
+					$("#open_kases").show();
+				}, 700);
+			}
+		});
+    },
+	listWCKases: function () {
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		$("#srch-term").trigger("dblclick");
+		//return;
+		$('#ikase_loading').html(loading_image);
+		current_case_id = -1;
+		readCookie();
+		$(document).attr('title', "Workers Comp Kases List");
+		
+		var wkases = new KaseWCCollection();
+		wkases.fetch({
+			success: function (wkases) {
+				//var mycollection = new KaseCollection;
+				var mymodel = new Backbone.Model();
+				mymodel.set("key", "");
+				//mymodel.set("sort_by", "last_name");
+				$('#content').html(new kase_listing_view({collection: wkases, model:mymodel}).render().el);
+				setTimeout(function() {
+					$("#kase_status_title").html("Open W/C");
+					$("#closed_kases").hide();
+					$("#open_kases").show();
+				}, 700);
+			}
+		});
+    },
+	listClosedKases: function () {
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		kase_url = "api/kasesclosed";
+		
+		$("#srch-term").trigger("dblclick");
+		//return;
+		$('#ikase_loading').html(loading_image);
+		
+		current_case_id = -1;
+		
+		readCookie();
+		$(document).attr('title', "Kases List");
+		
+		var closedkases = new KaseClosedCollection();
+		closedkases.fetch({
+			success: function (closedkases) {
+				//var mycollection = new KaseCollection;
+				var mymodel = new Backbone.Model();
+				mymodel.set("key", "");
+				//mymodel.set("sort_by", "last_name");
+				$('#content').html(new kase_listing_view({collection: closedkases, model:mymodel}).render().el);
+				setTimeout(function() {
+					$("#kase_status_title").html("Closed");
+					$("#closed_kases").hide();
+					$("#open_kases").show();
+				}, 700);
+			}
+		});
+    },
+	listNoEmployeeKases: function () {
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		//return;
+		$('#content').html(loading_image);
+		
+		current_case_id = -1;
+		
+		readCookie();
+		$(document).attr('title', "Kases w/o Employees List");
+		
+		var noworkerkases = new KaseNoWorkersCollection();
+		noworkerkases.fetch({
+			success: function (noworkerkases) {
+				//var mycollection = new KaseCollection;
+				var mymodel = new Backbone.Model();
+				mymodel.set("key", "");
+				//mymodel.set("sort_by", "last_name");
+				$('#content').html(new kase_listing_view({collection: noworkerkases, model:mymodel}).render().el);
+				setTimeout(function() {
+					$("#kase_status_title").html("w/o Employees");
+					$("#closed_kases").hide();
+					$("#open_kases").hide();
+				}, 700);
+			}
+		});
+    },
+	listNoActivitiesSubOutByType: function(type) {
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		readCookie();
+		var self = this;
+		if ($("#search_results").html()!="") {
+			$("#search_results").html("");
+			$(".search #srch-term").val("");
+		}
+		$("#content").html(loading_image);
+		
+		current_case_id = -1;
+		
+		var inactive_cases = new InactivesSuboutByType({type: type});
+		inactive_cases.fetch({
+			success: function (data) {
+				//then re-assign to calendar
+				$("#content").html("");
+				var mymodel = new Backbone.Model();
+				mymodel.set("key", "");
+				mymodel.set("type", type);
+				//var inactiveView = new kase_listing_view({el: $("#content"), collection: inactive_cases, model: mymodel}).render();
+				$('#content').html(new kase_listing_view({collection: data, model: mymodel}).render().el);
+				
+				setTimeout(function() {
+					$("#kase_status_title").html(type.toUpperCase() + " Sub-out Kases w/o Activity 35+ Days");
+				}, 700);
+			}
+		});
+	},
+	listNoActivitiesByType: function(type) {
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		readCookie();
+		var self = this;
+		if ($("#search_results").html()!="") {
+			$("#search_results").html("");
+			$(".search #srch-term").val("");
+		}
+		$("#content").html(loading_image);
+		
+		current_case_id = -1;
+		
+		var inactive_cases = new InactivesByType({type: type});
+		inactive_cases.fetch({
+			success: function (data) {
+				//then re-assign to calendar
+				$("#content").html("");
+				var mymodel = new Backbone.Model();
+				mymodel.set("key", "");
+				mymodel.set("type", type);
+				//var inactiveView = new kase_listing_view({el: $("#content"), collection: inactive_cases, model: mymodel}).render();
+				$('#content').html(new kase_listing_view({collection: data, model: mymodel}).render().el);
+				
+				setTimeout(function() {
+					$("#kase_status_title").html(type.toUpperCase() + " Kases w/o Activity 35+ Days");
+				}, 700);
+			}
+		});
+	},
+	listNoActivities: function() {
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		readCookie();
+		var self = this;
+		if ($("#search_results").html()!="") {
+			$("#search_results").html("");
+			$(".search #srch-term").val("");
+		}
+		$("#content").html(loading_image);
+		
+		current_case_id = -1;
+		
+		var inactive_cases = new Inactives();
+		inactive_cases.fetch({
+			success: function (data) {
+				//then re-assign to calendar
+				$("#content").html("");
+				var mymodel = new Backbone.Model();
+				mymodel.set("key", "");
+				//var inactiveView = new kase_listing_view({el: $("#content"), collection: inactive_cases, model: mymodel}).render();
+				$('#content').html(new kase_listing_view({collection: data, model: mymodel}).render().el);
+				setTimeout(function() {
+					$("#kase_status_title").html("Kases w/o Activity 35+ Days");
+				}, 700);
+			}
+		});
+	},
+	listInactives: function() {
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		
+		readCookie();
+		var self = this;
+		if ($("#search_results").html()!="") {
+			$("#search_results").html("");
+			$(".search #srch-term").val("");
+		}
+		$("#content").html(loading_image);
+		
+		current_case_id = -1;
+		
+		var inactive_cases = new InactiveCasesCollection({days: 45});
+		inactive_cases.fetch({
+			success: function (data) {
+				//then re-assign to calendar
+				$("#content").html("");
+				var mymodel = new Backbone.Model();
+				mymodel.set("key", "");
+				var inactiveView = new kase_listing_view({el: $("#content"), collection: inactive_cases, model: mymodel}).render();
+				setTimeout(function() {
+					$("#kase_status_title").html("Inactive");
+				}, 700);
+			}
+		});
+	},
+	listUnattendedKases: function () {
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		
+		$(document).attr('title', "Unattended Kases List");
+		
+		var mymodel = new Backbone.Model();
+		mymodel.set("key", "");
+		listed_kases = kases_limit;
+		
+		var unattended_cases = new Unattendeds();
+		unattended_cases.fetch({
+			success: function (data) {
+				//then re-assign to calendar
+				$("#content").html("");
+				var mymodel = new Backbone.Model();
+				mymodel.set("key", "");
+				var unattendedView = new kase_listing_view({el: $("#content"), collection: unattended_cases, model: mymodel}).render();
+				setTimeout(function() {
+					$("#kase_status_title").html("Unattended");
+				}, 700);
+			}
+		});
+    },
+	kasePhone: function (case_id, event_id) { 
+		current_case_id = case_id;
+		
+		var self = this;
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kasePhone(case_id, event_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		setTimeout(function() {
+			self.kaseEventTypeDialog(case_id, event_id, "phone_call");
+		}, 100);
+	},
+	listCalendars: function () { 
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		readCookie();
+		
+		//fetch all messages
+		calendars = new CalendarCollection();
+		calendars.fetch({
+			success: function (data) {
+				$('#content').html(new calendar_listing_view({collection: data}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	listCourtCalendarEvents: function() {
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		
+		this.clearSearchResults();
+		$("#content").html(loading_image);	
+		var court_events = new CourtCalendarEvents();
+		court_events.fetch({
+			success: function (data) {
+				//then re-assign to calendar
+				var calendar_info = new Backbone.Model;
+				var the_title = "Unassigned Court Calendar Events";				
+				var the_container = "#content";
+				calendar_info.set("title", the_title);
+				calendar_info.set("homepage", false);
+				calendar_info.set("event_class", "listing");
+				calendar_info.set("worker", "");
+				calendar_info.set("thetype", "");
+				calendar_info.set("start", "");
+				calendar_info.set("end", "");
+				calendar_info.set("import_date", "");
+				if (data.length > 0) {
+					calendar_info.set("import_date", moment(data.toJSON()[0].import_date).format("MM/DD/YYYY"));
+				}
+				$(the_container).removeClass("glass_header_no_padding");
+				
+				occurencesView = new event_listing({el: $(the_container), collection: court_events, model: calendar_info}).render();
+				
+				blnCalendarListing = false;
+			}
+		});
+	},
+	listCalendarEvents: function(calendar_id, sort_order, start, end) {
+//alert("here");
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		
+		this.clearSearchResults();
+		
+		current_calendar_id = calendar_id;
+		current_calendar_type = "";
+		//for the most part, mandatory calendars
+		switch(sort_order) {
+			case "-2":
+				this.kaseCustomerEventsByDate(start, end);
+				break;
+			case "-1":
+				this.kaseCustomerEventsByDate(start, end);
+				break;
+			case "0":
+				this.kaseCustomerEventsByDate(start, end);
+				break;
+			case "4":
+				this.kaseCustomerEventsByDate(start, end);
+				//this.kaseCustomerIntakes(start, end);
+				break;
+			case "5":
+				//this.kasePersonalEvents();
+				this.showUserCalendar(login_user_id, start, end);
+				break;
+			default:
+				return;
+				//this.displayCustomCalendarByDates(calendar_id, start, end);
+		}
+	},
+	kaseCustomerEventsByDate: function (start, end) {		
+		listCustomerEvents(start, end);
+	},
+	displayCustomCalendarByDates: function (case_id, start, end) {		
+		var display_start = moment(start).format("MM/DD/YYYY");
+		var display_end = moment(end).format("MM/DD/YYYY");
+		
+		if (display_start != display_end) {
+			display_start += " through " + display_end;
+		}
+		//note the calendar id is really a case id
+		occurences = new OccurenceCollection({case_id: case_id, start: start, end: end});
+		occurences.fetch({
+				success: function(data) {
+					//then re-assign to calendar
+					var kase = new Backbone.Model;
+					kase.set("title", "Events: " + display_start);
+					kase.set("case_id", case_id);
+					kase.set("homepage", false);
+					kase.set("event_class", "listing");
+					kase.set("start", moment(start).format("MM/DD/YYYY"));
+					kase.set("end", moment(end).format("MM/DD/YYYY"));
+					occurencesView = new event_listing({el: $("#content"), collection: occurences, model:kase}).render();
+				}
+			}
+		);
+	},
+	listPartnerEvents: function() {
+		this.displayCalendarEvents("-1", "-99");
+	},
+	listEmployeeEvents: function() {
+		this.displayCalendarEvents("-1", "-98");
+	},
+	displayWCABEvents: function() {
+		this.displayCalendarEvents("1", "0", "WC");
+	},
+	displayPIEvents: function() {
+		this.displayCalendarEvents("1", "0", "PI");
+	},
+	displayCalendarEvents: function(calendar_id, sort_order, calendar_type) {
+		this.clearSearchResults();
+		current_case_id = -1;
+		if (typeof calendar_type == "undefined") {
+			calendar_type = "";
+		}
+		$(document).attr('title', 'Kalendar');
+		var self = this;
+		if (sort_order < 1 && sort_order > -10) {
+			if (typeof stored_customer_events == "undefined") {
+				stored_customer_events = new OccurenceStoredCustomerCollection();
+				var fetched_customer_events = new OccurenceCustomerCollection();
+				
+				stored_customer_events.fetch({
+					success: function(stored_customer_events) {
+						if (stored_customer_events.length==0) {
+							fetched_customer_events.fetch({
+								success: function(data) {
+									var the_events = data.toJSON();
+									_.each( the_events, function(customer_event) {
+										var myOccurence = new Occurence({event_id: customer_event.id});
+										myOccurence.set(customer_event);
+										stored_customer_events.add(myOccurence);
+										myOccurence.save();
+									});
+									self.displayCalendarEvents(calendar_id, sort_order);
+								}
+							});
+						} else {
+							self.displayCalendarEvents(calendar_id, sort_order);
+						}
+					}
+				});
+				return;
+			}
+		}
+		current_calendar_id = calendar_id;
+		current_calendar_type = calendar_type;
+		//for the most part, mandatory calendars
+		switch(sort_order) {
+			case "-99":
+				this.partnerEvents();
+				break;
+			case "-98":
+				this.employeeEvents();
+				break;
+			case "-2":
+				this.kaseCustomerEventsByWeek();
+				break;
+			case "-1":
+				this.kaseCustomerEventsByDay();
+				break;
+			case "0":
+				//main firm calendar
+				this.kaseCustomerEvents();
+				break;
+			case "1":
+				//Backbone.history.navigate('firmkalendar'); 
+				this.kaseCustomerInhouseEvents();
+				break;
+			case "4":
+				//Backbone.history.navigate('intakekalendar'); 
+				this.kaseCustomerIntakes();
+				break;
+			case "5":
+				current_calendar_id = 5;
+				Backbone.history.navigate('userkalendar/' + login_user_id);
+				//this.kasePersonalEvents();
+				this.showUserCalendar(login_user_id);
+				break;
+			default:
+				this.displayCustomCalendar(calendar_id);
+		}
+		
+		if (typeof customer_settings.get("background") != "undefined") {
+			setTimeout(function() {
+				$(".fc-view-container").css("background", customer_settings.get("background"))
+			}, 500);
+		}
+	},
+	partnerEvents:function() {
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		
+		readCookie();
+		var self = this;
+		//in event_module.js
+		showPartnerKalendar('agendaDay');
+	},
+	employeeEvents:function() {
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		
+		readCookie();
+		var self = this;
+		//in event_module.js
+		showEmployeeKalendar('month');
+	},
+	kaseCustomerEventsByDay:function() {
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		readCookie();
+		var self = this;
+		//in event_module.js
+		showCustomerKalendar('agendaDay');
+	},
+	kaseCustomerEventsByWeek:function() {
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		
+		readCookie();
+		var self = this;
+		//in event_module.js
+		showCustomerKalendar('agendaWeek');
+	},
+	displayCustomCalendar: function(calendar_id) {
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		
+		readCookie();
+		var self = this;
+		
+		var all_customer_custom = new OccurenceCalendarCollection({calendar_id: calendar_id});
+		all_customer_custom.fetch({
+			success: function (data) {
+				//then re-assign to calendar
+				$("#content").html("");
+				var calendar_info = new Backbone.Model;
+				//get calendar name
+				var thecalendar = customer_calendars.findWhere({calendar_id: calendar_id});
+				if (typeof thecalendar != "undefined") {
+					calendar_info.set("title", thecalendar.get("calendar") + " Kalendar");
+				} else {
+					//THIS SHOULD NOT HAPPEN, ERROR?
+					calendar_info.set("title", "Custom Calendar");
+				}
+				calendar_info.set("calendar_id", calendar_id);
+				occurencesView = new custom_occurences_view({el: $("#content"), collection: all_customer_custom, model: calendar_info}).render();		
+			}
+		});
+	},
+	listThreadInboxNew: function() {
+		this.listThreadInbox(true, false);
+	},
+	listThreadInboxPendings: function() {
+		this.listThreadInbox(false, true);
+	},
+	listThreadInbox: function (blnNew, blnPendings) { 
+		if (typeof blnNew == "undefined") {
+			blnNew = false;
+		}
+		if (typeof blnPendings == "undefined") {
+			blnPendings = false;
+		}
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		readCookie();
+		$("#content").html(loading_image);
+		
+		//fetch all messages
+		if (!blnPendings) {
+			//if (blnUseThreads) {
+				if (typeof global_threads == "undefined" || blnNew) {
+					var threads = new ThreadInboxCollection({isNew: blnNew});
+				} else {
+					var thread_listing_info = new Backbone.Model;
+					var title = "Inbox";
+					if (blnNew) {
+						title = "Inbox - Unread Messages";
+					}
+					
+					thread_listing_info.set("title", title);
+					title += " :: iKase";
+					$(document).attr('title', title);
+					//$('#content').html(new thread_listing({collection: global_threads, model: thread_listing_info}).render().el);
+					//if (blnUseThreads) {
+						$('#content').html(new thread_listing({collection: global_threads, model: thread_listing_info}).render().el);
+					/*
+					} else {
+						$('#content').html(new message_listing({collection: global_threads, model: thread_listing_info}).render().el);
+					}
+					*/
+					return;
+				}
+			/*
+			} else {
+				var threads = new ThreadInboxCollection();
+			}
+			*/
+		} else {
+			if (typeof global_threads_pending == "undefined") {
+				var threads = new ThreadInboxCollection({pending: "y"});
+			} else {
+				var thread_listing_info = new Backbone.Model;
+				$(document).attr('title', "Pending Emails :: iKase");
+				thread_listing_info.set("title", "Pending Emails");
+				$('#content').html(new thread_listing({collection: global_threads_pending, model: thread_listing_info}).render().el);
+				return;
+			}
+		}
+		threads.fetch({
+			success: function (data) {
+				var thread_listing_info = new Backbone.Model;
+				if (!blnPendings) {
+					$(document).attr('title', "Inbox :: iKase");
+					thread_listing_info.set("title", "Inbox");
+				} else {
+					$(document).attr('title', "Pending Emails :: iKase");
+					thread_listing_info.set("title", "Pending Emails");
+				}
+				//if (blnUseThreads) {
+					$('#content').html(new thread_listing({collection: data, model: thread_listing_info}).render().el);
+				/*
+				} else {
+					$('#content').html(new message_listing({collection: data, model: thread_listing_info}).render().el);
+				}
+				*/
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});
+		setTimeout(function(){ 
+			threads.fetch({
+				success: function (data) {
+					var thread_listing_info = new Backbone.Model;
+					if (!blnPendings) {
+						$(document).attr('title', "Inbox :: iKase");
+						thread_listing_info.set("title", "Inbox");
+					} else {
+						$(document).attr('title', "Pending Emails :: iKase");
+						thread_listing_info.set("title", "Pending Emails");
+					}
+					//if (blnUseThreads) {
+						$('#content').html(new thread_listing({collection: data, model: thread_listing_info}).render().el);
+					/*
+					} else {
+						$('#content').html(new message_listing({collection: data, model: thread_listing_info}).render().el);
+					}
+					*/
+					$("#content").removeClass("glass_header_no_padding");
+				}
+			});
+		 }, 2*1000);
+		setInterval(()=>{
+			// added by mukesh - and (&&) in if condition for email view close issue during sync - 15-6-2023
+			// if email preview in inbox open then sync code will not executed, otherwise it will execute
+			if(window.location.hash=="#thread/inbox" && $("#preview_pane_holder").css("display")=="none")
+			{
+				threads.fetch({
+					success: function (data) {
+						var thread_listing_info = new Backbone.Model;
+						if (!blnPendings) {
+							$(document).attr('title', "Inbox :: iKase");
+							thread_listing_info.set("title", "Inbox");
+						} else {
+							$(document).attr('title', "Pending Emails :: iKase");
+							thread_listing_info.set("title", "Pending Emails");
+						}
+						//if (blnUseThreads) {
+							$('#content').html(new thread_listing({collection: data, model: thread_listing_info}).render().el);
+						/*
+						} else {
+							$('#content').html(new message_listing({collection: data, model: thread_listing_info}).render().el);
+						}
+						*/
+						$("#content").removeClass("glass_header_no_padding");
+					}
+				});
+			}
+		},30*1000);
+					
+	},
+	listThreadOutbox: function () { 
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		readCookie();
+		$("#content").html(loading_image);
+		
+		//fetch all messages
+		var threads = new ThreadOutboxCollection();
+		threads.fetch({
+			success: function (data) {
+				$(document).attr('title', "Outbox :: iKase");
+				var thread_listing_info = new Backbone.Model;
+				thread_listing_info.set("title", "Outbox");
+				
+				$('#content').html(new thread_listing({collection: data, model: thread_listing_info}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	listInbox: function () { 
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		readCookie();
+		$("#content").html(loading_image);
+		
+		//fetch all messages
+		messages = new InboxCollection();
+		messages.fetch({
+			success: function (data) {
+				$(document).attr('title', "Inbox :: iKase");
+				var message_listing_info = new Backbone.Model;
+				message_listing_info.set("title", "Inbox");
+				message_listing_info.set("first_column_label", "From");
+				message_listing_info.set("receive_label", "Received");
+				$('#content').html(new message_listing({collection: data, model: message_listing_info}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	listDrafts: function () { 
+		if (blnSaveDraft) {
+			this.listOutbox("D");
+		}
+	},
+	listOutbox: function (drafts) {
+		var self = this;
+		
+		if (typeof drafts == "undefined") {
+			drafts = "N";
+		}
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		readCookie();
+		$("#content").html(loading_image);
+		
+		//fetch all messages
+		if (drafts == "N") {
+			
+		}
+		if (drafts == "D") {
+			var messages = new DraftsCollection();
+		
+			messages.fetch({
+				success: function (data) {
+					outboxCollection = data;
+					
+					var message_listing_info = new Backbone.Model;
+					if (drafts == "D") {
+						$(document).attr('title', "Drafts :: iKase");
+						message_listing_info.set("title", "Drafts");
+					} else {
+						$(document).attr('title', "Outbox :: iKase");
+						message_listing_info.set("title", "Outbox");
+					}
+					message_listing_info.set("receive_label", "Sent");
+					message_listing_info.set("first_column_label", "To");
+					$('#content').html(new message_listing({collection: data, model: message_listing_info}).render().el);
+					$("#content").removeClass("glass_header_no_padding");
+				}
+			});	
+			return;
+		}
+		if (drafts == "N") {
+			if (typeof outboxCollection == "undefined") {
+				var messages = new OutboxCollection();
+	
+				messages.fetch({
+					success: function (data) {
+						outboxCollection = data;
+						self.listOutbox(drafts);
+					}
+				});	
+
+				return;		
+			} else {
+				var message_listing_info = new Backbone.Model;
+				if (drafts == "D") {
+					$(document).attr('title', "Drafts :: iKase");
+					message_listing_info.set("title", "Drafts");
+				} else {
+					$(document).attr('title', "Outbox :: iKase");
+					message_listing_info.set("title", "Outbox");
+				}
+				message_listing_info.set("receive_label", "Sent");
+				message_listing_info.set("first_column_label", "To");
+				$('#content').html(new message_listing({collection: outboxCollection, model: message_listing_info}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		}
+	},
+	listAllTaskCompleted: function (day) { 
+		//var day = moment().format("YYYY-MM-DD")
+		this.listTaskCompleted(day);
+	},
+	listTaskCompleted: function (day) {
+		if (typeof day == "undefined") {
+			day = "";
+		}
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		readCookie();
+		
+		$('#content').html(loading_image);
+		
+		if (day!="") {
+			//fetch all tasks
+			var theoptions = {day: day, single_day: "y", all_users: "y"};
+		} else {
+			//fetch all tasks
+			var theoptions = "";
+		}
+		tasks = new CompletedTasks(theoptions);
+		tasks.fetch({
+			success: function (data) {
+				$(document).attr('title', "Completed Tasks :: iKase");
+				
+				var task_listing_info = new Backbone.Model;
+				var the_title = "Completed Tasks";
+				if (day!="") {
+					var display_day = moment(day).format("MM/DD/YYYY");
+					the_title += "<div style='display:inline; margin-left:100px'><input type='text' id='taskdayview_start_date' style='width:100px' value='" + display_day + "' onkeyup='mask(this, mdate);' onblur='mask(this, mdate);' />&nbsp;|&nbsp;" + assignee_filter + "</div>";
+				}
+				task_listing_info.set("title", the_title);
+				task_listing_info.set("receive_label", "Due Date");
+				task_listing_info.set("holder", "content");
+				$('#content').html(new task_listing_pane({collection: data, model: task_listing_info}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	loginEmail: function() {
+		var self = this;
+		var table_id = $('#table_id').val();
+		global_login_email = new Email({user_id: login_user_id, email_id: table_id});
+		// console.log("global_login_email = "+global_login_email);
+		global_login_email.fetch({
+			success: function (email) {
+				var email_json_all = email.toJSON();
+				//console.log(email_json_all);
+				var email_json_all_len = 500;			
+				//console.log("##" + email_json_all_len);
+				for (let i = 0; i < email_json_all_len; i++) {					
+					var email_json = email_json_all[i];
+									
+					if(email_json==undefined)
+					{
+						break;
+					}
+					var email_active = email_json.active;
+					user_email_id = email_json.user_email_id;
+					login_email_name = email_json.email_name;
+					login_read_messages = email_json.read_messages;
+					login_emails_pending = email_json.emails_pending;
+					
+					if (login_emails_pending=="N") {
+						$("#pending_emails_nav").hide();
+						$(".pending_indicator").hide();
+					} else {
+						$("#pending_emails_nav").show();
+						$(".pending_indicator").show();
+					}
+					
+					if (email_active=="N") {
+						return;
+					}
+					if (login_email_name=="") {
+						return;
+					}
+					
+					var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+					if ( (login_email_name.match(mailformat) && "imap.gmail.com" == email_json.email_server ) || 
+					login_email_name.indexOf("@gmail.com") > -1) {
+						// console.log("in if 1");
+						blnGMailUser = true;
+						
+						if (blnGmail) {
+							// console.log("in if 2");
+							//console.log("blngmail");
+							//var gmail_url = "https://www.ikase.xyz/ikase/gmail/ui/index.php";
+							//gmail_url += "?user_id=" + login_user_id + "&customer_id=" + customer_id + "&user_name=" + encodeURIComponent(login_username) + "&email=" + encodeURIComponent(email_json.email_name) + "&destination=" + encodeURIComponent(email_json.email_address) + "&hash=" + document.location.hash.substr(1);
+							var gmail_url = "https://www.ikase.xyz/ikase/gmail/ui/list_messages.php";
+							gmail_url += "?user_id=" + login_user_id + "&customer_id=" + customer_id + "&user_name=" + encodeURIComponent(login_username) + "&email=" + encodeURIComponent(email_json.email_name) + "&destination=" + encodeURIComponent(email_json.email_address) + "&hash=" + document.location.hash.substr(1)+ "&user_email_id=" + user_email_id;
+							var thewidth = 200;
+							var theheight = 100;
+							
+							var theleft = window.innerWidth - thewidth - 30;
+							var thetop = window.innerHeight - theheight - 30;
+							
+							if (blnGmail) {
+								// console.log("in if 3");
+								//console.log("2nd blngmail");
+								//document.location.href = gmail_url;	
+								if (document.location.hash.indexOf("#thread/inbox") > -1) {
+									$.ajax({
+										url:gmail_url,
+										type:'GET',
+										dataType:"json",
+										data: "",
+										success:function (data) {
+											console.log("---------------------- data:",data)
+										}
+									})
+								}
+							}
+								//check if we already have a token
+								// var url = "api/gmail/token";
+								
+								// $.ajax({
+								// 	url:url,
+								// 	type:'GET',
+								// 	dataType:"json",
+								// 	data: "",
+								// 	success:function (data) {
+										
+
+								// 		if(data.error) {  // If there is an error, show the error messages
+								// 			saveFailed(data.error.text);
+								// 		} else {
+											//console.log("..........",data);
+											// console.log("in if 5");
+											if (email_json.token=="" || email_json.token==null) {
+												// console.log("in if 6");
+
+												blnGmailAccessRequested = true;
+												//console.log("last if "+blnGmailAccessRequested);
+												//var url = "../google-api-php-client-master/examples/index.php";
+												//url += "?user_id=" + login_user_id + "&customer_id=" + customer_id + "&user_name=" + login_username + "&email=" + email_json.email_name + "&destination=" + email_json.email_address;
+												if (blnGmailAccessRequested) {
+													console.log("gmail access")
+													var gmail_url = "https://www.ikase.xyz/ikase/gmail/ui/index.php";
+													gmail_url += "?user_id=" + login_user_id + "&email="+login_email_name+"&customer_id=" + customer_id + "&user_email_id=" + user_email_id +"&logout=";
+													document.location.href = gmail_url;
+													// window.open(gmail_url, '_blank', 'width=500,height=600');
+													//console.log("..........last last if");
+												} else {
+												//	console.log("..........last last else");
+													
+													$(".test_feedback").html("<span style='background:aqua; color:black; padding:2px; margin-left:20px; cursor:pointer' id='request_gmail'>Connect to GMail</span>");
+												}
+											} else {
+												//we have a token, so it was requested
+											//	console.log("here");
+												blnGmailAccessRequested = true;
+												blnGMailToken = true;
+												$(".test_feedback").html("<span title='Gmail Token Acquired' style='background:green; color:white; padding:2px; margin-left:20px'>Email Connected &#10003;</span>");
+												
+												blnGoogleToken = true;
+												//this function will get us to checkGmailInbox, request a refresh
+												//console.log('calling check inbox function start');
+												checkInbox(true);
+												//console.log('calling check inbox function end');
+											}
+								// 		}
+								// 	}
+								// });
+								
+							} else {
+								//obsolete?
+								window.open(url, "iKase Webmail", "width=" + thewidth + ", height=" + theheight + ", scrollbars=no, resizable=no, menubar=no, location=no, left=" + theleft + ", top=" + thetop + "");
+							}
+							// return;
+					}
+
+					if ( (login_email_name.match(mailformat) && "outlook.office365.com" == email_json.email_server ) || 
+					login_email_name.indexOf("@outlook.com") > -1) {
+						blnGMailUser = true;
+						 
+						if (blnGmail) {
+							var gmail_url = "https://www.ikase.xyz/ikase/outlook/index.php";
+							gmail_url += "?user_id=" + login_user_id + "&customer_id=" + customer_id + "&user_name=" + encodeURIComponent(login_username) + "&email=" + encodeURIComponent(email_json.email_name) + "&destination=" + encodeURIComponent(email_json.email_address) + "&hash=" + document.location.hash.substr(1);
+							//console.log('gmail_url:',gmail_url);
+							var thewidth = 200;
+							var theheight = 100;
+							
+							var theleft = window.innerWidth - thewidth - 30;
+							var thetop = window.innerHeight - theheight - 30;
+							
+							if (blnGmail) {
+								//check if we already have a token
+								//var url = "api/gmail/token";
+
+								// $.ajax({
+								// 	url:url,
+								// 	type:'GET',
+								// 	dataType:"json",
+								// 	data: "",
+								// 	success:function (data) {
+								// 		if(data.error) {  // If there is an error, show the error messages
+								// 			saveFailed(data.error.text);
+								// 		} else {
+											//console.log("..........",data);											
+											if (email_json.token=="" || email_json.token==null) {
+
+													blnGmailAccessRequested = true;
+												//console.log("last if "+blnGmailAccessRequested);
+												//var url = "../google-api-php-client-master/examples/index.php";
+												//url += "?user_id=" + login_user_id + "&customer_id=" + customer_id + "&user_name=" + login_username + "&email=" + email_json.email_name + "&destination=" + email_json.email_address;
+													var uei = user_email_id;// - 1;
+													var gmail_url = "https://www.ikase.xyz/ikase/outlook/index.php";
+													gmail_url += "?user_id=" + login_user_id + "&email=" + login_email_name + "&customer_id=" + customer_id + "&user_email_id=" + uei + "&logout=";
+													document.location.href = gmail_url;
+												if (blnGmailAccessRequested) {
+													//console.log("..........last last if");
+												} else {
+													///console.log("..........last last else");
+													
+													$(".test_feedback").html("<span style='background:aqua; color:black; padding:2px; margin-left:20px; cursor:pointer' id='request_gmail'>Connect to GMail</span>");
+												}
+											} else {
+												//console.log('data.access_token:',data.access_token)
+												if( window.localStorage && window.location.hash=="#thread/inbox" || window.localStorage && window.location.hash=="#thread/inboxnew")
+															{
+																if( localStorage.getItem('firstLoad') )
+																{
+																	localStorage.removeItem('firstLoad');
+																}  
+																else{
+																	//console.log("here sync");
+																	// localStorage['firstLoad'] = true;
+																	// document.location.href = "https://www.ikase.xyz/ikase/outlook/redirect.php?list_email=true&token="+data.access_token+"&email="+login_email_name + "&customer_id=" + customer_id +"&user_id=" + login_user_id ;
+																	var uei = user_email_id;// - 1;
+																	var outlook_url = "https://www.ikase.xyz/ikase/outlook/redirect.php?list_email=true&token=NA&email="+login_email_name + "&customer_id=" + customer_id +"&user_id=" + login_user_id + "&user_email_id=" + uei ;
+																	$.ajax({
+																		url:outlook_url,
+																		type:'GET',
+																		dataType:"json",
+																		data: "",
+																		success:function (data) {
+																			console.log("---------------------- data:",data)
+																		}
+																	})
+																}
+														}
+														//console.log("here not sync");
+													//	console.log("ajaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+												// $.ajax({
+												// 	url:"https://www.ikase.xyz/ikase/outlook/redirect.php?ajaxlistemail=true&token="+data.access_token+"&email="+login_email_name,
+												// 	type:'GET',
+												// 	dataType:"jsonp",
+												// 	data: "",
+												// 	crossDomain: true,
+												// 	success:function (data) {
+												// 		console.log("..................................$$$$$$$$$$$$$$$$$$$$$",data);
+												// 	}
+												// });
+
+												//we have a token, so it was requested
+												//console.log("here");
+												blnGmailAccessRequested = true;
+												blnGMailToken = true;
+												$(".test_feedback").html("<span title='Gmail Token Acquired' style='background:green; color:white; padding:2px; margin-left:20px'>Email Connected &#10003;</span>");
+												
+												blnGoogleToken = true;
+												//this function will get us to checkGmailInbox, request a refresh
+											//	console.log('calling check inbox function start');
+												checkInbox(true);
+											//	console.log('calling check inbox function end');
+											}
+										//}
+								// 	}
+								// });
+								
+							} else {
+								//obsolete?
+								window.open(url, "iKase Webmail", "width=" + thewidth + ", height=" + theheight + ", scrollbars=no, resizable=no, menubar=no, location=no, left=" + theleft + ", top=" + thetop + "");
+							}
+						}
+						//postForm(url, {customer_id: customer_id, user_id: login_user_id, user_name: login_username, destination: email_json.email_address, email: email_json.email_name});
+						
+						//return;	
+					}
+					// if (login_email_name.indexOf("@yahoo.com") > -1) {
+					// 	blnGMailUser = true;
+						
+					// 	if (blnGmail) {
+					// 		//console.log("blngmail");
+					// 		var gmail_url = "https://www.ikase.xyz/ikase/yahoo/index.php";
+					// 		gmail_url += "?user_id=" + login_user_id + "&customer_id=" + customer_id + "&user_name=" + encodeURIComponent(login_username) + "&email=" + encodeURIComponent(email_json.email_name) + "&destination=" + encodeURIComponent(email_json.email_address) + "&hash=" + document.location.hash.substr(1);
+					// 		//console.log('gmail_url:',gmail_url);
+					// 		var thewidth = 200;
+					// 		var theheight = 100;
+							
+					// 		var theleft = window.innerWidth - thewidth - 30;
+					// 		var thetop = window.innerHeight - theheight - 30;
+							
+					// 		if (blnGmail) {
+					// 			//check if we already have a token
+					// 			var url = "api/gmail/token";
+								
+					// 			$.ajax({
+					// 				url:url,
+					// 				type:'GET',
+					// 				dataType:"json",
+					// 				data: "",
+					// 				success:function (data) {
+										
+					// 							// console.log("dataaaa",data);
+					// 					if(data.error) {  // If there is an error, show the error messages
+					// 						saveFailed(data.error.text);
+					// 					} else {
+					// 						//console.log("..........",data);
+					// 						if (data.access_token=="") {
+
+					// 								blnGmailAccessRequested = true;
+					// 							//console.log("last if "+blnGmailAccessRequested);
+					// 							//var url = "../google-api-php-client-master/examples/index.php";
+					// 							//url += "?user_id=" + login_user_id + "&customer_id=" + customer_id + "&user_name=" + login_username + "&email=" + email_json.email_name + "&destination=" + email_json.email_address;
+					// 							if (blnGmailAccessRequested) {
+					// 								var gmail_url = "https://www.ikase.xyz/ikase/yahoo/index.php";
+					// 								gmail_url += "?user_id=" + login_user_id + "&email=" + login_email_name + "&customer_id=" + customer_id + "&logout=";
+					// 								document.location.href = gmail_url;
+					// 								//console.log("..........last last if");
+					// 							} else {
+					// 								///console.log("..........last last else");
+													
+					// 								$(".test_feedback").html("<span style='background:aqua; color:black; padding:2px; margin-left:20px; cursor:pointer' id='request_gmail'>Connect to GMail</span>");
+					// 							}
+					// 						} else {
+					// 							console.log('data.access_token:',data.access_token)
+					// 							if( window.localStorage && window.location.hash=="#thread/inbox")
+					// 										{
+					// 											if( localStorage.getItem('firstLoad') )
+					// 											{
+					// 												localStorage.removeItem('firstLoad');
+					// 											}  
+					// 											else{
+					// 												localStorage['firstLoad'] = true;
+					// 												document.location.href = "https://www.ikase.xyz/ikase/yahoo/redirect.php?list_email=true&token="+data.access_token+"&email="+login_email_name;
+					// 											}
+					// 									}
+					// 								//	console.log("ajaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+					// 							// $.ajax({
+					// 							// 	url:"https://www.ikase.xyz/ikase/outlook/redirect.php?ajaxlistemail=true&token="+data.access_token+"&email="+login_email_name,
+					// 							// 	type:'GET',
+					// 							// 	dataType:"jsonp",
+					// 							// 	data: "",
+					// 							// 	crossDomain: true,
+					// 							// 	success:function (data) {
+					// 							// 		console.log("..................................$$$$$$$$$$$$$$$$$$$$$",data);
+					// 							// 	}
+					// 							// });
+
+					// 							//we have a token, so it was requested
+					// 							//console.log("here");
+					// 							blnGmailAccessRequested = true;
+					// 							blnGMailToken = true;
+					// 							$(".test_feedback").html("<span title='Gmail Token Acquired' style='background:green; color:white; padding:2px; margin-left:20px'>Email Connected &#10003;</span>");
+												
+					// 							blnGoogleToken = true;
+					// 							//this function will get us to checkGmailInbox, request a refresh
+					// 						//	console.log('calling check inbox function start');
+					// 							checkInbox(true);
+					// 						//	console.log('calling check inbox function end');
+					// 						}
+					// 					}
+					// 				}
+					// 			});
+								
+					// 		} else {
+					// 			//obsolete?
+					// 			window.open(url, "iKase Webmail", "width=" + thewidth + ", height=" + theheight + ", scrollbars=no, resizable=no, menubar=no, location=no, left=" + theleft + ", top=" + thetop + "");
+					// 		}
+					// 	}
+					// 	//postForm(url, {customer_id: customer_id, user_id: login_user_id, user_name: login_username, destination: email_json.email_address, email: email_json.email_name});
+						
+					// 	return;	
+					// }
+					// var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+					// if(login_email_name.match(mailformat)){
+					// // if ("test@documentgeeks.com".indexOf("documentgeeks.com") > -1) {
+					// 	blnGMailUser = true;
+					// 	if (blnGmail) {
+					// 		// console.log("blngmail------------------------");
+					// 		// var gmail_url = "https://www.ikase.xyz/ikase/gmail/ui/index.php";
+					// 		var gmail_url = "https://www.ikase.xyz/ikase/gmail/ui/list_messages.php";
+					// 		gmail_url += "?user_id=" + login_user_id + "&customer_id=" + customer_id + "&user_name=" + encodeURIComponent(login_username) + "&email=" + encodeURIComponent(email_json.email_name) + "&destination=" + encodeURIComponent(email_json.email_address) + "&hash=" + document.location.hash.substr(1);
+					// 		var thewidth = 200;
+					// 		var theheight = 100;
+							
+					// 		var theleft = window.innerWidth - thewidth - 30;
+					// 		var thetop = window.innerHeight - theheight - 30;
+							
+					// 		if (blnGmail) {
+					// 			// console.log("2nd blngmail----------------1");
+					// 			//document.location.href = gmail_url;	
+					// 			if (document.location.hash.indexOf("#thread/inbox") > -1) {
+					// 				$.ajax({
+					// 					url:gmail_url,
+					// 					type:'GET',
+					// 					dataType:"json",
+					// 					data: "",
+					// 					success:function (data) {
+					// 						console.log("---------------------- data:",data)
+					// 					}
+					// 				})
+					// 			}
+
+
+								
+					// 			//check if we already have a token
+					// 			var url = "api/gmail/token";
+								
+					// 			$.ajax({
+					// 				url:url,
+					// 				type:'GET',
+					// 				dataType:"json",
+					// 				data: "",
+					// 				success:function (data) {
+					// 					if(data.error) {  // If there is an error, show the error messages
+					// 						saveFailed(data.error.text);
+					// 					} else {
+					// 						if (data.access_token=="") {
+					// 							blnGmailAccessRequested = true;
+					// 							if (blnGmailAccessRequested) {
+					// 								// console.log("..........last last if");
+					// 								var gmail_url = "https://www.ikase.xyz/ikase/gmail/ui/index.php";
+					// 								gmail_url += "?user_id=" + login_user_id + "&email="+login_email_name+"&customer_id=" + customer_id + "&logout=";
+					// 								document.location.href = gmail_url;
+					// 								// window.open(gmail_url, '_blank', 'width=500,height=600');
+					// 							} else {												
+					// 								$(".test_feedback").html("<span style='background:aqua; color:black; padding:2px; margin-left:20px; cursor:pointer' id='request_gmail'>Connect to GMail</span>");
+					// 							}
+					// 						} else {
+					// 							//we have a token, so it was requested
+					// 							// console.log("here----------------------5");
+					// 							blnGmailAccessRequested = true;
+					// 							blnGMailToken = true;
+					// 							$(".test_feedback").html("<span title='Gmail Token Acquired' style='background:green; color:white; padding:2px; margin-left:20px'>Email Connected &#10003;</span>");
+												
+					// 							blnGoogleToken = true;
+					// 							//this function will get us to checkGmailInbox, request a refresh
+					// 							//console.log('calling check inbox function start');
+					// 							checkInbox(true);
+					// 							//console.log('calling check inbox function end');
+					// 						}
+					// 					}
+					// 				}
+					// 			});
+								
+					// 		} else {
+					// 			//obsolete?
+					// 			window.open(url, "iKase Webmail", "width=" + thewidth + ", height=" + theheight + ", scrollbars=no, resizable=no, menubar=no, location=no, left=" + theleft + ", top=" + thetop + "");
+					// 		}
+					// 	}
+					// 	//postForm(url, {customer_id: customer_id, user_id: login_user_id, user_name: login_username, destination: email_json.email_address, email: email_json.email_name});
+						
+					// 	return;	
+					// }
+					if (login_email_name.indexOf("@gmail.com") < 0 && login_email_name.indexOf("@") > -1) {
+						self.listWebmails();
+					}
+				}
+			}
+		});		
+		console.log('recursive start');
+		setTimeout(function(){
+			self.loginEmail();
+		}, 115000);
+	},
+	listExams: function (case_id) { 
+		var self = this;
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = case_id;
+		
+		$('#kase_content').html(loading_image);
+		
+		readCookie();
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listExams(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		
+		if (case_id!=current_case_id) {
+			//show header for new case
+			kase.set("header_only", true);
+			$('#content').html(new kase_view({model: kase}).render().el);
+		}
+		$(document).attr('title', "Medical Index :: iKase");
+		current_case_id = case_id;
+		//fetch all exams
+		var exams = new ExamCollection({case_id: case_id});
+		exams.fetch({
+			success: function (data) {
+				var exam_info = new Backbone.Model;
+				exam_info.set("case_id", case_id);
+				exam_info.set("holder", "kase_content");
+				$('#kase_content').html(new exam_listing({collection: data, model:exam_info}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	listFirmPhoneCalls: function(start_date, end_date) {
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		readCookie();
+		
+		if (typeof start_date == "undefined") {
+			var start_date = "6_months";
+			var end_date = moment().format("YYYY-MM-DD");
+		}
+		var options = {
+			"showall": true,
+			"start": start_date,
+			"end": end_date,
+		};
+		var messages = new NewPhoneCalls(options);
+		messages.fetch({
+			success: function (data) {
+				if (data.length > 0) {
+					var message_listing_info = new Backbone.Model;
+					message_listing_info.set("title", "Firm Phone Messages");
+					message_listing_info.set("first_column_label", "From");
+					message_listing_info.set("receive_label", "On");
+					message_listing_info.set("homepage", false);
+					message_listing_info.set("holder", "content");
+					message_listing_info.set("event_class", "messages");
+					$('#content').html(new event_listing({collection: data, model: message_listing_info}).render().el);
+					$("#content").removeClass("glass_header_no_padding");
+				} else {
+					$('#content').html("<span class='large_white_text'>No Phone Messages</span>");
+				}
+			}
+		});
+	},
+	listPhoneInbox: function () { 
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		readCookie();
+		
+		var messages = new NewPhoneCalls();
+		messages.fetch({
+			success: function (data) {
+				if (data.length > 0) {
+					var message_listing_info = new Backbone.Model;
+					message_listing_info.set("title", "Phone Messages");
+					message_listing_info.set("first_column_label", "From");
+					message_listing_info.set("receive_label", "On");
+					message_listing_info.set("homepage", false);
+					message_listing_info.set("event_class", "messages");
+					message_listing_info.set("holder", "content");
+					$('#content').html(new event_listing({collection: data, model: message_listing_info}).render().el);
+				} else {
+					$('#content').html("<span class='large_white_text'>No Phone Messages</span>");
+				}
+			}
+		});
+	},
+	showTaskSummary: function () { 
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		readCookie();
+		$("#content").html(loading_image);
+		//fetch all tasks
+		var task_summaries = new TaskSummaries();
+		task_summaries.fetch({
+			success: function (data) {
+				$(document).attr('title', "Tasks Summary :: iKase");
+				var task_listing_info = new Backbone.Model;
+				task_listing_info.set("title", "Tasks Summary");
+				task_listing_info.set("holder", "content");
+				$('#content').html(new task_summary_listing({collection: data, model: task_listing_info}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	transferKases: function () { 
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		readCookie();
+		$("#content").html(loading_image);
+		//fetch all kases
+		var kase_counts = new KaseLetterCounts();
+		kase_counts.fetch({
+			success: function (data) {
+				$(document).attr('title', "Case Counts by Last Name:: iKase");
+				var kase_listing_info = new Backbone.Model;
+				kase_listing_info.set("title", "Case Counts by Last Name");
+				kase_listing_info.set("holder", "content");
+				$('#content').html(new kase_transfer_alpha({collection: data, model: kase_listing_info}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	showKaseSummary: function () { 
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		readCookie();
+		$("#content").html(loading_image);
+		//fetch all kases
+		var kase_summaries = new KaseSummaries();
+		kase_summaries.fetch({
+			success: function (data) {
+				$(document).attr('title', "Cases Summary :: iKase");
+				var kase_listing_info = new Backbone.Model;
+				kase_listing_info.set("title", "Cases Summary");
+				kase_listing_info.set("holder", "content");
+				$('#content').html(new kase_summary_listing({collection: data, model: kase_listing_info}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	listTaskInbox: function () { 
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		readCookie();
+		$("#content").html(loading_image);
+		//fetch all tasks
+		var tasks = new TaskInboxCollection();
+		tasks.fetch({
+			success: function (data) {
+				$(document).attr('title', "Task Inbox :: iKase");
+				var task_listing_info = new Backbone.Model;
+				task_listing_info.set("title", "Task Inbox");
+				task_listing_info.set("receive_label", "Due Date");
+				task_listing_info.set("holder", "content");
+				$('#content').html(new task_listing_pane({collection: data, model: task_listing_info}).render().el);
+				
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	listAllTaskInboxToday: function (day) { 
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		readCookie();
+		
+		if (typeof day == "undefined") {
+			day = moment().format("YYYY-MM-DD");
+			display_day = moment().format("MM/DD/YYYY");
+		} else {
+			display_day = moment(day).format("MM/DD/YYYY");
+		}
+		$("#content").html(loading_image);
+		//fetch all tasks
+		tasks = new TaskInboxCollection({day: day, single_day: "y", all_users: "y"});
+		tasks.fetch({
+			success: function (data) {
+				$(document).attr('title', "Task Inbox - All Employees " + display_day + " :: iKase");
+				var task_listing_info = new Backbone.Model;
+				//<div style='display:inline; margin-left:100px'><input type='text' id='taskdayview_start_date' style='width:100px' value='" + display_day + "' onkeyup='mask(this, mdate);' onblur='mask(this, mdate);' />
+				task_listing_info.set("title", "All Employees Tasks &nbsp;|&nbsp;" + assignee_filter + "</div>");
+				
+				task_listing_info.set("receive_label", "Due Date");
+				task_listing_info.set("holder", "content");
+				$('#content').html(new task_listing_pane({collection: data, model: task_listing_info}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	listTaskInboxToday: function (day) { 
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		readCookie();
+		
+		if (typeof day == "undefined") {
+			day = moment().format("YYYY-MM-DD");
+			display_day = moment().format("MM/DD/YYYY");
+		} else {
+			display_day = moment(day).format("MM/DD/YYYY");
+		}
+		$("#content").html(loading_image);
+		//fetch all tasks
+		var tasks = new TaskInboxCollection({day: day, single_day: "y"});
+		tasks.fetch({
+			success: function (data) {
+				$(document).attr('title', "Task Inbox " + display_day + " :: iKase");
+				var task_listing_info = new Backbone.Model;
+				//<input type='text' id='taskdayview_start_date' style='width:100px; margin-left:150px; position:absolute' value='" + display_day + "' onkeyup='mask(this, mdate);' onblur='mask(this, mdate);' />
+				task_listing_info.set("title", "Task Inbox");
+				
+				task_listing_info.set("holder", "content");
+				task_listing_info.set("receive_label", "Due Date");
+				$('#content').html(new task_listing_pane({collection: data, model: task_listing_info}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	listTaskInboxUpcoming: function (day) { 
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		readCookie();
+		
+		if (typeof day == "undefined") {
+			day = moment().format("YYYY-MM-DD");
+			display_day = moment().format("MM/DD/YYYY");
+		} else {
+			display_day = moment(day).format("MM/DD/YYYY");
+		}
+		$("#content").html(loading_image);
+		//fetch all tasks
+		var tasks = new TaskInboxCollection({day: day});
+		tasks.fetch({
+			success: function (data) {
+				$(document).attr('title', "Upcoming Tasks :: iKase");
+				var task_listing_info = new Backbone.Model;
+				//<input type='text' id='taskdayview_start_date' style='width:100px; margin-left:150px; position:absolute' value='" + display_day + "' onkeyup='mask(this, mdate);' onblur='mask(this, mdate);' />
+				task_listing_info.set("title", "Upcoming Tasks");
+				
+				task_listing_info.set("holder", "content");
+				task_listing_info.set("receive_label", "Due Date");
+				$('#content').html(new task_listing_pane({collection: data, model: task_listing_info}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	listTaskFirmOverdue: function() {
+		this.listTaskOverdue(true);
+	},
+	listTaskOverdue: function (blnFirm) { 
+		if (typeof blnFirm == "undefined") {
+			blnFirm = false;
+		}
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		readCookie();
+		$("#content").html(loading_image);
+		//fetch all tasks
+		if (blnFirm) {
+			var tasks = new TaskFirmOverdueCollection();
+		} else {
+			var tasks = new TaskOverdueCollection();
+		}
+		tasks.fetch({
+			success: function (data) {
+				if (blnFirm) {
+					$(document).attr('title', "Overdue Firm Tasks :: iKase");
+				} else {
+					$(document).attr('title', "Overdue Tasks :: iKase");
+				}
+				var task_listing_info = new Backbone.Model;
+				task_listing_info.set("title", "Overdue Tasks");
+				task_listing_info.set("receive_label", "Due Date");
+				task_listing_info.set("holder", "content");
+				$('#content').html(new task_listing_pane({collection: data, model: task_listing_info}).render().el);
+				
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	kaseCustomerOutTasks: function (start, end) {		
+		this.kaseCustomerTasks(start, end, "out");
+	},
+	kaseCustomerTasks: function (start, end, inout) {		
+		readCookie();
+		var self = this;
+		if (typeof inout == "undefined") {
+			inout = "";
+		}
+		var all_customer_tasks = new TaskCustomerCollection({start: start, end: end, inout: inout});
+		all_customer_tasks.fetch({
+			success: function (data) {
+				//then re-assign to calendar
+				$("#content").html("");
+				var task_info = new Backbone.Model;
+				task_info.set("start", moment(start).format("MM/DD/YYYY"));
+				task_info.set("end", moment(end).format("MM/DD/YYYY"));
+				task_info.set("title", "Tasks");
+				task_info.set("holder", "content");
+				task_info.set("receive_label", "Due Date");
+				$('#content').html(new task_listing_pane({collection: all_customer_tasks, model:task_info}).render().el);
+			}
+		});
+		
+	},
+	listClosedCaseTasks: function (case_id) { 
+		this.listCaseTasks(case_id, true);
+	},
+	listDeletedCaseTasks: function (case_id) { 
+		this.listCaseTasks(case_id, false, true);
+	},
+	listCaseTasks: function (case_id, blnClosed, blnDeleted) {
+		var self = this;
+		if (typeof blnClosed == "undefined") {
+			blnClosed = false;
+		}
+		if (typeof blnDeleted == "undefined") {
+			blnDeleted = false;
+		}
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		readCookie();
+		
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listCaseTasks(case_id, blnClosed, blnDeleted);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		var title = "Tasks for Case ID: " + case_id + " :: iKase";
+		if (blnClosed) {
+			title = "Closed " + title;
+		}
+		if (blnDeleted) {
+			title = "Deleted " + title;
+		}
+		$(document).attr('title', title);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		$("#kase_content").html(loading_image);
+		
+		//fetch all tasks
+		tasks = new TaskInboxCollection({case_id: case_id, blnClosed: blnClosed, blnDeleted: blnDeleted});
+		tasks.fetch({
+			success: function (data) {
+				var task_listing_info = new Backbone.Model;
+				var title = "Kase Tasks";
+				if (blnClosed) {
+					title = "Closed " + title;
+				}
+				if (blnDeleted) {
+					title = "Deleted " + title;
+				}
+				task_listing_info.set("title", title);
+				task_listing_info.set("holder", "kase_content");
+				task_listing_info.set("receive_label", "Due Date");
+				$('#kase_content').html(new task_listing_pane({collection: data, model: task_listing_info}).render().el);
+				
+				$("#kase_content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	displayEmailSettings: function () { 
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		readCookie();
+		//this.model.user_id = this.model.get("user_id");
+		//console.log(login_user_id);
+		var user = new User({user_id: login_user_id});
+		user.fetch({
+			success: function (data) {
+				console.log('data:',data)
+				$('#content').html(new dashboard_email_view({model: user}).render().el);		
+			}
+		});
+	},
+	listCustomerSetting: function () { 
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		readCookie();
+		
+		//fetch all settings
+		refreshCustomerSettings();			
+	},
+	listUserSetting: function () { 
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		readCookie();
+		
+		refreshUserSettings();			
+	},
+	listTaskOutbox: function () {
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;
+		readCookie();
+		$("#content").html(loading_image);
+		
+		//fetch all tasks
+		tasks = new TaskOutboxCollection();
+		tasks.fetch({
+			success: function (data) {
+				$(document).attr('title', "Task Outbox :: iKase");
+				var task_listing_info = new Backbone.Model;
+				task_listing_info.set("title", "Task Outbox");
+				task_listing_info.set("receive_label", "Due");
+				task_listing_info.set("holder", "content");
+				
+				$('#content').html(new task_listing_pane({collection: data, model: task_listing_info}).render().el);
+				
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});			
+	},
+	editMessage: function (message_id) { 
+		current_case_id = -1;
+		
+		readCookie();
+		
+		if (typeof message_id == "undefined" || message_id=="" || message_id<0) {
+			return false;
+		}
+		
+		message = new Message({message_id: message_id});
+		$(document).attr('title', "Interoffice :: iKase");		
+		message.fetch({
+			success: function (data) {
+				message.set("gridster_me", true);
+				$('#content').html(new interoffice_view({model: message}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});	
+	
+	},
+	newMessage: function () { 
+		current_case_id = -1;
+		readCookie();
+		
+		if (typeof message_id == "undefined" || message_id=="") {
+			return false;
+		}
+		
+		message = new Message({message_id: -1});
+		$(document).attr('title', "Interoffice :: iKase");
+		$("#input_for_checkbox").show();
+		$("#myModalLabel").html("New Interoffice");
+		$("#modal_save_holder").html('<a title="Send Message" class="interoffice save" onClick="saveModal()" style="cursor:pointer"><i class="glyphicon glyphicon-send" style="color:#000066; font-size:20px">&nbsp;</i></a>');
+		$("#myModalBody").html(new message_view({model: message}).render().el)
+
+		
+	},
+	kaseEventDialog: function (case_id, event_id, day_date) {
+		current_case_id = case_id;
+
+		readCookie();
+		var self = this;
+		
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseEventDialog(case_id, event_id, day_date);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		//console.log(kase.get("full_name"));
+		occurences = new OccurenceCollection({case_id: case_id});
+		occurences.fetch({
+				success: function(data) {
+					if (event_id > -1) {
+						var occurence = occurences.get(event_id);
+					} else {
+						//no kase, no applicant
+						var occurence = new Occurence({case_id: case_id});
+					}
+					occurence.set("case_number", kase.get("case_number"));
+					occurence.set("case_id",case_id);
+					occurence.set("case_uuid", kase.get("uuid"));
+					occurence.set("gridster_me",true);
+					occurence.set("title", kase.name());
+					
+					var event_dateandtime = moment.utc(Number[day_date]);
+					var d = new Date(); 
+					d.setTime(day_date);
+					moment(d).format("MM/DD/YYYY");
+					occurence.set("event_dateandtime", d);
+					//empty the content holder
+					$("#kase_content").html("&nbsp;");
+					//then re-assign to calendar
+					var occurenceDialogView = new dialog_view({el: $("#kase_content"), collection: occurences, model:occurence}).render();
+				}
+		});
+	},
+	kaseEventTypeDialog: function (case_id, event_id, event_kind) {
+		current_case_id = case_id;
+		
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseEventTypeDialog(case_id, event_id, event_kind);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		occurences = new OccurenceCollection({case_id: case_id});
+		occurences.fetch({
+				success: function(data) {
+					if (event_id > -1) {
+						var occurence = occurences.get(event_id);
+					} else {
+						//no kase, no applicant
+						var occurence = new Occurence({case_id: case_id});
+					}
+					occurence.set("case_id", case_id);
+					occurence.set("event_kind", event_kind);
+					if (event_kind == "phone_call" && event_id==-1) {
+						if (kase.get("full_name") != "") {
+							occurence.set("title", kase.get("employer"));
+						} else {
+							occurence.set("title", kase.get("employer"));
+						}
+						occurence.set("id", -1);
+						occurence.set("event_dateandtime", moment().format("MM/DD/YYYY hh:mm:ss a"));
+						occurence.set("event_name", login_username);
+					}
+					if (kase.get("full_name") != "") {
+						occurence.set("title", kase.get("employer"));
+					} else {
+						occurence.set("title", kase.get("employer"));
+					}
+					occurence.set("case_number", kase.get("case_number"));
+					occurence.set("case_uuid", kase.get("uuid"));
+					occurence.set("gridster_me",true);
+					//empty the content holder
+					$("#kase_content").html("&nbsp;");
+					//then re-assign to calendar
+					var occurenceDialogView = new dialog_view({el: $("#kase_content"), collection: occurences, model:occurence}).render();
+				}
+		});
+	},
+	kaseEvents: function (case_id) {		
+		this.clearSearchResults();
+
+		executeMainChangesKal();
+		
+		current_case_id = case_id;
+		current_calendar_id = -1;
+		current_calendar_type = "";
+		
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseEvents(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		
+		$(document).attr('title', "Kalendar for Case ID: " + case_id + " :: iKase");
+		//clean up button
+		$("button.calendar").fadeOut(function() {
+				$("button.information").fadeIn();
+			});
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		//function below is in event_module.js
+		renderCalendar(kase);
+	},
+	listKaseEvents:function(case_id) {
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		current_case_id = case_id;
+		current_calendar_id = -1;
+		current_calendar_type = "";
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listKaseEvents(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		//clean up button
+		$("button.calendar").fadeOut(function() {
+				$("button.information").fadeIn();
+			});
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		$("#kase_content").removeClass("glass_header_no_padding");
+		renderCalendarListByDate(kase, "", "");
+	},
+	kaseEventsByDate:function(case_id, start, end) {
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		current_case_id = case_id;
+		current_calendar_id = -1;
+		current_calendar_type = "";
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseEventsByDate(case_id, start, end);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		//clean up button
+		$("button.calendar").fadeOut(function() {
+				$("button.information").fadeIn();
+			});
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		$("#kase_content").removeClass("glass_header_no_padding");
+		renderCalendarListByDate(kase, start, end);
+	},
+	kaseCustomerEvents: function () {		
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		current_case_id = -1;
+		
+		showCustomerKalendar('month');
+	},
+	kaseCustomerInhouseEvents: function () {		
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		current_case_id = -1;
+		showCustomerInhouseKalendar('month');
+	},
+	kaseCustomerIntakes: function () {		
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		current_case_id = -1;
+		var all_customer_intakes = new CustomerIntakeCollection();
+		all_customer_intakes.fetch({
+			success: function (data) {
+				//then re-assign to calendar
+				$("#content").html("");
+				occurencesView = new intake_cus_occurences_view({el: $("#content"), collection: all_customer_intakes}).render();			
+			}
+		});
+	},
+	kasePersonalEvents: function () {
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;	
+		current_case_id = -1;
+		
+		var all_customer_events = new OccurenceCustomerCollection();
+		all_customer_events.fetch({
+			success: function (data) {
+				var personal_events = new OccurenceCustomerCollection(); 
+				_.each(data.toJSON(), function(customer_event) {
+					var blnPersonalFrom = false;
+					blnPersonalFrom = (customer_event.event_from==login_username);
+					blnPersonalAssignee = (customer_event.assignee.indexOf(login_nickname) > -1);	
+					
+					//found a match if it was from me, or assigned to me
+					if (blnPersonalAssignee || blnPersonalFrom) {
+						personal_events.add(customer_event);
+					}
+				});
+				
+				//then re-assign to calendar				
+				$("#content").html("");
+				occurencesView = new kase_personal_occurences_view({el: $("#content"), collection: personal_events}).render();
+				
+			}
+		});
+	},
+	listUserCalendarByDate: function(user_id, start, end) {
+		//this.showUserCalendar(user_id, start, end);
+		listCustomerEvents(start, end, "", "", "");
+	},
+	showUserCalendar: function (user_id, start, end) {
+		if (typeof start == "undefined") {
+			start = "";
+		}
+		if (typeof end == "undefined") {
+			end = "";
+		}
+		//get the employee calendar id, make it the current calendar
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		current_case_id = -1;
+			
+		var blnProceed = true;		
+		if (typeof current_employee_calendars == "undefined") {
+			blnProceed = false;
+			current_employee_calendars = new PersonalCalendarCollection([]);
+			current_employee_calendars.fetch({
+				success: function(data) {
+					self.showUserCalendar(user_id);
+				}
+			});
+		}
+		if (!blnProceed) {
+			return;
+		}
+		var permissions = "readwrite";
+		if (login_user_id!=user_id) {
+		//get calendar permissions
+			permissions = current_employee_calendars.findWhere({id: user_id}).get("permissions");
+		}
+		//get the employee calendar
+		var thecalendar = customer_calendars.findWhere({sort_order: "5"});
+		var calendar_id = -1;
+		if (typeof thecalendar != "undefined") {
+			calendar_id = thecalendar.get("calendar_id");
+		}
+		current_calendar_id = calendar_id;
+		current_calendar_type = "";
+		//get the user name
+		var user = new User({user_id: user_id})
+		user.fetch({
+			success: function (user) {
+				var empty_model = new Backbone.Model;				
+				empty_model.set("calendar_name", user.get("user_name"));
+				empty_model.set("user_id", user_id);
+				empty_model.set("permissions", permissions);
+				$("#content").html("");
+				
+				if (start=="") {
+					occurencesView = new user_occurences_view({el: $("#content"), collection: all_user_events, model: empty_model}).render();
+				} else {
+					var date_user_events = new UserCalendar({user_id: user_id, start: start, end: end});
+					date_user_events.fetch({
+						success: function (data) {
+							//then re-assign to calendar
+							//do i have write permissions?
+							occurencesView = new user_occurences_view({el: $("#content"), collection: date_user_events, model: empty_model}).render();
+						}
+					});
+				}
+			}
+		});
+	},
+	showSubscriptionLink: function() {
+		//var subscription_link = "<div class='white_text' style='margin-bottom:20px'>For Outlook/Google Calendar Sync, please use this url:<br><br><input type='text' value='https://www.ikase.org/api/ikase_sync3.php?" + subscription_string + "' style='width:650px' /><a class='copy_sync btn btn-primary btn-xs' id='copy_sync' onclick='copySync()' style='color:white; width:100px' title='Click to copy sync link to clipboard so you can paste it into other calendars'>Copy to Clipboard</a></div>";
+		var subscription_link = "<div class='white_text' style='margin-bottom:20px'>For Outlook/Google Calendar Sync, please use this url:<br><br><input type='text' value='" + subscription_bitly_link + "' style='width:150px' /><a class='copy_sync btn btn-primary btn-xs' id='copy_sync' onclick='copySync()' style='color:white; width:100px' title='Click to copy sync link to clipboard so you can paste it into other calendars'>Copy to Clipboard</a></div>";
+		subscription_link += "<ul>";
+		subscription_link += "<li><a href='https://support.google.com/calendar/answer/37118?hl=en' target='_blank' class='white_text'>Instructions to Sync with Google Calendar</a></li>";
+		subscription_link += "<li><a href='https://support.office.com/en-us/article/import-or-subscribe-to-a-calendar-in-outlook-com-cff1429c-5af6-41ec-a5b4-74f2c278e98c' target='_blank' class='white_text'>Instructions to Sync with Outlook.com Calendar</a></li>";
+		subscription_link += "<li><a href='https://medicine.osu.edu/eventrequest/pages/whatisical.aspx' target='_blank' class='white_text'>Instructions to Sync with Outlook Calendar on your PC</a></li>";
+		subscription_link += "</ul>";
+		
+		
+		$("#content").html(subscription_link);
+		
+		setTimeout(function() {
+			var clipboard = new Clipboard('.copy_sync', {
+				text: function(e) {
+					var info = self.copySync();
+					return info;
+				}
+			}); 
+		}, 100);
+	},
+	kaseKAI: function (case_id) {
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseKAI(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		var applicant = new Applicant({id: kase.get("applicant_id")});
+		applicant.fetch({
+			success: function (data) {
+				data.set("case_id", kase.get("case_id"));
+				data.set("case_uuid", kase.get("uuid"));
+				
+				kaseKAIView = new kai_view({el: $("#kase_content"), model:data}).render();
+				$("#kase_content").addClass("glass_header_no_padding");
+			}
+		});
+	},
+	kaseChecks: function (case_id) {
+		console.log(case_id);
+		console.log(this);
+		console.log('in books');
+				
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		//set current case
+		current_case_id = case_id;	
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						
+						self.kaseChecks(case_id);
+						
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		$(document).attr('title', "Books :: " + kase.get("case_name") + " :: iKase");
+		kase.set("header_only", true);
+		
+		//i need a promise here, instead of timeout
+		$('#content').html(new kase_view({model: kase}).render().el);
+		
+		setTimeout(function() {							
+			refreshChecks(kase, "");
+		}, 500);
+	},
+	checksBankAccount: function(account_type, account_id) {
+		this.clearSearchResults();
+		
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		current_case_id = -1;
+		
+		refreshAccountTransactions(account_type, account_id);
+	},
+	kaseApplicant: function (case_id) {		
+		this.clearSearchResults();
+		
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = case_id;
+		
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseApplicant(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		if (kase.get("applicant_id") == null) {
+			kase.set("applicant_id", -1);
+		}
+		var applicant_label = "Applicant";
+		if (blnPatient) {
+			applicant_label = "Patient";
+		} 
+		var case_type = kase.get("case_type");
+
+		if (case_type=="social_security" || case_type =="NewPI" || case_type =="Personal Injury") {
+			applicant_label = "Plaintiff";
+		}
+		$(document).attr('title', applicant_label + " :: " + kase.name() + " :: iKase");
+		
+		var applicant = new Person({id: kase.get("applicant_id")});
+		applicant.fetch({
+			success: function (data) {
+				var prefix = "";
+				//if (data.id>-1) {
+					kase.set("header_only", true);
+					$('#content').html(new kase_view({model: kase}).render().el);
+					prefix = "kase_";
+				//}
+				data.set("case_id", kase.get("case_id"));
+				
+				data.set("case_uuid", "");
+				data.set("gridster_me", true);
+				data.set("kase_type", kase.get("case_type"));
+				data.set("applicant_label", applicant_label);
+				the_applicant = new dashboard_person_view({el: $("#" + prefix + "content"), model:data}).render();
+				/*
+				if (data.id>-1) {
+					the_applicant = new dashboard_person_view({el: $("#kase_content"), model:data}).render();
+				} else {
+					the_applicant = new dashboard_person_view({el: $("#content"), model:data}).render();
+				}
+				*/
+			}
+		});
+		setTimeout(function() {
+			self.recentKases();
+		}, 500);
+	},
+	vehicleOwner: function (case_id, owner_id, representing) {		
+		this.clearSearchResults();
+		
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		current_case_id = case_id;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.vehicleOwner(case_id, representing);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		var applicant_label = "Vehicle Owner";
+		$(document).attr('title', applicant_label + " :: iKase");
+		
+		var applicant = new Person({id: owner_id});
+		applicant.fetch({
+			success: function (data) {
+				var prefix = "";
+				//if (data.id>-1) {
+					kase.set("header_only", true);
+					$('#content').html(new kase_view({model: kase}).render().el);
+					prefix = "kase_";
+				//}
+				data.set("case_id", kase.get("case_id"));
+				data.set("injury_id", kase.id);
+				data.set("owner_id", kase.get("owner_id"));
+				data.set("case_uuid", "");
+				data.set("gridster_me", true);
+				data.set("kase_type", kase.get("case_type"));
+				data.set("applicant_label", applicant_label);
+				the_applicant = new dashboard_person_view({el: $("#" + prefix + "content"), model:data}).render();
+			}
+		});
+	},
+	kaseAccident: function (case_id) {		
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		readCookie();
+		var self = this;
+		var kase = kases.findWhere({case_id: case_id});
+		//get the kase
+		
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseAccident(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		prefix = "kase_";
+		
+		var accident = new Accident({"case_id": case_id});
+		accident.set("holder", "#" + prefix + "content");
+		accident.fetch({
+			success: function(accident_model) {
+				the_new_accident = new accident_new_view({el: $("#" + prefix + "content"), model:accident}).render();
+			}
+		});
+	},
+	kaseAccidentDash: function (case_id, accident_type) {		
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		readCookie();
+		var self = this;
+		var kase = kases.findWhere({case_id: case_id});
+		//get the kase
+		
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseAccidentDash(case_id, accident_type);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		if ($.isNumeric(accident_type)) {
+			var injury = dois.findWhere({injury_id: accident_type});
+			//get the kase
+			
+			if (typeof injury == "undefined") {
+				//get it
+				var injury =  new Injury({id: case_id});
+				injury.fetch({
+					success: function (injury) {
+						if (injury.toJSON().uuid=="") {
+							//case does not exist, get out
+							document.location.href = "#";
+						}
+						return;		
+					}
+				});
+				return;
+			}
+		}
+		kase.set("header_only", true);
+		var accident = new Accident({"case_id": case_id});
+		var personal_injury = new PersonalInjury({"case_id": case_id});
+		$('#content').html(new kase_view({model: kase}).render().el);
+		prefix = "kase_";
+
+		accident.set("accident_type", accident_type);
+		accident.set("holder", "#" + prefix + "content");
+		if (accident_type=="caraccident") { 
+			accident_type = "accident";
+		}
+		var case_type = kase.get("case_type");
+		if (case_type != "NewPI") {
+			//dynamic view name, good job angel
+			var dashboard_accidenttype_view = window["dashboard_" + accident_type + "_view"];
+			
+			accident.fetch({
+				success: function(accident_model) {
+						the_new_accident = new dashboard_accidenttype_view({el: $("#" + prefix + "content"), model:accident}).render();
+				}
+			});
+		} else {
+			
+			/*personal_injury.fetch({
+				success: function(personal_injury_model) {
+						
+				}
+			});
+			*/
+			//personal_injury = "";
+			prefix = "kase_";
+			
+			personal_injury.set("holder", "#" + prefix + "content");
+			personal_injury.set("glass", "card_dark_7");
+			//the_new_accident = new personal_injury_view({el: $("#" + prefix + "content"), model:personal_injury}).render();
+			personal_injury.fetch({
+				success: function(personal_injury) {
+					$("#" + prefix + "content").html(new personal_injury_view({model: personal_injury}).render().el);
+					}
+			});
+		}
+
+	},
+	kasePersonalInjury: function (case_id) {		
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		
+		readCookie();
+		var self = this;
+		var kase = kases.findWhere({case_id: case_id});
+		//get the kase
+		
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kasePersonalInjury(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		kase.set("header_only", true);
+		var injury_type = kase.get("injury_type");
+		var representing = "";
+		var arrInjury = injury_type.split("|");
+		injury_type = arrInjury[0];
+		if (arrInjury.length==2) {
+			representing = arrInjury[1];
+		}
+		var case_type = kase.get("case_type");
+		
+		if (case_type=="immigration") {
+			var personal_injury = new Injury({"id": case_id});
+		} else {
+			var personal_injury = new PersonalInjury({"case_id": case_id});
+		}
+		$('#content').html(new kase_view({model: kase}).render().el);
+		prefix = "kase_";
+		personal_injury.set("holder", "#" + prefix + "content");
+		prefix = "kase_";
+		
+		personal_injury.set("holder", "#" + prefix + "content");
+		personal_injury.set("glass", "card_dark");
+		if (case_type=="Animal Bite") {
+			injury_type = "dogbite";
+		}
+		personal_injury.set("injury_type", injury_type);
+		personal_injury.set("case_type", case_type);
+		if (injury_type == "carpass" || case_type=="immigration") {
+			personal_injury.fetch({
+			success: function(personal_injury) {
+					var pi_case_id = personal_injury.toJSON().case_id;
+					if (pi_case_id == null) {
+						personal_injury.set("case_id", personal_injury.toJSON().caseid);
+					}
+					
+					if (case_type=="immigration") {
+						$("#" + prefix + "content").html(new injury_view({model: personal_injury}).render().el);
+						/*
+						setTimeout(function() {
+							$("#panel_title").html("Immigration Details");
+							$("#personal_injury_right").hide();
+						}, 789);
+						*/
+					} else {
+						$("#" + prefix + "content").html(new personal_injury_view({model: personal_injury}).render().el);
+					}
+				}
+			});
+		} else {
+			if (injury_type!="") {
+				//if a specific injury type was requested
+				var dashboard_pitype_view = window["personal_injury_" + injury_type + "_view"];
+				personal_injury.fetch({
+					success: function(personal_injury) {
+						$("#" + prefix + "content").html(new dashboard_pitype_view({model: personal_injury}).render().el);
+					}
+				});
+			} else {
+				//$("#" + prefix + "content").html(new personal_injury_general_view({model: personal_injury}).render().el);
+				//MUST SET THE injury type
+				$("#kase_edit_" + current_case_id).trigger("click");
+				/*
+				personal_injury.fetch({
+					success: function(personal_injury) {
+							//console.log(personal_injury.toJSON());
+							$("#kase_injury_description").html(personal_injury.toJSON().personal_injury_description);
+							$("#kase_injury_description_holder").show();
+							$("#injury_typeInput").css("border", "2px solid red");
+						}
+				});
+				*/
+			}
+		}
+	},
+	kaseCOA: function (case_id) {		
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = case_id;
+		
+		readCookie();
+		var self = this;
+		var kase = kases.findWhere({case_id: case_id});
+		//get the kase
+		
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseCOA(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		kase.set("header_only", true);
+		var coa_type = kase.get("coa_type");
+		var coa = new AccidentCause({"case_id": case_id});
+		$('#content').html(new kase_view({model: kase}).render().el);
+		prefix = "kase_";
+
+		coa.set("holder", "#" + prefix + "content");
+		var case_type = kase.get("case_type");
+		
+		prefix = "kase_";
+		
+		coa.set("holder", "#" + prefix + "content");
+		coa.set("glass", "card_fade_18");
+		coa.set("coa_type", coa_type);
+		
+		if (coa_type == "carpass") {
+			coa.fetch({
+			success: function(personal_injury) {
+				var coa_case_id = coa.toJSON().case_id;
+				if (coa_case_id == null) {
+					coa.set("case_id", coa.toJSON().caseid);
+				}
+				$("#" + prefix + "content").html(new coa_view({model: coa}).render().el);
+				}
+			});
+		} else {
+			if (coa_type!="") {
+				//if a specific injury type was requested
+				var dashboard_coatype_view = window["coa_" + coa_type + "_view"];
+				coa.fetch({
+					success: function(coa) {
+						$("#" + prefix + "content").html(new dashboard_coatype_view({model: coa}).render().el);
+						}
+				});
+			}
+		}
+	},
+	employmentLaw: function (case_id) {		
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = case_id;
+		
+		readCookie();
+		var self = this;
+		var kase = kases.findWhere({case_id: case_id});
+		//get the kase
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.employmentLaw(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		kase.set("header_only", true);
+		var new_legal = new NewLegal({"case_id": case_id});
+		$('#content').html(new kase_view({model: kase}).render().el);
+		prefix = "kase_";
+
+		new_legal.set("holder", "#" + prefix + "content");
+		var case_type = kase.get("case_type");
+		
+		prefix = "kase_";
+		
+		new_legal.set("holder", "#" + prefix + "content");
+		new_legal.set("glass", "card_fade_18");
+		
+		new_legal.fetch({
+		success: function(new_legal) {
+				new_legal.set("holder",  prefix + "content");
+				$("#" + prefix + "content").html(new new_legal_view({model: new_legal}).render().el);
+			}
+		});
+	},
+	kaseFinancial: function (case_id) {		
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		
+		readCookie();
+		var self = this;
+		var kase = kases.findWhere({case_id: case_id});
+		//get the kase
+		
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseFinancial(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		kase.set("header_only", true);
+		
+		$('#content').html(new kase_view({model: kase}).render().el);
+		prefix = "kase_";
+
+		var case_type = kase.get("case_type");
+		prefix = "kase_";
+		
+		var accounts = new AccountCollection({"account_type": "trust"});
+		accounts.fetch({
+			success: function(data) {
+				var accounts = data.toJSON();
+				var arrOptions = [];
+				var option = "<option value='' selected>Select from Trust Accounts</option>";
+				arrOptions.push(option);
+					
+				_.each( accounts, function(account) {
+					var jdata = JSON.parse(account.account_info);
+					account.bank = jdata[0].value;
+					account.account_number = jdata[1].value;
+					
+					var option = "<option value='" + account.id + "'>" + account.bank + " :: " + account.account_number + "</option>";
+					arrOptions.push(option);
+				});
+				
+				var financial = new Financial({"case_id": case_id});
+				financial.set("holder", "#" + prefix + "content");
+				financial.set("glass", "card_dark_7");
+				financial.set("trust_options", arrOptions);
+				financial.fetch({
+				success: function(financial) {
+						$("#" + prefix + "content").html(new financial_view({model: financial}).render().el);
+					}
+				});
+			}
+		});
+	},
+	userActivity: function (user_id, start_date, end_date) {	
+		if (user_id=="all" && !blnAdmin) {
+			return;
+		}
+		
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		//no current case right now
+		current_case_id = -1;
+		
+		readCookie();
+		var self = this;
+		
+		var activities = new ActivityReportCollection([], {user_id: user_id, start_date: start_date, end_date: end_date});
+		activities.fetch({
+			success: function(data) {
+				$(document).attr('title', "Activities Report :: iKase");
+				var mymodel = new Backbone.Model();
+				mymodel.set("report", true);
+				mymodel.set("user_id", user_id);
+				mymodel.set("start_date", start_date);
+				mymodel.set("end_date", end_date);
+				mymodel.set("holder", "content");
+				mymodel.set("mode", "listing");
+				$('#content').html(new activity_listing_view({collection: activities, model: mymodel}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});
+	},
+	editInvoice: function(case_id, injury_id) {
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		current_case_id = case_id;
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseActivity(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		
+		var activities = new ActivitiesCollection([], {case_id: case_id});
+		activities.fetch({
+			success: function(data) {
+				$(document).attr('title', "Edit Invoice :: iKase");
+				kase.set("holder", "#kase_content");
+				kase.set("mode", "invoice_edit");
+				$('#kase_content').html(new activity_listing_view({collection: activities, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});
+	},
+	kaseActivity: function (case_id) {		
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseActivity(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		$(document).attr('title', kase.get("case_name") + " Activities :: iKase");
+		
+		if (case_id == current_case_id) {
+			
+			//we are going back to dash
+			if (typeof current_case_activities == "object") {
+				console.log(current_case_activities);
+				console.log(current_case_activities.length+" Case Length");
+				if (current_case_activities.length > 0) {
+					console.log("IN activity length");
+					kase.set("holder", "#kase_content");
+					kase.set("mode", "listing");
+					kase.set("billing", false);
+					kase.set("kinvoice_id", "");
+					kase.set("kinvoice_number", "");
+					kase.set("kinvoice", "");
+					kase.set("kinvoice_total", "");
+					kase.set("invoiced_corporation_id", "");
+					kase.set("list_title", "");
+					$('#kase_content').html(new activity_listing_pane({collection: current_case_activities, model: kase}).render().el);
+						
+					return;
+				}
+			}
+		}
+		
+		current_case_id = case_id;
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		
+		var activities = new ActivitiesCollection([], {case_id: case_id});
+		activities.fetch({
+			success: function(data) {
+				kase.set("holder", "#kase_content");
+				kase.set("mode", "listing");
+				kase.set("billing", false);
+				kase.set("kinvoice_id", "");
+				kase.set("kinvoice_number", "");
+				kase.set("kinvoice", "");
+				kase.set("kinvoice_total", "");
+				kase.set("invoiced_corporation_id", "");
+				kase.set("list_title", "");
+				if (blnActivityPane) {
+					$('#kase_content').html(new activity_listing_pane({collection: activities, model: kase}).render().el);
+				} else {
+					$('#kase_content').html(new activity_listing_view({collection: activities, model: kase}).render().el);
+				}
+				$("#kase_content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});
+	},
+	kaseBilling: function (case_id, kinvoice_id, blnChangeInvoiceType) {		
+		if (typeof blnChangeInvoiceType == "undefined") {
+			blnChangeInvoiceType = false;
+		}
+		
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseActivity(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		
+		//get the kinvoice info
+		var kinvoice = new KInvoice({id: kinvoice_id});
+		kinvoice.fetch({
+			success: function (data) {
+				var jdata = data.toJSON();
+				
+				var activities = new ActivitiesCollection([], {case_id: case_id, kinvoice_id: kinvoice_id, billing_only: true});
+				activities.fetch({
+					success: function(data) {
+						$(document).attr('title', "Invoice: " + jdata.kinvoice_number + " :: iKase");
+						kase.set("holder", "#kase_content");
+						kase.set("kinvoice_id", kinvoice_id);
+						kase.set("kinvoice_number", jdata.kinvoice_number);
+						kase.set("kinvoice_total", jdata.total);
+						kase.set("invoiced_corporation_id", jdata.corporation_id);
+						kase.set("kinvoice", jdata);
+						kase.set("mode", "listing");
+						kase.set("billing", true);
+						kase.set("type_change", blnChangeInvoiceType);
+						kase.set("list_title", "Invoice " + jdata.kinvoice_number);
+						
+						if (blnActivityPane) {
+							$('#kase_content').html(new activity_listing_pane({collection: activities, model: kase}).render().el);
+						} else {
+							$('#kase_content').html(new activity_listing_view({collection: activities, model: kase}).render().el);
+						}
+						$("#kase_content").removeClass("glass_header_no_padding");
+						hideEditRow();
+					}
+				});	
+			}
+		});
+	},
+	kaseBillables: function (case_id) {		
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseActivity(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		
+		//get the billables				
+		var activities = new ActivitiesCollection([], {case_id: case_id, billing_only: true});
+		activities.fetch({
+			success: function(data) {
+				$(document).attr('title', "Billable Activities :: iKase");
+				kase.set("holder", "#kase_content");
+				kase.set("mode", "listing");
+				kase.set("billing", true);
+				kase.set("list_title", "Billables");
+				
+				$('#kase_content').html(new activity_listing_pane({collection: activities, model: kase}).render().el);
+				
+				$("#kase_content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});	
+	},
+	kaseActivityInvoices: function (case_id) {		
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseActivity(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		
+		var activity_invoices = new ActivityInvoiceCollection([], {case_id: case_id});
+		activity_invoices.fetch({
+			success: function(data) {
+				$(document).attr('title', "Activities for Case ID: " + case_id + " :: iKase");
+				kase.set("holder", "#kase_content");
+				$('#kase_content').html(new invoice_listing_view({collection: activity_invoices, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});
+	},
+	kaseInvoiceActivities: function (case_id, invoice_id) {		
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseActivity(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		
+		var invoice_activities = new ActivitiesCollection([], {case_id: current_case_id, invoice_id: invoice_id});
+		invoice_activities.fetch({
+			success: function(data) {
+				var mydata = data.toJSON();
+				//document.location.href = "#invoices/activity/" + current_case_id + "/" + invoice_id;
+				$(document).attr('title', "Activities for Case ID: " + current_case_id + " :: iKase");
+				kase.set("holder", "#kase_content");
+				//kase.set("invoice_id", invoice_id);\
+				kase.set("invoice_id", data.invoice_id);
+				kase.set("invoice_date", mydata.invoice_date);
+				kase.set("mode", "listing");
+				$('#kase_content').html(new activity_listing_view({collection: invoice_activities, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+				hideEditRow();
+				$("#invoices_print").show();
+			}
+		});
+	},
+	kaseInjury: function (case_id) {		
+		current_case_id = case_id;
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseInjury(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		kase.set("header_only", true);
+		kase.set("new_injury", false);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		$('#kase_content').html(new dashboard_injury_view({model: kase}).render().el);
+		
+		self.recentKases();
+	},
+	showKontrolPanel: function (case_id) {		
+		this.clearSearchResults();
+		
+		current_case_id = case_id;
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.showKontrolPanel(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		$('#kase_content').html(new kase_control_panel({model: kase}).render().el);
+		
+		self.recentKases();
+	},
+	kaseSpecificInjury: function (case_id, injury_id) {		
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseSpecificInjury(case_id, injury_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		$(document).attr('title', "Injury for Case ID: " + case_id + " :: iKase");
+		kase.set("header_only", true);
+		kase.set("new_injury", false);
+		kase.set("injury_id", injury_id);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		$('#kase_content').html(new dashboard_injury_view({model: kase}).render().el);
+	},
+	newInjury: function (case_id) {		
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		readCookie();
+		var self = this;
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.newInjury(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+		}
+		kase.set("header_only", true);
+		kase.set("new_injury", true);
+		kase.set("injury_id", kase.id);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		$('#kase_content').html(new dashboard_injury_view({model: kase}).render().el);
+
+
+		$("#content").removeClass("glass_header_no_padding");
+	},
+	listPartiesByType: function (case_id, type) {	
+	//clear out any search results
+		this.clearSearchResults();
+		
+		current_case_id = case_id;
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listPartiesByType(case_id, type);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		var display_type = type.replace("_", " ").capitalizeWords();
+		$(document).attr('title', display_type + " Parties :: " + kase.name() + " :: iKase");
+		
+		parties = new Parties([], { "case_id": case_id, "type": type, "panel_title": display_type + " Parties" });
+		parties.fetch({
+			success: function(data) {
+				if ($('#kase_content').length == 0) {
+					kase.set("header_only", true);
+					$('#content').html(new kase_view({model: kase}).render().el);
+				}
+				if (parties.length == 0) {
+					//go to a new partie screen for specific type
+					var href = "#parties/" + case_id + "/-1/" + type;
+					document.location.href = href;
+					return;
+				}
+				$('#kase_content').html(new partie_cards_view({collection: data, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+				
+				hideEditRow();
+			}
+		});	
+	},
+	listParties: function (case_id) {	
+		$("#kase_content").removeClass("glass_header_no_padding");
+		//clear out any search results
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		//if we are still on the current case - optimization 12/7/2018		
+		if (case_id == current_case_id) {
+			//we are going back to dash
+			if (current_parties_content!="") {
+				//$('#content').html(current_dash_content);
+				$('#kase_content').html(new partie_cards_view({collection: current_all_parties, model: current_kase}).render().el);
+				return;
+			}
+		}
+		
+		current_case_id = case_id;
+		current_parties_content = "";
+		readCookie();
+		
+		var self = this;		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listParties(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		
+		$(document).attr('title', "Parties :: " + kase.name() + " :: iKase");
+		var type = "";
+		//parties = new Corporations([], { case_id: id });
+		parties = new Parties([], { case_id: case_id, panel_title: "Parties" });
+		parties.fetch({
+			success: function(data) {
+				if ($('#kase_content').length == 0) {
+					kase.set("header_only", true);
+					$('#content').html(new kase_view({model: kase}).render().el);
+				}
+				if (data.length == 0) {
+					self.editPartie(case_id, -1, "new");
+					return;
+				}
+				current_all_parties = data;
+				current_kase = kase;
+				$('#kase_content').html(new partie_cards_view({collection: data, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+				
+				hideEditRow();
+			}
+		});	
+	},
+	listUnassigneds: function () {	
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;	
+		
+		readCookie();
+		var self = this;
+		//initial call
+		var type = "";
+		var my_stacks = new MyStacksByType([], {stack_type: 'unassigned'});
+		my_stacks.fetch({
+			success: function(data) {
+				$(document).attr('title', "Document Notifications :: iKase");
+				var mymodel = new Backbone.Model();
+				mymodel.set("type", "unassigned");
+				$('#content').html(new stack_listing_view({collection: data, model: mymodel}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});	
+	},
+	listImportNotifications: function () {	
+		$("#content").html(loading_image);
+		
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;	
+		
+		var my_stacks = new StacksByType([], {stack_type: 'batchscan', blnNotifications: true});
+		my_stacks.fetch({
+			success: function(data) {
+				$(document).attr('title', "Notifications :: iKase");
+				var mymodel = new Backbone.Model();
+				mymodel.set("type", "batchscan");
+				$('#content').html(new stack_listing_view({collection: data, model: mymodel}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});	
+	},
+	listImports: function () {	
+		$("#content").html(loading_image);
+		
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;	
+		
+		//reset indicator in case it's flashing
+		clearTimeout(warning_id);
+		//turn off remote id
+		check_remote_id = false;
+					
+		setTimeout(function() {
+			//slight delay to let the flash go through last cycle
+			$("#new_import_indicator").css("background", "white");
+		}, 1000);
+		
+		readCookie();
+		var self = this;
+		//initial call
+		var type = "";
+		//stacks = new Stacks([]);
+		var my_stacks = new StacksByType([], {stack_type: 'batchscan', blnUnassigned: true});
+		my_stacks.fetch({
+			success: function(data) {
+				$(document).attr('title', "Imports :: iKase");
+				var mymodel = new Backbone.Model();
+				mymodel.set("type", "batchscan");
+				$('#content').html(new stack_listing_view({collection: data, model: mymodel}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});	
+	},
+	listNewImports: function () {	
+		$("#content").html(loading_image);
+		
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = -1;	
+		
+		//reset indicator in case it's flashing
+		clearTimeout(warning_id);
+		//turn off remote id
+		check_remote_id = false;
+					
+		setTimeout(function() {
+			//slight delay to let the flash go through last cycle
+			$("#new_import_indicator").css("background", "white");
+		}, 1000);
+		
+		readCookie();
+		var self = this;
+		//initial call
+		var type = "";
+		//stacks = new Stacks([]);
+		var my_stacks = new StacksByType([], {stack_type: 'batchscan', blnUnassigned: true});
+		my_stacks.fetch({
+			success: function(data) {
+				$(document).attr('title', "Imports :: iKase");
+				var mymodel = new Backbone.Model();
+				mymodel.set("type", "batchscan");
+				$('#content').html(new stack_listing_view({collection: data, model: mymodel}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});	
+	},
+	listA1LegacyFolders: function(case_id) {
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		current_case_id = case_id;	
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listLegacyArchives(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		var kase_archives = new LegacyArchiveCollection([] , {case_id: case_id});
+		
+		if (case_id!=current_case_id) {
+			//show header for new case
+			kase.set("header_only", true);
+			$('#content').html(new kase_view({model: kase}).render().el);
+		}
+		
+		//get the activity
+		var folders = new LegacyA1Folders({case_id: case_id});
+		folders.fetch({
+			success: function(data) {
+				var mymodel = new Backbone.Model();
+				mymodel.set("holder", "kase_content"); 
+				$('#kase_content').html(new legacy_a1_list_folders_view({collection: data, model: mymodel}).render().el);	
+			}
+		});
+				
+	},
+	listMerusArchives: function(case_id) {	
+		//get the activity
+		var folders = new MerusArchiveCollection([] , {case_id: case_id});
+		folders.fetch({
+			success: function(data) {
+				data["case_id"] = case_id;
+				var mymodel = new Backbone.Model();
+				mymodel.set("holder", "kase_content"); 
+				$('#kase_content').html(new merus_archive_listing({collection: data, model: mymodel}).render().el);	
+			}
+		});
+	},
+	listLegacyArchives: function(case_id) {
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		current_case_id = case_id;	
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listLegacyArchives(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		var kase_archives = new LegacyArchiveCollection([], { case_id: kase.get("case_id") });
+		
+		if (case_id!=current_case_id) {
+			//show header for new case
+			kase.set("header_only", true);
+			$('#content').html(new kase_view({model: kase}).render().el);
+		}
+		
+		//get the activity
+		var activities = new ActivitiesCollection([], {case_id: case_id});
+		activities.fetch({
+			success: function(data) {
+				var acts = data.toJSON();
+				
+				//get the archives
+				kase_archives.fetch({
+					success: function(data) {
+						$(document).attr('title', "Legacy Archives for Case ID: " + case_id + " :: iKase");
+						//cycle through the archives, assign event from activity
+						var archives = data.toJSON();
+						var arrCategories = [];
+						_.each( archives, function(archive) {
+							archive.description = "";
+							archive.category = "";
+							_.each( acts, function(activity) {
+								var arrID = activity.activity_uuid.split("_");
+								if(arrID.length==1){
+									var arrID = activity.activity_uuid.split("ex");
+								}
+								var caseno = arrID[0];
+								var actno = arrID[1];
+								
+								if (archive.actno == actno) {
+									archive.description = activity.activity;
+									archive.category = activity.activity_category;
+								}
+								
+								if (arrCategories.indexOf(activity.activity_category) < 0) {
+									arrCategories.push(activity.activity_category);
+								}
+							});
+						});
+						//archiveFilter
+						kase_archives.reset(archives);
+						kase.set("holder", "kase_content"); 
+						kase.set("archive_categories", arrCategories);
+						$('#kase_content').html(new archive_legacy_listing_view({collection: kase_archives, model: kase}).render().el);
+						$("#kase_content").removeClass("glass_header_no_padding");
+						hideEditRow();
+					}
+				});
+			}
+		});
+		
+		//set current case
+		current_case_id = case_id;	
+	},
+	listUploadedBatchscans: function() {
+		var self = this;
+		if (typeof window.batchscan_listing_view == 'undefined') {
+			//the flag was not found, so the code has not run
+			$.getScript( "js/views/batchscan_listing.js", function( data, textStatus, jqxhr ) {
+			  self.listUploadedBatchscans();
+			});
+			return;
+		}
+		if (typeof window.BatchscanCollection == 'undefined') {
+			//the flag was not found, so the code has not run
+			$.getScript( "js/models/batchscanmodel.js", function( data, textStatus, jqxhr ) {
+			  self.listUploadedBatchscans();
+			});
+			return;
+		}
+		var batchscans = new BatchscanCollection();
+		batchscans.fetch({
+			success: function(data) {
+				var empty_model = new Backbone.Model;
+				empty_model.set("holder", "content");
+				$('#content').html(new batchscan_listing_view({collection: data, model: empty_model}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});	
+	},
+	listAssignedBatchscans: function(start_date, end_date) {
+		$("#content").html(loading_image);
+		
+		if (typeof start_date == "undefined") {
+			start_date = "0000-00-00";
+		}
+		if (typeof end_date == "undefined") {
+			end_date = "0000-00-00";
+		}
+		var self = this;
+		if (typeof window.batchscan_assigned_listing == 'undefined') {
+			//the flag was not found, so the code has not run
+			$.getScript( "js/views/batchscan_listing.js", function( data, textStatus, jqxhr ) {
+			  self.listUploadedBatchscans();
+			});
+			return;
+		}
+		
+		var activities = new ActivityStacks([], {start_date: start_date, end_date: end_date});
+		activities.fetch({
+			success: function(data) {
+				var empty_model = new Backbone.Model;
+				empty_model.set("holder", "content");
+				empty_model.set("start_date", start_date);
+				empty_model.set("end_date", end_date);
+				$('#content').html(new batchscan_assigned_listing({collection: data, model: empty_model}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});	
+	},
+	listBlockedDate: function() {
+		var blockeds = new BlockedDateCollection();
+		blockeds.fetch({
+			success: function(data) {
+				var empty_model = new Backbone.Model;
+				empty_model.set("holder", "content");
+				
+				$('#content').html(new blocked_listing_view({collection: data, model: empty_model}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});	
+	},
+	editBankAccount: function(account_id) {
+		var account =  new Account({id: account_id});
+		account.fetch({
+			success: function (data) {
+				data.set("holder", "content");
+				var display_account_type = data.get("account_type");
+				if (display_account_type=="operating") {
+					display_account_type = "cost";
+				}
+				data.set("page_title", "Edit " + display_account_type.capitalizeWords() + " Account");
+	
+				$('#content').html(new account_view({model: data}).render().el);
+			}
+		});
+	},
+	newBankAccount: function(account_type) {
+		var display_account_type = account_type;
+		if (display_account_type=="operating") {
+			display_account_type = "cost";
+		}
+		var mymodel = new Backbone.Model({
+			"holder": "content",
+			"page_title": "New " + display_account_type.capitalizeWords() + " Account",
+			"account_type":	account_type,
+			"id": -1,
+			"account_info": "[]"
+		});
+		$('#content').html(new account_view({model: mymodel}).render().el);
+	},
+	registerBankAccounts: function(account_type) {
+		this.listBankAccounts(account_type, true);
+	},
+	listBankAccounts: function(account_type, blnShowRegister) {
+		//list the firm's bank accounts
+		var page_title = "Account";
+		if (typeof blnShowRegister=="undefined") {
+			blnShowRegister = false;
+		}
+		if (typeof account_type=="undefined") {
+			account_type = "";
+		} else {
+			var display_account_type = account_type;
+			if (display_account_type=="operating") {
+				display_account_type = "cost trust";
+			}
+			page_title += " :: " + display_account_type.capitalizeWords();
+		}
+		var accounts = new AccountCollection({"account_type": account_type});
+		accounts.fetch({
+			success: function(data) {
+				var mymodel = new Backbone.Model({
+					"holder": "content",
+					"page_title": page_title,
+					"account_type": account_type,
+					"blnShowRegister": blnShowRegister
+				});
+				$('#content').html(new account_listing_view({collection: data, model: mymodel}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});
+	},
+	listBillables: function() {
+		if (!executeMainChanges()) { return; };
+		this.clearSearchResults();
+		current_case_id = -1;	
+		
+		$('#content').html(loading_image);
+		
+		var billables = new Billables();
+		billables.fetch({
+			success: function(data) {
+				var mymodel = new Backbone.Model({
+					"holder": "content",
+					"page_title": "Billable Kases&nbsp;(" + data.length + ")"
+				});
+				$('#content').html(new billables_listing_view({collection: data, model: mymodel}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});
+	},
+	listAccounts: function(account_type) {
+		var page_title = "Paid Invoices";
+		if (account_type=="receivable") {
+			page_title = "Outstanding Invoices";
+		}
+		if (account_type=="prebill") {
+			page_title = "Pre-Bill Invoices";
+		}
+		var kinvoices = new KInvoiceCollection({"account_type": account_type});
+		kinvoices.fetch({
+			success: function(data) {
+				var mymodel = new Backbone.Model({
+					"holder": "content",
+					"document_invoices": false,
+					"page_title": page_title,
+					blnAllInvoices: true,
+				});
+				$('#content').html(new kinvoice_listing_view({collection: data, model: mymodel}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+			}
+		});	
+	},
+	listAllCheckRequests: function() {
+		$('#content').html(loading_image);
+		
+		var checkrequests = new CheckRequestsCollection({blnAll: "Y"});
+		checkrequests.fetch({
+			success: function(data) {
+				var reqkase = new Backbone.Model();
+				reqkase.set("holder", "#content");
+				reqkase.set("page_title", "All Requests");
+				reqkase.set("embedded", false);
+				$('#content').html(new checkrequest_listing_view({collection: data, model: reqkase}).render().el);
+			}
+		});
+	},
+	listMyCheckRequests: function() {
+		$('#content').html("<div id='my_pending_requests' style='width:100%'></div><div id='my_denied_requests' style='width:100%'></div><div id='my_approved_requests' style='width:100%'></div>");
+		
+		//pending
+		var checkrequests = new CheckRequestsCollection({approved: "P", byuser: true});
+		checkrequests.fetch({
+			success: function(data) {
+				var reqkase = new Backbone.Model();
+				reqkase.set("holder", "#my_pending_requests");
+				reqkase.set("page_title", "My Pending Requests");
+				reqkase.set("embedded", false);
+				$('#my_pending_requests').html(new checkrequest_listing_view({collection: data, model: reqkase}).render().el);
+			}
+		});
+		
+		//denied
+		var checkrequests = new CheckRequestsCollection({approved: "N", byuser: true});
+		checkrequests.fetch({
+			success: function(data) {
+				var reqkase = new Backbone.Model();
+				reqkase.set("holder", "#my_denied_requests");
+				reqkase.set("page_title", "My Denied Requests");
+				reqkase.set("embedded", false);
+				$('#my_denied_requests').html(new checkrequest_listing_view({collection: data, model: reqkase}).render().el);
+			}
+		});
+		
+		//approved
+		var checkrequests = new CheckRequestsCollection({approved: "Y", byuser: true});
+		checkrequests.fetch({
+			success: function(data) {
+				var reqkase = new Backbone.Model();
+				reqkase.set("holder", "#my_approved_requests");
+				reqkase.set("page_title", "My Approved Requests");
+				reqkase.set("embedded", false);
+				$('#my_approved_requests').html(new checkrequest_listing_view({collection: data, model: reqkase}).render().el);
+			}
+		});
+	},
+	listApprovedCheckRequests: function() {
+		var checkrequests = new CheckRequestsCollection({approved: "Y"});
+		checkrequests.fetch({
+			success: function(data) {
+				var reqkase = new Backbone.Model();
+				reqkase.set("holder", "#content");
+				reqkase.set("page_title", "Approved Requests");
+				reqkase.set("embedded", false);
+				$('#content').html(new checkrequest_listing_view({collection: data, model: reqkase}).render().el);
+			}
+		});
+	},
+	listDeniedCheckRequests: function() {
+		var checkrequests = new CheckRequestsCollection({approved: "N"});
+		checkrequests.fetch({
+			success: function(data) {
+				var reqkase = new Backbone.Model();
+				reqkase.set("holder", "#content");
+				reqkase.set("page_title", "Denied Requests");
+				reqkase.set("embedded", false);
+				$('#content').html(new checkrequest_listing_view({collection: data, model: reqkase}).render().el);
+			}
+		});
+	},
+	listPendingRequestsByAccount: function(account) {
+		current_case_id = -1;
+		$('#content').html(loading_image);
+		var checkrequests = new CheckRequestsCollection({approved: "P", account: account});
+		
+		checkrequests.fetch({
+			success: function(data) {
+				var reqkase = new Backbone.Model();
+				reqkase.set("holder", "#content");
+				reqkase.set("account_type", account);
+				if (account=="operating") {
+					account = "cost trust";
+				}
+				reqkase.set("page_title", "Pending Check Requests - " + account.capitalizeWords());
+				reqkase.set("embedded", false);
+				$('#content').html(new checkrequest_listing_view({collection: data, model: reqkase}).render().el);
+			}
+		});
+	},
+	listCheckRequests: function() {
+		current_case_id = -1;
+		$('#content').html(loading_image);
+		var checkrequests = new CheckRequestsCollection();
+		checkrequests.fetch({
+			success: function(data) {
+				var reqkase = new Backbone.Model();
+				reqkase.set("holder", "#content");
+				reqkase.set("page_title", "Check Requests");
+				reqkase.set("embedded", false);
+				$('#content').html(new checkrequest_listing_view({collection: data, model: reqkase}).render().el);
+			}
+		});
+	},
+	listClearedChecks: function() {
+		current_case_id = -1;
+		$('#content').html(loading_image);
+		
+		var cleared_checks = new ChecksCollection([], { check_status: "C" });
+		cleared_checks.fetch({
+			success: function(data) {
+				var kase = new Backbone.Model();
+				kase.set("holder", "#content");
+				kase.set("page_title", "Cleared Check");
+				$('#content').html(new check_listing_view({collection: data, model: kase}).render().el);
+			}
+		});
+	},
+	listUnclearedChecks: function() {
+		current_case_id = -1;
+		$('#content').html(loading_image);
+		
+		var uncleared_checks = new ChecksCollection([], { check_status: "U" });
+		uncleared_checks.fetch({
+			success: function(data) {
+				var kase = new Backbone.Model();
+				kase.set("holder", "#content");
+				kase.set("page_title", "Not Yet Cleared Check");
+				$('#content').html(new check_listing_view({collection: data, model: kase}).render().el);
+			}
+		});
+	},
+	listPrintedChecks: function() {
+		current_case_id = -1;
+		$('#content').html(loading_image);
+		
+		var printed_checks = new ChecksCollection([], { check_status: "printed" });
+		printed_checks.fetch({
+			success: function(data) {
+				var kase = new Backbone.Model();
+				kase.set("holder", "#content");
+				kase.set("page_title", "Printed Check");
+				$('#content').html(new check_listing_view({collection: data, model: kase}).render().el);
+			}
+		});
+	},
+	listUnprintedChecks: function() {
+		current_case_id = -1;
+		$('#content').html(loading_image);
+		
+		var unprinted_checks = new ChecksCollection([], { check_status: "unprinted" });
+		unprinted_checks.fetch({
+			success: function(data) {
+				var kase = new Backbone.Model();
+				kase.set("holder", "#content");
+				kase.set("page_title", "Not Yet Printed Check");
+				$('#content').html(new check_listing_view({collection: data, model: kase}).render().el);
+			}
+		});
+	},
+	listArchives: function (case_id) {	
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		current_case_id = case_id;	
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listArchives(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		var kase_archives = new ArchiveCollection([], { case_id: case_id });
+		
+		if (case_id!=current_case_id) {
+			//show header for new case
+			kase.set("header_only", true);
+			$('#content').html(new kase_view({model: kase}).render().el);
+		}
+		kase_archives.fetch({
+			success: function(data) {
+				kase.set("holder", "kase_content"); 
+				$(document).attr('title', "Archives for Case ID: " + case_id + " :: iKase");
+				$('#kase_content').html(new archive_listing_view({collection: data, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});
+		//set current case
+		current_case_id = case_id;	
+	},
+	listEcandArchives: function (case_id) {	
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		current_case_id = case_id;	
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listEcandArchives(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		var kase_archives = new EcandArchiveCollection([], { case_id: case_id });
+		
+		if (case_id!=current_case_id) {
+			//show header for new case
+			kase.set("header_only", true);
+			$('#content').html(new kase_view({model: kase}).render().el);
+		}
+		kase_archives.fetch({
+			success: function(data) {
+				kase.set("holder", "kase_content"); 
+				$(document).attr('title', "Archives for Case ID: " + case_id + " :: iKase");
+				$('#kase_content').html(new ecand_archive_listing_view({collection: data, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});
+		//set current case
+		current_case_id = case_id;	
+	},
+	listCOAs: function(case_id) {
+		var coas = new AccidentCauseCollection({case_id: case_id});
+		coas.fetch({
+			success: function(data) {
+				var empty_model = new Backbone.Model;
+				$('#content').html(new coa_listing_view({collection: data, model: empty_model}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});	
+	},
+	listDocuments: function (case_id) {	
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		if (case_id == current_case_id) {
+			var kase = kases.findWhere({case_id: case_id});
+			
+			//we are going back to dash
+			if (typeof current_case_documents == "object" && typeof kase != "undefined") {
+				
+				$(document).attr('title', kase.get("case_name") + " Documents :: iKase");
+				
+				if (current_case_documents.length > 0) {
+					$('#kase_content').html(new document_listing_view({collection: current_case_documents, model: kase}).render().el);
+						
+					return;
+				}
+			}
+		}
+		current_case_id = case_id;
+		
+		refreshDocuments(case_id);	
+	},
+	searchDocuments: function () {	
+		readCookie();
+		var self = this;
+		var mymodel = new Backbone.Model({"holder": "myModalBody"});
+		$('#myModalBody').html(new document_search({model: mymodel}).render().el);
+		
+		$("#myModalLabel").html("Search Documents");
+		$(".modal-header").css("background-image", "url('img/glass_edit_header_task.png')");
+		$("#myModalBody").css("background-image", "url('img/glass_edit_header_task.png')");
+		$(".modal-footer").css("background-image", "url('img/glass_edit_header_task.png')");
+		$(".modal-body").css("overflow-x", "hidden");
+		$("#myModal4 .modal-dialog").css("background-image", "url('img/glass_edit_header_task.png')");
+		$("#myModal4 .modal-dialog").css("width", "400px");
+	},
+	listInvoiceTemplates: function () {	
+		var case_id;	//undefined
+		this.listTemplates(case_id, true);
+	},
+	listTemplates: function (case_id, blnInvoices) {	
+		if (typeof blnInvoices == "undefined") {
+			blnInvoices = false;
+		}
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		if (typeof case_id != "undefined") {
+			current_case_id = case_id;	
+		}
+		readCookie();
+		var self = this;
+		
+		word_templates = new WordTemplates([], {blnInvoices: blnInvoices});
+		word_templates.fetch({
+			success: function(data) {
+				var empty_model = new Backbone.Model;
+				empty_model.set("case_id", "-1");
+				empty_model.set("uuid", "templates");
+				empty_model.set("no_uploads", false);
+				empty_model.set("blnInvoices", blnInvoices);
+				empty_model.set("holder", "content");
+				$('#content').html(new template_listing_view({collection: data, model: empty_model}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});	
+	},
+	newNote:  function (case_id) {	
+		var self = this;
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.newNote(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		
+		this.listNotes(case_id, true);
+		
+		window.history.replaceState(null, null, "#notes/" + case_id);
+		app.navigate("notes/" + case_id, {trigger: false});
+	},
+	listNotes: function (case_id, blnNewNote) {	
+		if (typeof blnNewNote == "undefined") {
+			blnNewNote = false;
+		}
+		this.clearSearchResults();
+		
+		if (!executeMainChanges()) { return; };
+		
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listNotes(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		$(document).attr('title', kase.get("case_name") + " Notes :: iKase");
+		
+		//if we are still on the current case - optimization 12/27/2018		
+		if (case_id == current_case_id) {
+			//we are going back to dash
+			if (typeof current_case_notes == "object") {
+				if (current_case_notes.length > 0) {
+					var note_list_model = new Backbone.Model;
+					note_list_model.set("display", "full");
+					note_list_model.set("holder", "kase_content");
+					note_list_model.set("partie_type", "note");
+					note_list_model.set("partie_id", -1);
+					note_list_model.set("case_id", case_id);
+					note_list_model.set("homepage", false);
+					note_list_model.set("blnNewNote", blnNewNote);
+					$('#kase_content').html(new note_listing_pane({collection: current_case_notes, model: note_list_model, kase: kase}).render().el);
+						
+					return;
+				}
+			}
+		}
+		
+		current_case_id = case_id;	
+		
+		var type = "";
+		
+		notes = new NoteCollection([], { case_id: case_id });
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		$("#kase_content").html(loading_image);
+		notes.fetch({
+			success: function(data) {
+				var note_list_model = new Backbone.Model;
+				note_list_model.set("display", "full");
+				note_list_model.set("holder", "kase_content");
+				note_list_model.set("partie_type", "note");
+				note_list_model.set("partie_id", -1);
+				note_list_model.set("case_id", case_id);
+				note_list_model.set("homepage", false);
+				note_list_model.set("blnNewNote", blnNewNote);
+				if (blnNotePane) {
+					$('#kase_content').html(new note_listing_pane({collection: data, model: note_list_model, kase: kase}).render().el);
+				} else {
+					$('#kase_content').html(new note_listing_view({collection: data, model: note_list_model, kase: kase}).render().el);
+				}
+				$("#kase_content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});	
+			
+	},
+	showSettlementSheet: function(settlement_id, injury_id) {
+		//this is only from settlementtsheet, so every thing is current
+		if (current_case_id==-1) {
+			this.home();
+			return;
+		}
+		
+		var kase = kases.findWhere({case_id: current_case_id});
+		var settlement = new SettlementSheet({settlement_id: settlement_id});
+		settlement.fetch({
+			success: function(data) {
+				settlement.set("holder", "kase_content");
+				settlement.set("injury_id", injury_id);
+				$('#kase_content').html(new settlementsheet_view({model: settlement, kase: kase}).render().el);
+			}
+		});
+	},
+	showSettlement: function (case_id, injury_id) {
+		//current_case_id = case_id;
+		readCookie();
+		var self = this;
+		console.log(self);
+		this.clearSearchResults();
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					console.log(kase);
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.showSettlement(case_id, injury_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		kase.set("header_only", true);
+		kase.set("injury_id", injury_id);
+		
+		if (case_id!=current_case_id || current_case_id==-1 || typeof current_case_id == "undefined") {
+			current_case_id = case_id;
+			kase.set("header_only", true);
+			$('#content').html(new kase_view({model: kase}).render().el);
+		}
+		
+		if (blnShowNewSettlement) {
+			var kase_type = kase.get("case_type");
+			var blnWCAB = isWCAB(kase_type);
+			var blnSS = (kase_type.indexOf("social_security") == 0 || kase_type=="SS");
+			if (blnWCAB || blnSS) {
+				var settlement = new Settlement({injury_id: injury_id});
+				settlement.fetch({
+					success: function(data) {
+						settlement.set("holder", "kase_content");
+						$('#kase_content').html(new settlement_list_view({model: settlement, kase: kase}).render().el);
+					}
+				});
+			} else {
+				var settlement = new SettlementSheet({injury_id: injury_id});
+				settlement.fetch({
+					success: function(data) {
+						settlement.set("holder", "kase_content");
+						$('#kase_content').html(new settlementsheet_view({model: settlement, kase: kase}).render().el);
+					}
+				});
+			}
+		} else {
+			$('#kase_content').html(new dashboard_settlement_view({model: kase}).render().el);
+		}
+		
+		//set current case
+		current_case_id = case_id;	
+	},
+	showLien: function (case_id, injury_id) {
+		if (!executeMainChanges()) { return; };
+		
+		readCookie();
+		$(document).attr('title', "Lien");
+		var self = this;
+		current_case_id = case_id;	
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.showLien(case_id, injury_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		if (case_id!=current_case_id) {
+			//show header for new case
+			kase.set("header_only", true);
+			$('#content').html(new kase_view({model: kase}).render().el);
+		}
+
+		var lien = new Lien({injury_id: injury_id});
+		lien.fetch({
+			success: function(data) {
+				//data.set("lien_id", data.lien_id)
+				if (data.length == 0) {
+					data = new Lien({injury_id: injury_id});
+				}
+				data.set("holder", "kase_content");
+				$('#kase_content').html(new lien_view({model: data}).render().el);
+			}
+		});
+		//set current case
+		current_case_id = case_id;	
+	},
+	listLetters: function (case_id) {
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		
+		readCookie();
+		
+		$(document).attr('title', "Letters for Case ID: " + case_id + " :: iKase");
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listLetters(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		var type = "";
+		var kase_type = kase.get("case_type");
+		if (isWCAB(kase_type)) {
+			type = "WCAB";
+		}
+		if (kase_type=="NewPI" || kase_type.indexOf("Personal Injury") > -1) {
+			type = "PI";
+		}
+		word_templates = new WordTemplates([], {"case_type": type});
+		word_templates.fetch({
+			success: function(data) {
+			}
+		});
+		letters = new KaseLetters([], { case_id: case_id });
+		letters.fetch({
+			success: function(data) {
+				if ($('#kase_content').length == 0) {
+					kase.set("header_only", true);	
+					$('#content').html(new kase_view({model: kase}).render().el);
+				}
+				kase.set("no_uploads", true);
+				kase.set("holder", "kase_content");
+				$('#kase_content').html(new letter_listing_view({collection: data, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+				
+				hideEditRow();
+			}
+		});
+	},
+	listKaseInvoices: function (case_id) {
+		this.clearSearchResults();
+		
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		
+		readCookie();
+		var title = "Letters for Case ID: ";
+		
+		$(document).attr('title', title + case_id + " :: iKase");
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listKaseInvoices(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		
+		var invoice_templates = new WordTemplates([], {blnInvoices: true});
+		invoice_templates.fetch({
+			success: function(data) {
+				kase_letters = new KaseLetters([], { case_id: case_id, blnInvoices: true });
+				kase_letters.fetch({
+					success: function(data) {
+						kase.set("header_only", true);	
+						$('#content').html(new kase_view({model: kase}).render().el);
+						kase.set("no_uploads", true);
+						$('#kase_content').html(new kase_letter_listing_view({collection: invoice_templates, model: kase}).render().el);
+						$("#kase_content").removeClass("glass_header_no_padding");
+						
+						hideEditRow();
+					}
+				});
+				return;
+			}
+		});	
+	},
+	listKaseLetters: function (case_id, blnKaseTemplates) {
+		var self = this;
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listKaseLetters(case_id, blnKaseTemplates);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		
+		this.clearSearchResults();
+		
+		if (!executeMainChanges()) { return; };
+
+		if (typeof blnKaseTemplates == "undefined") {
+			var type = "";
+			var kase_type = kase.get("case_type");
+			var blnWCAB = isWCAB(kase_type);
+			if (blnWCAB) {
+				type = "WCAB";
+			} else {
+				if (kase_type.indexOf("Personal Injury") > -1 || kase_type=="NewPI") {
+					type = "PI";
+				}
+			}
+			
+			word_templates = new WordTemplates([], {"case_type": type});
+			word_templates.fetch({
+				success: function(data) {
+					blnKaseTemplates = true;
+					self.listKaseLetters(case_id, blnKaseTemplates);
+					return;
+				}
+			});	
+			return;
+		}
+		
+		if (!blnKaseTemplates) {
+			return;
+		}
+		current_case_id = case_id;
+		
+		readCookie();
+		var title = "Letters for Case ID: ";
+		
+		$(document).attr('title', title + case_id + " :: iKase");
+		var self = this;
+		
+		var type = "";
+		blnWordTemplates = false;
+		
+		var type = "";
+		var kase_type = kase.get("case_type");
+		if (isWCAB(kase_type)) {
+			type = "WCAB";
+		}
+		if (kase_type=="NewPI" || kase_type.indexOf("Personal Injury") > -1) {
+			type = "PI";
+		}
+		
+		kase_letters = new KaseLetters([], { case_id: case_id, blnInvoices: false });
+		kase_letters.fetch({
+			success: function(data) {
+				//if ($('#kase_content').length == 0) {
+					kase.set("header_only", true);	
+					$('#content').html(new kase_view({model: kase}).render().el);
+				//}
+				kase.set("no_uploads", true);
+				$('#kase_content').html(new kase_letter_listing_view({collection: word_templates, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+				
+				hideEditRow();
+			}
+		});
+	},
+	listEamsForms: function() {
+		this.clearSearchResults();
+		
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;	
+		
+		eamss = new EAMSFormCollection();
+		eamss.fetch({
+			success: function(data) {
+				$(document).attr('title', "Manage EAMS Forms :: iKase");
+				var mymodel = new Backbone.Model();
+				mymodel.set("holder", "content");
+				$('#content').html(new eams_form_listing({collection: data, model: mymodel}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});	
+	},
+	listEams: function (case_id) {
+		this.clearSearchResults();
+		
+		if (!executeMainChanges()) { return; };
+		current_case_id = case_id;
+		
+		readCookie();
+		$(document).attr('title', "EAMS Forms for Case ID: " + case_id + " :: iKase");
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listEams(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		var type = "";
+		eamss = new KaseEams([], { case_id: case_id });
+		
+		if ($('#kase_content').length == 0) {
+			kase.set("header_only", true);	
+			$('#content').html(new kase_view({model: kase}).render().el);
+		}
+		kase.set("no_uploads", true);
+		eamses = new FormCollection();
+		eamses.fetch({
+			success: function(eamses) {
+				kase.set("holder", "kase_content");
+				$('#kase_content').html(new form_listing({collection: eamses, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+			}
+		});
+		
+		hideEditRow();
+	
+	},
+	editNote: function (case_id, notes_id) {	
+		current_case_id = case_id;
+			
+		readCookie();
+		var self = this;
+		
+		//get the kase if url direct referrer
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.editNote(case_id, notes_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		//initial call
+		var type = "";
+		if (notes_id=="") {
+			notes_id = -1;
+		} 
+		var note = new Note({notes_id: notes_id, case_id: case_id});
+		note.fetch({
+			success: function (data) {
+				//alert(notes_id);
+				//data.set("case_id", case_id);
+				data.set("case_uuid", kase.get("uuid"));
+				noteKaseView = new notes_view({el: $("#kase_content"), model:data}).render();
+				$("#kase_content").addClass("glass_header_no_padding");
+				showEditRow();
+			}
+		});
+			
+	},
+	listDemographics: function () {
+		if (!executeMainChanges()) { return; };	
+		current_case_id = -1;
+		this.clearSearchResults();	
+		readCookie();
+		var self = this;
+		
+		$("#content").html(loading_image);
+		
+		//initial call
+		var type = "";
+		var demographics = new DemographicCollection();
+		demographics.fetch({
+			success: function(data) {
+				$(document).attr('title', "Demographics Submissions :: iKase");
+				var mymodel = new Backbone.Model();
+				mymodel.set("holder", "content");
+				$('#content').html(new demographic_listing_view({collection: data, model: mymodel}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});				
+	},
+	listUsers: function () {
+		if (!executeMainChanges()) { return; };	
+		current_case_id = -1;
+		this.clearSearchResults();	
+		readCookie();
+		var self = this;
+		
+		$("#content").html(loading_image);
+		
+		//initial call
+		var type = "";
+		users = new UserAllCollection([]);
+		users.fetch({
+			success: function(data) {
+				$(document).attr('title', "Users :: iKase");
+				$('#content').html(new user_listing_view({model: data}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});				
+	},
+	currentUsers: function () {
+		//probalby obsolete below, replaced by composeCurrentUsers
+		return;
+		
+		if (!executeMainChanges()) { return; };	
+		current_case_id = -1;
+		this.clearSearchResults();	
+		readCookie();
+		var self = this;
+		
+		$("#content").html(loading_image);
+		
+		//initial call
+		var type = "";
+		var users = new CurrentUserCollection();
+		users.fetch({
+			success: function(data) {
+				$(document).attr('title', "Users :: iKase");
+				var mymodel = new Backbone.Model();
+				mymodel.set("holder", "content");
+				$('#content').html(new currentuser_listing_view({collection: data, model: mymodel}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});				
+	},
+	newWorkflow:function() {
+		var mymodel = new Workflow({id: -1});
+		mymodel.set("holder", "content");
+		$('#content').html(new workflow_sheet_view({ model: mymodel}).render().el);
+		$("#content").removeClass("glass_header_no_padding");
+	},
+	editWorkflow:function(workflow_id) {
+		if (!executeMainChanges()) { return; };
+		
+		var workflow = new Workflow({id: workflow_id});
+		workflow.fetch({
+				success: function(data) {
+					data.set("holder", "#content");
+					data.set("page_title", "Workflow");
+					data.set("embedded", false);
+					$('#content').html(new workflow_sheet_view({model: data}).render().el);
+				}
+		});
+	},
+	listWorkflows: function() {
+		if (!executeMainChanges()) { return; };
+		
+		var workflows = new WorkflowCollection();
+		workflows.fetch({
+				success: function(data) {
+					var dkase = new Backbone.Model();
+					dkase.set("holder", "#content");
+					dkase.set("page_title", "Workflow");
+					dkase.set("embedded", false);
+					$('#content').html(new workflow_listing_view({collection: data, model: dkase}).render().el);
+				}
+		});
+	},
+	listServices: function(case_id) {
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = case_id;
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listServices(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+
+			});
+			return;
+		}
+		var type = "";
+		if (current_case_id != case_id) {
+			kase.set("header_only", true);
+			$('#content').html(new kase_view({model: kase}).render().el);
+		}
+		$(document).attr('title', "Services for Case ID: " + case_id + " :: iKase");
+		var vservices = new vServiceCollection();
+		vservices.fetch({
+			success: function(vservices) {
+				kase.set("holder", "kase_content");
+				$('#kase_content').html(new vservices_view({collection: vservices, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");	
+			}
+		});
+		
+		current_case_id = case_id;	
+	},
+	listWebmails: function () {
+		current_case_id = -1;
+		readCookie();
+		var self = this;
+		
+		refreshWebmail();
+	},
+	searchRolo: function (search_term) {
+		this.listContacts();
+		setTimeout(function() {
+			$("#rolodex_searchList").val(search_term);
+			$("#rolodex_searchList").trigger("keyup");
+		}, 770);
+	},
+	listContacts: function () {
+		if (!executeMainChanges()) { return; };		
+		current_case_id = -1;
+		readCookie();
+		var self = this;
+		
+		//initial call
+		var type = "";
+		contacts = new ContactCollection([]);
+		//contacts.fetch({
+		//	success: function(contacts) {
+				$(document).attr('title', "Rolodex :: iKase");
+				var mymodel = new Backbone.Model({"holder": "content"});
+				$('#content').html(new rolodex_listing_view({collection: contacts, model: mymodel}).render().el);
+				$("#content").removeClass("glass_header_no_padding");
+				hideEditRow();
+		//	}
+		//});				
+	},
+	newSession: function() {
+		composeSessionNotValid();
+	},
+	editUser: function (user_id) {		
+		current_case_id = -1;
+		readCookie();
+		var self = this;
+		
+		if (user_id=="") {
+			user_id = -1;
+		}
+		$(document).attr('title', "User :: iKase");
+		var mymodel = new Backbone.Model({user_id: user_id, "holder": "content"});
+		$('#content').html(new dashboard_user_view({model: mymodel}).render().el);
+	},
+	userEmail: function (user_id) {	
+		current_case_id = -1;	
+		readCookie();
+		var self = this;
+		
+		if (user_id=="") {
+			user_id = -1;
+		} 
+				//let's get the specific corporation by id.  if id < 0, we will get an empty corporation
+		var email = new Email({user_id: user_id, email_id: 'all2'});
+		email.fetch({
+			success: function (email) {
+				email.set("gridster_me", true);
+				email.set("holder", "user_panel");
+				$('#user_panel').html(new email_view({model: email}).render().el);				
+				$("#user_panel").addClass("glass_header_no_padding");
+			}
+		});	
+	},
+	searchQME: function(zip) {
+		if (typeof zip == "undefined" || zip=="-1") {
+			zip = "";
+			current_case_id = "";
+		}
+		if (zip=="-2") {
+			zip = "new";
+		}
+		var qme = new Backbone.Model();
+		qme.set("holder", "kase_content");
+		qme.set("zip", zip);
+		var container = "kase_content";
+		if (zip=="") {
+			var container = "content";
+			qme.set("holder", "content");
+		}
+		$('#' + container).html(new search_qme({model: qme}).render().el);	
+		$('#' + container).removeClass("glass_header_no_padding");
+	},
+	searchEAMSFirms: function(search_term) {
+		var eams_firms = new EamsFirmsCollection({search_term: search_term});
+		var eams = new Backbone.Model();
+		eams.set("holder", "content");
+
+		var container = "content";
+		eams.set("holder", "content");
+		
+		if (search_term.length < 3) {
+			$('#' + container).html(new eams_firms_listing_view({collection: eams_firms, model: eams}).render().el);	
+			$('#' + container).removeClass("glass_header_no_padding");
+		} else  {
+			eams_firms.fetch({
+				success: function (eams_firms) {
+					$('#' + container).html(new eams_firms_listing_view({collection: eams_firms, model: eams}).render().el);	
+					$('#' + container).removeClass("glass_header_no_padding");
+				}
+			});
+		}
+	},
+	searchEAMS: function() {
+		var eams = new Backbone.Model();
+		eams.set("holder", "kase_content");
+
+		var container = "content";
+		eams.set("holder", "content");
+	
+		$('#' + container).html(new search_eams({model: eams}).render().el);	
+		$('#' + container).removeClass("glass_header_no_padding");
+	},
+	searchEAMSbyInjury: function(case_id, injury_id) {
+		this.searchEAMSbyCase(case_id, injury_id);
+	},
+	searchEAMSbyCase: function(case_id, injury_id) {
+		if (typeof injury_id == "undefined") {
+			injury_id = "";
+		}
+		var self = this;
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.searchEAMSbyCase(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		var container = "content";
+		kase.set("holder", "content");
+		if (injury_id!="") {
+			kase.set("injury_id", injury_id);
+		}
+		$('#' + container).html(new search_eams({model: kase}).render().el);	
+		$('#' + container).removeClass("glass_header_no_padding");
+	},
+	priorTreatment: function (case_id, corporation_id, person_id) {
+		var corporation_type = "medical_provider";
+		$("#gifsave").hide();
+		if (case_id == -1 && corporation_id == -1 && corporation_type == 'new') {
+		//	this.newPartie();
+		//	return;
+		}
+		current_case_id = case_id;
+			
+		readCookie();
+		var self = this;
+	
+		if (case_id > 0) {
+			//get the kase
+			var kase = kases.findWhere({case_id: case_id});
+			if (typeof kase == "undefined") {
+				//get it
+				var kase =  new Kase({id: case_id});
+				kase.fetch({
+					success: function (kase) {
+						if (kase.toJSON().uuid!="") {
+							kases.remove(kase.id); kases.add(kase);
+							self.priorTreatment(case_id, corporation_id, person_id);
+						} else {
+							//case does not exist, get out
+							document.location.href = "#";
+						}
+						return;		
+					}
+				});
+				return;
+			}
+			case_id = kase.get("case_id");
+			uuid = kase.get("case_uuid");
+			person_id = kase.get("applicant_id");
+		} else {
+			//have to have a case id
+			return false;
+		}
+		$(document).attr('title', "Prior Medical Provider :: iKase");
+			
+		//let's get the specific corporation by id.  if id < 0, we will get an empty corporation
+		refreshPriorMedical(case_id, kase, person_id, corporation_id);
+		self.recentKases();
+	},
+	editRoloNewPartie: function (corporation_type) {
+		$("#gifsave").hide();
+		readCookie();
+		var self = this;
+		
+		//let's extract the claim if any
+		var referred_out_claim = "";
+		if (corporation_type.indexOf(":") > -1) {
+			var arrTypeInfo = corporation_type.split(":");
+			corporation_type = arrTypeInfo[0];
+			referred_out_claim = arrTypeInfo[1];
+		}
+		
+		//let's get the specific corporation by id.  if id < 0, we will get an empty corporation
+		var corporation = new Corporation({id: -1, type:corporation_type});
+		corporation.fetch({
+			success: function (corp) {
+				var blnShowHeader = true;
+				//if this is a new partie, the query will return partie_type values
+				corp.set("partie", corporation_type.capitalize());
+				
+				corp.set("gridster_me", true);
+				corp.set("show_buttons", true);
+				var data = new AdhocCollection([], {case_id: -1, corporation_id: -1});
+				corp.adhocs.fetch({
+					success:function (data) {
+						if (data.toJSON().length==0) {
+							data = new AdhocCollection([], {case_id: -1, corporation_id: corporation_id});
+						}
+					}
+				});
+				corp.set("holder", "content");
+				$('#content').html(new partie_view({model: corp, collection: data}).render().el);				
+				$('#content').addClass("glass_header_no_padding");
+				showEditRow();
+			}
+		});
+		
+		/*
+		corp.adhocs.fetch({
+		success:function (data) {
+		if (data.toJSON().length==0) {
+			data = new AdhocCollection([], {case_id: case_id, corporation_id: corporation_id});
+		}
+		*/
+		self.recentKases();
+	},
+	listDisabilities: function(case_id) {
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		current_case_id = case_id;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.listDisabilities(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		
+		//get the parties for the case, and then 
+		var disabilities = new DisabilitiesCollection({ case_id: case_id});
+		disabilities.fetch({
+			success: function(data) {
+				var disability = new Backbone.Model();
+				disability.set("glass", "card_dark_7");
+				disability.set("holder", "kase_content");
+				disability.set("page_title", "Disabilities");
+				kase.set("header_only", true);
+				//$('#content').html(new kase_view({model: kase}).render().el);
+				//var new_disability_view = new disability_view({el: $("#kase_content"), model:disability}).render();
+				$('#kase_content').html(new disability_listing_view({model: disability, collection: data}).render().el);	
+			}
+		});
+	},
+	getDisability: function(case_id, disability_id) {
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		
+		current_case_id = case_id;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						
+						$('#content').html(new kase_view({model: kase}).render().el);
+						
+						self.getDisability(case_id, disability_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		//get the parties for the case, and then 
+		var disability = new Disability({ id: disability_id });
+		disability.fetch({
+			success: function(disability) {
+				disability.set("glass", "card_dark_7");
+				disability.set("holder", "kase_content");
+				$('#kase_content').html(new disability_view({model: disability}).render().el);
+			}
+		});
+	},
+	editPartie: function (case_id, corporation_id, corporation_type) {
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; };
+		readCookie();
+		var self = this;
+		current_case_id = case_id;
+		
+		$("#gifsave").hide();
+		if (case_id == -1 && corporation_id == -1 && corporation_type == 'new') {
+			this.newPartie();
+			return;
+		}
+		if (corporation_id == -2 && corporation_type == 'medical_provider') {
+			this.priorTreatment(case_id, corporation_id, -1);
+			return;
+		}
+		
+		//let's extract the claim if any
+		var referred_out_claim = "";
+		if (corporation_type.indexOf(":") > -1) {
+			var arrTypeInfo = corporation_type.split(":");
+			corporation_type = arrTypeInfo[0];
+			referred_out_claim = arrTypeInfo[1];
+		}
+		
+		if (case_id > 0) {
+			//not a roldex item
+			if (corporation_id < 0 && corporation_type=="new") {
+				self.kaseNewPartie(case_id);
+				return;
+			}
+			//get the kase
+			var kase = kases.findWhere({case_id: case_id});
+			if (typeof kase == "undefined") {
+				//get it
+				var kase =  new Kase({id: case_id});
+				kase.fetch({
+					success: function (kase) {
+						if (kase.toJSON().uuid!="") {
+							kases.remove(kase.id); kases.add(kase);
+							self.editPartie(case_id, corporation_id, corporation_type);
+						} else {
+							//case does not exist, get out
+							document.location.href = "#";
+						}
+						return;		
+					}
+				});
+				return;
+			}
+			case_id = kase.get("case_id");
+			kase_type = kase.get("case_type");
+			uuid = kase.get("case_uuid");
+			var display_corporation_type = corporation_type.replaceAll("_", " ").toLowerCase().capitalizeWords();
+			$(document).attr('title', display_corporation_type + " :: " + kase.name() + " :: iKase");
+		} else {
+			uuid = "";
+		}
+		//let's get the specific corporation by id.  if id < 0, we will get an empty corporation
+		var corporation = new Corporation({id: corporation_id, case_id: case_id, type:corporation_type});
+		corporation.fetch({
+			success: function (corp) {
+				var blnShowHeader = true;
+				if (corporation_type == "employer") {
+					blnShowHeader = (corporation_id > 0 || case_id > 0);
+				}
+				if (case_id > 0) {
+					//only ids for active cases would get a header
+					if (blnShowHeader) {
+						if ($('#kase_content').length == 0 || current_case_id!=case_id) {
+							kase.set("header_only", true);
+							$('#content').html(new kase_view({model: kase}).render().el);
+						}
+					}
+				}
+				//make sure the data is there, if not there, redirect as new
+				if (corp.get("type")=="witnesses") {
+					corp.set("company_name", corp.get("full_name"));
+				}
+				if (corp.get("company_name")=="" && corporation_id > 0) {
+					self.editPartie(case_id, -1, corporation_type);
+					return;
+				}
+				//if this is a new partie, the query will return partie_type values
+				corp.set("partie", corporation_type.capitalize());
+				corp.set("case_id", case_id);
+				corp.set("case_uuid", uuid);
+				corp.set("kase_type", kase_type);
+				
+				corp.set("claims", kase.get("claims"));
+				corp.set("referred_out_claim", referred_out_claim);
+				corp.set("gridster_me", true);
+				corp.set("show_buttons", true);
+				corp.adhocs.fetch({
+					success:function (data) {
+						if (data.toJSON().length==0) {
+							data = new AdhocCollection([], {case_id: case_id, corporation_id: corporation_id});
+						}
+						var destination_content = "#kase_content";
+						if (!blnShowHeader) {
+							destination_content = "#content";
+						}
+						corp.set("holder", "content");
+						
+						$(destination_content).html(new partie_view({model: corp, collection: data, kase_type: kase_type}).render().el);				
+						$(destination_content).removeClass("glass_header_no_padding");
+						showEditRow();
+					}
+				});
+			}
+		});
+		
+		current_case_id = case_id;
+		self.recentKases();
+	},
+	newRoloPartie: function () {
+		$("#gifsave").hide();
+			
+		readCookie();
+		var self = this;
+		
+		//let's get the specific corporation by id.  if id < 0, we will get an empty corporation
+		var corporation = new Corporation({id: -1});
+		corporation.fetch({
+			success: function (corp) {
+				var blnShowHeader = true;
+				
+				corp.set("gridster_me", true);
+				corp.set("show_buttons", true);
+				corp.set("holder", "content");
+				$('#content').html(new parties_new_rolodex({model: corp}).render().el);
+			}
+		});
+		self.recentKases();
+	},
+	editRoloPartie: function (corporation_id, corporation_type) {
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		readCookie();
+		var self = this;
+		if (corporation_id < 0 && corporation_type=="new") {
+			alert("wrong");
+			return;
+		}
+		
+		//let's get the specific corporation by id.  if id < 0, we will get an empty corporation
+		var corporation = new Corporation({id: corporation_id, type:corporation_type});
+		corporation.fetch({
+			success: function (corp) {
+				var blnShowHeader = true;
+				if (corporation_type == "employer") {
+					blnShowHeader = (corporation_id > 0 || case_id > 0);
+				}
+				//make sure the data is there, if not there, redirect as new
+				if (corp.get("company_name")=="" && corporation_id > 0) {
+					alert("wrong2");
+					return;
+				}
+				corp.set("partie", corporation_type.capitalize());
+				corp.set("gridster_me", true);
+				corp.set("show_buttons", true);
+				corp.set("claims", "");
+				
+				corp.adhocs.fetch({
+					success:function (data) {
+						if (data.toJSON().length==0) {
+							data = new AdhocCollection([], {corporation_id: corporation_id});
+							
+						}
+						corp.set("holder", "content");
+						$("#content").html(new partie_view({model: corp, collection: data}).render().el);				
+						$("#content").addClass("glass_header_no_padding");
+						showEditRow();
+					}
+				});
+			}
+		});
+		self.recentKases();
+	},
+	editRoloPerson: function (person_id) {	
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		readCookie();
+		var self = this;
+		
+		//let's get the specific corporation by id.  if id < 0, we will get an empty corporation
+		var person = new Person({id: person_id});
+		person.fetch({
+			success: function (person) {
+				var blnShowHeader = true;
+				
+				//make sure the data is there, if not there, redirect as new
+				if (person.get("last_name")=="" && person_id > 0) {
+					//alert("wrong2");
+					return;
+				}
+				person.set("screen_title", "Contact");
+				person.set("gridster_me", true);
+				person.set("show_buttons", true);
+				person.set("bln_contact", true);
+				$("#content").html(new dashboard_person_view({model: person}).render().el);
+			}
+		});
+		self.recentKases();
+	},
+	kaseNewPartie: function (case_id) {	
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = case_id;
+			
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseNewPartie(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		
+		//get the parties for the case, and then 
+		var parties = new Parties([], { case_id: case_id, case_uuid: kase.get("uuid") });
+		parties.fetch({
+			success: function(parties) {
+				kase.set("header_only", true);
+				$('#content').html(new kase_view({model: kase}).render().el);
+				newPartyKaseView = new parties_new_view({el: $("#kase_content"), model:kase, parties: parties}).render();
+				$("#kase_content").addClass("glass_header_no_padding");		
+				hideEditRow();
+			}
+		});
+	},
+	newKaseOffices: function (case_id) {	
+		if (!executeMainChanges()) { return; };
+		
+		current_case_id = case_id;
+			
+		readCookie();
+		var self = this;
+		
+		//get the kase
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						self.kaseNewPartie(case_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+		
+		//get the parties for the case, and then 
+		parties = new Offices([], { case_id: case_id, case_uuid: kase.get("uuid") });
+		parties.fetch({
+			success: function(parties) {
+				kase.set("header_only", true);
+				$('#content').html(new kase_view({model: kase}).render().el);
+				newPartyKaseView = new socsec_offices_view({el: $("#kase_content"), model:kase, parties: parties}).render();
+				$("#kase_content").addClass("glass_header_no_padding");		
+				hideEditRow();
+			}
+		});
+	},
+	newPartie: function () {	
+		readCookie();
+		var self = this;
+		
+		var mymodel = new Backbone.Model({"holder": "content"});
+		newPartyKaseView = new parties_new_rolodex({el: $("#content"), model: mymodel}).render();
+		$("#content").addClass("glass_header_no_padding");		
+		hideEditRow();
+	},
+	contactParties: function() {
+		var mymodel = new Backbone.Model();
+		mymodel.set("holder", "content");
+		newPartieContactView = new parties_contact_view({el: $("#content"), model:mymodel}).render();
+	},
+	listEvents: function (id) {
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		readCookie();
+		
+		if (typeof id == "undefined") {
+			id = "";
+		}
+					
+		if (typeof occurences == "undefined") {
+			//initial call
+			occurences = new OccurenceCollection({case_id: id});
+			occurences.fetch({
+				success: function (data) {
+					occurencesView = new kaseOccurencesView({el: $("#content"), collection: occurences}).render();			
+				}
+			});			
+		} else {
+			$('#content').html(new kase_occurences_view({collection: occurences}).render().el);
+		}
+		
+        this.kaseNavBarView.select_menu('events-list-menu');
+    },
+	listContactSPAM: function() {
+		this.listContactEmails("BLOCKED");
+	},
+	listContactEmails: function (spam_status) {
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		readCookie();		
+		
+		if (typeof spam_status == "undefined") {
+			spam_status = "OK";
+		}
+		//initial call
+		var contacts = new PersonalContactsCollection({spam_status: spam_status});
+		contacts.fetch({
+			success: function (data) {
+				var mymodel = new Backbone.Model();
+				mymodel.set("holder", "content");
+				contacts = new contact_listing_view({el: $("#content"), collection: contacts, model: mymodel}).render();			
+			}
+		});			
+    },
+	editContactEmail: function (id) {
+		if (!executeMainChanges()) { return; };
+		current_case_id = -1;
+		readCookie();		
+		
+		//initial call
+		var contact = new PersonalContact({contact_id: id});
+		contact.fetch({
+			success: function (data) {
+				data.set("glass", "card_dark_1");
+				data.set("id", id);
+				contacting = new contact_view({el: $("#content"), model: data}).render();			
+			}
+		});			
+    },
+	listEventsing: function (id) {
+		//alert("here");
+		readCookie();
+		//the id must be the event owner id
+		if (typeof id == "undefined") {
+			id = "";
+		}
+		
+		if (typeof occurences == "undefined") {
+			//initial call
+			occurences = new OccurenceCollection({case_id: id});
+			//go get the data from server
+			occurences.fetch({
+				success: function (data) {
+					// Note that we could also 'recycle' the same instance of EmployeeFullView
+					// instead of creating new instances
+					$('#content').html(new event_listing_view({model: data}).render().el);
+					
+				}
+			});
+		} else {
+			$('#content').html(new event_listing_view({model: occurences}).render().el);
+		}
+		
+        this.kaseNavBarView.select_menu('todo-list-menu');
+    },
+	listRecentKases: function() {
+		var self = this;
+		if (!executeMainChanges()) { return; };
+		
+		if (typeof recent_kases.toJSON()[0] != "undefined") {
+			if (typeof recent_kases.toJSON()[0][0] == "string") {
+				if (recent_kases.toJSON()[0][0] == "t") {
+					recent_kases = new KaseRecentCollection();
+				}
+			}
+		}
+		
+		current_case_id = -1;
+		kase_url = "api/kases/recent";
+		
+		$(document).attr('title', "Recent Kases");
+		if ($("#search_results").html()!="") {
+			$("#search_results").html("");
+			$(".search #srch-term").val("");
+		}	
+		if (recent_kases.length==0) {	
+			recent_kases.fetch({
+				success: function(recent_kases) {
+					var mymodel = new Backbone.Model();
+					mymodel.set("recent", "Y");
+					mymodel.set("key", "");
+					$('#content').html(new kase_listing_view({collection: recent_kases, model: mymodel}).render().el);
+					return;
+				},
+				  error: function (xhr, ajaxOptions, thrownError) {
+					alert(xhr.status);
+					alert(thrownError);
+				  }
+			});
+		} else {
+			var mymodel = new Backbone.Model();
+			mymodel.set("recent", "Y");
+			mymodel.set("key", "");
+			$('#content').html(new kase_listing_view({collection: recent_kases, model: mymodel}).render().el);
+		}
+	},
+	recentKases: function() {
+		recent_kases.fetch({
+			success: function(recent_kases) {
+				//$('#kases_recent').html(new kase_list_category_view({model: recent_kases}).render().el);
+				return;
+			}
+		});
+	},
+	recentTasks: function() {
+		recent_tasks.fetch({
+			success: function(recent_tasks) {
+				$('#occurences_recent').html(new kase_list_task_view({model: recent_tasks}).render().el);
+				return;
+			}
+		});
+	},
+	recentOccurences: function() {
+		readCookie();
+		var self = this;
+		if (typeof recent_occurences == "undefined") {
+			//initial call
+			recent_occurences = new RecentOccurenceCollection();
+			//go get the data from server
+			recent_occurences.fetch({
+				success: function (data) {
+					// Note that we could also 'recycle' the same instance of EmployeeFullView
+					// instead of creating new instances
+					$('#occurences_recent').html(new event_list_view({model: data}).render().el);
+					
+					//kalendar
+					self.summaryKalendar();
+				}
+			});
+		} else {
+			$('#occurences_recent').html(new event_list_view({model: recent_occurences}).render().el);
+		}
+	},
+	summaryKalendar:function(event) {
+		readCookie();
+		var summaryOccurencesView = new kaseOccurencesSummaryView({el: $("#summaryKalendar"), collection: recent_occurences}).render();
+	},
+    logout: function() {
+        //logOut();
+		document.location.href = "index.php?logout=";
+    }
+});
+var blnInitialSetting = true;	//did we go through the initial layout, in utilities in 
+//load templates
+//get rid of interoffice view
+//
+templateLoader.load([ "event_view", "partie_listing_choose", "calendar_view", "person_view", "calendar_listing_view", "partie_view",  "kase_nav_bar_view", "kase_nav_left_view", "kase_list_category_view", "kase_home_view", "kase_listing_view",  "kase_summary_view", "kase_view", "person_image", "eams_previouscases_view", "eams_hearings_view", "eams_events_view", "eams_parties_view", "event_list_view", "event_listing", "event_list_item_view", "document_upload_view", "document_listing_search", "document_listing_message", "dashboard_injury_view", "dashboard_home_view", "injury_view", "note_listing_view", "notes_view", "partie_listing_view", "partie_cards_view", "user_listing_view", "dashboard_person_view", "injury_number_view", "injury_add_view", "message_view", "interoffice_view", "message_attach", "stack_listing_view", "task_listing", "chatting_view", "letter_attach", "setting_attach", "kase_list_task_view", "template_upload_view", "medical_specialties_select", "multichat_messages", "property_damage_view", "bulk_webmail_assign_view", "bulk_import_assign_view", "multichat", "dashboard_email_view", "dashboard_related_cases_view", "bulk_date_change_view", "personal_injury_general_view"],
+    function () {
+        app = new Router();
+        Backbone.history.start();
+	}
+);
+
+//modal display
+$('.modal').on('shown.bs.modal', function() {
+    $(this).find('.modal-dialog').css({
+        'margin-top': "-350px",
+        'margin-left': function () {
+            return -($(this).outerWidth() / 2);
+        }
+    });
+});
+// modified code but making issue in import eams so reverted changes and applied email compose style changes in C:\inetpub\wwwroot\iKase.org\js\compose_modal.js line 1911
+// $('.modal').on('shown.bs.modal', function() {
+//     $(this).find('.modal-dialog').css({
+//         'margin-top': "-330px",
+//         'margin-left': function () {
+//             return -($(this).outerWidth() / 2)-80;
+//             // -80 by mukesh on 2-6-2023 for compose model width increase 
+//         },
+//         'width' : "750px"
+//         // for increasing compose email model width added by mukesh 2-6-2023
+//     });
+// });
+
+$('.modal').on('hide.bs.modal', function() {
+	setTimeout(function() {
+		document.getElementById("myModal4").innerHTML = mymodal;
+	}, 777);
+});
+
+$("#interoffice_form").parents('.modal-dialog').css("width", "620px");
+
+ // Tell jQuery to watch for any 401 or 403 errors and handle them appropriately
+$.ajaxSetup({
+    statusCode: {
+        401: function(){
+            logOut();
+         
+        },
+        403: function() {
+            // 403 -- Access denied
+            logOut();
+        }
+    }
+});
+function logOut() {
+	var formData = "user_id=" + login_user_id;
+	formData += "&sess_id=" + current_session_id;
+	formData += "&customer_id=" + customer_id;
+	console.log("time: " + $(".navbar-brand").prop("title"));
+	var url = 'api/relogin';
+
+	$.ajax({
+		url:url,
+		type:'POST',
+		dataType:"json",
+		data: formData,
+		success:function (data) {
+			if (data.success) {
+				writeCookie('sess_id', data.sess_id, 60*60*8);
+				current_session_id = data.sess_id;
+				
+			} else {
+				fullLogOut();
+			}
+		}
+	});
+}
+function fullLogOut() {
+	$('.alert-error').hide(); // Hide any errors on a new submit
+	var url = 'api/logout';
+
+	$.ajax({
+		url:url,
+		type:'POST',
+		dataType:"json",
+		data: "",
+		success:function (data) {
+			$("#logged_in").val('');
+			//clear the cookie
+			writeCookie('sess_id', '');
+			if (typeof current_url == "undefined") {
+				current_url = '';
+			}
+			writeCookie('origin', current_url);
+			if(data.error) {  // If there is an error, show the error messages
+				$('.alert-error').text(data.error.text).show();
+			}
+			else { // If not, send them back to the home page
+				document.location.href = "index.php";
+			}
+		}
+	});
+}
+function reviewPendingEmails() {
+	if (blnGetEmails) {
+		var email_info_holder = document.getElementById("email_info_holder");
+		if (email_info_holder != null) {
+			if (email_info_holder.style.opacity > 0) {
+				//we are active right now
+				return;
+			}
+		}
+		if (document.getElementById("email_info_holder") == null) {
+			$.jsPanel({
+				id:			"email_info_holder",
+				title:    	"Email Activity",
+				size:		{ width: "300", height: "150" },
+				
+				selector: 	"#email_feedback_holder",
+				position: 	"bottom right",
+				controls: {
+					maximize: "disable"
+				},
+				content: 	"<div id='email_feedback_text' style='margin-left:5px'></div>",
+				theme:    	"primary"
+			});
+			$("#email_info_holder .jsPanel-hdr").css("width", "100%");
+			$("#email_info_holder .jsPanel-title").css("width", "100%");
+		} else {
+			//make sure it's positioned correctly
+			$("#email_info_holder.jsPanel").css("top", "0px");
+			$("#email_info_holder.jsPanel").css("left", "0px");
+			
+			$("#email_feedback_holder").css("top", "0px");
+			$("#email_feedback_holder").css("left", "0px");
+			$("#email_info_holder").css("top", "180px");
+			
+		}
+		$("#email_info_holder").css("left", (window.innerWidth - 340) + "px");
+		$("#email_info_holder").css("top", (window.innerHeight -180) + "px");
+		
+		//not a real panel		
+		$("#email_info_holder .jsPanel-title").css("display", "none");
+		$("#email_info_holder .jsPanel-hdr").css("display", "none");
+		
+		//fade in 3 seconds
+		setTimeout(function() {
+			var email_info_holder = document.getElementById("email_info_holder");
+			if (email_info_holder == null) {
+				return;
+			}
+			email_info_holder.style.transition = "opacity 1s linear 0s";
+			email_info_holder.style.opacity = 0.3;
+		}, 3000);
+	}
+}
+function refreshWebmail() {
+	reviewPendingEmails();
+	
+	//initial call to check for SPAM
+	var type = "";
+	//webmails = new WebmailCollection();
+	//var blnFeedback = (document.getElementById("email_feedback_text") != null);
+	
+	if (blnFeedback) {
+		setTimeout(function() {
+			
+			$("#email_feedback_holder").show();
+			$("#email_info_holder").css("left", (window.innerWidth - 340) + "px");
+			$("#email_feedback_holder").css("top", (window.innerHeight -180) + "px");
+			$("#email_info_holder").css("top", "0px");
+			var email_info_holder = document.getElementById("email_info_holder");
+			email_info_holder.style.transition = "opacity 1s linear 0s";
+			email_info_holder.style.opacity = 1;
+			$("#email_feedback_text").html("<div>Spam Check Requested</div>");
+			$("#email_feedback_text").append("<div>Processing Email with Spam Check...</div>");
+			
+		}, 5);
+	}
+	if (!blnGetEmails) {	
+		webmails = new WebmailLimonade();
+		webmails.fetch({
+			success: function(data) {
+				if (data.toJSON()[0].success) {
+					setTimeout(function() {
+						if (blnFeedback) {
+							//$("#email_feedback_text").append("<div>Spam Check Processing ...</div>");
+						}
+						//give it a bit of time to process, then go get the emails
+						processWebmail();
+					}, 600000);
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) { 
+				if (blnFeedback) {
+					$("#email_feedback_text").append("<div>Error: " + errorThrown + "</div>");
+				} 
+			} 
+		});	
+	}
+	if (blnGetEmails) {	
+		var url = "api/gogetmymail";
+		
+		$.ajax({
+			url:url,
+			type:'GET',
+			dataType:"json",
+
+			success: function(data) {
+				if (typeof data.message_ids != "undefined") {
+					if (data.message_ids.length==0) {
+						if (blnFeedback) {
+							$("#email_feedback_text").append("<div style='background:none; color:black; font-style:italic'>No new emails at this time</div>");
+						}
+					}
+					refreshPendingMessagesIndicator(true);
+					
+					if (typeof data.error == "string") {
+						//blank, but tell them about the error
+						
+						//alert("The email credentials entered in iKase are not currently valid");
+						if (blnFeedback) {
+							$("#email_feedback_text").append("<div style='background:red; color:white'>The email credentials entered in iKase are not currently valid</div>");
+						}
+					}
+					if (data.message_ids.length > 0) {
+						if (blnFeedback) {
+							$("#email_feedback_text").append("<div style='background:green; color:white'>" + data.message_ids.length + " emails have been received</div>");
+							$("#email_feedback_text").append("<div style='background:none'>Refreshing Inbox</div>");
+							refreshEmailInfo();
+							return;
+						} else {
+							checkInbox();
+						}
+					}
+				}
+				//if we are in thread list mode, and we are in inbox mode
+				if ($("#thread_listing").length > 0 && $("#show_threads").css("display")!="none") {
+					//only refresh the screen if the new message window is not open
+					var blnListIt = true;
+					if ($("#myModalLabel").length > 0) {
+						if ($("#myModalLabel").html() == "New Message") {
+							blnListIt = false;
+						}
+						if ($(".thread_listing#preview_pane_holder").css("display")!="none") {
+							blnListIt = false;
+						}
+						if (document.location.hash.indexOf("#thread/pendings") > -1) {
+							blnListIt = false;
+						}
+					}
+					if (blnListIt) {
+						window.Router.prototype.listThreadInbox();
+					}
+				}
+				
+				setTimeout(function() {
+					var email_info_holder = document.getElementById("email_info_holder");
+					email_info_holder.style.transition = "opacity 1s linear 0s";
+					email_info_holder.style.opacity = 0;
+					
+					$("#email_feedback_holder").fadeOut();
+				}, 2500);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) { 
+				if (blnFeedback) {
+					$("#email_feedback_text").append("<div>Error: " + errorThrown + "</div>");
+				} 
+			} 
+		});	
+	}
+}
+function processWebmail() {
+	//var blnFeedback = (document.getElementById("email_feedback_text") != null);
+	if (blnFeedback) {
+		$("#email_feedback_holder").fadeIn();
+		$("#email_feedback_text").html("<div>Retrieving Emails ...</div>");
+	}
+	var webmails = new ProcessMailLimonade();
+	webmails.fetch({
+		success: function(data) {
+			if (data.toJSON().length==0) {
+				if (blnFeedback) {
+					$("#email_feedback_text").append("<div style='background:none; color:white'>No new emails at this time</div>");
+				}
+				return;
+			}
+			if (typeof data.toJSON()[0].error == "string") {
+				//blank, but tell them about the error
+				
+				//alert("The email credentials entered in iKase are not currently valid");
+				if (blnFeedback) {
+					$("#email_feedback_text").append("<div style='background:red; color:white'>The email credentials entered in iKase are not currently valid</div>");
+				}
+				data = new WebmailLimonade();
+			}
+			if (blnFeedback) {
+				$("#email_feedback_text").append("<div style='background:green; color:white'>Emails have been received</div>");
+				$("#email_feedback_text").append("<div style='background:none'>Refreshing Inbox</div>");
+				refreshEmailInfo();
+				return;
+			} else {
+				checkInbox();
+			}
+			//if we are in thread list mode, and we are in inbox mode
+			if ($("#thread_listing").length > 0 && $("#show_threads").css("display")!="none") {
+				//only refresh the screen if the new message window is not open
+				var blnListIt = true;
+				if ($("#myModalLabel").length > 0) {
+					if ($("#myModalLabel").html() == "New Message") {
+						blnListIt = false;
+					}
+					if ($(".thread_listing#preview_pane_holder").css("display")!="none") {
+						blnListIt = false;
+					}
+				}
+				
+				if ($(document).attr("title") =="Pending Emails :: iKase") {
+					blnListIt = false;
+				}
+				if (blnListIt) {
+					window.Router.prototype.listThreadInbox();
+				}
+				
+			}
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) { 
+			if (blnFeedback) {
+				$("#email_feedback_text").append("<div>Error: " + errorThrown + "</div>");
+			} 
+		} 
+	});	
+}
+function refreshKInvoices(case_id) {
+	var case_invoices = new KInvoiceCollection({"case_id": case_id});
+	case_invoices.fetch({
+		success: function (data) {
+			if (data.length > 0) {
+				var mymodel = new Backbone.Model({
+					"holder": "kinvoices_holder",
+					"document_invoices": false,
+					"case_id": case_id,
+					"page_title":"Kase Invoice"
+				});
+				$("#kinvoices_holder").html(new kinvoice_listing_view({collection: data, model: mymodel}).render().el);
+			}
+		}
+	});
+}
+function refreshChecks(kase, recipient){
+	if (recipient!="") {
+		//refresh the settlement page
+		var hash = document.location.hash
+		var arrHash = hash.split("/");
+		
+		window.Router.prototype.showSettlement(arrHash[1], arrHash[2]);
+		return;
+	}
+	
+	if (typeof kase == "undefined") {
+		var kase = kases.findWhere({case_id: current_case_id});
+		if (typeof kase == "undefined") {
+			var kase =  new Kase({id: current_case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						refreshChecks(kase, recipient);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+	}
+	var case_id = kase.get("case_id");
+	
+	//related cases list view
+	kase.set("holder", "kase_content");
+	$('#kase_content').html(new dashboard_accounting_view({model: kase}).render().el);
+	
+	return;
+}
+function refreshReceipts(kase, case_id) {
+	var kase_checks = new ChecksCollection([], { case_id: case_id, ledger: "IN" });
+	kase_checks.fetch({
+		success: function(data) {
+			kase.set("holder", "#receipt_holder");
+			kase.set("page_title", "Receipt");
+			$('#receipt_holder').html(new check_listing_view({collection: data, model: kase}).render().el);
+		}
+	});
+}
+function refreshAccountTransactions(account_type, account_id) {
+	var account_checks = new ChecksCollection([], { case_id: "", ledger: "", account_id: account_id });
+	account_checks.fetch({
+		success: function(data) {
+			var mymodel = new Backbone.Model({
+				"holder": "content", 
+				"account_type": account_type,
+				"page_title": account_type + " Transactions"
+			});
+
+			$('#content').html(new check_listing_view({collection: data, model: mymodel}).render().el);
+		}
+	});
+}
+function refreshContacts(){
+	var contacs = new ContactsCollection([], { case_id: case_id });
+	contacs.fetch({
+		success: function(data) {
+			kase.set("holder", "#content");
+			$('#content').html(new contact_listing_view({collection: data}).render().el);
+			$("#content").removeClass("glass_header_no_padding");
+			hideEditRow();
+		}
+	});
+}
+function refreshCalendars() {
+	calendar = new CalendarCollection();
+	calendar.fetch({
+		success: function (data) {
+			$(document).attr('title', "Calendars :: iKase");
+			$('#content').html(new calendar_listing_view({collection: data}).render().el);
+			$("#content").removeClass("glass_header_no_padding");
+		}
+	});
+}
+function refreshCustomerSettings(blnUser) {
+	var level = "customer";
+	if (typeof blnUser != "undefined") {
+		if (blnUser) {
+			level = "user";
+		}
+	}
+	customer_setting = new CustomerSettingCollection({level: level});
+	customer_setting.fetch({
+		success: function (data) {
+			$(document).attr('title', "Customer Settings :: iKase");
+			var mymodel = new Backbone.Model({"holder": "content", "level": level});
+			$('#content').html(new customer_setting_listing({collection: data, model: mymodel}).render().el);
+			$("#content").removeClass("glass_header_no_padding");
+		}
+	});
+}
+function refreshPriorMedical(case_id, kase, person_id, corporation_id) {
+	if (typeof kase == "undefined") {
+		var kase = kases.findWhere({case_id: case_id});
+		if (typeof kase == "undefined") {
+			//get it
+			var kase =  new Kase({id: case_id});
+			kase.fetch({
+				success: function (kase) {
+					if (kase.toJSON().uuid!="") {
+						kases.remove(kase.id); kases.add(kase);
+						refreshPriorMedical(case_id, kase, person_id, corporation_id);
+					} else {
+						//case does not exist, get out
+						document.location.href = "#";
+					}
+					return;		
+				}
+			});
+			return;
+		}
+	}
+	//document.location.href = "#parties/" + case_id + "/-2/" + type;
+	//var corporation_id = -2;
+	var corporation_type = "medical_provider";
+	//case_id: case_id, 
+	//DO NOT USE case_id IN THE OPTIONS 
+	//BECAUSE you are looking for the corporation associated with APPLICANT
+	var corporation = new Corporation({id: corporation_id, type:corporation_type});
+	corporation.fetch({
+		success: function (corp) {
+			var blnShowHeader = true;
+			if (case_id > 0) {
+				//only ids for active cases would get a header
+				if (blnShowHeader) {
+					if ($('#kase_content').length == 0) {
+						kase.set("header_only", true);
+						$('#content').html(new kase_view({model: kase}).render().el);
+					}
+				}
+			}
+			//if this is a new partie, the query will return partie_type values
+			corp.set("partie", corporation_type.capitalize());
+			corp.set("case_id", case_id);
+			corp.set("person_id", person_id);
+			corp.set("case_uuid", uuid);
+			corp.set("claims", kase.get("claims"));
+			corp.set("gridster_me", true);
+			corp.set("show_buttons", true);
+			//no adhocs for prior treatment per thomas
+			corp.set("adhoc_fields", "assigned_to,doctor_type");
+			var destination_content = "#kase_content";
+			if (!blnShowHeader) {
+				destination_content = "#content";
+			}
+			var corp_adhocs = new AdhocCollection([], {case_id: case_id, corporation_id: corporation_id});
+			corp.set("holder", "content");
+			$(destination_content).html(new partie_view({model: corp, collection: corp_adhocs}).render().el);
+		}
+	});
+}
+function refreshUserSettings() {
+	refreshCustomerSettings(true);
+	return;
+	//obsolete below
+	//fetch all settings
+	user_setting = new UserSettingCollection();
+	user_setting.fetch({
+		success: function (data) {
+			console.log(data.toJSON());
+			$(document).attr('title', "User Settings :: iKase");
+			data.set("holder", "content");
+			var mymodel = new Backbone.Model();
+			mymodel.set("holder", "content");
+			$('#content').html(new user_setting_listing({collection: data, model: mymodel}).render().el);
+			$("#content").removeClass("glass_header_no_padding");
+		}
+	});
+}
+function refreshDocuments(case_id) {
+	//get the kase
+	var kase = kases.findWhere({case_id: case_id});
+	if (typeof kase == "undefined") {
+		//get it
+		var kase =  new Kase({id: case_id});
+		kase.fetch({
+			success: function (kase) {
+				if (kase.toJSON().uuid!="") {
+					kases.remove(kase.id);
+					kases.add(kase);
+					
+					current_case_id = case_id;	
+					
+					refreshDocuments(case_id);
+				} else {
+					//case does not exist, get out
+					document.location.href = "#";
+				}
+				return;		
+			}
+		});
+		return;
+	}
+	
+	//we're making changes, clear the cache
+	current_case_documents = undefined;
+		
+	$('#kase_content').html(loading_image);
+	var kase_documents = new DocumentCollection([], { case_id: case_id });
+	
+	if (case_id!=current_case_id || $("#kase_nav").length==0) {
+		//show header for new case
+		kase.set("header_only", true);
+		$('#content').html(new kase_view({model: kase}).render().el);
+		current_case_id = case_id;	
+		
+		refreshDocuments(case_id);
+		return;
+	}
+	$(document).attr('title', kase.get("case_name") + " Documents :: iKase");
+	
+	if (customer_id != 1104) {
+		kase_documents.fetch({
+			success: function(data) {
+				$('#kase_content').html(new document_listing_view({collection: data, model: kase}).render().el);
+				$("#kase_content").removeClass("glass_header_no_padding");
+				hideEditRow();
+			}
+		});
+	} else {
+		$('#kase_content').html(new document_listing_view({collection: kase_documents, model: kase}).render().el);
+		$("#kase_content").removeClass("glass_header_no_padding");
+	}
+	//set current case
+	current_case_id = case_id;	
+}
+function refreshTemplates() {
+	var self = this;		
+	word_templates = new WordTemplates([]);
+	word_templates.fetch({
+		success: function(data) {
+			var empty_model = new Backbone.Model;
+			empty_model.set("case_id", "");
+			empty_model.set("uuid", "templates");
+			empty_model.set("no_uploads", false);
+			empty_model.set("blnInvoices", blnInvoices);
+			empty_model.set("holder", "content");
+			$('#content').html(new template_listing_view({collection: data, model: empty_model}).render().el);
+			$("#content").removeClass("glass_header_no_padding");
+			hideEditRow();
+		}
+	});
+}
+
+function assignCalendar(user_id, assignto_id) {
+	if (isNaN(user_id)) {
+		return false;
+	}
+	var url = 'api/calendar/assign';
+	formValues = "calendar_id=" + user_id + "&user_id=" + assignto_id;
+	//get the permissions
+	var write_permission = "";
+	if ($("#user_permissionwrite_" + user_id).prop("checked")) {
+		write_permission = "write";
+	}
+	var read_permission = "";
+	if ($("#user_permissionread_" + user_id).prop("checked")) {
+		read_permission = "read";
+	}
+	formValues += "&permissions=" + read_permission + write_permission;
+	$.ajax({
+		url:url,
+		type:'POST',
+		dataType:"json",
+		data: formValues,
+		success:function (data) {
+			if(data.error) {  // If there is an error, show the error messages
+				saveFailed(data.error.text);
+			}
+			else { // If not, send them back to the home page
+				$("#calendar_user_name_" + user_id).css("color", "green");
+				$("#permission_holder_" + user_id).fadeIn();
+				$("#user_permissionread_" + user_id).prop("checked", true);
+				setTimeout(function() {
+					$("#calendar_user_name_" + user_id).css("color", "white");
+				}, 2500);
+			}
+		}
+	});
+}
+function unassignCalendar(user_id, assignto_id) {
+	if (isNaN(user_id)) {
+		return false;
+	}
+	var url = 'api/calendar/unassign';
+	formValues = "calendar_id=" + user_id + "&user_id=" + assignto_id;
+
+	$.ajax({
+		url:url,
+		type:'POST',
+		dataType:"json",
+		data: formValues,
+		success:function (data) {
+			if(data.error) {  // If there is an error, show the error messages
+				saveFailed(data.error.text);
+			}
+			else { // If not, send them back to the home page
+				$("#calendar_user_name_" + user_id).css("color", "green");
+				$("#permission_holder_" + user_id).fadeOut();
+				setTimeout(function() {
+					$("#calendar_user_name_" + user_id).css("color", "white");
+				}, 2500);
+			}
+		}
+	});
+}
+
+function datepickIt (object_id, blnTimepicker) {
+	if (typeof blnTimepicker == "undefined") {
+		blnTimepicker = true;
+	}
+	var format = 'm/d/Y';
+	if (blnTimepicker) {
+		format = 'm/d/Y h:iA';
+	}
+	$(object_id).datetimepicker({
+		timepicker:blnTimepicker, 
+		format:format,
+		mask:false,
+		onChangeDateTime:function(dp,$input){
+			//alert($input.val());
+		}
+	});	
+}
+
+function tableSortIt (object_id, size) {
+	if (typeof size == "undefined") {
+		size = 100;
+	}
+	if (object_id == "stack_listing") {
+		$("#" + object_id)
+			.tablesorter({widthFixed: true, widgets: ['zebra']}) 
+			/*
+			.tablesorterPager({
+				sortList: [[1,0]], 
+				container: $("#pager"), 
+				size: size,
+				headers: { 2: { sorter: false}, 3: {sorter: false} }
+			});
+			*/ 
+	} else {
+		$("#" + object_id)
+			.tablesorter({widthFixed: true, widgets: ['zebra']}) 
+			/*
+			.tablesorterPager({
+				container: $("#pager"),
+				size: size
+			}); 
+			*/
+	}
+}
+var search_time_out = false;
+function scheduleFind(obj, namespace, page, blnSearchSpans, blnByLetter) {
+	if (typeof blnByLetter == "undefined") {
+		blnByLetter = false;
+	}
+	clearTimeout(search_time_out);
+	search_time_out = setTimeout(function(){
+		findIt(obj, namespace, page, blnSearchSpans, blnByLetter);
+	}, 1000);
+}
+function findIt(obj, namespace, page, blnSearchSpans, blnByLetter) {
+	if (typeof blnByLetter == "undefined") {
+		blnByLetter = false;
+	}
+	//contacts
+	var theobj = $("#" + obj.id);
+	var val = $(theobj).val();
+	if (namespace == "rolodex_listing") {
+		$("#search_rolodex_loading").show();
+		var contacts = new ContactCollection([]);
+		search_rolodex = contacts.searchDB(val, blnByLetter);
+		return;
+	}
+	if (typeof blnSearchSpans == "undefined") {
+		blnSearchSpans = false;
+	}
+	var val = $.trim($(theobj).val()).replace(/ +/g, ' ').toLowerCase();
+	var $rows = $('.' + namespace + ' .' + page + '_data_row');
+	//keep track of funds
+	var founds = 0;
+	$(".date_row").hide();
+	$(".letter_row").hide();
+	$rows.show().filter(function() {
+		//search the text content of each row
+		if (blnSearchSpans) {
+			var text = $( '.search_' + page + '_item', $( this ) ).text ().replace(/\s+/g, ' ').toLowerCase();
+		} else {
+			var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+		}
+		if (text.indexOf(val) > -1) {
+			if (this.classList.length>=3) {
+				if (this.classList[2].indexOf("row") > -1) {
+					var row_id = this.classList[2];
+					$("." + row_id).show();
+					founds++;
+				}
+			}
+		}
+		//return false if found, so that the .hide command applies
+		return !~text.indexOf(val);
+	}).hide();
+	
+	//special case
+	if (val == "") {
+		$(".date_row").show();
+		$(".letter_row").show();
+	}
+	
+	if (founds==0) {
+		if (namespace == "jetfile_listing") {
+			var jetfiles = new JetfileCollection();
+			jetfiles.searchDB(val);
+		}
+	}
+}
+function filterIt(obj, namespace, page) {
+	var $rows = $('.' + namespace + ' .' + page + '_data_row');
+	var the_kind = obj.id.replace("Filter", "");
+	var theobj = $("#" + obj.id);
+	var val = $.trim($(theobj).val()).replace(/ +/g, ' ').toLowerCase();
+	if (page=="note") {
+		val = val.replaceAll("_", " ");
+	}
+	$(".date_row").hide();
+	$(".letter_row").hide();
+	$rows.show().filter(function() {
+		//var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+		var text = $( '.note_' + the_kind + '_cell', $( this ) ).text ().replace(/\s+/g, ' ').toLowerCase();
+		if (text.indexOf(val) > -1) {
+			if (this.classList.length==3) {
+				if (this.classList[2].indexOf("row") > -1) {
+					var row_id = this.classList[2];
+					$("." + row_id).show();
+				}
+			}
+		}
+		
+		return !~text.indexOf(val);
+	}).hide();
+	
+	//special case
+	if (val == "") {
+		$(".date_row").show();
+	}
+}
+function filterCustomerCalendar(this_view) {
+	var thetype = $("#event_typeFilter").val();
+	var all_customer_events = new CustomerByTypeEvents({type: thetype});
+	all_customer_events.fetch({
+		success: function (data) {
+			//then re-assign to calendar
+			this_view.collection.reset(data.toJSON());
+		}
+	});
+}
+function filterEvents(this_el, source) {
+	var thetype = $("#event_typeFilter").val();
+	var newSource = source + '/' + thetype;
+	if (thetype=="") {
+		var newSource = source;
+	}
+    this_el.fullCalendar('removeEventSource', source);
+    this_el.fullCalendar('refetchEvents');
+    this_el.fullCalendar('addEventSource', newSource)
+    this_el.fullCalendar('refetchEvents');
+    source = newSource;
+}
+function tokenIt(object_id, model_name) {	
+	//"api/php-example.php"
+	var search_collection;
+	switch(model_name) {
+		case "employee":
+			search_collection = new EmployeeTypeCollection();
+			break;
+	}
+
+	//go get the data from server
+	search_collection.fetch({
+		success: function (data) {
+				//console.log(data);
+				$("#" + object_id).tokenInput(data.toJSON(), {
+					theme: "facebook"
+				});
+		}
+	});
+}
+function gridsterDashboard() {
+	var gridster = [];
+	$(function () {
+		gridster[0] = $("#gridster_flat_dashboard ul").gridster({
+		namespace: '#gridster_flat_dashboard',
+		widget_margins: [2, 2],
+		widget_base_dimensions: [126, 40],
+		serialize_params: function($w, wgd) {
+			return {
+				id: wgd.el[0].id,
+				col: wgd.col,
+				row: wgd.row
+			};
+		},
+		draggable: {
+			stop: function(event, ui){ 
+				// your events here
+				var serial = gridster[0].serialize();
+				//console.log(JSON.stringify(serial));
+			}
+		}
+		}).data('gridster');
+	
+		gridster[0].options.max_rows = 1;
+		//$("#gridster_flat ul").css("z-index", "9");
+		$("#gridster_flat_dashboard").fadeIn();
+	});
+}
+
+function toggleFormEdit(master_class) {
+	//get all the editing fields, and toggle them back
+	$("." + master_class + " .editing").toggleClass("hidden");
+	
+	$("." + master_class + " .span_class").removeClass("editing");
+	$("." + master_class + " .input_class").removeClass("editing");
+	
+	$("." + master_class + " .span_class").toggleClass("hidden");
+	$("." + master_class + " .input_class").toggleClass("hidden");
+	$("." + master_class + " .input_holder").toggleClass("hidden");
+	$(".button_row." + master_class).toggleClass("hidden");
+	$(".edit_row." + master_class).toggleClass("hidden");
+	
+}
+function hideEditRow() {
+	$(".edit_row .kase").fadeOut();
+}
+function showEditRow() {
+	$(".edit_row .kase").fadeIn();
+}
+function hideUpload() {
+	Backbone.history.navigate("documents/" + id, true);
+}
+function isTouchDevice() {
+	var ua = navigator.userAgent;
+	var isTouchDevice = (
+		ua.match(/iPad/i) ||
+		ua.match(/iPhone/i) ||
+		ua.match(/iPod/i) ||
+		ua.match(/Android/i)
+	);
+
+	return isTouchDevice;
+}
+
+function editField(field_object, master_class) {
+	var theclass = "";
+	if (typeof master_class == "undefined") {
+		master_class = "";
+	}
+	//if element dblclicked is a group holder (ie:Email group)
+	
+	if (master_class!="") {
+		//get the name from the object
+		if (typeof field_object.id == "undefined") {
+			var field_name = field_object.attr("id");
+			field_name = field_name.replace("Grid", "");
+			//let's get the class
+			theclass = field_object.parent().parent().attr("class");
+		} else {
+			var field_name = field_object.id;
+			field_name = field_name.replace("Grid", "");
+			//let's get the class
+			theclass = field_object.parentElement.parentElement.className;
+		}
+		var arrClass = theclass.split(" ");
+		theclass = "." + arrClass[0] + "." + arrClass[1];
+		field_name = theclass + " #" + field_name;
+		//edit the field, only if it is not already in editing mode
+		//show the input, hide the span
+		$(".span_class" + master_class).toggleClass("hidden");
+		$(".input_class" + master_class).toggleClass("hidden");
+		if (master_class!="") {
+			$(field_name + "Save").toggleClass("hidden");
+		}
+		$(".span_class" + master_class).addClass("editing");
+		$(".input_class" + master_class).addClass("editing");
+		$(field_name + "Save").addClass("editing");
+		
+		//get out, no more after this for masters
+		return;
+	}
+	if (master_class=="") {
+		if (typeof field_object != "undefined") {
+			//get the name from the object
+			if (typeof field_object.id == "undefined") {
+				var field_name = field_object.attr("id");
+				field_name = field_name.replace("Grid", "");
+				//let's get the class
+				theclass = field_object.parent().parent().attr("class");
+			} else {
+				var field_name = field_object.id;
+				field_name = field_name.replace("Grid", "");
+				//let's get the class
+				theclass = field_object.parentElement.parentElement.className;
+			}
+			var arrClass = theclass.split(" ");
+			theclass = "." + arrClass[0] + "." + arrClass[1];
+			field_name = theclass + " #" + field_name;
+		} else {
+			//field_name = "#" + field_name;
+			return;
+		}
+		if ($(field_name + "Span").hasClass("editing") && $(".editing")) {
+			return;
+		}
+		//edit the field, only if it is not already in editing mode
+		if ($(field_name + "Span").hasClass("editing")) {
+			//turn it all off
+			$(field_name + "Span").toggleClass("hidden");
+			$(field_name + "Input").toggleClass("hidden");
+			$(field_name + "Save").toggleClass("hidden");
+			
+			$(field_name + "Span").removeClass("editing");
+			$(field_name + "Input").removeClass("editing");
+			$(field_name + "Save").removeClass("editing");
+			return;
+		}
+		
+		//show the input, hide the span
+		$(field_name + "Span").toggleClass("hidden");
+		$(field_name + "Input").toggleClass("hidden");
+		$(field_name + "Save").toggleClass("hidden");
+		
+		$(field_name + "Span").addClass("editing");
+		$(field_name + "Input").addClass("editing");
+		$(field_name + "Save").addClass("editing");
+		
+	}
+}
+function updateNote(notes_value) {
+	$("#noteInput").val(notes_value);
+}
+function deleteForm(event, subform) {
+	var self = this;
+	event.preventDefault(); // Don't let this button submit the form
+	
+	if (typeof subform == "undefined") {
+		var form_name = $("#sub_category_holder").attr("class");
+	} else {
+		form_name = subform;
+	}
+	
+	var id = $('.' + form_name + ' #table_id').val();
+	$('.' + form_name + ' .alert-error').hide(); // Hide any errors on a new submit
+        var url = 'api/' + form_name + '/delete';
+		formValues = "id=" + id + "&table_name=" + form_name;
+
+        $.ajax({
+            url:url,
+            type:'POST',
+            dataType:"json",
+            data: formValues,
+            success:function (data) {
+                if(data.error) {  // If there is an error, show the error messages
+                    saveFailed(data.error.text);
+                }
+                else { // If not, send them back to the home page
+					//kases.remove(kases.findWhere({case_id: id}));
+					//$('#kases_recent').html(new kase_list_category_view({model: kases}).render().el);
+					//document.location.href = "#kases";
+					if (form_name=="event") {
+						resetCalendarAfterSave();
+						getUserEvents();
+					}
+					if (form_name=="injury") {
+						document.location.href = "#kases/" + current_case_id;
+					}
+                }
+            }
+        });
+}
+function markAsCompleted(ids) {
+	$("#deleteModal #delete").html('<i class="icon-spin4 animate-spin" style="font-size:1.5em"></i>');
+	
+	var arrIDs = ids.split(", ");
+	var arrLength = arrIDs.length;
+	var last_id = arrIDs[arrLength - 1];
+	for(var i = 0; i < arrLength; i++) {
+		var theid = arrIDs[i];
+		var formValues = { 
+			table_name : "notification",
+			document_id: theid
+		};
+		//in api/documents_pack.php
+		var url = "api/stacks/complete";		
+		$.ajax({
+			url:url,
+			type:'POST',
+			dataType:"json",
+			data: formValues,
+			success:function (data) {
+				if(data.error) {  // If there is an error, show the error messages
+					console.log(data.error.text);
+				} else { 
+					//hide the notify button
+					$("#notify_attorney_" + theid).html("completed&nbsp;<span style='background:green; color:white'>&#10003;</span>");	
+					$("#notify_attorney_" + theid).addClass("white_text");
+					$(".document_row_" + theid).css("background", "green");
+					setTimeout(function() {
+						$(".document_row_" + theid).fadeOut();
+					}, 2500);
+					if (theid == last_id) {
+						//refresh indicator
+						checkUnassigneds();
+						$('#deleteModal').modal('toggle');
+						window.Router.prototype.listImports();
+					}
+				}
+			}
+		});
+	}
+}
+function searchForm(event, subform) {
+	var self = this;
+	event.preventDefault(); // Don't let this button submit the form
+	
+	if (typeof subform == "undefined") {
+		var form_name = $("#sub_category_holder").attr("class");
+	} else {
+		form_name = subform;
+	}
+	
+	var formValues = $("#" + form_name + "_form").serialize();
+	var find = "Input";
+	var regEx = new RegExp(find, 'g');
+	formValues = formValues.replace(regEx, '');
+	var url = "api/kase/advancesearch";
+	
+	kase_url = url;
+	$.ajax({
+		url:url,
+		type:'POST',
+		dataType:"json",
+		data: formValues,
+		success:function (data) {
+			if(data.error) {  // If there is an error, show the error messages
+				console.log(data.error.text);
+				saveFormFailed(data.error.text);
+			} else { 
+				$("#gifsave").hide();
+				
+				if (form_name == "kase") {
+					if (typeof data.search_error != "undefined") {
+						alert("Please select/enter at least 1 search criterion");
+						$("#modal_save_holder").show();
+						return;
+					}
+					var my_kases = new Backbone.Collection;
+					my_kases.add(data)
+					$("#myModal4").modal("toggle");
+					$(document).attr('title', "Kases Search Results");
+					var mymodel = new Backbone.Model();
+					mymodel.set("key", "");
+					mymodel.set("search_parameters", this.data);
+					
+					$('#content').html(new kase_listing_view({collection: my_kases, model:mymodel}).render().el);
+					
+					setTimeout(function() {
+						$("#kase_status_title").html("Found");
+					}, 700);
+				}
+			}
+		}
+	});
+}
+function showAuto() {
+	$("#autocomplete_completed").show();
+}
+function kaseComplete(form_name, obj_selector) {
+	new AutoCompleteKaseView({
+		input: $("." + form_name + " #" + obj_selector),
+		form_name:form_name,
+		model: kases,
+		onSelect: function (model) {
+			//clean display in the search box
+			$("." + form_name + " #" + obj_selector).val(model.display());
+		}
+	}).render();
+}
+function eamsComplete(form_name, obj_selector) {
+	new AutoCompleteEAMSView({
+		input: $("." + form_name + " #" + obj_selector),
+		form_name:form_name,
+		model: eams_carriers,
+		onSelect: function (model) {
+			//clean display in the search box
+			$("." + form_name + " #" + obj_selector).val(model.display());
+			//eams number - THERE MUST BE AN ADHOC eams_id FIELD ON THE FORM
+			$("#" + form_name.toLowerCase() + "_eams_ref_numberInput").val(model.get("eams_ref_number"));
+			//address
+			var the_street = model.get("street_1");
+			if (model.get("street_2")!="") {
+				the_street += ", " + model.get("street_2");
+			}
+			$("." + form_name + " #full_addressInput").val(the_street + ", " + model.get("city") + ", " + model.get("state") + " " + model.get("zip_code"));
+		}
+	}).render();
+}
+function repsComplete(form_name, obj_selector) {
+	new AutoCompleteRepsView({
+		input: $("." + form_name + " #" + obj_selector),
+		form_name:form_name,
+		model: eams_reps,
+		onSelect: function (model) {
+			//clean display in the search box
+			$("." + form_name + " #" + obj_selector).val(model.display());
+			//eams number - THERE MUST BE AN ADHOC eams_id FIELD ON THE FORM
+			$("#" + form_name.toLowerCase() + "_eams_ref_numberInput").val(model.get("eams_ref_number"));
+			//address
+			var the_street = model.get("street_1");
+			if (model.get("street_2")!="") {
+				the_street += ", " + model.get("street_2");
+			}
+			$("." + form_name + " #full_addressInput").val(the_street + ", " + model.get("city") + ", " + model.get("state") + " " + model.get("zip_code"));
+		}
+	}).render();
+}
+function attorneyComplete(form_name, obj_selector) {
+	new AutoCompleteView({
+		input: $("." + form_name + " #" + obj_selector),
+		form_name:form_name,
+		model: attorney_searches,
+		onSelect: function (model) {
+			//clean display in the search box
+			$("." + form_name + " #" + obj_selector).val(model.display());
+			//address
+		}
+	}).render();
+}
+function workerComplete(form_name, obj_selector) {
+	new AutoCompleteWorkerView({
+		input: $("." + form_name + " #" + obj_selector),
+		form_name:form_name,
+		model: worker_searches,
+		onSelect: function (model) {
+			//clean display in the search box
+			$("." + form_name + " #" + obj_selector).val(model.display());
+			//address
+		}
+	}).render();
+}
+function workerEventComplete(form_name, obj_selector) {
+	new AutoCompleteWorkerEventView({
+		input: $("." + form_name + " #" + obj_selector),
+		form_name:form_name,
+		model: worker_searches,
+		onSelect: function (model) {
+			//clean display in the search box
+			$("." + form_name + " #" + obj_selector).val(model.display());
+			$(".event_dialog #event_descriptionInput").focus();
+			//address
+		}
+	}).render();
+}
+function specialtyComplete(form_name, obj_selector) {
+	new AutoCompleteSpecialtyView({
+		input: $("." + form_name + " #" + obj_selector),
+		form_name:form_name,
+		model: medical_specialties,
+		onSelect: function (model) {
+			//clean display in the search box
+			$("." + form_name + " #" + obj_selector).val(model.display());
+			//address
+		}
+	}).render();
+}
+function zipLookup(event) {
+	event.preventDefault();
+	var element = event.currentTarget;
+	var form_name = $("#sub_category_holder").attr("class");
+	
+	$.zipLookup(                                            
+		$("." + form_name + " #" + element.id).val(),                                      
+		function(cityName, stateName, stateShortName){     
+			$("." + form_name + " #cityInput").val(cityName);            
+			$("." + form_name + " #stateInput").val(stateName);  
+			$("." + form_name + " #stateshortInput").val(stateShortName);
+		},
+		function(errMsg){                                   
+			$('.message').html("Error: " + escapeHtml(errMsg));         
+	});
+}
+
+var placeSearch, autocompleteEmployer, autocompleteCarrier, autocompleteDefense;
+var componentForm = {
+	street_number: 'short_name',
+	route: 'long_name',
+	locality: 'long_name',
+	neighborhood: 'long_name',
+	sublocality: 'long_name',
+	administrative_area_level_1: 'short_name',
+	country: 'long_name',
+	postal_code: 'short_name'
+};
+function initializeGoogleAutocomplete(className) {
+	var text_box = "";
+	var additional_text_box = "";
+	if (className == "personal_injury" || className == "personal_injury2") {
+		text_box = document.querySelectorAll(".personal_injury #" + className + "_locationInput")[0];
+	} else {
+		text_box = document.querySelectorAll("." + className + " #full_addressInput")[0];
+		if (document.querySelectorAll("." + className + " #additional_full_addressInput").length > 0) {
+			additional_text_box = document.querySelectorAll("." + className + " #additional_full_addressInput")[0];
+		}
+	}
+	if (typeof google.maps.places != "undefined") {
+		if (className == "personal_injury" || className == "personal_injury2") {
+			text_box = document.querySelectorAll(".personal_injury #" + className + "_locationInput")[0];
+		} else {
+			text_box = document.querySelectorAll("." + className + " #full_addressInput")[0];
+		}
+		
+		var geo_options = {
+		  types: ['address'],
+		  componentRestrictions: {country: 'us'}
+		};
+		window["autocomplete" + className] = new google.maps.places.Autocomplete(text_box, geo_options);
+		// Create the autocomplete object, restricting the search
+		// to geographical location types.
+		if (className != "personal_injury" && className != "personal_injury2") {
+			// populate the address fields in the form.
+			google.maps.event.addListener(window["autocomplete" + className], 'place_changed', function() {
+				setTimeout("fillInAddress('" + className + "')", 200);			
+			});
+		}
+		
+		//additional_text_box
+		if (additional_text_box!="") {
+			window["autocomplete_additional_" + className] = new google.maps.places.Autocomplete(additional_text_box, geo_options);
+			// Create the autocomplete object, restricting the search
+			// to geographical location types.
+			google.maps.event.addListener(window["autocomplete_additional_" + className], 'place_changed', function() {
+					setTimeout("fillInAddress('_additional_" + className + "')", 200);			
+				});
+		}
+	}
+}
+
+// [START region_fillform]
+function fillInAddress(className) {
+	var place = window["autocomplete" + className].getPlace();
+	
+	if (className.indexOf("_additional") > -1) {
+		className = className.substring(1);
+	}
+	for (var component in componentForm) {
+		if (document.getElementById(component + "_" + className)!=null) {
+			document.getElementById(component + "_" + className).value = '';
+			document.getElementById(component + "_" + className).disabled = false;
+		}
+	}
+	
+	// Get each component of the address from the place details
+	// and fill the corresponding field on the form.
+	var sublocality = "";
+	var administrative_area_level_1 = "";
+	var postal_code = "";
+	var add_prefix = "";
+	if (className.indexOf("additional_")==0) {
+		add_prefix = "additional_";
+		className = className.replace("additional_", "");
+	}
+	for (var i = 0; i < place.address_components.length; i++) {
+		var addressType = place.address_components[i].types[0];
+		
+		if (document.getElementById(add_prefix + addressType + "_" + className)==null) {
+			continue;
+		}
+		//might be sublocality_level_1
+		if (place.address_components[i].types.length > 1) {
+			if (addressType == "sublocality_level_1" && place.address_components[i].types[1]=="sublocality") {
+				addressType = "sublocality";
+			}
+		}
+		if (componentForm[addressType]) {
+		  var val = place.address_components[i][componentForm[addressType]];
+		  document.getElementById(add_prefix + addressType + "_" + className).value = val;
+		  
+		  if (addressType=="neighborhood") {
+			//sublocality = val;  
+		  }	  
+		  if (addressType=="sublocality") {
+			sublocality = val;  
+		  }
+		  if (addressType=="administrative_area_level_1") {
+			administrative_area_level_1 = val;  
+		  }
+		  if (addressType=="postal_code") {
+			postal_code = val;  
+		  }
+		}
+	}
+	
+	if (sublocality=="") {
+		sublocality = document.getElementById(add_prefix + "locality_" + className).value;
+	}
+	
+	var text_box = document.querySelectorAll("." + className + " #" + add_prefix + "full_addressInput")[0];
+	var arrAddress = [];
+	if (document.getElementById(add_prefix + "street_number_" + className).value!="") {
+		arrAddress[arrAddress.length] = document.getElementById(add_prefix + "street_number_" + className).value + " " + document.getElementById(add_prefix + "route_" + className).value;
+		if (sublocality!="") {
+			arrAddress[arrAddress.length] = sublocality;
+		}
+		arrAddress[arrAddress.length] = document.getElementById(add_prefix + "administrative_area_level_1_" + className).value + " " + document.getElementById(add_prefix + "postal_code_" + className).value;
+		
+	} else {
+		sublocality = place.name
+		arrAddress[arrAddress.length] = sublocality;
+		arrAddress[arrAddress.length] = administrative_area_level_1;
+	}
+	var full_address = arrAddress.join(", ");
+	text_box.value = full_address;
+	
+	document.getElementById(add_prefix + "city_" + className).value = sublocality;
+	document.getElementById(add_prefix + "street_" + className).value = document.getElementById(add_prefix + "street_number_" + className).value + " " + document.getElementById(add_prefix + "route_" + className).value;
+	if (className != "event") {
+		if (document.querySelectorAll("." + className + " #" + add_prefix + "suiteInput").length > 0) {
+			document.querySelectorAll("." + className + " #" + add_prefix + "suiteInput")[0].focus();
+		}
+	}
+}
+// [END region_fillform]
+
+// [START region_geolocation]
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = new google.maps.LatLng(
+          position.coords.latitude, position.coords.longitude);
+      autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
+          geolocation));
+    });
+  }
+}
+
+var show_attachment_preview_id;
+var freezeMessagePreview = function(event) {
+
+
+	event.preventDefault();
+	clearTimeout(show_attachment_preview_id);
+	var element = event.currentTarget;
+	var theid = element.id.split("_")[1];
+	$("#message_preview_panel").show();
+}
+var freezeTaskPreview = function(event) {
+	event.preventDefault();
+	clearTimeout(show_attachment_preview_id);
+	var element = event.currentTarget;
+	var theid = element.id.split("_")[1];
+	$("#task_preview_panel").show();
+}
+var showDeleteConfirm = function(element, leftpos) {
+	if (typeof leftpos == "undefined") {
+		leftpos = 300;
+	}
+	var rect = element.getBoundingClientRect();
+	
+	var scrollTop = document.documentElement.scrollTop?
+					document.documentElement.scrollTop:document.body.scrollTop;
+	var scrollLeft = document.documentElement.scrollLeft?                   
+					 document.documentElement.scrollLeft:document.body.scrollLeft;
+	elementTop = rect.top+scrollTop - 40;
+	//elementTop = scrollTop - 20;
+	elementLeft = rect.left+scrollLeft - leftpos;
+	return [elementTop, elementLeft];
+}
+function selectAllParties () {
+	$(".parties_option").prop("checked", $("#parties_selectall").prop("checked"));
+	
+	$(".event_partie").prop("checked", $("#parties_selectall").prop("checked"));
+}
+function calendarFadeIn() {
+	if ($(".calendar_title").length > 0) {
+		$(".calendar_title").fadeIn(function(){
+			var theleft = (window.innerWidth / 2) + 200;
+			$(".calendar_print").css("top", $(".calendar_title").css("top"));
+			$("#calendar_filter").css("left", theleft - 520);
+			$("#calendar_attorney_filter").css("left", theleft - 740);
+			if (blnBlockDays) {				
+				$("#calendar_print").css("left", theleft + 125);
+				$("#calendar_list").css("left", theleft + 185);
+				$("#calendar_block").css("left", theleft + 268);
+				$("#calendar_unblock").css("left", theleft + 358);
+			} else {
+				$("#calendar_new").css("left", theleft + 25);
+				$("#calendar_print").css("left", theleft + 125);
+				$("#calendar_list").css("left", theleft + 175);
+			}
+		});
+	}
+}
+function copySync() {
+	$('.copy_sync').removeClass("btn-primary");
+	$('.copy_sync').addClass("btn-success");
+	$('.copy_sync').html("Copied &#10003;");
+	setTimeout(function() {
+		$('.copy_sync').html("Copy to Clipboard");
+		$('.copy_sync').addClass("btn-primary");
+		$('.copy_sync').removeClass("btn-success");
+	}, 2500);
+	
+	return "https://v2.ikase.org/api/ikase_sync3.php?" + subscription_string;
+}
+$(function() {
+    // create listener
+    var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+    var eventer = window[eventMethod];
+    var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+    eventer(messageEvent, function (e) {
+		if (e.origin != "https://www.ikase.xyz") {
+			return;
+		}
+		if (e.data=="listMessagesClearToken") {
+			console.log("gmail messages no token");
+			listMessagesClearToken();
+		}
+		if (e.data=="listMessagesDone") {
+			console.log("gmail messages done");
+			listMessagesDone(true);
+		}
+    }, false);
+});
+window.onresize = function(event) {
+	calendarFadeIn();
+};
+var blnGettingMore = false;
+
+//UPDATE THEME SETTINGS 2021-12-20 09:58AM
+$(document).on('click', '.Palette_Color', function(){
+	var dataColor = $(this).data('color');
+	$('html').attr('data-theme', dataColor);
+
+	console.log(dataColor);
+	UpdateTheme(dataColor);
+})
+
+
+function UpdateTheme(themename) {
+	var formData = "themename=" + themename;
+	formData += "&user_id=" + login_user_id;
+	var url = 'api/themeupdate';
+
+	$.ajax({
+		url:url,
+		type:'POST',
+		dataType:"json",
+		data: formData,
+		success:function (data) {
+			console.log("Theme Saved");
+		}
+	});
+} 

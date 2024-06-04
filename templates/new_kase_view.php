@@ -84,7 +84,7 @@ if ($_SESSION["user_customer_type"]=="Medical Office") {
   $case_type_options .= "<option value='CALPERS'>CALPERS</option><option value='OCERA'>OCERA</option><option value='Sx CLEARANCE'>Sx CLEARANCE</option><option value='PQME'>PQME</option><option value='AME'>AME</option><option value='IME'>IME</option><option value='LACERA'>LACERA</option><option value='SBCERA'>SBCERA</option><option value='DEPO'>DEPO</option><option value='RECORD REVIEW'>RECORD REVIEW</option><option value='OTHER'>OTHER</option>";
 }
 
-$result = DB::runOrDie("SELECT * FROM `cse_venue` ORDER BY venue");
+$result = DB::runOrDie("SELECT * FROM `ikase`.`cse_venue` where deleted!=1 ORDER BY venue");
 $venue_options = "<option value=''>Select from List</option>";
 while ($row = $result->fetch()) {
     $venue_options .= "" ."<option value='" .$row->venue_uuid. "'>" .$row->venue_abbr. "</option>";
@@ -791,12 +791,17 @@ async function call_for_remove_drop_value0()
   Date: 23-January-2024
   Description: added below code for showing status, sub status and sub status 2 according to case type (like WCAB)
 */
-var case_type = "<%= case_type %>"; 
+var case_type = "<%= case_type %>";
+var case_id = "<%= case_id %>";
+var customer_id = "<?= $_SESSION['user_customer_id']; ?>";
   $(document).ready(function() {
-  setTimeout(function() {  
+  setTimeout(function() { 
+    // need this condition for RP Law (1042) Case ID 7174
+    if(case_id != "7174") {
     loadStatus();
     loadSubStatus();
     loadSubSubStatus();   
+    }
   }, 3000);
 });
 
@@ -804,10 +809,13 @@ var type = "";
 function setCase()
 {
   type = $("#case_typeInput").val();
-  setTimeout(function() {  
+  setTimeout(function() { 
+    // need this condition for RP Law (1042) Case ID 7174 
+    if(case_id != "7174") {
     loadStatus();
     loadSubStatus();
-    loadSubSubStatus();   
+    loadSubSubStatus();  
+    } 
   }, 3000);
 }
 

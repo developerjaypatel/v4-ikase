@@ -5,10 +5,10 @@ include ("../../text_editor/ed/datacon.php");
 $cus_id = passed_var("cus_id");
 $note_id = passed_var("note_id");
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
 {
   $application = "StarLinkCMS";
-  $application_url = "https://starlinkcms.com/";
+  $application_url = "https://v2.starlinkcms.com/";
   $application_logo = "logo-starlinkcms.png";
 }
 else

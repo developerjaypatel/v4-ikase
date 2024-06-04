@@ -6,6 +6,19 @@ if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) 
 	die();
 }
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application = "StarLinkCMS";
+  $application_logo = "logo-starlinkcms.png";
+  $application_url = "https://starlinkcms.com/";
+}
+else
+{
+  $application = "iKase";
+  $application_logo = "favicon.png";
+  $application_url = "https://v2.ikase.org/";
+}
+
 include("api/connection.php");
 $db = getConnection();
 $dbname = "gtg_thecase";
@@ -88,7 +101,7 @@ if (file_exists($filename)) {
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="robots" content="noindex,nofollow">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/<?php echo $application_logo; ?>">
     <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
     <link href="fonts/fontello-a1b266d9/css/fontawesome.css" rel="stylesheet" />
     <link href="fonts/fontello-a1b266d9/css/fontawesome-codes.css" rel="stylesheet" />
@@ -97,7 +110,7 @@ if (file_exists($filename)) {
     <link href="fonts/fontello-a1b266d9/css/fontawesome-ie7.css" rel="stylesheet" />
     <link href="fonts/fontello-a1b266d9/css/animation.css" rel="stylesheet" />
     <link rel='stylesheet' type='text/css' href='lib/fullcalendar-2.7.1/fullcalendar.css' />
-    <title>iKase Reports - Legal Case Management System. Fast. Mobile</title>
+    <title><?php echo $application; ?> Reports - Legal Case Management System. Fast. Mobile</title>
     
   </head>
   <body style="">

@@ -7141,15 +7141,25 @@ templateLoader.load([ "event_view", "partie_listing_choose", "calendar_view", "p
 //modal display
 $('.modal').on('shown.bs.modal', function() {
     $(this).find('.modal-dialog').css({
-        'margin-top': "-330px",
+        'margin-top': "-350px",
         'margin-left': function () {
-            return -($(this).outerWidth() / 2)-80;
-            // -80 by mukesh on 2-6-2023 for compose model width increase 
-        },
-        'width' : "750px"
-        // for increasing compose email model width added by mukesh 2-6-2023
+            return -($(this).outerWidth() / 2);
+        }
     });
 });
+// modified code but making issue in import eams so reverted changes and applied email compose style changes in C:\inetpub\wwwroot\iKase.org\js\compose_modal.js line 1911
+// $('.modal').on('shown.bs.modal', function() {
+//     $(this).find('.modal-dialog').css({
+//         'margin-top': "-330px",
+//         'margin-left': function () {
+//             return -($(this).outerWidth() / 2)-80;
+//             // -80 by mukesh on 2-6-2023 for compose model width increase 
+//         },
+//         'width' : "750px"
+//         // for increasing compose email model width added by mukesh 2-6-2023
+//     });
+// });
+
 $('.modal').on('hide.bs.modal', function() {
 	setTimeout(function() {
 		document.getElementById("myModal4").innerHTML = mymodal;
@@ -8586,7 +8596,7 @@ function copySync() {
 		$('.copy_sync').removeClass("btn-success");
 	}, 2500);
 	
-	return "https://v2.ikase.org/api/ikase_sync3.php?" + subscription_string;
+	return "https://"+ location.hostname +"/api/ikase_sync3.php?" + subscription_string;
 }
 $(function() {
     // create listener

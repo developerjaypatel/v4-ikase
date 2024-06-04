@@ -34,7 +34,7 @@ function runLastQuery() {
 	}
 }
 
-$url = "https://www.ikase.org/api/kases/last";
+$url = "https://". $_SERVER['SERVER_NAME'] ."/api/kases/last";
 $cases = runLastQuery();
 
 $list = array ();

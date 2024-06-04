@@ -6,11 +6,11 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 include ("../../text_editor/ed/functions.php");
 include ("../../text_editor/ed/datacon.php");
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
 {
   $application = "StarLinkCMS";
   $application_logo = "logo-starlinkcms.png";
-  $application_url = "https://starlinkcms.com/";
+  $application_url = "https://v2.starlinkcms.com/";
 }
 else
 {

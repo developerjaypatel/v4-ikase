@@ -5,7 +5,7 @@ session_write_close();
 include ("../text_editor/ed/functions.php");
 include ("../text_editor/ed/datacon.php");
 
-$result = DB::runOrDie("SELECT * FROM `cse_venue` ORDER BY venue");
+$result = DB::runOrDie("SELECT * FROM `ikase`.`cse_venue` where deleted!=1 ORDER BY venue");
 $venue_options = "<option value=''>Select from List</option>";
 while ($row = $result->fetch()) {
     $venue_options .= "<option value='{$row->venue_uuid}'>{$row->venue_abbr}</option>";
@@ -21,7 +21,7 @@ $result_sub = DB::runOrDie("SELECT * FROM `cse_casesubstatus` WHERE 1");
 $option_sub = "<option value=''>Select from List</option>";
 $casesubstatus_options = "" . $option_sub;
 while ($row_substatus = $result_sub->fetch()) {
-    $casesubstatus_options .= "<option value='{$row_substatus->casesubstatus}'>{$row_substatus->casesubstatus}</option>";
+    $casesubstatus_options .= "<option value='{$row_status->casesubstatus}'>{$row_status->casesubstatus}</option>";
 }
 
 $blnIPad = isPad();

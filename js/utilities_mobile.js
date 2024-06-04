@@ -242,9 +242,9 @@ var isDate = function(date) {
     return the_return;
 }
 function emptyBuffer(customer_id) { 
-	var url = 'https://v2.ikase.org/api/buffer';
+	var url = 'https://'+ location.hostname +'/api/buffer';
 	if (typeof customer_id != "undefined") {
-		 url = 'https://v2.ikase.org/api/buffer?customer_id=' + customer_id;
+		 url = 'https://'+ location.hostname +'/api/buffer?customer_id=' + customer_id;
 	}
 	$.ajax({
 		url:url,
@@ -782,7 +782,7 @@ function filterKases(filter_type) {
 	var val_attorney = $.trim($(theattorney).val()).replace(/ +/g, ' ').toLowerCase();
 	
 	//update the session object with latest kase filters for printing purposes
-	var url = 'https://v2.ikase.org/api/kases/filters';
+	var url = 'https://'+ location.hostname +'/api/kases/filters';
 	formValues = "val_attorney=" + val_attorney + "&val_worker=" + val_worker;
 	$.ajax({
 		url:url,

@@ -266,6 +266,13 @@ function getConnection($enableUserDataSource = true) {
     return DB::conn(DB::DB_LOCALHOST, $enableUserDataSource);
 }
 
+// created new getConnection_new & DB::conn_new function for batchscan, old getConnection function throwing Mysql server has gone away error
+// old function working but batchscan issue was happen in only big pdfs(49pages, 15mb) so created new function
+// created by jay on 7-march-2024
+function getConnection_new($enableUserDataSource = true) {
+    return DB::conn_new(DB::DB_LOCALHOST, $enableUserDataSource);
+}
+
 function getCustomerDocucentsAPIKey($cus_id) {
     $sql = "SELECT `customer_id`,`docucents_api_key`
 	FROM `cse_customer`

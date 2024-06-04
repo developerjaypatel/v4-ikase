@@ -59,10 +59,11 @@ session_write_close(); //FIXME: WHY GOD, WHY
 	<div style="float:right"><a href="javascript:closeDocument()" title="Click to close preview" style="color:white; text-decoration:none">close</a></div>
 	<iframe id="view_frame" width="100%" height="500px" scrolling="no"; frameborder="0" src=""></iframe>
 </div>
-<div class="container contmodify">
+<!-- <div class="container contmodify"> -->
+ <div style="width: 70%;margin-left: 10px;">   
     <br>
     <div class='row'>
-        <div class='col-lg-3'>
+        <div class='col-lg-2'>
             <button type="submit" class="btn clrbtn" title="view docs list">
                 <i class="glyphicon glyphicon-list-alt"></i>
                 <span>View Documents</span>
@@ -72,7 +73,7 @@ session_write_close(); //FIXME: WHY GOD, WHY
         The file upload form used as target for the file upload widget
         //jquery-file-upload.appspot.com/
         -->
-        <div class='col-lg-9'>
+        <div class='col-lg-10'>
             <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
                 <input type="hidden" value="document" id="type" name="type">
                 <input type="hidden" value="<?php echo $_GET["case_id"]; ?>" id="case_id" name="case_id" class="upload_file">
@@ -81,15 +82,10 @@ session_write_close(); //FIXME: WHY GOD, WHY
                 <input type="hidden" value="<?php echo $_SESSION['user_id']; ?>" id="user_id" name="user_id">
                 <!-- Redirect browsers with JavaScript disabled to the origin page -->
                 <noscript><input type="hidden" name="redirect" value="../fileupload"></noscript>
-                <div style="float:right; width:450px; margin-top:-20px">
-                    <!-- The table listing the files available for upload/download -->
-                    <table role="presentation" class="tablesorter presentation" style="display:none; border:1px solid white; padding-bottom:0px">
-                        <tbody class="files"></tbody>
-                    </table>
-                </div>
+                
                 <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
                 <div class="row fileupload-buttonbar" style="margin-left:0px">
-                    <div class="col-lg-8">
+                    <div class="col-lg-7">
                         <!-- The fileinput-button span is used to style the file input field as button -->
                         <span class="btn btn-success fileinput-button">
                             <i class="glyphicon glyphicon-plus"></i>
@@ -112,6 +108,12 @@ session_write_close(); //FIXME: WHY GOD, WHY
                         <!-- The global file processing state -->
                         <span class="fileupload-process"></span>
                     </div>
+                    <div style="float:right; width:450px; margin-top:-20px">
+                    <!-- The table listing the files available for upload/download -->
+                    <table role="presentation" class="tablesorter presentation" style="display:none; border:1px solid white; padding-bottom:0px">
+                        <tbody class="files"></tbody>
+                    </table>
+                </div>
                 <!-- The global progress state -->
                     <div class="col-lg-5 fileupload-progress fade">
                         <!-- The global progress bar -->

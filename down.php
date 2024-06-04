@@ -2,6 +2,15 @@
 error_reporting(E_ALL);
 error_reporting(error_reporting(E_ALL) & (-1 ^ E_DEPRECATED));
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application_logo = "logo-starlinkcms.png";
+}
+else
+{
+  $application_logo = "ikase_logo_login.png";
+}
+
 //get the prefix if any from the customer id
 include ("text_editor/ed/functions.php");
 include ("text_editor/ed/datacon.php");
@@ -87,7 +96,7 @@ LEFT OUTER JOIN `" . $db . "`.`cse_corporation` `employer`
 ON ccorp.corporation_uuid = employer.corporation_uuid
 LEFT OUTER JOIN `" . $db . "`.`cse_case_venue` ccven 
 ON ccpers.case_uuid = ccven.case_uuid
-LEFT OUTER JOIN `" . $db . "`.`cse_venue` cven
+LEFT OUTER JOIN `ikase`.`cse_venue` cven
 ON ccven.venue_uuid = cven.venue_uuid
 INNER JOIN `" . $db . "`.`cse_case_injury` ccinj 
 ON ccase.case_uuid = ccinj.case_uuid
@@ -316,7 +325,7 @@ var openSendForm = function() {
 <body style="color:#EDEDED;">
 <table width="900" border="0" align="center" cellpadding="3" cellspacing="0" style="margin-top:0px">
   <tr>
-  	<td width="20%" valign="top"><img src="https://v2.ikase.org/img/ikase_logo_login.png" height="32" width="77"></td>
+  	<td width="20%" valign="top"><img src="https://<?php echo $_SERVER['SERVER_NAME'];?>/img/<?php echo $application_logo; ?>" height="40" /></td>
     <td colspan="3" align="left" style="font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:1.5em">
     	Referral from <?php echo $cus_name; ?>
     </td>

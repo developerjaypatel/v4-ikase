@@ -448,7 +448,7 @@ function getEvents($relationships = "", $limit = "") {
 			ON ccev.case_uuid = ccase.case_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN `cse_setting` sett
 			ON `cse_event`.event_type = sett.setting";
@@ -538,7 +538,7 @@ function getKaseEventsDates($case_id, $start, $end) {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -621,7 +621,7 @@ function getKaseEvents($case_id) {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -712,7 +712,7 @@ function getInjuryAppearances($injury_id) {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			INNER JOIN cse_case_injury cci
@@ -782,7 +782,7 @@ function getKaseCalls($case_id) {
 			ON ceve.case_uuid = ccase.case_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -859,7 +859,7 @@ function newPhoneCalls($blnAll = false, $start = "", $end = "") {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -1028,7 +1028,7 @@ function getCustomerEvents($case_type = "", $type = "", $start = "", $end = "") 
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -1149,7 +1149,7 @@ function getCustomerEventsByAttorney($attorney) {
 			ON ceve.case_uuid = ccase.case_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
 			LEFT OUTER JOIN ";
@@ -1214,7 +1214,7 @@ function getCustomerEventsByTypeByDate($type, $start, $end) {
 			ON ceve.case_uuid = ccase.case_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
 			LEFT OUTER JOIN ";
@@ -1289,7 +1289,7 @@ function getCustomerEventsByTypeByAssignee($type, $assignee){
 			ON ceve.case_uuid = ccase.case_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
 			LEFT OUTER JOIN ";
@@ -1356,7 +1356,7 @@ function getCustomerEventsByTypeByAssigneeByDate($type, $assignee, $start, $end)
 			ON ceve.case_uuid = ccase.case_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
 			LEFT OUTER JOIN ";
@@ -1434,7 +1434,7 @@ function getCustomerEventsByAssigneeByDate($assignee, $start, $end){
 			ON ceve.case_uuid = ccase.case_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
 			LEFT OUTER JOIN ";
@@ -1506,7 +1506,7 @@ function getCustomerEventsByAssignee($assignee){
 			ON ceve.case_uuid = ccase.case_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
 			LEFT OUTER JOIN ";
@@ -1569,7 +1569,7 @@ function getCustomerEventsByWorker($worker) {
 			ON ceve.case_uuid = ccase.case_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
 			LEFT OUTER JOIN ";
@@ -1635,7 +1635,7 @@ function getCustomerEventsByType($type) {
 			ON ceve.case_uuid = ccase.case_uuid
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
 			LEFT OUTER JOIN ";
@@ -1722,7 +1722,7 @@ function getCustomerEventsByDate($start, $end, $blnAllEvents = false) {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -1820,7 +1820,7 @@ function getCustomerInhouseEvents() {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -1883,7 +1883,7 @@ function getCustomerInhouseEventsByDate($start, $end) {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -1948,7 +1948,7 @@ function getCustomerIntakes() {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -2008,7 +2008,7 @@ function getCustomerIntakesByDate($start, $end) {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -2091,7 +2091,7 @@ function getUpcomingEvents() {
 	
 	LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 	LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -2164,7 +2164,7 @@ function getKaseUpcomingEvents($case_id) {
 	
 	LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 	WHERE 1
@@ -2220,7 +2220,7 @@ function getCalendarEvents($calendar_id) {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -2282,7 +2282,7 @@ function getPartnerEvents() {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -2349,7 +2349,7 @@ function getPartnerEventsByDate($start, $end) {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -2429,7 +2429,7 @@ function getEmployeeEvents() {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -2496,7 +2496,7 @@ function getEmployeeEventsByDate($start, $end) {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -2581,7 +2581,7 @@ function getUserEvents($user_id, $start_date = "", $end_date = "") {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -2624,7 +2624,7 @@ function getUserEvents($user_id, $start_date = "", $end_date = "") {
 			
 			LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 			LEFT OUTER JOIN cse_case_person ccapp ON ccase.case_uuid = ccapp.case_uuid
@@ -2685,7 +2685,7 @@ function getAllKaseEvents($case_id) {
 	
 	LEFT OUTER JOIN `cse_case_venue` cvenue
 	ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-	LEFT OUTER JOIN `cse_venue` venue
+	LEFT OUTER JOIN `ikase`.`cse_venue` venue
 	ON cvenue.venue_uuid = venue.venue_uuid
 	
 	WHERE 1 ";
@@ -2729,7 +2729,7 @@ function getFutureKaseEvents($case_id) {
 	
 	LEFT OUTER JOIN `cse_case_venue` cvenue
 			ON (ccase.case_uuid = cvenue.case_uuid AND cvenue.deleted = 'N')
-			LEFT OUTER JOIN `cse_venue` venue
+			LEFT OUTER JOIN `ikase`.`cse_venue` venue
 			ON cvenue.venue_uuid = venue.venue_uuid
 			
 	WHERE 1 

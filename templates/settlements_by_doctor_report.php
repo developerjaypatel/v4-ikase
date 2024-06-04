@@ -5,6 +5,15 @@ ini_set('display_errors', '1');
 require_once('../shared/legacy_session.php');
 session_write_close();
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application_logo = "logo-starlinkcms.png";
+}
+else
+{
+  $application_logo = "ikase_logo_login.png";
+}
+
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
 	//die(print_r($_SESSION));
 	header("location:index.php?cusid=-1");
@@ -86,7 +95,7 @@ try {
 ?>
 <table width="1000" border="0" cellpadding="3" cellspacing="0" align="center">
   <tr>
-    <td><img src="../img/ikase_logo_login.png" alt="Logo" width="77" height="32" /></td>
+    <td><img src="../img/<?php echo $application_logo; ?>" alt="Logo" height="40" /></td>
     <td align="center" style="font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:1.5em" colspan="3" nowrap="nowrap">
     	<div style="float:right; font-weight:normal; font-size:9px"><em>as of <?php echo date("m/d/y g:iA"); ?></em></div>
     Doctor Settlements by Bodypart - <?php echo $_SESSION['user_customer_name']; ?></td>

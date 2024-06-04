@@ -1,10 +1,11 @@
 <?php
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
 {
   $application = "StarLinkCMS";
-  $application_url = "https://starlinkcms.com/";
+  $application_url = "https://v2.starlinkcms.com/";
   $form_action_url = "postcontact_starlinkcms.php";
   $application_sitekey = "6LfikoQpAAAAAKlXEOQmK1pJylBy4hL3LEuAhCLJ";
+  $application_fevicon = "logo-starlinkcms.png";
 }
 else
 {
@@ -12,6 +13,7 @@ else
   $application_url = "https://v2.ikase.org/";
   $form_action_url = "postcontact.php";
   $application_sitekey = "6Ld5xncUAAAAACCJYw9MOXP8UlEUyeo-xXxq_Hvc";
+  $application_fevicon = "favicon.png";
 }
 include("browser_detect.php");
 

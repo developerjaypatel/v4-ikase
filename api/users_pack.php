@@ -292,6 +292,17 @@ function verifyKey() {
 function requestReset() {
 	$key = md5(microtime());
 	$email = passed_var("email", "post");
+
+	if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+	{
+	  $application = "StarLinkCMS";
+	  $application_domain = "starlinkcms.com";
+	}
+	else
+	{
+	  $application = "iKase";
+	  $application_domain = "ikase.org";
+	}
 	
 	//first check if the email is in our system
 	$sql = "SELECT user_id, customer_id, COUNT(user_id) user_count 
@@ -335,12 +346,12 @@ function requestReset() {
 			//it's an email, tack on the case name to the value
 			$email_message = "Password reset requested.  If you did not request a password reset, please ignore this email";
 			$email_message .= "\r\n\r\nPlease click on the link below to reset your password.";
-			$email_message .= "\r\n\r\nhttps://www.ikase.org/account.php#reset/" . $key;
+			$email_message .= "\r\n\r\nhttps://". $_SERVER['SERVER_NAME'] ."/account.php#reset/" . $key;
 			
 			//die($email_message);
-			$from_address = "donotreply@ikase.org";
-			$from_name = "iKase System";
-			$subject = "Password Reset Request :: iKase";
+			$from_address = "donotreply@". $application;
+			$from_name = $application. " System";
+			$subject = "Password Reset Request :: ". $application;
 			$arrRecipients[] = $email;
 			$arrEmailTo = array();
 			$arrEmailCc = array();

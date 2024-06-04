@@ -2,11 +2,20 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 require_once('../shared/legacy_session.php');
+
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application_logo = "logo-starlinkcms.png";
+}
+else
+{
+  $application_logo = "ikase_logo_login.png";
+}
 ?>
 <div>
     <table align="center" width="1080px">
     	<tr>
-            <td style="border:0px solid blue"><img src="img/ikase_logo_login.png" height="32" width="77"></td>
+            <td style="border:0px solid blue"><img src="img/<?php echo $application_logo; ?>" height="40" /></td>
             <td align="left" colspan="2">
             	<div style="float:right; margin-top:10px">
                     <em>as of <?php echo date("m/d/y g:iA"); ?></em>

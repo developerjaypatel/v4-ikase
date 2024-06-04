@@ -15,6 +15,17 @@ $app->group('', function (\Slim\Routing\RouteCollectorProxy $app) {
 });
 $app->get('/reminder/{id}', 'getReminder')->add(\Api\Middleware\Authorize::class);
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application = "StarLinkCMS";
+  $application_domain = "starlinkcms.com";
+}
+else
+{
+  $application = "iKase";
+  $application_domain = "ikase.org";
+}
+
 function getReminderDateTime() {
 	$event_dateandtime = passed_var("date", "post");
 	$reminder_interval = passed_var("interval", "post");
@@ -29,6 +40,18 @@ function getReminderDateTime() {
  * THIS IS GOING TO BE A CRON JOB RUNNING EVERY MINUTE
  */
 function getEventReminders () {
+
+	if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+	{
+	  $application = "StarLinkCMS";
+	  $application_domain = "starlinkcms.com";
+	}
+	else
+	{
+	  $application = "iKase";
+	  $application_domain = "ikase.org";
+	}
+
 	$customer_id = $_POST["customer_id"];
 	$authorize_key = $_POST["authorize_key"];
 	if (!is_numeric($customer_id)) {
@@ -195,7 +218,7 @@ FROM
 						$arrEmailCc = array();
 						$arrEmailBcc = array();
 						$db = getConnection();
-						$blnSent = sendEmail($message_uuid, "donotreply@ikase.org", "iKase Reminders", $arrRecipients, $arrEmailTo, $arrEmailCc, $arrEmailBcc, $subject, $message, $db, "");
+						$blnSent = sendEmail($message_uuid, "donotreply@". $application_domain, $application . " Reminders", $arrRecipients, $arrEmailTo, $arrEmailCc, $arrEmailBcc, $subject, $message, $db, "");
 					}
 				}
 			}
@@ -211,6 +234,17 @@ function getCustomerInvoiceReminders () {
 	$authorize_key = passed_var("authorize_key", "post");
 	$reminder_date = passed_var("reminder_date", "post");
 	$reminder_date = date("Y-m-d", strtotime($reminder_date));
+
+	if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+	{
+	  $application = "StarLinkCMS";
+	  $application_domain = "starlinkcms.com";
+	}
+	else
+	{
+	  $application = "iKase";
+	  $application_domain = "ikase.org";
+	}
 	
 	if ($authorize_key!="ikase.org") {
 		die("no go");
@@ -250,7 +284,7 @@ FROM
 				$thread_uuid = uniqid("TD", false);
 				$message_uuid = uniqid("MS", false);
 				$from = "system";
-				$subject = "iKase Customer Invoice Renewal Reminder for " . $reminder->cus_name;
+				$subject = $application . " Customer Invoice Renewal Reminder for " . $reminder->cus_name;
 				$dateandtime = date("Y-m-d H:i:s");
 				$message_type = "reminder";
 				
@@ -264,7 +298,7 @@ FROM
 				
 				$event_dateandtime = date("m/d/Y g:iA", strtotime($reminder->reminder_datetime));
 				
-				$message = "The last invoice  for " . $reminder->cus_name . " <a href='https://www.ikase.org/manage/customers/invoice.php?cus_id=" . $reminder->cus_id . "&invoice_id=" . $reminder->invoice_id . "'>" . $reminder->invoice_number . "</a> covered " . date("m/d/y", strtotime($reminder->start_date)) . " through " . date("m/d/y", strtotime($reminder->end_date));
+				$message = "The last invoice  for " . $reminder->cus_name . " <a href='https://". $_SERVER['SERVER_NAME'] ."/manage/customers/invoice.php?cus_id=" . $reminder->cus_id . "&invoice_id=" . $reminder->invoice_id . "'>" . $reminder->invoice_number . "</a> covered " . date("m/d/y", strtotime($reminder->start_date)) . " through " . date("m/d/y", strtotime($reminder->end_date));
 				$message .= ".<br />";
 				$message .= "<br />";
 				$message .= "It is time to create and send the next invoice for this customer.";
@@ -329,7 +363,7 @@ FROM
 						$arrEmailCc = array();
 						$arrEmailBcc = array();
 						$db = getConnection();
-						$blnSent = sendEmail($message_uuid, "donotreply@ikase.org", "iKase Invoice Renewal Reminder", $arrRecipients, $arrEmailTo, $arrEmailCc, $arrEmailBcc, $subject, $message, $db, "");
+						$blnSent = sendEmail($message_uuid, "donotreply@". $application_domain, $application . " Invoice Renewal Reminder", $arrRecipients, $arrEmailTo, $arrEmailCc, $arrEmailBcc, $subject, $message, $db, "");
 					}
 				}
 				

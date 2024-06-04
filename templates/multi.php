@@ -5,6 +5,15 @@ ini_set('display_errors', '1');
 require_once('../shared/legacy_session.php');
 session_write_close();
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application = "StarLinkCMS";
+}
+else
+{
+  $application = "iKase";
+}
+
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
 	header("location:index.html");
 	die();
@@ -139,8 +148,8 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <meta name=Generator content="Microsoft Word 12">
 <meta name=Originator content="Microsoft Word 12">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel=File-List href="https://www.ikase.website/templates/envelope_standard_files/filelist.xml">
-<title>iKase Envelope Report</title>
+<link rel=File-List href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/templates/envelope_standard_files/filelist.xml">
+<title><?php echo $application; ?> Envelope Report</title>
 <!--[if gte mso 9]><xml>
  <o:DocumentProperties>
   <o:Author>Gerry Asher</o:Author>
@@ -161,9 +170,9 @@ xmlns="http://www.w3.org/TR/REC-html40">
   <o:Version>12.00</o:Version>
  </o:DocumentProperties>
 </xml><![endif]-->
-<link rel=themeData href="https://www.ikase.website/templates/envelope_standard_files/themedata.thmx">
+<link rel=themeData href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/templates/envelope_standard_files/themedata.thmx">
 <link rel=colorSchemeMapping
-href="https://www.ikase.website/templates/envelope_standard_files/colorschememapping.xml">
+href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/templates/envelope_standard_files/colorschememapping.xml">
 <!--[if gte mso 9]><xml>
  <w:WordDocument>
   <w:SpellingState>Clean</w:SpellingState>

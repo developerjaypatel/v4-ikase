@@ -4,11 +4,11 @@ session_write_close();
 
 include("sec.php");
 
-if($_SERVER['SERVER_NAME']=="starlinkcms.com")
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
 {
   $application = "StarLinkCMS";
   $application_logo = "logo-starlinkcms.png";
-  $application_url = "https://starlinkcms.com/";
+  $application_url = "https://v2.starlinkcms.com/";
 }
 else
 {

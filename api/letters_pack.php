@@ -858,7 +858,7 @@ function createCustomerLetter() {
 		}
 	}
 	
-	$url = "https://www.ikase.org/api/letter/customerclean";
+	$url = "https://". $_SERVER['SERVER_NAME'] ."/api/letter/customerclean";
 	$params = array("customer_id"=>$customer_id);
 	
 	curl_post_async($url, $params);
@@ -3736,7 +3736,7 @@ function createLetter() {
 				touch($zip_path);  //<--- this line creates the file
 				
 				//$attachments = str_replace("../", "https://www.ikase.org/", $zip_path);
-				$attachments = str_replace("../", "https://www.ikase.org/", $zip_dir) . "/med_index_" . date("Ymd") . ".zip";
+				$attachments = str_replace("../", "https://". $_SERVER['SERVER_NAME'] ."/", $zip_dir) . "/med_index_" . date("Ymd") . ".zip";
 				if (!create_zip($arrExamAttach,$zip_path,true)) {
 					$attachments .= "\r\nError: not zipped";
 				}

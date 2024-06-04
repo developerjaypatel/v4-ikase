@@ -1006,9 +1006,9 @@ window.new_kase_view = Backbone.View.extend({
 						optionValue = arrFilters[e].status;
 						optionValue = optionValue.replace("'", "`");
 						optionLaw = arrFilters[e].law;
-						if(selected_status[0].value == optionValue && selected_status[0].className == optionLaw+"_substatus_option"){ selected = "selected"; }else{selected = "";
+						//if(selected_status[0].value == optionValue && selected_status[0].className == optionLaw+"_substatus_option"){ selected = "selected"; }else{selected = "";
 					
-					}
+					//}
 						$('#case_substatusInput').append(`<option value="${optionValue}" class="${optionLaw}_substatus_option" ${selected}>${optionText}</option>`);
 					}
 				});
@@ -1043,9 +1043,9 @@ window.new_kase_view = Backbone.View.extend({
 						optionValue = arrFilters[e].status;
 						optionValue = optionValue.replace("'", "`");
 						optionLaw = arrFilters[e].law;
-						if(selected_status[0].value == optionValue && selected_status[0].className == optionLaw+"_subsubstatus_option"){ selected = "selected"; }else{selected = "";
+						//if(selected_status[0].value == optionValue && selected_status[0].className == optionLaw+"_subsubstatus_option"){ selected = "selected"; }else{selected = "";
 					
-					}
+					//}
 						$('#case_subsubstatusInput').append(`<option value="${optionValue}" class="${optionLaw}_subsubstatus_option" ${selected}>${optionText}</option>`);
 					}
 				});

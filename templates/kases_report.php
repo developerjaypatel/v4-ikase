@@ -1,6 +1,15 @@
 <?php
 require_once('../shared/legacy_session.php');
 session_write_close();
+
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application_logo = "logo-starlinkcms.png";
+}
+else
+{
+  $application_logo = "ikase_logo_login.png";
+}
 ?>
 <style>
 .actual_data {
@@ -9,7 +18,7 @@ session_write_close();
 </style>
 <table width="1000px" border="0" cellpadding="3" cellspacing="0" align="center" class="main_header alpha_summary">
   <tr>
-    <td><img src="img/ikase_logo_login.png" alt="Logo" width="77" height="32" /></td>
+    <td><img src="img/<?php echo $application_logo;?>" alt="Logo" height="40" /></td>
     <td align="left" style="font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:1.5em" colspan="3" nowrap="nowrap">
     	<div style="float:right; font-weight:normal; font-size:9px"><em>as of <?php echo date("m/d/y g:iA"); ?></em></div>
         Cases Report - <?php echo $_SESSION['user_customer_name']; ?></td>

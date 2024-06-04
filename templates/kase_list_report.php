@@ -1,6 +1,15 @@
 <?php
 require_once('../shared/legacy_session.php');
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application_logo = "logo-starlinkcms.png";
+}
+else
+{
+  $application_logo = "ikase_logo_login.png";
+}
+
 $current_kase_search_terms = "";
 $arrSearch = array();
 if (isset($_SESSION["current_kase_search_terms"])) {
@@ -85,7 +94,7 @@ var blnKaseSummary = false;
 <table border="0" cellpadding="2" cellspacing="0" style="width:95%" align="center">  		
     <thead>
     <tr class="kase_list_header">
-        <td valign="top"><img src="img/ikase_logo_login.png" height="32" width="77"></td>
+        <td valign="top"><img src="img/<?php echo $application_logo; ?>" height="40" /></td>
         <td align="left" colspan="6">
         
             <div style="float:right">
@@ -157,7 +166,7 @@ var blnKaseSummary = false;
 <table border="0" cellpadding="2" cellspacing="0" style="width:95%" align="center">  		
     <thead>
     <tr class="kase_list_header">
-        <td valign="top"><img src="img/ikase_logo_login.png" height="32" width="77"></td>
+        <td valign="top"><img src="img/<?php echo $application_logo; ?>" height="40" /></td>
         <td align="left" colspan="6">
         
             <div style="float:right">

@@ -107,11 +107,11 @@ if (strpos($_SESSION['user_role'], "admin") === false) {
                 </td>
                 <td>
                 	<div class="white_text">Activity per Month</div>
-                	<iframe src="https://www.ikase.website/api/activity_month.php?user_id=<%= user.id %>&size=mini" frameborder="0" height="80px" width="100%"></iframe>
+                	<iframe src="https://<?php echo $_SERVER['SERVER_NAME'] ?>/api/activity_month.php?user_id=<%= user.id %>&size=mini" frameborder="0" height="80px" width="100%"></iframe>
                 </td>
                 <td>
                 	<div class="white_text">Activity Last Week</div>
-                	<iframe src="https://www.ikase.website/api/activity_week.php?user_id=<%= user.id %>&size=mini" frameborder="0" height="80px" width="100%"></iframe>
+                	<iframe src="https://<?php echo $_SERVER['SERVER_NAME'] ?>/api/activity_week.php?user_id=<%= user.id %>&size=mini" frameborder="0" height="80px" width="100%"></iframe>
                 </td>
                 <td style="font-size:1.5em"><%= user.adhoc %></td>
 				<td style="font-size:1.5em">

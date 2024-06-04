@@ -8,7 +8,7 @@
     <meta name="description" content="<?=$application;?> is a Legal Case Management System">
      <meta name="author" content="<?=$application;?> / kustomweb.com">
     <meta name="robots" content="noindex, nofollow">
-   <link rel="shortcut icon" href="img/favicon.png">
+   <link rel="shortcut icon" href="img/<?=$application_fevicon;?>">
 
     <title><?=$application;?> :: <?php echo $page_title; ?> :: Legal Case Management Software</title>
 

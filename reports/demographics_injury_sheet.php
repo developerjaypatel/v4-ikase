@@ -46,7 +46,7 @@ LEFT OUTER JOIN `cse_corporation` employer
 ON ccorp.corporation_uuid = employer.corporation_uuid
 LEFT OUTER JOIN cse_case_venue ccven 
 ON ccpers.case_uuid = ccven.case_uuid
-LEFT OUTER JOIN cse_venue cven
+LEFT OUTER JOIN `ikase`.cse_venue cven
 ON ccven.venue_uuid = cven.venue_uuid
 INNER JOIN cse_case_injury ccinj 
 ON ccase.case_uuid = ccinj.case_uuid
