@@ -2715,7 +2715,7 @@ function composeNewNote(element_id) {
 	var blnPartieNotes = (document.location.hash.indexOf("#parties")==0 ||  document.location.hash.indexOf("#settlement/") > - 1);
 	
 	if (notes_id < 0) {
-		if (element_id != "compose_quick" && element_id.indexOf("quick_note") < 01) {
+		if (element_id != "compose_quick" && element_id.indexOf("quick_note") < 0) {
 			if (partie_array_id =="") {
 				partie_array_id = partieArray[2];
 			}

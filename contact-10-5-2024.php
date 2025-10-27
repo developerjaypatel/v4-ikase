@@ -9,7 +9,7 @@ if($_SERVER['SERVER_NAME']=="starlinkcms.com")
 else
 {
   $application = "iKase";
-  $application_url = "https://v2.ikase.org/";
+  $application_url = "https://v4.ikase.org/";
   $form_action_url = "postcontact.php";
   $application_sitekey = "6Ld5xncUAAAAACCJYw9MOXP8UlEUyeo-xXxq_Hvc";
 }

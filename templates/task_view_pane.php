@@ -48,6 +48,7 @@ foreach($task_types as $typ) {
     <input id="table_id" name="table_id" type="hidden" value="<%=id %>" />
     <input id="case_id" name="case_id" type="hidden" value="<%=case_id %>" />
     <input id="billing_time" name="billing_time" type="hidden" value="" />
+    <input id="injury_task_id" name="injury_task_id" type="hidden" value="" />
 
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0">
     <tr>
@@ -96,6 +97,7 @@ foreach($task_types as $typ) {
         </div>
       <input name="task_dateandtimeInput" class="modalInput task input_class" id="task_dateandtimeInput" style="width:75px" placeholder="12/12/2012" value="<%=task_dateandtime %>" />
       <input class="modalInput task input_class original_date" type="hidden" value="<%=task_dateandtime %>" />
+      
     </td>
     </tr>
   <tr>
@@ -216,4 +218,14 @@ foreach($task_types as $typ) {
 <div id="task_all_done"></div>
 <script language="javascript">
 $( "#task_all_done" ).trigger( "click" );
+
+$('#doi_id').change(function() { //alert("hi");
+  var selectedValue = $(this).val();
+  console.log(selectedValue);
+  if(selectedValue != '')
+  {
+    $("#injury_task_id").val(selectedValue);
+    //console.log("Selected value:", selectedValue);
+  }
+});
 </script>

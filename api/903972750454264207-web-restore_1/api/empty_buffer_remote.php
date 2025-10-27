@@ -193,7 +193,7 @@ function emptyBuffer($blnReminders = false) {
 						//clean up messy upload save, REALLY?
 						$blnCaseFile = false;
 						if ($case_id!="") {
-							$str_search_for = "../uploads/" . $customer_id . "/" . $case_id . "/";
+							$str_search_for = "D:/uploads/" . $customer_id . "/" . $case_id . "/";
 							$strpos = strpos($attachment_file, $str_search_for);
 							if ($strpos == 0) {
 								//clean up any doubles that may be in there
@@ -211,14 +211,14 @@ function emptyBuffer($blnReminders = false) {
 							//Attach an image file or uploaded for new message	
 							//die($attachment_dir . $the_file);						
 							if (file_exists($attachment_dir . urldecode($the_file))) {
-								$attachment_file = "uploads/" . $customer_id . "/" . $the_file;
+								$attachment_file = "D:/uploads/" . $customer_id . "/" . $the_file;
 							}
 						}
 						//clean up
 						
 						$attachment_file = str_replace("//", "/", $attachment_file);
 						/*$attachment_dir = $_SERVER['DOCUMENT_ROOT'] . '\\uploads\\' . $customer_id . "\\";	// . $case_id . "\\";
-						$attachment_file_path = str_replace("uploads/" . $customer_id . "/", $attachment_dir, $attachment_file);
+						$attachment_file_path = str_replace("D:/uploads/" . $customer_id . "/", $attachment_dir, $attachment_file);
 						$attachment_file_path = urldecode($attachment_file_path);
 						if ($_SERVER['REMOTE_ADDR']=='47.153.51.181') {
 							echo "looking for :". $attachment_file_path . "<br />";
@@ -235,7 +235,7 @@ function emptyBuffer($blnReminders = false) {
 						/*if (!file_exists($attachment_file_path)) {
 							
 							if ($case_id!="" && !$blnCaseFile) {
-								$attachment_file = "uploads/" . $customer_id . "/" . $case_id . "/" . $the_file;
+								$attachment_file = "D:/uploads/" . $customer_id . "/" . $case_id . "/" . $the_file;
 								if (!file_exists("../" . $attachment_file)) {
 									$blnAttach = false;
 									//die($the_file . "<br />" . $attachment_file . " NOT NOT exists");
@@ -267,7 +267,7 @@ function emptyBuffer($blnReminders = false) {
 					$attachments = implode("|", $arrFinalAttach);
 					/*
 					if ($_SERVER['REMOTE_ADDR']=='47.153.51.181') {
-						$zip_dir = "../uploads/" . $customer_id . "/zips";
+						$zip_dir = "D:/uploads/" . $customer_id . "/zips";
 						if (!file_exists($zip_dir)) {
 							mkdir($zip_dir, 0777);
 						}
@@ -420,7 +420,7 @@ function emptyBuffer($blnReminders = false) {
 						}
 						//Attach an image file
 						if (strpos($attachment_file, "uploads")===false) {
-							$attachment_file = "uploads/" . $customer_id . "/" . $attachment_file;
+							$attachment_file = "D:/uploads/" . $customer_id . "/" . $attachment_file;
 						}
 						if (strpos($attachment_file, "uploads")==0) {
 							$attachment_file = "../" . $attachment_file;

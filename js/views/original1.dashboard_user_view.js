@@ -40,7 +40,7 @@ window.dashboard_user_view = Backbone.View.extend({
 			}
 		});
 		
-		$('#email_holder').html("<div><span style='color:#FFFFFF; font-size:1.4em; font-weight:lighter; margin-left:10px;'>Activity Per Month</span></div><iframe src='https://v2.ikase.org/api/activity_month.php?user_id=" + this.model.user_id + "' width='100%' height='200px' frameborder='0'></iframe><div></div><div><span style='color:#FFFFFF; font-size:1.4em; font-weight:lighter; margin-left:10px;'>Activity Last Week</span></div><iframe src='https://v2.ikase.org/api/activity_week.php?user_id=" + this.model.user_id + "' width='100%' height='200px' frameborder='0'></iframe>");
+		$('#email_holder').html("<div><span style='color:#FFFFFF; font-size:1.4em; font-weight:lighter; margin-left:10px;'>Activity Per Month</span></div><iframe src='https://v4.ikase.org/api/activity_month.php?user_id=" + this.model.user_id + "' width='100%' height='200px' frameborder='0'></iframe><div></div><div><span style='color:#FFFFFF; font-size:1.4em; font-weight:lighter; margin-left:10px;'>Activity Last Week</span></div><iframe src='https://v4.ikase.org/api/activity_week.php?user_id=" + this.model.user_id + "' width='100%' height='200px' frameborder='0'></iframe>");
 		/*
 		var signature = new Signature({user_id: this.model.user_id});
 		signature.fetch({

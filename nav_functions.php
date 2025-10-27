@@ -186,16 +186,18 @@ function sendReset() {
 	});
 			
 }
-function userLogin() {
+function userLogin() { 
 	if ($("#signin_button").html()=="Send Reset Link") {
 		sendReset();
 		return;
 	}
+	
 	$('.alert-danger').fadeOut();
 	var url = 'api/login';
 	//if ($("#remember_me").is(":checked")) {
-		writeCookie('user_name', $('#inputEmail').val(), 24*60*60*1000);
+		//writeCookie('user_name', $('#inputEmail').val(), 24*60*60*1000);
 	//}
+	
 	var formValues = {
 		email: $('#inputEmail').val(),
 		password: $('#inputPassword').val(),
@@ -207,7 +209,7 @@ function userLogin() {
 		type:'POST',
 		dataType:"json",
 		data: formValues,
-		success:function (data) {
+		success:function (data) { 
 			if(data.error) {  // If there is an error, show the error messages
 				//$('.alert-danger').text("Login failed.  Please try again.").show();
 				$('.alert-danger').html("<div style='float:right' class='forgot_password_holder'><a class='forgot_password' class='small_text' href='javascript:forgotPassword()' style='color:black'>Forgot Password?</a></div>Login failed.  Please try again.").show();

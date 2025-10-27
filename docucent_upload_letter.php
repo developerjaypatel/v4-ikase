@@ -4,7 +4,7 @@ include('docusent/cls_docucents.php');
 //solulab code start - 05-06-2019
 /* upload document to docucents */
 if(isset($_POST['call_intension']) && $_POST['call_intension']=="letter_upload"){
-	$file = "uploads/1100/513/eams_forms/app_cover_final.pdf";
+	$file = "D:/uploads/1100/513/eams_forms/app_cover_final.pdf";
     $caseid=$_POST['caseid'];
     $document_id=$_POST['document_id'];
     $cusid=$_POST['cusid'];

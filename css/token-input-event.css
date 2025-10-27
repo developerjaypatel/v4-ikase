@@ -44,7 +44,19 @@ li.token-input-token-event {
     float: left;
     white-space: nowrap;
 }
+.status-closed {
+    /*background-color: #ffd6d6 !important;*/
+    font-weight: bold !important;
+    color: #900 !important;
+    margin-left: 0px !important;
+    
+}
 
+.status-open1 {
+    margin-left: 0px !important;
+    font-weight: normal !important;
+    cursor: pointer;
+}
 li.token-input-token-event p {
     display: inline;
     padding: 0;

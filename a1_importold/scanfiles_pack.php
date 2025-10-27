@@ -53,11 +53,11 @@ function addScanFile() {
 		die();
 	}
 	$case_id = "";
-	$uploadDir = '\\uploads\\' . $customer_id . '\\';
+	$uploadDir = 'D:\\uploads\\' . $customer_id . '\\';
 	
-	//die($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "<br />" . is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir));
-	if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir)) {
-		mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir, 0755, true);
+	//die($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "<br />" . is_dir($uploadDir));
+	if (!is_dir($uploadDir)) {
+		mkdir($uploadDir, 0755, true);
 	}
 	
 	//die($_SERVER['DOCUMENT_ROOT'] . $uploadDir);

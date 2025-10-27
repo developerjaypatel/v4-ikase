@@ -208,7 +208,7 @@ function emptyBuffer($blnReminders = false) {
 						$the_file = urldecode($the_file);
 						if ($blnInvoice) {
 							$attachment_dir = UPLOADS_PATH . $customer_id . "\\invoices";
-							$str_search_for = "../uploads/" . $customer_id . "/invoices/";
+							$str_search_for = "D:/uploads/" . $customer_id . "/invoices/";
 							$plain_file = str_replace($str_search_for, "", $attachment_file);
 							$attachment_file = $attachment_dir . DC . $plain_file;
 							//$arrFinalAttach[] = $attachment_file;
@@ -217,7 +217,7 @@ function emptyBuffer($blnReminders = false) {
 							//clean up messy upload save, REALLY?
 							$blnCaseFile = false;
 							if ($case_id!="") {
-								$str_search_for = "../uploads/" . $customer_id . "/" . $case_id . "/";
+								$str_search_for = "D:/uploads/" . $customer_id . "/" . $case_id . "/";
 								//die($str_search_for);
 								$strpos = strpos($attachment_file, $str_search_for);
 								if ($strpos == 0) {
@@ -240,7 +240,7 @@ function emptyBuffer($blnReminders = false) {
 								//Attach an image file or uploaded for new message	
 								//die($attachment_dir . $the_file);						
 								if (file_exists($attachment_dir . $the_file)) {
-									//$attachment_file = "uploads/" . $customer_id . "/" . $the_file;
+									//$attachment_file = "D:/uploads/" . $customer_id . "/" . $the_file;
 									$attachment_file = $attachment_dir . $the_file;
 								}
 							}
@@ -378,7 +378,7 @@ function emptyBuffer($blnReminders = false) {
 						}
 						//Attach an image file
 						if (strpos($attachment_file, "uploads")===false) {
-							$attachment_file = "uploads/" . $customer_id . "/" . $attachment_file;
+							$attachment_file = "D:/uploads/" . $customer_id . "/" . $attachment_file;
 						}
 						if (strpos($attachment_file, "uploads")==0) {
 							$attachment_file = "../" . $attachment_file;

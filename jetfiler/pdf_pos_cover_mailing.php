@@ -331,31 +331,31 @@ $somecontent = file_get_contents($filename);
 $arrReplace = array();
 //the date
 pdfReplacementJetFile("[[TODAYS DATE]]", date("m/d/Y"), $somecontent, $arrReplace);
-pdfReplacementJetFile("[[DESCRIPTION]]", $pos_description, $somecontent);
+pdfReplacementJetFile("[[DESCRIPTION]]", $pos_description, $somecontent, $arrReplace);
 //county
-pdfReplacementJetFile("[[COUNTY]]", $county, $somecontent);
-pdfReplacementJetFile("[[MAILING COUNTY]]", strtoupper($county), $somecontent);
+pdfReplacementJetFile("[[COUNTY]]", $county, $somecontent, $arrReplace);
+pdfReplacementJetFile("[[MAILING COUNTY]]", strtoupper($county), $somecontent, $arrReplace);
 //vs
 $applicant_employer = $first . " " . $middle . " " . $last . " vs. " . $emp_name;
-pdfReplacementJetFile("[[APPLICANT DEFENDANT]]", $applicant_employer, $somecontent);
+pdfReplacementJetFile("[[APPLICANT DEFENDANT]]", $applicant_employer, $somecontent, $arrReplace);
 $theaddress = $cus_street . ", " . $cus_city . ", " . $cus_state . " " . $cus_zip;
-pdfReplacementJetFile("[[ADDRESS]]", $theaddress, $somecontent);
-pdfReplacementJetFile("[[CITY]]", $cus_city, $somecontent);
+pdfReplacementJetFile("[[ADDRESS]]", $theaddress, $somecontent, $arrReplace);
+pdfReplacementJetFile("[[CITY]]", $cus_city, $somecontent, $arrReplace);
 
 //participants
 if (count($arrParticipant1)>0) {
-	pdfReplacementJetFile("[[PARTICIPANTS 1]]", implode("\r\n\r\n", $arrParticipant1), $somecontent);
+	pdfReplacementJetFile("[[PARTICIPANTS 1]]", implode("\r\n\r\n", $arrParticipant1), $somecontent, $arrReplace);
 } else {
-	pdfReplacementJetFile("[[PARTICIPANTS 1]]", "", $somecontent);
+	pdfReplacementJetFile("[[PARTICIPANTS 1]]", "", $somecontent, $arrReplace);
 }
 if (count($arrParticipant2)>0) {
-	pdfReplacementJetFile("[[PARTICIPANTS 2]]", implode("\r\n\r\n", $arrParticipant2), $somecontent);
+	pdfReplacementJetFile("[[PARTICIPANTS 2]]", implode("\r\n\r\n", $arrParticipant2), $somecontent, $arrReplace);
 } else {
-	pdfReplacementJetFile("[[PARTICIPANTS 2]]", "", $somecontent);
+	pdfReplacementJetFile("[[PARTICIPANTS 2]]", "", $somecontent, $arrReplace);
 }
 
-pdfReplacementJetFile("[[S SIGNATURE]]", "S " . $cus_signature, $somecontent);
-pdfReplacementJetFile("[[SIGNATURE]]", $cus_signature, $somecontent);
+pdfReplacementJetFile("[[S SIGNATURE]]", "S " . $cus_signature, $somecontent, $arrReplace);
+pdfReplacementJetFile("[[SIGNATURE]]", $cus_signature, $somecontent, $arrReplace);
 
 
 //output
@@ -381,7 +381,7 @@ if (fwrite($handle, $somecontent) === FALSE) {
 }
 
 if ($nopublish=="y") {
-	$destination_folder = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/jetfiler/";
+	$destination_folder = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/jetfiler/";
 	if (!is_dir($destination_folder)) {
 		mkdir($destination_folder, 0755, true);
 	}

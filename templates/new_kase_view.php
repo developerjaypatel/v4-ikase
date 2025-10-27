@@ -78,6 +78,33 @@ if (!in_array("social_security", $arrCaseTypes)){
   $case_type_options .= "" . $option;
 }
 
+$query_case_sub_type = "SELECT DISTINCT case_sub_type `case_sub_type` 
+FROM " . $list_reference . "cse_case
+WHERE case_type != ''
+AND case_sub_type != '' 
+ORDER BY case_sub_type ASC";
+$result_case_sub_type = DB::runOrDie($query_case_sub_type);
+$row = $result_case_sub_type->fetch(PDO::FETCH_ASSOC);
+if ($row = $result_case_sub_type->fetch(PDO::FETCH_ASSOC)) {
+  $case_sub_type = strtolower(trim($row['case_sub_type'])); // use the first record
+} else {
+  $case_sub_type = ''; // no records found
+}
+
+
+$result = DB::runOrDie("SELECT DISTINCT case_sub_type `case_sub_type` 
+FROM " . $list_reference . "cse_case
+WHERE case_type != ''
+AND case_sub_type != '' 
+ORDER BY case_sub_type ASC");
+$case_subtype_options = "<option value='' class='defaultselected'>Select from List</option>";
+while ($row = $result->fetch()) { //die(print_r($row->case_sub_type));
+    $case_subtype_options .= "" ."<option value='" .$row->case_sub_type. "'>" .$row->case_sub_type. "</option>";
+}
+
+
+
+
 //special case for cardio, maybe move to all doctor offices
 if ($_SESSION["user_customer_type"]=="Medical Office") {
   $case_type_options = "<option value=''>Select from List</option><option value='WCAB' selected>WCAB</option>";
@@ -124,8 +151,8 @@ if ($result->rowCount() ==0) {
   $result = DB::runOrDie($query_status);
 }
 $casestatus_options = "<option value='' class='defaultselected'>Select from List</option>";
-// $option_intake = "<option value='Intake'>Intake</option>";
-// $casestatus_options .= "" . $option_intake;
+$option_intake = "<option value='Intake'>Intake</option>";
+$casestatus_options .= "" . $option_intake;
 
 $arrDeletedKaseStatus = array();
 while ($row = $result->fetch()) {
@@ -142,8 +169,8 @@ while ($row = $result->fetch()) {
   }
 }
 
-// $option_intake = "<option value='REJECTED'>Rejected</option>";
-// $casestatus_options .= "" . $option_intake;
+$option_intake = "<option value='REJECTED'>Rejected</option>";
+$casestatus_options .= "" . $option_intake;
 
 $option_sub = "<option value='' class='defaultselected'>Select from List</option>";
 $casesubstatus_options = "" . $option_sub;
@@ -226,6 +253,7 @@ while ($row = $result_sub->fetch()) {
 
 <% var venue_options = "<?php echo $venue_options; ?>"; %>
 <% var case_type_options = "<?php echo $case_type_options; ?>"; %>
+<% var case_subtype_options = "<?php echo $case_subtype_options; ?>"; %>
 <% var casestatus_options = "<?php echo $casestatus_options; ?>"; %>
 <% var casesubstatus_options = "<?php echo $casesubstatus_options; ?>"; %>
 <% var casesubsubstatus_options = "<?php echo $casesubsubstatus_options; ?>"; %>
@@ -333,6 +361,40 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
                       <span id="case_typeSpan"></span>
                  </td>
             </tr>
+             <tr>            
+                <th align="right" valign="top" scope="row">Sub Type:</th>
+                <td valign="top">
+                <!--select name="case_sub_type" id="case_sub_type" class="kase input_class" style="width:210px">
+                    <option value="">Select from list</option>
+                    <option value="ORTHO" <?php if($case_sub_type=="ORTHO") echo "selected"; ?>>ORTHO</option>
+                    <option value="ASB/HL" <?php if($case_sub_type=="ASB/HL") echo "selected"; ?>>ASB/HL</option>
+                    <option value="HL/ORTHO" <?php if($case_sub_type=="HL/ORTHO") echo "selected"; ?>>HL/ORTHO</option>
+                    <option value="HL_HN" <?php if($case_sub_type=="HL_HN") echo "selected"; ?>>HL_HN</option>
+                    <option value="HL_HN/B" <?php if($case_sub_type=="HL_HN/B") echo "selected"; ?>>HL_HN/B</option>
+                    <option value="ORTHO/ASB" <?php if($case_sub_type=="ORTHO/ASB") echo "selected"; ?>>ORTHO/ASB</option>
+                    <option value="ORTHO/HL" <?php if($case_sub_type=="ORTHO/HL") echo "selected"; ?>>ORTHO/HL</option>
+                    <option value="ORTHO/IB" <?php if($case_sub_type=="ORTHO/IB") echo "selected"; ?>>ORTHO/IB</option>
+                    <option value="LAORTHO" <?php if($case_sub_type=="LAORTHO") echo "selected"; ?>>LAORTHO</option>
+                    <option value="LH" <?php if($case_sub_type=="LH") echo "selected"; ?>>LH</option>
+                    <option value="MM-PIED" <?php if($case_sub_type=="MM-PIED") echo "selected"; ?>>MM-PIED</option>
+                   
+                    <option value="ARM" <?php if($case_sub_type=="ARM") echo "selected"; ?>>ARM</option>
+                </select-->
+                <select name="case_subtypeInput" id="case_subtypeInput" class="kase input_class" style="width:510px" >
+                  <% var subtype = (typeof case_sub_type !== 'undefined') ? case_sub_type : ''; %>
+                  <% var subtype_select_options = case_subtype_options;
+                    subtype_select_options = subtype_select_options.replace(
+                        new RegExp("value=['\"]" + subtype + "['\"]"), 
+                        "value='" + subtype + "' selected"
+                    );
+                  %>
+                  <%= subtype_select_options %>
+                     
+                      
+                  </select>
+                        
+                </td>
+            </tr>
             <tr id="kase_injury_description_holder" style="display:none">
               <th align="right" valign="top" scope="row">Injury Description</th>
               <td valign="top" id="kase_injury_description" style="background:white; color:black; font-weight:bold"></td>
@@ -422,7 +484,7 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
                       status_options = status_options.replace("value='" + case_status.replace("'", "`") + "'",  "value='" + case_status.replace("'", "`") + "' selected");
                       %>
                       <% console.log(status_options); %>
-                  <%= casestatus_options %>
+                  <%= status_options %>
                 </select>
                 &nbsp;<button id="manage_status" class="btn btn-xs btn-primary manage_status hidden">manage</button>
                 </td>
@@ -732,7 +794,7 @@ async function call_for_remove_drop_value1()
 }
 </script>
 <script type="application/javascript" language="javascript">
-call_for_remove_drop_value0();
+//call_for_remove_drop_value0();
 
 async function call_for_remove_drop_value0() 
 {
@@ -791,14 +853,14 @@ async function call_for_remove_drop_value0()
   Date: 23-January-2024
   Description: added below code for showing status, sub status and sub status 2 according to case type (like WCAB)
 */
-var case_type = "<%= case_type %>";
+//var case_type = "<%= case_type %>";
 var case_id = "<%= case_id %>";
 var customer_id = "<?= $_SESSION['user_customer_id']; ?>";
   $(document).ready(function() {
   setTimeout(function() { 
     // need this condition for RP Law (1042) Case ID 7174
     if(case_id != "7174") {
-    loadStatus();
+    //loadStatus();
     loadSubStatus();
     loadSubSubStatus();   
     }
@@ -812,7 +874,7 @@ function setCase()
   setTimeout(function() { 
     // need this condition for RP Law (1042) Case ID 7174 
     if(case_id != "7174") {
-    loadStatus();
+    //loadStatus();
     loadSubStatus();
     loadSubSubStatus();  
     } 
@@ -820,7 +882,7 @@ function setCase()
 }
 
 // retrieves status from "cse_casestatus" table according to case type and deleted = 'N'
-async function loadStatus()
+/* async function loadStatus()
 {  
   var case_type = "<%= case_type %>";
   if(type!="")
@@ -846,7 +908,7 @@ async function loadStatus()
       }
     }
   });  
-}
+} */
 
 // retrieves sub status from "cse_casesubstatus" table according to case type and deleted = 'N'
 async function loadSubStatus()

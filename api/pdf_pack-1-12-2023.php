@@ -8,12 +8,12 @@ $app->get('/pdf/test', 'testPDF');
 
 function testPDF() {
 	//$bat = UPLOADS_PATH."1064\\4883\\eams_forms\\pdftk.bat";
-	$bat = "pdftk C:\\inetpub\\wwwroot\\iKase.org\\eams_forms\\app_cover.pdf fill_form C:\\inetpub\\wwwroot\\iKase.org\\uploads\\1064\\4883\\eams_forms\\app_cover.fdf output C:\\inetpub\\wwwroot\\iKase.org\\uploads\\1064\\4883\\eams_forms\\test_successful.pdf";
+	$bat = "pdftk C:\\inetpub\\wwwroot\\ikase.org\\eams_forms\\app_cover.pdf fill_form C:\\inetpub\\wwwroot\\ikase.org\\uploads\\1064\\4883\\eams_forms\\app_cover.fdf output C:\\inetpub\\wwwroot\\ikase.org\\uploads\\1064\\4883\\eams_forms\\test_successful.pdf";
 	
 	echo $bat;
 	passthru($bat);
 	
-	echo "<br /><br />If you run the code above in PowerShell on the server via RDP, you will then find <strong>C:\\inetpub\\wwwroot\\iKase.org\\uploads\\1064\\4883\\eams_forms\\test_successful.pdf</strong> has been created.  Right now, the server is not allowing PHP to passthru the pdftk command, and so it doesn't work.<br /><br />
+	echo "<br /><br />If you run the code above in PowerShell on the server via RDP, you will then find <strong>C:\\inetpub\\wwwroot\\ikase.org\\uploads\\1064\\4883\\eams_forms\\test_successful.pdf</strong> has been created.  Right now, the server is not allowing PHP to passthru the pdftk command, and so it doesn't work.<br /><br />
 Directory Listing for `uploads\\1064\\4883\\eams_forms\\`:<br />";
 	
 	$dir = UPLOADS_PATH."1064\\4883\\eams_forms\\";
@@ -210,7 +210,7 @@ function createEnvelope() {
 	
 	$form_name = "envelope";
 	//output
-	$destination_folder = "../uploads/" . $_SESSION['user_customer_id'] . "/envelopes/";
+	$destination_folder = "D:/uploads/" . $_SESSION['user_customer_id'] . "/envelopes/";
 	if (!is_dir($destination_folder)) {
 		mkdir($destination_folder, 0755, true);
 	}
@@ -324,7 +324,7 @@ function htmlEnvelope() {
 	
 	$form_name = "envelope";
 	//output
-	$destination_folder = "../uploads/" . $_SESSION['user_customer_id'] . "/envelopes/";
+	$destination_folder = "D:/uploads/" . $_SESSION['user_customer_id'] . "/envelopes/";
 	if (!is_dir($destination_folder)) {
 		mkdir($destination_folder, 0755, true);
 	}
@@ -1350,7 +1350,7 @@ function generatePDF($form_name = "", $separator_title = "") {
 	pdfReplacement("DESTINATION", "http://" . $host . "/eams_forms/", $somecontent, $arrReplace);
 	
 	//output
-	$destination_folder = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/eams_forms/";
+	$destination_folder = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/eams_forms/";
 	if (!is_dir($destination_folder)) {
 		mkdir($destination_folder, 0755, true);
 	}
@@ -1576,7 +1576,7 @@ function generatePDF($form_name = "", $separator_title = "") {
 		//die(print_r($documents));
 		$arrFiles = array(UPLOADS_PATH . $_SESSION['user_customer_id'] . DC . $case_id . "\\eams_forms\\" . $output_store_name);
 		$separator_path = UPLOADS_PATH . $_SESSION['user_customer_id'] . DC . $case_id . "\\eams_forms\\";
-		$separator_find = "../uploads/" . $_SESSION["user_customer_id"] . "/" . $case_id . "/eams_forms/";
+		$separator_find = "D:/uploads/" . $_SESSION["user_customer_id"] . "/" . $case_id . "/eams_forms/";
 		
 		$doc_path = UPLOADS_PATH . $_SESSION['user_customer_id'] . DC . $case_id . "\\jetfiler\\";
 		$doc_path_2 = UPLOADS_PATH . $_SESSION['user_customer_id'] . DC . $case_id . DC;
@@ -1654,7 +1654,7 @@ function generatePDF($form_name = "", $separator_title = "") {
 			//sleep(5);
 		}
 		//, "pdftk"=>$pdftk
-		$destination_folder = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id  . "/eams_forms/";
+		$destination_folder = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id  . "/eams_forms/";
 		echo json_encode(array("file"=>$destination_folder . $output_store_name, "activity_id"=>""));
 		
 		try {

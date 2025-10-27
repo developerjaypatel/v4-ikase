@@ -457,8 +457,9 @@ window.kase_letter_listing_view = Backbone.View.extend({
 						themacro = "";
 					}
 					var arrLetter = letter.split("/");
-					var letter_link = "<div style='display:inline-block; width:150px'><a href='" + letter.replace("#", "%23") + ".docx' title='Click to open letter' class='white_text' id='letter_" + document_id + "' target='_blank'>";
-					
+					letter = letter.replace("../uploads/", "D:/uploads/");
+					// var letter_link = "<div style='display:inline-block; width:150px'><a href='" + letter.replace("#", "%23") + ".docx' title='Click to open letter' class='white_text' id='letter_" + document_id + "' target='_blank'>";
+					var letter_link = "<div style='display:inline-block; width:150px'><a href='api/download.php?file=" + encodeURIComponent(letter).replace("#", "%23") + ".docx' title='Click to open letter' class='white_text' id='letter_" + document_id + "' target='_blank'>";
 					letter_link += " " + document_date + "</a>" + themacro;
 					if (subject.trim()=="-") {
 						subject = "";

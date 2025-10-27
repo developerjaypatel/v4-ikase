@@ -52,7 +52,7 @@ function previewAttachment() {
 	
 	$arrAcceptable = array("jpg", "png", "pdf", "doc", "docx", "eml");
 	//this will download the attachment
-	$str=$obj->GetAttach($id,"C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\", $arrAcceptable, true, $name); 
+	$str=$obj->GetAttach($id,"C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\", $arrAcceptable, true, $name); 
 		
 	$success = array("success"=> array("text"=>$id));
     die( json_encode($success));
@@ -111,7 +111,7 @@ function getEmailInbox() {
 	$arrAcceptable = array("jpg", "png", "pdf", "doc", "docx", "eml");
 	for($i=$tot;$i>0;$i--)
 	{
-		$str=$obj->GetAttach($i,"C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\", $arrAcceptable); 
+		$str=$obj->GetAttach($i,"C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\", $arrAcceptable); 
 		
 		$attach = 0;
 		$attachFiles = array();
@@ -181,8 +181,8 @@ function assignEmail() {
 	
 	$arrAcceptable = array("jpg", "png", "pdf", "doc", "docx", "eml");
 	//this will download the attachment
-	$webmail_dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\";
-	$case_dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\" . $case_id . "\\";
+	$webmail_dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\";
+	$case_dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\" . $case_id . "\\";
 	if (!is_dir($case_dir)) {
 		mkdir($case_dir, 0755, true);
 	}

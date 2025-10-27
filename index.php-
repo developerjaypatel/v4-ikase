@@ -2,11 +2,11 @@
 include("browser_detect.php");
 
 if($blnMobile) {
-	header("location:https://v2.ikase.org/index_mobile.php");
+	header("location:https://v4.ikase.org/index_mobile.php");
 }
 
 if($_SERVER["HTTPS"]=="off") {
-	header("location:https://v2.ikase.org");
+	header("location:https://v4.ikase.org");
 }
 
 $sixo = strtotime("2017-09-01 18:00:00");
@@ -149,7 +149,7 @@ $version_number = 8;
         <div style="margin-top:10px; width:100%; border-bottom:0px solid #CCC; padding:5px; background:#333">
             <p>9/1/2016 - <span class="announcement_highlight">Batchscan Functionality</span> has been updated with a new Barcode-based separator sheet, because barcodes are easier for the computer to read even if the print/scan quality is low.  </p>
             <p>You can now process batchscan documents up to 600 pages long.</p>
-            <p>Please click here for the <a href="https://v2.ikase.org/batchscan_barcode_plain.pdf" target="_blank" title="Click here to print the Separator Sheet" class="white_text" style="text-decoration:underline"><span class="announcement_highlight">iKase Separator Sheet</span></a></p>
+            <p>Please click here for the <a href="https://v4.ikase.org/batchscan_barcode_plain.pdf" target="_blank" title="Click here to print the Separator Sheet" class="white_text" style="text-decoration:underline"><span class="announcement_highlight">iKase Separator Sheet</span></a></p>
         </div>
         <div style="margin-top:10px; border-bottom:0px solid #CCC; padding:5px; background:#666">
          8/15/2016 - <span class="announcement_highlight"> Email Integration</span> is ready.  You will now be able to attach emails to cases along with attachments.   <br />
@@ -396,10 +396,10 @@ $version_number = 8;
 					$("#inputEmail").hide();
 					$(".login_please").hide();
 					$("#this_email_label").hide();
-					$("#button_holder").html("&nbsp;<br><span class='white_text'>A password reset link has been sent to your email.  Please check your inbox and follow the instructions.</span><div><button class='btn btn-lg btn-primary btn-block' onClick='document.location.href=\"https://v2.ikase.org\"' style='width:210px'>Login</button></div>");
+					$("#button_holder").html("&nbsp;<br><span class='white_text'>A password reset link has been sent to your email.  Please check your inbox and follow the instructions.</span><div><button class='btn btn-lg btn-primary btn-block' onClick='document.location.href=\"https://v4.ikase.org\"' style='width:210px'>Login</button></div>");
 					emptyReminderBuffer(data.success.text);
 					setTimeout(function() {
-						//document.location.href = "https://v2.ikase.org/";
+						//document.location.href = "https://v4.ikase.org/";
 					}, 5500);
 				}
 			}

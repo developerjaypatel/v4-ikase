@@ -118,7 +118,7 @@ pdfReplacement("DESTINATION", "http://" . $host . "/eams_forms/", $somecontent, 
 	
 //print_r($arrReplace);
 
-$destination_folder = "../uploads/" . $customer_id . "/" . $case_id . "/eams_forms/";
+$destination_folder = "D:/uploads/" . $customer_id . "/" . $case_id . "/eams_forms/";
 $filename = $destination_folder . $form_name . ".fdf";
 $filename_output =  $destination_folder . $document_path;
 $source_dir = $_SERVER['DOCUMENT_ROOT'] . '\\eams_forms\\';

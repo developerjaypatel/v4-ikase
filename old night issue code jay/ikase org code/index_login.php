@@ -143,7 +143,7 @@ $version_number = 8;
         </div>
         
         <div style="margin-top:10px; width:100%; border-bottom:0px solid #CCC; padding:5px; background:#666">
-        	<p>9/10/2016 - Please click for the latest <a href="uploads/BatchscanInstructions.pdf" target="_blank"><span class="announcement_highlight">Batchscan Instructions</span></a>
+        	<p>9/10/2016 - Please click for the latest <a href="D:/uploads/BatchscanInstructions.pdf" target="_blank"><span class="announcement_highlight">Batchscan Instructions</span></a>
             </p>
         </div>
         <div style="margin-top:10px; width:100%; border-bottom:0px solid #CCC; padding:5px; background:#333">

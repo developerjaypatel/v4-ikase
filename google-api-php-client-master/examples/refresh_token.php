@@ -17,7 +17,7 @@ if(!empty($_SESSION['user'])) {
 }
 
 if ($blnDoNotPass) {
-	header("location:https://v2.ikase.org");
+	header("location:https://v4.ikase.org");
 	die();
 }
 
@@ -51,7 +51,7 @@ require_once realpath(dirname(__FILE__) . '/../src/Google/autoload.php');
  ************************************************/
  $client_id = '136098397658-eh1819rrc1nie49mrfljsbd5obnt6rlu.apps.googleusercontent.com';
  $client_secret = 'mU50PLlQPFTyrz1tBKilnFTZ';
- $redirect_uri = 'https://v2.ikase.org/google-api-php-client-master/examples/refresh_token.php';
+ $redirect_uri = 'https://v4.ikase.org/google-api-php-client-master/examples/refresh_token.php';
 
 /************************************************
   Make an API request on behalf of a user. In

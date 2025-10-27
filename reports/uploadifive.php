@@ -14,11 +14,11 @@ if (!empty($_FILES)) {
 		if ($_FILES["Filedata"]["error"][$i]!=4) {
 			//kase specific?
 			// Set the upload directory
-			$uploadDir = '\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
+			$uploadDir = 'D:\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
 			$uploadDir .= $case_id . '\\';
 			
-			if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir)) {
-				mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir, 0755, true);
+			if (!is_dir($uploadDir)) {
+				mkdir($uploadDir, 0755, true);
 			}
 			
 			// Set the allowed file extensions

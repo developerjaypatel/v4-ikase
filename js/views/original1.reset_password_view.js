@@ -137,7 +137,7 @@ window.reset_password_view = Backbone.View.extend({
 					alert("Key Error");
 					return;
 				} else {
-					$("#password_panel").html("<div style='color:white; font-size:1.2em; text-align:center'>Your password has been reset</div><div style='padding-top:5px; text-align:center'><a href='https://v2.ikase.org/' style='color:white'>Login</a></div>");
+					$("#password_panel").html("<div style='color:white; font-size:1.2em; text-align:center'>Your password has been reset</div><div style='padding-top:5px; text-align:center'><a href='https://v4.ikase.org/' style='color:white'>Login</a></div>");
 				}
 			}
 		});

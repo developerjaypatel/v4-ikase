@@ -1730,7 +1730,7 @@ function checkEmailMessage($customer_id = "", $user_id="", $messageId = "", $fro
 	if ($customer_id=="") {
 		$blnInternal = false;
 		// NISHIT REPLACE IP FROM 173.58.194.150 TO ikase.xyz
-		if ($_SERVER['REMOTE_ADDR']!="ikase.xyz" && $_SERVER['REMOTE_ADDR']!="173.58.194.146" && $_SERVER['REMOTE_ADDR']!="173.58.194.148" && $_SERVER['REMOTE_ADDR']!="71.254.171.237" && $_SERVER['SERVER_NAME']!="v2.ikase.org") {
+		if ($_SERVER['REMOTE_ADDR']!="ikase.xyz" && $_SERVER['REMOTE_ADDR']!="173.58.194.146" && $_SERVER['REMOTE_ADDR']!="173.58.194.148" && $_SERVER['REMOTE_ADDR']!="71.254.171.237" && $_SERVER['SERVER_NAME']!="v4.ikase.org") {
 			echo $_SERVER['REMOTE_ADDR'] . "\r\n";
 			die("no go 1...");
 		}
@@ -2013,7 +2013,7 @@ function addEmailMessage($arrMessage = "") {
 		&& $_SERVER['REMOTE_ADDR']!="173.58.194.146" 
 		&& $_SERVER['REMOTE_ADDR']!="173.58.194.148" 
 		&& $_SERVER['REMOTE_ADDR']!="71.254.171.237" 
-		&& $_SERVER['SERVER_NAME']!="v2.ikase.org"
+		&& $_SERVER['SERVER_NAME']!="v4.ikase.org"
 		&& $_SERVER['SERVER_NAME']!="www.ikase.org") {
 			echo $_SERVER['SERVER_NAME'] . "\r\n";
 			die("no go 2...");
@@ -2418,9 +2418,9 @@ function addMessage() {
 				}
 				
 				if ($attachments=="") {
-					$attachments = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $attachment_filename;
+					$attachments = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $attachment_filename;
 				} else {
-					$attachments .= "|../uploads/" . $_SESSION['user_customer_id'] . "/" . $attachment_filename;
+					$attachments .= "|D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $attachment_filename;
 				}
 				
 				$arrAttach = explode("/", $attachments);
@@ -2444,7 +2444,7 @@ function addMessage() {
 					
 					if ($attachment_case=="") {
 						/*
-						$attachment_case = "../uploads/" . $_SESSION['user_customer_id'] . "/";
+						$attachment_case = "D:/uploads/" . $_SESSION['user_customer_id'] . "/";
 						if ($attach_document_case_id!="") {
 							$attachment_case .= $attach_document_case_id . "/";
 						}
@@ -2457,7 +2457,7 @@ function addMessage() {
 						}
 					} else {
 						/*
-						$attachment_case .= "|../uploads/" . $_SESSION['user_customer_id'] . "/";
+						$attachment_case .= "|D:/uploads/" . $_SESSION['user_customer_id'] . "/";
 						if ($attach_document_case_id!="") {
 							$attachment_case .= $attach_document_case_id . "/";
 						}
@@ -3007,7 +3007,7 @@ function addMessage() {
 			
 			$from_address = $_SESSION['user_email'];
 			$from_name = $_SESSION['user_name'];
-			$attachments = str_replace("https:///uploads/", "uploads/", $message_attachments);
+			$attachments = str_replace("https:///uploads/", "D:/uploads/", $message_attachments);
 			
 			$operation = "sent";
 			if ($deleted!="") {
@@ -3968,12 +3968,12 @@ function trackMessage($operation, $message_id, $blnFromEmail = false, $return = 
 				$document_name = $attachment;
 				$document_name = explode("/", $document_name);
 				$document_name = $document_name[count($document_name) - 1];
-				$root = "uploads/" . $_SESSION['user_customer_id'] . "/";
+				$root = "D:/uploads/" . $_SESSION['user_customer_id'] . "/";
 				
 				if ($case_id!="" && $case_id!="-1") {
 					$root .= $case_id . "/";
 				}
-				$activity .= "\r\n<a href='uploads/preview.php?file=" . urlencode($root . $document_name) . "' style='background:yellow;color:black' target='_blank'>" . $document_name . "</a>";
+				$activity .= "\r\n<a href='D:/uploads/preview.php?file=" . urlencode($root . $document_name) . "' style='background:yellow;color:black' target='_blank'>" . $document_name . "</a>";
 			}
 		}
 		recordActivity($operation, $activity, $case_uuid, $new_id, $activity_category);

@@ -18,7 +18,7 @@ include("../api/connection.php");
 
 if($_SERVER["HTTPS"]=="off") {
 	
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org" . $_SERVER['REQUEST_URI']);
 }
 
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
@@ -288,7 +288,7 @@ if ($author=="") {
       	<td>File Upload</td>
         <td>
             <input name="file_up" type="file" />PDF only&nbsp;<?php if ($filepath!="") {
-				echo "<br /><span id='upload_link_holder'><a href='../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath . "' target='_blank'>" . $filepath . "</a> has been uploaded.</span>"; 
+				echo "<br /><span id='upload_link_holder'><a href='D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath . "' target='_blank'>" . $filepath . "</a> has been uploaded.</span>"; 
 			}
 			?>
             <input name="filepath" type="hidden" id="filepath" value="<?php echo $filepath; ?>" />

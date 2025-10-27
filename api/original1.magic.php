@@ -4,7 +4,7 @@ ini_set('display_errors', '1');
 
 die();
 
-$targetFile = 'C:\\inetpub\\wwwroot\\iKase.org\\uploads\\1121\\5644\\eams_forms\\coversheet.pdf';
+$targetFile = 'C:\\inetpub\\wwwroot\\ikase.org\\uploads\\1121\\5644\\eams_forms\\coversheet.pdf';
 $image_magick = new Imagick(); 
 $image_magick->readImage($targetFile . "[0]");
 $image_magick = $image_magick->flattenImages();

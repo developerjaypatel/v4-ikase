@@ -5,6 +5,7 @@ $app->group('', function (RouteCollectorProxy $app) {
 	$app->group('/document', function (RouteCollectorProxy $app) {
 		$app->get('/{id}', 'getDocument');
 		$app->post('/delete', 'deleteDocument');
+		$app->post('/deletejetfile', 'deleteDocumentJetfile');
 		$app->post('/read', 'readDocument');
 		$app->post('/unread', 'unreadDocument');
 	});
@@ -17,6 +18,13 @@ $app->group('', function (RouteCollectorProxy $app) {
 		$app->get('/search/{name}/{type}/{start}/{end}', 'searchDocuments');
 		$app->get('/searchbycase/{case_id}/{name}', 'searchCaseDocuments');
 		$app->get('/{case_id}', 'getDocuments');
+		$app->get('/count/{case_id}', 'getDocumentsCount');
+		$app->get('/typecount/{case_id}', 'getDocumentsTypeCount');
+		$app->get('/categorycount/{case_id}', 'getDocumentsCategoryCount');
+		$app->get('/subcatcount/{case_id}', 'getDocumentsSubcatCount');
+		$app->get('/typefilter/{case_id}', 'getDocumentsSubCategory');
+		$app->get('/catfilter/{case_id}', 'getDocumentsSubCategory');
+		$app->get('/subcatfilter/{case_id}', 'getDocumentsSubCategory');
 		$app->get('/attribute/{case_id}/{attribute}', 'getDocumentsByAttribute');
 		$app->get('/pi/attribute/{case_id}/{attribute}', 'getDocumentsByAttributePi');
 
@@ -164,7 +172,7 @@ function getA1Archives($case_id) {
 	//die(print_r($kase));
 	$params = base64_encode($kase->cpointer . '|' . $kase->first_name . '|' . $kase->last_name . '|' . $kase->employer . '|' . $_SESSION["user_data_source"]);
 	$path = 'http://kustomweb.xyz/a1_archive/legacy.php?db=' . $_SESSION["user_data_source"] . '&params=' . $params;
-	//die($path);
+	die($_SESSION["user_data_source"]);
 	$homepage = file_get_contents($path);
 	echo $homepage;
 }
@@ -309,6 +317,18 @@ function getCaseAllDocuments($case_id, $attribute = "") {
 }
 
 function getDocuments($case_id, $attribute = "") {
+	//print_r($_GET);die;
+	$page = ($_GET['page']) ? (int)$_GET['page'] : '';
+	$limit = isset($_GET['limit']) ? (int)$_GET['limit'] : '';
+	//$limit = 35;
+	$offset = ($page - 1) * $limit;
+	// if ($_SERVER['REMOTE_ADDR']=='103.85.10.106') {
+		// die($page.",".$limit.",".$offset);
+	// }
+	if($_GET['type'] != ''){ $doc_type = $_GET['type']; }
+	if($_GET['category'] != ''){ $doc_category = $_GET['category']; }
+	if($_GET['subcat'] != ''){ $doc_subcat = $_GET['subcat']; } 
+
 	session_write_close();
 	//all the documents, EXCEPT applicant picture AND letters
     $sql = "SELECT DISTINCT doc.`document_id` , doc.`document_uuid` , doc.`parent_document_uuid` , 
@@ -373,8 +393,22 @@ function getDocuments($case_id, $attribute = "") {
 		$sql .= " 
 		AND `cse_case_document`.attribute_1 != 'letter'";
 	}
+
+	if ($_GET['type']!="") {
+		$sql .= " AND `doc`.`type` = '" . $doc_type . "'";
+	}
+	if ($_GET['category']!="") {
+		$sql .= " AND `doc`.`document_extension` = '" . $doc_category . "'";
+	}
+	if ($_GET['subcat']!="") {
+		$sql .= " AND `doc`.`description` = '" . $doc_subcat . "'";
+	} 
 	$sql .= " 
 	ORDER BY IF(doc.received_date='0000-00-00 00:00:00', doc.document_date, doc.received_date) DESC, doc.document_id DESC";
+	if(!empty($_GET['page']) && !empty($_GET['limit'])) {
+	$sql .= "
+	LIMIT $offset, $limit";
+	}
 	/*
 	if ($_SESSION["user_customer_id"]==1033) {
 		$sql .= "
@@ -407,7 +441,267 @@ function getDocuments($case_id, $attribute = "") {
 					
 					$doc_filename = implode(".", $arrFile);
 					
-					$preview_path = "uploads/" . $customer_id . "/" . str_replace("medium", "thumbnail", $doc->thumbnail_folder) . "/" . $doc_filename;
+					$preview_path = "D:/uploads/" . $customer_id . "/" . str_replace("medium", "thumbnail", $doc->thumbnail_folder) . "/" . $doc_filename;
+				} else {
+					$preview_path = findDocumentThumbnail($customer_id, $case_id, $doc);
+				}
+				// NISHIT ADDED THIS CODE
+				$documents[$int]->preview_path_old = $preview_path;
+				// $abs_path =  (dirname(__FILE__).'/../'.$preview_path);
+				$abs_path =  $preview_path;
+				$documents[$int]->abs_path = $abs_path ;
+				if(!file_exists($abs_path)) {
+					$path_info_ext_ = pathinfo($doc->document_filename);
+					if($path_info_ext_['extension'] == "doc" || $path_info_ext_['extension'] == "docx") {
+						$documents[$int]->preview_path = "merge_documents/default_word_placeholder.jpg";
+					} else {
+						$documents[$int]->preview_path = "merge_documents/default_file_placeholder.jpg";
+					}
+				} else {
+					$documents[$int]->preview_path = $preview_path;
+				}
+				// NISHIT ADDED THIS CODE
+			}
+			//die(print_r($documents));
+		//}
+		header('Content-Type: application/json');
+		echo json_encode($documents);
+	} catch(PDOException $e) {
+		$error = array("error"=> array("text"=>$e->getMessage()));
+        	echo json_encode($error);
+	}
+}
+
+function getDocumentsCount($case_id, $attribute = "") {
+
+	session_write_close();
+	//all the documents, EXCEPT applicant picture AND letters
+    $sql = "SELECT DISTINCT doc.`document_id` , doc.`document_uuid` , doc.`parent_document_uuid` , 
+	REPLACE(  `document_name` ,  '/home/cstmwb/public_html/autho/web/fileupload/server/php/file_container/" . $case_id . "/',  '' ) `document_name` ,  
+	IF (DATE_FORMAT(document_date, '%m/%d/%Y %l:%i%p') IS NULL, '', DATE_FORMAT(document_date, '%m/%d/%Y %l:%i%p'))`document_date` , 
+	IF (DATE_FORMAT(received_date, '%m/%d/%Y %l:%i%p') IS NULL, '', DATE_FORMAT(received_date, '%m/%d/%Y %l:%i%p'))`received_date` , `doc`.`source`,	
+	`document_filename` ,  `document_extension`, `thumbnail_folder` ,  `description` ,  IF (`description_html` IS NULL, '', `description_html`) `description_html` ,  `doc`.`type` ,  `doc`.`verified` , doc.`deleted` , doc.`document_id`  `id` , doc.`document_uuid`  `uuid`, doc.customer_id, 
+	IF (`cse_case_document`.attribute_2 = 'scanfiles', 'Scanfile', document_users.last_user_names) user_name,  
+	IFNULL(document_users.last_user_attributes, '') `last_user_attributes`,
+	`cse_case`.`case_uuid`, `cse_case`.`case_id`, '' preview_path,
+	IFNULL(ced.exam_uuid, '') exam_uuid,
+	IFNULL(inj.injury_id, '') doi_id, IFNULL(inj.start_date, '') doi_start, IFNULL(inj.end_date, '') doi_end
+	
+	FROM  `cse_document` doc
+	INNER JOIN  `cse_case_document` ON  `doc`.`document_uuid` =  `cse_case_document`.`document_uuid`
+	INNER JOIN  `cse_case` ON (  `cse_case_document`.`case_uuid` =  `cse_case`.`case_uuid` 
+	AND  `cse_case`.`case_id` = :case_id ) 
+				
+	LEFT OUTER JOIN `cse_injury_document` `cidocument`
+	ON `doc`.`document_uuid` = `cidocument`.`document_uuid` AND cidocument.deleted = 'N'
+	LEFT OUTER JOIN `cse_injury` inj
+	ON cidocument.injury_uuid = inj.injury_uuid
+	
+	LEFT OUTER JOIN  (
+		SELECT document_uuid, 
+        GROUP_CONCAT(ccd.last_update_user SEPARATOR '|') last_users, 
+        GROUP_CONCAT(cu1.user_name SEPARATOR '|') last_user_names,
+        GROUP_CONCAT(ccd.attribute_1 SEPARATOR '|') last_user_attributes
+        FROM `cse_case_document` ccd
+		INNER JOIN ikase.`cse_user` cu1
+        ON ccd.last_update_user = cu1.user_uuid 
+        INNER JOIN `cse_case` ON (  `ccd`.`case_uuid` =  `cse_case`.`case_uuid` 
+	AND  `cse_case`.`case_id` = :case_id )
+        WHERE ccd.customer_id = :customer_id
+		AND ccd.attribute_1 != 'assigned'
+		AND ccd.attribute_1 != 'attach'";
+		if ($_SESSION["user_customer_id"]!=1072) {
+			$sql .= " AND `ccd`.attribute_1 != 'letter'";
+		}
+    $sql .= " GROUP BY ccd.document_uuid
+    ) document_users 
+    ON `doc`.`document_uuid` =  document_users.`document_uuid`
+	
+	LEFT OUTER JOIN cse_exam_document ced
+	ON `doc`.`document_uuid` =  ced.`document_uuid` AND ced.deleted = 'N'
+			
+	LEFT OUTER JOIN  ikase.`cse_user` cu ON cse_case_document.last_update_user = cu.user_uuid 
+	
+	WHERE doc.customer_id = :customer_id
+	AND doc.deleted =  'N'
+	AND `cse_case_document`.deleted =  'N'
+	AND doc.document_filename != ''";
+	
+	if ($attribute == "") {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 != 'applicant_picture'";
+	} else {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 = '" . $attribute . "'";
+	}
+	if ($_SESSION["user_customer_id"]!=1072) {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 != 'letter'";
+	}
+
+	$sql .= " 
+	ORDER BY IF(doc.received_date='0000-00-00 00:00:00', doc.document_date, doc.received_date) DESC, doc.document_id DESC";
+	
+	/*
+	if ($_SESSION["user_customer_id"]==1033) {
+		$sql .= "
+		LIMIT 0, 50";
+	}
+	if ($_SERVER['REMOTE_ADDR']=='47.153.56.2') {
+		//die($sql);
+	}
+	*/
+	//die($sql);
+	$customer_id = $_SESSION['user_customer_id'];
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("case_id", $case_id);
+		$stmt->bindParam("customer_id", $customer_id);
+		
+		$stmt->execute();
+		$documents = $stmt->fetchAll(PDO::FETCH_OBJ);
+		
+		//if ($_SERVER['REMOTE_ADDR']=='47.153.50.152') {
+			$arrLength = count($documents);
+			for($int=0; $int<$arrLength; $int++) {
+				$doc = $documents[$int];
+				
+				if (strpos($doc->thumbnail_folder, "medium")!==false) {
+					$arrFile = explode(".", $doc->document_filename);
+					
+					$arrFile[count($arrFile) - 1] = "jpg";
+					
+					$doc_filename = implode(".", $arrFile);
+					
+					$preview_path = "D:/uploads/" . $customer_id . "/" . str_replace("medium", "thumbnail", $doc->thumbnail_folder) . "/" . $doc_filename;
+				} else {
+					$preview_path = findDocumentThumbnail($customer_id, $case_id, $doc);
+				}
+				// NISHIT ADDED THIS CODE
+				$documents[$int]->preview_path_old = $preview_path;
+				// $abs_path =  (dirname(__FILE__).'/../'.$preview_path);
+				$abs_path =  $preview_path;
+				$documents[$int]->abs_path = $abs_path ;
+				if(!file_exists($abs_path)) {
+					$path_info_ext_ = pathinfo($doc->document_filename);					
+					if($path_info_ext_['extension'] == "doc" || $path_info_ext_['extension'] == "docx") {
+						$documents[$int]->preview_path = "merge_documents/default_word_placeholder.jpg";
+					} else {
+						$documents[$int]->preview_path = "merge_documents/default_file_placeholder.jpg";
+					}
+				} else {
+					$documents[$int]->preview_path = $preview_path;
+				}
+				// NISHIT ADDED THIS CODE
+			}
+			//die(print_r($documents));
+		//}
+		header('Content-Type: application/json');
+		echo json_encode($documents);
+	} catch(PDOException $e) {
+		$error = array("error"=> array("text"=>$e->getMessage()));
+        	echo json_encode($error);
+	}
+}
+
+function getDocumentsTypeCount($case_id, $attribute = "") {
+
+	session_write_close();
+
+	if($_GET['type'] != ''){ $doc_type = $_GET['type']; }
+	//all the documents, EXCEPT applicant picture AND letters
+    $sql = "SELECT DISTINCT doc.`document_id` , doc.`document_uuid` , doc.`parent_document_uuid` , 
+	REPLACE(  `document_name` ,  '/home/cstmwb/public_html/autho/web/fileupload/server/php/file_container/" . $case_id . "/',  '' ) `document_name` ,  
+	IF (DATE_FORMAT(document_date, '%m/%d/%Y %l:%i%p') IS NULL, '', DATE_FORMAT(document_date, '%m/%d/%Y %l:%i%p'))`document_date` , 
+	IF (DATE_FORMAT(received_date, '%m/%d/%Y %l:%i%p') IS NULL, '', DATE_FORMAT(received_date, '%m/%d/%Y %l:%i%p'))`received_date` , `doc`.`source`,	
+	`document_filename` ,  `document_extension`, `thumbnail_folder` ,  `description` ,  IF (`description_html` IS NULL, '', `description_html`) `description_html` ,  `doc`.`type` ,  `doc`.`verified` , doc.`deleted` , doc.`document_id`  `id` , doc.`document_uuid`  `uuid`, doc.customer_id, 
+	IF (`cse_case_document`.attribute_2 = 'scanfiles', 'Scanfile', document_users.last_user_names) user_name,  
+	IFNULL(document_users.last_user_attributes, '') `last_user_attributes`,
+	`cse_case`.`case_uuid`, `cse_case`.`case_id`, '' preview_path,
+	IFNULL(ced.exam_uuid, '') exam_uuid,
+	IFNULL(inj.injury_id, '') doi_id, IFNULL(inj.start_date, '') doi_start, IFNULL(inj.end_date, '') doi_end
+	
+	FROM  `cse_document` doc
+	INNER JOIN  `cse_case_document` ON  `doc`.`document_uuid` =  `cse_case_document`.`document_uuid`
+	INNER JOIN  `cse_case` ON (  `cse_case_document`.`case_uuid` =  `cse_case`.`case_uuid` 
+	AND  `cse_case`.`case_id` = :case_id ) 
+				
+	LEFT OUTER JOIN `cse_injury_document` `cidocument`
+	ON `doc`.`document_uuid` = `cidocument`.`document_uuid` AND cidocument.deleted = 'N'
+	LEFT OUTER JOIN `cse_injury` inj
+	ON cidocument.injury_uuid = inj.injury_uuid
+	
+	LEFT OUTER JOIN  (
+		SELECT document_uuid, 
+        GROUP_CONCAT(ccd.last_update_user SEPARATOR '|') last_users, 
+        GROUP_CONCAT(cu1.user_name SEPARATOR '|') last_user_names,
+        GROUP_CONCAT(ccd.attribute_1 SEPARATOR '|') last_user_attributes
+        FROM `cse_case_document` ccd
+		INNER JOIN ikase.`cse_user` cu1
+        ON ccd.last_update_user = cu1.user_uuid 
+        INNER JOIN `cse_case` ON (  `ccd`.`case_uuid` =  `cse_case`.`case_uuid` 
+	AND  `cse_case`.`case_id` = :case_id )
+        WHERE ccd.customer_id = :customer_id
+		AND ccd.attribute_1 != 'assigned'
+		AND ccd.attribute_1 != 'attach'";
+		if ($_SESSION["user_customer_id"]!=1072) {
+			$sql .= " AND `ccd`.attribute_1 != 'letter'";
+		}
+    $sql .= " GROUP BY ccd.document_uuid
+    ) document_users 
+    ON `doc`.`document_uuid` =  document_users.`document_uuid`
+	
+	LEFT OUTER JOIN cse_exam_document ced
+	ON `doc`.`document_uuid` =  ced.`document_uuid` AND ced.deleted = 'N'
+			
+	LEFT OUTER JOIN  ikase.`cse_user` cu ON cse_case_document.last_update_user = cu.user_uuid 
+	
+	WHERE doc.customer_id = :customer_id
+	AND doc.deleted =  'N'
+	AND `cse_case_document`.deleted =  'N'
+	AND doc.document_filename != ''";
+	
+	if ($attribute == "") {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 != 'applicant_picture'";
+	} else {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 = '" . $attribute . "'";
+	}
+	if ($_SESSION["user_customer_id"]!=1072) {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 != 'letter'";
+	}
+	if ($_GET['type']!="") {
+		$sql .= " AND `doc`.`type` = '" . $doc_type . "'";
+	}
+	$sql .= " 
+	ORDER BY IF(doc.received_date='0000-00-00 00:00:00', doc.document_date, doc.received_date) DESC, doc.document_id DESC";
+	
+	//die($sql);
+	$customer_id = $_SESSION['user_customer_id'];
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("case_id", $case_id);
+		$stmt->bindParam("customer_id", $customer_id);
+		
+		$stmt->execute();
+		$documents = $stmt->fetchAll(PDO::FETCH_OBJ);
+		//if ($_SERVER['REMOTE_ADDR']=='47.153.50.152') {
+			$arrLength = count($documents);
+			for($int=0; $int<$arrLength; $int++) {
+				$doc = $documents[$int];
+				
+				if (strpos($doc->thumbnail_folder, "medium")!==false) {
+					$arrFile = explode(".", $doc->document_filename);
+					
+					$arrFile[count($arrFile) - 1] = "jpg";
+					
+					$doc_filename = implode(".", $arrFile);
+					
+					$preview_path = "D:/uploads/" . $customer_id . "/" . str_replace("medium", "thumbnail", $doc->thumbnail_folder) . "/" . $doc_filename;
 				} else {
 					$preview_path = findDocumentThumbnail($customer_id, $case_id, $doc);
 				}
@@ -429,12 +723,414 @@ function getDocuments($case_id, $attribute = "") {
 			}
 			//die(print_r($documents));
 		//}
+		header('Content-Type: application/json');
 		echo json_encode($documents);
 	} catch(PDOException $e) {
 		$error = array("error"=> array("text"=>$e->getMessage()));
         	echo json_encode($error);
 	}
 }
+
+function getDocumentsCategoryCount($case_id, $attribute = "") {
+
+	session_write_close();
+	//echo $_GET['category'] ;die;
+	//$doc_category = ($_GET['category']) ? $_GET['category'] : '';
+	if($_GET['category'] != ''){ $doc_category = $_GET['category']; }
+	//all the documents, EXCEPT applicant picture AND letters
+    $sql = "SELECT DISTINCT doc.`document_id` , doc.`document_uuid` , doc.`parent_document_uuid` , 
+	REPLACE(  `document_name` ,  '/home/cstmwb/public_html/autho/web/fileupload/server/php/file_container/" . $case_id . "/',  '' ) `document_name` ,  
+	IF (DATE_FORMAT(document_date, '%m/%d/%Y %l:%i%p') IS NULL, '', DATE_FORMAT(document_date, '%m/%d/%Y %l:%i%p'))`document_date` , 
+	IF (DATE_FORMAT(received_date, '%m/%d/%Y %l:%i%p') IS NULL, '', DATE_FORMAT(received_date, '%m/%d/%Y %l:%i%p'))`received_date` , `doc`.`source`,	
+	`document_filename` ,  `document_extension`, `thumbnail_folder` ,  `description` ,  IF (`description_html` IS NULL, '', `description_html`) `description_html` ,  `doc`.`type` ,  `doc`.`verified` , doc.`deleted` , doc.`document_id`  `id` , doc.`document_uuid`  `uuid`, doc.customer_id, 
+	IF (`cse_case_document`.attribute_2 = 'scanfiles', 'Scanfile', document_users.last_user_names) user_name,  
+	IFNULL(document_users.last_user_attributes, '') `last_user_attributes`,
+	`cse_case`.`case_uuid`, `cse_case`.`case_id`, '' preview_path,
+	IFNULL(ced.exam_uuid, '') exam_uuid,
+	IFNULL(inj.injury_id, '') doi_id, IFNULL(inj.start_date, '') doi_start, IFNULL(inj.end_date, '') doi_end
+	
+	FROM  `cse_document` doc
+	INNER JOIN  `cse_case_document` ON  `doc`.`document_uuid` =  `cse_case_document`.`document_uuid`
+	INNER JOIN  `cse_case` ON (  `cse_case_document`.`case_uuid` =  `cse_case`.`case_uuid` 
+	AND  `cse_case`.`case_id` = :case_id ) 
+				
+	LEFT OUTER JOIN `cse_injury_document` `cidocument`
+	ON `doc`.`document_uuid` = `cidocument`.`document_uuid` AND cidocument.deleted = 'N'
+	LEFT OUTER JOIN `cse_injury` inj
+	ON cidocument.injury_uuid = inj.injury_uuid
+	
+	LEFT OUTER JOIN  (
+		SELECT document_uuid, 
+        GROUP_CONCAT(ccd.last_update_user SEPARATOR '|') last_users, 
+        GROUP_CONCAT(cu1.user_name SEPARATOR '|') last_user_names,
+        GROUP_CONCAT(ccd.attribute_1 SEPARATOR '|') last_user_attributes
+        FROM `cse_case_document` ccd
+		INNER JOIN ikase.`cse_user` cu1
+        ON ccd.last_update_user = cu1.user_uuid 
+        INNER JOIN `cse_case` ON (  `ccd`.`case_uuid` =  `cse_case`.`case_uuid` 
+	AND  `cse_case`.`case_id` = :case_id )
+        WHERE ccd.customer_id = :customer_id
+		AND ccd.attribute_1 != 'assigned'
+		AND ccd.attribute_1 != 'attach'";
+		if ($_SESSION["user_customer_id"]!=1072) {
+			$sql .= " AND `ccd`.attribute_1 != 'letter'";
+		}
+    $sql .= " GROUP BY ccd.document_uuid
+    ) document_users 
+    ON `doc`.`document_uuid` =  document_users.`document_uuid`
+	
+	LEFT OUTER JOIN cse_exam_document ced
+	ON `doc`.`document_uuid` =  ced.`document_uuid` AND ced.deleted = 'N'
+			
+	LEFT OUTER JOIN  ikase.`cse_user` cu ON cse_case_document.last_update_user = cu.user_uuid 
+	
+	WHERE doc.customer_id = :customer_id
+	AND doc.deleted =  'N'
+	AND `cse_case_document`.deleted =  'N'
+	AND doc.document_filename != ''";
+		
+	if ($attribute == "") {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 != 'applicant_picture'";
+	} else {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 = '" . $attribute . "'";
+	}
+	if ($_SESSION["user_customer_id"]!=1072) {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 != 'letter'";
+	}
+	if ($_GET['category']!="") {
+		$sql .= " AND `doc`.`document_extension` = '" . $doc_category . "'";
+	}
+	$sql .= " 
+	ORDER BY IF(doc.received_date='0000-00-00 00:00:00', doc.document_date, doc.received_date) DESC, doc.document_id DESC";
+	//echo $sql;die;
+	//die($sql);
+	$customer_id = $_SESSION['user_customer_id'];
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("case_id", $case_id);
+		$stmt->bindParam("customer_id", $customer_id);
+		
+		$stmt->execute();
+		$documents = $stmt->fetchAll(PDO::FETCH_OBJ);
+		//if ($_SERVER['REMOTE_ADDR']=='47.153.50.152') {
+			$arrLength = count($documents);
+			for($int=0; $int<$arrLength; $int++) {
+				$doc = $documents[$int];
+				
+				if (strpos($doc->thumbnail_folder, "medium")!==false) {
+					$arrFile = explode(".", $doc->document_filename);
+					
+					$arrFile[count($arrFile) - 1] = "jpg";
+					
+					$doc_filename = implode(".", $arrFile);
+					
+					$preview_path = "D:/uploads/" . $customer_id . "/" . str_replace("medium", "thumbnail", $doc->thumbnail_folder) . "/" . $doc_filename;
+				} else {
+					$preview_path = findDocumentThumbnail($customer_id, $case_id, $doc);
+				}
+				// NISHIT ADDED THIS CODE
+				$documents[$int]->preview_path_old = $preview_path;
+				$abs_path =  (dirname(__FILE__).'/../'.$preview_path);
+				$documents[$int]->abs_path = $abs_path ;
+				if(!file_exists($abs_path)) {
+					$path_info_ext_ = pathinfo($doc->document_filename);
+					if($path_info_ext_['extension'] == "doc" || $path_info_ext_['extension'] == "docx") {
+						$documents[$int]->preview_path = "merge_documents/default_word_placeholder.jpg";
+					} else {
+						$documents[$int]->preview_path = "merge_documents/default_file_placeholder.jpg";
+					}
+				} else {
+					$documents[$int]->preview_path = $preview_path;
+				}
+				// NISHIT ADDED THIS CODE
+			}
+			//die(print_r($documents));
+		//}
+		header('Content-Type: application/json');
+		echo json_encode($documents);
+	} catch(PDOException $e) {
+		$error = array("error"=> array("text"=>$e->getMessage()));
+        	echo json_encode($error);
+	}
+}
+
+function getDocumentsSubcatCount($case_id, $attribute = "") {
+
+	session_write_close();
+	//if($_GET['type'] != ''){ $doc_type = $_GET['type']; }//die;
+	//$doc_subcat = ($_GET['subcat']) ? $_GET['subcat'] : '';
+	if($_GET['subcat'] != ''){ $doc_subcat = $_GET['subcat']; }
+	//all the documents, EXCEPT applicant picture AND letters
+    $sql = "SELECT DISTINCT doc.`document_id` , doc.`document_uuid` , doc.`parent_document_uuid` , 
+	REPLACE(  `document_name` ,  '/home/cstmwb/public_html/autho/web/fileupload/server/php/file_container/" . $case_id . "/',  '' ) `document_name` ,  
+	IF (DATE_FORMAT(document_date, '%m/%d/%Y %l:%i%p') IS NULL, '', DATE_FORMAT(document_date, '%m/%d/%Y %l:%i%p'))`document_date` , 
+	IF (DATE_FORMAT(received_date, '%m/%d/%Y %l:%i%p') IS NULL, '', DATE_FORMAT(received_date, '%m/%d/%Y %l:%i%p'))`received_date` , `doc`.`source`,	
+	`document_filename` ,  `document_extension`, `thumbnail_folder` ,  `description` ,  IF (`description_html` IS NULL, '', `description_html`) `description_html` ,  `doc`.`type` ,  `doc`.`verified` , doc.`deleted` , doc.`document_id`  `id` , doc.`document_uuid`  `uuid`, doc.customer_id, 
+	IF (`cse_case_document`.attribute_2 = 'scanfiles', 'Scanfile', document_users.last_user_names) user_name,  
+	IFNULL(document_users.last_user_attributes, '') `last_user_attributes`,
+	`cse_case`.`case_uuid`, `cse_case`.`case_id`, '' preview_path,
+	IFNULL(ced.exam_uuid, '') exam_uuid,
+	IFNULL(inj.injury_id, '') doi_id, IFNULL(inj.start_date, '') doi_start, IFNULL(inj.end_date, '') doi_end
+	
+	FROM  `cse_document` doc
+	INNER JOIN  `cse_case_document` ON  `doc`.`document_uuid` =  `cse_case_document`.`document_uuid`
+	INNER JOIN  `cse_case` ON (  `cse_case_document`.`case_uuid` =  `cse_case`.`case_uuid` 
+	AND  `cse_case`.`case_id` = :case_id ) 
+				
+	LEFT OUTER JOIN `cse_injury_document` `cidocument`
+	ON `doc`.`document_uuid` = `cidocument`.`document_uuid` AND cidocument.deleted = 'N'
+	LEFT OUTER JOIN `cse_injury` inj
+	ON cidocument.injury_uuid = inj.injury_uuid
+	
+	LEFT OUTER JOIN  (
+		SELECT document_uuid, 
+        GROUP_CONCAT(ccd.last_update_user SEPARATOR '|') last_users, 
+        GROUP_CONCAT(cu1.user_name SEPARATOR '|') last_user_names,
+        GROUP_CONCAT(ccd.attribute_1 SEPARATOR '|') last_user_attributes
+        FROM `cse_case_document` ccd
+		INNER JOIN ikase.`cse_user` cu1
+        ON ccd.last_update_user = cu1.user_uuid 
+        INNER JOIN `cse_case` ON (  `ccd`.`case_uuid` =  `cse_case`.`case_uuid` 
+	AND  `cse_case`.`case_id` = :case_id )
+        WHERE ccd.customer_id = :customer_id
+		AND ccd.attribute_1 != 'assigned'
+		AND ccd.attribute_1 != 'attach'";
+		if ($_SESSION["user_customer_id"]!=1072) {
+			$sql .= " AND `ccd`.attribute_1 != 'letter'";
+		}
+    $sql .= " GROUP BY ccd.document_uuid
+    ) document_users 
+    ON `doc`.`document_uuid` =  document_users.`document_uuid`
+	
+	LEFT OUTER JOIN cse_exam_document ced
+	ON `doc`.`document_uuid` =  ced.`document_uuid` AND ced.deleted = 'N'
+			
+	LEFT OUTER JOIN  ikase.`cse_user` cu ON cse_case_document.last_update_user = cu.user_uuid 
+	
+	WHERE doc.customer_id = :customer_id
+	AND doc.deleted =  'N'
+	AND `cse_case_document`.deleted =  'N'
+	AND doc.document_filename != ''";
+	
+	if ($attribute == "") {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 != 'applicant_picture'";
+	} else {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 = '" . $attribute . "'";
+	}
+	if ($_SESSION["user_customer_id"]!=1072) {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 != 'letter'";
+	}
+	if ($_GET['subcat']!="") {
+		$sql .= " AND `doc`.`description` = '" . $doc_subcat . "'";
+	}
+
+	$sql .= " 
+	ORDER BY IF(doc.received_date='0000-00-00 00:00:00', doc.document_date, doc.received_date) DESC, doc.document_id DESC";
+	if(!empty($_GET['page']) && !empty($_GET['limit'])) {
+		$sql .= " 
+		LIMIT $offset, $limit";
+	} 
+	//die($sql);
+	$customer_id = $_SESSION['user_customer_id'];
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("case_id", $case_id);
+		$stmt->bindParam("customer_id", $customer_id);
+		
+		$stmt->execute();
+		$documents = $stmt->fetchAll(PDO::FETCH_OBJ);
+		//if ($_SERVER['REMOTE_ADDR']=='47.153.50.152') {
+			$arrLength = count($documents);
+			for($int=0; $int<$arrLength; $int++) {
+				$doc = $documents[$int];
+				
+				if (strpos($doc->thumbnail_folder, "medium")!==false) {
+					$arrFile = explode(".", $doc->document_filename);
+					
+					$arrFile[count($arrFile) - 1] = "jpg";
+					
+					$doc_filename = implode(".", $arrFile);
+					
+					$preview_path = "D:/uploads/" . $customer_id . "/" . str_replace("medium", "thumbnail", $doc->thumbnail_folder) . "/" . $doc_filename;
+				} else {
+					$preview_path = findDocumentThumbnail($customer_id, $case_id, $doc);
+				}
+				// NISHIT ADDED THIS CODE
+				$documents[$int]->preview_path_old = $preview_path;
+				$abs_path =  (dirname(__FILE__).'/../'.$preview_path);
+				$documents[$int]->abs_path = $abs_path ;
+				if(!file_exists($abs_path)) {
+					$path_info_ext_ = pathinfo($doc->document_filename);
+					if($path_info_ext_['extension'] == "doc" || $path_info_ext_['extension'] == "docx") {
+						$documents[$int]->preview_path = "merge_documents/default_word_placeholder.jpg";
+					} else {
+						$documents[$int]->preview_path = "merge_documents/default_file_placeholder.jpg";
+					}
+				} else {
+					$documents[$int]->preview_path = $preview_path;
+				}
+				// NISHIT ADDED THIS CODE
+			}
+			//die(print_r($documents));
+		//}
+		header('Content-Type: application/json');
+		echo json_encode($documents);
+	} catch(PDOException $e) {
+		$error = array("error"=> array("text"=>$e->getMessage()));
+        	echo json_encode($error);
+	}
+}
+
+function getDocumentsSubCategory($case_id, $attribute = "") {
+
+	session_write_close();
+	//if($_GET['subcat'] != ''){ $doc_subcat = $_GET['subcat']; }//die;
+	$doc_type = ($_GET['type']) ? $_GET['type'] : '';
+	$doc_category = ($_GET['category']) ? $_GET['category'] : '';
+	$doc_subcat = ($_GET['subcat']) ? $_GET['subcat'] : '';
+
+	$page = ($_GET['page']) ? (int)$_GET['page'] : '';
+	$limit = isset($_GET['limit']) ? (int)$_GET['limit'] : '';
+	$offset = ($page - 1) * $limit; 
+	//all the documents, EXCEPT applicant picture AND letters
+    $sql = "SELECT DISTINCT doc.`document_id` , doc.`document_uuid` , doc.`parent_document_uuid` , 
+	REPLACE(  `document_name` ,  '/home/cstmwb/public_html/autho/web/fileupload/server/php/file_container/" . $case_id . "/',  '' ) `document_name` ,  
+	IF (DATE_FORMAT(document_date, '%m/%d/%Y %l:%i%p') IS NULL, '', DATE_FORMAT(document_date, '%m/%d/%Y %l:%i%p'))`document_date` , 
+	IF (DATE_FORMAT(received_date, '%m/%d/%Y %l:%i%p') IS NULL, '', DATE_FORMAT(received_date, '%m/%d/%Y %l:%i%p'))`received_date` , `doc`.`source`,	
+	`document_filename` ,  `document_extension`, `thumbnail_folder` ,  `description` ,  IF (`description_html` IS NULL, '', `description_html`) `description_html` ,  `doc`.`type` ,  `doc`.`verified` , doc.`deleted` , doc.`document_id`  `id` , doc.`document_uuid`  `uuid`, doc.customer_id, 
+	IF (`cse_case_document`.attribute_2 = 'scanfiles', 'Scanfile', document_users.last_user_names) user_name,  
+	IFNULL(document_users.last_user_attributes, '') `last_user_attributes`,
+	`cse_case`.`case_uuid`, `cse_case`.`case_id`, '' preview_path,
+	IFNULL(ced.exam_uuid, '') exam_uuid,
+	IFNULL(inj.injury_id, '') doi_id, IFNULL(inj.start_date, '') doi_start, IFNULL(inj.end_date, '') doi_end
+	
+	FROM  `cse_document` doc
+	INNER JOIN  `cse_case_document` ON  `doc`.`document_uuid` =  `cse_case_document`.`document_uuid`
+	INNER JOIN  `cse_case` ON (  `cse_case_document`.`case_uuid` =  `cse_case`.`case_uuid` 
+	AND  `cse_case`.`case_id` = :case_id ) 
+				
+	LEFT OUTER JOIN `cse_injury_document` `cidocument`
+	ON `doc`.`document_uuid` = `cidocument`.`document_uuid` AND cidocument.deleted = 'N'
+	LEFT OUTER JOIN `cse_injury` inj
+	ON cidocument.injury_uuid = inj.injury_uuid
+	
+	LEFT OUTER JOIN  (
+		SELECT document_uuid, 
+        GROUP_CONCAT(ccd.last_update_user SEPARATOR '|') last_users, 
+        GROUP_CONCAT(cu1.user_name SEPARATOR '|') last_user_names,
+        GROUP_CONCAT(ccd.attribute_1 SEPARATOR '|') last_user_attributes
+        FROM `cse_case_document` ccd
+		INNER JOIN ikase.`cse_user` cu1
+        ON ccd.last_update_user = cu1.user_uuid 
+        INNER JOIN `cse_case` ON (  `ccd`.`case_uuid` =  `cse_case`.`case_uuid` 
+	AND  `cse_case`.`case_id` = :case_id )
+        WHERE ccd.customer_id = :customer_id
+		AND ccd.attribute_1 != 'assigned'
+		AND ccd.attribute_1 != 'attach'";
+		if ($_SESSION["user_customer_id"]!=1072) {
+			$sql .= " AND `ccd`.attribute_1 != 'letter'";
+		}
+    $sql .= " GROUP BY ccd.document_uuid
+    ) document_users 
+    ON `doc`.`document_uuid` =  document_users.`document_uuid`
+	
+	LEFT OUTER JOIN cse_exam_document ced
+	ON `doc`.`document_uuid` =  ced.`document_uuid` AND ced.deleted = 'N'
+			
+	LEFT OUTER JOIN  ikase.`cse_user` cu ON cse_case_document.last_update_user = cu.user_uuid 
+	
+	WHERE doc.customer_id = :customer_id
+	AND doc.deleted =  'N'
+	AND `cse_case_document`.deleted =  'N'
+	AND doc.document_filename != ''";
+	
+	if ($attribute == "") {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 != 'applicant_picture'";
+	} else {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 = '" . $attribute . "'";
+	}
+	if ($_SESSION["user_customer_id"]!=1072) {
+		$sql .= " 
+		AND `cse_case_document`.attribute_1 != 'letter'";
+	}
+	if ($_GET['type']!="" && $doc_type != '') {
+		$sql .= " AND `doc`.`type` = '" . $doc_type . "'";
+	}
+	if ($_GET['category']!="" && $doc_category != '') {
+		$sql .= " AND `doc`.`document_extension` = '" . $doc_category . "'";
+	}
+	if ($_GET['subcat']!="" && $doc_subcat != '') {
+		$sql .= " AND `doc`.`description` = '" . $doc_subcat . "'";
+	}
+	$sql .= " 
+	ORDER BY IF(doc.received_date='0000-00-00 00:00:00', doc.document_date, doc.received_date) DESC, doc.document_id DESC";
+	if(!empty($_GET['page']) && !empty($_GET['limit'])) {
+		$sql .= " 
+		LIMIT $offset, $limit";
+	}
+	//echo $sql;die;
+	//die($sql);
+	$customer_id = $_SESSION['user_customer_id'];
+	try {
+		$db = getConnection(); 
+		$stmt = $db->prepare($sql); //echo $sql;//die;
+		$stmt->bindParam("case_id", $case_id);
+		$stmt->bindParam("customer_id", $customer_id);
+		
+		$stmt->execute();
+		$documents = $stmt->fetchAll(PDO::FETCH_OBJ);
+		//if ($_SERVER['REMOTE_ADDR']=='47.153.50.152') {
+			$arrLength = count($documents);
+			for($int=0; $int<$arrLength; $int++) {
+				$doc = $documents[$int];
+				
+				if (strpos($doc->thumbnail_folder, "medium")!==false) {
+					$arrFile = explode(".", $doc->document_filename);
+					
+					$arrFile[count($arrFile) - 1] = "jpg";
+					
+					$doc_filename = implode(".", $arrFile);
+					
+					$preview_path = "D:/uploads/" . $customer_id . "/" . str_replace("medium", "thumbnail", $doc->thumbnail_folder) . "/" . $doc_filename;
+				} else {
+					$preview_path = findDocumentThumbnail($customer_id, $case_id, $doc);
+				}
+				// NISHIT ADDED THIS CODE
+				$documents[$int]->preview_path_old = $preview_path;
+				$abs_path =  (dirname(__FILE__).'/../'.$preview_path);
+				$documents[$int]->abs_path = $abs_path ;
+				if(!file_exists($abs_path)) {
+					$path_info_ext_ = pathinfo($doc->document_filename);
+					if($path_info_ext_['extension'] == "doc" || $path_info_ext_['extension'] == "docx") {
+						$documents[$int]->preview_path = "merge_documents/default_word_placeholder.jpg";
+					} else {
+						$documents[$int]->preview_path = "merge_documents/default_file_placeholder.jpg";
+					}
+				} else {
+					$documents[$int]->preview_path = $preview_path;
+				}
+				// NISHIT ADDED THIS CODE
+			}
+			//die(print_r($documents));
+		//}
+		header('Content-Type: application/json');
+		echo json_encode($documents);
+	} catch(PDOException $e) {
+		$error = array("error"=> array("text"=>$e->getMessage()));
+        	echo json_encode($error);
+	}
+}
+
 function searchCaseDocuments($case_id, $name) {
 	searchDocuments($name, "", "", "", $case_id);
 }
@@ -1573,7 +2269,7 @@ function propagateTemplate() {
 			//make sure the folder exists
 			
 			//now copy the file
-			copy($_SERVER['DOCUMENT_ROOT'] . "\\uploads\\1033\\templates\\" . $document_filename, $destination_filename);
+			copy("D:\\uploads\\1033\\templates\\" . $document_filename, $destination_filename);
 			 	
 		} catch(PDOException $e) {
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
@@ -1760,7 +2456,7 @@ function deleteDocument() {
 	
 	foreach($arrIDs as $id) {
 		$document = getDocumentInfo($id);
-		//$document_path = "uploads/1033/templates/1000%20General%20Letter.docx";
+		//$document_path = "D:/uploads/1033/templates/1000%20General%20Letter.docx";
 		$case_id = 0;
 		$sql = "UPDATE cse_document 
 				SET deleted = 'Y'
@@ -1856,7 +2552,7 @@ function deleteDocument() {
 				$fileKaseFolder = checkFileExist($accessToken, "name='".$folderType."' and '".$fileKaseFolderId."' in parents");
 				$fileKaseFolderId = $fileKaseFolder['files'][0]['id'];
 
-				$caseFileNm = str_replace("../uploads/" . $_SESSION["user_customer_id"] . "/" . $case_id . "/letters/", "", $caseFileNm);
+				$caseFileNm = str_replace("D:/uploads/" . $_SESSION["user_customer_id"] . "/" . $case_id . "/letters/", "", $caseFileNm);
 				$caseFileNm = $caseFileNm.'.docx';
 			}
 			
@@ -1889,6 +2585,141 @@ function deleteDocument() {
 	echo json_encode(array("success"=>"All Documents Marked as Deleted"));
 }
 
+function deleteDocumentJetfile() {
+	$ids = passed_var("id", "post");
+	$arrIDs = explode(", ", $ids);
+	
+	foreach($arrIDs as $id) {
+		$document = getDocumentInfo($id);
+		//die(print_r($document));
+		//$document_path = "D:/uploads/1033/templates/1000%20General%20Letter.docx";
+		$case_id = 0;
+		$sql = "UPDATE cse_document 
+				SET type = ''
+				WHERE document_id= :id 
+				AND customer_id = " . $_SESSION["user_customer_id"];
+			//die($sql);
+		try {
+			
+			$db = getConnection();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("id", $id);
+			$stmt->execute();
+			trackDocument("delete", $id, "");
+			
+			$accessToken = $_COOKIE['g_access_token'];
+			
+			$iKaseFolder = checkFileExist($accessToken, "name='iKase'");
+			$iKaseFolderId = $iKaseFolder['files'][0]['id'];
+			
+			$discFolder = checkFileExist($accessToken, "name='disc' and '".$iKaseFolderId."' in parents");
+			$discFolderId = $discFolder['files'][0]['id'];
+			
+			if(isset($discFolderId) && !empty($discFolderId)){
+				$ikase_discFolderId = $discFolderId;
+			}else{
+				$qParam = "{\"name\": \"disc\", \"mimeType\": \"application/vnd.google-apps.folder\",'parents':['".$iKaseFolderId."']}\r\n";
+				$createDisc = createDriveFolder($accessToken, $qParam);
+				$ikase_discFolderId = $createDisc['id'];
+			}
+			
+			$remove_item = passed_var("remove_item", "post");
+			
+			$sqlCaseDet = "SELECT cse.file_number as fn, cse.case_name as csNm, cse.case_id as csId FROM `cse_case_document` ccd
+								JOIN `cse_document` cd ON ccd.document_uuid = cd.document_uuid
+								JOIN `cse_case` cse ON ccd.case_uuid = cse.case_uuid
+								WHERE cd.document_id = '".$id."' ";
+			$sqlKaseDet = DB::run($sqlCaseDet);
+			$kaseCount = $sqlKaseDet->rowCount();
+			$kaseDet = $sqlKaseDet->fetchObject();
+			
+			$documentType = $document->type;
+			$folderType = '';
+			if($kaseCount >= 1){
+				$case_id = $kaseDet->csId;
+				$caseFolderNm = $kaseDet->fn.'_'.$kaseDet->csNm.'_'.$kaseDet->csId;
+				$caseFolderNm = str_replace(" ", "_", $caseFolderNm);
+				
+				if($documentType == 'letter'){
+					$folderType = "letter_create";
+				}
+			}else{
+				if($remove_item=="letter"){
+					$caseFolderNm = "letter_templates";
+				}else{
+					
+					if($documentType == 'Scanned Mail' || $documentType == 'unassigned'){
+						$caseFolderNm = "upload_unassigned";
+					}elseif($documentType == 'batchscan3' || $documentType == 'batchscan2' || $documentType == 'batchscan'){
+						$caseFolderNm = "batchscan";
+					}else{
+						$caseFolderNm = "NoKase";
+					}
+				}
+			}
+			
+			$caseFileNm = $document->document_filename;
+			$fileDiscFolder = checkFileExist($accessToken, "name='".$caseFolderNm."' and '".$ikase_discFolderId."' in parents");
+			$fileDiscFolderId = $fileDiscFolder['files'][0]['id'];
+			
+			if(isset($fileDiscFolderId) && !empty($fileDiscFolderId)){
+				$ikase_fileDiscFolderId = $fileDiscFolderId;
+			}else{
+				$qParam = "{'name':'".$caseFolderNm."','mimeType':'application/vnd.google-apps.folder','parents':['".$ikase_discFolderId."']}\r\n";
+				$createkaseFolder = createDriveFolder($accessToken, $qParam);
+				$ikase_fileDiscFolderId = $createkaseFolder['id'];
+			}
+
+			$fileKaseFolder = checkFileExist($accessToken, "name='".$caseFolderNm."' and '".$iKaseFolderId."' in parents");
+			$fileKaseFolderId = $fileKaseFolder['files'][0]['id'];
+			
+			if($folderType == 'letter_create'){
+				$fileDiscFolder = checkFileExist($accessToken, "name='".$folderType."' and '".$ikase_fileDiscFolderId."' in parents");
+				$fileDiscFolderId = $fileDiscFolder['files'][0]['id'];
+				
+				if(isset($fileDiscFolderId) && !empty($fileDiscFolderId)){
+					$ikase_fileDiscFolderId = $fileDiscFolderId;
+				}else{
+					$qParam = "{'name':'".$folderType."','mimeType':'application/vnd.google-apps.folder','parents':['".$ikase_fileDiscFolderId."']}\r\n";
+					$createkaseFolder = createDriveFolder($accessToken, $qParam);
+					$ikase_fileDiscFolderId = $createkaseFolder['id'];
+				}
+
+				$fileKaseFolder = checkFileExist($accessToken, "name='".$folderType."' and '".$fileKaseFolderId."' in parents");
+				$fileKaseFolderId = $fileKaseFolder['files'][0]['id'];
+
+				$caseFileNm = str_replace("D:/uploads/" . $_SESSION["user_customer_id"] . "/" . $case_id . "/letters/", "", $caseFileNm);
+				$caseFileNm = $caseFileNm.'.docx';
+			}
+			
+			$checkFileExistF = checkFileExist($accessToken, "name ='".$caseFileNm."' and '".$fileKaseFolderId."' in parents");
+			$ikaseFileId = $checkFileExistF['files'][0]['id'];
+			
+			moveFolder($accessToken, $ikaseFileId, $ikase_fileDiscFolderId);
+			
+			$checkEmptyFolder = checkFileExist($accessToken, "'".$fileKaseFolderId."' in parents");
+			$emptyFolderId = $checkEmptyFolder['files'][0]['id'];
+			
+			if($emptyFolderId == ''){
+				deleteFileGDrive($accessToken, $fileKaseFolderId);
+			}
+			
+			if (isset($_POST["remove_item"])) {
+				if ($remove_item=="letter") {
+					$letter_folder = UPLOADS_PATH . $_SESSION["user_customer_id"] . "\\templates\\";
+					
+					$document_path = $letter_folder . $ikaseFileId;
+					unlink($document_path);
+				}
+			}
+		} catch(PDOException $e) {
+			$error = array("error"=> array("text"=>$e->getMessage()));
+				echo json_encode($error);
+		}
+	}
+	//echo json_encode(array("success"=>"All Documents Marked as Deleted - ".$kaseCount." - ".$caseFileNm." - ".$ikaseFileId." -- ".$ikase_fileDiscFolderId." -- ".$fileKaseFolderId));
+	echo json_encode(array("success"=>"All Documents Marked as Deleted"));
+}
 //Google Drive Implementation 2021-09-30 12:30 PM
 
 function moveFolder($accessToken, $ikaseFileId, $ikase_fileKaseFolderId){
@@ -2598,10 +3429,20 @@ function addUnassigned() {
 	$attribute = "assigned";
 	$last_update_user = $_SESSION['user_id'];
 	$last_updated_date = date("Y-m-d H:i:s");
-	$document_id = passed_var("document_id", "post"); 
+	//$document_id = passed_var("document_id", "post"); 
 	$document_uuid = "";
-	
+	//print_r($_REQUEST);die;
+	$document_name = passed_var("document_name", "post");
+	$type = passed_var("type", "post");
+	$document_id = passed_var("document_id", "post");
+	$category = passed_var("document_extension", "post");
+		
 	$source = passed_var("source", "post");
+	$subcategory = passed_var("description", "post");
+	if ($subcategory=="undefined") {
+		$subcategory = "-1";
+	}
+	//$description_html = passed_var("description_html", "post");
 	$received_date = passed_var("received_date", "post");
 	if ($received_date!="") {
 		$received_date = date("Y-m-d H:i:s", strtotime($received_date));
@@ -2994,8 +3835,8 @@ function processFTP() {
 					if (is_object($kase)) {					
 						//die(print_r($kase));
 						//look for document
-						//'../uploads/1033/3062/letters/10111 notice rep with claimform_3062_0'
-						$document_filename = '../uploads/' . $customer_id . '/' . $case_id . '/letters/' . str_replace(".docx", "", $original_upload);
+						//'D:/uploads/1033/3062/letters/10111 notice rep with claimform_3062_0'
+						$document_filename = 'D:/uploads/' . $customer_id . '/' . $case_id . '/letters/' . str_replace(".docx", "", $original_upload);
 						//see if the file exists
 						$customer_dir = UPLOADS_PATH . $customer_id . DC . $case_id . "\\letters";
 						$upload_path = $customer_dir . DC . $original_upload;
@@ -3165,7 +4006,7 @@ function trackDocument($operation, $document_id = "", $document_uuid = "", $blnR
 			$destination = $arrDestination[count($arrDestination) - 1];
 			
 			//now rebuild
-			$prefix = "../uploads/" . $_SESSION["user_customer_id"];
+			$prefix = "D:/uploads/" . $_SESSION["user_customer_id"];
 			if ($case_id!="") {
 				$prefix .= "/" . $case_id;
 			}
@@ -3408,7 +4249,7 @@ function referVocation() {
 				$plain_params = json_encode(array("activity_id"=>$activity_id, "customer_id"=>$customer_id));
 				$params = base64_encode($plain_params);
 				*/
-				$path = "../uploads/" . $customer_id . "/" . $case_id . "/refervocational/" . $targetFile;
+				$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/refervocational/" . $targetFile;
 				$key = md5(microtime());
 				$sql = "INSERT INTO ikase.cse_downloads (`downloadkey`, `sent_by`, `injury_id`, `file`, `expires`, `customer_id`) 
 				VALUES ('" . $key . "', '" . $_SESSION['user_plain_id'] . "', '" . $injury_id . "', '" . $path . "', '" . date("Y-m-d H:i:s", (time()+(60*60*24*7))) ."', '" . $customer_id ."')";
@@ -3454,7 +4295,7 @@ function docuFileupload(){
 	$api_key = getCustomerDocucentsAPIKey($_POST['customer_id']);
 	if(!file_exists($file)){
 		$vendor = ["status"=>"404","message"=>"File not found!!"];
-		echo json_encode($vendor);die;
+		echo json_encode($vendor);//die;
 	}
 	if($api_key){
 	$obj = new docucents("cmd",$api_key);

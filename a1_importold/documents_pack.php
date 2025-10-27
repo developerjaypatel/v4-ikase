@@ -276,7 +276,7 @@ function getDocuments($case_id, $attribute = "") {
 					
 					$doc_filename = implode(".", $arrFile);
 					
-					$preview_path = "uploads/" . $customer_id . "/" . str_replace("medium", "thumbnail", $doc->thumbnail_folder) . "/" . $doc_filename;
+					$preview_path = "D:/uploads/" . $customer_id . "/" . str_replace("medium", "thumbnail", $doc->thumbnail_folder) . "/" . $doc_filename;
 				} else {
 					$preview_path = findDocumentThumbnail($customer_id, $case_id, $doc);
 				}
@@ -1406,11 +1406,11 @@ function propagateTemplate() {
 	foreach($customers as $cus) {
 		$destination_cus_id = $cus->customer_id;
 		//make sure the file does not exist
-		$destination_filename = $_SERVER['DOCUMENT_ROOT'] . "\\uploads\\" . $destination_cus_id . "\\templates\\" . $document_filename;
+		$destination_filename = "D:\\uploads\\" . $destination_cus_id . "\\templates\\" . $document_filename;
 		if (file_exists($destination_filename)) {
 			continue;
 		}
-		$destdir = $_SERVER['DOCUMENT_ROOT'] . "\\uploads\\" . $destination_cus_id;
+		$destdir = "D:\\uploads\\" . $destination_cus_id;
 		if (!file_exists($destdir)) {
 			mkdir($destdir, 0777);
 		}
@@ -1469,7 +1469,7 @@ function propagateTemplate() {
 			//make sure the folder exists
 			
 			//now copy the file
-			copy($_SERVER['DOCUMENT_ROOT'] . "\\uploads\\1033\\templates\\" . $document_filename, $destination_filename);
+			copy("D:\\uploads\\1033\\templates\\" . $document_filename, $destination_filename);
 			 	
 		} catch(PDOException $e) {
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
@@ -1661,7 +1661,7 @@ function deleteDocument() {
 	
 	foreach($arrIDs as $id) {
 		$document = getDocumentInfo($id);
-		//$document_path = "uploads/1033/templates/1000%20General%20Letter.docx";
+		//$document_path = "D:/uploads/1033/templates/1000%20General%20Letter.docx";
 		
 		$sql = "UPDATE cse_document 
 				SET deleted = 'Y'
@@ -1680,7 +1680,7 @@ function deleteDocument() {
 			if (isset($_POST["remove_item"])) {
 				$remove_item = passed_var("remove_item", "post");
 				if ($remove_item=="letter") {
-					$letter_folder = $_SERVER["DOCUMENT_ROOT"] . "\\uploads\\" . $_SESSION["user_customer_id"] . "\\templates\\";
+					$letter_folder = "D:\\uploads\\" . $_SESSION["user_customer_id"] . "\\templates\\";
 					
 					$document_path = $letter_folder . $document->document_filename;
 					//echo $document_path;
@@ -2171,11 +2171,11 @@ function addStack() {
 		$document_uuid = $document->uuid;
 		
 		//move document into case folder
-		$case_folder = $_SERVER["DOCUMENT_ROOT"] . "\\uploads\\" . $customer_id . "\\" . $case_id . "\\";
+		$case_folder = "D:\\uploads\\" . $customer_id . "\\" . $case_id . "\\";
 		if (!is_dir($case_folder)) {
 			mkdir($case_folder, 0755, true);
 		}
-		$file_folder = $_SERVER["DOCUMENT_ROOT"] . "\\uploads\\" . $customer_id . "\\imports\\";
+		$file_folder = "D:\\uploads\\" . $customer_id . "\\imports\\";
 		if ($type=="batchscan2") {
 			$file_folder = $_SERVER["DOCUMENT_ROOT"] . "\\scans\\" . $customer_id . "\\" . $document->thumbnail_folder . "\\imports\\";
 			
@@ -2291,11 +2291,11 @@ function addUnassigned() {
 		$document_uuid = $document->uuid;
 		
 		//move document into case folder
-		$case_folder = $_SERVER["DOCUMENT_ROOT"] . "\\uploads\\" . $customer_id . "\\" . $case_id . "\\";
+		$case_folder = "D:\\uploads\\" . $customer_id . "\\" . $case_id . "\\";
 		if (!is_dir($case_folder)) {
 			mkdir($case_folder, 0755, true);
 		}
-		$file_folder = $_SERVER["DOCUMENT_ROOT"] . "\\uploads\\" . $customer_id . "\\";
+		$file_folder = "D:\\uploads\\" . $customer_id . "\\";
 		
 		copy($file_folder . $document->document_filename, $case_folder . $document->document_filename);
 		//die("copied -> " . $case_folder . $document->document_filename);
@@ -2542,7 +2542,7 @@ function renameDocumentForDownload() {
 	
 	$destination = str_replace(".docx", "_" . $case_id . "_0.docx", $source);
 	
-	$upload_dir = $_SERVER["DOCUMENT_ROOT"] . "\\uploads\\" . $_SESSION["user_customer_id"] . "\\" . $case_id . "\\";
+	$upload_dir = "D:\\uploads\\" . $_SESSION["user_customer_id"] . "\\" . $case_id . "\\";
 	
 	try {
 		$sql = "UPDATE cse_document
@@ -2692,10 +2692,10 @@ function processFTP() {
 					if (is_object($kase)) {					
 						//die(print_r($kase));
 						//look for document
-						//'../uploads/1033/3062/letters/10111 notice rep with claimform_3062_0'
-						$document_filename = '../uploads/' . $customer_id . '/' . $case_id . '/letters/' . str_replace(".docx", "", $original_upload);
+						//'D:/uploads/1033/3062/letters/10111 notice rep with claimform_3062_0'
+						$document_filename = 'D:/uploads/' . $customer_id . '/' . $case_id . '/letters/' . str_replace(".docx", "", $original_upload);
 						//see if the file exists
-						$customer_dir = $_SERVER["DOCUMENT_ROOT"] . "\\uploads\\" . $customer_id . "\\" . $case_id . "\\letters";
+						$customer_dir = "D:\\uploads\\" . $customer_id . "\\" . $case_id . "\\letters";
 						$upload_path = $customer_dir . "\\" . $original_upload;
 						//die($upload_path);
 						
@@ -2703,12 +2703,12 @@ function processFTP() {
 						if (!file_exists($upload_path)) {
 							//die($upload_path . " does not exist");
 							//try a simpler path
-							$upload_path = $_SERVER["DOCUMENT_ROOT"] . "\\uploads\\" . $customer_id . "\\" . $case_id . "\\" . $original_upload;
+							$upload_path = "D:\\uploads\\" . $customer_id . "\\" . $case_id . "\\" . $original_upload;
 							
 							if (!file_exists($upload_path)) {
 								continue;
 							} else {
-								$customer_dir = $_SERVER["DOCUMENT_ROOT"] . "\\uploads\\" . $customer_id . "\\" . $case_id;
+								$customer_dir = "D:\\uploads\\" . $customer_id . "\\" . $case_id;
 								$document_filename = $original_upload;
 							}
 						} else {
@@ -2869,7 +2869,7 @@ function trackDocument($operation, $document_id = "", $document_uuid = "", $blnR
 			$destination = $arrDestination[count($arrDestination) - 1];
 			
 			//now rebuild
-			$prefix = "../uploads/" . $_SESSION["user_customer_id"];
+			$prefix = "D:/uploads/" . $_SESSION["user_customer_id"];
 			if ($case_id!="") {
 				$prefix .= "/" . $case_id;
 			}
@@ -3045,7 +3045,7 @@ function referVocation() {
 				die(json_encode(array("success"=> false, "error"=>"PDF Only")));
 			}
 			
-			$case_dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id . "\\" . $case_id . "\\";
+			$case_dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id . "\\" . $case_id . "\\";
 			if (!is_dir($case_dir)) {
 				mkdir($case_dir, 0755, true);
 			}
@@ -3115,7 +3115,7 @@ function referVocation() {
 				$plain_params = json_encode(array("activity_id"=>$activity_id, "customer_id"=>$customer_id));
 				$params = base64_encode($plain_params);
 				*/
-				$path = "../uploads/" . $customer_id . "/" . $case_id . "/refervocational/" . $targetFile;
+				$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/refervocational/" . $targetFile;
 				$key = md5(microtime());
 				$sql = "INSERT INTO ikase.cse_downloads (`downloadkey`, `sent_by`, `injury_id`, `file`, `expires`, `customer_id`) 
 				VALUES ('" . $key . "', '" . $_SESSION['user_plain_id'] . "', '" . $injury_id . "', '" . $path . "', '" . date("Y-m-d H:i:s", (time()+(60*60*24*7))) ."', '" . $customer_id ."')";

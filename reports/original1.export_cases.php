@@ -52,7 +52,7 @@ if (!file_exists($uploadDir)) {
 	mkdir($uploadDir, 0755, true);
 }
 
-$fp = fopen('../uploads/' . $customer_id . '/exports/cases_' . date('mdy') . '.csv', 'w');
+$fp = fopen('D:/uploads/' . $customer_id . '/exports/cases_' . date('mdy') . '.csv', 'w');
 
 $blnHeader = false;
 $arrOutputColumns = array("case_id", "case_number", "file_number", "case_type");

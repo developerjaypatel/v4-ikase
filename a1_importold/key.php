@@ -1,5 +1,5 @@
 <?php
-$filename = "C:\\inetpub\\wwwroot\\iKase.org\\api\\chain.config";
+$filename = "C:\\inetpub\\wwwroot\\ikase.org\\api\\chain.config";
 	
 	$handle = fopen($filename, "r");
 	$contents = fread($handle, filesize($filename));

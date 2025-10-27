@@ -1,6 +1,6 @@
 <?php
 if($_SERVER["HTTPS"]=="off") {
-	header("location:https://v2.ikase.org/newpassword.php");
+	header("location:https://v4.ikase.org/newpassword.php");
 }
 
 require_once('shared/legacy_session.php');

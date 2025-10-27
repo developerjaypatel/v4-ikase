@@ -44,7 +44,7 @@ $cases = runLastQuery();
 
 $list = array ();
 $customer_id = $_SESSION['user_customer_id'] ;
-$uploadDir = $_SERVER['DOCUMENT_ROOT'] . "\\uploads\\" . $customer_id . "\\exports";
+$uploadDir = "D:\\uploads\\" . $customer_id . "\\exports";
 //die($uploadDir);
 if (!file_exists($uploadDir)) {
 	mkdir($uploadDir, 0755, true);
@@ -85,7 +85,7 @@ foreach ($cases_clean as $row) {
 }
 
 //output file
-$filename = '../uploads/' . $customer_id . '/exports/cases_' . date('mdy') . '.csv';
+$filename = 'D:/uploads/' . $customer_id . '/exports/cases_' . date('mdy') . '.csv';
 $fp = fopen($filename, 'w');
 
 foreach ($list as $ferow) {

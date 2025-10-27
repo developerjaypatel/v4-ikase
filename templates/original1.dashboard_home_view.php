@@ -17,7 +17,7 @@ $blnIPad = isPad();
     </div>
     <hr />
     <div style="width:100%; border-bottom:1px solid #CCC; padding-bottom:5px; padding-top:5px">
-	    Batchscan functionality is ready. Please go to Documents|Batchscan.<br />Please click here for the <a href="uploads/ikase_separator.pdf" target="_blank" title="Click here to print the Separator Sheet" class="white_text" style="text-decoration:underline"><span style="font-weight:bold; color:yellow">iKase Separator Sheet</span></a>
+	    Batchscan functionality is ready. Please go to Documents|Batchscan.<br />Please click here for the <a href="D:/uploads/ikase_separator.pdf" target="_blank" title="Click here to print the Separator Sheet" class="white_text" style="text-decoration:underline"><span style="font-weight:bold; color:yellow">iKase Separator Sheet</span></a>
     </div>
     <div style="width:100%;  border-bottom:1px solid #CCC; padding-bottom:5px; padding-top:5px">
     As of 7/21/2016, iKase provides <span style="font-weight:bold; color:yellow">Personal Injury functionality</span>.  

@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors',1);
+
 $app->group('', function (\Slim\Routing\RouteCollectorProxy $app) {
 	$app->post('/envelope/create', 'createEnvelope');
 	$app->post('/envelope/html', 'htmlEnvelope');
@@ -210,7 +213,7 @@ function createEnvelope() {
 	
 	$form_name = "envelope";
 	//output
-	$destination_folder = "../uploads/" . $_SESSION['user_customer_id'] . "/envelopes/";
+	$destination_folder = "D:/uploads/" . $_SESSION['user_customer_id'] . "/envelopes/";
 	if (!is_dir($destination_folder)) {
 		mkdir($destination_folder, 0755, true);
 	}
@@ -324,7 +327,7 @@ function htmlEnvelope() {
 	
 	$form_name = "envelope";
 	//output
-	$destination_folder = "../uploads/" . $_SESSION['user_customer_id'] . "/envelopes/";
+	$destination_folder = "D:/uploads/" . $_SESSION['user_customer_id'] . "/envelopes/";
 	if (!is_dir($destination_folder)) {
 		mkdir($destination_folder, 0755, true);
 	}
@@ -744,6 +747,7 @@ function generatePDF($form_name = "", $separator_title = "") {
 	
 	//fdf
 	$somecontent = file_get_contents("../eams_forms/" . $form_name . ".fdf");
+	//echo $somecontent . " - contents";
 	$arrReplace = array();
 	
 	//break up ssn, ein
@@ -1350,7 +1354,7 @@ function generatePDF($form_name = "", $separator_title = "") {
 	pdfReplacement("DESTINATION", "http://" . $host . "/eams_forms/", $somecontent, $arrReplace);
 	
 	//output
-	$destination_folder = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/eams_forms/";
+	$destination_folder = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/eams_forms/";
 	if (!is_dir($destination_folder)) {
 		mkdir($destination_folder, 0755, true);
 	}
@@ -1370,7 +1374,6 @@ function generatePDF($form_name = "", $separator_title = "") {
 		$file_counter++;
 	}
 	pdfReplacement("DOCUMENTPATH", $output_store_name, $somecontent, $arrReplace);
-	
 	if (file_exists($filename)) {
 		unlink($filename);
 	}
@@ -1385,13 +1388,15 @@ function generatePDF($form_name = "", $separator_title = "") {
 	   exit;
 	}
 	$filename = UPLOADS_PATH . $_SESSION['user_customer_id'] . DC . $case_id . "\\eams_forms\\" . $form_file_name . ".fdf";
+	//echo "filename".$filename."<br/>";
 	$source_dir = $_SERVER['DOCUMENT_ROOT'] . '\\eams_forms\\';
-		
 	if ($nopublish=="y") {
 		if ($case_id==1) {
 			//die("pdftk " . $source_dir . $form_name . ".pdf fill_form " . $filename. " output " . $pdftk_output);
 		}
-		exec("pdftk \"" . $source_dir . $form_name . ".pdf\" fill_form \"" . $filename. "\" output \"" . $pdftk_output . "\"");
+		
+		exec("pdftk \"" . $source_dir . $form_name . ".pdf\" fill_form \"" . $filename. "\" output \"" . $pdftk_output . "\"");//die;
+		
 		if ($_SERVER['REMOTE_ADDR']=='47.153.51.181') {
 			//echo "nopub:\r\n\r\n";
 			//echo "pdftk " . $source_dir . $form_name . ".pdf fill_form " . $filename. " output " . $pdftk_output . "\r\n\r\n";
@@ -1420,6 +1425,7 @@ function generatePDF($form_name = "", $separator_title = "") {
 	if ($form_name!="app_cover" && !$blnInternalRequest) {
 		//create thumbnail
 		$upload_dir = UPLOADS_PATH . $_SESSION['user_customer_id'];
+		//echo $upload_dir;die;
 		if (!is_dir($upload_dir)) {
 			mkdir($upload_dir);
 		}
@@ -1429,15 +1435,16 @@ function generatePDF($form_name = "", $separator_title = "") {
 		}
 		
 		$thumbnail_path = $upload_dir . "\\thumbnail\\" . str_replace(".pdf", ".jpg", $output_store_name);
-		$file_path = $upload_dir . "\\eams_forms\\" . $output_store_name;			
+		$file_path = $upload_dir . "\\eams_forms\\" . $output_store_name;//die;
+				
 		if (!is_dir($upload_dir . "\\thumbnail")) {
 			mkdir($upload_dir . "\\thumbnail");
 		}
-		
+		// echo $file_path;die;
 		//create a thumbnail
 		$image_magick = new imagick(); 
 		//die("magick:" . $thumbnail_path );
-	
+		//echo $file_path;die;
 		$image_magick->setbackgroundcolor('white');
 		$image_magick->readImage($file_path . "[0]");
 		
@@ -1576,7 +1583,7 @@ function generatePDF($form_name = "", $separator_title = "") {
 		//die(print_r($documents));
 		$arrFiles = array(UPLOADS_PATH . $_SESSION['user_customer_id'] . DC . $case_id . "\\eams_forms\\" . $output_store_name);
 		$separator_path = UPLOADS_PATH . $_SESSION['user_customer_id'] . DC . $case_id . "\\eams_forms\\";
-		$separator_find = "../uploads/" . $_SESSION["user_customer_id"] . "/" . $case_id . "/eams_forms/";
+		$separator_find = "D:/uploads/" . $_SESSION["user_customer_id"] . "/" . $case_id . "/eams_forms/";
 		
 		$doc_path = UPLOADS_PATH . $_SESSION['user_customer_id'] . DC . $case_id . "\\jetfiler\\";
 		$doc_path_2 = UPLOADS_PATH . $_SESSION['user_customer_id'] . DC . $case_id . DC;
@@ -1654,7 +1661,7 @@ function generatePDF($form_name = "", $separator_title = "") {
 			//sleep(5);
 		}
 		//, "pdftk"=>$pdftk
-		$destination_folder = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id  . "/eams_forms/";
+		$destination_folder = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id  . "/eams_forms/";//die;
 		echo json_encode(array("file"=>$destination_folder . $output_store_name, "activity_id"=>""));
 		
 		try {

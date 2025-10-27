@@ -61,9 +61,9 @@ if (count($invoices)==0) {
 		$send_mail_link = "Sent on " . date("m/d/y", strtotime($notification_date));
 		
 		
-		$row = "<tr><td align='left' valign='top'>" . $invoice->cus_name . "</td><td align='left' valign='top'><a href='https://v2.ikase.org/manage/customers/invoice.php?cus_id=" . $invoice->customer_id . "&invoice_id=" . $invoice->invoice_id . "'>" . $invoice->invoice_number . "</a></td><td align='left' valign='top'>" . date("m/d/y", strtotime($invoice->invoice_date)) . "</td><td align='left' valign='top' id='feedback_" . $invoice->invoice_id . "'>" . $send_mail_link . "</td><td align='right' valign='top'>$" . number_format($invoice->total, 2) . "</td><td align='right' valign='top'>$" . number_format($invoice->paids, 2) . "</td><td align='right' valign='top' " . $bold . ">$" . number_format(($balance), 2) . "</td></tr>";
+		$row = "<tr><td align='left' valign='top'>" . $invoice->cus_name . "</td><td align='left' valign='top'><a href='https://v4.ikase.org/manage/customers/invoice.php?cus_id=" . $invoice->customer_id . "&invoice_id=" . $invoice->invoice_id . "'>" . $invoice->invoice_number . "</a></td><td align='left' valign='top'>" . date("m/d/y", strtotime($invoice->invoice_date)) . "</td><td align='left' valign='top' id='feedback_" . $invoice->invoice_id . "'>" . $send_mail_link . "</td><td align='right' valign='top'>$" . number_format($invoice->total, 2) . "</td><td align='right' valign='top'>$" . number_format($invoice->paids, 2) . "</td><td align='right' valign='top' " . $bold . ">$" . number_format(($balance), 2) . "</td></tr>";
 		
-		$row = $invoice->cus_name . "<br><a href='https://v2.ikase.org/manage/customers/invoice.php?cus_id=" . $invoice->customer_id . "&invoice_id=" . $invoice->invoice_id . "'>" . $invoice->invoice_number . "</a><br>
+		$row = $invoice->cus_name . "<br><a href='https://v4.ikase.org/manage/customers/invoice.php?cus_id=" . $invoice->customer_id . "&invoice_id=" . $invoice->invoice_id . "'>" . $invoice->invoice_number . "</a><br>
 		$" . number_format(($balance), 2);
 		
 		$totals += $invoice->total;

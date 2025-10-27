@@ -23,7 +23,7 @@ try {
 	INNER JOIN `" . $GLOBALS['GEN_DB_NAME'] . "`.`caseact`
 	ON mc.cpointer = `caseact`.`CASENO`
 	WHERE 1
-    AND caseact.EVENT IS NOT NULL
+    AND caseact.EVENT_FLAG=1
 	AND mc.case_uuid NOT IN (SELECT DISTINCT case_uuid FROM `ikase_" . $data_source . "`.`cse_case_notes`)
 	LIMIT 0, 1";
 	echo $sql . "\r\n\r\n";
@@ -52,7 +52,7 @@ try {
 		#CONCAT(`CASENO`, '_', `ACTNO`, '_', @curRow := @curRow + 1) AS `notes_uuid`, 
 		CONCAT(`CASENO`, '_', `ACTNO`) AS `notes_uuid`
 		FROM `" . $GLOBALS['GEN_DB_NAME'] . "`.caseact
-        WHERE `CASENO` = '" . $case->cpointer . "' AND caseact.EVENT IS NOT NULL";
+        WHERE `CASENO` = '" . $case->cpointer . "' AND caseact.EVENT_FLAG=1";
         $select_res = DB::select($select_query);
 
         foreach($select_res as $key1=>$res){

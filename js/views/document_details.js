@@ -87,18 +87,18 @@ window.document_listing_view = Backbone.View.extend({
 				kase_document.download_link = "<a id='document_" + kase_document.document_id + "' title='Click to download document to your computer' class='white_text download_document' target='_blank' style='cursor:pointer'><i class='glyphicon glyphicon-save' style='color:#FFFFFF;'>&nbsp;</i></a>";
 			}
 			
-			if (kase_document.document_filename.indexOf("uploads/") > -1) {
-				kase_document.document_filename = kase_document.document_filename.replaceAll("uploads/" + customer_id + "/" + kase_document.case_id + "/", "");
+			if (kase_document.document_filename.indexOf("D:/uploads/") > -1) {
+				kase_document.document_filename = kase_document.document_filename.replaceAll("D:/uploads/" + customer_id + "/" + kase_document.case_id + "/", "");
 				kase_document.document_filename = kase_document.document_filename.replace("../", "");
 			}
 			
 			//obsolete below
-			var href = "uploads/" + customer_id + "/" + kase_document.case_id + "/" + kase_document.document_filename.replace("#", "%23");
+			var href = "D:/uploads/" + customer_id + "/" + kase_document.case_id + "/" + kase_document.document_filename.replace("#", "%23");
 			if (kase_document.type == "eams_form") {
-				href = "uploads/" + customer_id + "/" + kase_document.case_id + "/eams_forms/" + kase_document.document_filename.replace("#", "%23");
+				href = "D:/uploads/" + customer_id + "/" + kase_document.case_id + "/eams_forms/" + kase_document.document_filename.replace("#", "%23");
 			}
 			if (!isNaN(kase_document.thumbnail_folder) && kase_document.document_extension!="docx" && kase_document.thumbnail_folder!="") {
-				href = "uploads/" + customer_id + "/imports/" + kase_document.document_filename;
+				href = "D:/uploads/" + customer_id + "/imports/" + kase_document.document_filename;
 			}
 			if (kase_document.type == "abacus") {
 				href = "https://www.ikase.xyz/ikase/abacus/" + customer_data_source + "/" + kase_document.thumbnail_folder + "/" + kase_document.document_filename;
@@ -108,12 +108,12 @@ window.document_listing_view = Backbone.View.extend({
 			}
 			//eams pdfs			
 			if (kase_document.type == "jetfiler") {
-				href = "uploads/" + customer_id + "/" + kase_document.case_id + "/jetfiler/" + kase_document.document_filename;	
+				href = "D:/uploads/" + customer_id + "/" + kase_document.case_id + "/jetfiler/" + kase_document.document_filename;	
 			}
 			kase_document.href = href;
 			//
 			if (kase_document.type=="batchscan3") {
-				href = "uploads/" + customer_id + "/imports/" + kase_document.thumbnail_folder + "/" + kase_document.document_filename;
+				href = "D:/uploads/" + customer_id + "/imports/" + kase_document.thumbnail_folder + "/" + kase_document.document_filename;
 			}
 			if (kase_document.source == "cloud") {
 				kase_document.preview_href = "javascript:showCloudArchive('" + kase_document.document_filename + "')";
@@ -163,13 +163,14 @@ window.document_listing_view = Backbone.View.extend({
 				} else {
 					/*
 					if (kase_document.thumbnail_folder!="") {
-						kase_document.preview_path = "uploads/" + customer_id + "/" + kase_document.thumbnail_folder.replace("medium", "thumbnail") + "/" +  kase_document.preview_path;
+						kase_document.preview_path = "D:/uploads/" + customer_id + "/" + kase_document.thumbnail_folder.replace("medium", "thumbnail") + "/" +  kase_document.preview_path;
 					}
 					*/
 					kase_document.preview = kase_document.preview_path;
 				}
 			} else {
-				kase_document.preview = "img/archive_preview.gif";
+				//kase_document.preview = "img/archive_preview.gif";
+				kase_document.preview = "merge_documents/default_file_placeholder.jpg";
 			}
 			
 			var blnSound = (kase_document.document_filename.indexOf(".wma") > -1 || kase_document.document_filename.indexOf(".mp3") > -1);
@@ -181,10 +182,49 @@ window.document_listing_view = Backbone.View.extend({
 				if (kase_document.preview.indexOf("/thumbnail/") > -1) {
 					kase_document.thumbnail_folder = kase_document.case_id + "/medium";
 				}
-				if (kase_document.source != "cloud") {
-					kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + kase_document.preview + '\')" onmouseout="hidePreview()" />';
-				} else {
-					kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" />';
+				
+				if(kase_document.preview.includes("D:/uploads/"))
+				{
+					if(kase_document.preview == "merge_documents/default_file_placeholder.jpg")
+					{
+						kase_document.preview_img = "merge_documents/default_file_placeholder_main.jpg"
+					}else{
+						kase_document.preview_img = kase_document.preview;
+					}
+					if (kase_document.source != "cloud") {
+						
+						// kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + kase_document.preview + '\')" onmouseout="hidePreview()" />';
+						kase_document.preview = '<img src="https://v4.ikase.org/document_read.php?file=' + kase_document.preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + kase_document.preview_img + '\')" onmouseout="hidePreview()" />';
+					} else {
+						// kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" />';
+						kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" />';
+					}
+				}else if(kase_document.preview.includes("pdfimage/"))
+				{
+					if(kase_document.preview == "merge_documents/default_file_placeholder.jpg")
+					{
+						kase_document.preview_img = "merge_documents/default_file_placeholder_main.jpg"
+					}else{
+						kase_document.preview_img = kase_document.preview;
+					}
+					if (kase_document.source != "cloud") {
+						
+						// kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + kase_document.preview + '\')" onmouseout="hidePreview()" />';
+						kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + kase_document.preview_img + '\')" onmouseout="hidePreview()" />';
+					} else {
+						// kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" />';
+						kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" />';
+					}
+				}else{					
+
+					if (kase_document.source != "cloud") {
+						
+						// kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + kase_document.preview + '\')" onmouseout="hidePreview()" />';
+						kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + kase_document.preview + '\')" onmouseout="hidePreview()" />';
+					} else {
+						// kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" />';
+						kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" />';
+					}
 				}
 				/*
 				if (customer_id==1121) {
@@ -482,7 +522,7 @@ window.document_listing_view = Backbone.View.extend({
 		$('#kase_loading').html("");
 		$('#ikase_loading').html("");
 		$("#document_list_content").show();
-		console.log(user_data_path);
+		//console.log(user_data_path);
 		if (user_data_path == "A1" || user_data_path == "perfect" || user_data_path == "tritek" || user_data_path == "ecand") {
 			//let's get the archive
 			if (user_data_path == "A1" || user_data_path == "perfect" || user_data_path == "tritek") {
@@ -1036,17 +1076,17 @@ window.document_listing_view_mobile = Backbone.View.extend({
 					kase_document.document_filename += ".docx";
 				}
 			}
-			if (kase_document.document_filename.indexOf("uploads/") > -1) {
-				kase_document.document_filename = kase_document.document_filename.replaceAll("uploads/" + customer_id + "/" + kase_document.case_id + "/", "");
+			if (kase_document.document_filename.indexOf("D:/uploads/") > -1) {
+				kase_document.document_filename = kase_document.document_filename.replaceAll("D:/uploads/" + customer_id + "/" + kase_document.case_id + "/", "");
 				kase_document.document_filename = kase_document.document_filename.replace("../", "");
 			}
 			
-			var href = "uploads/" + customer_id + "/" + kase_document.case_id + "/" + kase_document.document_filename.replace("#", "%23");
+			var href = "D:/uploads/" + customer_id + "/" + kase_document.case_id + "/" + kase_document.document_filename.replace("#", "%23");
 			if (kase_document.type == "eams_form") {
-				href = "uploads/" + customer_id + "/" + kase_document.case_id + "/eams_forms/" + kase_document.document_filename.replace("#", "%23");
+				href = "D:/uploads/" + customer_id + "/" + kase_document.case_id + "/eams_forms/" + kase_document.document_filename.replace("#", "%23");
 			}
 			if (!isNaN(kase_document.thumbnail_folder) && kase_document.document_extension!="docx") {
-				href = "uploads/" + customer_id + "/imports/" + kase_document.document_filename;
+				href = "D:/uploads/" + customer_id + "/imports/" + kase_document.document_filename;
 			}
 			kase_document.href = href;
 			
@@ -1076,7 +1116,8 @@ window.document_listing_view_mobile = Backbone.View.extend({
 			}
 			kase_document.preview = documentThumbnail(kase_document.document_filename, kase_document.customer_id, kase_document.thumbnail_folder, kase_document.case_id, the_type, kase_document.document_date, kase_document.parent_document_uuid);
 			if (kase_document.preview!="") {
-				kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" onmouseover="documentPreview(event, \'' + kase_document.document_filename + '\', ' + kase_document.customer_id + ', \'' + kase_document.thumbnail_folder + '\', \'' + kase_document.source + '\', \'' + kase_document.document_date + '\', \'' + kase_document.parent_document_uuid + '\')" onmouseout="hidePreview()" />';
+				// kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" onmouseover="documentPreview(event, \'' + kase_document.document_filename + '\', ' + kase_document.customer_id + ', \'' + kase_document.thumbnail_folder + '\', \'' + kase_document.source + '\', \'' + kase_document.document_date + '\', \'' + kase_document.parent_document_uuid + '\')" onmouseout="hidePreview()" />';
+				kase_document.preview = '<img src="https://v4.ikase.org/document_read.php?file=' + kase_document.preview + '" width="58" height="75" onmouseover="documentPreview(event, \'' + kase_document.document_filename + '\', ' + kase_document.customer_id + ', \'' + kase_document.thumbnail_folder + '\', \'' + kase_document.source + '\', \'' + kase_document.document_date + '\', \'' + kase_document.parent_document_uuid + '\')" onmouseout="hidePreview()" />';
 			} 
 			
 		});

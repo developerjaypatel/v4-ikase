@@ -1564,11 +1564,11 @@ function sendDOR() {
 	//die(print_r($documents));
 	foreach($documents as $index=>$document) {
 		$filepath = $document->filepath;
-		$filepath = str_replace("../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
+		$filepath = str_replace("D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
 		$filepath = str_replace("../" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
 		
-		//$path = "uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
-		$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $filepath;
+		//$path = "D:/uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
+		$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $filepath;
 		
 		$data = file_get_contents($path);
 		$base64 = base64_encode($data);
@@ -1702,15 +1702,15 @@ function sendDORE() {
 	$arrDocuments = array();
 	//die(print_r($documents));
 	foreach($documents as $index=>$document) {
-		//$path = "uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
-		//$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $document->filepath;
+		//$path = "D:/uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
+		//$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $document->filepath;
 		
 		$filepath = $document->filepath;
-		$filepath = str_replace("../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
+		$filepath = str_replace("D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
 		$filepath = str_replace("../" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
 		
-		//$path = "uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
-		$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $filepath;
+		//$path = "D:/uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
+		$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $filepath;
 		
 		$data = file_get_contents($path);
 		$base64 = base64_encode($data);
@@ -1859,14 +1859,14 @@ function sendLien() {
 	$arrDocuments = array();
 	//die(print_r($documents));
 	foreach($documents as $index=>$document) {
-		//$path = "uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
-		//$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $document->filepath;
+		//$path = "D:/uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
+		//$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $document->filepath;
 		$filepath = $document->filepath;
-		$filepath = str_replace("../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
+		$filepath = str_replace("D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
 		$filepath = str_replace("../" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
 		
-		//$path = "uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
-		$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $filepath;
+		//$path = "D:/uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
+		$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $filepath;
 		
 		$data = file_get_contents($path);
 		$base64 = base64_encode($data);
@@ -1969,13 +1969,13 @@ function sendUnstruc() {
 		//die(print_r($unstruc->data));
 		if ($unstruc_number == ($unstruc->data->unstruc_number)) {
 			//found it				
-			//$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $unstruc->data->filepath;
+			//$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $unstruc->data->filepath;
 			$filepath = $unstruc->data->filepath;
-			$filepath = str_replace("../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
+			$filepath = str_replace("D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
 			$filepath = str_replace("../" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
 			
-			//$path = "uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
-			$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $filepath;
+			//$path = "D:/uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
+			$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $filepath;
 			
 			//die($path);
 			$data = file_get_contents($path);
@@ -2097,18 +2097,18 @@ function sendAPP() {
 	//
 	
 	foreach($documents as $index=>$document) {
-		//$path = "uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
-		//$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $document->filepath;
+		//$path = "D:/uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
+		//$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $document->filepath;
 		$name = $document->name;
 		$filepath = $document->filepath;
-		$filepath = str_replace("../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
+		$filepath = str_replace("D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
 		$filepath = str_replace("../" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
 		
-		//$path = "uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
-		$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $filepath;
+		//$path = "D:/uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
+		$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $filepath;
 		
 		if (!file_exists($path)) {
-			$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\" . $document->filepath;
+			$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\" . $document->filepath;
 		}
 		/*
 		if (!file_exists($path)) {
@@ -2277,17 +2277,17 @@ function resendAPP() {
 	$arrDocuments = array();
 	//die(print_r($documents));
 	foreach($documents as $index=>$document) {
-		//$path = "uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
-		//$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $document->filepath;
+		//$path = "D:/uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
+		//$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $document->filepath;
 		$filepath = $document->filepath;
-		$filepath = str_replace("../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
+		$filepath = str_replace("D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
 		$filepath = str_replace("../" . $cus_id . "/" . $case_id . "/jetfiler/", "", $filepath);
 		
-		//$path = "uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
-		$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $filepath;
+		//$path = "D:/uploads/" . $cus_id . "/jetfiler/" . $case_id . "/" . $document->filepath;
+		$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $filepath;
 		
 		if (!file_exists($path)) {
-			$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\" . $document->filepath;
+			$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $cus_id . "\\" . $case_id . "\\" . $document->filepath;
 		}
 		$data = file_get_contents($path);
 		$base64 = base64_encode($data);
@@ -2528,7 +2528,7 @@ function saveUnstructured() {
 		if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir)) {
 			mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir, 0755, true);
 		}
-		//$path = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/jetfiler/";
+		//$path = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/jetfiler/";
 		$path = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
 		
 		$acceptable_file_types = "application/pdf";
@@ -2570,7 +2570,7 @@ function saveUnstructured() {
 		} else {
 			//echo "could not upload ".$upload_file_name . "<br />";
 			if (!is_numeric($stored_file_name)) {
-				$arrUploads[] = str_replace("../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $stored_file_name);
+				$arrUploads[] = str_replace("D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $stored_file_name);
 				$arrNames[] = $upload_file_name;
 			} else {
 				$arrKaseNames[] = $upload_file_name;
@@ -3071,7 +3071,7 @@ function requestPDF() {
 		//die($return);
 		$return = json_decode($return);
 		$filename = $return->filename;
-		$filename = str_replace("uploads/", "", $filename);
+		$filename = str_replace("D:/uploads/", "", $filename);
 
 		//$arrFiles[] = array("document"=>$stack, "filename="=>$filename);
 		$arrFiles[] = $filename;
@@ -3082,7 +3082,7 @@ function requestPDF() {
 			$return = post_curl($url, $_POST);
 			$return = json_decode($return);
 			$filename = $return->filename;
-			$filename = str_replace("uploads/", "", $filename);
+			$filename = str_replace("D:/uploads/", "", $filename);
 			//echo $return . "\r\n";
 			//$arrFiles[] = array("document"=>"separator", "filename="=>$filename);
 			$arrFiles[] = $filename;
@@ -3217,7 +3217,7 @@ function acceptPDF() {
 	//need to store in session for add doc
 	$_SESSION['user_id'] = $user_id;
 	
-	$destination_folder = "../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/";
+	$destination_folder = "D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/";
 	if (!is_dir($destination_folder)) {
 		mkdir($destination_folder, 0755, true);
 	}

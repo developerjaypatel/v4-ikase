@@ -118,8 +118,9 @@ try {
 		if(strpos($case_number, 'ADJ') !== false) {
 			$casetype = 'WCAB';
 		} else {
-			if($case->CASETYPE === "W") {
+			if($case->CASETYPE === "W" || $case->CASETYPE === "WORKERS' C") {
 				$casetype = 'WCAB';
+				$case->CASETYPE = $casetype;
 			} else {
 				$casetype = $case->CASETYPE;
 			}
@@ -659,7 +660,7 @@ VALUES ('" . $case_uuid . "', '" . $case->CASENO . "', '" . $case_number . "', '
 			}
 			for($loop_cnt = 0; $loop_cnt < count($arrPOB); $loop_cnt++) {
 				$bodyparts_uuid = $arrBodyParts[$arrPOB[$loop_cnt]];
-				$sql = "INSERT INTO cse_injury_bodyparts (`injury_bodyparts_uuid`, `injury_uuid`, `bodyparts_uuid`, `attribute`, `last_updated_date`, `last_update_user`, `customer_id`)
+				$sql = "INSERT INTO `ikase_" . $data_source . "`.cse_injury_bodyparts (`injury_bodyparts_uuid`, `injury_uuid`, `bodyparts_uuid`, `attribute`, `last_updated_date`, `last_update_user`, `customer_id`)
 				VALUES ('" . $inj_bod_table_uuid . "', '" . $injury_uuid . "','" . $bodyparts_uuid . "','" . ($loop_cnt + 1) . "', '" . date("Y-m-d H:i:s") . "', '" . addslashes($_SESSION['user_name']) . "', '" . $customer_id . "')";
 				echo $sql . "\r\n\r\n";
 				$stmt = DB::run($sql);

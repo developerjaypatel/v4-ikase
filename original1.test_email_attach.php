@@ -2,7 +2,7 @@
 //die(print_r($_SERVER));
 
 //$file = $path.$filename;
-$file = "C:\\inetpub\\wwwroot\\iKase.org\\ikase_separator_qr.png";
+$file = "C:\\inetpub\\wwwroot\\ikase.org\\ikase_separator_qr.png";
 $content = file_get_contents( $file);
 $content = chunk_split(base64_encode($content));
 $uid = md5(uniqid(time()));

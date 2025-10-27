@@ -18,7 +18,7 @@ include("../api/connection.php");
 
 if($_SERVER["HTTPS"]=="off") {
 	
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org" . $_SERVER['REQUEST_URI']);
 }
 
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
@@ -567,6 +567,7 @@ if (isset($page2)) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta name="robots" content="noindex,nofollow">	
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>EAMS Jet File - Step 1 out of 2</title>
 <style type="text/css">
@@ -1726,7 +1727,7 @@ var getPDF = function(form, doc, blnSingleForm) {
 					requestPDF(form, main_document, blnSingleForm);
 					//alert("request");
 				} else {
-					var url = "../uploads/<?php echo $_SESSION['user_customer_id']; ?>/<?php echo $case_id; ?>/jetfiler/" + data.document_filename;
+					var url = "D:/uploads/<?php echo $_SESSION['user_customer_id']; ?>/<?php echo $case_id; ?>/jetfiler/" + data.document_filename;
 					//window.open(url);
 					
 					requestPDF(form, main_document, blnSingleForm);
@@ -1770,7 +1771,7 @@ var requestPDF = function(form, main_document, blnSingleForm) {
 					console.log(data);
 					return;
 					
-					var url = "../uploads/<?php echo $_SESSION['user_customer_id']; ?>/<?php echo $case_id; ?>/jetfiler/" + data.filename;
+					var url = "D:/uploads/<?php echo $_SESSION['user_customer_id']; ?>/<?php echo $case_id; ?>/jetfiler/" + data.filename;
 					window.open(url);
 				
 			}

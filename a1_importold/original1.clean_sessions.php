@@ -5,7 +5,7 @@ ini_set('display_errors', '1');
 
 // Define the folder to clean
 // (keep trailing slashes)
-$captchaFolder  = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\';
+$captchaFolder  = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\';
 
 
 $fileTypes      = '*.txt';

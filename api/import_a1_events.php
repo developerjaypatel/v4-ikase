@@ -56,7 +56,7 @@ try {
 		$sql = "INSERT INTO `ikase_" . $data_source . "`.`cse_case_event` (`case_event_uuid`, `case_uuid`,  `event_uuid`, `attribute`, `last_updated_date`, `last_update_user`, `deleted`, `customer_id`)
 		SELECT DISTINCT '" . $case->case_uuid . "', '" . $case->case_uuid . "', 
 		CONCAT(cal1.`EVENTNO`, '_', cal1.`CASENO`) AS `event_uuid`, 
-		'main', `DATE` evdate, IFNULL(cal1.`INITIALS`, 'system'), 'N', " . $customer_id . "
+		'main', IFNULL(cal1.`DATE`, '0000-00-00 00:00:00') AS evdate, IFNULL(cal1.`INITIALS`, 'system'), 'N', " . $customer_id . "
 		FROM `" . $GLOBALS['GEN_DB_NAME'] . "`.cal1
 		LEFT OUTER JOIN `" . $GLOBALS['GEN_DB_NAME'] . "`.cal2
 		ON cal1.EVENTNO = cal2.EVENTNO
@@ -74,11 +74,11 @@ try {
 		IFNULL(`EVENT`, '') `EVENT`, 
 		'30',  
 		`NOTES` `evmemo`, 
-		cal1.`DATE` event_dateandtime, 
+		IFNULL(cal1.`DATE`, '0000-00-00 00:00:00') AS event_dateandtime, 
 		IFNULL(`VENUE`, '') `location`, IFNULL(`JUDGE`, '') `judge`, 
 		IFNULL(ATTYASS, '')  `assignee`, 
 		IFNULL(`FIRST`, '') `FIRST`, IFNULL(`LAST`, '') `LAST`,
-		`CALSTAT` `event_type`,
+		IFNULL(`CALSTAT`,'') `event_type`,
 		'" . $customer_id . "' 
 		FROM `" . $GLOBALS['GEN_DB_NAME'] . "`.cal1
 		LEFT OUTER JOIN `" . $GLOBALS['GEN_DB_NAME'] . "`.cal2

@@ -1127,7 +1127,7 @@ window.person_image = Backbone.View.extend({
 					saveFailed(data.error.text);
 				} else {
 					//console.log(data.toJSON);
-					$('#picture_holder').html("<img src='uploads/" + self.model.toJSON().customer_id + '/' + current_case_id + '/' + filename + "' class='applicant_img'>");
+					$('#picture_holder').html("<img src='D:/uploads/" + self.model.toJSON().customer_id + '/' + current_case_id + '/' + filename + "' class='applicant_img'>");
 				}
 			}
 		});

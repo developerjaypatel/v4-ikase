@@ -168,7 +168,7 @@ function checkImports(blnAfterImport) {
 	
 	//notifications
 	checkNotifications();
-	
+	checkMydocumentCount();
 	var import_interval = 150011;
 	if (check_remote_id) {
 		import_interval = 15011;
@@ -189,6 +189,39 @@ function checkOrphanImports() {
 				$("#orphan_import_indicator").fadeOut();
 			}
 		}
+	});
+}
+function checkMydocumentCount() {
+	
+	var batchStacks = new StacksByType([], { stack_type: 'batchscan', blnNotifications: true });
+	var unassignedStacks = new MyStacksByType([], { stack_type: 'unassigned', blnNotifications: true });
+
+	// Fetch both collections in parallel
+	$.when(batchStacks.fetch(), unassignedStacks.fetch()).done(function() {
+
+		// Add a source_type to each record
+		batchStacks.each(function(model) {
+			model.set('source_type', 'Batchscan');
+		});
+
+		unassignedStacks.each(function(model) {
+			model.set('source_type', 'Unassigned');
+		});
+		
+		// Merge both collections
+		var combinedStacks = new Backbone.Collection();
+		combinedStacks.add(batchStacks.models);
+		combinedStacks.add(unassignedStacks.models);
+		
+		// (Optional) remove duplicates based on model id
+		combinedStacks = new Backbone.Collection(
+			_.uniq(combinedStacks.models, false, function(m) { return m.id; })
+		);
+		var totalCount = combinedStacks.length;
+		
+		$("#new_my_document").css("display","block");
+		$("#new_my_document").html(totalCount);
+		
 	});
 }
 function checkNotifications() {
@@ -527,7 +560,7 @@ function checkInbox(blnRefresh) {
 	});
 	*/
 	var new_messages = new NewMessages();
-	console.log(new_messages+'511');
+	//console.log(new_messages+'511');
 	new_messages.fetch({
 		success:function(data) {
 			if (new_messages.length > 0) {

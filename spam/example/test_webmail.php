@@ -69,7 +69,7 @@ while ($text=mysql_fetch_array($sql)){
 		$spam = "spam (" . $result . ")";
 	}
 	
-	$stopwords = file('C:\\inetpub\\wwwroot\\iKase.org\\spam\\stop_words.txt');
+	$stopwords = file('C:\\inetpub\\wwwroot\\ikase.org\\spam\\stop_words.txt');
 	//$text = "Requirements - Working knowledge, on LAMP Environment using Linux, Apache 2, MySQL 5 and PHP 5, - Knowledge of Web 2.0 Standards - Comfortable with JSON - Hands on Experience on working with Frameworks, Zend, OOPs - Cross Browser Javascripting, JQuery etc. - Knowledge of Version Control Software such as sub-version will be preferable.";
 
 	$keywords = stopWords($text[0], $stopwords);

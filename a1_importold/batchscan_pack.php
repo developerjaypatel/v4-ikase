@@ -468,11 +468,11 @@ function addRemoteBatchscan() {
 	
 	session_write_close();
 	//make sure directories exist
-	$import_dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id;
+	$import_dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id;
 	if (!is_dir($import_dir)) {
 		mkdir($import_dir, 0755, true);
 	}
-	$import_dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id . "\\imports\\";
+	$import_dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id . "\\imports\\";
 	if (!is_dir($import_dir)) {
 		mkdir($import_dir, 0755, true);
 	}
@@ -599,7 +599,7 @@ function stitchBatchscanStacks() {
 	$sep = $batchscan->separators;
 	$date = date("Ymd", strtotime($batchscan->dateandtime));
 	$uploaded = $batchscan->filename;
-	$uploaded = str_replace("C:\\inetpub\\wwwroot\\iKase.org\\scans\\" . $customer_id . "\\" . $date . "\\", "", $uploaded);
+	$uploaded = str_replace("C:\\inetpub\\wwwroot\\ikase.org\\scans\\" . $customer_id . "\\" . $date . "\\", "", $uploaded);
 	$uploaded = str_replace(".pdf", "", $uploaded);
 	
 	
@@ -719,11 +719,11 @@ function stitchBatchscanStacks() {
 			mkdir($import_dir, 0755, true);
 		}
 		if ($blnBatchscan3) {
-			$customer_dir = $_SERVER['DOCUMENT_ROOT'] . "\\uploads\\" . $customer_id . "\\imports";
+			$customer_dir = "D:\\uploads\\" . $customer_id . "\\imports";
 			if (!is_dir($customer_dir)) {
 				mkdir($customer_dir . $time_stamp, 0755, true);
 			}
-			$customer_dir = $_SERVER['DOCUMENT_ROOT'] . "\\uploads\\" . $customer_id . "\\imports\\" . $time_stamp;
+			$customer_dir = "D:\\uploads\\" . $customer_id . "\\imports\\" . $time_stamp;
 			if (!is_dir($customer_dir)) {
 				mkdir($customer_dir, 0755, true);
 			}
@@ -1170,7 +1170,7 @@ function explodeBatchscan() {
 		$image_magick->destroy();
 	}
 	
-	$uploaded = str_replace("C:\\inetpub\\wwwroot\\iKase.org\\scans\\" . $customer_id . "\\" . $date . "\\", "", $uploaded);
+	$uploaded = str_replace("C:\\inetpub\\wwwroot\\ikase.org\\scans\\" . $customer_id . "\\" . $date . "\\", "", $uploaded);
 	echo json_encode(array("success"=>true, "uploaded"=>$uploaded, "pages"=>$pages, "id"=>$batchscan_id, "date"=>$date));
 }
 function createCrops() {
@@ -1527,7 +1527,7 @@ function getProcessedDocuments($queue_id, $batchscan_id, $time_stamp, $user_id, 
 	$ftp_server = "ikase.xyz";
 	$ftp_username = "nick";
 	$ftp_pwd = "access9090";
-	$uploadDir =  $_SERVER['DOCUMENT_ROOT'] . '\\uploads\\' . $customer_id . '\\imports\\';
+	$uploadDir =  'D:\\uploads\\' . $customer_id . '\\imports\\';
 	
 	//thumbnail connection
 	$conn_id = ftp_connect($ftp_server); 
@@ -1563,7 +1563,7 @@ function getProcessedDocuments($queue_id, $batchscan_id, $time_stamp, $user_id, 
 	
 	//connect to ftp
 	$conn_id = ftp_connect($ftp_server); 
-	$uploadDir =  $_SERVER['DOCUMENT_ROOT'] . '\\uploads\\' . $customer_id . '\\imports\\';
+	$uploadDir =  'D:\\uploads\\' . $customer_id . '\\imports\\';
 	// login with username and password 
 	$login_result = ftp_login($conn_id, $ftp_username, $ftp_pwd); 
 	if (!$login_result) {

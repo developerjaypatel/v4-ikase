@@ -83,7 +83,7 @@ die();
 */
 
 $source_dir = $_SERVER['DOCUMENT_ROOT'] . '\\eams_forms\\';
-$file_dir = $_SERVER['DOCUMENT_ROOT'] . "\\uploads\\" . $customer_id . "\\" . $case_id . "\\";
+$file_dir = "D:\\uploads\\" . $customer_id . "\\" . $case_id . "\\";
 if (!file_exists($file_dir)) {
 	mkdir($file_dir);
 }

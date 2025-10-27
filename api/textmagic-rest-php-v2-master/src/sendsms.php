@@ -18,11 +18,11 @@ $config = Configuration::getDefaultConfiguration()
     ->setPassword('tMCYOBbjU3bUN2O9EGLjXDTDnNDqEv');
 
 $api = new TextMagicApi(
-    new GuzzleHttp\Client(['verify' => 'D:\iKase.org\api\textmagic-rest-php-v2-master\cacert.pem']),
+    new GuzzleHttp\Client(['verify' => 'D:\ikase.org\api\textmagic-rest-php-v2-master\cacert.pem']),
     $config
 );
 
-//['verify' => 'D:\iKase.org\api\textmagic-rest-php-v2-master\cacert.pem']
+//['verify' => 'D:\ikase.org\api\textmagic-rest-php-v2-master\cacert.pem']
 try{
     $shortener = new Shortener($db);
     //print_r($db->errorInfo());
@@ -73,8 +73,8 @@ try {
     }     
     
     $phone_numbers_arr = explode (",", $phone_numbers); 
-    $target_dir = 'uploads/';
-    $temp_dir = 'uploads/temp/';
+    $target_dir = 'D:/uploads/';
+    $temp_dir = 'D:/uploads/temp/';
 
     if(!$_FILES['fileToUpload']['size'][0] == 0)  {
 
@@ -123,9 +123,9 @@ try {
 
                         //$renamedFile = upload_attachment(trim($phone_number),$target_file,$temp_file);
                         //$fullPathUploadedFile = 'http://localhost/textmagic-rest-php-v2-master/src/'.$renamedFile;  
-                        $fullPathUploadedFile = 'https://v2.ikase.org/api/textmagic-rest-php-v2-master/src/'.$renamedFile;              
+                        $fullPathUploadedFile = 'https://v4.ikase.org/api/textmagic-rest-php-v2-master/src/'.$renamedFile;              
                         //$textMessage = '<a href ="'.$fullPathUploadedFile.'">Click here for the Attachment</a>';        
-                        $shortURL_Prefix = 'https://v2.ikase.org/api/textmagic-rest-php-v2-master/src/URL_Shortner/redirect.php?c='; 
+                        $shortURL_Prefix = 'https://v4.ikase.org/api/textmagic-rest-php-v2-master/src/URL_Shortner/redirect.php?c='; 
 
                         try{                
                             $shortCode = $shortener->urlToShortCode($fullPathUploadedFile);

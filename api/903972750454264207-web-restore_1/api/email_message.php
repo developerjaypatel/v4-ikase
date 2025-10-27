@@ -730,7 +730,7 @@ class email_message_class
 			$cc = str_replace(">", "", $cc);
 			$bcc = str_replace("<", "", $bcc);
 			$bcc = str_replace(">", "", $bcc);
-			// $headers = "From: donotreply@v2.ikase.org" . "\r\n";
+			// $headers = "From: donotreply@v4.ikase.org" . "\r\n";
 			// if(isset($cc) && $cc!=""){
 			// 	$headers .= "Cc: $cc \r\n";
 			// }
@@ -755,7 +755,7 @@ class email_message_class
 			// $to = "jaypatel4396.jp6@gmail.com";
 			// $subject = "My subject";
 			// $txt = "Hello world!";	
-			// $headers = "From: admin@v2.ikase.org" . "\r\n";
+			// $headers = "From: admin@v4.ikase.org" . "\r\n";
 			// $success = mail($to,$subject,$txt,$headers);
 			//die("succ");
 			//echo $to . "<br /><br />" . $subject . "<br /><br />" . $body . "<br /><br />" . $headers . "<br />";
@@ -782,7 +782,7 @@ class email_message_class
 				$mail->isSMTP();                                            // Set mailer to use SMTP
 				$mail->Host       = 'mail.smtp2go.com';  // Specify main and backup SMTP servers
 				$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-				$mail->Username   = 'v2.ikase.org';                     // SMTP username
+				$mail->Username   = 'v4.ikase.org';                     // SMTP username
 				$mail->Password   = 'Access0909#';                          // SMTP password
 				$mail->SMTPOptions = array(
 					'ssl' => array(
@@ -798,7 +798,7 @@ class email_message_class
 				if(isset($from) && $from!=""){
 					$mail->setFrom($from,$fromname);
 				}else{
-					$mail->setFrom('donotreply@v2.ikase.org', 'Ikase');
+					$mail->setFrom('donotreply@v4.ikase.org', 'Ikase');
 				}
 				//$mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
 				//Convert in array for multiple mail id

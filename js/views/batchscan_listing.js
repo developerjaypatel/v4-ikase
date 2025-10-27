@@ -18,7 +18,7 @@ window.batchscan_listing_view = Backbone.View.extend({
 			//preview
 			batchscan.preview = "";
 			if (batchscan.completion!="") {
-				batchscan.preview = "<img id='thumbnail_" + batchscan.id + "' class='batchscan_thumbnail' src='uploads/" + customer_id + "/imports/" + batchscan.time_stamp + "/" + batchscan.completion + "' width='58' height='75' title='Click to review' style='cursor:pointer' />";
+				batchscan.preview = "<img id='thumbnail_" + batchscan.id + "' class='batchscan_thumbnail' src='D:/uploads/" + customer_id + "/imports/" + batchscan.time_stamp + "/" + batchscan.completion + "' width='58' height='75' title='Click to review' style='cursor:pointer' />";
 			}
 		});
 		
@@ -96,7 +96,7 @@ window.batchscan_assigned_listing = Backbone.View.extend({
 			if (typeof this.template == "function") {
 				 _.each( activities, function(activity) {
 					 //console.log(activity.activity);
-					 var partial = activity.activity.substr(22 + ("uploads/" + customer_id).length, activity.activity.length);
+					 var partial = activity.activity.substr(22 + ("D:/uploads/" + customer_id).length, activity.activity.length);
 					 var arrPartial = partial.split("/");
 					 var case_id = arrPartial[1];
 					 var pdf_path = arrPartial[2];
@@ -104,7 +104,7 @@ window.batchscan_assigned_listing = Backbone.View.extend({
 					 pdf_path = pdf_path.substr(0, pdf_path.indexOf("' target="));
 					 
 					 //activity.case_id = case_id;
-					 activity.path = "<a href='uploads/" + customer_id + "/" + case_id + "/" + pdf_path + "' target='_blank' class='white_text' style='text-decoration:underline'>" + pdf_path + "</a>";
+					 activity.path = "<a href='D:/uploads/" + customer_id + "/" + case_id + "/" + pdf_path + "' target='_blank' class='white_text' style='text-decoration:underline'>" + pdf_path + "</a>";
 					 
 				 
 					//let's get the by and any trailing info
@@ -127,7 +127,7 @@ window.batchscan_assigned_listing = Backbone.View.extend({
 					activity.activity = activity_header.replaceAll("\r\n", "<br>");
 					activity.activity = activity.activity.replaceAll("class='edit_event", "class='white_text edit_event");
 					activity.activity = activity.activity.replaceAll("- 00/00/0000", "");
-					activity.activity = activity.activity.replaceAll("uploads/uploads/", "uploads/");
+					activity.activity = activity.activity.replaceAll("D:/uploads/uploads/", "D:/uploads/");
 					activity.activity = activity.activity.replaceAll("style='cursor:pointer'>", "style='cursor:pointer; background:yellow;color:black'>")
 					
 					activity.by = activity_footer;

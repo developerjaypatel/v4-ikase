@@ -120,7 +120,7 @@ window.message_attach = Backbone.View.extend({
 						}
 						//console.log("str_sep-->"+str_sep);
 						
-						//$("#send_queue").html("<a href='../uploads/" + customer_id + "/" + data.get("document_filename") + "' target='_blank' title='Click to review attached document' class='white_text'>" + data.get("document_filename") + "</a>");
+						//$("#send_queue").html("<a href='D:/uploads/" + customer_id + "/" + data.get("document_filename") + "' target='_blank' title='Click to review attached document' class='white_text'>" + data.get("document_filename") + "</a>");
 						$("#send_queue").append("<div class='comma_sepr_file_div' style='float: left;margin-right: 5px;'>"+str_sep+"<a title='"+kase_document.document_filename +"' href='" + kase_document.preview_href + "' target='_blank' title='Click to review attached document' class='white_text'>" + filename + "</a></div>");
 						
 						if (self.model.get("reaction")=="sendstack") {

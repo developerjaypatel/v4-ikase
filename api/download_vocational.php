@@ -57,7 +57,7 @@ try {
 		$case_dir = UPLOADS_PATH.$customer_id.DC.$case_id.DC;
 		$uploadDir = $case_dir . "refervocational\\";
 		
-		$uploadDir = "../uploads/" . $customer_id . "/" . $case_id . "/refervocational/";
+		$uploadDir = "D:/uploads/" . $customer_id . "/" . $case_id . "/refervocational/";
 		$path = $uploadDir . $file .  ".pdf";
 		
 		include("download.php");

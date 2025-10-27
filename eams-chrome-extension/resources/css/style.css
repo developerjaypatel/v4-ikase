@@ -1,0 +1,15 @@
+body{
+	background-color: #272727;
+	color:#ffffff;
+	font-family: arial;
+}
+a{
+	text-decoration: none;
+	color: #0000ff;
+}
+p{
+	border: solid 1px #fff;
+	border-radius: 3px;
+	background-color: #585756;
+	padding: 5px;
+}

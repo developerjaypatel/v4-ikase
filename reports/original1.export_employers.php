@@ -79,7 +79,7 @@ if ($_SERVER['REMOTE_ADDR']=='47.153.51.181') {
 	//die(print_r($list));
 }
 //output file
-$filename = '../uploads/' . $customer_id . '/exports/employers_' . date('mdy') . '.csv';
+$filename = 'D:/uploads/' . $customer_id . '/exports/employers_' . date('mdy') . '.csv';
 $fp = fopen($filename, 'w');
 
 foreach ($list as $ferow) {

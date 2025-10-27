@@ -1028,7 +1028,7 @@ window.task_listing_pane = Backbone.View.extend({
 			});
 			count_report = arrCountReport.join("&nbsp;|&nbsp;");
 		}
-		console.log(tasks);
+		//console.log(tasks);
 		$(this.el).html(this.template({tasks: tasks, case_id: this.model.get("case_id"), title: this.model.get("title"), receive_label: this.model.get("receive_label"), homepage: this.model.get("homepage"), blnMyTasks: blnMyTasks, day_print_url: day_print_url, listing_type: listing_type, pagetype: pagetype, arrDayCount: arrDayCount, start: this.model.get("start"), end: this.model.get("end"), blnCc: blnCc, blnBadDates: blnBadDates, count_report: count_report}));
 				
 		setTimeout(function() {

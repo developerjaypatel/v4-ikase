@@ -23,7 +23,7 @@ window.customer_setting_listing = Backbone.View.extend({
 		var arrID = [];
 		_.each( settings, function(setting) {
 			if (setting.category == "letterhead") {
-				setting.setting_value = "<a href='../uploads/" + customer_id + "/" +setting.setting_value + "' target='_blank' class='white_text'>" + setting.setting_value + "</a>";
+				setting.setting_value = "<a href='D:/uploads/" + customer_id + "/" +setting.setting_value + "' target='_blank' class='white_text'>" + setting.setting_value + "</a>";
 			}
 		});
 		

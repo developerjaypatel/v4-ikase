@@ -131,7 +131,7 @@
 				
 				stack.thumb_description = stack.document_name + " - Pages " + stack.description;
 			} else {
-				var href = "uploads/" + customer_id + "/" + stack.case_id + "/" + stack.document_filename.replace("#", "%23");
+				var href = "D:/uploads/" + customer_id + "/" + stack.case_id + "/" + stack.document_filename.replace("#", "%23");
 				blnBatchscan3 = false;
 				if (!isNaN(stack.thumbnail_folder) && stack.document_extension!="docx") {
 					//final check
@@ -142,9 +142,9 @@
 						}
 					}
 					if (stack.type=="batchscan3" || blnBatchscan3) {
-						href = "uploads/" + customer_id + "/imports/" + stack.thumbnail_folder + "/" + stack.document_filename;
+						href = "D:/uploads/" + customer_id + "/imports/" + stack.thumbnail_folder + "/" + stack.document_filename;
 					} else {
-						href = "uploads/" + customer_id + "/imports/" + stack.document_filename;
+						href = "D:/uploads/" + customer_id + "/imports/" + stack.document_filename;
 					}
 				}
 			}
@@ -163,9 +163,8 @@
 
 			stack.show_preview = "";
 			stack.preview_link = "";
-			
 			stack.preview_href = "api/preview.php?case_id=" + stack.case_id + "&id=" + stack.id + "&file=" + encodeURIComponent(stack.document_filename) + "&type=" + stack.type + "&thumbnail_folder=" + stack.thumbnail_folder;
-			
+
 			//case id
 			stack.case_link = "<div style='float:right; margin-left: 5px' class='stack_complete' id='stack_complete_holder_" + stack.document_id + "'></div>";
 			stack.notify_attorney = "none";
@@ -470,7 +469,7 @@
 					}
 				}
 			};
-			
+						
 			$(".stack_listing .kase_input").tokenInput("api/kases/tokeninput", theme);	
 			$(".stack_listing .token-input-list-event").css("width", "470px");
 			$(".stack_listing .token-input-dropdown-event").css("width", "390px");		

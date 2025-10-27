@@ -54,6 +54,7 @@ window.kase_nav_bar_view = Backbone.View.extend({
 		"click #compose_clients": 		"newClientMessage",
 		"click #compose_task": 			"newTask",
 		"click #new_import_indicator":	"listImports",
+		"click #new_my_document":	    "listMydocuments",
 		"click #unassigned_indicator":	"listUnassigned",
 		"click #list_chat":				"answerChat",
 		"click #new_chat":				"newChat",

@@ -131,7 +131,7 @@ if ($blnDebug) {
 }
 $dbname = "gtg_thecase";
 if (isset($_SERVER['DOCUMENT_ROOT'])) {
-	if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\iKase.org") {
+	if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\ikase.org") {
 		$dbname = "ikase";	
 		if (isset($_SESSION['user_data_source'])){
 			if ($_SESSION['user_data_source']!="") {

@@ -252,6 +252,7 @@ window.Router = Backbone.Router.extend({
 		"listkustom/:calendar_id/:sort_order/:start/:end":		"displayCustomCalendarByDates",
 		"logout" : 												"logout",
 		"messages/:message_id": 								"editMessage",
+		"mydocuments": 											"listMydocuments",
 		"newinjury/:case_id":									"newInjury",
 		"newpartie":	 										"newRoloPartie",
 		"newpartie/:type":	 									"editRoloNewPartie",
@@ -883,6 +884,7 @@ window.Router = Backbone.Router.extend({
 						representing = arrInjury[1];
 					}
 					//no parties
+					
 					if (parties.length == 0 && case_id > 0) {
 						if (representing=="" && kase_type == "PI") {
 							//fix on 3192017 for dordulian pi import
@@ -941,7 +943,9 @@ window.Router = Backbone.Router.extend({
 					//we have applicant, venue and 1 partie, we need employer
 					employer_partie = parties.findWhere({"type": "employer"});
 					var kase_type = kase.get("case_type");
+					var kase_sub_type = kase.get("case_sub_type");
 					var blnWCAB = isWCAB(kase_type);
+					//console.log("prior");
 					if (blnWCAB && !blnPatient) {
 						if (typeof employer_partie == "undefined") {
 							self.editPartie(case_id, -1, "employer");
@@ -949,12 +953,14 @@ window.Router = Backbone.Router.extend({
 							return;
 						}		
 					}
-					if (!blnPatient) {
+					
+					/*if (!blnPatient) {
 						//we have employer, we need injury
 						var kase_dois = new KaseInjuryCollection({case_id: case_id});
 						kase_dois.fetch({
 							success: function(kase_dois) {
 								if (kase_dois.length == 0) {
+									//alert("here");
 									self.newInjury(case_id);
 									return;
 								} else {
@@ -967,7 +973,7 @@ window.Router = Backbone.Router.extend({
 							
 							}
 						});
-					}
+					}*/
 				}
 				if (parties.length > 0 || case_id==-1) {
 					kase.set("header_only", true);
@@ -1001,7 +1007,7 @@ window.Router = Backbone.Router.extend({
 					}
 				});
 				
-				console.log(case_id+" Cassess IDDD");
+				console.log(case_id+" Cassess IDDDs");
 				//put the activities in memory
 				current_case_activities = new ActivitiesCollection([], {case_id: case_id});
 				current_case_activities.fetch({
@@ -1167,6 +1173,7 @@ window.Router = Backbone.Router.extend({
 						}		
 					}
 					//we have employer, we need injury
+					/*
 					var kase_dois = new KaseInjuryCollection({case_id: case_id});
 					kase_dois.fetch({
 						success: function(kase_dois) {
@@ -1174,6 +1181,7 @@ window.Router = Backbone.Router.extend({
 							var blnWCAB = isWCAB(kase_type);
 							if (blnWCAB) {
 								if (kase_dois.length == 0) {
+									//alert("here");
 									self.newInjury(case_id);
 									return;
 								} else {
@@ -1185,7 +1193,7 @@ window.Router = Backbone.Router.extend({
 								}		
 							}
 						}
-					});
+					});*/
 				}
 				if (parties.length > 0 || case_id==-1) {
 					kase.set("header_only", true);
@@ -1375,7 +1383,8 @@ window.Router = Backbone.Router.extend({
 		$(document).attr('title', "Phone Intake Kases :: iKase");
 		
 		if (typeof filter == "undefined") {
-			filter = "pending";
+			//filter = "pending";
+			filter = "";
 		}
 		if (typeof type == "undefined") {
 			type = "";
@@ -1518,42 +1527,33 @@ window.Router = Backbone.Router.extend({
 		}
 	},
 	listKases: function () {
-		if (!executeMainChanges()) { return; };
-		this.clearSearchResults();
-		$(".search #srch-term").val("");
-		
-		kase_url = "api/kases";
-		
-		//return;
-		//$('#ikase_loading').html(loading_image);
 		$("#content").html(loading_image);
-		
 		current_case_id = -1;
-		
 		readCookie();
 		$(document).attr('title', "Kases List");
-		
+
 		var mymodel = new Backbone.Model();
 		mymodel.set("key", "");
 		listed_kases = kases_limit;
-		
-		$('#content').html(new kase_listing_view({collection: kases, model:mymodel}).render().el);
-		setTimeout(function() {
-			$("#kase_status_title").html("Active");
-		}, 700);
-		setTimeout(function() {
-			if (typeof arrKasePage[current_page] == "undefined") {
-				arrKasePage[current_page] = $('#content').html();
-			}
-		}, 1007);
-		
-		//run the query for export, afterwards so we don't waste time
+
 		kases.fetch({
 			success: function (data) {
-			
-				return;		
+				$('#content').html(new kase_listing_view({collection: kases, model: mymodel}).render().el);
+				
+				setTimeout(function() {
+					$("#kase_status_title").html("Active");
+				}, 700);
+				
+				setTimeout(function() {
+					if (typeof arrKasePage[current_page] == "undefined") {
+						arrKasePage[current_page] = $('#content').html();
+					}
+				}, 1007);
+			},
+			error: function() {
+				$("#content").html("<div class='error'>Failed to load Kases.</div>");
 			}
-		});
+		});	
     },
 	listPIKases: function () {
 		if (!executeMainChanges()) { return; };
@@ -2812,7 +2812,7 @@ window.Router = Backbone.Router.extend({
 				}
 			}
 		});		
-		console.log('recursive start');
+		console.log('recursive starts');
 		setTimeout(function(){
 			self.loginEmail();
 		}, 115000);
@@ -3839,6 +3839,8 @@ window.Router = Backbone.Router.extend({
 				data.set("case_uuid", "");
 				data.set("gridster_me", true);
 				data.set("kase_type", kase.get("case_type"));
+				data.set("kase_sub_type", kase.get("case_sub_type"));
+				
 				data.set("applicant_label", applicant_label);
 				the_applicant = new dashboard_person_view({el: $("#" + prefix + "content"), model:data}).render();
 				/*
@@ -4760,7 +4762,7 @@ window.Router = Backbone.Router.extend({
 				success: function (kase) {
 					if (kase.toJSON().uuid!="") {
 						kases.remove(kase.id); kases.add(kase);
-						self.newInjury(case_id);
+						//self.newInjury(case_id);
 					} else {
 						//case does not exist, get out
 						document.location.href = "#";
@@ -4966,6 +4968,58 @@ window.Router = Backbone.Router.extend({
 				hideEditRow();
 			}
 		});	
+	},
+	listMydocuments: function () {
+		
+		$("#content").html(loading_image);
+		
+		this.clearSearchResults();
+		if (!executeMainChanges()) { return; }
+		current_case_id = -1;
+
+		$("#content").empty();
+		var batchStacks = new StacksByType([], { stack_type: 'batchscan', blnNotifications: true });
+		var unassignedStacks = new MyStacksByType([], { stack_type: 'unassigned', blnNotifications: true });
+
+		// Fetch both collections in parallel
+		$.when(batchStacks.fetch(), unassignedStacks.fetch()).done(function() {
+
+			// Add a source_type to each record
+			/* batchStacks.each(function(model) {
+				model.set('source_type', 'Batchscan');
+			});
+
+			unassignedStacks.each(function(model) {
+				model.set('source_type', 'Unassigned');
+			}); */
+			
+			// Merge both collections
+			var combinedStacks = new Backbone.Collection();
+			combinedStacks.add(batchStacks.models);
+			combinedStacks.add(unassignedStacks.models);
+
+			// (Optional) remove duplicates based on model id
+			combinedStacks = new Backbone.Collection(
+				_.uniq(combinedStacks.models, false, function(m) { return m.id; })
+			);
+
+			// Create model for combined view
+			var combinedModel = new Backbone.Model({ type: 'merged_notifications' });
+
+			// Render single unified view
+			var combinedView = new stack_listing_view({
+				collection: combinedStacks,
+				model: combinedModel
+			}).render();
+
+			// Append to page
+			$("#content").append(combinedView.el);
+			// or
+			$("#content span:contains('Document Notifications')").text("Assigned Documents");
+			$("#content").removeClass("glass_header_no_padding glass_header");
+			hideEditRow();
+		});
+
 	},
 	listNewImports: function () {	
 		$("#content").html(loading_image);
@@ -7131,7 +7185,7 @@ var blnInitialSetting = true;	//did we go through the initial layout, in utiliti
 //load templates
 //get rid of interoffice view
 //
-templateLoader.load([ "event_view", "partie_listing_choose", "calendar_view", "person_view", "calendar_listing_view", "partie_view",  "kase_nav_bar_view", "kase_nav_left_view", "kase_list_category_view", "kase_home_view", "kase_listing_view",  "kase_summary_view", "kase_view", "person_image", "eams_previouscases_view", "eams_hearings_view", "eams_events_view", "eams_parties_view", "event_list_view", "event_listing", "event_list_item_view", "document_upload_view", "document_listing_search", "document_listing_message", "dashboard_injury_view", "dashboard_home_view", "injury_view", "note_listing_view", "notes_view", "partie_listing_view", "partie_cards_view", "user_listing_view", "dashboard_person_view", "injury_number_view", "injury_add_view", "message_view", "interoffice_view", "message_attach", "stack_listing_view", "task_listing", "chatting_view", "letter_attach", "setting_attach", "kase_list_task_view", "template_upload_view", "medical_specialties_select", "multichat_messages", "property_damage_view", "bulk_webmail_assign_view", "bulk_import_assign_view", "multichat", "dashboard_email_view", "dashboard_related_cases_view", "bulk_date_change_view", "personal_injury_general_view"],
+templateLoader.load([ "customer_support_view", "event_view", "partie_listing_choose", "calendar_view", "person_view", "calendar_listing_view", "partie_view",  "kase_nav_bar_view", "kase_nav_left_view", "kase_list_category_view", "kase_home_view", "kase_listing_view",  "kase_summary_view", "kase_view", "person_image", "eams_previouscases_view", "eams_hearings_view", "eams_events_view", "eams_parties_view", "event_list_view", "event_listing", "event_list_item_view", "document_upload_view", "document_listing_search", "document_listing_message", "dashboard_injury_view", "dashboard_home_view", "injury_view", "note_listing_view", "notes_view", "partie_listing_view", "partie_cards_view", "user_listing_view", "dashboard_person_view", "injury_number_view", "injury_add_view", "message_view", "interoffice_view", "message_attach", "stack_listing_view", "task_listing", "chatting_view", "letter_attach", "setting_attach", "kase_list_task_view", "template_upload_view", "medical_specialties_select", "multichat_messages", "property_damage_view", "bulk_webmail_assign_view", "bulk_import_assign_view", "multichat", "dashboard_email_view", "dashboard_related_cases_view", "bulk_date_change_view", "personal_injury_general_view"],
     function () {
         app = new Router();
         Backbone.history.start();

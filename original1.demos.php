@@ -72,7 +72,7 @@ if (!is_numeric($customer_id)) {
 	die("no cs");
 }
 
-$file = "https://v2.ikase.org/uploads/" . $file . "/demographics.html";
+$file = "https://v4.ikase.org/uploads/" . $file . "/demographics.html";
 
 //die($file);
 $page = file_get_contents($file);

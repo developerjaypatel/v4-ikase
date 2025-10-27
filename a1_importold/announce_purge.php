@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-$dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id . "\\announce\\";
+$dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id . "\\announce\\";
 	
 $files = scandir($dir);
 $prefix =  date("Ymd");

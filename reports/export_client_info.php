@@ -86,7 +86,7 @@ foreach ($clients as $row) {
 }
 //die(print_r($list));
 //output file
-$filename = '../uploads/' . $customer_id . '/exports/clients_full_' . date('mdy') . '.csv';
+$filename = 'D:/uploads/' . $customer_id . '/exports/clients_full_' . date('mdy') . '.csv';
 $fp = fopen($filename, 'w');
 
 foreach ($list as $ferow) {

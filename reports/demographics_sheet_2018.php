@@ -1402,7 +1402,7 @@ if ($emailit=="y") {
 	$content = str_replace('display:none" id="matrix_holder"', 'display:" id="matrix_holder"', $content);
 	
 	//now output to a text file
-	$upload_dir_config = '../uploads/' . $_SESSION['user_customer_id'] . '/' . $case_id;
+	$upload_dir_config = 'D:/uploads/' . $_SESSION['user_customer_id'] . '/' . $case_id;
 	if (!is_dir($upload_dir_config)) {
 		mkdir($upload_dir_config, 0755, true);
 	}

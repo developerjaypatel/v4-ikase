@@ -46,7 +46,7 @@ foreach($docs as $doc) {
 	
 	$document_type_norm = ucfirst(str_replace("_", " ", $doc_type));
 	
-	$the_image = "<div class='element-item " . $doc_type . " ' data-category='" . $doc_type . "'><img src='../uploads/" . $cus_id . "/" . $case_id . "/" . $document_filename . "' class='personal_injury_img_" . $int . " " . $doc_type . "' id='personal_injury_img_" . $int . "' height='128' width='128' /><br><span style='font-size:0.8em; color:white' class='" . $doc_type . "'>" . $document_type_norm . "&nbsp;<a id='deleteimage_" . $document_id . "' class='delete_image' style='cursor:pointer'><i class='glyphicon glyphicon-trash' style='color:#FA1616;'></i></span></a></div>";
+	$the_image = "<div class='element-item " . $doc_type . " ' data-category='" . $doc_type . "'><img src='D:/uploads/" . $cus_id . "/" . $case_id . "/" . $document_filename . "' class='personal_injury_img_" . $int . " " . $doc_type . "' id='personal_injury_img_" . $int . "' height='128' width='128' /><br><span style='font-size:0.8em; color:white' class='" . $doc_type . "'>" . $document_type_norm . "&nbsp;<a id='deleteimage_" . $document_id . "' class='delete_image' style='cursor:pointer'><i class='glyphicon glyphicon-trash' style='color:#FA1616;'></i></span></a></div>";
 
 	$arrImages[] = $the_image;
 }

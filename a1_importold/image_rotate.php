@@ -11,7 +11,7 @@ if (strpos($filename, "..") === false) {
 }
 //die($filename);
 //$filename = '../images/goats_sideways.png';
-//$filename = '../uploads/1033/42/goats_sideways.png';
+//$filename = 'D:/uploads/1033/42/goats_sideways.png';
 $degrees = 90;
 
 

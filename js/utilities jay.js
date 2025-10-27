@@ -595,9 +595,9 @@ function acceptMessageKase(message_id) {
 	}
 }
 function emptyBuffer(customer_id) { 
-	var url = 'https://v2.ikase.org/api/buffer';
+	var url = 'https://v4.ikase.org/api/buffer';
 	if (typeof customer_id != "undefined") {
-		 url = 'https://v2.ikase.org/api/buffer?customer_id=' + customer_id;
+		 url = 'https://v4.ikase.org/api/buffer?customer_id=' + customer_id;
 	}
 	$.ajax({
 		url:url,
@@ -617,7 +617,7 @@ function emptyBuffer(customer_id) {
 	});
 }
 function emptyReminderBuffer(customer_id) { 
-	var url = 'https://v2.ikase.org/api/reminders/buffer?customer_id=' + customer_id;
+	var url = 'https://v4.ikase.org/api/reminders/buffer?customer_id=' + customer_id;
 	
 	$.ajax({
 		url:url,
@@ -1489,7 +1489,7 @@ var showAttachmentPreview = function(form_name, event, filename, case_id, custom
 				//console.log(element); 
 				element = element.trim();
 				element = element.replace("https:///uploads", "uploads");
-				var uppos = element.indexOf("uploads/" + customer_id);
+				var uppos = element.indexOf("D:/uploads/" + customer_id);
 				if (uppos < 0) {
 					var strpos = element.indexOf("attachments");
 					if (strpos < 0) {
@@ -1500,7 +1500,7 @@ var showAttachmentPreview = function(form_name, event, filename, case_id, custom
 						var attach_link = "https://www.ikase.xyz/ikase/gmail/ui/" + element;
 					}
 				} else {
-					var attach_link = "https://v2.ikase.org/" + element;
+					var attach_link = "https://v4.ikase.org/" + element;
 				}
 				
 				var arrLink = element.split("/");
@@ -1524,12 +1524,12 @@ var showAttachmentPreview = function(form_name, event, filename, case_id, custom
 		} else {
 			//clean up
 			filename = filename.replaceAll("https:///uploads", "../uploads");
-			filename = filename.replaceAll("../uploads/", "uploads/");
-			filename = filename.replaceAll("https:uploads/", "uploads/");
+			filename = filename.replaceAll("D:/uploads/", "D:/uploads/");
+			filename = filename.replaceAll("https:uploads/", "D:/uploads/");
 			if (case_id!="" && case_id!="-1") {
-				filename = filename.replaceAll("uploads/" + customer_id + "/" + case_id + "/", "");
+				filename = filename.replaceAll("D:/uploads/" + customer_id + "/" + case_id + "/", "");
 			}
-			filename = filename.replaceAll("uploads/" + customer_id + "/", "");
+			filename = filename.replaceAll("D:/uploads/" + customer_id + "/", "");
 			filename = filename.replaceAll(";", "|");
 			filename = filename.replaceAll(",", "|");
 			var arrFiles = filename.split("|");
@@ -1548,7 +1548,7 @@ var showAttachmentPreview = function(form_name, event, filename, case_id, custom
 					var arrFileStructure = filename.split("/");
 					display_filename = arrFileStructure[arrFileStructure.length - 1];
 				} else {
-					panel_html = "<div id='note_attachment_holder_" + note_id + "_" + i + "' class='note_attachment_holder'><a href='uploads/preview.php?file=uploads/" + customer_id + "/";
+					panel_html = "<div id='note_attachment_holder_" + note_id + "_" + i + "' class='note_attachment_holder'><a href='D:/uploads/preview.php?file=uploads/" + customer_id + "/";
 					
 					if (case_id!="" && case_id!="-1") {
 						panel_html += case_id + "/";
@@ -1630,7 +1630,7 @@ var documentPreview = function(event, filename, customer_id, thumbnail_folder, d
 	}
 	document_date = new_date;
 	
-	var preview = "uploads/" + customer_id + "/";
+	var preview = "D:/uploads/" + customer_id + "/";
 	if (thumbnail_folder=="0" || thumbnail_folder.indexOf("pdfimage")==0) {
 		preview = "pdfimage/" + customer_id + "/";
 		var arrFileName = filename.split(".");
@@ -1699,7 +1699,7 @@ var documentPreview = function(event, filename, customer_id, thumbnail_folder, d
 				arrFileName.pop();
 				arrFileName.pop();
 				filename = arrFileName.join("_") + "-" + first_page + ".png";
-				var preview = "uploads/" + customer_id + "/imports/" + thumbnail_folder + "/";	
+				var preview = "D:/uploads/" + customer_id + "/imports/" + thumbnail_folder + "/";	
 			}
 		}
 		
@@ -1829,7 +1829,7 @@ var documentThumbnail = function(filename, customer_id, thumbnail_folder, case_i
 	if (typeof case_id == "undefined") {
 		case_id = "";
 	}
-	var preview = "uploads/" + customer_id + "/";
+	var preview = "D:/uploads/" + customer_id + "/";
 	if (case_id!="" && thumbnail_folder=="") {
 		preview += case_id + "/";
 	}
@@ -1939,7 +1939,7 @@ var documentThumbnail = function(filename, customer_id, thumbnail_folder, case_i
 					arrFileName.pop();
 					arrFileName.pop();
 					filename = arrFileName.join("_") + "-" + first_page + ".png";
-					var preview = "uploads/" + customer_id + "/imports/" + thumbnail_folder + "/";	
+					var preview = "D:/uploads/" + customer_id + "/imports/" + thumbnail_folder + "/";	
 				}
 			}
 		}
@@ -1952,7 +1952,7 @@ var documentThumbnail = function(filename, customer_id, thumbnail_folder, case_i
 	preview += filename;
 	// console.log(preview);
 	if (preview.indexOf("eams_app") > -1) {
-			preview = "uploads/" + customer_id + "/" + case_id + "/jetfiler/" + filename;	
+			preview = "D:/uploads/" + customer_id + "/" + case_id + "/jetfiler/" + filename;	
 	}
 	if (preview.indexOf(".jpg") < 0 && preview.indexOf(".png") < 0) {
 		//try just the thumbnail folder
@@ -1972,7 +1972,7 @@ var documentThumbnail = function(filename, customer_id, thumbnail_folder, case_i
 		//default
 		preview = "img/no_preview.gif";
 		//it could be that an actual image was uploaded to the main customer folder
-		var new_preview = "uploads/" + customer_id + "/" + filename;	
+		var new_preview = "D:/uploads/" + customer_id + "/" + filename;	
 		var blnExists = (imageExists(new_preview));
 		if (blnExists) {
 			preview = new_preview;
@@ -2014,14 +2014,14 @@ var showPreview = function(event, filename, time_stamp, pages, customer_id, prev
 		first_page = pages.split("-")[0] - 1;
 	}
 	if (time_stamp!="") {
-		var preview = "uploads/" + customer_id + "/" + time_stamp + "/" + filename + "_" + first_page + ".png";
+		var preview = "D:/uploads/" + customer_id + "/" + time_stamp + "/" + filename + "_" + first_page + ".png";
 	} else {
-		var preview = "uploads/" + customer_id + "/thumbnails/" + filename + "_" + first_page + ".png";
+		var preview = "D:/uploads/" + customer_id + "/thumbnails/" + filename + "_" + first_page + ".png";
 		/*
 		if (first_page != "-1") {
-			var preview = "uploads/" + customer_id + "/thumbnail/" + filename + "_" + first_page + ".png";
+			var preview = "D:/uploads/" + customer_id + "/thumbnail/" + filename + "_" + first_page + ".png";
 		} else {
-			var preview = "uploads/" + customer_id + "/thumbnail/" + filename.replace(".pdf", ".jpg");
+			var preview = "D:/uploads/" + customer_id + "/thumbnail/" + filename.replace(".pdf", ".jpg");
 		}
 		*/
 	}

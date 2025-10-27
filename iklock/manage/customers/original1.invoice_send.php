@@ -44,7 +44,7 @@ $dmsauth = $dmsauth * 3;
 $dmsauth = strrev($dmsauth);
 
 //let's get the invoice, and then mail it
-$filename = "https://v2.ikase.org/manage/customers/invoice.php?invoice_id=" . $invoice_id . "&cus_id=" . $cus_id . "&suid=outstanding";
+$filename = "https://v4.ikase.org/manage/customers/invoice.php?invoice_id=" . $invoice_id . "&cus_id=" . $cus_id . "&suid=outstanding";
 
 $somecontent = file_get_contents($filename);
 
@@ -58,13 +58,13 @@ if (!is_dir($customer_dir)) {
 $output_filename = "outstanding/" . ($cus_id * 7) . "/invoices_" . $invoice_id . ".php";
 
 $seq = "";
-$arrFiles[] = "https://v2.ikase.org/" . $output_filename . "?dmsauth=" . urlencode($dmsauth);
+$arrFiles[] = "https://v4.ikase.org/" . $output_filename . "?dmsauth=" . urlencode($dmsauth);
 /*
 $seq = json_encode(array("cus_id"=>$cus_id, "invoice_id"=>$invoice_id, "dmsauth"=>urlencode($dmsauth)));
-$arrFiles[] = "https://v2.ikase.org/invoice.php?seq=" . base64_encode($seq);
+$arrFiles[] = "https://v4.ikase.org/invoice.php?seq=" . base64_encode($seq);
 */
-$arrFilesHTML[] = "<a href='https://v2.ikase.org/outstanding/invoices.php?seq=" . base64_encode($seq) . "'>Click here for Print-Ready Invoice</a><br />
-https://v2.ikase.org/invoice.php?seq=" . base64_encode($seq);
+$arrFilesHTML[] = "<a href='https://v4.ikase.org/outstanding/invoices.php?seq=" . base64_encode($seq) . "'>Click here for Print-Ready Invoice</a><br />
+https://v4.ikase.org/invoice.php?seq=" . base64_encode($seq);
 
 $output_filename = "../../" . $output_filename;
 

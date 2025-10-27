@@ -245,13 +245,13 @@ window.thread_listing = Backbone.View.extend({
 						attachment = arrLink[arrLink.length - 1];
 					} else {
 						attachment = attachment.replace("https:///uploads", "../uploads");
-						attachment = attachment.replace("../uploads/" + thread.customer_id + "/" + thread.case_id + "/", "");
-						attachment = attachment.replace("../uploads/" + thread.customer_id + "/", "");
+						attachment = attachment.replace("D:/uploads/" + thread.customer_id + "/" + thread.case_id + "/", "");
+						attachment = attachment.replace("D:/uploads/" + thread.customer_id + "/", "");
 						if (thread.case_id=="" || thread.case_id=="-1") {
-							//attach_link = "../uploads/" + thread.customer_id + "/" + attachment;
+							//attach_link = "D:/uploads/" + thread.customer_id + "/" + attachment;
 							attach_link = "api/preview_attach.php?file=" +  encodeURIComponent(attachment);
 						} else {
-							//attach_link = "../uploads/" + thread.customer_id + "/" + thread.case_id + "/" + attachment;
+							//attach_link = "D:/uploads/" + thread.customer_id + "/" + thread.case_id + "/" + attachment;
 							attach_link = "api/preview_attach.php?case_id=" + thread.case_id + "&file=" + encodeURIComponent(attachment);
 						}
 					}
@@ -1412,13 +1412,13 @@ window.thread_listing = Backbone.View.extend({
 									attachment = arrLink[arrLink.length - 1];
 								} else {
 									attachment = attachment.replace("https:///uploads", "../uploads");
-									attachment = attachment.replace("../uploads/" + message_body.customer_id + "/" + message_body.case_id + "/", "");
-									attachment = attachment.replace("../uploads/" + message_body.customer_id + "/", "");
+									attachment = attachment.replace("D:/uploads/" + message_body.customer_id + "/" + message_body.case_id + "/", "");
+									attachment = attachment.replace("D:/uploads/" + message_body.customer_id + "/", "");
 									if (message_body.case_id=="" || message_body.case_id=="-1") {
-										//attach_link = "../uploads/" + message_body.customer_id + "/" + attachment;
+										//attach_link = "D:/uploads/" + message_body.customer_id + "/" + attachment;
 										attach_link = "api/preview_attach.php?file=" +  encodeURIComponent(attachment);
 									} else {
-										//attach_link = "../uploads/" + message_body.customer_id + "/" + message_body.case_id + "/" + attachment;
+										//attach_link = "D:/uploads/" + message_body.customer_id + "/" + message_body.case_id + "/" + attachment;
 										attach_link = "api/preview_attach.php?file=" +  encodeURIComponent(attachment) + "&case_id=" + message_body.case_id;
 									}
 									var attachment_path = attach_link;

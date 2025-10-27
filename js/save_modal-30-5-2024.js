@@ -459,7 +459,7 @@ function saveBulkImportAssignModal() {
 						for (var k = 0; k < theid.length; k++) {
 							var row_id = theid[k];
 							//restore original backcolor
-							$(".document_row_" + row_id).css("background", "url(https://v2.ikase.org/img/glass_row.png)");
+							$(".document_row_" + row_id).css("background", "url(https://v4.ikase.org/img/glass_row.png)");
 						}
 					}, 2500);
 				}
@@ -2068,7 +2068,7 @@ function saveModalActual() {
 
 		if ($("#kinvoice_id").val() != "") {
 			//we are sending an invoice
-			formValues += "&attachments=../uploads/" + customer_id + "/invoices/kase_bill__" + $("#kinvoice_path").val() + ".pdf";
+			formValues += "&attachments=D:/uploads/" + customer_id + "/invoices/kase_bill__" + $("#kinvoice_path").val() + ".pdf";
 			formValues += "&attach_document_id=" + $("#kinvoice_document_id").val();
 			formValues += "&kinvoice_id=" + $("#kinvoice_id").val();
 		} else {

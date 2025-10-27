@@ -484,13 +484,13 @@ var showAttachmentPreview = function(form_name, event, filename, case_id, custom
 		//filename = arrFilename[arrFilename.length - 1];
 		
 		//clean up
-		filename = filename.replaceAll("../uploads/", "uploads/");
-		filename = filename.replaceAll("https:uploads/", "uploads/");
+		filename = filename.replaceAll("D:/uploads/", "D:/uploads/");
+		filename = filename.replaceAll("https:uploads/", "D:/uploads/");
 		
 		if (case_id!="") {
-			filename = filename.replaceAll("uploads/" + customer_id + "/" + case_id + "/", "");
+			filename = filename.replaceAll("D:/uploads/" + customer_id + "/" + case_id + "/", "");
 		} 
-		filename = filename.replaceAll("uploads/" + customer_id + "/", "");
+		filename = filename.replaceAll("D:/uploads/" + customer_id + "/", "");
 		
 		var arrFiles = filename.split("|");
 		var arrayLength = arrFiles.length;
@@ -498,7 +498,7 @@ var showAttachmentPreview = function(form_name, event, filename, case_id, custom
 		var arrLinks = [];
 		for (var i = 0; i < arrayLength; i++) {
 			filename = arrFiles[i];
-			panel_html = "<div><a href='uploads/preview.php?file=uploads/" + customer_id + "/";
+			panel_html = "<div><a href='D:/uploads/preview.php?file=uploads/" + customer_id + "/";
 			
 			if (case_id!="") {
 				panel_html += case_id + "/";
@@ -521,7 +521,7 @@ var documentPreview = function(event, filename, customer_id, thumbnail_folder) {
 	if (typeof thumbnail_folder == "undefined") {
 		thumbnail_folder = "";
 	}
-	var preview = "uploads/" + customer_id + "/";
+	var preview = "D:/uploads/" + customer_id + "/";
 	if (thumbnail_folder=="0" || thumbnail_folder.indexOf("pdfimage")==0) {
 		preview = "pdfimage/" + customer_id + "/";
 		var arrFileName = filename.split(".");
@@ -566,7 +566,7 @@ var documentPreview = function(event, filename, customer_id, thumbnail_folder) {
 			arrFileName.pop();
 			arrFileName.pop();
 			filename = arrFileName.join("_") + "_0.png";
-			var preview = "uploads/" + customer_id + "/imports/" + thumbnail_folder + "/";	
+			var preview = "D:/uploads/" + customer_id + "/imports/" + thumbnail_folder + "/";	
 		}
 	}
 	preview += filename;
@@ -628,7 +628,7 @@ var documentThumbnail = function(filename, customer_id, thumbnail_folder, case_i
 	if (typeof case_id == "undefined") {
 		case_id = "";
 	}
-	var preview = "uploads/" + customer_id + "/";
+	var preview = "D:/uploads/" + customer_id + "/";
 	if (case_id!="" && thumbnail_folder=="") {
 		preview += case_id + "/";
 	}
@@ -674,7 +674,7 @@ var documentThumbnail = function(filename, customer_id, thumbnail_folder, case_i
 			arrFileName.pop();
 			arrFileName.pop();
 			filename = arrFileName.join("_") + "_0.png";
-			var preview = "uploads/" + customer_id + "/imports/" + thumbnail_folder + "/";	
+			var preview = "D:/uploads/" + customer_id + "/imports/" + thumbnail_folder + "/";	
 		}
 	}
 	preview = preview.replace("medium/", "thumbnail/");
@@ -705,9 +705,9 @@ var showPreview = function(event, filename, time_stamp, pages, customer_id) {
 		first_page = pages.split("-")[0] - 1;
 	}
 	if (time_stamp!="") {
-		var preview = "uploads/" + customer_id + "/" + time_stamp + "/" + filename + "_" + first_page + ".png";
+		var preview = "D:/uploads/" + customer_id + "/" + time_stamp + "/" + filename + "_" + first_page + ".png";
 	} else {
-		var preview = "uploads/" + customer_id + "/thumbnails/" + filename + "_" + first_page + ".png";
+		var preview = "D:/uploads/" + customer_id + "/thumbnails/" + filename + "_" + first_page + ".png";
 	}
 	//console.log(preview);
 	

@@ -222,7 +222,7 @@ $user_count = mysql_result($result_users, 0, "user_count");
 <body onload="init()">
 <table width="800px" border="0" cellspacing="0" cellpadding="2" align="center">
   <tr>
-    <td align="left" valign="top"><img src="https://v2.ikase.org/img/ikase_logo_login.png" alt="iKase" height="32" /><br />
+    <td align="left" valign="top"><img src="https://v4.ikase.org/img/ikase_logo_login.png" alt="iKase" height="32" /><br />
       support@ikase.org</td>
     <td align="center" valign="top" nowrap="nowrap">
     	<span style="font-weight:bold; font-size:1.5em"><span id="invoice_qualifier">New </span>Invoice</span>

@@ -433,7 +433,7 @@ function logout() {
 	/* optional: unset old session variables */
 	$_SESSION = array();
 	
-	$filename = 'C:\\inetpub\\wwwroot\\iKase.org\\remind\\sessions\\data_' . $session_id  . '.txt';
+	$filename = 'C:\\inetpub\\wwwroot\\ikase.org\\remind\\sessions\\data_' . $session_id  . '.txt';
 	$fp = fopen($filename, 'w');
 	fwrite($fp, "");
 	fclose($fp);

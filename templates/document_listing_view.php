@@ -151,7 +151,7 @@ if ($_SESSION["user_customer_id"]==1075) {
         
     <% } %>
       	<?php if ($blnA1 && !$blnPerfect && count($arrOptions["types"]) == 0) { ?>
-        <select id="typeFilter" class="modal_input filter_select" style="margin-top:-2px;">
+        <select id="typeFilter" class="modal_input filter_select doc_filter1" style="margin-top:-2px;">
             <option value="">Filter by Type</option>
             <option value="132A_SW">132A &amp; S&amp;W</option>
             <option value="third_party referrals">3rd Party Referrals</option>
@@ -188,13 +188,13 @@ if ($_SESSION["user_customer_id"]==1075) {
         </select>
 		<?php } else { ?>
         	<?php 	if (count($arrOptions["types"]) > 0) { ?>
-            		<select id="typeFilter" class="modal_input filter_select" style="margin-top:-2px;">
+            		<select id="typeFilter" class="modal_input filter_select doc_filter1" style="margin-top:-2px;">
 					<option value="">Filter by Types</option>
 					<?php echo $select_types; ?>
                     </select>
 			<?php
 			 		} else { ?>
-        <select id="typeFilter" class="modal_input filter_select" style="margin-top:-2px;">
+        <select id="typeFilter" class="modal_input filter_select doc_filter1" style="margin-top:-2px;">
 	        <option value="">Filter by Category</option>
             <option value="AME Report">AME Report</option>
             <option value="Copy Service Request">Copy Service Request</option>
@@ -232,12 +232,12 @@ if ($_SESSION["user_customer_id"]==1075) {
 	        <?php } ?>
         <?php } ?>
         <?php if (count($arrOptions["categories"]) > 0) { ?>
-            <select id="categoryFilter" class="modal_input filter_select" style="margin-top:-2px;">
+            <select id="categoryFilter cat_filter" class="modal_input filter_select cat_filter" style="margin-top:-2px;">
             	<option value="">Filter by Category</option>
                 <?php echo $select_categories; ?>
             </select>
         <?php } else { ?>
-            <select id="categoryFilter" class="modal_input filter_select" style="margin-top:-2px;">
+            <select id="categoryFilter cat_filter" class="modal_input filter_select cat_filter" style="margin-top:-2px;">
                         <option value="">Filter by Category</option>
                         <option value="Client">Client</option>
                         <option value="Carrier Document">Carrier Document</option>
@@ -251,12 +251,12 @@ if ($_SESSION["user_customer_id"]==1075) {
             </select>
         <?php } ?>
         <?php if (count($arrOptions["subcategories"]) > 0) { ?>
-            <select id="sub_categoryFilter" class="modal_input filter_select" style="margin-top:-2px;">
+            <select id="sub_categoryFilter subcat_filter" class="modal_input filter_select subcat_filter" style="margin-top:-2px;">
 		        <option value="">Filter by Sub Category</option>
                 <?php echo implode("\r\n", $arrOptions["subcategories"]); ?>
             </select>
         <?php } else { ?>
-            <select id="sub_categoryFilter" class="modal_input filter_select" style="margin-top:-2px;">
+            <select id="sub_categoryFilter subcat_filter" class="modal_input filter_select subcat_filter" style="margin-top:-2px;">
                 <option value="">Filter by Sub Category</option>
                 <option value="doctor">Doctor</option>
                 <option value="attorney">Attorney</option>
@@ -304,7 +304,7 @@ if ($_SESSION["user_customer_id"]==1075) {
             	<a href="#archives_ecand/<%=kase.case_id %>" style="cursor:pointer" class="white_text">Archives</a>&nbsp;<span id="archive_count" style=" color:white; font-size:0.8em"></span>
             </div>
             <?php } ?>
-        	<span style="font-size:1.2em; color:#FFFFFF" id="document_form_title">Kase Documents</span>&nbsp;<div style="position: relative;left: 135px; padding-left:3px; margin-top:-25px; color:white; font-size:0.8em">(<%=kase_documents.length %>)</div>
+        	<span style="font-size:1.2em; color:#FFFFFF" id="document_form_title">Kase Documents</span>&nbsp;<div style="position: relative;left: 135px; padding-left:3px; margin-top:-25px; color:white; font-size:0.8em" id = "documnet_count">(<%=kase_documents.length %>)</div>
         </div>
     </div>
 
@@ -357,7 +357,7 @@ if ($_SESSION["user_customer_id"]==1075) {
             	<div style="float:right;" id="send_this_holder">
                 	<button class="btn btn-primary btn-xs" id="send_documents" title="Click to Send checked Documents via Email/Interoffice" disabled="disabled" style="visibility:hidden;">Send Checked</button>
                 </div>
-<!-- 
+            <!-- 
                 &nbsp;
             <div style="float:right;" id="send_this_holder">
                 	<button class="btn btn-primary btn-xs" id="merge_documents" title="Click to Send checked Documents via Email/Interoffice" disabled="disabled">Merge Checked</button>
@@ -381,7 +381,7 @@ if ($_SESSION["user_customer_id"]==1075) {
         </tr>
         <% } %>
         </thead>
-        <tbody>
+        <tbody id ="documents_rows">
        <% 
        _.each( kase_documents, function(kase_document) {
        	%>
@@ -604,6 +604,9 @@ if ($_SESSION["user_customer_id"]==1075) {
     </div>
 </div>
 <div id="document_listing_all_done"></div>
+<div id="type_count" style="display:none;"></div>
+<div id="cat_count" style="display:none;"></div>
+<div id="subcat_count" style="display:none;"></div>
 <!-- NISHIT ADD THIS CODE -->
 <div id="download_file__popup" class="modal-popup">
   <div class="modal-content-popup">
@@ -694,6 +697,2138 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+</script>
+
+<script language="javascript">
+
+    var loading = false;
+     var threshold = 2; // Adjust this value as needed 
+     var lastScrollTop = 0; // Store the last scroll position
+     var loading_image = '<tr id="loading-data"><td colspan="6"><div id="document_listing_loading" style="display:; text-align:center; font-size:0.8em" class="white_text"><i class="icon-spin4 animate-spin" style="font-size:6em; color:white"></i><br /><br />Loading <span id="loading_progress_span"></span>...</div></td></tr>';
+    var loaded_document_count = <?php echo DOC_LIMITS; ?>; //change 20 value if increase limit value
+    $(document).ready(function(){ //alert("call");
+        var page1 = 1;
+        var full_url = document.URL;
+        var id = full_url.substring(full_url.lastIndexOf('/') + 1);
+        $.ajax({
+            url: 'api/documents/count/'+ id, 
+            method: 'GET',
+            data: { page: page1 },
+            success: function(responsecount) { 
+                if (responsecount.length > 0) {
+                    var count_data = "("+responsecount.length+")";
+                    $("#documnet_count").text(count_data);
+                }
+            }
+        });
+        
+    });
+    var page =1;
+
+    $('.doc_filter1').on('change', function () { //alert("type");
+        if(loading == false)
+        {
+            $('#documents_rows').html(loading_image);
+            var page1 = 1;
+            var full_url = document.URL;
+            var id = full_url.substring(full_url.lastIndexOf('/') + 1);
+            loading = true;
+
+            var limit = <?php echo DOC_LIMITS; ?>; // Records per page
+            //alert("call");
+            var typedata = $('.doc_filter1').val();//alert(type);
+            var category = $('.cat_filter').val();
+            var subcat = $('.subcat_filter').val();
+            $.ajax({
+                url: 'api/documents/typecount/'+ id, 
+                method: 'GET',
+                data: { type: typedata },
+                success: function(responsetypecount) { //alert(responsetypecount.length);
+                    if (responsetypecount.length > 0) {
+                        var type_count_data = responsetypecount.length;
+                        $("#type_count").val(type_count_data);
+                    }
+                }
+            });
+
+            $.ajax({
+                url: 'api/documents/typefilter/'+ id, 
+                method: 'GET',
+                data: { type: typedata, page: page1, limit: limit },
+            // data: { type: typedata },
+                success: function(response)  { //alert(response.length);
+                    // Hide the loader
+                
+                    if (response != '' && response.length > 0) {                    
+                        $('#documents_rows').empty();
+                            loaded_document_count = loaded_document_count + response.length;                        
+                        
+                            // Loop through each document in the response
+                            response.forEach(function(doc) { //console.log(doc);
+                                $("#document_listing_loading").hide();
+                                //$("#document_listing_loading").hide();
+                                // Extract details with fallback 
+                                var id1 = doc.id;
+                                var documentId = doc.document_id;
+                                var documentName = doc.document_name;
+                                var documentDate = doc.document_date;
+                                var description = doc.description;
+                                var customer_id = doc.customer_id;
+                                var case_id = doc.case_id;
+                                var download_link = doc.abs_path;
+                                var document_filename = doc.document_filename;
+                                var source = doc.source;
+                                var received_date = doc.received_date;
+                                var type = doc.type;
+                                var document_extension = doc.document_extension;
+                                var preview_href = doc.preview_path_old;
+                                var preview = doc.preview_path;
+                                var description_html = doc.description_html;
+                                var user_name = doc.user_name;
+                                var exam_uuid = doc.exam_uuid;
+                                var thumbnail_folder = doc.thumbnail_folder;
+                                var parent_document_uuid = doc.parent_document_uuid;
+                                var doi_id = doc.doi_id;
+                                var parent_document_uuid = doc.parent_document_uuid;
+                                var last_user_attributes = doc.last_user_attributes;
+                                var case_uuid = doc.case_uuid;
+                                
+                                if (received_date === "00/00/0000 12:00AM" || received_date === "12/31/1969 4:00PM") {
+                                    received_date = '';
+                                }
+
+                                download_link = " ";
+                                //download and update
+                                if (document_extension=="") {
+                                    //split it up
+                                    var arrFile = document_filename.split(".");
+                                    document_extension = arrFile[arrFile.length - 1];
+                                }
+                                if (document_extension=="docx") {
+                                    if (document_filename.indexOf(".docx") < 0) {
+                                        document_filename += ".docx";
+                                    }
+                                    download_link = "<a id='document_" + documentId + "' title='Click to download document to your computer' class='white_text download_document' target='_blank' style='cursor:pointer'><i class='glyphicon glyphicon-save' style='color:#FFFFFF;'>&nbsp;</i></a>";
+                                }
+                                
+                                if (document_filename.indexOf("D:/uploads/") > -1) {
+                                    document_filename = document_filename.replaceAll("D:/uploads/" + customer_id + "/" + case_id + "/", "");
+                                    document_filename = document_filename.replace("../", "");
+                                }
+                                
+                                //obsolete below
+                                var href = "D:/uploads/" + customer_id + "/" + case_id + "/" + document_filename.replace("#", "%23");
+                                if (type == "eams_form") {
+                                    href = "D:/uploads/" + customer_id + "/" + case_id + "/eams_forms/" + document_filename.replace("#", "%23");
+                                }
+                                if (!isNaN(thumbnail_folder) && document_extension!="docx" && thumbnail_folder!="") {
+                                    href = "D:/uploads/" + customer_id + "/imports/" + document_filename;
+                                }
+                                if (type == "abacus") {
+                                    href = "https://www.ikase.xyz/ikase/abacus/" + customer_data_source + "/" + thumbnail_folder + "/" + document_filename;
+                                }
+                                if (source == "cloud") {
+                                    //kase_document.type = kase_document.source;
+                                }
+                                //eams pdfs			
+                                if (type == "jetfiler") {
+                                    href = "D:/uploads/" + customer_id + "/" + case_id + "/jetfiler/" + document_filename;	
+                                }
+                                href = href;
+                                //
+                                if (type=="batchscan3") {
+                                    href = "D:/uploads/" + customer_id + "/imports/" + thumbnail_folder + "/" + document_filename;
+                                }
+                                if (source == "cloud") {
+                                    preview_href = "javascript:showCloudArchive('" + document_filename + "')";
+                                } else {
+                                //new link
+                                    preview_href = "api/preview.php?case_id=" + case_id + "&file=" + encodeURIComponent(document_filename) + "&id=" + id + "&type=" + type + "&thumbnail_folder=" + thumbnail_folder;
+                                }
+                                if (user_name!="") {
+                                    if (typeof last_user_attributes == "undefined") {
+                                        user_name = "<br /><br />By: " + user_name;
+                                    } else {
+                                        if (user_name==null) {
+                                            user_name = "";
+                                        }
+                                        var arrDocUsers = user_name.split("|");
+                                        var arrDocUserAtts = last_user_attributes.split("|");
+                                        var arrLength = arrDocUsers.length;
+                                        var arrDocumentCredits = [];
+                                        for(var i =0; i < arrLength; i++) {
+                                            var the_user_name = arrDocUsers[i];
+                                            var the_attribute = arrDocUserAtts[i];
+                                            
+                                            if (typeof arrDocUserAtts[i] == "string") {
+                                                var the_user_attribute = arrDocUserAtts[i].replaceAll("_", " ");
+                                                arrDocumentCredits.push(the_user_attribute.capitalizeWords() + " by " + the_user_name);
+                                            }
+                                        }
+                                        if (arrDocumentCredits.length > 0) {
+                                            user_name = "<br /><br />" + arrDocumentCredits.join("<br>");
+                                        }
+                                    }
+                                }
+                                var the_type = type;
+                                if (source!="") {
+                                    the_type = source;
+                                }
+                                if (typeof preview_path == "undefined") {
+                                    preview_path = "";
+                                }
+                                if ( preview_path=="img/no_preview.gif") {
+                                    preview_path = "";
+                                }
+                                
+                                if (source != "cloud") {
+                                    if (preview_path=="") {
+                                        preview = documentThumbnail(document_filename, customer_id, thumbnail_folder, case_id, the_type, documentDate, parent_document_uuid);
+                                        //console.log(kase_document.preview);
+                                    } else {                                   
+                                        preview = preview_path;
+                                    }
+                                } else {
+                                    preview = "merge_documents/default_file_placeholder.jpg";
+                                }
+                                
+                                var blnSound = (document_filename.indexOf(".wma") > -1 || document_filename.indexOf(".mp3") > -1);
+                                if (blnSound) {
+                                    preview = "img/sound.gif";
+                                }
+                                
+                                if (preview!="") {
+                                    if (preview.indexOf("/thumbnail/") > -1) {
+                                        thumbnail_folder = case_id + "/medium";
+                                    }
+                                    if (source != "cloud") {
+                                        //console.log(kase_document.preview+ "data");
+                                        if(preview == "merge_documents/default_file_placeholder.jpg")
+                                        {
+                                            preview_img = "merge_documents/default_file_placeholder_main.jpg"
+                                        }else{
+                                            preview_img = preview;
+                                        }
+                                        preview = '<img src="' + preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + preview_img + '\')" onmouseout="hidePreview()" />';
+                                    } else {
+                                        preview = '<img src="' + preview + '" width="58" height="75" />';
+                                    }
+                                
+                                } 
+                                
+                                var note = description_html;
+                                var arrNote = note.split("_");
+                                //batchscan clean up
+                                var blnShowNote = true;
+                                if (arrNote.length == 2) {
+                                    if (!isNaN(arrNote[0]) && !isNaN(arrNote[0])) {
+                                        blnShowNote = false;
+                                    }
+                                }
+                                if (!blnShowNote) {
+                                    description_html = "";
+                                }
+
+                                if (doi_id!="") {
+                                        //set it
+                                        $("#doi_id_" + id1).val(id1);
+                                }
+                                setTimeout(() => {
+                                $("#document_type_"+id1).each(function() {
+                                    if(typedata == '')
+                                    {
+                                        $(this).val('');
+                                    }
+                                    else{
+                                        if(type == typedata){
+                                            $("#document_type_"+id1).val(type);
+                                        }
+                                    }
+                                    
+                                });
+                                }, 100);
+                                
+                                /* setTimeout(() => {
+                                $("#document_category_"+id1).each(function() {
+                                    if(category == '')
+                                    {
+                                        $(this).val('');
+                                    }
+                                    else{
+                                        if(document_extension != ''){
+                                            $("#document_category_"+id1).val(document_extension);
+                                        }
+                                    }
+                                });
+                            }, 100); */
+                            /*  $("#document_category_"+id1).each(function() {
+                                    if(document_extension == ''){
+                                        $(this).val('');
+                                    }
+                                    
+                                }); */
+                            
+                            /*  setTimeout(() => {
+                                $("#document_subcategory_"+id1).each(function() {
+                                    if(subcat == '')
+                                    {
+                                        $(this).val('');
+                                    }
+                                    else{
+                                        if(description != ''){
+                                            $("#document_subcategory_"+id1).val(description);
+                                        }
+                                    }                                
+                                });
+                                }, 100); */
+
+                                //preview = documentThumbnail(document_filename, customer_id, thumbnail_folder, case_id, source, documentDate, parent_document_uuid);
+                                // Create an HTML structure for the document
+                                let html = `
+                                    <tr class="kase_document_data_row kase_document_row_`+documentId+`" style="display:">
+                                        <td nowrap="nowrap">
+                                        <input type="checkbox" style="margin-right:10px" data-doc-date="`+documentDate+`" data-doc-id="`+id1+`" id="check_assign_`+id1+`" class="check_thisone check_thisone_`+id1+`"/><a name="document_bill_`+id1+`" id="document_bill_`+id1+`" class="bill_icon" style="cursor:pointer" title="Bill this"><i class="glyphicon glyphicon-time" style="color:#F90">&nbsp;</i></a>&nbsp;&nbsp;
+                                            <div style="display:inline-block">
+                                                <a name="document_save_`+id1+`" id="document_save_`+id1+`" class="save_icon" style="display:none; cursor:pointer" title="Click to Save"><i class="glyphicon glyphicon-saved" style="color:#00FF00">&nbsp;</i></a>
+                                                <i class="glyphicon glyphicon-saved" style="color:#CCCCCC" id="disabled_save_`+id1+`">&nbsp;</i>
+                                                &nbsp;
+                                            </div>
+                                            <div style="display:inline-block">
+                                                <a class="send_icon" id="senddocument_`+id1+`" title="Click to send document" style="cursor:pointer" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false"><i class="glyphicon glyphicon-pencil" style="color:#00FFFF">&nbsp;</i></a>
+                                            </div>
+                                            <div style="display:inline-block">
+                                                <?php //per steve at dordulian 3/31/32017
+                                                    if ($blnDeletePermission) { ?>
+                                                <a title="Click to delete Document" class="list_edit delete_document" id="deletedocument_`+id1+`" onClick="javascript:composeDelete(`+id1+`, 'document');" data-toggle="modal" data-target="#deleteModal" style="cursor:pointer">
+                                                <i style="font-size:15px; color:#FF3737; cursor:pointer" id="delete_document" class="glyphicon glyphicon-trash delete_document"></i></a>
+                                                <?php } ?>
+                                            </div>
+                                            <br /><br />
+                                            <input id="document_id_`+id1+`" name="document_id_`+id1+`" type="hidden" class="document_input" value="`+id1+`" />
+                                            <input id="document_filename_`+id1+`" type="hidden" value="`+document_filename+`" />                                     
+                                            <a id="thumbnail_`+id1+`" class="list_link" style="cursor:pointer" title="Click to open document in new window">
+                                                `+ preview +`
+                                            </a>`;
+                                            
+                                            html += `<div id="window_link_`+id1+`" class="window_link_holder" style="display:none; margin-top:5px">
+                                                <a id="window_thumbnail_`+id1+`" class="window_link white_text" title="Click to open document in new window" style="cursor:pointer">
+                                                    Open in new window
+                                                </a>
+                                            </div> 
+                                            <input type="hidden" id="preview_document_`+id1+`" value="`+preview_href+`" /> 
+                                        </td>
+                                        <td align="left" valign="top" nowrap="nowrap">
+                                            <div>
+                                                <label style="width:50px">Name:</label>
+                                                <input id="document_name_`+id1+`" name="document_name_`+id1+`" type="text" class="document_input" value="`+documentName+`" style="width:300px" />
+                                            </div>
+                                            <div style="padding-top:2px">
+                                                <label style="width:50px">Source:</label>
+                                                <input id="document_source_`+id1+`" name="document_source_`+id1+`" type="text" class="document_input" value="`+source+`" style="width:300px" />
+                                            </div>
+                                            <div style="padding-top:2px">
+                                                <label style="width:50px">Received:</label>
+                                                <input id="document_received_`+id1+`" name="document_received_`+id1+`" type="text" class="document_input date_input" value="`+received_date+`" style="width:300px" />
+                                            </div>
+                                            <div style="padding-top:2px">
+                                                <label style="width:50px">DOI:</label>
+                                                <select id="doi_id_`+id1+`" style="width:300px; height:28px" class="doi_id document_input"></select>
+                                            </div>
+                                            <div>
+                                                <div style="padding-top:2px">
+                                                    <label style="width:50px">Doc ID:</label>
+                                                    `+id1+`&nbsp;|&nbsp;<a href="`+preview_href+`" target="_blank" title="Click to open document in a new window" class="white_text" style="background:orange; font-weight:bold; padding:2px; color:black">Preview in Browser</a>&nbsp;|&nbsp;<a href="`+preview_href+` &download="  title="Click to download document to your PC" class="white_text" style="background:cyan; font-weight:bold; padding:2px; color:black" target="_blank">Download to PC</a>
+                                                </div>
+                                            </div>
+                                            <div style="display:none">
+                                            `+source+` `+received_date+`
+                                            </div>
+                                        </td>
+                                        <td>`+documentDate+` `+user_name+`</td>
+                                        <td style="display:none">`+documentName+`</td>
+                                        <td class="note_type_cell" style="display:none">`+type+`</td>
+                                        <td class="note_category_cell" style="display:none">`+document_extension+`</td>
+                                        <td class="note_sub_category_cell" style="display:none">`+description+`</td>
+                                        <td colspan="3">
+                                            <table border="0" cellpadding="0" cellspacing="0">
+                                                <tr class="kase_document_row_`+id1+`">
+                                                <td>`;
+                                                <?php if ($_SESSION["user_customer_id"]=='1049') { ?>
+                                                html += `<select class="document_input document_type" name="document_type_`+id1+`" id="document_type_`+id1+`">
+                                                        <option value="" ${type == "" ? "selected" : ""}>Select Type</option>
+                                                        <option value="132A_SW" ${type == "132A_SW" ? "selected" : ""}>132A &amp; S&amp;W</option>
+                                                        <option value="third_party referrals" ${type == "third_party referrals" ? "selected" : ""}>3rd Party Referrals</option>
+                                                        <option value="AME Report" ${type == "AME Report" ? "selected" : ""}>AME Report</option>
+                                                        <option value="AME/QME Prep" ${type == "AME/QME Prep" ? "selected" : ""}>AME/QME Prep</option>
+                                                        <option value="Calendar - Notes and Orange Slips" ${type == "Calendar - Notes and Orange Slips" ? "selected" : ""}>Calendar - Notes and Orange Slips</option>
+                                                        <option value="Copy Service Request" ${type == "Copy Service Request" ? "selected" : ""}>Copy Service Request</option>
+                                                        <option value="Correspondence and Emails" ${type == "Correspondence and Emails" ? "selected" : ""}>Correspondence and Emails</option>
+                                                        <option value="Cross X Summary" ${type == "Cross X Summary" ? "selected" : ""}>Cross X Summary</option>
+                                                        <option value="Defense Meds" ${type == "Defense Med" ? "selected" : ""}>Defense Meds</option>
+                                                        <option value="Depo Trans" ${type == "Depo Trans" ? "selected" : ""}>Depo Trans</option>
+                                                        <option value="Fax Confirmation" ${type == "Fax Confirmation" ? "selected" : ""}>Fax Confirmation</option>
+                                                        <option value="General" ${type == "General" ? "selected" : ""}>General</option>
+                                                        <option value="HomeCare" ${type == "HomeCare" ? "selected" : ""}>HomeCare</option>
+                                                        <option value="Internal" ${type == "Internaln" ? "selected" : ""}>Internal</option>
+                                                        <option value="Legal" ${type == "Legal" ? "selected" : ""}>Legal</option>
+                                                        <option value="Liens" ${type == "Liens" ? "selected" : ""}>Liens</option>
+                                                        <option value="Misc. App. Meds" ${type == "Misc. App. Medsn" ? "selected" : ""}>Misc. App. Meds</option>
+                                                        <option value="Monthly Status" ${type == "Monthly Statusn" ? "selected" : ""}>Monthly Status</option>
+                                                        <option value="MPN Correspondence" ${type == "PN Correspondence" ? "selected" : ""}>MPN Correspondence</option>
+                                                        <option value="Neuro" ${type == "Neuro" ? "selected" : ""}>Neur</option>
+                                                        <option value="Ortho" ${type == "Ortho" ? "selected" : ""}>Ortho</option>
+                                                        <option value="Out of Pocket/Transportation" ${type == "Out of Pocket/Transportation" ? "selected" : ""}>Out of Pocket/Transportation</option>
+                                                        <option value="POA/Attorney Meeting" ${type == "POA/Attorney Meeting" ? "selected" : ""}>POA/Attorney Meeting</option>
+                                                        <option value="Proof of Services" ${type == "Proof of Services" ? "selected" : ""}>Proof of Services</option>
+                                                        <option value="Psych" ${type == "Psychn" ? "selected" : ""}>Psych</option>
+                                                        <option value="QME Objection Request (Correspondence Only)" ${type == "QME Objection Request (Correspondence Only)" ? "selected" : ""}>QME Objection Request (Correspondence Only)</option>
+                                                        <option value="Rating Chart" ${type == "Rating Chart" ? "selected" : ""}>Rating Chart</option>
+                                                        <option value="Scanned Mail" ${type == "Scanned Mail" ? "selected" : ""}>Scanned Mail</option>
+                                                        <option value="SDT Records" ${type == "SDT Records" ? "selected" : ""}>SDT Records</option>
+                                                        <option value="Settlement/Calls" ${type == "Settlement/Calls" ? "selected" : ""}>Settlement/Calls</option>
+                                                        <option value="QME OBJ/REQ"> ${type == "QME OBJ/REQ" ? "selected" : ""}>QME OBJ/REQ</option>
+                                                        <option value="UEF Docs" ${type == "UEF Docs" ? "selected" : ""}>UEF Docs</option>
+                                                        <option value="UR/IMR" ${type == "UR/IMR" ? "selected" : ""}>UR/IMR</option>
+                                                        <option value="Vocational Rehab Expert" ${type == "Vocational Rehab Exper" ? "selected" : ""}>Vocational Rehab Expert</option>
+                                                        <option value="W2 Forms / Earnings" ${type == "W2 Forms / Earnings" ? "selected" : ""}>W2 Forms / Earnings</option>
+                                                    </select>`;
+                                                        /* if ($(`#document_type_${id1} option[value="${type}"]`).length > 0) {
+                                                            // If the type matches a value in the dropdown, select it
+                                                            $(`#document_type_${id1}`).val(type);
+                                                        } else {
+                                                            // Handle cases where the type doesn't match any option
+                                                            console.warn(`Value "${type}" not found in the dropdown. Setting default.`);
+                                                            $(`#document_type_${id1}`).val(""); // Set to default "Select Type"
+                                                        } */
+                                                    <?php } else {
+                                                            if (count($arrOptions["types"]) > 0) { ?>
+                                                                html += `<select class="document_input document_type" name="document_type_`+id1+`" id="document_type_`+id1+`">
+                                                                <option value="">Select Type</option>
+                                                                <?php 
+                                                                echo $select_types; ?>
+                                                                </select>`;
+                                                                <?php
+                                                            } else { ?>
+                                                html += `<select class="document_input document_type doc_type_data" name="document_type_`+id1+`" id="document_type_`+id1+`">
+                                                    <option value="" ${type == "" ? "selected" : ""}>Select Type</option>
+                                                    <option value="AME Report" ${type == "AME Report" ? "selected" : ""}>AME Report</option>
+                                                    <option value="Copy Service Request" ${type == "Copy Service Request" ? "selected" : ""}>Copy Service Request</option>
+                                                    <option value="COR" ${type == "COR" ? "selected" : ""}>COR</option>
+                                                    <option value="COR - C" ${type == "COR - C" ? "selected" : ""}>COR - C</option>
+                                                    <option value="COR - DA" ${type == "COR - DA" ? "selected" : ""}>>COR - DA</option>
+                                                    <option value="COR - IMR" ${type == "COR - IMR" ? "selected" : ""}>COR - IMR</option>
+                                                    <option value="COR - INS" ${type == "COR - INS" ? "selected" : ""}>COR - INS</option>
+                                                    <option value="COR - UR" ${type == "COR - UR" ? "selected" : ""}>COR - UR</option>
+                                                    <option value="Depo Transcript" ${type == "Depo Transcript" ? "selected" : ""}>Depo Transcript</option>
+                                                    <option value="Email Received" ${type == "Email Received" ? "selected" : ""}>Email Received</option>
+                                                    <option value="Email Sent" ${type == "Email Sent" ? "selected" : ""}>Email Sent</option>
+                                                    <option value="Fax Received" ${type == "Fax Received" ? "selected" : ""}>Fax Received</option>
+                                                    <option value="Fax Sent" ${type == "Fax Sent" ? "selected" : ""}>Fax Sent</option>
+                                                    <option value="Fee" ${type == "Fee" ? "selected" : ""}>Fee</option>
+                                                    <option value="Letter Received" ${type == "Letter Received" ? "selected" : ""}>Letter Received</option>
+                                                    <option value="Letter Sent" ${type == "Letter Sent" ? "selected" : ""}>Letter Sent</option>
+                                                    <option value="Manual Entry" ${type == "Manual Entry" ? "selected" : ""}>Manual Entry</option>
+                                                    <option value="Medical Report" ${type == "Medical Report" ? "selected" : ""}>Medical Report</option>
+                                                    <option value="Misc" ${type == "Misc" ? "selected" : ""}>Misc</option>
+                                                    <option value="MPN" ${type == "MPN" ? "selected" : ""}>MPN</option>
+                                                    <option value="Monthly Status" ${type == "Monthly Status" ? "selected" : ""}>Monthly Status</option>
+                                                    <option value="Note" ${type == "Note" ? "selected" : ""}>Note</option>
+                                                    <option value="P &amp; S Report" ${type == "P &amp; S Report" ? "selected" : ""}>P &amp; S Report</option>
+                                                    <option value="Payment" ${type == "Payment" ? "selected" : ""}>Payment</option>
+                                                    <option value="Pleadings" ${type == "Pleadings" ? "selected" : ""}>Pleadings</option>
+                                                    <option value="POA/Attorney Meeting" ${type == "POA/Attorney Meeting" ? "selected" : ""}>POA/Attorney Meeting</option>
+                                                    <option value="PQME Report" ${type == "PQME Report" ? "selected" : ""}>PQME Report</option>
+                                                    <option value="Proof Sent" ${type == "Proof Sent" ? "selected" : ""}>Proof Sent</option>
+                                                    <option value="Rating Chart" ${type == "Rating Chart" ? "selected" : ""}>Rating Chart</option>
+                                                    <option value="Reviewed" ${type == "Reviewed" ? "selected" : ""}>Reviewed</option>
+                                                    <option value="Scanned Mail" ${type == "Scanned Mail" ? "selected" : ""}>Scanned Mail</option>
+                                                    <option value="SDT Records" ${type == "SDT Records" ? "selected" : ""}>SDT Records</option>
+                                                    <option value="Settlement Docs" ${type == "Settlement Docs" ? "selected" : ""}>Settlement Docs</option>
+                                                    <option value="Telephone Call" ${type == "Telephone Call" ? "selected" : ""}>Telephone Call</option>
+                                                </select>`;
+                                                    <?php }
+                                                    } ?>
+                                                html += `</td>
+                                                <td>`;
+                                                <?php if (count($arrOptions["categories"]) > 0) { ?>
+                                                            html += `<select class="document_input" name="document_category_`+id1+`" id="document_category_`+id1+`">
+                                                            <option value="">Select Category</option>
+                                                            <?php 
+                                                            echo $select_categories; ?>
+                                                            </select>`;
+                                                            <?php
+                                                        } else { ?>
+                                                html += ` <select class="document_input" name="document_category_`+id1+`" id="document_category_`+id1+`">
+                                                                <option value="" ${document_extension == "" ? "selected" : ""}>Select Category</option>
+                                                                <option value="Client" ${document_extension == "Client" ? "selected" : ""}>Client</option>
+                                                                <option value="Carrier Document" ${document_extension=="Carrier Document" ? "selected" :""}>Carrier Document</option>
+                                                                <option value="Correspondence" ${document_extension=="Correspondence" ? "selected" :""}>Correspondence</option>
+                                                                <option value="Defense Attorney" ${document_extension=="Defense Attorney" ? "selected" :""}>Defense Attorney</option>
+                                                                <option value="Document" ${document_extension=="Document" ||  document_extension=="document" ? "selected" :""}>Document</option>
+                                                                <option value="Employment" ${document_extension=="Employment" ? "selected" :""}>Employment</option>
+                                                                <option value="Notes" ${document_extension=="Notes" ? "selected" :""}>Notes</option>
+                                                                <option value="Medical" ${document_extension=="Medical" ? "selected" :""}>Medical</option>
+                                                        </select>`;
+                                                <?php } ?>
+                                                html += `</td>
+                                                <td>`;
+                                                <?php if (count($arrOptions["subcategories"]) > 0) { ?>
+                                                        html += `<select class="document_input" name="document_subcategory_`+id1+`" id="document_subcategory_`+id1+`">
+                                                    <option value="">Select Sub Category</option>
+                                                        <?php 
+                                                    echo $select_subcategories; ?>
+                                                        </select>`;
+                                                        <?php
+                                                    } else { ?>
+                                                html += `<select class="document_input" name="document_subcategory_`+id1+`" id="document_subcategory_`+id1+`">
+                                                    <option value="">Select Sub Category</option>
+                                                    <option value="doctor" ${description=="doctor" ? "selected" :""}>Doctor</option>
+                                                    <option value="attorney" ${description=="Medical" ? "attorney" :""}>Attorney</option>
+                                                </select>`;
+                                                <?php } ?>
+                                                html += `</td>
+                                                </tr>
+                                                <tr>
+                                                <td colspan="3">
+                                                    <label id="document_note_label_`+id1+`">Note</label>:<br />
+                                                    <textarea name="document_note_`+id1+`" id="document_note_`+id1+`" class="document_input" rows="3" style="width:392px">`+description_html+`</textarea>
+                                                    <div style="display:block" class="document_additional_medindex" id="document_additional_medindex_`+id1+`">`;
+                                                        if (exam_uuid=="") {
+                                                            html += `<input type="checkbox" id="document_medindex_`+id1+`" class="document_input document_medindex" value="Y" />&nbsp;
+                                                            <label for="document_medindex_`+id1+`">Apply to Med Index?</label>`;                    	
+                                                        } else {
+                                                            html += `<input type="hidden" id="document_medindex_`+id1+`" class="document_input document_medindex" value="Y" />
+                                                            &nbsp;
+                                                            <label for="document_medindex_`+id1+`" style="background:yellow; color:black">Med Index Document</label>`;                    	
+                                                        }
+                                                    html += `</div>
+                                                </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>`;
+                                //$('#documents_rows').html(''); 
+                                // Append the document item to the list
+                                $('#documents_rows').append(html);
+                                //page1++;
+                            }); 
+                        }else {
+                            //$('#documents_rows').html(''); 
+                            $('#documents_rows').html('<p style="font-size: 15PX; color: #ffffff;">No documents found.</p>');
+                        }                 
+                        
+                },
+                error: function() {
+                    // Remove the loader after the request completes
+                    $("#loading-data").remove();
+                    loading = false;        
+                },
+                complete: function() {
+                    // Remove the loader after the request completes
+                    $("#loading-data").remove();
+                    loading = false;        
+                } 
+            });
+        }
+    });  
+
+    $('.cat_filter').on('change', function () { //alert("call"); 
+        if(loading == false)
+        {
+        $('#documents_rows').html(loading_image);
+        //var page1 = 1;
+        var full_url = document.URL;
+        var id = full_url.substring(full_url.lastIndexOf('/') + 1);
+        loading = true;
+        
+        var limit = <?php echo DOC_LIMITS; ?>; // Records per page
+        //alert("call");
+        var typedata = $('.doc_filter1').val();//alert(type);
+        var category = $('.cat_filter').val(); //alert(category);
+        var subcat = $('.subcat_filter').val();
+        $.ajax({
+            url: 'api/documents/categorycount/'+ id, 
+            method: 'GET',
+            data: { category: category },
+            success: function(responsecategorycount) { //alert(responsecategorycount.length);
+                if (responsecategorycount.length > 0) {
+                    var category_count_data = responsecategorycount.length;
+                    $("#cat_count").text(category_count_data);
+                }
+            }
+        });
+
+        $.ajax({
+            url: 'api/documents/catfilter/'+ id, 
+            method: 'GET',
+            //data: { category: category, page: page, limit: limit },
+            data: { category: category },
+            success: function(response)  { //console.log(response); //alert(response); //$('#documents_rows').html(response.document_id +':' + response.document_name);
+                // Hide the loader
+            
+                if (response != '' && response.length > 0) {
+                    $('#documents_rows').empty();
+                    // $(loading_image).remove();
+                        loaded_document_count = loaded_document_count + response.length;                        
+                    
+                        // Loop through each document in the response
+                        response.forEach(function(doc) { //console.log(doc);
+                            //$("#document_listing_loading").hide();
+                            // Extract details with fallback 
+                            var id1 = doc.id;
+                            var documentId = doc.document_id;
+                            var documentName = doc.document_name;
+                            var documentDate = doc.document_date;
+                            var description = doc.description;
+                            var customer_id = doc.customer_id;
+                            var case_id = doc.case_id;
+                            var download_link = doc.abs_path;
+                            var document_filename = doc.document_filename;
+                            var source = doc.source;
+                            var received_date = doc.received_date;
+                            var type = doc.type;
+                            var document_extension = doc.document_extension;
+                            var preview_href = doc.preview_path_old;
+                            var preview = doc.preview_path;
+                            var description_html = doc.description_html;
+                            var user_name = doc.user_name;
+                            var exam_uuid = doc.exam_uuid;
+                            var thumbnail_folder = doc.thumbnail_folder;
+                            var parent_document_uuid = doc.parent_document_uuid;
+                            var doi_id = doc.doi_id;
+                            var parent_document_uuid = doc.parent_document_uuid;
+                            var last_user_attributes = doc.last_user_attributes;
+                            var case_uuid = doc.case_uuid;
+                            
+                            if (received_date === "00/00/0000 12:00AM" || received_date === "12/31/1969 4:00PM") {
+                                received_date = '';
+                            }
+
+                            download_link = " ";
+                            //download and update
+                            if (document_extension=="") {
+                                //split it up
+                                var arrFile = document_filename.split(".");
+                                document_extension = arrFile[arrFile.length - 1];
+                            }
+                            if (document_extension=="docx") {
+                                if (document_filename.indexOf(".docx") < 0) {
+                                    document_filename += ".docx";
+                                }
+                                download_link = "<a id='document_" + documentId + "' title='Click to download document to your computer' class='white_text download_document' target='_blank' style='cursor:pointer'><i class='glyphicon glyphicon-save' style='color:#FFFFFF;'>&nbsp;</i></a>";
+                            }
+                            
+                            if (document_filename.indexOf("D:/uploads/") > -1) {
+                                document_filename = document_filename.replaceAll("D:/uploads/" + customer_id + "/" + case_id + "/", "");
+                                document_filename = document_filename.replace("../", "");
+                            }
+                            
+                            //obsolete below
+                            var href = "D:/uploads/" + customer_id + "/" + case_id + "/" + document_filename.replace("#", "%23");
+                            if (type == "eams_form") {
+                                href = "D:/uploads/" + customer_id + "/" + case_id + "/eams_forms/" + document_filename.replace("#", "%23");
+                            }
+                            if (!isNaN(thumbnail_folder) && document_extension!="docx" && thumbnail_folder!="") {
+                                href = "D:/uploads/" + customer_id + "/imports/" + document_filename;
+                            }
+                            if (type == "abacus") {
+                                href = "https://www.ikase.xyz/ikase/abacus/" + customer_data_source + "/" + thumbnail_folder + "/" + document_filename;
+                            }
+                            if (source == "cloud") {
+                                //kase_document.type = kase_document.source;
+                            }
+                            //eams pdfs			
+                            if (type == "jetfiler") {
+                                href = "D:/uploads/" + customer_id + "/" + case_id + "/jetfiler/" + document_filename;	
+                            }
+                            href = href;
+                            //
+                            if (type=="batchscan3") {
+                                href = "D:/uploads/" + customer_id + "/imports/" + thumbnail_folder + "/" + document_filename;
+                            }
+                            if (source == "cloud") {
+                                preview_href = "javascript:showCloudArchive('" + document_filename + "')";
+                            } else {
+                            //new link
+                                preview_href = "api/preview.php?case_id=" + case_id + "&file=" + encodeURIComponent(document_filename) + "&id=" + id + "&type=" + type + "&thumbnail_folder=" + thumbnail_folder;
+                            }
+                            if (user_name!="") {
+                                if (typeof last_user_attributes == "undefined") {
+                                    user_name = "<br /><br />By: " + user_name;
+                                } else {
+                                    if (user_name==null) {
+                                        user_name = "";
+                                    }
+                                    var arrDocUsers = user_name.split("|");
+                                    var arrDocUserAtts = last_user_attributes.split("|");
+                                    var arrLength = arrDocUsers.length;
+                                    var arrDocumentCredits = [];
+                                    for(var i =0; i < arrLength; i++) {
+                                        var the_user_name = arrDocUsers[i];
+                                        var the_attribute = arrDocUserAtts[i];
+                                        
+                                        if (typeof arrDocUserAtts[i] == "string") {
+                                            var the_user_attribute = arrDocUserAtts[i].replaceAll("_", " ");
+                                            arrDocumentCredits.push(the_user_attribute.capitalizeWords() + " by " + the_user_name);
+                                        }
+                                    }
+                                    if (arrDocumentCredits.length > 0) {
+                                        user_name = "<br /><br />" + arrDocumentCredits.join("<br>");
+                                    }
+                                }
+                            }
+                            var the_type = type;
+                            if (source!="") {
+                                the_type = source;
+                            }
+                            if (typeof preview_path == "undefined") {
+                                preview_path = "";
+                            }
+                            if ( preview_path=="img/no_preview.gif") {
+                                preview_path = "";
+                            }
+                            
+                            if (source != "cloud") {
+                                if (preview_path=="") {
+                                    preview = documentThumbnail(document_filename, customer_id, thumbnail_folder, case_id, the_type, documentDate, parent_document_uuid);
+                                    //console.log(kase_document.preview);
+                                } else {                                   
+                                    preview = preview_path;
+                                }
+                            } else {
+                                preview = "merge_documents/default_file_placeholder.jpg";
+                            }
+                            
+                            var blnSound = (document_filename.indexOf(".wma") > -1 || document_filename.indexOf(".mp3") > -1);
+                            if (blnSound) {
+                                preview = "img/sound.gif";
+                            }
+                            
+                            if (preview!="") {
+                                if (preview.indexOf("/thumbnail/") > -1) {
+                                    thumbnail_folder = case_id + "/medium";
+                                }
+                                if (source != "cloud") {
+                                    //console.log(kase_document.preview+ "data");
+                                    if(preview == "merge_documents/default_file_placeholder.jpg")
+                                    {
+                                        preview_img = "merge_documents/default_file_placeholder_main.jpg"
+                                    }else{
+                                        preview_img = preview;
+                                    }
+                                    preview = '<img src="' + preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + preview_img + '\')" onmouseout="hidePreview()" />';
+                                } else {
+                                    preview = '<img src="' + preview + '" width="58" height="75" />';
+                                }
+                            
+                            } 
+                            
+                            var note = description_html;
+                            var arrNote = note.split("_");
+                            //batchscan clean up
+                            var blnShowNote = true;
+                            if (arrNote.length == 2) {
+                                if (!isNaN(arrNote[0]) && !isNaN(arrNote[0])) {
+                                    blnShowNote = false;
+                                }
+                            }
+                            if (!blnShowNote) {
+                                description_html = "";
+                            }
+
+                            if (doi_id!="") {
+                                    //set it
+                                    $("#doi_id_" + id1).val(id1);
+                            }
+                            
+                            /* setTimeout(() => {
+                            $("#document_type_"+id1).each(function() {
+                                
+                                if(typedata == '')
+                                {
+                                    $(this).val('');
+                                }
+                                else{
+                                    if(type != ''){
+                                        $("#document_type_"+id1).val(type);
+                                    }
+                                }
+                                
+                            });
+                            }, 100);
+                             */
+                            setTimeout(() => {
+                            $("#document_category_"+id1).each(function() {
+                                if(category == '')
+                                {
+                                    $(this).val('');
+                                }
+                                else{
+                                    if(document_extension == category){
+                                        $("#document_category_"+id1).val(document_extension);
+                                    }
+                                }
+                            });
+                           }, 100);
+                        
+                          
+                            /* setTimeout(() => {
+                            $("#document_subcategory_"+id1).each(function() {
+                                if(subcat == '')
+                                {
+                                    $(this).val('');
+                                }
+                                else{
+                                    if(description != ''){
+                                        $("#document_subcategory_"+id1).val(description);
+                                    }
+                                }                                
+                            });
+                            }, 100); */
+
+                            //preview = documentThumbnail(document_filename, customer_id, thumbnail_folder, case_id, source, documentDate, parent_document_uuid);
+                            // Create an HTML structure for the document
+                            let html = `
+                                <tr class="kase_document_data_row kase_document_row_`+documentId+`" style="display:">
+                                    <td nowrap="nowrap">
+                                    <input type="checkbox" style="margin-right:10px" data-doc-date="`+documentDate+`" data-doc-id="`+id1+`" id="check_assign_`+id1+`" class="check_thisone check_thisone_`+id1+`"/><a name="document_bill_`+id1+`" id="document_bill_`+id1+`" class="bill_icon" style="cursor:pointer" title="Bill this"><i class="glyphicon glyphicon-time" style="color:#F90">&nbsp;</i></a>&nbsp;&nbsp;
+                                        <div style="display:inline-block">
+                                            <a name="document_save_`+id1+`" id="document_save_`+id1+`" class="save_icon" style="display:none; cursor:pointer" title="Click to Save"><i class="glyphicon glyphicon-saved" style="color:#00FF00">&nbsp;</i></a>
+                                            <i class="glyphicon glyphicon-saved" style="color:#CCCCCC" id="disabled_save_`+id1+`">&nbsp;</i>
+                                            &nbsp;
+                                        </div>
+                                        <div style="display:inline-block">
+                                            <a class="send_icon" id="senddocument_`+id1+`" title="Click to send document" style="cursor:pointer" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false"><i class="glyphicon glyphicon-pencil" style="color:#00FFFF">&nbsp;</i></a>
+                                        </div>
+                                        <div style="display:inline-block">
+                                            <?php //per steve at dordulian 3/31/32017
+                                                if ($blnDeletePermission) { ?>
+                                            <a title="Click to delete Document" class="list_edit delete_document" id="deletedocument_`+id1+`" onClick="javascript:composeDelete(`+id1+`, 'document');" data-toggle="modal" data-target="#deleteModal" style="cursor:pointer">
+                                            <i style="font-size:15px; color:#FF3737; cursor:pointer" id="delete_document" class="glyphicon glyphicon-trash delete_document"></i></a>
+                                            <?php } ?>
+                                        </div>
+                                        <br /><br />
+                                        <input id="document_id_`+id1+`" name="document_id_`+id1+`" type="hidden" class="document_input" value="`+id1+`" />
+                                        <input id="document_filename_`+id1+`" type="hidden" value="`+document_filename+`" />                                     
+                                        <a id="thumbnail_`+id1+`" class="list_link" style="cursor:pointer" title="Click to open document in new window">
+                                            `+ preview +`
+                                        </a>`;
+                                        
+                                        html += `<div id="window_link_`+id1+`" class="window_link_holder" style="display:none; margin-top:5px">
+                                            <a id="window_thumbnail_`+id1+`" class="window_link white_text" title="Click to open document in new window" style="cursor:pointer">
+                                                Open in new window
+                                            </a>
+                                        </div> 
+                                        <input type="hidden" id="preview_document_`+id1+`" value="`+preview_href+`" /> 
+                                    </td>
+                                    <td align="left" valign="top" nowrap="nowrap">
+                                        <div>
+                                            <label style="width:50px">Name:</label>
+                                            <input id="document_name_`+id1+`" name="document_name_`+id1+`" type="text" class="document_input" value="`+documentName+`" style="width:300px" />
+                                        </div>
+                                        <div style="padding-top:2px">
+                                            <label style="width:50px">Source:</label>
+                                            <input id="document_source_`+id1+`" name="document_source_`+id1+`" type="text" class="document_input" value="`+source+`" style="width:300px" />
+                                        </div>
+                                        <div style="padding-top:2px">
+                                            <label style="width:50px">Received:</label>
+                                            <input id="document_received_`+id1+`" name="document_received_`+id1+`" type="text" class="document_input date_input" value="`+received_date+`" style="width:300px" />
+                                        </div>
+                                        <div style="padding-top:2px">
+                                            <label style="width:50px">DOI:</label>
+                                            <select id="doi_id_`+id1+`" style="width:300px; height:28px" class="doi_id document_input"></select>
+                                        </div>
+                                        <div>
+                                            <div style="padding-top:2px">
+                                                <label style="width:50px">Doc ID:</label>
+                                                `+id1+`&nbsp;|&nbsp;<a href="`+preview_href+`" target="_blank" title="Click to open document in a new window" class="white_text" style="background:orange; font-weight:bold; padding:2px; color:black">Preview in Browser</a>&nbsp;|&nbsp;<a href="`+preview_href+` &download="  title="Click to download document to your PC" class="white_text" style="background:cyan; font-weight:bold; padding:2px; color:black" target="_blank">Download to PC</a>
+                                            </div>
+                                        </div>
+                                        <div style="display:none">
+                                        `+source+` `+received_date+`
+                                        </div>
+                                    </td>
+                                    <td>`+documentDate+` `+user_name+`</td>
+                                    <td style="display:none">`+documentName+`</td>
+                                    <td class="note_type_cell" style="display:none">`+type+`</td>
+                                    <td class="note_category_cell" style="display:none">`+document_extension+`</td>
+                                    <td class="note_sub_category_cell" style="display:none">`+description+`</td>
+                                    <td colspan="3">
+                                         <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr class="kase_document_row_`+id1+`">
+                                            <td>`;
+                                            <?php if ($_SESSION["user_customer_id"]=='1049') { ?>
+                                            html += `<select class="document_input document_type" name="document_type_`+id1+`" id="document_type_`+id1+`">
+                                                    <option value="" ${type == "" ? "selected" : ""}>Select Type</option>
+                                                    <option value="132A_SW" ${type == "132A_SW" ? "selected" : ""}>132A &amp; S&amp;W</option>
+                                                    <option value="third_party referrals" ${type == "third_party referrals" ? "selected" : ""}>3rd Party Referrals</option>
+                                                    <option value="AME Report" ${type == "AME Report" ? "selected" : ""}>AME Report</option>
+                                                    <option value="AME/QME Prep" ${type == "AME/QME Prep" ? "selected" : ""}>AME/QME Prep</option>
+                                                    <option value="Calendar - Notes and Orange Slips" ${type == "Calendar - Notes and Orange Slips" ? "selected" : ""}>Calendar - Notes and Orange Slips</option>
+                                                    <option value="Copy Service Request" ${type == "Copy Service Request" ? "selected" : ""}>Copy Service Request</option>
+                                                    <option value="Correspondence and Emails" ${type == "Correspondence and Emails" ? "selected" : ""}>Correspondence and Emails</option>
+                                                    <option value="Cross X Summary" ${type == "Cross X Summary" ? "selected" : ""}>Cross X Summary</option>
+                                                    <option value="Defense Meds" ${type == "Defense Med" ? "selected" : ""}>Defense Meds</option>
+                                                    <option value="Depo Trans" ${type == "Depo Trans" ? "selected" : ""}>Depo Trans</option>
+                                                    <option value="Fax Confirmation" ${type == "Fax Confirmation" ? "selected" : ""}>Fax Confirmation</option>
+                                                    <option value="General" ${type == "General" ? "selected" : ""}>General</option>
+                                                    <option value="HomeCare" ${type == "HomeCare" ? "selected" : ""}>HomeCare</option>
+                                                    <option value="Internal" ${type == "Internaln" ? "selected" : ""}>Internal</option>
+                                                    <option value="Legal" ${type == "Legal" ? "selected" : ""}>Legal</option>
+                                                    <option value="Liens" ${type == "Liens" ? "selected" : ""}>Liens</option>
+                                                    <option value="Misc. App. Meds" ${type == "Misc. App. Medsn" ? "selected" : ""}>Misc. App. Meds</option>
+                                                    <option value="Monthly Status" ${type == "Monthly Statusn" ? "selected" : ""}>Monthly Status</option>
+                                                    <option value="MPN Correspondence" ${type == "PN Correspondence" ? "selected" : ""}>MPN Correspondence</option>
+                                                    <option value="Neuro" ${type == "Neuro" ? "selected" : ""}>Neur</option>
+                                                    <option value="Ortho" ${type == "Ortho" ? "selected" : ""}>Ortho</option>
+                                                    <option value="Out of Pocket/Transportation" ${type == "Out of Pocket/Transportation" ? "selected" : ""}>Out of Pocket/Transportation</option>
+                                                    <option value="POA/Attorney Meeting" ${type == "POA/Attorney Meeting" ? "selected" : ""}>POA/Attorney Meeting</option>
+                                                    <option value="Proof of Services" ${type == "Proof of Services" ? "selected" : ""}>Proof of Services</option>
+                                                    <option value="Psych" ${type == "Psychn" ? "selected" : ""}>Psych</option>
+                                                    <option value="QME Objection Request (Correspondence Only)" ${type == "QME Objection Request (Correspondence Only)" ? "selected" : ""}>QME Objection Request (Correspondence Only)</option>
+                                                    <option value="Rating Chart" ${type == "Rating Chart" ? "selected" : ""}>Rating Chart</option>
+                                                    <option value="Scanned Mail" ${type == "Scanned Mail" ? "selected" : ""}>Scanned Mail</option>
+                                                    <option value="SDT Records" ${type == "SDT Records" ? "selected" : ""}>SDT Records</option>
+                                                    <option value="Settlement/Calls" ${type == "Settlement/Calls" ? "selected" : ""}>Settlement/Calls</option>
+                                                    <option value="QME OBJ/REQ"> ${type == "QME OBJ/REQ" ? "selected" : ""}>QME OBJ/REQ</option>
+                                                    <option value="UEF Docs" ${type == "UEF Docs" ? "selected" : ""}>UEF Docs</option>
+                                                    <option value="UR/IMR" ${type == "UR/IMR" ? "selected" : ""}>UR/IMR</option>
+                                                    <option value="Vocational Rehab Expert" ${type == "Vocational Rehab Exper" ? "selected" : ""}>Vocational Rehab Expert</option>
+                                                    <option value="W2 Forms / Earnings" ${type == "W2 Forms / Earnings" ? "selected" : ""}>W2 Forms / Earnings</option>
+                                                </select>`;
+                                                  /*   if ($(`#document_type_${id1} option[value="${type}"]`).length > 0) {
+                                                        // If the type matches a value in the dropdown, select it
+                                                        $(`#document_type_${id1}`).val(type);
+                                                    } else {
+                                                        // Handle cases where the type doesn't match any option
+                                                        console.warn(`Value "${type}" not found in the dropdown. Setting default.`);
+                                                        $(`#document_type_${id1}`).val("0"); // Set to default "Select Type"
+                                                    } */
+                                                <?php } else {
+                                                        if (count($arrOptions["types"]) > 0) { ?>
+                                                            html += `<select class="document_input document_type" name="document_type_`+id1+`" id="document_type_`+id1+`">
+                                                            <option value="">Select Type</option>
+                                                            <?php 
+                                                            echo $select_types; ?>
+                                                            </select>`;
+                                                            <?php
+                                                        } else { ?>
+                                            html += `<select class="document_input document_type doc_type_data" name="document_type_`+id1+`" id="document_type_`+id1+`">
+                                                <option value="" ${type == "" ? "selected" : ""}>Select Type</option>
+                                                <option value="AME Report" ${type == "AME Report" ? "selected" : ""}>AME Report</option>
+                                                <option value="Copy Service Request" ${type == "Copy Service Request" ? "selected" : ""}>Copy Service Request</option>
+                                                <option value="COR" ${type == "COR" ? "selected" : ""}>COR</option>
+                                                <option value="COR - C" ${type == "COR - C" ? "selected" : ""}>COR - C</option>
+                                                <option value="COR - DA" ${type == "COR - DA" ? "selected" : ""}>>COR - DA</option>
+                                                <option value="COR - IMR" ${type == "COR - IMR" ? "selected" : ""}>COR - IMR</option>
+                                                <option value="COR - INS" ${type == "COR - INS" ? "selected" : ""}>COR - INS</option>
+                                                <option value="COR - UR" ${type == "COR - UR" ? "selected" : ""}>COR - UR</option>
+                                                <option value="Depo Transcript" ${type == "Depo Transcript" ? "selected" : ""}>Depo Transcript</option>
+                                                <option value="Email Received" ${type == "Email Received" ? "selected" : ""}>Email Received</option>
+                                                <option value="Email Sent" ${type == "Email Sent" ? "selected" : ""}>Email Sent</option>
+                                                <option value="Fax Received" ${type == "Fax Received" ? "selected" : ""}>Fax Received</option>
+                                                <option value="Fax Sent" ${type == "Fax Sent" ? "selected" : ""}>Fax Sent</option>
+                                                <option value="Fee" ${type == "Fee" ? "selected" : ""}>Fee</option>
+                                                <option value="Letter Received" ${type == "Letter Received" ? "selected" : ""}>Letter Received</option>
+                                                <option value="Letter Sent" ${type == "Letter Sent" ? "selected" : ""}>Letter Sent</option>
+                                                <option value="Manual Entry" ${type == "Manual Entry" ? "selected" : ""}>Manual Entry</option>
+                                                <option value="Medical Report" ${type == "Medical Report" ? "selected" : ""}>Medical Report</option>
+                                                <option value="Misc" ${type == "Misc" ? "selected" : ""}>Misc</option>
+                                                <option value="MPN" ${type == "MPN" ? "selected" : ""}>MPN</option>
+                                                <option value="Monthly Status" ${type == "Monthly Status" ? "selected" : ""}>Monthly Status</option>
+                                                <option value="Note" ${type == "Note" ? "selected" : ""}>Note</option>
+                                                <option value="P &amp; S Report" ${type == "P &amp; S Report" ? "selected" : ""}>P &amp; S Report</option>
+                                                <option value="Payment" ${type == "Payment" ? "selected" : ""}>Payment</option>
+                                                <option value="Pleadings" ${type == "Pleadings" ? "selected" : ""}>Pleadings</option>
+                                                <option value="POA/Attorney Meeting" ${type == "POA/Attorney Meeting" ? "selected" : ""}>POA/Attorney Meeting</option>
+                                                <option value="PQME Report" ${type == "PQME Report" ? "selected" : ""}>PQME Report</option>
+                                                <option value="Proof Sent" ${type == "Proof Sent" ? "selected" : ""}>Proof Sent</option>
+                                                <option value="Rating Chart" ${type == "Rating Chart" ? "selected" : ""}>Rating Chart</option>
+                                                <option value="Reviewed" ${type == "Reviewed" ? "selected" : ""}>Reviewed</option>
+                                                <option value="Scanned Mail" ${type == "Scanned Mail" ? "selected" : ""}>Scanned Mail</option>
+                                                <option value="SDT Records" ${type == "SDT Records" ? "selected" : ""}>SDT Records</option>
+                                                <option value="Settlement Docs" ${type == "Settlement Docs" ? "selected" : ""}>Settlement Docs</option>
+                                                <option value="Telephone Call" ${type == "Telephone Call" ? "selected" : ""}>Telephone Call</option>
+                                            </select>`;
+                                                <?php }
+                                                } ?>
+                                             html += `</td>
+                                            <td>`;
+                                            <?php if (count($arrOptions["categories"]) > 0) { ?>
+                                                         html += `<select class="document_input" name="document_category_`+id1+`" id="document_category_`+id1+`">
+                                                        <option value="">Select Category</option>
+                                                        <?php 
+                                                        echo $select_categories; ?>
+                                                        </select>`;
+                                                        <?php
+                                                    } else { ?>
+                                            html += ` <select class="document_input" name="document_category_`+id1+`" id="document_category_`+id1+`">
+                                                            <option value="" ${document_extension == "" ? "selected" : ""}>Select Category</option>
+                                                            <option value="Client" ${document_extension == "Client" ? "selected" : ""}>Client</option>
+                                                            <option value="Carrier Document" ${document_extension=="Carrier Document" ? "selected" :""}>Carrier Document</option>
+                                                            <option value="Correspondence" ${document_extension=="Correspondence" ? "selected" :""}>Correspondence</option>
+                                                            <option value="Defense Attorney" ${document_extension=="Defense Attorney" ? "selected" :""}>Defense Attorney</option>
+                                                            <option value="Document" ${document_extension=="Document" ||  document_extension=="document" ? "selected" :""}>Document</option>
+                                                            <option value="Employment" ${document_extension=="Employment" ? "selected" :""}>Employment</option>
+                                                            <option value="Notes" ${document_extension=="Notes" ? "selected" :""}>Notes</option>
+                                                            <option value="Medical" ${document_extension=="Medical" ? "selected" :""}>Medical</option>
+                                                    </select>`;
+                                            <?php } ?>
+                                             html += `</td>
+                                            <td>`;
+                                            <?php if (count($arrOptions["subcategories"]) > 0) { ?>
+                                                     html += `<select class="document_input" name="document_subcategory_`+id1+`" id="document_subcategory_`+id1+`">
+                                                <option value="">Select Sub Category</option>
+                                                    <?php 
+                                                echo $select_subcategories; ?>
+                                                    </select>`;
+                                                    <?php
+                                                } else { ?>
+                                             html += `<select class="document_input" name="document_subcategory_`+id1+`" id="document_subcategory_`+id1+`">
+                                                <option value="">Select Sub Category</option>
+                                                <option value="doctor" ${description=="doctor" ? "selected" :""}>Doctor</option>
+                                                <option value="attorney" ${description=="Medical" ? "attorney" :""}>Attorney</option>
+                                            </select>`;
+                                            <?php } ?>
+                                             html += `</td>
+                                            </tr>
+                                            <tr>
+                                            <td colspan="3">
+                                                <label id="document_note_label_`+id1+`">Note</label>:<br />
+                                                <textarea name="document_note_`+id1+`" id="document_note_`+id1+`" class="document_input" rows="3" style="width:392px">`+description_html+`</textarea>
+                                                <div style="display:block" class="document_additional_medindex" id="document_additional_medindex_`+id1+`">`;
+                                                    if (exam_uuid=="") {
+                                                        html += `<input type="checkbox" id="document_medindex_`+id1+`" class="document_input document_medindex" value="Y" />&nbsp;
+                                                        <label for="document_medindex_`+id1+`">Apply to Med Index?</label>`;                    	
+                                                    } else {
+                                                        html += `<input type="hidden" id="document_medindex_`+id1+`" class="document_input document_medindex" value="Y" />
+                                                        &nbsp;
+                                                        <label for="document_medindex_`+id1+`" style="background:yellow; color:black">Med Index Document</label>`;                    	
+                                                    }
+                                                html += `</div>
+                                            </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>`;
+
+                            // Append the document item to the list
+                            //page1++;
+                            $('#documents_rows').append(html);
+                        }); 
+                    }else {
+                        $('#documents_rows').html('<p style="font-size: 15PX; color: #ffffff;">No documents found.</p>');
+                    }    
+            },
+            error: function() {
+                // Remove the loader after the request completes
+                $("#loading-data").remove();
+                loading = false;        
+            },
+            complete: function() {
+                // Remove the loader after the request completes
+                $("#loading-data").remove();
+                loading = false;        
+            }   
+        });
+        }
+    });
+
+    $('.subcat_filter').on('change', function () { //alert("call");
+        if(loading == false)
+        {
+        $('#documents_rows').html(loading_image);
+        //if()
+        var page = 0;
+       /*  if(loaded_document_count != ''  && loaded_document_count < 20)
+        {
+            page = page;
+        }else{
+            var page1 = 1;
+        } */
+        loading = true;
+        var full_url = document.URL;
+        var id = full_url.substring(full_url.lastIndexOf('/') + 1);
+        var limit = <?php echo DOC_LIMITS; ?>; // Records per page
+        //alert("call");
+        var typedata = $('.doc_filter1').val();//alert(type);
+        var category = $('.cat_filter').val();
+        var subcat = $('.subcat_filter').val();
+        $.ajax({
+            url: 'api/documents/subcatcount/'+ id, 
+            method: 'GET',
+            data: { subcat: subcat },
+            success: function(responsesubcatcount) {
+                if (responsesubcatcount.length > 0) { //alert(responsesubcatcount.length);
+                    var sub_count_data = responsesubcatcount.length;
+                    $("#subcat_count").text(sub_count_data);
+                    
+                }
+               
+            }
+        });
+
+        $.ajax({
+            url: 'api/documents/subcatfilter/'+ id,  
+            method: 'GET',
+            data: { subcat: subcat, page: page, limit: limit },
+            //data: { subcat: subcat },
+            success: function(response)  { //console.log(response); //alert(response); //$('#documents_rows').html(response.document_id +':' + response.document_name);
+                // Hide the loader
+                $(loading_image).remove();
+                if (response.length > 0) {                    
+                    $('#documents_rows').empty();
+                        loaded_document_count = loaded_document_count + response.length;                        
+                    
+                        // Loop through each document in the response
+                        response.forEach(function(doc) { //console.log(doc);
+                            //$("#document_listing_loading").hide();
+                            // Extract details with fallback 
+                            var id1 = doc.id;
+                            var documentId = doc.document_id;
+                            var documentName = doc.document_name;
+                            var documentDate = doc.document_date;
+                            var description = doc.description;
+                            var customer_id = doc.customer_id;
+                            var case_id = doc.case_id;
+                            var download_link = doc.abs_path;
+                            var document_filename = doc.document_filename;
+                            var source = doc.source;
+                            var received_date = doc.received_date;
+                            var type = doc.type;
+                            var document_extension = doc.document_extension;
+                            var preview_href = doc.preview_path_old;
+                            var preview = doc.preview_path;
+                            var description_html = doc.description_html;
+                            var user_name = doc.user_name;
+                            var exam_uuid = doc.exam_uuid;
+                            var thumbnail_folder = doc.thumbnail_folder;
+                            var parent_document_uuid = doc.parent_document_uuid;
+                            var doi_id = doc.doi_id;
+                            var parent_document_uuid = doc.parent_document_uuid;
+                            var last_user_attributes = doc.last_user_attributes;
+                            var case_uuid = doc.case_uuid;
+                            
+                            if (received_date === "00/00/0000 12:00AM" || received_date === "12/31/1969 4:00PM") {
+                                received_date = '';
+                            }
+
+                            download_link = " ";
+                            //download and update
+                            if (document_extension=="") {
+                                //split it up
+                                var arrFile = document_filename.split(".");
+                                document_extension = arrFile[arrFile.length - 1];
+                            }
+                            if (document_extension=="docx") {
+                                if (document_filename.indexOf(".docx") < 0) {
+                                    document_filename += ".docx";
+                                }
+                                download_link = "<a id='document_" + documentId + "' title='Click to download document to your computer' class='white_text download_document' target='_blank' style='cursor:pointer'><i class='glyphicon glyphicon-save' style='color:#FFFFFF;'>&nbsp;</i></a>";
+                            }
+                            
+                            if (document_filename.indexOf("D:/uploads/") > -1) {
+                                document_filename = document_filename.replaceAll("D:/uploads/" + customer_id + "/" + case_id + "/", "");
+                                document_filename = document_filename.replace("../", "");
+                            }
+                            
+                            //obsolete below
+                            var href = "D:/uploads/" + customer_id + "/" + case_id + "/" + document_filename.replace("#", "%23");
+                            if (type == "eams_form") {
+                                href = "D:/uploads/" + customer_id + "/" + case_id + "/eams_forms/" + document_filename.replace("#", "%23");
+                            }
+                            if (!isNaN(thumbnail_folder) && document_extension!="docx" && thumbnail_folder!="") {
+                                href = "D:/uploads/" + customer_id + "/imports/" + document_filename;
+                            }
+                            if (type == "abacus") {
+                                href = "https://www.ikase.xyz/ikase/abacus/" + customer_data_source + "/" + thumbnail_folder + "/" + document_filename;
+                            }
+                            if (source == "cloud") {
+                                //kase_document.type = kase_document.source;
+                            }
+                            //eams pdfs			
+                            if (type == "jetfiler") {
+                                href = "D:/uploads/" + customer_id + "/" + case_id + "/jetfiler/" + document_filename;	
+                            }
+                            href = href;
+                            //
+                            if (type=="batchscan3") {
+                                href = "D:/uploads/" + customer_id + "/imports/" + thumbnail_folder + "/" + document_filename;
+                            }
+                            if (source == "cloud") {
+                                preview_href = "javascript:showCloudArchive('" + document_filename + "')";
+                            } else {
+                            //new link
+                                preview_href = "api/preview.php?case_id=" + case_id + "&file=" + encodeURIComponent(document_filename) + "&id=" + id + "&type=" + type + "&thumbnail_folder=" + thumbnail_folder;
+                            }
+                            if (user_name!="") {
+                                if (typeof last_user_attributes == "undefined") {
+                                    user_name = "<br /><br />By: " + user_name;
+                                } else {
+                                    if (user_name==null) {
+                                        user_name = "";
+                                    }
+                                    var arrDocUsers = user_name.split("|");
+                                    var arrDocUserAtts = last_user_attributes.split("|");
+                                    var arrLength = arrDocUsers.length;
+                                    var arrDocumentCredits = [];
+                                    for(var i =0; i < arrLength; i++) {
+                                        var the_user_name = arrDocUsers[i];
+                                        var the_attribute = arrDocUserAtts[i];
+                                        
+                                        if (typeof arrDocUserAtts[i] == "string") {
+                                            var the_user_attribute = arrDocUserAtts[i].replaceAll("_", " ");
+                                            arrDocumentCredits.push(the_user_attribute.capitalizeWords() + " by " + the_user_name);
+                                        }
+                                    }
+                                    if (arrDocumentCredits.length > 0) {
+                                        user_name = "<br /><br />" + arrDocumentCredits.join("<br>");
+                                    }
+                                }
+                            }
+                            var the_type = type;
+                            if (source!="") {
+                                the_type = source;
+                            }
+                            if (typeof preview_path == "undefined") {
+                                preview_path = "";
+                            }
+                            if ( preview_path=="img/no_preview.gif") {
+                                preview_path = "";
+                            }
+                            
+                            if (source != "cloud") {
+                                if (preview_path=="") {
+                                    preview = documentThumbnail(document_filename, customer_id, thumbnail_folder, case_id, the_type, documentDate, parent_document_uuid);
+                                    //console.log(kase_document.preview);
+                                } else {                                   
+                                    preview = preview_path;
+                                }
+                            } else {
+                                preview = "merge_documents/default_file_placeholder.jpg";
+                            }
+                            
+                            var blnSound = (document_filename.indexOf(".wma") > -1 || document_filename.indexOf(".mp3") > -1);
+                            if (blnSound) {
+                                preview = "img/sound.gif";
+                            }
+                            
+                            if (preview!="") {
+                                if (preview.indexOf("/thumbnail/") > -1) {
+                                    thumbnail_folder = case_id + "/medium";
+                                }
+                                if (source != "cloud") {
+                                    //console.log(kase_document.preview+ "data");
+                                    if(preview == "merge_documents/default_file_placeholder.jpg")
+                                    {
+                                        preview_img = "merge_documents/default_file_placeholder_main.jpg"
+                                    }else{
+                                        preview_img = preview;
+                                    }
+                                    preview = '<img src="' + preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + preview_img + '\')" onmouseout="hidePreview()" />';
+                                } else {
+                                    preview = '<img src="' + preview + '" width="58" height="75" />';
+                                }
+                            
+                            } 
+                            
+                            var note = description_html;
+                            var arrNote = note.split("_");
+                            //batchscan clean up
+                            var blnShowNote = true;
+                            if (arrNote.length == 2) {
+                                if (!isNaN(arrNote[0]) && !isNaN(arrNote[0])) {
+                                    blnShowNote = false;
+                                }
+                            }
+                            if (!blnShowNote) {
+                                description_html = "";
+                            }
+
+                            if (doi_id!="") {
+                                    //set it
+                                    $("#doi_id_" + id1).val(id1);
+                            }
+                            /* setTimeout(() => {
+                            $("#document_type_"+id1).each(function() {
+                                if(typedata == '')
+                                {
+                                    $(this).val('');
+                                }
+                                else{
+                                    if(type != ''){
+                                        $("#document_type_"+id1).val(type);
+                                    }
+                                }
+                                
+                            });
+                            }, 100); */
+                            
+                           /*  setTimeout(() => {
+                            $("#document_category_"+id1).each(function() {
+                                if(category == '')
+                                {
+                                    $(this).val('');
+                                }
+                                else{
+                                    if(document_extension != ''){
+                                        $("#document_category_"+id1).val(document_extension);
+                                    }
+                                }
+                            }); 
+                           }, 100);*/
+                          /*  $("#document_category_"+id1).each(function() {
+                                if(document_extension == ''){
+                                    $(this).val('');
+                                }
+                                
+                            }); */
+
+
+                           /*  var document_subcategory = $("#document_subcategory_" + id1);
+                            var htmlContent = document_subcategory.html();
+                            if (!htmlContent || typeof htmlContent.indexOf !== "function") {
+                                console.warn("HTML content is undefined or not valid for indexOf.");
+                                document_subcategory.val("");
+                            } else if (htmlContent.indexOf(description) < 0) {
+                                document_subcategory.val("");
+                            } else {
+                                document_subcategory.val(description);
+                            } */
+                          
+                           setTimeout(() => {
+                            $("#document_subcategory_"+id1).each(function() {
+                                if(subcat == '')
+                                {
+                                    $(this).val('');
+                                }
+                                else{
+                                    if(description == subcat){
+                                        $("#document_subcategory_"+id1).val(description);
+                                    }
+                                }                                
+                            });
+                            }, 100); 
+
+                            //preview = documentThumbnail(document_filename, customer_id, thumbnail_folder, case_id, source, documentDate, parent_document_uuid);
+                            // Create an HTML structure for the document
+                            let html = `
+                                <tr class="kase_document_data_row kase_document_row_`+documentId+`" style="display:">
+                                    <td nowrap="nowrap">
+                                    <input type="checkbox" style="margin-right:10px" data-doc-date="`+documentDate+`" data-doc-id="`+id1+`" id="check_assign_`+id1+`" class="check_thisone check_thisone_`+id1+`"/><a name="document_bill_`+id1+`" id="document_bill_`+id1+`" class="bill_icon" style="cursor:pointer" title="Bill this"><i class="glyphicon glyphicon-time" style="color:#F90">&nbsp;</i></a>&nbsp;&nbsp;
+                                        <div style="display:inline-block">
+                                            <a name="document_save_`+id1+`" id="document_save_`+id1+`" class="save_icon" style="display:none; cursor:pointer" title="Click to Save"><i class="glyphicon glyphicon-saved" style="color:#00FF00">&nbsp;</i></a>
+                                            <i class="glyphicon glyphicon-saved" style="color:#CCCCCC" id="disabled_save_`+id1+`">&nbsp;</i>
+                                            &nbsp;
+                                        </div>
+                                        <div style="display:inline-block">
+                                            <a class="send_icon" id="senddocument_`+id1+`" title="Click to send document" style="cursor:pointer" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false"><i class="glyphicon glyphicon-pencil" style="color:#00FFFF">&nbsp;</i></a>
+                                        </div>
+                                        <div style="display:inline-block">
+                                            <?php //per steve at dordulian 3/31/32017
+                                                if ($blnDeletePermission) { ?>
+                                            <a title="Click to delete Document" class="list_edit delete_document" id="deletedocument_`+id1+`" onClick="javascript:composeDelete(`+id1+`, 'document');" data-toggle="modal" data-target="#deleteModal" style="cursor:pointer">
+                                            <i style="font-size:15px; color:#FF3737; cursor:pointer" id="delete_document" class="glyphicon glyphicon-trash delete_document"></i></a>
+                                            <?php } ?>
+                                        </div>
+                                        <br /><br />
+                                        <input id="document_id_`+id1+`" name="document_id_`+id1+`" type="hidden" class="document_input" value="`+id1+`" />
+                                        <input id="document_filename_`+id1+`" type="hidden" value="`+document_filename+`" />                                     
+                                        <a id="thumbnail_`+id1+`" class="list_link" style="cursor:pointer" title="Click to open document in new window">
+                                            `+ preview +`
+                                        </a>`;
+                                        
+                                        html += `<div id="window_link_`+id1+`" class="window_link_holder" style="display:none; margin-top:5px">
+                                            <a id="window_thumbnail_`+id1+`" class="window_link white_text" title="Click to open document in new window" style="cursor:pointer">
+                                                Open in new window
+                                            </a>
+                                        </div> 
+                                        <input type="hidden" id="preview_document_`+id1+`" value="`+preview_href+`" /> 
+                                    </td>
+                                    <td align="left" valign="top" nowrap="nowrap">
+                                        <div>
+                                            <label style="width:50px">Name:</label>
+                                            <input id="document_name_`+id1+`" name="document_name_`+id1+`" type="text" class="document_input" value="`+documentName+`" style="width:300px" />
+                                        </div>
+                                        <div style="padding-top:2px">
+                                            <label style="width:50px">Source:</label>
+                                            <input id="document_source_`+id1+`" name="document_source_`+id1+`" type="text" class="document_input" value="`+source+`" style="width:300px" />
+                                        </div>
+                                        <div style="padding-top:2px">
+                                            <label style="width:50px">Received:</label>
+                                            <input id="document_received_`+id1+`" name="document_received_`+id1+`" type="text" class="document_input date_input" value="`+received_date+`" style="width:300px" />
+                                        </div>
+                                        <div style="padding-top:2px">
+                                            <label style="width:50px">DOI:</label>
+                                            <select id="doi_id_`+id1+`" style="width:300px; height:28px" class="doi_id document_input"></select>
+                                        </div>
+                                        <div>
+                                            <div style="padding-top:2px">
+                                                <label style="width:50px">Doc ID:</label>
+                                                `+id1+`&nbsp;|&nbsp;<a href="`+preview_href+`" target="_blank" title="Click to open document in a new window" class="white_text" style="background:orange; font-weight:bold; padding:2px; color:black">Preview in Browser</a>&nbsp;|&nbsp;<a href="`+preview_href+` &download="  title="Click to download document to your PC" class="white_text" style="background:cyan; font-weight:bold; padding:2px; color:black" target="_blank">Download to PC</a>
+                                            </div>
+                                        </div>
+                                        <div style="display:none">
+                                        `+source+` `+received_date+`
+                                        </div>
+                                    </td>
+                                    <td>`+documentDate+` `+user_name+`</td>
+                                    <td style="display:none">`+documentName+`</td>
+                                    <td class="note_type_cell" style="display:none">`+type+`</td>
+                                    <td class="note_category_cell" style="display:none">`+document_extension+`</td>
+                                    <td class="note_sub_category_cell" style="display:none">`+description+`</td>
+                                    <td colspan="3">
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr class="kase_document_row_`+id1+`">
+                                            <td>`;
+                                            <?php if ($_SESSION["user_customer_id"]=='1049') { ?>
+                                            html += `<select class="document_input document_type" name="document_type_`+id1+`" id="document_type_`+id1+`">
+                                                    <option value="" ${type == "" ? "selected" : ""}>Select Type</option>
+                                                    <option value="132A_SW" ${type == "132A_SW" ? "selected" : ""}>132A &amp; S&amp;W</option>
+                                                    <option value="third_party referrals" ${type == "third_party referrals" ? "selected" : ""}>3rd Party Referrals</option>
+                                                    <option value="AME Report" ${type == "AME Report" ? "selected" : ""}>AME Report</option>
+                                                    <option value="AME/QME Prep" ${type == "AME/QME Prep" ? "selected" : ""}>AME/QME Prep</option>
+                                                    <option value="Calendar - Notes and Orange Slips" ${type == "Calendar - Notes and Orange Slips" ? "selected" : ""}>Calendar - Notes and Orange Slips</option>
+                                                    <option value="Copy Service Request" ${type == "Copy Service Request" ? "selected" : ""}>Copy Service Request</option>
+                                                    <option value="Correspondence and Emails" ${type == "Correspondence and Emails" ? "selected" : ""}>Correspondence and Emails</option>
+                                                    <option value="Cross X Summary" ${type == "Cross X Summary" ? "selected" : ""}>Cross X Summary</option>
+                                                    <option value="Defense Meds" ${type == "Defense Med" ? "selected" : ""}>Defense Meds</option>
+                                                    <option value="Depo Trans" ${type == "Depo Trans" ? "selected" : ""}>Depo Trans</option>
+                                                    <option value="Fax Confirmation" ${type == "Fax Confirmation" ? "selected" : ""}>Fax Confirmation</option>
+                                                    <option value="General" ${type == "General" ? "selected" : ""}>General</option>
+                                                    <option value="HomeCare" ${type == "HomeCare" ? "selected" : ""}>HomeCare</option>
+                                                    <option value="Internal" ${type == "Internaln" ? "selected" : ""}>Internal</option>
+                                                    <option value="Legal" ${type == "Legal" ? "selected" : ""}>Legal</option>
+                                                    <option value="Liens" ${type == "Liens" ? "selected" : ""}>Liens</option>
+                                                    <option value="Misc. App. Meds" ${type == "Misc. App. Medsn" ? "selected" : ""}>Misc. App. Meds</option>
+                                                    <option value="Monthly Status" ${type == "Monthly Statusn" ? "selected" : ""}>Monthly Status</option>
+                                                    <option value="MPN Correspondence" ${type == "PN Correspondence" ? "selected" : ""}>MPN Correspondence</option>
+                                                    <option value="Neuro" ${type == "Neuro" ? "selected" : ""}>Neur</option>
+                                                    <option value="Ortho" ${type == "Ortho" ? "selected" : ""}>Ortho</option>
+                                                    <option value="Out of Pocket/Transportation" ${type == "Out of Pocket/Transportation" ? "selected" : ""}>Out of Pocket/Transportation</option>
+                                                    <option value="POA/Attorney Meeting" ${type == "POA/Attorney Meeting" ? "selected" : ""}>POA/Attorney Meeting</option>
+                                                    <option value="Proof of Services" ${type == "Proof of Services" ? "selected" : ""}>Proof of Services</option>
+                                                    <option value="Psych" ${type == "Psychn" ? "selected" : ""}>Psych</option>
+                                                    <option value="QME Objection Request (Correspondence Only)" ${type == "QME Objection Request (Correspondence Only)" ? "selected" : ""}>QME Objection Request (Correspondence Only)</option>
+                                                    <option value="Rating Chart" ${type == "Rating Chart" ? "selected" : ""}>Rating Chart</option>
+                                                    <option value="Scanned Mail" ${type == "Scanned Mail" ? "selected" : ""}>Scanned Mail</option>
+                                                    <option value="SDT Records" ${type == "SDT Records" ? "selected" : ""}>SDT Records</option>
+                                                    <option value="Settlement/Calls" ${type == "Settlement/Calls" ? "selected" : ""}>Settlement/Calls</option>
+                                                    <option value="QME OBJ/REQ"> ${type == "QME OBJ/REQ" ? "selected" : ""}>QME OBJ/REQ</option>
+                                                    <option value="UEF Docs" ${type == "UEF Docs" ? "selected" : ""}>UEF Docs</option>
+                                                    <option value="UR/IMR" ${type == "UR/IMR" ? "selected" : ""}>UR/IMR</option>
+                                                    <option value="Vocational Rehab Expert" ${type == "Vocational Rehab Exper" ? "selected" : ""}>Vocational Rehab Expert</option>
+                                                    <option value="W2 Forms / Earnings" ${type == "W2 Forms / Earnings" ? "selected" : ""}>W2 Forms / Earnings</option>
+                                                </select>`;
+                                                    if ($(`#document_type_${id1} option[value="${type}"]`).length > 0) {
+                                                        // If the type matches a value in the dropdown, select it
+                                                        $(`#document_type_${id1}`).val(type);
+                                                    } else {
+                                                        // Handle cases where the type doesn't match any option
+                                                        console.warn(`Value "${type}" not found in the dropdown. Setting default.`);
+                                                        $(`#document_type_${id1}`).val("0"); // Set to default "Select Type"
+                                                    }
+                                                <?php } else {
+                                                        if (count($arrOptions["types"]) > 0) { ?>
+                                                            html += `<select class="document_input document_type" name="document_type_`+id1+`" id="document_type_`+id1+`">
+                                                            <option value="">Select Type</option>
+                                                            <?php 
+                                                            echo $select_types; ?>
+                                                            </select>`;
+                                                            <?php
+                                                        } else { ?>
+                                            html += `<select class="document_input document_type doc_type_data" name="document_type_`+id1+`" id="document_type_`+id1+`">
+                                                <option value="" ${type == "" ? "selected" : ""}>Select Type</option>
+                                                <option value="AME Report" ${type == "AME Report" ? "selected" : ""}>AME Report</option>
+                                                <option value="Copy Service Request" ${type == "Copy Service Request" ? "selected" : ""}>Copy Service Request</option>
+                                                <option value="COR" ${type == "COR" ? "selected" : ""}>COR</option>
+                                                <option value="COR - C" ${type == "COR - C" ? "selected" : ""}>COR - C</option>
+                                                <option value="COR - DA" ${type == "COR - DA" ? "selected" : ""}>>COR - DA</option>
+                                                <option value="COR - IMR" ${type == "COR - IMR" ? "selected" : ""}>COR - IMR</option>
+                                                <option value="COR - INS" ${type == "COR - INS" ? "selected" : ""}>COR - INS</option>
+                                                <option value="COR - UR" ${type == "COR - UR" ? "selected" : ""}>COR - UR</option>
+                                                <option value="Depo Transcript" ${type == "Depo Transcript" ? "selected" : ""}>Depo Transcript</option>
+                                                <option value="Email Received" ${type == "Email Received" ? "selected" : ""}>Email Received</option>
+                                                <option value="Email Sent" ${type == "Email Sent" ? "selected" : ""}>Email Sent</option>
+                                                <option value="Fax Received" ${type == "Fax Received" ? "selected" : ""}>Fax Received</option>
+                                                <option value="Fax Sent" ${type == "Fax Sent" ? "selected" : ""}>Fax Sent</option>
+                                                <option value="Fee" ${type == "Fee" ? "selected" : ""}>Fee</option>
+                                                <option value="Letter Received" ${type == "Letter Received" ? "selected" : ""}>Letter Received</option>
+                                                <option value="Letter Sent" ${type == "Letter Sent" ? "selected" : ""}>Letter Sent</option>
+                                                <option value="Manual Entry" ${type == "Manual Entry" ? "selected" : ""}>Manual Entry</option>
+                                                <option value="Medical Report" ${type == "Medical Report" ? "selected" : ""}>Medical Report</option>
+                                                <option value="Misc" ${type == "Misc" ? "selected" : ""}>Misc</option>
+                                                <option value="MPN" ${type == "MPN" ? "selected" : ""}>MPN</option>
+                                                <option value="Monthly Status" ${type == "Monthly Status" ? "selected" : ""}>Monthly Status</option>
+                                                <option value="Note" ${type == "Note" ? "selected" : ""}>Note</option>
+                                                <option value="P &amp; S Report" ${type == "P &amp; S Report" ? "selected" : ""}>P &amp; S Report</option>
+                                                <option value="Payment" ${type == "Payment" ? "selected" : ""}>Payment</option>
+                                                <option value="Pleadings" ${type == "Pleadings" ? "selected" : ""}>Pleadings</option>
+                                                <option value="POA/Attorney Meeting" ${type == "POA/Attorney Meeting" ? "selected" : ""}>POA/Attorney Meeting</option>
+                                                <option value="PQME Report" ${type == "PQME Report" ? "selected" : ""}>PQME Report</option>
+                                                <option value="Proof Sent" ${type == "Proof Sent" ? "selected" : ""}>Proof Sent</option>
+                                                <option value="Rating Chart" ${type == "Rating Chart" ? "selected" : ""}>Rating Chart</option>
+                                                <option value="Reviewed" ${type == "Reviewed" ? "selected" : ""}>Reviewed</option>
+                                                <option value="Scanned Mail" ${type == "Scanned Mail" ? "selected" : ""}>Scanned Mail</option>
+                                                <option value="SDT Records" ${type == "SDT Records" ? "selected" : ""}>SDT Records</option>
+                                                <option value="Settlement Docs" ${type == "Settlement Docs" ? "selected" : ""}>Settlement Docs</option>
+                                                <option value="Telephone Call" ${type == "Telephone Call" ? "selected" : ""}>Telephone Call</option>
+                                            </select>`;
+                                                <?php }
+                                                } ?>
+                                             html += `</td>
+                                            <td>`;
+                                            <?php if (count($arrOptions["categories"]) > 0) { ?>
+                                                         html += `<select class="document_input" name="document_category_`+id1+`" id="document_category_`+id1+`">
+                                                        <option value="">Select Category</option>
+                                                        <?php 
+                                                        echo $select_categories; ?>
+                                                        </select>`;
+                                                        <?php
+                                                    } else { ?>
+                                            html += ` <select class="document_input" name="document_category_`+id1+`" id="document_category_`+id1+`">
+                                                            <option value="" ${document_extension == "" ? "selected" : ""}>Select Category</option>
+                                                            <option value="Client" ${document_extension == "Client" ? "selected" : ""}>Client</option>
+                                                            <option value="Carrier Document" ${document_extension=="Carrier Document" ? "selected" :""}>Carrier Document</option>
+                                                            <option value="Correspondence" ${document_extension=="Correspondence" ? "selected" :""}>Correspondence</option>
+                                                            <option value="Defense Attorney" ${document_extension=="Defense Attorney" ? "selected" :""}>Defense Attorney</option>
+                                                            <option value="Document" ${document_extension=="Document" ||  document_extension=="document" ? "selected" :""}>Document</option>
+                                                            <option value="Employment" ${document_extension=="Employment" ? "selected" :""}>Employment</option>
+                                                            <option value="Notes" ${document_extension=="Notes" ? "selected" :""}>Notes</option>
+                                                            <option value="Medical" ${document_extension=="Medical" ? "selected" :""}>Medical</option>
+                                                    </select>`;
+                                            <?php } ?>
+                                             html += `</td>
+                                            <td>`;
+                                            <?php if (count($arrOptions["subcategories"]) > 0) { ?>
+                                                     html += `<select class="document_input" name="document_subcategory_`+id1+`" id="document_subcategory_`+id1+`">
+                                                <option value="">Select Sub Category</option>
+                                                    <?php 
+                                                echo $select_subcategories; ?>
+                                                    </select>`;
+                                                    <?php
+                                                } else { ?>
+                                             html += `<select class="document_input" name="document_subcategory_`+id1+`" id="document_subcategory_`+id1+`">
+                                                <option value="">Select Sub Category</option>
+                                                <option value="doctor" ${description=="doctor" ? "selected" :""}>Doctor</option>
+                                                <option value="attorney" ${description=="Medical" ? "attorney" :""}>Attorney</option>
+                                            </select>`;
+                                            <?php } ?>
+                                             html += `</td>
+                                            </tr>
+                                            <tr>
+                                            <td colspan="3">
+                                                <label id="document_note_label_`+id1+`">Note</label>:<br />
+                                                <textarea name="document_note_`+id1+`" id="document_note_`+id1+`" class="document_input" rows="3" style="width:392px">`+description_html+`</textarea>
+                                                <div style="display:block" class="document_additional_medindex" id="document_additional_medindex_`+id1+`">`;
+                                                    if (exam_uuid=="") {
+                                                        html += `<input type="checkbox" id="document_medindex_`+id1+`" class="document_input document_medindex" value="Y" />&nbsp;
+                                                        <label for="document_medindex_`+id1+`">Apply to Med Index?</label>`;                    	
+                                                    } else {
+                                                        html += `<input type="hidden" id="document_medindex_`+id1+`" class="document_input document_medindex" value="Y" />
+                                                        &nbsp;
+                                                        <label for="document_medindex_`+id1+`" style="background:yellow; color:black">Med Index Document</label>`;                    	
+                                                    }
+                                                html += `</div>
+                                            </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>`;
+
+                            // Append the document item to the list                            
+                            $('#documents_rows').append(html);
+                            //page1++;
+                           if(response.length == 0)
+                           {
+                                $("#loading-data").remove();
+                                loading = false;
+                           }
+                        }); 
+                }else {
+                        $('#documents_rows').html('<p style="font-size: 15PX; color: #ffffff;">No documents found.</p>');
+                }   
+                    
+            },
+            error: function() {
+                // Remove the loader after the request completes
+                $("#loading-data").remove();
+                loading = false;        
+            },
+            complete: function() {
+                // Remove the loader after the request completes
+                $("#loading-data").remove();
+                loading = false;        
+            }
+        });
+    }
+    });
+    $('#document_listing_holder').on('scroll', function () { //lert("call"); 
+        if(loading == false)
+        { 
+        var element = $(this);
+        //let page = 2;
+        var doc_count1 =  $("#documnet_count").text();
+        var new_doc_count = parseInt(doc_count1.replace(/\(|\)/g, '')) || 0;
+        var type_count1 =  $("#type_count").text();
+        var type_count_data = parseInt(type_count1.replace(/\(|\)/g, '')) || 0;
+        var cat_count1 =  $("#cat_count").text();
+        var category_count_data = parseInt(cat_count1.replace(/\(|\)/g, '')) || 0;
+        var subcat_count1 =  $("#subcat_count").text();
+        var sub_count_data = parseInt(subcat_count1.replace(/\(|\)/g, '')) || 0;
+        //alert("loaded count "+loaded_document_count);
+        //alert("subcat count "+sub_count_data);
+        //if (element.scrollTop() + element.innerHeight() >= element[0].scrollHeight - threshold && loaded_document_count < doc_count1 ) {
+        var max_count = Math.max(new_doc_count, type_count_data, category_count_data, sub_count_data);
+        var isScrollingDown = element.scrollTop() + element.innerHeight() >= element[0].scrollHeight - threshold;
+        //if (isScrollingDown && loaded_document_count < new_doc_count || loaded_document_count < type_count_data && loaded_document_count < category_count_data && loaded_document_count < sub_count_data && !loading){
+        if (isScrollingDown && loaded_document_count < new_doc_count || loaded_document_count < type_count_data || loaded_document_count < category_count_data || loaded_document_count < sub_count_data && !loading){
+          
+            page++;
+            
+            var limit = <?php echo DOC_LIMITS; ?>; // Records per page
+            var typedata = $('.doc_filter1').val();//alert(type);
+            var category = $('.cat_filter').val();
+            var subcat = $('.subcat_filter').val();
+            loading = true;
+            $("#documents_rows").append(loading_image);  
+            //alert("Reached near the bottom!");
+            var full_url = document.URL;
+            var id = full_url.substring(full_url.lastIndexOf('/') + 1);
+            //alert(subcat);
+            $.ajax({
+            url: 'api/documents/'+ id, 
+            method: 'GET',
+            data: { type:typedata, category:category, subcat:subcat, page: page, limit: limit },
+            //data: { page: page, limit: limit },
+           //data: { type:typedata, category:category, subcat:subcat, page: page, limit: limit },
+            success: function(response)  { 
+                // Hide the loader
+                //alert(response.length);
+                if (response.length > 0) { //alert(response.length);
+                        loaded_document_count = loaded_document_count + response.length;
+                        
+                        // Loop through each document in the response
+                        response.forEach(function(doc) { //console.log(doc + "line no 721");
+                            // Extract details with fallback 
+                            var id1 = doc.id;
+                            var documentId = doc.document_id;
+                            var documentName = doc.document_name;
+                            var documentDate = doc.document_date;
+                            var description = doc.description;
+                            var customer_id = doc.customer_id;
+                            var case_id = doc.case_id;
+                            var download_link = doc.abs_path;
+                            var document_filename = doc.document_filename;
+                            var source = doc.source;
+                            var received_date = doc.received_date;
+                            var type = doc.type;
+                            var document_extension = doc.document_extension;
+                            var preview_href = doc.preview_path_old;
+                            var preview_path = doc.preview_path;
+                            var description_html = doc.description_html;
+                            var user_name = doc.user_name;
+                            var exam_uuid = doc.exam_uuid;
+                            var thumbnail_folder = doc.thumbnail_folder;
+                            var parent_document_uuid = doc.parent_document_uuid;
+                            var doi_id = doc.doi_id;
+                            var parent_document_uuid = doc.parent_document_uuid;
+                            var last_user_attributes = doc.last_user_attributes;
+                            var case_uuid = doc.case_uuid;
+                            //$('select.doc_type_data').val(type).attr("selected", "selected");
+                           /*  $("#document_type_126").val(type);
+                            console.log("Selected Value:", $("#document_type_126").val());*/
+                            if (received_date === "00/00/0000 12:00AM" || received_date === "12/31/1969 4:00PM") {
+                                received_date = '';
+                            }
+
+                            download_link = " ";
+                            //download and update
+                            if (document_extension=="") {
+                                //split it up
+                                var arrFile = document_filename.split(".");
+                                document_extension = arrFile[arrFile.length - 1];
+                            }
+                            if (document_extension=="docx") {
+                                if (document_filename.indexOf(".docx") < 0) {
+                                    document_filename += ".docx";
+                                }
+                                download_link = "<a id='document_" + documentId + "' title='Click to download document to your computer' class='white_text download_document' target='_blank' style='cursor:pointer'><i class='glyphicon glyphicon-save' style='color:#FFFFFF;'>&nbsp;</i></a>";
+                            }
+                            
+                            if (document_filename.indexOf("D:/uploads/") > -1) {
+                                document_filename = document_filename.replaceAll("D:/uploads/" + customer_id + "/" + case_id + "/", "");
+                                document_filename = document_filename.replace("../", "");
+                            }
+                            
+                            //obsolete below
+                            var href = "D:/uploads/" + customer_id + "/" + case_id + "/" + document_filename.replace("#", "%23");
+                            if (type == "eams_form") {
+                                href = "D:/uploads/" + customer_id + "/" + case_id + "/eams_forms/" + document_filename.replace("#", "%23");
+                            }
+                            if (!isNaN(thumbnail_folder) && document_extension!="docx" && thumbnail_folder!="") {
+                                href = "D:/uploads/" + customer_id + "/imports/" + document_filename;
+                            }
+                            if (type == "abacus") {
+                                href = "https://www.ikase.xyz/ikase/abacus/" + customer_data_source + "/" + thumbnail_folder + "/" + document_filename;
+                            }
+                            if (source == "cloud") {
+                                //kase_document.type = kase_document.source;
+                            }
+                            //eams pdfs			
+                            if (type == "jetfiler") {
+                                href = "D:/uploads/" + customer_id + "/" + case_id + "/jetfiler/" + document_filename;	
+                            }
+                            href = href;
+                            //
+                            if (type=="batchscan3") {
+                                href = "D:/uploads/" + customer_id + "/imports/" + thumbnail_folder + "/" + document_filename;
+                            }
+                            if (source == "cloud") {
+                                preview_href = "javascript:showCloudArchive('" + document_filename + "')";
+                            } else {
+                            //new link
+                                preview_href = "api/preview.php?case_id=" + case_id + "&file=" + encodeURIComponent(document_filename) + "&id=" + id + "&type=" + type + "&thumbnail_folder=" + thumbnail_folder;
+                            }
+                            if (user_name!="") {
+                                if (typeof last_user_attributes == "undefined") {
+                                    user_name = "<br /><br />By: " + user_name;
+                                } else {
+                                    if (user_name==null) {
+                                        user_name = "";
+                                    }
+                                    var arrDocUsers = user_name.split("|");
+                                    var arrDocUserAtts = last_user_attributes.split("|");
+                                    var arrLength = arrDocUsers.length;
+                                    var arrDocumentCredits = [];
+                                    for(var i =0; i < arrLength; i++) {
+                                        var the_user_name = arrDocUsers[i];
+                                        var the_attribute = arrDocUserAtts[i];
+                                        
+                                        if (typeof arrDocUserAtts[i] == "string") {
+                                            var the_user_attribute = arrDocUserAtts[i].replaceAll("_", " ");
+                                            arrDocumentCredits.push(the_user_attribute.capitalizeWords() + " by " + the_user_name);
+                                        }
+                                    }
+                                    if (arrDocumentCredits.length > 0) {
+                                        user_name = "<br /><br />" + arrDocumentCredits.join("<br>");
+                                    }
+                                }
+                            }
+                            var the_type = type;
+                            if (source!="") {
+                                the_type = source;
+                            }
+                            if (typeof preview_path == "undefined") {
+                                preview_path = "";
+                            }
+                            if ( preview_path=="img/no_preview.gif") {
+                                preview_path = "";
+                            }
+                            
+                            if (source != "cloud") {
+                                if (preview_path=="") {
+                                    preview = documentThumbnail(document_filename, customer_id, thumbnail_folder, case_id, the_type, documentDate, parent_document_uuid);
+                                    console.log(preview);
+                                } else {                                   
+                                    preview = preview_path;
+                                }
+                            } else {
+                                preview = "merge_documents/default_file_placeholder.jpg";
+                            }
+                            
+                            var blnSound = (document_filename.indexOf(".wma") > -1 || document_filename.indexOf(".mp3") > -1);
+                            if (blnSound) {
+                                preview = "img/sound.gif";
+                            }
+                            
+                            if (preview!="") {
+                                if (preview.indexOf("/thumbnail/") > -1) {
+                                    thumbnail_folder = case_id + "/medium";
+                                }
+                                /* if (source != "cloud") {
+                                    //console.log(kase_document.preview+ "data");
+                                    if(preview == "merge_documents/default_file_placeholder.jpg")
+                                    {
+                                        preview_img = "merge_documents/default_file_placeholder_main.jpg"
+                                    }else{
+                                        preview_img = preview;
+                                    }
+
+                                   
+                                    preview = '<img src="https://v4.ikase.org/document_read.php?file=' + preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + preview_img + '\')" onmouseout="hidePreview()" />';
+                                } else {
+                                    preview = '<img src="https://v4.ikase.org/document_read.php?file=' + preview_img + '" width="58" height="75" />';
+                                } */
+
+                                if(preview.includes("D:/uploads/"))
+                                {
+                                    if(preview == "merge_documents/default_file_placeholder.jpg")
+                                    {
+                                        preview_img = "merge_documents/default_file_placeholder_main.jpg"
+                                    }else{
+                                        preview_img = preview;
+                                    }
+                                    if (source != "cloud") {
+                                        
+                                        // kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + kase_document.preview + '\')" onmouseout="hidePreview()" />';
+                                        preview = '<img src="https://v4.ikase.org/document_read.php?file=' + preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + preview_img + '\')" onmouseout="hidePreview()" />';
+                                    } else {
+                                        // kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" />';
+                                        preview = '<img src="' + preview + '" width="58" height="75" />';
+                                    }
+                                }else if(preview.includes("pdfimage/"))
+                                {
+                                    if(preview == "merge_documents/default_file_placeholder.jpg")
+                                    {
+                                        preview_img = "merge_documents/default_file_placeholder_main.jpg"
+                                    }else{
+                                        preview_img = preview;
+                                    }
+                                    if (source != "cloud") {
+                                        
+                                        // kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + kase_document.preview + '\')" onmouseout="hidePreview()" />';
+                                        preview = '<img src="' + preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + preview_img + '\')" onmouseout="hidePreview()" />';
+                                    } else {
+                                        // kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" />';
+                                        preview = '<img src="' + preview + '" width="58" height="75" />';
+                                    }
+                                }else{					
+
+                                    if (source != "cloud") {
+                                        
+                                        // kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + kase_document.preview + '\')" onmouseout="hidePreview()" />';
+                                        preview = '<img src="' + preview + '" width="58" height="75" onmouseover="showPreviewThumbnail(event, \'' + preview + '\')" onmouseout="hidePreview()" />';
+                                    } else {
+                                        // kase_document.preview = '<img src="' + kase_document.preview + '" width="58" height="75" />';
+                                        preview = '<img src="' + preview + '" width="58" height="75" />';
+                                    }
+                                }
+                               
+                            } 
+                            
+                            var note = description_html;
+                            var arrNote = note.split("_");
+                            //batchscan clean up
+                            var blnShowNote = true;
+                            if (arrNote.length == 2) {
+                                if (!isNaN(arrNote[0]) && !isNaN(arrNote[0])) {
+                                    blnShowNote = false;
+                                }
+                            }
+                            if (!blnShowNote) {
+                                description_html = "";
+                            }
+
+                            if (doi_id!="") {
+                                    //set it
+                                    $("#doi_id_" + id1).val(id1);
+                            }
+                            setTimeout(() => {
+                            $("#document_type_"+id1).each(function() {
+                                if(typedata == '')
+                                {
+                                    $(this).val('');
+                                }
+                                else{
+                                    if(type != ''){
+                                        $("#document_type_"+id1).val(type);
+                                    }
+                                }
+                                
+                            });
+                            }, 100);
+                            
+                            setTimeout(() => {
+                            $("#document_category_"+id1).each(function() {
+                                if(category == '')
+                                {
+                                    $(this).val('');
+                                }
+                                else{
+                                    if(document_extension != ''){
+                                        $("#document_category_"+id1).val(document_extension);
+                                    }
+                                }
+                            });
+                           }, 100);
+                          /*  $("#document_category_"+id1).each(function() {
+                                if(document_extension == ''){
+                                    $(this).val('');
+                                }
+                                
+                            }); */
+                          
+                            setTimeout(() => {
+                            $("#document_subcategory_"+id1).each(function() {
+                                if(subcat == '')
+                                {
+                                    $(this).val('');
+                                }
+                                else{
+                                    if(description != ''){
+                                        $("#document_subcategory_"+id1).val(description);
+                                    }
+                                }                                
+                            });
+                            }, 100);
+
+                            //preview = documentThumbnail(document_filename, customer_id, thumbnail_folder, case_id, source, documentDate, parent_document_uuid);
+                            // Create an HTML structure for the document
+                            let html = `
+                                <tr class="kase_document_data_row kase_document_row_`+documentId+`" style="display:">
+                                    <td nowrap="nowrap">
+                                    <input type="checkbox" style="margin-right:10px" data-doc-date="`+documentDate+`" data-doc-id="`+id1+`" id="check_assign_`+id1+`" class="check_thisone check_thisone_`+id1+`"/><a name="document_bill_`+id1+`" id="document_bill_`+id1+`" class="bill_icon" style="cursor:pointer" title="Bill this"><i class="glyphicon glyphicon-time" style="color:#F90">&nbsp;</i></a>&nbsp;&nbsp;
+                                        <div style="display:inline-block">
+                                            <a name="document_save_`+id1+`" id="document_save_`+id1+`" class="save_icon" style="display:none; cursor:pointer" title="Click to Save"><i class="glyphicon glyphicon-saved" style="color:#00FF00">&nbsp;</i></a>
+                                            <i class="glyphicon glyphicon-saved" style="color:#CCCCCC" id="disabled_save_`+id1+`">&nbsp;</i>
+                                            &nbsp;
+                                        </div>
+                                        <div style="display:inline-block">
+                                            <a class="send_icon" id="senddocument_`+id1+`" title="Click to send document" style="cursor:pointer" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false"><i class="glyphicon glyphicon-pencil" style="color:#00FFFF">&nbsp;</i></a>
+                                        </div>
+                                        <div style="display:inline-block">
+                                            <?php //per steve at dordulian 3/31/32017
+                                                if ($blnDeletePermission) { ?>
+                                            <a title="Click to delete Document" class="list_edit delete_document" id="deletedocument_`+id1+`" onClick="javascript:composeDelete(`+id1+`, 'document');" data-toggle="modal" data-target="#deleteModal" style="cursor:pointer">
+                                            <i style="font-size:15px; color:#FF3737; cursor:pointer" id="delete_document" class="glyphicon glyphicon-trash delete_document"></i></a>
+                                            <?php } ?>
+                                        </div>
+                                        <br /><br />
+                                        <input id="document_id_`+id1+`" name="document_id_`+id1+`" type="hidden" class="document_input" value="`+id1+`" />
+                                        <input id="document_filename_`+id1+`" type="hidden" value="`+document_filename+`" />                                     
+                                        <a id="thumbnail_`+id1+`" class="list_link" style="cursor:pointer" title="Click to open document in new window">
+                                            `+ preview +`
+                                        </a>`;
+                                        
+                                        html += `<div id="window_link_`+id1+`" class="window_link_holder" style="display:none; margin-top:5px">
+                                            <a id="window_thumbnail_`+id1+`" class="window_link white_text" title="Click to open document in new window" style="cursor:pointer">
+                                                Open in new window
+                                            </a>
+                                        </div> 
+                                        <input type="hidden" id="preview_document_`+id1+`" value="`+preview_href+`" /> 
+                                    </td>
+                                    <td align="left" valign="top" nowrap="nowrap">
+                                        <div>
+                                            <label style="width:50px">Name:</label>
+                                            <input id="document_name_`+id1+`" name="document_name_`+id1+`" type="text" class="document_input" value="`+documentName+`" style="width:300px" />
+                                        </div>
+                                        <div style="padding-top:2px">
+                                            <label style="width:50px">Source:</label>
+                                            <input id="document_source_`+id1+`" name="document_source_`+id1+`" type="text" class="document_input" value="`+source+`" style="width:300px" />
+                                        </div>
+                                        <div style="padding-top:2px">
+                                            <label style="width:50px">Received:</label>
+                                            <input id="document_received_`+id1+`" name="document_received_`+id1+`" type="text" class="document_input date_input" value="`+received_date+`" style="width:300px" />
+                                        </div>
+                                        <div style="padding-top:2px">
+                                            <label style="width:50px">DOI:</label>
+                                            <select id="doi_id_`+id1+`" style="width:300px; height:28px" class="doi_id document_input"></select>
+                                        </div>
+                                        <div>
+                                            <div style="padding-top:2px">
+                                                <label style="width:50px">Doc ID:</label>
+                                                `+id1+`&nbsp;|&nbsp;<a href="`+preview_href+`" target="_blank" title="Click to open document in a new window" class="white_text" style="background:orange; font-weight:bold; padding:2px; color:black">Preview in Browser</a>&nbsp;|&nbsp;<a href="`+preview_href+` &download="  title="Click to download document to your PC" class="white_text" style="background:cyan; font-weight:bold; padding:2px; color:black" target="_blank">Download to PC</a>
+                                            </div>
+                                        </div>
+                                        <div style="display:none">
+                                        `+source+` `+received_date+`
+                                        </div>
+                                    </td>
+                                    <td>`+documentDate+` `+user_name+`</td>
+                                    <td style="display:none">`+documentName+`</td>
+                                    <td class="note_type_cell" style="display:none">`+type+`</td>
+                                    <td class="note_category_cell" style="display:none">`+document_extension+`</td>
+                                    <td class="note_sub_category_cell" style="display:none">`+description+`</td>
+                                    <td colspan="3">
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr class="kase_document_row_`+id1+`">
+                                            <td>`;
+                                            <?php if ($_SESSION["user_customer_id"]=='1049') { ?>
+                                            html += `<select class="document_input document_type" name="document_type_`+id1+`" id="document_type_`+id1+`">
+                                                    <option value="" ${type == "" ? "selected" : ""}>Select Type</option>
+                                                    <option value="132A_SW" ${type == "132A_SW" ? "selected" : ""}>132A &amp; S&amp;W</option>
+                                                    <option value="third_party referrals" ${type == "third_party referrals" ? "selected" : ""}>3rd Party Referrals</option>
+                                                    <option value="AME Report" ${type == "AME Report" ? "selected" : ""}>AME Report</option>
+                                                    <option value="AME/QME Prep" ${type == "AME/QME Prep" ? "selected" : ""}>AME/QME Prep</option>
+                                                    <option value="Calendar - Notes and Orange Slips" ${type == "Calendar - Notes and Orange Slips" ? "selected" : ""}>Calendar - Notes and Orange Slips</option>
+                                                    <option value="Copy Service Request" ${type == "Copy Service Request" ? "selected" : ""}>Copy Service Request</option>
+                                                    <option value="Correspondence and Emails" ${type == "Correspondence and Emails" ? "selected" : ""}>Correspondence and Emails</option>
+                                                    <option value="Cross X Summary" ${type == "Cross X Summary" ? "selected" : ""}>Cross X Summary</option>
+                                                    <option value="Defense Meds" ${type == "Defense Med" ? "selected" : ""}>Defense Meds</option>
+                                                    <option value="Depo Trans" ${type == "Depo Trans" ? "selected" : ""}>Depo Trans</option>
+                                                    <option value="Fax Confirmation" ${type == "Fax Confirmation" ? "selected" : ""}>Fax Confirmation</option>
+                                                    <option value="General" ${type == "General" ? "selected" : ""}>General</option>
+                                                    <option value="HomeCare" ${type == "HomeCare" ? "selected" : ""}>HomeCare</option>
+                                                    <option value="Internal" ${type == "Internaln" ? "selected" : ""}>Internal</option>
+                                                    <option value="Legal" ${type == "Legal" ? "selected" : ""}>Legal</option>
+                                                    <option value="Liens" ${type == "Liens" ? "selected" : ""}>Liens</option>
+                                                    <option value="Misc. App. Meds" ${type == "Misc. App. Medsn" ? "selected" : ""}>Misc. App. Meds</option>
+                                                    <option value="Monthly Status" ${type == "Monthly Statusn" ? "selected" : ""}>Monthly Status</option>
+                                                    <option value="MPN Correspondence" ${type == "PN Correspondence" ? "selected" : ""}>MPN Correspondence</option>
+                                                    <option value="Neuro" ${type == "Neuro" ? "selected" : ""}>Neur</option>
+                                                    <option value="Ortho" ${type == "Ortho" ? "selected" : ""}>Ortho</option>
+                                                    <option value="Out of Pocket/Transportation" ${type == "Out of Pocket/Transportation" ? "selected" : ""}>Out of Pocket/Transportation</option>
+                                                    <option value="POA/Attorney Meeting" ${type == "POA/Attorney Meeting" ? "selected" : ""}>POA/Attorney Meeting</option>
+                                                    <option value="Proof of Services" ${type == "Proof of Services" ? "selected" : ""}>Proof of Services</option>
+                                                    <option value="Psych" ${type == "Psychn" ? "selected" : ""}>Psych</option>
+                                                    <option value="QME Objection Request (Correspondence Only)" ${type == "QME Objection Request (Correspondence Only)" ? "selected" : ""}>QME Objection Request (Correspondence Only)</option>
+                                                    <option value="Rating Chart" ${type == "Rating Chart" ? "selected" : ""}>Rating Chart</option>
+                                                    <option value="Scanned Mail" ${type == "Scanned Mail" ? "selected" : ""}>Scanned Mail</option>
+                                                    <option value="SDT Records" ${type == "SDT Records" ? "selected" : ""}>SDT Records</option>
+                                                    <option value="Settlement/Calls" ${type == "Settlement/Calls" ? "selected" : ""}>Settlement/Calls</option>
+                                                    <option value="QME OBJ/REQ"> ${type == "QME OBJ/REQ" ? "selected" : ""}>QME OBJ/REQ</option>
+                                                    <option value="UEF Docs" ${type == "UEF Docs" ? "selected" : ""}>UEF Docs</option>
+                                                    <option value="UR/IMR" ${type == "UR/IMR" ? "selected" : ""}>UR/IMR</option>
+                                                    <option value="Vocational Rehab Expert" ${type == "Vocational Rehab Exper" ? "selected" : ""}>Vocational Rehab Expert</option>
+                                                    <option value="W2 Forms / Earnings" ${type == "W2 Forms / Earnings" ? "selected" : ""}>W2 Forms / Earnings</option>
+                                                </select>`;
+                                                   /*  if ($(`#document_type_${id1} option[value="${type}"]`).length > 0) {
+                                                        // If the type matches a value in the dropdown, select it
+                                                        $(`#document_type_${id1}`).val(type);
+                                                    } else {
+                                                        // Handle cases where the type doesn't match any option
+                                                        console.warn(`Value "${type}" not found in the dropdown. Setting default.`);
+                                                        $(`#document_type_${id1}`).val("0"); // Set to default "Select Type"
+                                                    } */
+                                                <?php } else {
+                                                        if (count($arrOptions["types"]) > 0) { ?>
+                                                            html += `<select class="document_input document_type" name="document_type_`+id1+`" id="document_type_`+id1+`">
+                                                            <option value="">Select Type</option>
+                                                            <?php 
+                                                            echo $select_types; ?>
+                                                            </select>`;
+                                                            <?php
+                                                        } else { ?>
+                                            html += `<select class="document_input document_type doc_type_data" name="document_type_`+id1+`" id="document_type_`+id1+`">
+                                                 <option value="" ${type == "" ? "selected" : ""}>Select Type</option>
+                                                <option value="AME Report" ${type == "AME Report" ? "selected" : ""}>AME Report</option>
+                                                <option value="Copy Service Request" ${type == "Copy Service Request" ? "selected" : ""}>Copy Service Request</option>
+                                                <option value="COR" ${type == "COR" ? "selected" : ""}>COR</option>
+                                                <option value="COR - C" ${type == "COR - C" ? "selected" : ""}>COR - C</option>
+                                                <option value="COR - DA" ${type == "COR - DA" ? "selected" : ""}>>COR - DA</option>
+                                                <option value="COR - IMR" ${type == "COR - IMR" ? "selected" : ""}>COR - IMR</option>
+                                                <option value="COR - INS" ${type == "COR - INS" ? "selected" : ""}>COR - INS</option>
+                                                <option value="COR - UR" ${type == "COR - UR" ? "selected" : ""}>COR - UR</option>
+                                                <option value="Depo Transcript" ${type == "Depo Transcript" ? "selected" : ""}>Depo Transcript</option>
+                                                <option value="Email Received" ${type == "Email Received" ? "selected" : ""}>Email Received</option>
+                                                <option value="Email Sent" ${type == "Email Sent" ? "selected" : ""}>Email Sent</option>
+                                                <option value="Fax Received" ${type == "Fax Received" ? "selected" : ""}>Fax Received</option>
+                                                <option value="Fax Sent" ${type == "Fax Sent" ? "selected" : ""}>Fax Sent</option>
+                                                <option value="Fee" ${type == "Fee" ? "selected" : ""}>Fee</option>
+                                                <option value="Letter Received" ${type == "Letter Received" ? "selected" : ""}>Letter Received</option>
+                                                <option value="Letter Sent" ${type == "Letter Sent" ? "selected" : ""}>Letter Sent</option>
+                                                <option value="Manual Entry" ${type == "Manual Entry" ? "selected" : ""}>Manual Entry</option>
+                                                <option value="Medical Report" ${type == "Medical Report" ? "selected" : ""}>Medical Report</option>
+                                                <option value="Misc" ${type == "Misc" ? "selected" : ""}>Misc</option>
+                                                <option value="MPN" ${type == "MPN" ? "selected" : ""}>MPN</option>
+                                                <option value="Monthly Status" ${type == "Monthly Status" ? "selected" : ""}>Monthly Status</option>
+                                                <option value="Note" ${type == "Note" ? "selected" : ""}>Note</option>
+                                                <option value="P &amp; S Report" ${type == "P &amp; S Report" ? "selected" : ""}>P &amp; S Report</option>
+                                                <option value="Payment" ${type == "Payment" ? "selected" : ""}>Payment</option>
+                                                <option value="Pleadings" ${type == "Pleadings" ? "selected" : ""}>Pleadings</option>
+                                                <option value="POA/Attorney Meeting" ${type == "POA/Attorney Meeting" ? "selected" : ""}>POA/Attorney Meeting</option>
+                                                <option value="PQME Report" ${type == "PQME Report" ? "selected" : ""}>PQME Report</option>
+                                                <option value="Proof Sent" ${type == "Proof Sent" ? "selected" : ""}>Proof Sent</option>
+                                                <option value="Rating Chart" ${type == "Rating Chart" ? "selected" : ""}>Rating Chart</option>
+                                                <option value="Reviewed" ${type == "Reviewed" ? "selected" : ""}>Reviewed</option>
+                                                <option value="Scanned Mail" ${type == "Scanned Mail" ? "selected" : ""}>Scanned Mail</option>
+                                                <option value="SDT Records" ${type == "SDT Records" ? "selected" : ""}>SDT Records</option>
+                                                <option value="Settlement Docs" ${type == "Settlement Docs" ? "selected" : ""}>Settlement Docs</option>
+                                                <option value="Telephone Call" ${type == "Telephone Call" ? "selected" : ""}>Telephone Call</option>
+                                            </select>`;
+                                                <?php }
+                                                } ?>
+                                             html += `</td>
+                                            <td>`;
+                                            <?php if (count($arrOptions["categories"]) > 0) { ?>
+                                                         html += `<select class="document_input" name="document_category_`+id1+`" id="document_category_`+id1+`">
+                                                        <option value="">Select Category</option>
+                                                        <?php 
+                                                        echo $select_categories; ?>
+                                                        </select>`;
+                                                        <?php
+                                                    } else { ?>
+                                            html += ` <select class="document_input" name="document_category_`+id1+`" id="document_category_`+id1+`">
+                                                            <option value="" ${document_extension == "" ? "selected" : ""}>Select Category</option>
+                                                            <option value="Client" ${document_extension == "Client" ? "selected" : ""}>Client</option>
+                                                            <option value="Carrier Document" ${document_extension=="Carrier Document" ? "selected" :""}>Carrier Document</option>
+                                                            <option value="Correspondence" ${document_extension=="Correspondence" ? "selected" :""}>Correspondence</option>
+                                                            <option value="Defense Attorney" ${document_extension=="Defense Attorney" ? "selected" :""}>Defense Attorney</option>
+                                                            <option value="Document" ${document_extension=="Document" ||  document_extension=="document" ? "selected" :""}>Document</option>
+                                                            <option value="Employment" ${document_extension=="Employment" ? "selected" :""}>Employment</option>
+                                                            <option value="Notes" ${document_extension=="Notes" ? "selected" :""}>Notes</option>
+                                                            <option value="Medical" ${document_extension=="Medical" ? "selected" :""}>Medical</option>
+                                                    </select>`;
+                                            <?php } ?>
+                                             html += `</td>
+                                            <td>`;
+                                            <?php if (count($arrOptions["subcategories"]) > 0) { ?>
+                                                     html += `<select class="document_input" name="document_subcategory_`+id1+`" id="document_subcategory_`+id1+`">
+                                                <option value="">Select Sub Category</option>
+                                                    <?php 
+                                                echo $select_subcategories; ?>
+                                                    </select>`;
+                                                    <?php
+                                                } else { ?>
+                                             html += `<select class="document_input" name="document_subcategory_`+id1+`" id="document_subcategory_`+id1+`">
+                                                <option value="">Select Sub Category</option>
+                                                <option value="doctor" ${description=="doctor" ? "selected" :""}>Doctor</option>
+                                                <option value="attorney" ${description=="Medical" ? "attorney" :""}>Attorney</option>
+                                            </select>`;
+                                            <?php } ?>
+                                             html += `</td>
+                                            </tr>
+                                            <tr>
+                                            <td colspan="3">
+                                                <label id="document_note_label_`+id1+`">Note</label>:<br />
+                                                <textarea name="document_note_`+id1+`" id="document_note_`+id1+`" class="document_input" rows="3" style="width:392px">`+description_html+`</textarea>
+                                                <div style="display:block" class="document_additional_medindex" id="document_additional_medindex_`+id1+`">`;
+                                                    if (exam_uuid=="") {
+                                                        html += `<input type="checkbox" id="document_medindex_`+id1+`" class="document_input document_medindex" value="Y" />&nbsp;
+                                                        <label for="document_medindex_`+id1+`">Apply to Med Index?</label>`;                    	
+                                                    } else {
+                                                        html += `<input type="hidden" id="document_medindex_`+id1+`" class="document_input document_medindex" value="Y" />
+                                                        &nbsp;
+                                                        <label for="document_medindex_`+id1+`" style="background:yellow; color:black">Med Index Document</label>`;                    	
+                                                    }
+                                                html += `</div>
+                                            </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>`;
+
+                          // Append the document item to the list
+                            $('#documents_rows').append(html);
+                           
+                        });
+                        $(".loading-image").hide();
+                    } else {
+                        // If no more data, remove the loader
+                        $(".loading-image").remove();
+                        console.log("No more data available from the API.");
+                    }
+               },  
+            error: function (xhr, status, error) {
+                // Remove the loader after the request completes
+                $("#loading-data").remove();
+                loading = false;        
+            },
+            complete: function() {
+                // Remove the loader after the request completes
+                $("#loading-data").remove();
+                loading = false;        
+            }                            
+            }); 
+        }else{
+            $(".loading-image").remove();
+            loading = false;
+            return false;
+        }
+    }
+    });
 
 </script>
 <style>

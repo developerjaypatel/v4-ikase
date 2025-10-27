@@ -106,17 +106,17 @@ window.message_listing = Backbone.View.extend({
 						attachment = arrLink[arrLink.length - 1];
 					} else {
 						attachment = attachment.replace("https:///uploads", "../uploads");
-						// attachment = attachment.replace("../uploads/" + message.customer_id + "/" + message.case_id + "/", "");
-						// attachment = attachment.replace("../uploads/" + message.customer_id + "/", "");
+						// attachment = attachment.replace("D:/uploads/" + message.customer_id + "/" + message.case_id + "/", "");
+						// attachment = attachment.replace("D:/uploads/" + message.customer_id + "/", "");
 						// if (message.case_id=="" || message.case_id=="-1") {
-						// 	attach_link = "../uploads/" + message.customer_id + "/" + attachment;
+						// 	attach_link = "D:/uploads/" + message.customer_id + "/" + attachment;
 						// } else {
-						// 	attach_link = "../uploads/" + message.customer_id + "/" + message.case_id + "/" + attachment;
+						// 	attach_link = "D:/uploads/" + message.customer_id + "/" + message.case_id + "/" + attachment;
 						// }
 						// above code commented and below code (if-else) added by mukesh on 1-6-2023 due to case attachment link doesn't work in outbox email view
 						if(attachment.indexOf("/") < 0)	
 						{
-							attach_link = "../uploads/" + message.customer_id + "/" + attachment;
+							attach_link = "D:/uploads/" + message.customer_id + "/" + attachment;
 						}
 						else
 						{

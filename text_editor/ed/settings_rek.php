@@ -5,7 +5,7 @@ ini_set('display_errors', '1');
 session_start();
 session_write_close();
 
-$filename = "C:\\inetpub\\wwwroot\\iKase.org\\api\\chain.config";
+$filename = "C:\\inetpub\\wwwroot\\ikase.org\\api\\chain.config";
 $version_number = "8";
 
 $handle = fopen($filename, "r");
@@ -27,7 +27,7 @@ $db = "gtg_thecase";
 $dbname = $db;	
 
 if (isset($_SERVER['DOCUMENT_ROOT'])) {
-	if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\iKase.org") {
+	if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\ikase.org") {
 		$MySqlHostname = "ikase.org";
 		$MySqlUsername = "root";
 		$MySqlPassword = "admin527#";

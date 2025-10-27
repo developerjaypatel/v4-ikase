@@ -1218,7 +1218,7 @@ window.partie_cards_view = Backbone.View.extend({
 	checkVocational: function() {
 		var self = this;
 		//is this case in matrix
-		//var url = "https://v2.ikase.org/api/activity/refvocational/" + current_case_id;
+		//var url = "https://v4.ikase.org/api/activity/refvocational/" + current_case_id;
 		var url = "https://"+ location.hostname +"/api/activity/refvocational/" + current_case_id;
 		//return;
 		$.ajax({
@@ -1236,7 +1236,7 @@ window.partie_cards_view = Backbone.View.extend({
 	checkExport: function() {
 		var self = this;
 		//is this case in matrix
-		//var url = "https://v2.ikase.org/api/kases/matrix";		
+		//var url = "https://v4.ikase.org/api/kases/matrix";		
 		var url = "https://" + location.hostname + "/api/kases/matrix";
 		var adj_number = this.model.get("adj_number");
 		var ssn = this.model.get("ssn");
@@ -1334,8 +1334,8 @@ window.partie_cards_view = Backbone.View.extend({
 				if ( data.toJSON().length > 0) {
 					var document_filename = data.toJSON()[0].document_filename;
 					if (document_filename!="") {
-						//href='uploads/" + customer_id + '/' + current_case_id + '/' + document_filename + "' target='_blank'
-						$('#applicant_picture').html("<a id='expand_applicant_image'  style='cursor:pointer' title='Click to expand'><img src='uploads/" + customer_id + '/' + current_case_id + '/' + document_filename + "' class='applicant_medium_img'></a>");
+						//href='D:/uploads/" + customer_id + '/' + current_case_id + '/' + document_filename + "' target='_blank'
+						$('#applicant_picture').html("<a id='expand_applicant_image'  style='cursor:pointer' title='Click to expand'><img src='document_read.php?file=D:/uploads/" + customer_id + '/' + current_case_id + '/' + document_filename + "' class='applicant_medium_img'></a>");
 						$('#applicant_picture').fadeIn();
 						/*
 						//removed per thomas 7/5/2018
@@ -2404,7 +2404,7 @@ window.partie_option_cards_view = Backbone.View.extend({
 				if ( data.toJSON().length > 0) {
 					var document_filename = data.toJSON()[0].document_filename;
 					if (document_filename!="") {
-						$('#applicant_picture').html("<a href='uploads/" + customer_id + '/' + current_case_id + '/' + document_filename + "' target='_blank' style='cursor:pointer' title='Click to expand'><img src='uploads/" + customer_id + '/' + current_case_id + '/' + document_filename + "' class='applicant_thumb'></a>");
+						$('#applicant_picture').html("<a href='D:/uploads/" + customer_id + '/' + current_case_id + '/' + document_filename + "' target='_blank' style='cursor:pointer' title='Click to expand'><img src='D:/uploads/" + customer_id + '/' + current_case_id + '/' + document_filename + "' class='applicant_thumb'></a>");
 						$('#applicant_picture').fadeIn();
 						$("#applicant_pictureGrid").fadeIn();
 					}

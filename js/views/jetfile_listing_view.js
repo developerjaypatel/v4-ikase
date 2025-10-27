@@ -251,7 +251,7 @@ window.jetfile_listing_view = Backbone.View.extend({
 					
 					//going through multiples
 					var the_unstruc = "<a href='jetfiler/unstructured.php?case_id=" + jetfile.case_id + "&injury_id=" + jetfile.injury_id + "&jetfile_case_id=" + jetfile.jetfile_case_id + "&unstruc_number=" + the_number + "' class='white_text' target='_blank'>Review Unstruc " + the_number + "</a>&nbsp;(" + the_data.document_title + ")";
-					var the_unstruc_pdf = "<a href='uploads/" + customer_id + "/" + jetfile.case_id + "/jetfiler/" + the_data.filepath + "' target='_blank' class='white_text'>Unstruc " + the_number + " PDF</a>";
+					var the_unstruc_pdf = "<a href='D:/uploads/" + customer_id + "/" + jetfile.case_id + "/jetfiler/" + the_data.filepath + "' target='_blank' class='white_text'>Unstruc " + the_number + " PDF</a>";
 					var the_unstruc_action = "";
 					
 					if (the_data.unstruc_id=="" || the_data.unstruc_id=="0")  {
@@ -1097,7 +1097,7 @@ window.jetfile_listing_view = Backbone.View.extend({
 						self.requestPDF(form, main_document, blnSingleForm, case_id, injury_id);
 						//alert("request");
 					} else {
-						var url = "../uploads/" + customer_id + "/" + case_id + "/jetfiler/" + data.document_filename;
+						var url = "D:/uploads/" + customer_id + "/" + case_id + "/jetfiler/" + data.document_filename;
 						//window.open(url);
 						self.requestPDF(form, main_document, blnSingleForm, case_id, injury_id);
 					}
@@ -1154,7 +1154,7 @@ window.jetfile_listing_view = Backbone.View.extend({
 				success:function (data) {					
 					$(feedback_field + case_id + "_" + injury_id).html("PDF Generated&nbsp;&#10003;");
 					
-					var url = "../uploads/" + customer_id + "/" + case_id + "/jetfiler/" + data.filename;
+					var url = "D:/uploads/" + customer_id + "/" + case_id + "/jetfiler/" + data.filename;
 					window.open(url);
 				}
 		});

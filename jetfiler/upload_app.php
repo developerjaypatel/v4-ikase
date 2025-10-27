@@ -14,7 +14,7 @@ include("../api/connection.php");
 
 if($_SERVER["HTTPS"]=="off") {
 	
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org" . $_SERVER['REQUEST_URI']);
 }
 
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
@@ -110,12 +110,23 @@ if (count($documents) > 0) {
 		$filepath = $document->filepath;
 		if ($filepath!="") {
 			//check if uploaded or just part of ikase
-			$actual_path = UPLOADS_PATH . $cus_id . DC . $case_id . "\\jetfiler\\" . $filepath;
+			/* $actual_path = UPLOADS_PATH . $cus_id . DC . $case_id . "\\jetfiler\\" . $filepath;
 			if (!file_exists($actual_path)) {
-				$actual_path = "../uploads/" . $cus_id . "/" . $case_id . "/" . $filepath;
+				$actual_path = "D:/uploads/" . $cus_id . "/" . $case_id . "/" . $filepath;
 				
 			} else {
-				$actual_path = "../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath;
+				$actual_path = "D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath;
+			} */
+			$jetfiler_path = "D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath;
+		    $eams_forms_path = "D:/uploads/" . $cus_id . "/" . $case_id . "/eams_forms/" . $filepath;
+		   // $letters_path = "D:/uploads/" . $cus_id . "/" . $case_id . "/letters/" . $filepath;
+			if (file_exists($jetfiler_path)) {
+				$actual_path = $jetfiler_path;
+			} else if (file_exists($eams_forms_path)) {
+				$actual_path = $eams_forms_path;
+			} else {
+				// fallback if file not found in expected folders
+				$actual_path = "D:/uploads/" . $cus_id . "/" . $case_id . "/" . $filepath;
 			}
 			$arrFiles[$name] = $actual_path;
 			$arrFilesID[$name] = $document->id;
@@ -234,7 +245,7 @@ input {
                         $required= ""; ?>
                         <div id="review_holder_1" style="float:right">
                             <a href="javascript:clearUpload('<?php echo $arrFilesID["Venue Authorization"]; ?>', 1, '1')" title="Click to clear upload">Clear Upload</a>&nbsp;|&nbsp;
-                          <a href="<?php echo $arrFiles["Venue Authorization"]; ?>" title="Click to review upload" target="_blank">Review Upload</a>
+                          <a href="https://v4.ikase.org/document_read.php?file=<?php echo $arrFiles["Venue Authorization"]; ?>" title="Click to review upload" target="_blank">Review Upload</a>
                         </div>
                     <?php } ?>
                     <span id="holder_1">
@@ -259,7 +270,7 @@ input {
                     $required = ""; ?>
                   <div style="float:right" id="review_holder_2">
                     <a href="javascript:clearUpload('<?php echo $arrFilesID["Fee Disclosure Statement"]; ?>', 2, '2')" title="Click to clear upload">Clear Upload</a>&nbsp;|&nbsp;
-                    <a href="<?php echo $arrFiles["Fee Disclosure Statement"]; ?>" title="Click to review upload" target="_blank">Review Upload</a>
+                    <a href="https://v4.ikase.org/document_read.php?file=<?php echo $arrFiles["Fee Disclosure Statement"]; ?>" title="Click to review upload" target="_blank">Review Upload</a>
                   </div>
                   <?php } ?>
                   <span id="holder_2">
@@ -286,12 +297,12 @@ input {
                     $required = "";
                     $link_text = "";
                     if (!isset($arrFiles["10770.5 Verification"])) {
-                      $arrFiles["10770.5 Verification"] = "uploads/memo_07242012.pdf";
+                      $arrFiles["10770.5 Verification"] = "D:/uploads/memo_07242012.pdf";
                       $link_text = "Default ";
                     }			  
                     if (isset($arrFiles["10770.5 Verification"])) {
                      ?>
-                    <div style="float:right" id="review_holder_2"> <a href="javascript:clearUpload('<?php echo $arrFilesID["10770.5 Verification"]; ?>', 2, '2')" title="Click to clear upload">Clear <?php echo $link_text; ?>Upload</a>&nbsp;|&nbsp; <a href="<?php echo $arrFiles["10770.5 Verification"]; ?>" title="Click to review upload" target="_blank">Review <?php echo $link_text; ?>Upload</a></div>
+                    <div style="float:right" id="review_holder_2"> <a href="javascript:clearUpload('<?php echo $arrFilesID["10770.5 Verification"]; ?>', 2, '2')" title="Click to clear upload">Clear <?php echo $link_text; ?>Upload</a>&nbsp;|&nbsp; <a href="https://v4.ikase.org/document_read.php?file=<?php echo $arrFiles["10770.5 Verification"]; ?>" title="Click to review upload" target="_blank">Review <?php echo $link_text; ?>Upload</a></div>
                     <?php } else {
                         $arrFiles["10770.5 Verification"] = "";
                     }
@@ -325,7 +336,7 @@ input {
 				  ?>
                         <div id="review_holder_pos" style="float:right; display:<?php if (!isset($arrFiles["Proof Of Service"])) { ?>none<?php } ?>">
                             <a href="javascript:clearUpload('<?php echo $arrFilesID["Proof Of Service"]; ?>', 3, 'pos')" title="Click to clear upload">Clear Upload</a>&nbsp;|&nbsp;
-                        <a href="<?php echo $arrFiles["Proof Of Service"]; ?>" title="Click to review upload" target="_blank">Review Upload</a></div>
+                        <a href="https://v4.ikase.org/document_read.php?file=<?php echo $arrFiles["Proof Of Service"]; ?>" title="Click to review upload" target="_blank">Review Upload</a></div>
                       
                       <span id="holder_3">
                       <input type="file" name="file_up_3" id="file_up_3" tabindex="2" style="color:#000000" class="<?php echo $required; ?>" onchange="checkPDF(3)" /></span>
@@ -337,21 +348,22 @@ input {
                   </td>
                 </tr>
                 <tr>
-                  <td align="left" valign="top" style="padding-left:17px; padding:3px"><strong> 4906 g:<?php if (isset($arrFiles["4906 g"])) {
+                  <td align="left" valign="top" style="padding-left:17px; padding:3px"><strong> 4906 h:<?php if (isset($arrFiles["4906 g"])) {
 						echo "<span style='color:green'>&#10003;</span>";
                     }
                     ?></strong><br /></td>
                 </tr>
                 <tr>
                   <td align="left" valign="top" style="padding-left:17px; padding:3px">
-                  <div style="background:#FCF; color:black; padding:10px; font-size:1.1em; margin-bottom:10px" id="4906_announce">
-                        <div style="float:right; background:black;; padding:2px">
-                            <a href="../jetfiler/pdf/4906h.pdf" target="_blank" style=" color:white">Download 4906H Form</a>
+                  <div style="background:#FCF; color:black; padding:10px; font-size:1.1em; margin-bottom:10px" id="4906_announce"> 
+						
+                        <div style="float:right; padding:2px"> <a href="https://www.dir.ca.gov/t8/10470.html" target="_blank">§10470. Labor Code Section 4906(h) Statement</a>
+                            <span style="background:black;"><a href="../jetfiler/pdf/4906h.pdf" target="_blank" style=" color:white">Download 4906H Form</a></span>
                         </div>
-                        <p>FROM EAMS 2/13/2019  -RE: <strong>4906G instead of 4906H</strong></p>
+                        <p>FROM EAMS 2/13/2019  -RE: <strong>4906H instead of 4906G</strong></p>
                         <p>You  can use the document title 4906G, but name the actual document 4906H.
                         Or,  you can wait until the case is assigned, and submit the 4906h as an  unstructured document.</p>
-                        <p> We  are working to correct this issue, so the above will work for now.</p>
+                        <!--p> We  are working to correct this issue, so the above will work for now.</p-->
                     </div>
                   <?php 
                   $required = "required";
@@ -359,7 +371,7 @@ input {
                     $required = ""; ?>
                         <div style="float:right" id="review_holder_4">
                             <a href="javascript:clearUpload('<?php echo $arrFilesID["4906 g"]; ?>', 4, '4')" title="Click to clear upload">Clear Upload</a>&nbsp;|&nbsp;
-                          <a href="<?php echo $arrFiles["4906 g"]; ?>" title="Click to review upload" target="_blank">Review Upload</a>
+                          <a href="https://v4.ikase.org/document_read.php?file=<?php echo $arrFiles["4906 g"]; ?>" title="Click to review upload" target="_blank">Review Upload</a>
                         </div>
                     <?php } ?>
                   <input type="file" name="file_up_4" id="file_up_4" tabindex="3" style="color:#000000" class="<?php echo $required; ?>" />
@@ -384,7 +396,26 @@ input {
 </form>
 
 <script language="javascript">
+var selectedDocumentIds = [];
+
 var selectDocument = function(file_number, document_id, document_name) {
+	if (selectedDocumentIds.includes(document_id)) {
+        //alert("This document is already selected.");		
+		var $button = $("#select_button_" + document_id);
+		var $label = $("#doc_selected_" + document_id);
+
+		// Disable button
+		$button
+			.removeAttr("onclick")
+			.off("click")
+			.addClass("readonly-button")
+			.attr("title", "Already selected");
+
+		// Update the span text
+		$label.text("Already selected").css("color", "green");
+        return;
+    }
+	selectedDocumentIds.push(document_id);
 	$("#file_up_" + file_number).removeClass("required");
 	$("#written" + file_number + "_link").html(document_name);
 	$("#file_stored_" + file_number).val(document_id);
@@ -409,7 +440,7 @@ var getDoc = function(file_number) {
 			var arrDocs = [];
 			for(var i =0; i < arrLength; i++) {
 				var thedata = data[i];
-				arrDocs.push("<div style='padding-bottom:5px;'><input type='button' value='Select' onclick='selectDocument(" + file_number + "," + thedata.document_id + ", \"" + thedata.document_name + "\")'  /><span style='padding-left:5px'>" + thedata.document_name + "&nbsp;(" + thedata.type + ")</span></div>");
+				arrDocs.push("<div style='padding-bottom:5px;'><input type='button' value='Select' onclick='selectDocument(" + file_number + "," + thedata.document_id + ", \"" + thedata.document_name + "\")'  /><span style='padding-left:5px'>" + thedata.document_name + "&nbsp;(" + thedata.type + ")</span>  <span id='doc_selected_" + thedata.document_id + "'></span></div>");
 			}
 			$("#document_list").html("<div style='width:100%; text-align:right'><a href='javascript:closeDocumentList()'>&times;</a><div style='float:left; font-weight:bold;'>Select a Document from List</div></div><div style='margin-top:5px'>" + arrDocs.join("\r\n") + "</div>");
 			$("#document_list").fadeIn();
@@ -442,7 +473,7 @@ var writePOS = function() {
 			setDisplayStyle("writepos_holder", "display", "none");
 			setDisplayStyle("pos_review_holder", "display", "none");
 			var writtenpos_link = document.getElementById("writtenpos_link");
-			writtenpos_link.innerHTML = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='../uploads/<?php echo $cus_id; ?>/<?php echo $case_id; ?>/jetfiler/" + response + "' title='Click to review generated POS' target='_blank'>Review Generated POS</a>&nbsp;Click the Upload Button to finish";
+			writtenpos_link.innerHTML = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='https://v4.ikase.org/document_read.php?file=D:/uploads/<?php echo $cus_id; ?>/<?php echo $case_id; ?>/jetfiler/" + response + "' title='Click to review generated POS' target='_blank'>Review Generated POS</a>&nbsp;Click the Upload Button to finish";
 			var file_stored = document.getElementById("file_stored_3");
 			file_stored.value = response;
 			//show the link
@@ -507,7 +538,7 @@ var clearPOS = function(upload_id, file_number) {
 	clearUpload(upload_id, file_number, "pos");
 }
 var clearUpload = function(upload_id, file_number, upload_type) {
-	var clearUrl = "../api/document/delete";
+	var clearUrl = "../api/document/deletejetfile";
 	var mysentData = "id=" + upload_id;
 	$.ajax({
 		url:clearUrl,
@@ -515,7 +546,7 @@ var clearUpload = function(upload_id, file_number, upload_type) {
 		data: mysentData,
 		dataType:"json",
 		success:function (data) {
-			if (data.success=="document marked as deleted") {
+			if (data.success=="All Documents Marked as Deleted") {
 				setDisplayStyle("write" + upload_type + "_holder", "display", "");
 				setDisplayStyle( "review_holder_" + upload_type, "display", "");
 				var writtenpos_link = document.getElementById("written" + upload_type + "_link");
@@ -524,6 +555,7 @@ var clearUpload = function(upload_id, file_number, upload_type) {
 				file_stored.value = "";
 				//show the link
 				setDisplayStyle("review_holder_" + upload_type, "display", "none");
+				$("#review_holder_" + upload_type).hide();
 				//done
 				writtenpos_link.style.display = ""
 				writtenpos_link.innerHTML = "cleared";

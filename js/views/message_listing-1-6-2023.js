@@ -96,7 +96,7 @@ window.message_listing = Backbone.View.extend({
 					if (message.message_type=="email") {
 						var strpos = attachment.indexOf("attachments");
 						if (strpos < 0) {
-							var attach_link = "https://v2.ikase.org/uploads/" + customer_id + "/webmail_previews/" + login_user_id + "/" + attachment;
+							var attach_link = "https://v4.ikase.org/uploads/" + customer_id + "/webmail_previews/" + login_user_id + "/" + attachment;
 						} else {
 							var attach_link = "https://www.ikase.xyz/ikase/gmail/ui/" + attachment;
 						}
@@ -106,12 +106,12 @@ window.message_listing = Backbone.View.extend({
 						attachment = arrLink[arrLink.length - 1];
 					} else {
 						attachment = attachment.replace("https:///uploads", "../uploads");
-						attachment = attachment.replace("../uploads/" + message.customer_id + "/" + message.case_id + "/", "");
-						attachment = attachment.replace("../uploads/" + message.customer_id + "/", "");
+						attachment = attachment.replace("D:/uploads/" + message.customer_id + "/" + message.case_id + "/", "");
+						attachment = attachment.replace("D:/uploads/" + message.customer_id + "/", "");
 						if (message.case_id=="" || message.case_id=="-1") {
-							attach_link = "../uploads/" + message.customer_id + "/" + attachment;
+							attach_link = "D:/uploads/" + message.customer_id + "/" + attachment;
 						} else {
-							attach_link = "../uploads/" + message.customer_id + "/" + message.case_id + "/" + attachment;
+							attach_link = "D:/uploads/" + message.customer_id + "/" + message.case_id + "/" + attachment;
 						}
 					}
 					attach_link = email_attachment + '<a id="kase_attach_link_' + i + '" href="' + attach_link + '" target="_blank" title="Click to review ' + attachment + '">' + attachment + '</a>';

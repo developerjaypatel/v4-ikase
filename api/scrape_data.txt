@@ -679,3 +679,14 @@ transfer customer  @ 05/30/24 00:51:00
 transfer customer  @ 05/31/24 00:51:00
 transfer customer  @ 06/03/24 00:50:59
 transfer customer  @ 06/04/24 00:51:01
+transfer customer  @ 06/05/24 00:50:59
+transfer customer  @ 06/27/25 04:29:55
+transfer customer  @ 06/30/25 00:51:02
+transfer customer  @ 07/01/25 00:51:02
+transfer customer  @ 07/02/25 00:51:03
+transfer customer  @ 07/03/25 00:51:02
+transfer customer  @ 07/07/25 00:51:01
+transfer customer  @ 07/09/25 00:51:01
+transfer customer  @ 07/11/25 00:51:01
+transfer customer  @ 07/14/25 00:51:01
+transfer customer  @ 07/16/25 00:51:02

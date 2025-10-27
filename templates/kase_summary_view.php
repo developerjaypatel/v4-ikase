@@ -83,6 +83,7 @@
         <button id="kase_accept_<%= case_id %>" class="kase_accept btn btn-success btn-sm" style="border:0px solid; margin-left:15px;" title="Click to Accept Intake">Accept</button>
         &nbsp;
         <button id="kase_reject_<%= case_id %>" class="kase_reject btn btn-danger btn-sm" style="border:0px solid; margin-left:15px;" title="Click to Reject Intake">Reject</button>
+        <button id="kase_edit_<%= case_id %>" class="kase_edit edit btn btn-primary btn-sm" style="border:0px solid; margin-left:15px;" title="Click to Edit kase information">Edit Kase</button>
         <% } else { %>
         <button id="kase_edit_<%= case_id %>" class="kase_edit edit btn btn-primary btn-sm" style="border:0px solid; margin-left:15px;" title="Click to Edit kase information">Edit Kase</button>
         <% } %>

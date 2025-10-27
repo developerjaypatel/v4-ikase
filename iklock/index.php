@@ -1,6 +1,6 @@
 <?php
 if($_SERVER["HTTPS"]=="off") {
-	header("location:https://v2.ikase.org/klock");
+	header("location:https://v4.ikase.org/klock");
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -259,10 +259,10 @@ function sendReset() {
 				$("#inputEmail").hide();
 				$(".login_please").hide();
 				$("#this_email_label").hide();
-				$("#button_holder").html("&nbsp;<br><span class='white_text'>A password reset link has been sent to your email.  Please check your inbox and follow the instructions.</span><div><button class='btn btn-lg btn-primary btn-block' onClick='document.location.href=\"https://v2.ikase.org\"' style='width:210px'>Login</button></div>");
+				$("#button_holder").html("&nbsp;<br><span class='white_text'>A password reset link has been sent to your email.  Please check your inbox and follow the instructions.</span><div><button class='btn btn-lg btn-primary btn-block' onClick='document.location.href=\"https://v4.ikase.org\"' style='width:210px'>Login</button></div>");
 				emptyReminderBuffer(data.success.text);
 				setTimeout(function() {
-					//document.location.href = "https://v2.ikase.org/";
+					//document.location.href = "https://v4.ikase.org/";
 				}, 5500);
 			}
 		}

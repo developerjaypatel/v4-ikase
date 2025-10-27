@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL ^ E_DEPRECATED); 
-ini_set('display_errors', '1');
+/* error_reporting(E_ALL ^ E_DEPRECATED); 
+ini_set('display_errors', '1'); */
 
 require_once('../../../shared/legacy_session.php');
 include("../../../api/connection.php");
@@ -18,4 +18,5 @@ session_write_close();
  */
 
 require('UploadHandler.php');
+
 $upload_handler = new UploadHandler();

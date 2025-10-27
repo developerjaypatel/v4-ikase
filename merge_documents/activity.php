@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
 	if(count($document_ids) > 0) {
 		foreach($document_ids as $document) {
-			if(file_exists("../uploads/".$customer_id."/".$case_id."/".$document)) {
-				$file_paths[] = "../uploads/".$customer_id."/".$case_id."/".$document;//findDocumentFolder($customer_id, $case_id, $file, $type, $thumbnail_folder, $document_id);
+			if(file_exists("D:/uploads/".$customer_id."/".$case_id."/".$document)) {
+				$file_paths[] = "D:/uploads/".$customer_id."/".$case_id."/".$document;//findDocumentFolder($customer_id, $case_id, $file, $type, $thumbnail_folder, $document_id);
 			}
 		}
 	}

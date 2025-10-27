@@ -56,10 +56,10 @@ try {
 		$case_id = str_replace("case_id=", "", $arrParams[0]);
 		$file = str_replace("file=", "", $arrParams[1]);
 		
-		$case_dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id . "\\" . $case_id . "\\";
+		$case_dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id . "\\" . $case_id . "\\";
 		$uploadDir = $case_dir . "refervocational\\";
 		
-		$uploadDir = "../uploads/" . $customer_id . "/" . $case_id . "/refervocational/";
+		$uploadDir = "D:/uploads/" . $customer_id . "/" . $case_id . "/refervocational/";
 		$path = $uploadDir . $file .  ".pdf";
 		
 		include("download.php");

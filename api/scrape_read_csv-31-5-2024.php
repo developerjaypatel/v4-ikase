@@ -6,7 +6,7 @@ ini_set('display_startup_errors', TRUE);
 //die(date("Y-m-d H:i:s", strtotime("Jun 15, 2017 1:30 PM")));
 include("connection.php");
 
-$targetFile = "../uploads/courtcalendar/courtcalendar.csv";
+$targetFile = "D:/uploads/courtcalendar/courtcalendar.csv";
 
 
 /*

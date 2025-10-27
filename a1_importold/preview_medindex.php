@@ -24,7 +24,7 @@ if ($extension == "pdf") {
 	
 	die();
 } else {
-	$archive_file_name = 'uploads/' . $_SESSION["user_customer_id"] . "/" . $folder. "/" . $case_id . "/" . $destination . '".' . $extension;
+	$archive_file_name = 'D:/uploads/' . $_SESSION["user_customer_id"] . "/" . $folder. "/" . $case_id . "/" . $destination . '".' . $extension;
 	
 	header("Content-type: application/zip"); 
     header("Content-Disposition: attachment; filename=$archive_file_name"); 

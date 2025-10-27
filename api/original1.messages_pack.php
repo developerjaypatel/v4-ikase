@@ -2419,9 +2419,9 @@ function addMessage() {
 				}
 				
 				if ($attachments=="") {
-					$attachments = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $attachment_filename;
+					$attachments = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $attachment_filename;
 				} else {
-					$attachments .= "|../uploads/" . $_SESSION['user_customer_id'] . "/" . $attachment_filename;
+					$attachments .= "|D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $attachment_filename;
 				}
 				
 				$arrAttach = explode("/", $attachments);
@@ -2445,7 +2445,7 @@ function addMessage() {
 					
 					if ($attachment_case=="") {
 						/*
-						$attachment_case = "../uploads/" . $_SESSION['user_customer_id'] . "/";
+						$attachment_case = "D:/uploads/" . $_SESSION['user_customer_id'] . "/";
 						if ($attach_document_case_id!="") {
 							$attachment_case .= $attach_document_case_id . "/";
 						}
@@ -2458,7 +2458,7 @@ function addMessage() {
 						}
 					} else {
 						/*
-						$attachment_case .= "|../uploads/" . $_SESSION['user_customer_id'] . "/";
+						$attachment_case .= "|D:/uploads/" . $_SESSION['user_customer_id'] . "/";
 						if ($attach_document_case_id!="") {
 							$attachment_case .= $attach_document_case_id . "/";
 						}
@@ -3064,7 +3064,7 @@ function addMessage() {
 			
 			$from_address = $_SESSION['user_email'];
 			$from_name = $_SESSION['user_name'];
-			$attachments = str_replace("https:///uploads/", "uploads/", $message_attachments);
+			$attachments = str_replace("https:///uploads/", "D:/uploads/", $message_attachments);
 			
 			$operation = "sent";
 			if ($deleted!="") {
@@ -4074,7 +4074,7 @@ function trackMessage($operation, $message_id, $blnFromEmail = false, $return = 
 				$document_name = $attachment;
 				$document_name = explode("/", $document_name);
 				$document_name = $document_name[count($document_name) - 1];
-				$root = "uploads/" . $_SESSION['user_customer_id'] . "/";
+				$root = "D:/uploads/" . $_SESSION['user_customer_id'] . "/";
 				
 				if ($case_id!="" && $case_id!="-1") {
 					$root .= $case_id . "/";

@@ -37,7 +37,7 @@ $db = null;
                     <ul>
                         <li>
                         	<div style="float:right; padding-left:10px">
-                            	<a href="uploads/bell_medical_services.pdf" target="_blank" title="Click to learn more about Bell Medical Group" style="font-size:11px; font-weight:normal; background:black; color:white;padding:2px; cursor:pointer">learn more...</a>
+                            	<a href="D:/uploads/bell_medical_services.pdf" target="_blank" title="Click to learn more about Bell Medical Group" style="font-size:11px; font-weight:normal; background:black; color:white;padding:2px; cursor:pointer">learn more...</a>
                             </div>
                             <div style="float:right; padding-left:10px">
                             	<a id="open_vservice_form" title="Click to email this Kase to Bell Medical Group" style="font-size:11px; font-weight:normal; background:black; color:white;padding:2px; cursor:pointer">Send Kase</a>

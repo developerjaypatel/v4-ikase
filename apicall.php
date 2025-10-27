@@ -4,18 +4,18 @@ ini_set("com.allow_dcom","true");
 //Secret :GWnkMxyCkVnea9bp
 //API Key : 971420074
 error_reporting(E_ALL); ini_set('display_errors', 1); 
-require_once('C:\inetpub\wwwroot\iKase.org\ConvertApi\autoload.php');
+require_once('C:\inetpub\wwwroot\ikase.org\ConvertApi\autoload.php');
 // echo 'hii';die;
 use \ConvertApi\ConvertApi;
 
 ConvertApi::setApiSecret('rXEf71d4nSWiYDb4');
 $result = ConvertApi::convert('pdf', [
-        'File' => 'C:\inetpub\wwwroot\iKase.org\ConvertApi\test.docx',
+        'File' => 'C:\inetpub\wwwroot\ikase.org\ConvertApi\test.docx',
     ], 'docx'
 );
-$result->saveFiles('C:\inetpub\wwwroot\iKase.org\ConvertApi');
+$result->saveFiles('C:\inetpub\wwwroot\ikase.org\ConvertApi');
 
-// $content = file_get_contents('C:\\inetpub\\wwwroot\\iKase.org\\ConvertApi\\kk.docx');
+// $content = file_get_contents('C:\\inetpub\\wwwroot\\ikase.org\\ConvertApi\\kk.docx');
 // header("Content-type: pdf");
 // header("Content-Disposition: attachment; Filename = fullapp.pdf");
 // set_time_limit(0);
@@ -43,8 +43,8 @@ $result->saveFiles('C:\inetpub\wwwroot\iKase.org\ConvertApi');
     // $oWriterDoc->storeToURL($output_url,$export_args);
     // $oWriterDoc->close(true);
     // }
-    // $output_dir = "C:\\inetpub\\wwwroot\\iKase.org\\ConvertApi\\";
-    // $doc_file = "C:\\inetpub\\wwwroot\\iKase.org\\ConvertApi\\kk.docx";
+    // $output_dir = "C:\\inetpub\\wwwroot\\ikase.org\\ConvertApi\\";
+    // $doc_file = "C:\\inetpub\\wwwroot\\ikase.org\\ConvertApi\\kk.docx";
     // $pdf_file = "kk.pdf";
     // $output_file = $output_dir . $pdf_file;
     // $doc_file = "file:///" . $doc_file;
@@ -80,7 +80,7 @@ $result->saveFiles('C:\inetpub\wwwroot\iKase.org\ConvertApi');
 
 
             // try{
-            // $doc = $word->Documents->Open('C:\\inetpub\\wwwroot\\iKase.org\\ConvertApi\\kk.docx');
+            // $doc = $word->Documents->Open('C:\\inetpub\\wwwroot\\ikase.org\\ConvertApi\\kk.docx');
             // }
             // catch (com_exception $e)
             // {

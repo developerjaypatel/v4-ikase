@@ -21,7 +21,7 @@ include("functions.php");
 session_write_close();
 if($_SERVER["HTTPS"]=="off") {
 	
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org" . $_SERVER['REQUEST_URI']);
 }
 
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
@@ -48,7 +48,7 @@ $uploadDir = '\\uploads\\' . $_SESSION['user_customer_id'] . '\\' . $case_id . '
 if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir)) {
 	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir, 0755, true);
 }
-//$path = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/jetfiler/";
+//$path = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/jetfiler/";
 $path = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
 
 $acceptable_file_types = "application/pdf";
@@ -93,7 +93,7 @@ for ($int=1;$int<($uploads+1);$int++) {
 		$arrKaseDocs[] = $stored_file_name;
 		/*
 		if (!is_numeric($stored_file_name)) {
-			$arrUploads[] = str_replace("../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $stored_file_name);
+			$arrUploads[] = str_replace("D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $stored_file_name);
 			$arrNames[] = $upload_file_name;
 		} else {
 			$arrKaseNames[] = $upload_file_name;

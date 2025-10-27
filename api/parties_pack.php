@@ -773,29 +773,40 @@ function getBingLocation() {
 	if (strlen($search_term) < 3) {
 		return false;
 	}
-	$key = "AiLZNujKEOV1WIFx4_n0XExGSDIVpeYL0KLKmZnpm-sElaB_FdaLj8qDrk0gJc3q";
+	// Old Key
+	// $key = "AiLZNujKEOV1WIFx4_n0XExGSDIVpeYL0KLKmZnpm-sElaB_FdaLj8qDrk0gJc3q";
+	// Old API
+	// $url = "http://dev.virtualearth.net/REST/v1/Locations/" . urlencode($search_term) . "?o=&key=" . $key;
 	
-	$url = "http://dev.virtualearth.net/REST/v1/Locations/" . urlencode($search_term) . "?o=&key=" . $key;
+	// New Key
+	$key = "C32lBnOSqIkn0Ik0QZR7KKpxew1Q1I3yY0wOakonYLnm5Cel4ffpJQQJ99BHAC8vTInMIYcSAAAgAZMP4YUB";
+	// New API
+	$url = "https://atlas.microsoft.com/search/address/json?api-version=1.0&query=" . urlencode($search_term) . "&subscription-key=$key&limit=5";
 	$results = file_get_contents($url);
-	
 	$arrResults = json_decode($results);
-	$objects = $arrResults->resourceSets;
-	
+	// $objects = $arrResults->resourceSets;
+	$objects = $arrResults->results;
+	//print_r($objects);
 	$arrNames = array();
+	// if($_SERVER['REMOTE_ADDR']=='103.238.106.253') {
+	// 	var_dump($objects);
+	// 	die();
+	// }
 	foreach($objects as $result) {
-		$resources = $result->resources;
-		//$arrNames[] = $resources;
-		
-		foreach($resources as $resource) {
-			$name = $resource->name;
-			$address =$resource->address;
-			$arrNames[] = array(
-							"name"=>$name,
-							"address" => $address
-							);						
-		}
+		$resources = $result->address;
+		$arrNames[] = $resources;
+		// foreach($resources as $resource) {
+		// 	$name = $resource->name;
+		// 	$address =$resource->address;
+		// 	$arrNames[] = array(
+		// 					"name"=>$name,
+		// 					"address" => $address
+		// 					);						
+		// }
+		//print_r($arrNames);
 	}
-	
-	die(json_encode($arrNames));
+	$response = array("results" => $arrNames);
+
+	die(json_encode($response));
 }
 

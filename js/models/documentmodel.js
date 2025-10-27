@@ -31,6 +31,8 @@ window.Document = Backbone.Model.extend({
 });
 window.DocumentCollection = Backbone.Collection.extend({
     initialize: function(models, options) {
+		this.page = 1;
+    	this.limit = 35;
 		this.case_id = options.case_id;
 		if (typeof options.attribute != "undefined") {
 			this.attribute = options.attribute;
@@ -45,7 +47,8 @@ window.DocumentCollection = Backbone.Collection.extend({
 		if (this.attribute!="") {
 			thereturn = 'api/documents/attribute/' + this.case_id + '/' + this.attribute;
 		}
-		return thereturn;
+		//return thereturn;
+		return thereturn + `?page=${this.page}&limit=${this.limit}`;
 	}
 });
 window.DocumentCaseSearch = Backbone.Collection.extend({

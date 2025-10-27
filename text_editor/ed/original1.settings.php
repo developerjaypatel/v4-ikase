@@ -5,7 +5,7 @@ ini_set('display_errors', '1');
 session_start();
 session_write_close();
 
-$filename = "C:\\inetpub\\wwwroot\\iKase.org\\api\\chain.config";
+$filename = "C:\\inetpub\\wwwroot\\ikase.org\\api\\chain.config";
 $version_number = "8";
 
 $handle = fopen($filename, "r");

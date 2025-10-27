@@ -1629,7 +1629,7 @@ class UploadHandler
 							$destination = $arrDestination[count($arrDestination) - 1];
 							
 							//now rebuild
-							$prefix = "../uploads/" . $_SESSION["user_customer_id"];
+							$prefix = "D:/uploads/" . $_SESSION["user_customer_id"];
 							if ($this->case_id!="") {
 								$prefix .= "/" . $this->case_id;
 							}
@@ -2072,7 +2072,7 @@ class UploadHandler
 	 
 	function getConnection() {
 		
-		if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == "D:\\iKase.org") {
+		if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == "D:\\ikase.org") {
 			return DB::conn(DB::DB_LOCALHOST, true);
 		}
 

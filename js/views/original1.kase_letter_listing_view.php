@@ -67,7 +67,7 @@ if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) 
                 </div>
             </td>
             <td align="left" nowrap="nowrap">
-              <a id="thumbnail_<%=template.document_id%>" href="uploads/<?php echo $_SESSION['user_customer_id']; ?>/templates/<%= template.document_filename %>" target="_blank" class="list_link">
+              <a id="thumbnail_<%=template.document_id%>" href="D:/uploads/<?php echo $_SESSION['user_customer_id']; ?>/templates/<%= template.document_filename %>" target="_blank" class="list_link">
                 <%= template.display_name %>
                 </a>
                 <input id="document_id_<%=template.document_id%>" name="document_id_<%=template.document_id%>" type="hidden" class="document_input" value="<%=template.document_id%>" />

@@ -648,7 +648,7 @@
                 }
                 // console.log(attorneys[i]['pending_draft']);
                 html = "<div class='col-sm-6 col-md-4'><div class='mull_attorney'><a href='" + wp_variables.site_url + "/wp-admin/admin.php?page=wcc-add-new&id=" + attorneys[i]['user_id'] +
-                    "'><img src='" + wp_variables.upload_dir + "/../../../uploads/headshots/" +
+                    "'><img src='" + wp_variables.upload_dir + "/../../D:/uploads/headshots/" +
                     attorneys[i]['profile_image'] + "'/>" + "<figcaption>" +
                     attorneys[i]['first_name'] + " " + attorneys[i]['middle_initial'] + " " + attorneys[i]['last_name'] +
                     "<br>" + attorneys[i]['secondary_title'] +

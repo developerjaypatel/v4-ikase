@@ -1,0 +1,75 @@
+<?php
+error_reporting(E_ALL ^ E_DEPRECATED);
+ini_set('display_errors', '1');	
+
+/**
+ * This example shows making an SMTP connection with authentication.
+ */
+
+//SMTP needs accurate times, and the PHP time zone MUST be set
+//This should be done in your php.ini, but this is how to do it if you don't have access to that
+date_default_timezone_set('America/Los_Angeles');
+
+require '../PHPMailer/PHPMailerAutoload.php';
+
+//Create a new PHPMailer instance
+$mail = new PHPMailer;
+//Tell PHPMailer to use SMTP
+$mail->isSMTP();
+//Enable SMTP debugging
+// 0 = off (for production use)
+// 1 = client messages
+// 2 = client and server messages
+$mail->SMTPDebug = 2;
+//Ask for HTML-friendly debug output
+$mail->Debugoutput = 'html';
+//Set the hostname of the mail server
+//$mail->Host = "maserati.websitewelcome.com";
+//$mail->Host = "smtp.zoho.com";
+$mail->Host = "mail.glauberberenson.com";
+//Set the SMTP port number - likely to be 25, 465 or 587
+//$mail->Port = 26;
+//$mail->Port = 465;
+$mail->Port = 587;
+//Whether to use SMTP authentication
+//$mail->SMTPAuth = true;
+//$mail->set('SMTPSecure', 'ssl');
+
+$mail->SMTPAuth = true;
+$mail->SMTPAutoTLS = false;
+$mail->set('SMTPSecure', 'none');
+
+//Username to use for SMTP authentication
+//$mail->Username = "nick@kustomweb.com";
+//$mail->Username = "thomas@goldflamandbarth.com";
+$mail->Username = "arodriguez@glauberberenson.com";
+//Password to use for SMTP authentication
+//$mail->Password = "p1a2i3r4";
+//$mail->Password = "admin0909";
+$mail->Password = "rodriguez*";
+//Set who the message is to be sent from
+//$mail->setFrom('thomas@goldflamandbarth.com', 'Thomas Smith');
+$mail->setFrom('arodriguez@glauberberenson.com', 'A Rodriguez');
+//$mail->setFrom('nick@kustomweb.com', 'Nick G');
+//Set an alternative reply-to address
+$mail->addReplyTo('donotreplyto@glauberberenson.com', 'Dont Reply');
+//Set who the message is to be sent to
+$mail->addAddress('nick@kustomweb.com', 'Nick iKase');
+//$mail->addAddress('nick@kustomweb.com', 'Nick iKase');
+//Set the subject line
+$mail->Subject = 'PHPMailer SMTP test';
+//Read an HTML message body from an external file, convert referenced images to embedded,
+//convert HTML into a basic plain-text alternative body
+$mail->msgHTML(file_get_contents('../PHPMailer/examples/contents.html'), dirname(__FILE__));
+//Replace the plain text body with one created manually
+$mail->AltBody = 'This is a plain-text message body';
+//Attach an image file
+$mail->addAttachment('../PHPMailer/examples/images/phpmailer_mini.png');
+
+//die(print_r($mail));
+//send the message, check for errors
+if (!$mail->send()) {
+    echo "Mailer Error: " . $mail->ErrorInfo;
+} else {
+    echo "Message sent!";
+}

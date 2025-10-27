@@ -18,7 +18,7 @@ include("../api/connection.php");
 
 if($_SERVER["HTTPS"]=="off") {
 	
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org" . $_SERVER['REQUEST_URI']);
 }
 //die(print_r($_SESSION));
 if ($_SESSION['user_customer_id']=="" || $_SESSION['user_customer_id']=="-1" || !isset($_SESSION['user_customer_id'])) {

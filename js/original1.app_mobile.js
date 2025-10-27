@@ -1793,7 +1793,7 @@ window.Router = Backbone.Router.extend({
 		});
 	},
 	showSubscriptionLink: function() {
-		var subscription_link = "<div class='white_text'>For Outlook/Google Calendar Sync, use this url:<br><br>https://v2.ikase.org/api/ikase_sync2.php?" + subscription_string + "</div>";
+		var subscription_link = "<div class='white_text'>For Outlook/Google Calendar Sync, use this url:<br><br>https://v4.ikase.org/api/ikase_sync2.php?" + subscription_string + "</div>";
 		$("#content").html(subscription_link);
 	},
 	kaseKAI: function (case_id) {
@@ -4703,7 +4703,7 @@ function composeMessage(object_id) {
 					message.set("subject", subject);
 					
 					var kase = kases.findWhere({case_id: current_case_id});
-					var themessage = "<p>" + customer_name + "  is referring this case to your office:</p>" + kase.name() + "<br>DOI: " + data.dates + "<br>ADJ #:" + data.adj_number;
+					var themessage = "<p>" + customer_name + "  is referring this case to your office:</p>" + kase.name() + "<br> " + data.dates + "<br>ADJ #:" + data.adj_number;
 					message.set("message", themessage);
 					
 					$("#myModalBody").html(new message_view({model: message}).render().el);
@@ -7667,7 +7667,7 @@ function saveBulkImportAssignModal() {
 						for(var k =0; k < theid.length; k++) {	
 							var row_id = theid[k];
 							//restore original backcolor
-							$(".document_row_" + row_id).css("background", "url(https://v2.ikase.org/img/glass_row.png)");
+							$(".document_row_" + row_id).css("background", "url(https://v4.ikase.org/img/glass_row.png)");
 						}
 					}, 2500);
 				}

@@ -334,7 +334,7 @@ function previewAttachment() {
 	
 	$arrAcceptable = array("jpg", "png", "pdf", "doc", "docx", "eml");
 	//this will download the attachment
-	$str=$obj->GetAttach($id,"C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\", $arrAcceptable, true, $name); 
+	$str=$obj->GetAttach($id,"C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\", $arrAcceptable, true, $name); 
 		
 	$success = array("success"=> array("text"=>$id));
     die( json_encode($success));
@@ -680,7 +680,7 @@ function getEmailInbox() {
 		
 		$arrAcceptable = array("jpg", "png", "pdf", "doc", "docx", "eml");
 		//this will download the attachment
-		$webmail_dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\";
+		$webmail_dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\";
 		//$webmail_dir .= $head["message_id"] . "\\";
 		$str = $obj->GetAttach($i,$webmail_dir, $arrAcceptable, true, "");
 		
@@ -1091,7 +1091,7 @@ function transferAttach() {
 	$user_id = passed_var("user_id", "post");
 	$server_file = passed_var("filename", "post");
 	$server_file = trim($server_file);
-	$path = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id;
+	$path = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id;
 	if (!is_dir($path)) {
 		mkdir($path, 0755, true);
 	}
@@ -1279,7 +1279,7 @@ function webEmailInbox() {
 			$str = "";
 			$blnAttachmentFile = false;
 			if ($head["size"] <  500000) {
-				$str = $obj->GetAttach($i,"C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\", $arrAcceptable, false, ""); 
+				$str = $obj->GetAttach($i,"C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\", $arrAcceptable, false, ""); 
 				$blnAttachmentFile = true;
 			} else {
 				//maybe we downloaded it already
@@ -1445,7 +1445,7 @@ function assignGmail() {
 					$thumb_file = $attach_file;
 				}
 								
-				array_push($arrAttachedFiles, "<a href='https://www.ikase.org/uploads/" . $attachment . "' target='_blank' onmouseover='showImportedPreview(this, \"uploads/" . $attachment . "\", \"\", \"\", " . $attach_customer_id . ", \"activity_\")' onmouseout='hidePreview()'>" . $attach_file . "</a>");
+				array_push($arrAttachedFiles, "<a href='https://www.ikase.org/uploads/" . $attachment . "' target='_blank' onmouseover='showImportedPreview(this, \"D:/uploads/" . $attachment . "\", \"\", \"\", " . $attach_customer_id . ", \"activity_\")' onmouseout='hidePreview()'>" . $attach_file . "</a>");
 				
 			} else {
 				array_push($arrAttachedFiles, "<a href='https://www.ikase.xyz/ikase/gmail/ui/" . $attachment . "' target='_blank'>" . $attach_file . "</a>");
@@ -1480,7 +1480,7 @@ function assignGmail() {
 				if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir)) {
 					mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir, 0755, true);
 				}
-				$dest = "../uploads/" . $attach_customer_id . "/" . $case_id . "/" . $attach_file;
+				$dest = "D:/uploads/" . $attach_customer_id . "/" . $case_id . "/" . $attach_file;
 				
 				//move thumbnails if any
 				$arrExt = explode(".", $attach_file);
@@ -1490,11 +1490,11 @@ function assignGmail() {
 				$thumb_dest = "";
 				if($extension=="pdf") {
 					$thumbnail = str_replace(".pdf", ".jpg", $attachment);
-					$thumb_dest = "../uploads/" . $attach_customer_id . "/" . $case_id . "/medium/" . str_replace(".pdf", ".jpg", $attach_file);
+					$thumb_dest = "D:/uploads/" . $attach_customer_id . "/" . $case_id . "/medium/" . str_replace(".pdf", ".jpg", $attach_file);
 				}
 				if($extension=="jpg" || $extension=="png") {
 					$thumbnail = $attachment;
-					$thumb_dest = "../uploads/" . $attach_customer_id . "/" . $case_id . "/medium/" . $attach_file;
+					$thumb_dest = "D:/uploads/" . $attach_customer_id . "/" . $case_id . "/medium/" . $attach_file;
 				}
 				if ($thumbnail!="") {
 					$thumbnail = "../" . $thumbnail;
@@ -1847,8 +1847,8 @@ function assignEmail() {
 	//die($body);
 	$arrAcceptable = array("jpg", "png", "pdf", "doc", "docx", "eml");
 	//this will download the attachment
-	$webmail_dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\";
-	$case_dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\" . $case_id . "\\";
+	$webmail_dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\webmail_previews\\";
+	$case_dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $_SESSION['user_customer_id'] . "\\" . $case_id . "\\";
 	if (!is_dir($case_dir)) {
 		mkdir($case_dir, 0755, true);
 	}
@@ -2204,7 +2204,7 @@ function spamCheck() {
 	
 	//die(print_r($_SERVER));
 	//$cmd = "PowerShell.exe -ExecutionPolicy Bypass -File .\\test_email.ps1";
-	//$cmd = "C:\\inetpub\\wwwroot\\iKase.org\\api\\log.bat";
+	//$cmd = "C:\\inetpub\\wwwroot\\ikase.org\\api\\log.bat";
 	$cmd = "test_email_process.bat";
 	//execInBackground($cmd);
 	passthru($cmd);

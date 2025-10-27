@@ -64,7 +64,7 @@ try {
 <form action="invoice_payment_insert.php" method="post" enctype="multipart/form-data">
 	<table width="850px" border="0" align="center" cellpadding="2" cellspacing="0">
 	  <tr>
-	    <td align="left" valign="top"><img src="https://v2.ikase.org/img/ikase_logo_login.png" alt="iKase" height="32" /><br />
+	    <td align="left" valign="top"><img src="https://v4.ikase.org/img/ikase_logo_login.png" alt="iKase" height="32" /><br />
 	      support@ikase.org</td>
 	    <td align="center" valign="top" nowrap="nowrap"><span style="font-weight:bold; font-size:1.5em">Payment</span></td>
 	    <td align="right" valign="top"> Invoice #: <span id="invoice_number_holder"><?php echo $invoice->invoice_number; ?></span>

@@ -19,7 +19,7 @@ include("functions.php");
 
 if($_SERVER["HTTPS"]=="off") {
 	
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org" . $_SERVER['REQUEST_URI']);
 }
 
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
@@ -113,8 +113,8 @@ if (count($documents) > 0) {
 		$name = $document->name;
 		$filepath = $document->filepath;
 		if ($filepath!="") {
-			$arrExists[$name] = (file_exists("../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath));
-			$arrFiles[$name] = "../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath;
+			$arrExists[$name] = (file_exists("D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath));
+			$arrFiles[$name] = "D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath;
 			$arrFilesID[$name] = $document->id;
 		}
 	}
@@ -225,7 +225,7 @@ if (count($documents) > 0) {
 			  $link_text = "";
 			  /*
 			  if (!isset($arrFiles["10770.5 Verification"])) {
-				  $arrFiles["10770.5 Verification"] = "uploads/memo_07242012.pdf";
+				  $arrFiles["10770.5 Verification"] = "D:/uploads/memo_07242012.pdf";
 				  $link_text = "Default ";
 			  }
 			  */
@@ -379,7 +379,7 @@ var writeVerification = function() {
 			setDisplayStyle("writeverification_holder", "display", "none");
 			setDisplayStyle("review_holder_2", "display", "none");
 			var writtenpos_link = document.getElementById("writtenverification_link");
-			writtenpos_link.innerHTML = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='../uploads/<?php echo $cus_id; ?>/<?php echo $case_id; ?>/jetfiler/" + response + "' title='Click to review generated Verification' target='_blank'>Review Generated Verification</a>&nbsp;Click the Upload Button to finish";
+			writtenpos_link.innerHTML = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='D:/uploads/<?php echo $cus_id; ?>/<?php echo $case_id; ?>/jetfiler/" + response + "' title='Click to review generated Verification' target='_blank'>Review Generated Verification</a>&nbsp;Click the Upload Button to finish";
 			var file_stored = document.getElementById("file_stored_2");
 			file_stored.value = response;
 			//show the link
@@ -410,7 +410,7 @@ var writeDeclaration = function() {
 			setDisplayStyle("writedeclaration_holder", "display", "none");
 			setDisplayStyle("review_holder_4", "display", "none");
 			var writtenpos_link = document.getElementById("writtendeclaration_link");
-			writtenpos_link.innerHTML = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='../uploads/<?php echo $cus_id; ?>/<?php echo $case_id; ?>/jetfiler/" + response + "' title='Click to review generated Declaration' target='_blank'>Review Generated Declaration</a>&nbsp;Click the Upload Button to finish";
+			writtenpos_link.innerHTML = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='D:/uploads/<?php echo $cus_id; ?>/<?php echo $case_id; ?>/jetfiler/" + response + "' title='Click to review generated Declaration' target='_blank'>Review Generated Declaration</a>&nbsp;Click the Upload Button to finish";
 			var file_stored = document.getElementById("file_stored_4");
 			file_stored.value = response;
 			//show the link
@@ -447,7 +447,7 @@ var writePOS = function() {
 			setDisplayStyle("writepos_holder", "display", "none");
 			setDisplayStyle("review_holder_1", "display", "none");
 			var writtenpos_link = document.getElementById("writtenpos_link");
-			writtenpos_link.innerHTML = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='../uploads/<?php echo $cus_id; ?>/<?php echo $case_id; ?>/jetfiler/" + response + "' title='Click to review generated POS' target='_blank'>Review Generated POS</a>&nbsp;Click the Upload Button to finish";
+			writtenpos_link.innerHTML = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='D:/uploads/<?php echo $cus_id; ?>/<?php echo $case_id; ?>/jetfiler/" + response + "' title='Click to review generated POS' target='_blank'>Review Generated POS</a>&nbsp;Click the Upload Button to finish";
 			var file_stored = document.getElementById("file_stored_1");
 			file_stored.value = response;
 			//show the link

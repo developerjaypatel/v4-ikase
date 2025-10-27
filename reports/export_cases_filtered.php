@@ -251,7 +251,7 @@ foreach ($cases_clean as $row) {
 
 
 //output file
-$filename = '../uploads/' . $customer_id . '/exports/cases_' . date('mdy') . '.csv';
+$filename = 'D:/uploads/' . $customer_id . '/exports/cases_' . date('mdy') . '.csv';
 $fp = fopen($filename, 'w');
 
 foreach ($list as $ferow) {

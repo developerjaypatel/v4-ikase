@@ -13,7 +13,7 @@ $config = Configuration::getDefaultConfiguration()
     ->setPassword('tMCYOBbjU3bUN2O9EGLjXDTDnNDqEv');
 
 $api = new TextMagicApi(
-    new GuzzleHttp\Client(['verify' => 'D:\iKase.org\api\textmagic-rest-php-v2-master\cacert.pem']),
+    new GuzzleHttp\Client(['verify' => 'D:\ikase.org\api\textmagic-rest-php-v2-master\cacert.pem']),
     $config
 );
 

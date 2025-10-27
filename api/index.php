@@ -1,4 +1,6 @@
 <?php
+//die(here);
+//error_reporting(E_ALL);
 use Api\Bootstrap;
 use Api\Middleware\Authorize;
 
@@ -263,6 +265,7 @@ if ($blnSpecificPack && $pack!="") {
 	include("users_pack.php");
 	include("vservices_pack.php");
 	include("workflow_pack.php");
+	include("report_complaint_pack.php");
 }
 //endregion
 
@@ -532,9 +535,9 @@ function login_encrypt() {
 			GROUP BY `user_uuid`
 		) `ucorp`
 		ON `user`.`user_uuid` = `ucorp`.`user_uuid`
-		WHERE `user`.user_logon = '" . $user_logon . "'";
-		/*AND `user`.`activated` = 'Y'
-		AND `user`.`pwd` = '" . encrypt( $password, $crypt_key) . "'";*/
+		WHERE `user`.user_logon = '" . $user_logon . "'
+		AND `user`.`activated` = 'Y'
+		AND `user`.`pwd` = '" . encrypt( $password, $crypt_key) . "'";
 
 		try {
 			$db = getConnection();

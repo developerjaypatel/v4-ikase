@@ -211,10 +211,10 @@ try {
 	}
 	
 	//Increase leangth
-	$sql ="ALTER TABLE `ikase_alvandi`.`cse_activity`   
+	$sql ="ALTER TABLE `ikase_".$data_source."`.`cse_activity`   
 	CHANGE `activity_uuid` `activity_uuid` VARCHAR(50) CHARSET utf8 COLLATE utf8_unicode_ci DEFAULT ''  NOT NULL";
 	$stmt = DB::run($sql);
-	$sql ="ALTER TABLE `ikase_alvandi`.`cse_case_activity`   
+	$sql ="ALTER TABLE `ikase_".$data_source."`.`cse_case_activity`   
 	CHANGE `activity_uuid` `activity_uuid` VARCHAR(50) CHARSET utf8 COLLATE utf8_unicode_ci NOT NULL";
 	$stmt = DB::run($sql);
 

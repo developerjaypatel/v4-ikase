@@ -39,7 +39,7 @@ if ($blnDebug) {
 }
 $dbname = "gtg_thecase";
 //FIXME: what's this supposed to do? it should always be true, unless it's running from CLI
-if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == "C:\\inetpub\\wwwroot\\iKase.org") {
+if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == "C:\\inetpub\\wwwroot\\ikase.org") {
 	$dbname = "ikase";
 	/*
 	if (isset($_SESSION['user_customer_id'])){

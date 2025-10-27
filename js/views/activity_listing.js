@@ -320,7 +320,7 @@ window.activity_listing_pane = Backbone.View.extend({
 						activity.activity = activity_header.replaceAll("\r\n", "<br>");
 						activity.activity = activity.activity.replaceAll("class='edit_event", "class='white_text edit_event");
 						activity.activity = activity.activity.replaceAll("- 00/00/0000", "");
-						activity.activity = activity.activity.replaceAll("uploads/uploads/", "uploads/");
+						activity.activity = activity.activity.replaceAll("D:/uploads/uploads/", "D:/uploads/");
 						activity.activity = activity.activity.replaceAll("style='cursor:pointer'>", "style='cursor:pointer; background:yellow;color:black'>")
 
 						activity.by = activity_footer;
@@ -557,7 +557,7 @@ window.activity_listing_pane = Backbone.View.extend({
 			
 			if (activity.activity.indexOf("Document [") > -1) {
 				 if (activity.activity.indexOf("C:") > -1) {
-					activity.activity = activity.activity.replace("C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" + customer_id + "\\" + current_case_id + "\\", "");
+					activity.activity = activity.activity.replace("C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" + customer_id + "\\" + current_case_id + "\\", "");
 				 }
 				 
 				 arrActivity = activity.activity.split("'>");
@@ -617,7 +617,7 @@ window.activity_listing_pane = Backbone.View.extend({
 					activity.activity = activity_header.replaceAll("\r\n", "<br>");
 					activity.activity = activity.activity.replaceAll("class='edit_event", "class='white_text edit_event");
 					activity.activity = activity.activity.replaceAll("- 00/00/0000", "");
-					activity.activity = activity.activity.replaceAll("uploads/uploads/", "uploads/");
+					activity.activity = activity.activity.replaceAll("D:/uploads/uploads/", "D:/uploads/");
 					activity.activity = activity.activity.replaceAll("style='cursor:pointer'>", "style='cursor:pointer; background:yellow;color:black'>")
 					
 					activity.by = activity_footer;
@@ -3558,7 +3558,7 @@ window.activity_listing_view = Backbone.View.extend({
 						activity.activity = activity_header.replaceAll("\r\n", "<br>");
 						activity.activity = activity.activity.replaceAll("class='edit_event", "class='white_text edit_event");
 						activity.activity = activity.activity.replaceAll("- 00/00/0000", "");
-						activity.activity = activity.activity.replaceAll("uploads/uploads/", "uploads/");
+						activity.activity = activity.activity.replaceAll("D:/uploads/uploads/", "D:/uploads/");
 						activity.activity = activity.activity.replaceAll("style='cursor:pointer'>", "style='cursor:pointer; background:yellow;color:black'>")
 
 						activity.by = activity_footer;

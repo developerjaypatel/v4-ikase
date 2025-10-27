@@ -19,7 +19,7 @@ if ($now > $dmsauth) {
 <body>
 <table width="650px" border="0" cellspacing="0" cellpadding="2" align="center">
   <tr>
-    <td align="left" valign="top"><img src="https://v2.ikase.org/img/ikase_logo_login.png" alt="iKase" height="32" /><br />
+    <td align="left" valign="top"><img src="https://v4.ikase.org/img/ikase_logo_login.png" alt="iKase" height="32" /><br />
       Tel: (951) 757-8539</td>
     <td align="center" valign="top" nowrap="nowrap">
     	<span style="font-weight:bold; font-size:1.5em">Monthly Invoice</span>

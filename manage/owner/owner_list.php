@@ -13,7 +13,7 @@ FROM cse_owner own
 WHERE 1 
 AND `admin_client` != 'nick'
 ORDER BY `name`";
-
+//echo $query;die;
 while ($row = DB::runOrDie($query)->fetch()) {
 	$arrRows[] = "{$row->owner_id}|{$row->admin_client}|{$row->name}|{$row->owner_email}|".date("m/d/y h:iA", strtotime($row->dateandtime));
 }

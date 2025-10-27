@@ -407,7 +407,7 @@ function getDocuments($case_id, $attribute = "") {
 					
 					$doc_filename = implode(".", $arrFile);
 					
-					$preview_path = "uploads/" . $customer_id . "/" . str_replace("medium", "thumbnail", $doc->thumbnail_folder) . "/" . $doc_filename;
+					$preview_path = "D:/uploads/" . $customer_id . "/" . str_replace("medium", "thumbnail", $doc->thumbnail_folder) . "/" . $doc_filename;
 				} else {
 					$preview_path = findDocumentThumbnail($customer_id, $case_id, $doc);
 				}
@@ -1573,7 +1573,7 @@ function propagateTemplate() {
 			//make sure the folder exists
 			
 			//now copy the file
-			copy($_SERVER['DOCUMENT_ROOT'] . "\\uploads\\1033\\templates\\" . $document_filename, $destination_filename);
+			copy("D:\\uploads\\1033\\templates\\" . $document_filename, $destination_filename);
 			 	
 		} catch(PDOException $e) {
 			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
@@ -1760,7 +1760,7 @@ function deleteDocument() {
 	
 	foreach($arrIDs as $id) {
 		$document = getDocumentInfo($id);
-		//$document_path = "uploads/1033/templates/1000%20General%20Letter.docx";
+		//$document_path = "D:/uploads/1033/templates/1000%20General%20Letter.docx";
 		$case_id = 0;
 		$sql = "UPDATE cse_document 
 				SET deleted = 'Y'
@@ -1856,7 +1856,7 @@ function deleteDocument() {
 				$fileKaseFolder = checkFileExist($accessToken, "name='".$folderType."' and '".$fileKaseFolderId."' in parents");
 				$fileKaseFolderId = $fileKaseFolder['files'][0]['id'];
 
-				$caseFileNm = str_replace("../uploads/" . $_SESSION["user_customer_id"] . "/" . $case_id . "/letters/", "", $caseFileNm);
+				$caseFileNm = str_replace("D:/uploads/" . $_SESSION["user_customer_id"] . "/" . $case_id . "/letters/", "", $caseFileNm);
 				$caseFileNm = $caseFileNm.'.docx';
 			}
 			
@@ -2994,8 +2994,8 @@ function processFTP() {
 					if (is_object($kase)) {					
 						//die(print_r($kase));
 						//look for document
-						//'../uploads/1033/3062/letters/10111 notice rep with claimform_3062_0'
-						$document_filename = '../uploads/' . $customer_id . '/' . $case_id . '/letters/' . str_replace(".docx", "", $original_upload);
+						//'D:/uploads/1033/3062/letters/10111 notice rep with claimform_3062_0'
+						$document_filename = 'D:/uploads/' . $customer_id . '/' . $case_id . '/letters/' . str_replace(".docx", "", $original_upload);
 						//see if the file exists
 						$customer_dir = UPLOADS_PATH . $customer_id . DC . $case_id . "\\letters";
 						$upload_path = $customer_dir . DC . $original_upload;
@@ -3165,7 +3165,7 @@ function trackDocument($operation, $document_id = "", $document_uuid = "", $blnR
 			$destination = $arrDestination[count($arrDestination) - 1];
 			
 			//now rebuild
-			$prefix = "../uploads/" . $_SESSION["user_customer_id"];
+			$prefix = "D:/uploads/" . $_SESSION["user_customer_id"];
 			if ($case_id!="") {
 				$prefix .= "/" . $case_id;
 			}
@@ -3408,7 +3408,7 @@ function referVocation() {
 				$plain_params = json_encode(array("activity_id"=>$activity_id, "customer_id"=>$customer_id));
 				$params = base64_encode($plain_params);
 				*/
-				$path = "../uploads/" . $customer_id . "/" . $case_id . "/refervocational/" . $targetFile;
+				$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/refervocational/" . $targetFile;
 				$key = md5(microtime());
 				$sql = "INSERT INTO ikase.cse_downloads (`downloadkey`, `sent_by`, `injury_id`, `file`, `expires`, `customer_id`) 
 				VALUES ('" . $key . "', '" . $_SESSION['user_plain_id'] . "', '" . $injury_id . "', '" . $path . "', '" . date("Y-m-d H:i:s", (time()+(60*60*24*7))) ."', '" . $customer_id ."')";

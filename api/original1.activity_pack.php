@@ -961,8 +961,8 @@ function createKInvoiceDocument($operation = "create", $kase, $case_id, $case_uu
 	$destination = str_replace("templates/", "", $destination);
 	$destination = str_replace(".docx", "", $destination);
 	$destination .= "_" . $carrier_id . "_" . date("YmdHis");
-	$destination_folder = '../uploads/' . $customer_id . '/invoices/';
-	$destination_folder_path = 'C:\\inetpub\\wwwroot\\iKase.org\\uploads\\' . $customer_id . '\\invoices\\';
+	$destination_folder = 'D:/uploads/' . $customer_id . '/invoices/';
+	$destination_folder_path = 'C:\\inetpub\\wwwroot\\ikase.org\\uploads\\' . $customer_id . '\\invoices\\';
 	if (!is_dir($destination_folder)) {
 		mkdir($destination_folder, 0755, true);
 	}
@@ -1055,11 +1055,11 @@ function createKInvoiceDocument($operation = "create", $kase, $case_id, $case_uu
 	
 	//die(print_r($arrReplace));
 	$variables = $arrReplace;
-	//die('../uploads/' . $customer_id . $prefix . '/' . $template_parent->document_filename);
-	$docx = new CreateDocxFromTemplate('../uploads/' . $customer_id . $prefix . '/' . $template_parent->document_filename);
+	//die('D:/uploads/' . $customer_id . $prefix . '/' . $template_parent->document_filename);
+	$docx = new CreateDocxFromTemplate('D:/uploads/' . $customer_id . $prefix . '/' . $template_parent->document_filename);
 	
 	if ($template_parent->source!="no_letterhead" && $template_parent->source!="clientname_letterhead") {
-		$docx ->importHeadersAndFooters('../uploads/' . $customer_id . "/" . $letterhead->value);
+		$docx ->importHeadersAndFooters('D:/uploads/' . $customer_id . "/" . $letterhead->value);
 	}		
 	$options = array('parseLineBreaks' =>true);
 	
@@ -1098,7 +1098,7 @@ function createKInvoiceDocument($operation = "create", $kase, $case_id, $case_uu
 	//passthru($cmd);
 	
 	$cmd = "PowerShell.exe -ExecutionPolicy Bypass -File c:\\bat\\topdf.ps1 '" . $destination_path . ".docx'";
-	$ps_file = 'C:\\inetpub\\wwwroot\\iKase.org\\uploads\invoices\\pdf_' . $_SESSION["user_plain_id"] . '.ps1';
+	$ps_file = 'C:\\inetpub\\wwwroot\\ikase.org\\uploads\invoices\\pdf_' . $_SESSION["user_plain_id"] . '.ps1';
 	if (file_exists($ps_file)) {
 		unlink($ps_file);
 	}

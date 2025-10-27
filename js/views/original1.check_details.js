@@ -930,12 +930,12 @@ window.check_listing_view = Backbone.View.extend({
 					attachment = attachment.trim();
 					
 					attachment = attachment.replace("https:///uploads", "../uploads");
-					attachment = attachment.replace("../uploads/" + check.customer_id + "/" + check.case_id + "/", "");
-					attachment = attachment.replace("../uploads/" + check.customer_id + "/", "");
+					attachment = attachment.replace("D:/uploads/" + check.customer_id + "/" + check.case_id + "/", "");
+					attachment = attachment.replace("D:/uploads/" + check.customer_id + "/", "");
 					if (check.case_id=="" || check.case_id=="-1") {
-						attach_link = "../uploads/" + check.customer_id + "/" + attachment;
+						attach_link = "D:/uploads/" + check.customer_id + "/" + attachment;
 					} else {
-						attach_link = "../uploads/" + check.customer_id + "/" + check.case_id + "/" + attachment;
+						attach_link = "D:/uploads/" + check.customer_id + "/" + check.case_id + "/" + attachment;
 					}
 				
 					attach_link = '<a id="kase_attach_link_' + i + '" href="' + attach_link + '" target="_blank" title="Click to review ' + attachment + '">' + attachment + '</a>';

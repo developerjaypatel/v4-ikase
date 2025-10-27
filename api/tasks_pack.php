@@ -112,7 +112,7 @@ function getTasks() {
 	}
 	try {
 		$tasks = DB::select($sql);
-
+		//die(print_r($tasks));
         echo json_encode($tasks);     
 	} catch(PDOException $e) {
 		$error = array("error"=> array("text"=>$e->getMessage()));
@@ -1569,7 +1569,8 @@ function addTask() {
 	
 	$injury_id = "";
 	$injury_uuid = "";
-	
+	$injury_task_id = "";
+
 	foreach($_POST as $fieldname=>$value) {
 		if ($fieldname!="task_descriptionInput") {
 			$value = passed_var($fieldname, "post");
@@ -1604,14 +1605,19 @@ function addTask() {
 			$notes_uuid = $note->uuid;
 			continue;
 		}
-		/*
+		
 		if ($fieldname=="injury_id") {
 			$injury_id = $value;
 			//get the uuid
 			$injury = getInjuryInfo($injury_id);
 			$injury_uuid = $injury->uuid;
 			continue;
-		}*/
+		}
+		if($fieldname=="injury_task_id")
+		{
+			$injury_task_id = $value;
+			continue;
+		}
 		 //commented out by angel
 		if ($fieldname=="number_of_days" || $fieldname=="calctask") {
 			continue;
@@ -1759,7 +1765,7 @@ function addTask() {
 	$table_uuid = uniqid("KS", false);
 	$sql = "INSERT INTO `cse_" . $table_name ."` (`" . $table_name . "_uuid`, " . implode(",", $arrFields) . ") 
 			VALUES('" . $table_uuid . "', " . implode(",", $arrSet) . ")";
-	
+	//echo $sql;die;
 	$last_updated_date = date("Y-m-d H:i:s");
 	
 	/*
@@ -1934,8 +1940,7 @@ function addTask() {
 			}
 			
 			
-			/*if ($injury_uuid!="") {
-				continue;
+			if ($injury_uuid!="") {
 				$last_updated_date = date("Y-m-d H:i:s");
 				$injury_table_uuid = uniqid("KA", false);
 				//attribute
@@ -1946,7 +1951,7 @@ function addTask() {
 				VALUES ('" . $injury_table_uuid  ."', '" . $injury_uuid . "', '" . $table_uuid . "', '" . $table_attribute . "', '" . $last_updated_date . "', '" . $_SESSION['user_id'] . "', '" . $_SESSION['user_customer_id'] . "')";
 				DB::run($sql);
 			}
-			*/
+			
 			//assigner
 			//attach the from
 			$task_user_uuid = uniqid("TD", false);
@@ -2072,6 +2077,10 @@ function updateTask() {
 	$arrToID = array();
 	$arrCc = array();
 	$arrCcID = array();
+	$injury_id = "";
+	$injury_uuid = "";
+	$injury_task_id = "";
+
 	foreach($_POST as $fieldname=>$value) {
 		if ($fieldname!="task_descriptionInput") {
 			$value = passed_var($fieldname, "post");
@@ -2158,7 +2167,22 @@ function updateTask() {
 			}
 		}
 		
+		/* if ($fieldname=="injury_id") {
+			continue;
+		} */
 		if ($fieldname=="injury_id") {
+			$injury_id = $value;
+			//get the uuid
+			$injury = getInjuryInfo($injury_id);
+			//print_r($injury);
+			$injury_uuid = $injury->uuid;
+			
+			continue;
+		}
+
+		if($fieldname=="injury_task_id")
+		{
+			$injury_task_id = $value;
 			continue;
 		}
 		if ($fieldname=="case_file") {
@@ -2258,7 +2282,19 @@ function updateTask() {
 		}
 		//track now
 		trackTask("update", $table_id);
-		
+		//update cse_injury_task
+		if($injury_task_id != '')
+		{
+			$sql = "SELECT injury_uuid, injury_id
+			FROM `cse_injury` inj
+			WHERE inj.injury_id = '" . $injury_task_id . "'";
+			$stmt = DB::run($sql);
+			$stmt = $db->prepare($sql);  
+			$stmt->execute();
+			$injtasksdata = $stmt->fetchObject();
+			$injury_uuid_new =  $injtasksdata->injury_uuid;//die;
+			updateInjuryTask($injury_uuid_new, $table_uuid, $table_id);
+		}
 		//might be a note task
 		$sql = "SELECT notes_uuid
 		FROM cse_notes_task cnt
@@ -2286,6 +2322,50 @@ function updateTask() {
 	} catch(PDOException $e) {	
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}	
+}
+function updateInjuryTask($injury_uuid_new, $table_uuid, $table_id){
+	//echo $injury_uuid;echo "<br/><br/>";
+	session_write_close();
+
+	$sql = "SELECT citask.*, tsk.task_uuid, tsk.deleted
+	FROM `cse_task` tsk 
+	LEFT Outer JOIN `cse_injury_task` `citask` 
+	ON `tsk`.`task_uuid` = `citask`.`task_uuid` 
+	WHERE `tsk`.`task_uuid` = '$table_uuid' AND `tsk`.`task_id` = '$table_id' AND tsk.deleted = 'N' AND citask.customer_id = ".$_SESSION['user_customer_id'];
+	/* $sql = "SELECT inj.*,citask.* from `cse_injury` `inj` LEFT JOIN `cse_injury_task` `citask` 
+	ON citask.injury_uuid = inj.injury_uuid WHERE `inj`.`injury_id` = '$injury_id'"; */
+	//echo $sql;echo "<br/><br/>";//die;
+	$db = getConnection();
+	$stmt = $db->prepare($sql);
+	$stmt->bindParam("customer_id", $customer_id);
+	$stmt->execute();
+	$injtasks = $stmt->fetchObject();
+	//print_r($injtasks);
+	$injurytaskuuid = $injtasks->injury_uuid;
+	$injurytaskid = $injtasks->injury_task_id;//die;
+	if($injurytaskid != '')
+	{
+		$updatesql = "UPDATE `cse_injury` `inj`, `cse_injury_task` `citask`, `cse_task` tsk 
+				SET citask.injury_uuid = '".$injury_uuid_new."'
+				WHERE citask.injury_task_id = '".$injurytaskid."' 
+				AND tsk.deleted = 'N' 
+				AND inj.customer_id = ".$_SESSION['user_customer_id'];
+		echo "<br/>".$updatesql;//echo "<br/><br/>";die;
+		try {
+			//echo "test";die;
+			$db1 = getConnection();
+			$stmt1 = $db1->prepare($updatesql);
+			$stmt1->bindParam("injury_id", $injury_id);
+			$stmt1->execute();
+			
+			//track now
+			
+			echo json_encode(array("success"=>"Injusty task date updated"));
+		} catch(PDOException $e) {
+			$error = array("error"=> array("text"=>$e->getMessage()));
+				echo json_encode($error);
+		}
+	}
 }
 function readTask() {
 	session_write_close();

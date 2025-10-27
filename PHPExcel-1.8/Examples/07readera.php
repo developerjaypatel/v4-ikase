@@ -40,7 +40,7 @@ require_once dirname(__FILE__) . '/../Classes/PHPExcel/IOFactory.php';
 echo date('H:i:s') , " Load from Excel2007 file" , EOL;
 $callStartTime = microtime(true);
 
-$objPHPExcel = PHPExcel_IOFactory::load("../../uploads/courtcalendar/courtcalendar.xlsx");
+$objPHPExcel = PHPExcel_IOFactory::load("../D:/uploads/courtcalendar/courtcalendar.xlsx");
 
 $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;

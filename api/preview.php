@@ -49,7 +49,7 @@ include("customer_lookup.php");
 $path = findDocumentFolder($customer_id, $case_id, $file, $type, $thumbnail_folder, $document_id);
 
 if (isset($_GET["download"])) {
-	if ($extension=="pdf" || $extension=="docx" || $extension=="wav") {
+	if ($extension=="pdf" || $extension=="docx" || $extension=="wav" || $extension=="jpg" || $extension=="jpeg" || $extension=="png" || $extension=="msg") {
 		//die("<span style='background:green; color:white; padding:2px'>" . $path . " was found in our system </span>");
 		
 		$filename = explode("/", $path);
@@ -68,34 +68,68 @@ if (isset($_GET["download"])) {
 		if ($extension=="pdf") {
 			header("Content-type:application/pdf");
 		}
+		if ($extension=="jpg" || $extension=="jpeg" || $extension=="png") {
+			header("Content-Type: image/jpeg");
+		}
 		if ($extension=="wav") {
-			$path = '../uploads/'.$customer_id.'/'.$case_id.'/'.$file;
+			$path = 'D:/uploads/'.$customer_id.'/'.$case_id.'/'.$file;
 			$filename = explode("/", $path);
 			$filename = $filename[count($filename) - 1];
 			header('Content-Length: ' . filesize($path));
 			header("Content-type:audio/wav");
 		}
-		
+		if ($extension=="msg") {
+			header("Content-type:application/vnd.ms-outlook");
+		}
 		header('Content-Disposition: attachment; filename=' . $filename);  // Make the browser display the Save As dialog
 		readfile($path);  // This is necessary in order to get it to actually download the file, otherwise it will be 0Kb
 	}
 }
 
 $iframe = "";
-//$path = '../uploads/'.$customer_id.'/'.$case_id.'/'.$file;
+//$path = 'D:/uploads/'.$customer_id.'/'.$case_id.'/'.$file;
 $path = findDocumentFolder($customer_id, $case_id, $file, $type, $thumbnail_folder, $document_id);
 if (!$path || !$extension) {
 	die("<span style='background:red; color:white; padding:2px'>" . $file . " was not found in our system</span>");
 
 
 } else {
-
+	// Some filetypes preview not possible so added this for user understanding
+	if (strpos($path, ".msg") == true)
+	{
+		die("<span style='background:red; color:white; padding:2px'>Preview of the file " . $file . " is not possible, please download it instead.</span>");
+	}
 	
 	if (strpos($path, ".pdf") !== false || strpos($path, ".png") !== false || strpos($path, ".wma") !== false || strpos($path, ".wav") !== false || strpos($path, ".mp3") !== false || strpos($path, ".jpg") !== false) {
 		if (strpos($path, ".pdf") !== false) {
-			$iframe = '<iframe id="letter_frame" src="'.$server_name.'/' . $path . '" width="100%" height="800px"></iframe>';
-			echo $iframe;
-		} else {
+			// $iframe = '<iframe id="letter_frame" src="'.$server_name.'/' . $path . '" width="100%" height="800px"></iframe>';
+			// echo $iframe;
+			if (file_exists($path)) {
+				// Get the requested file name
+				$filename = basename($path);
+				// Set headers to force download
+				header("Content-Type: application/pdf");
+				header("Content-Disposition: inline; filename=" . $filename);
+				header("Content-Length: " . filesize($path));
+				readfile($path);
+				exit;
+			} else {
+				die("File not found.");
+			}
+		}elseif ((strpos($path, ".jpeg") !== false) || (strpos($path, ".jpg") !== false) || (strpos($path, ".png") !== false)) {
+			// $iframe = '<iframe id="letter_frame" src="'.$server_name.'/' . $path . '" width="100%" height="800px"></iframe>';
+			// echo $iframe;
+			if (file_exists($path)) {
+				// Get the requested file name
+				$filename = basename($path);
+				// Set headers to force download
+				header("Content-Type: image/jpeg");
+				readfile($path);
+				exit;
+			} else {
+				die("File not found.");
+			}
+		}  else {
 			header("location:" . $path);
 		}
 	} else {
@@ -110,17 +144,17 @@ if (!$path || !$extension) {
 	}
 }
 /*
-$path = "../uploads/" . $customer_id . "/" . $case_id . "/" .  $file;
+$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/" .  $file;
 if ($type=="jetfile" || $type=="DOR" || $type=="DORE" || $type=="LIEN") {
 	$arrFile = explode("/", $file);
 	$filename = $arrFile[count($arrFile) - 1];
-	$path = "../uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $filename;
+	$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $filename;
 }
 if ($type=="eams_form") {
-	$path = "../uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
+	$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
 }
 if (is_numeric($thumbnail_folder) && $extension!="docx" && $thumbnail_folder!="") {
-	$path = "../uploads/" . $customer_id . "/imports/" . $file;
+	$path = "D:/uploads/" . $customer_id . "/imports/" . $file;
 }
 if ($type == "abacus") {
 	$path = "https://www.ikase.xyz/ikase/abacus/" . $customer_data_source + "/" . $thumbnail_folder . "/" . $file;
@@ -131,13 +165,13 @@ if (file_exists($path)) {
 	die();
 } else {
 	//maybe it's a jetfile
-	$path = "../uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $file;
+	$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $file;
 	if (file_exists($path)) {
 		header("location:" . $path);
 		die();
 	} else {
 		//might be a jetfiler form?
-		$path = "../uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
+		$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
 		if (file_exists($path)) {
 			header("location:" . $path);
 			die();

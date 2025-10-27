@@ -190,7 +190,7 @@ function getIntakeKases($filter = "", $type = "", $letter = "") {
 	$sql = "SELECT cct.time_stamp, cct.user_uuid, cct.user_logon, 
 	IFNULL(app.first_name, '*') first_name, IFNULL(app.last_name, '*') last_name, 
 	IFNULL(app.full_name, IFNULL(plaintiff.`company_name`, '')) `full_name`, 
-	ccase.case_id, ccase.case_name, ccase.case_number, ccase.file_number,  ccase.case_type, ccase.case_language language, ccase.case_date,
+	ccase.case_id, ccase.case_name, ccase.case_number, ccase.file_number,  ccase.case_type, ccase.case_sub_type,ccase.case_language language, ccase.case_date,
 	IF (ccase.case_status = 'Intake', 'Pending', ccase.case_status) case_status, ccase.special_instructions,
 	inj.explanation, 
 	IF(inj.start_date = '0000-00-00 00:00:00', IFNULL(pi.personal_injury_date, '0000-00-00 00:00:00'), inj.start_date) start_date,  
@@ -396,7 +396,7 @@ function getKases($limit = " LIMIT 0, 1000", $filter = "", $output = "json") {
 			inj.injury_id id, '-2' `previous_kases`, '-2' `start_kases`, ccase.case_id, ccase.lien_filed, ccase.special_instructions,ccase.case_description, inj.injury_number, ccase.case_uuid uuid, IF(ccase.case_number='UNKNOWN' AND ccase.file_number!='', '', ccase.case_number) case_number, ccase.file_number, ccase.cpointer,ccase.source, inj.injury_number, inj.adj_number, ccase.rating, ccase.injury_type, ccase.sub_in, inj.`type` main_injury_type,
 			IF (DATE_FORMAT(ccase.case_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.case_date, '%m/%d/%Y')) `case_date`, 
 			IF (DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y')) `terminated_date`,
-ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
+ccase.case_type, ccase.case_sub_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 			venue.venue_uuid, IF(venue.venue IS NULL, '', venue.venue) venue, venue.address1 venue_street, venue.address2 venue_suite, venue.city venue_city, venue.zip venue_zip, IFNULL(venue_abbr, '') venue_abbr, ccase.case_status, ccase.case_substatus, ccase.case_subsubstatus, ccase.submittedOn, ccase.supervising_attorney,
     ccase.attorney, 
 			IFNULL(superatt.nickname, '') as supervising_attorney_name, IFNULL(superatt.user_name, '') as supervising_attorney_full_name,
@@ -737,7 +737,7 @@ ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 		}
 		if ($output=="csv") {
 			// Create the csv file
-			$csv_dir = '\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
+			$csv_dir = 'D:\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
 			if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $csv_dir)) {
 				//die($_SERVER['DOCUMENT_ROOT'] . $csv_dir);
 				mkdir($_SERVER['DOCUMENT_ROOT'] . $csv_dir, 0777, true);
@@ -814,7 +814,7 @@ function getKasesListByMonth($year, $month, $corporation_filter = "", $corporati
 			TIMESTAMPDIFF(DAY, ccase.submittedOn, '" . date("Y-m-d") . "' ) months_diff,
 			IF (DATE_FORMAT(ccase.case_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.case_date, '%m/%d/%Y')) `case_date`, 
 			IF (DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y')) `terminated_date`,
-ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
+ccase.case_type, ccase.case_sub_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 			venue.venue_uuid, IF(venue.venue IS NULL, '', venue.venue) venue, venue.address1 venue_street, venue.address2 venue_suite, venue.city venue_city, venue.zip venue_zip, venue_abbr, ccase.case_status, ccase.case_substatus, ccase.case_subsubstatus, ccase.submittedOn, ccase.supervising_attorney,
     ccase.attorney, 
 			IFNULL(superatt.nickname, '') as supervising_attorney_name, IFNULL(superatt.user_name, '') as supervising_attorney_full_name,
@@ -966,7 +966,7 @@ function getInactives($days) {
 inj.injury_id id, ccase.case_id, ccase.lien_filed, ccase.special_instructions,ccase.case_description, inj.injury_number, ccase.case_uuid uuid, IF(ccase.case_number='UNKNOWN' AND ccase.file_number!='', '', ccase.case_number) case_number, ccase.file_number, ccase.cpointer,ccase.source, inj.injury_number, inj.adj_number, ccase.rating, 
 			IF (DATE_FORMAT(ccase.case_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.case_date, '%m/%d/%Y')) `case_date`, 
 			IF (DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y')) `terminated_date`,
-ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
+ccase.case_type, ccase.case_sub_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 			venue.venue_uuid, IF(venue.venue IS NULL, '', venue.venue) venue, venue.address1 venue_street, venue.address2 venue_suite, venue.city venue_city, venue.zip venue_zip, venue_abbr, ccase.case_status, ccase.case_substatus, ccase.case_subsubstatus, ccase.submittedOn, ccase.supervising_attorney,
     ccase.attorney, 
 			IFNULL(superatt.nickname, '') as supervising_attorney_name, IFNULL(superatt.user_name, '') as supervising_attorney_full_name,
@@ -1326,7 +1326,7 @@ function getKasesReport() {
 			IF (DATE_FORMAT(ccase.case_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.case_date, '%m/%d/%Y')) `case_date`, 
 			IF (DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y')) `terminated_date`,
 YEAR(case_date) case_year, MONTH(case_date) case_month,
-			ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
+			ccase.case_type, ccase.case_sub_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 			venue.venue_uuid, IF(venue.venue IS NULL, '', venue.venue) venue, venue.address1 venue_street, venue.address2 venue_suite, venue.city venue_city, venue.zip venue_zip, venue_abbr, ccase.case_status, ccase.case_substatus, ccase.case_subsubstatus, ccase.submittedOn, ccase.supervising_attorney,
     ccase.attorney, 
 			IFNULL(superatt.nickname, '') as supervising_attorney_name, IFNULL(superatt.user_name, '') as supervising_attorney_full_name,
@@ -1632,11 +1632,29 @@ function getTokenInputKases() {
 		$replace_me = "CONCAT(app.first_name,' ',app.last_name,' vs ', IFNULL(employer.`company_name`, ''),' - ', 
             REPLACE(IF (DATE_FORMAT(inj.start_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(inj.start_date, '%m/%d/%Y')), '00/00/0000', '')) `name`";
 		$replace_with = "IFNULL(CONCAT(
-		IF(ccase.case_number='', ccase.file_number, ccase.case_number)
-		, ' - ', app.first_name,' ',app.last_name,' vs ', IFNULL(employer.`company_name`, ''),'<br />DOI:', 
-			REPLACE(IF (DATE_FORMAT(inj.start_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(inj.start_date, '%m/%d/%Y')), '00/00/0000', ''),
-			REPLACE(IF (DATE_FORMAT(inj.end_date, '%m/%d/%Y') IS NULL, '', CONCAT(' - ', DATE_FORMAT(inj.end_date, '%m/%d/%Y'))), '00/00/0000', '')
-			), ccase.case_name) `name`";
+			IF(ccase.case_number = '', ccase.file_number, ccase.case_number),
+			' - ', app.first_name, ' ', app.last_name, ' vs ', IFNULL(employer.`company_name`, ''),				
+			IF(IFNULL(inj.adj_number, '') = '', '',
+				CONCAT('<br /><span class=\'',
+						IF(ccase.case_status = 'Closed', 'status-closed', 'status-open1'),
+						'\'>ADJ Number: ', inj.adj_number, '</span>')
+			),
+			IF(IFNULL(ccase.case_type, '') = '', '',
+				CONCAT('<br /><span class=\'',
+						IF(ccase.case_status = 'Closed', 'status-closed', 'status-open1'),
+						'\'>Case Type: ', ccase.case_type, '</span>')
+			),
+			IF(IFNULL(att.nickname, '') = '', '', CONCAT('<br />Atty: ', att.nickname)),
+			IF(IFNULL(user.nickname, '') = '', '', CONCAT('<br />Coordinator: ', user.nickname)),
+			IF(IFNULL(ccase.case_status, '') = '', '',
+				CONCAT('<br /><span class=\'',
+						IF(ccase.case_status = 'Closed', 'status-closed', 'status-open1'),
+						'\'>Case Status: ', ccase.case_status, '</span>')
+			),
+			'<br />DOI:', 
+			REPLACE(IF(DATE_FORMAT(inj.start_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(inj.start_date, '%m/%d/%Y')), '00/00/0000', ''),
+			REPLACE(IF(DATE_FORMAT(inj.end_date, '%m/%d/%Y') IS NULL, '', CONCAT(' - ', DATE_FORMAT(inj.end_date, '%m/%d/%Y'))), '00/00/0000', '')
+		), ccase.case_name) `name`";
 		
 		$sql = str_replace($replace_me, $replace_with, $sql);
 		//die($sql);
@@ -1908,7 +1926,7 @@ function lookupKases() {
 			CONCAT(ccase.case_id,'-',ccase.case_uuid) id, ccase.case_uuid uuid, IF(ccase.case_number='UNKNOWN' AND ccase.file_number!='', '', ccase.case_number) case_number, ccase.file_number, ccase.cpointer,ccase.lien_filed, inj.adj_number, ccase.rating,
 			IF (DATE_FORMAT(ccase.case_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.case_date, '%m/%d/%Y')) `case_date`, 
 			IF (DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y')) `terminated_date`,
-ccase.case_type, 
+ccase.case_type, ccase.case_sub_type,
 			venue.venue_uuid, IF(venue.venue IS NULL, '', venue.venue) venue, venue_abbr, ccase.case_status, ccase.case_substatus, ccase.case_subsubstatus, ccase.submittedOn, ccase.supervising_attorney,
     ccase.attorney, ccase.worker, ccase.interpreter_needed, ccase.file_location, ccase.case_language `case_language`, 
 			app.person_id applicant_id, app.person_uuid applicant_uuid, IFNULL(app.salutation, '') applicant_salutation,
@@ -2004,7 +2022,7 @@ function getRecentKases() {
 			inj.injury_id id, ccase.case_id, ccase.lien_filed, ccase.special_instructions,ccase.case_description, inj.injury_number, recent.time_stamp, ccase.case_uuid uuid, IF(ccase.case_number='UNKNOWN' AND ccase.file_number!='', '', ccase.case_number) case_number, ccase.file_number, ccase.cpointer,inj.injury_number, inj.adj_number, ccase.rating,
 			IF (DATE_FORMAT(ccase.case_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.case_date, '%m/%d/%Y')) `case_date`, 
 			IF (DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y')) `terminated_date`,
-ccase.case_type, 
+ccase.case_type, ccase.case_sub_type,
 			venue.venue_uuid, IFNULL(venue.venue, '') venue, IFNULL(venue_abbr, '') venue_abbr, ccase.case_status, ccase.case_substatus, ccase.case_subsubstatus, ccase.submittedOn, ccase.supervising_attorney,
     ccase.attorney, ccase.worker, ccase.interpreter_needed, ccase.file_location, ccase.case_language `case_language`, 
 			app.person_id applicant_id, app.person_uuid applicant_uuid, IFNULL(app.salutation, '') applicant_salutation,
@@ -3487,7 +3505,7 @@ function getKase($id, $blnRetry = false) {
 	$sql = "SELECT inj.injury_id id, ccase.case_id, ccase.lien_filed, ccase.special_instructions,ccase.case_description, inj.injury_number, ccase.case_uuid uuid, IF(ccase.case_number='UNKNOWN' AND ccase.file_number!='', '', ccase.case_number) case_number, ccase.file_number, ccase.filing_date, ccase.cpointer,ccase.source, inj.injury_number, inj.adj_number, ccase.rating, ccase.injury_type, ccase.sub_in, 
 			IF (DATE_FORMAT(ccase.case_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.case_date, '%m/%d/%Y')) `case_date`, 
 			IF (DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y')) `terminated_date`,
-ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
+ccase.case_type, ccase.case_sub_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 			venue.venue_uuid, IF(venue.venue IS NULL, '', venue.venue) venue, venue.address1 venue_street, venue.address2 venue_suite, venue.city venue_city, venue.zip venue_zip, venue_abbr, ccase.case_status, ccase.case_substatus, ccase.case_subsubstatus, ccase.submittedOn, ccase.supervising_attorney,
     ccase.attorney, 
 			IFNULL(superatt.nickname, '') as supervising_attorney_name, IFNULL(superatt.user_name, '') as supervising_attorney_full_name,
@@ -4437,7 +4455,7 @@ function getKaseInfo($id, $return = "") {
 		$db_name = "`" . $return. "`.";
 	}
 	$sql = "SELECT ccase.case_id id, ccase.case_uuid uuid, ccase.lien_filed, ccase.special_instructions,ccase.case_description, IF(ccase.case_number='UNKNOWN' AND ccase.file_number!='', '', ccase.case_number) case_number, ccase.file_number, ccase.cpointer,inj.adj_number, inj.injury_id,
-			ccase.case_date, ccase.case_type, venue.venue_uuid, ccase.rating, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims, ccase.injury_type, ccase.sub_in,
+			ccase.case_date, ccase.case_type, ccase.case_sub_type, venue.venue_uuid, ccase.rating, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims, ccase.injury_type, ccase.sub_in,
 			
 			venue_corporation.corporation_id venue_id, venue.venue_uuid, IF(venue.venue IS NULL, '', venue.venue) venue, venue_abbr, 
 			venue_corporation.street venue_street, venue_corporation.city venue_city, 
@@ -4720,7 +4738,7 @@ function getKaseInfoByApplicant($person_id) {
 		return;
 	}
 	$sql = "SELECT ccase.case_id id, ccase.case_uuid uuid, ccase.lien_filed, ccase.special_instructions,ccase.case_description, IF(ccase.case_number='UNKNOWN' AND ccase.file_number!='', '', ccase.case_number) case_number, ccase.file_number, ccase.cpointer,inj.adj_number,
-			ccase.case_date, ccase.case_type, venue.venue_uuid, ccase.rating, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims, ccase.injury_type, ccase.sub_in,
+			ccase.case_date, ccase.case_type, ccase.case_sub_type, venue.venue_uuid, ccase.rating, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims, ccase.injury_type, ccase.sub_in,
 			venue.venue_uuid, IF(venue.venue IS NULL, '', venue.venue) venue, venue_abbr, 
 			venue_corporation.street venue_street, venue_corporation.city venue_city, 
 			venue_corporation.state venue_state, venue_corporation.zip venue_zip,
@@ -6569,7 +6587,7 @@ function addKase() {
 		trackInjury("insert", $injury_id);
 	} catch(PDOException $e) {
 		echo "ERROR:" . $sql;
-		die();
+		// die();
 		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
 	}
 }
@@ -7398,6 +7416,7 @@ function updateKase() {
 	$file_number = passed_var("file_number", "post");
 	$adj_number = passed_var("adj_number", "post");
 	$case_type = passed_var("case_type", "post");
+	$case_sub_type = passed_var("case_sub_type", "post");
 	$venue = passed_var("venue", "post");
 	$case_status = passed_var("case_status", "post");
 	
@@ -7500,6 +7519,7 @@ function updateKase() {
 	filing_date = :filing_date,
 	terminated_date = :terminated_date,
 	case_type =  :case_type,
+	case_sub_type =  :case_sub_type,
 	`venue` =  :venue, 
 	case_status = :case_status,
 	injury_type = :injury_type,
@@ -7535,6 +7555,7 @@ function updateKase() {
 		$stmt->bindParam("terminated_date", $terminated_date);
 		//$stmt->bindParam("rating", $rating);
 		$stmt->bindParam("case_type", $case_type);
+		$stmt->bindParam("case_sub_type", $case_sub_type);
 		$stmt->bindParam("venue", $venue);
 		$stmt->bindParam("case_status", $case_status);
 		$stmt->bindParam("case_substatus", $case_substatus);

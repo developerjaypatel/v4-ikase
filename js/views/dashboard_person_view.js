@@ -108,7 +108,7 @@ window.dashboard_person_view = Backbone.View.extend({
 					if (typeof data.toJSON()[0].document_filename != "undefined") {
 						var document_filename = data.toJSON()[0].document_filename;
 						if (document_filename!="") {
-							$('#picture_holder').html("<img src='uploads/" + customer_id + "/" + current_case_id + "/" + document_filename + "' class='applicant_img' id='applicant_img'><br><span style='font-size:0.8em; color:white'>" + document_filename + "&nbsp;<a id='deleteimage_" + data.toJSON()[0].document_id + "' class='delete_image' style='cursor:pointer'><i class='glyphicon glyphicon-trash' style='color:#FA1616;'></i></span></a>");
+							$('#picture_holder').html("<img src='D:/uploads/" + customer_id + "/" + current_case_id + "/" + document_filename + "' class='applicant_img' id='applicant_img'><br><span style='font-size:0.8em; color:white'>" + document_filename + "&nbsp;<a id='deleteimage_" + data.toJSON()[0].document_id + "' class='delete_image' style='cursor:pointer'><i class='glyphicon glyphicon-trash' style='color:#FA1616;'></i></span></a>");
 							/*
 							if (customer_id == "1033") {
 								var url = 'api/image_rotate.php';

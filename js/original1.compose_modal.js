@@ -1776,7 +1776,7 @@ function composeMessage(object_id, jsonInvoice) {
 					message.set("subject", subject);
 					
 					var kase = kases.findWhere({case_id: current_case_id});
-					var themessage = "<p>" + customer_name + "  is referring this case to your office:</p>" + kase.name() + "<br>DOI: " + data.dates + "<br>ADJ #:" + data.adj_number;
+					var themessage = "<p>" + customer_name + "  is referring this case to your office:</p>" + kase.name() + "<br> " + data.dates + "<br>ADJ #:" + data.adj_number;
 					message.set("message", themessage);
 					
 					$("#myModalBody").html(new message_view({model: message}).render().el);

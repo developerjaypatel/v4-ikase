@@ -52,8 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$thumbnail_folder = $document->thumbnail_folder;
 				$type = $document->type;
 				$file = $document->document_filename;
-				if(file_exists("../uploads/".$customer_id."/".$case_id."/".$file)) {
-					$file_paths[] = "../uploads/".$customer_id."/".$case_id."/".$file;
+				if(file_exists("D:/uploads/".$customer_id."/".$case_id."/".$file)) {
+					$file_paths[] = "D:/uploads/".$customer_id."/".$case_id."/".$file;
 				}
 			}
 		}
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	switch ($operation) {
 	  case "zip":
 		$download_name = 'documents_'.date("Y-m-d_H_i_s").'.zip';
-		$file_name = "../uploads/".$customer_id."/".$case_id."/".$download_name;
+		$file_name = "D:/uploads/".$customer_id."/".$case_id."/".$download_name;
 		$zip = new ZipArchive;
 		if ($zip->open($file_name, ZipArchive::CREATE) === TRUE) {
 			foreach($file_paths as $file_path) {
@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		break;
 	  case "merge":
 		$download_name = 'merge_documents_'.date("Y-m-d_H_i_s").'.pdf';
-		$file_name = "../uploads/".$customer_id."/".$case_id."/".$download_name;
+		$file_name = "D:/uploads/".$customer_id."/".$case_id."/".$download_name;
 		$pdf = new \Clegginabox\PDFMerger\PDFMerger;
 		$junk_file_path = "junk";
 		

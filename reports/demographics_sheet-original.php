@@ -5,7 +5,7 @@
 //error_reporting(error_reporting(E_ALL) & (-1 ^ E_DEPRECATED));
 
 ini_set('SMTP','localhost'); 
-ini_set('sendmail_from', 'admin@v2.ikase.org'); 
+ini_set('sendmail_from', 'admin@v4.ikase.org'); 
 
 require_once('../shared/legacy_session.php');
 session_write_close();
@@ -872,10 +872,10 @@ var openSendForm = function() {
     </div>
     <iframe id="preview_frame" width="100%" height="650px" scrolling="auto" frameborder="1"></iframe>
 </div>
-<div style="background:black; text-align:center;display:none" id="matrix_holder"><img src="https://www.v2.ikase.org/img/matrix_blue_logo.jpg" width="267" height="200" alt="Matrix"></div>
+<div style="background:black; text-align:center;display:none" id="matrix_holder"><img src="https://www.v4.ikase.org/img/matrix_blue_logo.jpg" width="267" height="200" alt="Matrix"></div>
 <table width="900" border="0" align="center" cellpadding="3" cellspacing="0" style="margin-top:0px">
   <tr>
-  	<td width="16%" valign="top"><img src="https://www.v2.ikase.org/img/ikase_logo_login.png" height="32" width="77"></td>
+  	<td width="16%" valign="top"><img src="https://www.v4.ikase.org/img/ikase_logo_login.png" height="32" width="77"></td>
     <td colspan="3" align="left">
     <div style="float:right">
     	<a href="javascript:printSummary()" class="noprint_row">Print Summary Version</a>
@@ -995,7 +995,7 @@ var openSendForm = function() {
     <td width="10%" rowspan="4" valign="top">
     	<div style="float:right; z-index:2346" id="applicant_picture">
         <?php if ($document_filename!="") { ?>
-        <img src='https://www.v2.ikase.org/uploads/<?php echo $customer_id ?>/<?php echo $case_id; ?>/<?php echo $document_filename ?>' class='applicant_img' style="border:1px solid white" width='200' height='200'>
+        <img src='https://www.v4.ikase.org/uploads/<?php echo $customer_id ?>/<?php echo $case_id; ?>/<?php echo $document_filename ?>' class='applicant_img' style="border:1px solid white" width='200' height='200'>
         <?php } ?>
         </div></td>
   </tr>
@@ -1555,7 +1555,7 @@ function init() {
 }
 function checkRequest() {
 	//is this case in matrix
-	var url = "https://www.v2.ikase.org/api/kases/matrix";
+	var url = "https://www.v4.ikase.org/api/kases/matrix";
 	var formValues = "id=" + current_case_id + "&adj_number=" + adj_number + "&nss=" + ssn;
 	//return;
 	$.ajax({
@@ -1608,10 +1608,10 @@ function checkOrder() {
 	}
 	//is this order in matrix
 	if (adj_number!="") {
-		var url = "https://www.v2.ikase.org/api/kases/matrixadj/" + current_case_id + "/" + adj_number;
+		var url = "https://www.v4.ikase.org/api/kases/matrixadj/" + current_case_id + "/" + adj_number;
 	} else {	//if adj is empty
 		//is this case in matrix
-		var url = "https://www.v2.ikase.org/api/kases/matrixorder/" + current_case_id;
+		var url = "https://www.v4.ikase.org/api/kases/matrixorder/" + current_case_id;
 	}
 	//return;
 	$.ajax({
@@ -1648,7 +1648,7 @@ function checkRequestLocations() {
 		var id = element_id.split("_")[3];
 		var partie_name = $("#partie_name_" + id).html();
 		//is this location in matrix
-		var url = "https://www.v2.ikase.org/api/kases/matrixrequestlocation";
+		var url = "https://www.v4.ikase.org/api/kases/matrixrequestlocation";
 		var formValues = "field_id=" + id + "&id=" + current_case_id + "&order_id=" + request_id + "&facility=" + encodeURI(partie_name);
 		//return;
 		$.ajax({
@@ -1688,7 +1688,7 @@ function checkMatrixSysLocations(the_request_id) {
 		var id = element_id.split("_")[3];
 		var partie_name = $("#partie_name_" + id).html().trim();
 		//is this location in matrix
-		var url = "https://www.v2.ikase.org/api/kases/matrixsyslocation";
+		var url = "https://www.v4.ikase.org/api/kases/matrixsyslocation";
 		var formValues = "field_id=" + id + "&id=" + current_case_id + "&order_id=" + request_id + "&facility=" + encodeURI(partie_name);
 		//return;
 		$.ajax({
@@ -1728,7 +1728,7 @@ function checkLocations() {
 		var id = element_id.split("_")[3];
 		var partie_name = $("#partie_name_" + id).html();
 		//is this location in matrix
-		var url = "https://www.v2.ikase.org/api/kases/matrixlocation";
+		var url = "https://www.v4.ikase.org/api/kases/matrixlocation";
 		var formValues = "field_id=" + id + "&id=" + current_case_id + "&order_id=" + order_id + "&facility=" + encodeURI(partie_name);
 		//return;
 		$.ajax({
@@ -1751,7 +1751,7 @@ function getAddOn(field_id) {
 	var partie_id = $("#partie_id_" + field_id).val();
 	var partie_type = $("#partie_type_" + field_id).val();
 	//look up the partie
-	var url = "https://www.v2.ikase.org/api/corporation/" + partie_type + "/" + partie_id;
+	var url = "https://www.v4.ikase.org/api/corporation/" + partie_type + "/" + partie_id;
 	//return;
 	$.ajax({
 		url:url,
@@ -1766,7 +1766,7 @@ function getAddOn(field_id) {
 	});
 }
 function exportAddOn(corp_data, field_id) {
-	var url = "https://www.v2.ikase.org/api/kases/addon";
+	var url = "https://www.v4.ikase.org/api/kases/addon";
 	var formValues = "case_id=<?php echo $case_id; ?>&request_id=" + request_id + "&data=" + corp_data;
 	//return;
 	$.ajax({
@@ -1807,7 +1807,7 @@ function selectAllDocs(obj) {
 	}
 }
 function previewDoc(case_id, document_filename, id, type, thumbnail_folder) {
-	var href = "https://www.v2.ikase.org/api/preview.php?demo=&cusid=<?php echo $_SESSION["user_customer_id"]; ?>&case_id=" + case_id + "&file=" + encodeURIComponent(document_filename) + "&id=" + id + "&type=" + encodeURIComponent(type) + "&thumbnail_folder=" + encodeURIComponent(thumbnail_folder);
+	var href = "https://www.v4.ikase.org/api/preview.php?demo=&cusid=<?php echo $_SESSION["user_customer_id"]; ?>&case_id=" + case_id + "&file=" + encodeURIComponent(document_filename) + "&id=" + id + "&type=" + encodeURIComponent(type) + "&thumbnail_folder=" + encodeURIComponent(thumbnail_folder);
 	//window.open(href);
 	document.getElementById("preview_frame").src = href;
 	document.getElementById("preview_frame_holder").style.display = "";
@@ -1829,7 +1829,7 @@ echo $content;
 $content = str_replace('display:none" id="matrix_holder"', 'display:" id="matrix_holder"', $content);
 //die($content);
 //now output to a text file
-$upload_dir_config = '../uploads/' . $customer_id . '/' . $case_id;
+$upload_dir_config = 'D:/uploads/' . $customer_id . '/' . $case_id;
 if (!is_dir($upload_dir_config)) {
 	mkdir($upload_dir_config, 0755, true);
 }
@@ -1859,7 +1859,7 @@ if ($emailit=="y") {
 	$dmsauth = $dmsauth * 3;
 	$dmsauth = strrev($dmsauth);
 	
-	$file_url = "https://www.v2.ikase.org/uploads/" . $customer_id . "/" . $case_id . "/demographics.html";
+	$file_url = "https://www.v4.ikase.org/uploads/" . $customer_id . "/" . $case_id . "/demographics.html";
 	
 	$kase_attachments = "N";
 	if (count($arrDocumentLinks) > 1) {
@@ -1927,7 +1927,7 @@ $stmt = null; $db = null;
 	$html_message = "New request from " . $_SESSION['user_customer_name'] . " via iKase - " .$full_name. ":<br>";
 	$html_message .= $file_url . "<br>";
 	if ($targetFile!="") {
-		$html_message .= "Attachment:<br>https://www.v2.ikase.org/uploads/" . $customer_id . "/" . $case_id . "/" . urlencode($targetFile) . "<br>";
+		$html_message .= "Attachment:<br>https://www.v4.ikase.org/uploads/" . $customer_id . "/" . $case_id . "/" . urlencode($targetFile) . "<br>";
 	}
 	if ($specific_instructions!="") {
 		$html_message .= "<br>" . $specific_instructions;
@@ -1939,7 +1939,7 @@ $stmt = null; $db = null;
 	//$to_name = "nick@kustomweb.com";
 	
 	$url = "https://www.matrixdocuments.com/dis/sendit.php";
-	$send_fields = array("from_name"=>"Matrix System", "from_address"=>"demographics@v2.ikase.org", "to_name"=>$to_name, "cc_name"=>"", "bcc_name"=>"", "html_message"=>urlencode($html_message), "text_message"=>urlencode($text_message), "subject"=>urlencode($subject), "attachments"=>"");
+	$send_fields = array("from_name"=>"Matrix System", "from_address"=>"demographics@v4.ikase.org", "to_name"=>$to_name, "cc_name"=>"", "bcc_name"=>"", "html_message"=>urlencode($html_message), "text_message"=>urlencode($text_message), "subject"=>urlencode($subject), "attachments"=>"");
 	//die(print_r($send_fields));
 	$send_fields_string = "";
 	foreach($send_fields as $key=>$value) { 
@@ -1985,8 +1985,8 @@ $email_message=new email_message_class;
 
 $to = "nick@kustomweb.com";
 $from_name = "iKase";
-$from_address = "donotreply@v2.ikase.org";
-$text_message = "https://www.v2.ikase.org/reports/demographics_sheet.php?case_id=" . $case_id;
+$from_address = "donotreply@v4.ikase.org";
+$text_message = "https://www.v4.ikase.org/reports/demographics_sheet.php?case_id=" . $case_id;
 $subject = "New Order from iKase";
 $recipients = "";
 $attachments = "";

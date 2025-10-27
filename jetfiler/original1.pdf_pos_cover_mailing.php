@@ -390,7 +390,7 @@ if (fwrite($handle, $somecontent) === FALSE) {
 }
 
 if ($nopublish=="y") {
-	$destination_folder = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/jetfiler/";
+	$destination_folder = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/jetfiler/";
 	if (!is_dir($destination_folder)) {
 		mkdir($destination_folder, 0755, true);
 	}

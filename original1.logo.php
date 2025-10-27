@@ -1,6 +1,6 @@
 <?php
 if($_SERVER["HTTPS"]=="off") {
-	header("location:https://v2.ikase.org");
+	header("location:https://v4.ikase.org");
 }
 ?>
 <!DOCTYPE html>

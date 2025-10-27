@@ -1,5 +1,5 @@
 <?php
-die(phpinfo());
+//die(phpinfo());
 require("class.PHPMailer.php");
 
 $mail = new PHPMailer();
@@ -12,9 +12,9 @@ $mail->Host = "127.0.0.1";  // specify main and backup server
 
 $mail->From = "from@example.com";
 $mail->FromName = "Mailer";
-$mail->AddAddress("josh@example.net", "Josh Adams");
-$mail->AddAddress("ellen@example.com");                  // name is optional
-$mail->AddReplyTo("info@example.com", "Information");
+$mail->AddAddress("mccraney66@gmail.com", "Terriel D McCraney");
+$mail->AddAddress("terriel66@yahoo.com");                  // name is optional
+$mail->AddReplyTo("terriel@dgls.xyz", "Information");
 
 $mail->WordWrap = 50;                                 // set word wrap to 50 characters
 $mail->AddAttachment("/var/tmp/file.tar.gz");         // add attachments

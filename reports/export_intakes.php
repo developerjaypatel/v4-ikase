@@ -221,7 +221,7 @@ foreach ($cases_clean as $row) {
 
 //die(print_r($list));
 
-$filename = '../uploads/' . $customer_id . '/exports/intakes_' . date('mdy') . '.csv';
+$filename = 'D:/uploads/' . $customer_id . '/exports/intakes_' . date('mdy') . '.csv';
 $fp = fopen($filename, 'w');
 
 foreach ($list as $ferow) {

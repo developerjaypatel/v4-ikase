@@ -157,7 +157,7 @@ $db = null;
 					<i style="font-size:15px; color:#FF3737; cursor:pointer" id="delete_document" class="glyphicon glyphicon-trash delete_document"></i></a>
                 </div><br /><br />
                 <input id="document_id_<%=kustomer_document.document_id%>" name="document_id_<%=kustomer_document.document_id%>" type="hidden" class="document_input" value="<%=kustomer_document.id%>" />
-                <a id="thumbnail_<%=kustomer_document.document_id%>" href="uploads/<?php echo $_SESSION['user_customer_id']; ?>/<%= kustomer_document.case_id %>/<%= kustomer_document.document_filename.replace("#", "%23") %>" target="_blank" class="list_link">
+                <a id="thumbnail_<%=kustomer_document.document_id%>" href="D:/uploads/<?php echo $_SESSION['user_customer_id']; ?>/<%= kustomer_document.case_id %>/<%= kustomer_document.document_filename.replace("#", "%23") %>" target="_blank" class="list_link">
                     <img src="<%=preview %>" width="58" height="75" onmouseover="documentPreview(event, '<%=kustomer_document.document_filename%>', <%=kustomer_document.customer_id%>, '<%=kustomer_document.thumbnail_folder %>')" onmouseout="hidePreview()" />
                 </a>
             </td>

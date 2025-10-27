@@ -11,7 +11,7 @@ if (!empty($_FILES)) {
 	if ($_FILES["Filedata"]["error"]!=4) {
 		//kase specific?
 		// Set the upload directory
-		$uploadDir = '\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
+		$uploadDir = 'D:\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
 		$uploadDir .= $case_id . '\\';
 		
 		if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir)) {

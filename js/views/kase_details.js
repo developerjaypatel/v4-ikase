@@ -33,6 +33,7 @@ window.kase_view = Backbone.View.extend({
 		current_case_id = this.model.get("case_id");
 
 		var kase_type = this.model.get("case_type");
+		var kase_sub_type = this.model.get("case_sub_type");
 		var blnWCAB = isWCAB(kase_type);
 		this.model.set("blnWCAB", blnWCAB);
 
@@ -344,6 +345,7 @@ window.new_kase_view = Backbone.View.extend({
 			mymodel.terminated_date = "";
 		}
 		var kase_type = this.model.get("case_type");
+		var kase_sub_type = this.model.get("case_sub_type");
 		var blnWCAB = isWCAB(kase_type);
 		this.model.set("blnWCAB", blnWCAB);
 		//var blnImm = (this.model.get("kase_type") == "immigration");
@@ -941,118 +943,7 @@ window.new_kase_view = Backbone.View.extend({
 	},
 	typeChange:async function (event) {
 		
-		//correction status start
-		var statusfilters = new StatusFilters();
-		statusfilters.fetch({
-			success: function (data) {
-				
-				var arrFilters = data.toJSON();
-				//console.log(Object.keys(arrFilters)+" ERRRORRRR");
-				var selected_status = $("#case_statusInput :selected");
-				// console.log(selected_status);
-				// console.log(selected_status[0].value);
-				
-				// Clear dropdownlist
-				// var select_status_drop =document.getElementById("case_statusInput");
-				$("#case_statusInput option").remove();
-				// console.log(select_status_drop);
-
-				$('#case_statusInput').append("<option value='' class='defaultselected'>Select from List</option>");
-				Object.keys(arrFilters).map((e,i)=> {
-					
-					if(e!== "insert" && e!== "unique" && arrFilters[e].deleted != "Y"){
-						console.log(arrFilters[e].status+" -- "+arrFilters[e].deleted);
-						optionText = arrFilters[e].status;
-						optionText = optionText.replace("'", "`"); 
-						optionValue = arrFilters[e].status;
-						optionValue = optionValue.replace("'", "`");
-						optionLaw = arrFilters[e].law;
-						if(selected_status[0].value == optionValue && selected_status[0].className == optionLaw+"_status_option"){ selected = "selected"; }else{selected = "";
-					
-					}
-						$('#case_statusInput').append(`<option value="${optionValue}" class="${optionLaw}_status_option" ${selected}>${optionText}</option>`);
-					}
-				});
-				//call_for_remove_drop_value0();
-				
-			}
-		});
-
-
-
-		//correction status start
-		var statusfilters = new SubStatusFilters();
-		statusfilters.fetch({
-			success: function (data) {
-				
-				var arrFilters = data.toJSON();
-				// console.log(Object.keys(arrFilters));
-				// console.log(arrFilters);
-				var selected_status = $("#case_substatusInput :selected");
-				// console.log(selected_status);
-				// console.log(selected_status[0].value);
-				
-				// Clear dropdownlist
-				// var select_status_drop =document.getElementById("case_substatusInput");
-				$("#case_substatusInput option").remove();
-				// console.log(select_status_drop);
-
-				$('#case_substatusInput').append("<option value='' class='defaultselected'>Select from List</option>");
-				Object.keys(arrFilters).map((e,i)=> {
-					if(e!== "insert" && e!== "unique" && arrFilters[e].deleted != "Y"){
-						// console.log(arrFilters[e]);
-						optionText = arrFilters[e].status;
-						optionText = optionText.replace("'", "`"); 
-						optionValue = arrFilters[e].status;
-						optionValue = optionValue.replace("'", "`");
-						optionLaw = arrFilters[e].law;
-						//if(selected_status[0].value == optionValue && selected_status[0].className == optionLaw+"_substatus_option"){ selected = "selected"; }else{selected = "";
-					
-					//}
-						$('#case_substatusInput').append(`<option value="${optionValue}" class="${optionLaw}_substatus_option" ${selected}>${optionText}</option>`);
-					}
-				});
-				//call_for_remove_drop_value();
-				
-			}
-		});
-
-		//correction status start
-		var statusfilters = new SubSubStatusFilters();
-		statusfilters.fetch({
-			success: function (data) {
-				
-				var arrFilters = data.toJSON();
-				// console.log(Object.keys(arrFilters));
-				// console.log(arrFilters);
-				var selected_status = $("#case_subsubstatusInput :selected");
-				// console.log(selected_status);
-				// console.log(selected_status[0].value);
-				
-				// Clear dropdownlist
-				// var select_status_drop =document.getElementById("case_subsubstatusInput");
-				$("#case_subsubstatusInput option").remove();
-				// console.log(select_status_drop);
-
-				$('#case_subsubstatusInput').append("<option value='' class='defaultselected'>Select from List</option>");
-				Object.keys(arrFilters).map((e,i)=> {
-					if(e!== "insert" && e!== "unique" && arrFilters[e].deleted != "Y"){
-						// console.log(arrFilters[e]);
-						optionText = arrFilters[e].status;
-						optionText = optionText.replace("'", "`"); 
-						optionValue = arrFilters[e].status;
-						optionValue = optionValue.replace("'", "`");
-						optionLaw = arrFilters[e].law;
-						//if(selected_status[0].value == optionValue && selected_status[0].className == optionLaw+"_subsubstatus_option"){ selected = "selected"; }else{selected = "";
-					
-					//}
-						$('#case_subsubstatusInput').append(`<option value="${optionValue}" class="${optionLaw}_subsubstatus_option" ${selected}>${optionText}</option>`);
-					}
-				});
-				//call_for_remove_drop_value1();
-				
-			}
-		});
+		
 		
 		//correction status finish
 		var self = this;
@@ -1213,6 +1104,119 @@ window.new_kase_view = Backbone.View.extend({
 		if (self.model.get("intake_request") && blnAutoSave) {
 			makeSureIntakeSaved()
 		}
+
+		//correction status start
+		/* var statusfilters = new StatusFilters();
+		statusfilters.fetch({
+			success: function (data) {
+				
+				var arrFilters = data.toJSON();
+				//console.log(Object.keys(arrFilters)+" ERRRORRRR");
+				var selected_status = $("#case_statusInput :selected");
+				// console.log(selected_status);
+				// console.log(selected_status[0].value);
+				
+				// Clear dropdownlist
+				// var select_status_drop =document.getElementById("case_statusInput");
+				$("#case_statusInput option").remove();
+				// console.log(select_status_drop);
+
+				$('#case_statusInput').append("<option value='' class='defaultselected'>Select from List</option>");
+				Object.keys(arrFilters).map((e,i)=> {
+					
+					if(e!== "insert" && e!== "unique" && arrFilters[e].deleted != "Y"){
+						console.log(arrFilters[e].status+" -- "+arrFilters[e].deleted);
+						optionText = arrFilters[e].status;
+						optionText = optionText.replace("'", "`"); 
+						optionValue = arrFilters[e].status;
+						optionValue = optionValue.replace("'", "`");
+						optionLaw = arrFilters[e].law;
+						if(selected_status[0].value == optionValue && selected_status[0].className == optionLaw+"_status_option"){ selected = "selected"; }else{selected = "";
+					
+					}
+						$('#case_statusInput').append(`<option value="${optionValue}" class="${optionLaw}_status_option" ${selected}>${optionText}</option>`);
+					}
+				});
+				//call_for_remove_drop_value0();
+				
+			}
+		});
+
+
+
+		//correction status start
+		var statusfilters = new SubStatusFilters();
+		statusfilters.fetch({
+			success: function (data) {
+				
+				var arrFilters = data.toJSON();
+				// console.log(Object.keys(arrFilters));
+				// console.log(arrFilters);
+				var selected_status = $("#case_substatusInput :selected");
+				// console.log(selected_status);
+				// console.log(selected_status[0].value);
+				
+				// Clear dropdownlist
+				// var select_status_drop =document.getElementById("case_substatusInput");
+				$("#case_substatusInput option").remove();
+				// console.log(select_status_drop);
+
+				$('#case_substatusInput').append("<option value='' class='defaultselected'>Select from List</option>");
+				Object.keys(arrFilters).map((e,i)=> {
+					if(e!== "insert" && e!== "unique" && arrFilters[e].deleted != "Y"){
+						// console.log(arrFilters[e]);
+						optionText = arrFilters[e].status;
+						optionText = optionText.replace("'", "`"); 
+						optionValue = arrFilters[e].status;
+						optionValue = optionValue.replace("'", "`");
+						optionLaw = arrFilters[e].law;
+						//if(selected_status[0].value == optionValue && selected_status[0].className == optionLaw+"_substatus_option"){ selected = "selected"; }else{selected = "";
+					
+					//}
+						$('#case_substatusInput').append(`<option value="${optionValue}" class="${optionLaw}_substatus_option" ${selected}>${optionText}</option>`);
+					}
+				});
+				//call_for_remove_drop_value();
+				
+			}
+		});
+
+		//correction status start
+		var statusfilters = new SubSubStatusFilters();
+		statusfilters.fetch({
+			success: function (data) {
+				
+				var arrFilters = data.toJSON();
+				// console.log(Object.keys(arrFilters));
+				// console.log(arrFilters);
+				var selected_status = $("#case_subsubstatusInput :selected");
+				// console.log(selected_status);
+				// console.log(selected_status[0].value);
+				
+				// Clear dropdownlist
+				// var select_status_drop =document.getElementById("case_subsubstatusInput");
+				$("#case_subsubstatusInput option").remove();
+				// console.log(select_status_drop);
+
+				$('#case_subsubstatusInput').append("<option value='' class='defaultselected'>Select from List</option>");
+				Object.keys(arrFilters).map((e,i)=> {
+					if(e!== "insert" && e!== "unique" && arrFilters[e].deleted != "Y"){
+						// console.log(arrFilters[e]);
+						optionText = arrFilters[e].status;
+						optionText = optionText.replace("'", "`"); 
+						optionValue = arrFilters[e].status;
+						optionValue = optionValue.replace("'", "`");
+						optionLaw = arrFilters[e].law;
+						//if(selected_status[0].value == optionValue && selected_status[0].className == optionLaw+"_subsubstatus_option"){ selected = "selected"; }else{selected = "";
+					
+					//}
+						$('#case_subsubstatusInput').append(`<option value="${optionValue}" class="${optionLaw}_subsubstatus_option" ${selected}>${optionText}</option>`);
+					}
+				});
+				//call_for_remove_drop_value1();
+				
+			}
+		}); */
 	},
 	openSSN: function () {
 		var self = this;
@@ -1787,6 +1791,7 @@ window.kase_abstract_view = Backbone.View.extend({
 		}
 
 		var kase_type = this.model.get("case_type");
+		var kase_sub_type = this.model.get("case_sub_type");
 		//var kase_adj = this.model.get("adj_number");
 
 		var blnWCAB = isWCAB(kase_type);
@@ -1806,12 +1811,13 @@ window.kase_abstract_view = Backbone.View.extend({
 		kase.set("panel_title", mymodel.panel_title);
 		kase.set("claims_display", mymodel.claims_display);
 		kase.set("claims_values", mymodel.claims_values);
+		kase.set("case_sub_type", mymodel.case_sub_type);
 
 		if (typeof kase.get("claim_number") == "undefined") {
 			kase.set("claim_number", "")
 		}
 
-		$(this.el).html(this.template({ model: mymodel, kase: kase, blnWCAB: mymodel.blnWCAB, panel_title: mymodel.panel_title }));
+		$(this.el).html(this.template({ model: mymodel, kase: kase, blnWCAB: mymodel.blnWCAB, panel_title: mymodel.panel_title, case_sub_type:mymodel.case_sub_type }));
 
 		return this;
 	},
@@ -1902,6 +1908,7 @@ window.kase_summary_view = Backbone.View.extend({
 		this.model.set("included_dois", []);
 
 		var kase_type = this.model.get("case_type");
+		var kase_sub_type = this.model.get("case_sub_type");
 		var blnWCAB = isWCAB(kase_type);
 
 		//might be a pi
@@ -1943,9 +1950,11 @@ window.kase_summary_view = Backbone.View.extend({
 			kase_dois = kase_dois.unique();
 
 			var kase_type = this.model.get("case_type");
+			var kase_sub_type = this.model.get("case_sub_type");
 			//alert(kase_type);
 			self.model.set("doi_count", kase_dois.length);
 			self.model.set("kase_type", kase_type);
+			self.model.set("kase_sub_type", kase_sub_type);
 
 			//if (kase_dois.length > 0 && kase_dois.length < 4) {
 			var intCounter = 0;
@@ -2171,6 +2180,7 @@ window.kase_summary_view = Backbone.View.extend({
 			this.model.set("dob", app_dob);
 		}
 		var kase_type = this.model.get("case_type");
+		var kase_sub_type = this.model.get("case_sub_type");
 
 		var blnWCAB = isWCAB(kase_type);
 		this.model.set("blnWCAB", blnWCAB);

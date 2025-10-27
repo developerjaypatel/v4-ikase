@@ -927,7 +927,7 @@ window.task_view_pane = Backbone.View.extend({
 					var arrID = [];
 					var arrOptions = [];
 					var blnSelected = false;
-					/*
+					
 					_.each( dois, function(doi) {
 						if (arrID.indexOf(doi.injury_id) < 0) {
 							arrID.push(doi.injury_id);
@@ -935,8 +935,8 @@ window.task_view_pane = Backbone.View.extend({
 							if (doi.end_date!="0000-00-00") {
 								doi_date += "-" +  moment(doi.end_date).format("MM/DD/YYYY") + " CT";
 							}
-							var selected = "";
-							if (task_injury_id==doi.injury_id) {
+							var selected = "";//console.log(doi.injury_id);
+							if (task_injury_id==doi.injury_id) { //console.log("939");
 								selected = " selected";
 								blnSelected = true;
 							}
@@ -945,7 +945,7 @@ window.task_view_pane = Backbone.View.extend({
 						}
 					});
 					
-					if (arrOptions.length > 1) {
+					if (arrOptions.length >= 1) {
 						var selected = "";
 						if (!blnSelected) {
 							selected = " selected";
@@ -956,9 +956,57 @@ window.task_view_pane = Backbone.View.extend({
 						$("#doi_id").html(arrOptions.join(""));
 						$("#doi_row").show();
 					}
-					*/
+					
+				},error: function(c, r) {
+					console.error("Failed to fetch:", r.status, r.responseText);
+				}
+			}); 
+			/* var kase_dois = new KaseInjuryCollection({ case_id: self.model.case_id });
+
+			kase_dois.fetch({
+				success: function (collection) { 
+					var dois = collection.toJSON(); //console.log(dois);
+					var arrID = [];
+					var arrOptions = [];
+					var blnSelected = false;
+
+					// Replace with actual selected injury id if available
+					var task_injury_id = self.model.task_injury_id || null;
+
+					dois.forEach(function (doi) {  //console.log(doi);
+						
+						if (!arrID.includes(doi.injury_id)) {
+							arrID.push(doi.injury_id);
+
+							let doi_date = moment(doi.start_date).format("MM/DD/YYYY");
+
+							if (doi.end_date && doi.end_date !== "0000-00-00") {
+								doi_date += " - " + moment(doi.end_date).format("MM/DD/YYYY") + " CT";
+							}
+
+							let selected = (task_injury_id == doi.injury_id) ? " selected" : "";
+							if (selected) blnSelected = true;
+
+							let option = `<option value="${doi.injury_id}"${selected}>${doi_date}</option>`;
+							arrOptions.push(option);
+						}
+					});
+					//console.log(arrOptions.length);
+					if (arrOptions.length <= 1) { //console.log("995 test");
+						// Add default placeholder option
+						let defaultSelected = (!blnSelected) ? " selected" : "";
+						arrOptions.unshift(`<option value=""${defaultSelected}>Select DOI from List - optional</option>`);
+						//console.log(arrOptions);
+						// Populate dropdown
+						$("#doi_id").html(arrOptions.join(""));
+						$("#doi_row").show();
+					}
+				},
+				error: function () {
+					console.error("Failed to fetch KaseInjuryCollection");
 				}
 			});
+ */
 			//modify the task first
 			$(".task #task_titleInput").select();
 		} else {

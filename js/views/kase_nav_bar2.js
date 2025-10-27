@@ -22,6 +22,7 @@ window.kase_nav_bar_view = Backbone.View.extend({
 		"click .compose_task": "newTask",
 		"click #list_drafts": "listDrafts",
 		"click #new_import_indicator": "listImports",
+		"click #new_my_document": "listMydocuments",
 		"click #notifications_indicator": "listNotifiedImports",
 		"click .task_count_indicator": "listTasks",
 		"click .daily_task_indicator": "listTodayTasks",
@@ -123,6 +124,7 @@ window.kase_nav_bar_view = Backbone.View.extend({
 			
 			var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
 			var SCOPES = 'https://www.googleapis.com/auth/drive';
+			
 			
 			handleClientLoad();
 			var oauthToken = '';
@@ -455,6 +457,10 @@ window.kase_nav_bar_view = Backbone.View.extend({
 	listImports: function (event) {
 		event.preventDefault();
 		document.location.href = "#imports";
+	},
+	listMydocuments: function (event) {
+		event.preventDefault();
+		document.location.href = "#mydocuments";
 	},
 	listNewImports: function (event) {
 		event.preventDefault();

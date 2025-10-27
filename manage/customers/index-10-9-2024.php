@@ -14,7 +14,7 @@ else
 {
   $application = "iKase";
   $application_logo = "ikase_logo_login.png";
-  $application_url = "https://v2.ikase.org/";
+  $application_url = "https://v4.ikase.org/";
 }
 
 $blnOwnerAdmin = ($_SESSION["user_role"] == "owner" && ($_SESSION["user_id"] == 11 || $_SESSION["user_id"] == 12));

@@ -110,11 +110,11 @@ var blnQuickNotes = false;
                 	<div style="float:right; display:<%=kase.get("claims_display") %>">
                     	<span class='black_text'>&nbsp;|&nbsp;</span><%= kase.get("claims_values") %>
                     </div>
-		    <%if (kase.get("case_number")!=null && kase.get("case_number")!="" && !isNaN(kase.get("case_number"))) {%>
+		    <%if (kase.get("case_number")!=null && kase.get("case_number")!="") {%>
                     	<%= kase.get("case_number") %>
-		    <%} else if (kase.get("file_number")!=null && kase.get("file_number")!="" && !isNaN(kase.get("file_number"))) {%>
+		    <%} else if (kase.get("file_number")!=null && kase.get("file_number")!="") {%>
 			<%=kase.get("file_number") %>
-		    <%} else if (kase.get("cpointer")!=null && kase.get("cpointer")!="" && !isNaN(kase.get("cpointer"))) {%>
+		    <%} else if (kase.get("cpointer")!=null && kase.get("cpointer")!="") {%>
 			<%=kase.get("cpointer") %>
 		    <%} else {%>
 			<%="" %>

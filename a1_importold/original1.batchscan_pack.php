@@ -467,11 +467,11 @@ function addRemoteBatchscan() {
 	
 	session_write_close();
 	//make sure directories exist
-	$import_dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id;
+	$import_dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id;
 	if (!is_dir($import_dir)) {
 		mkdir($import_dir, 0755, true);
 	}
-	$import_dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id . "\\imports\\";
+	$import_dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id . "\\imports\\";
 	if (!is_dir($import_dir)) {
 		mkdir($import_dir, 0755, true);
 	}
@@ -598,7 +598,7 @@ function stitchBatchscanStacks() {
 	$sep = $batchscan->separators;
 	$date = date("Ymd", strtotime($batchscan->dateandtime));
 	$uploaded = $batchscan->filename;
-	$uploaded = str_replace("C:\\inetpub\\wwwroot\\iKase.org\\scans\\" . $customer_id . "\\" . $date . "\\", "", $uploaded);
+	$uploaded = str_replace("C:\\inetpub\\wwwroot\\ikase.org\\scans\\" . $customer_id . "\\" . $date . "\\", "", $uploaded);
 	$uploaded = str_replace(".pdf", "", $uploaded);
 	
 	
@@ -1169,7 +1169,7 @@ function explodeBatchscan() {
 		$image_magick->destroy();
 	}
 	
-	$uploaded = str_replace("C:\\inetpub\\wwwroot\\iKase.org\\scans\\" . $customer_id . "\\" . $date . "\\", "", $uploaded);
+	$uploaded = str_replace("C:\\inetpub\\wwwroot\\ikase.org\\scans\\" . $customer_id . "\\" . $date . "\\", "", $uploaded);
 	echo json_encode(array("success"=>true, "uploaded"=>$uploaded, "pages"=>$pages, "id"=>$batchscan_id, "date"=>$date));
 }
 function createCrops() {

@@ -50,7 +50,7 @@ try {
 		echo json_encode($error);
 }
 
-$query = "SELECT ccase.*, cpinj.*, cven.venue_abbr case_venue, 
+$query = "SELECT ccase.*, cpinj.*, ccase.case_id as case_id, cven.venue_abbr case_venue, 
 defendant.company_name defendant, defendant.full_address defendant_address, ccase.adj_number, defendant.phone defendant_phone, defendant.fax defendant_fax, defendant.email defendant_email, defendant.company_site defendant_site, defendant.kai_info
 FROM cse_case ccase
 LEFT OUTER JOIN `cse_case_corporation` ccorp
@@ -479,11 +479,11 @@ var openSendForm = function() {
 </head>
 
 <body style="color:#EDEDED;">
-<div style="background:black; text-align:center;display:none" id="matrix_holder"><img src="https://www.ikase.website/img/matrix_blue_logo.jpg" width="267" height="200" alt="Matrix"></div>
+<div style="background:black; text-align:center;display:none" id="matrix_holder"><img src="https://v4.ikase.org/img/matrix_blue_logo.jpg" width="267" height="200" alt="Matrix"></div>
 <div style="border:0px solid red">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
-    <td colspan="3" align="center" valign="top" style="font-family:Arial, Helvetica, sans-serif; font-size:1.5em"><img src="https://www.ikase.website/img/ikase_logo_login.png" height="32" width="77">&nbsp;&nbsp;<strong>DEMOGRAPHICS PI COVER PAGE</strong><br/><br/><div style="text-align:center; margin-left:0px; font-size:.7em"><strong><?php echo $_SESSION['user_customer_name']; ?></strong><br/><div style="margin-left:0px"><?php echo str_replace("<br>", ", ", $_SESSION['user_customer_address']); ?></div></div><br/></td>
+    <td colspan="3" align="center" valign="top" style="font-family:Arial, Helvetica, sans-serif; font-size:1.5em"><img src="https://v4.ikase.org/img/ikase_logo_login.png" height="32" width="77">&nbsp;&nbsp;<strong>DEMOGRAPHICS PI COVER PAGE</strong><br/><br/><div style="text-align:center; margin-left:0px; font-size:.7em"><strong><?php echo $_SESSION['user_customer_name']; ?></strong><br/><div style="margin-left:0px"><?php echo str_replace("<br>", ", ", $_SESSION['user_customer_address']); ?></div></div><br/></td>
     </tr>
     <tr>
     <td colspan="3" align="center" valign="top" style="font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:1.5em"><hr/></td>

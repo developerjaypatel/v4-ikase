@@ -14,7 +14,7 @@ setcookie('samesite-test', '1', 0, 'samesite=strict', 'secure');
 
 if($_SERVER["HTTPS"]=="off") {
 	
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org" . $_SERVER['REQUEST_URI']);
 }
 
 require_once('shared/legacy_session.php');
@@ -41,7 +41,7 @@ else
 {
   $application = "iKase";
   $application_logo = "favicon.png";
-  $application_url = "https://v2.ikase.org/";  
+  $application_url = "https://v4.ikase.org/";  
 }
 
 $blnNewWindow = false;
@@ -67,7 +67,7 @@ if ($blnDebug) {
 }
 $dbname = "gtg_thecase";
 if (isset($_SERVER['DOCUMENT_ROOT'])) {
-	if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\iKase.org") {
+	if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\ikase.org") {
 		$dbname = "ikase";	
 		if (isset($_SESSION['user_data_source'])){
 			if ($_SESSION['user_data_source']!="") {
@@ -341,7 +341,7 @@ try {
 	$stmt->closeCursor(); $stmt = null; $db = null;
 } catch(PDOException $e) {
 	$error = array("error4"=> array("text"=>$e->getMessage()));
-	echo json_encode($error);
+	//echo json_encode($error);
 }
 if ($blnDebug) {
 	$time = microtime();

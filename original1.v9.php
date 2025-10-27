@@ -9,7 +9,7 @@ header("Pragma: no-cache");
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-session_save_path('C:\\inetpub\\wwwroot\\iKase.org\\sessions\\');
+session_save_path('C:\\inetpub\\wwwroot\\ikase.org\\sessions\\');
 ini_set('session.gc_maxlifetime', 3*60*60); // 3 hours
 ini_set('session.gc_probability', 1);
 ini_set('session.gc_divisor', 100);
@@ -52,7 +52,7 @@ if ($blnDebug) {
 }
 $dbname = "gtg_thecase";
 if (isset($_SERVER['DOCUMENT_ROOT'])) {
-	if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\iKase.org") {
+	if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\ikase.org") {
 		$dbname = "ikase";	
 		/*
 		if (isset($_SESSION['user_customer_id'])){

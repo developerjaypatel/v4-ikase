@@ -217,7 +217,7 @@ window.form_listing = Backbone.View.extend({
 			//var case_id = this.model.get("case_id");
 			var case_id = current_case_id;
 			var kase = kases.findWhere({case_id: case_id});
-			console.log(kase.toJSON());
+			//console.log(kase.toJSON());
 			var case_status = kase.toJSON().case_status;
 			var case_substatus = kase.toJSON().case_substatus;
 			var attorney = kase.toJSON().attorney;

@@ -1097,7 +1097,7 @@ window.jetfile_listing_view = Backbone.View.extend({
 						self.requestPDF(form, main_document, blnSingleForm, case_id, injury_id);
 						//alert("request");
 					} else {
-						var url = "../uploads/" + customer_id + "/" + case_id + "/jetfiler/" + data.document_filename;
+						var url = "D:/uploads/" + customer_id + "/" + case_id + "/jetfiler/" + data.document_filename;
 						//window.open(url);
 						self.requestPDF(form, main_document, blnSingleForm, case_id, injury_id);
 					}
@@ -1154,7 +1154,7 @@ window.jetfile_listing_view = Backbone.View.extend({
 				success:function (data) {					
 					$(feedback_field + case_id + "_" + injury_id).html("PDF Generated&nbsp;&#10003;");
 					
-					var url = "../uploads/" + customer_id + "/" + case_id + "/jetfiler/" + data.filename;
+					var url = "D:/uploads/" + customer_id + "/" + case_id + "/jetfiler/" + data.filename;
 					window.open(url);
 				}
 		});

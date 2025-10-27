@@ -1,0 +1,2721 @@
+\r\nclaimants start @ 08/02/17 09:48:32
+claimants update done:08/02/2017 09:50:49
+reps update started:08/02/2017 23:38:00
+reps update done:08/02/2017 23:38:28\r\ncarriers start @ 08/02/17 23:40:01
+carrier update done:08/02/2017 23:40:04
+reps update started:08/03/2017 23:38:00
+reps update done:08/03/2017 23:38:25\r\ncarriers start @ 08/03/17 23:40:00
+carrier update done:08/03/2017 23:40:03
+reps update started:08/04/2017 23:38:01
+reps update done:08/04/2017 23:38:27\r\ncarriers start @ 08/04/17 23:40:03
+carrier update done:08/04/2017 23:40:06
+reps update started:08/05/2017 23:38:01
+reps update done:08/05/2017 23:38:28\r\ncarriers start @ 08/05/17 23:40:01
+carrier update done:08/05/2017 23:40:04
+reps update started:08/06/2017 23:38:01
+reps update done:08/06/2017 23:38:29\r\ncarriers start @ 08/06/17 23:40:01
+carrier update done:08/06/2017 23:40:04
+reps update started:08/07/2017 23:38:00
+reps update done:08/07/2017 23:38:29\r\ncarriers start @ 08/07/17 23:40:01
+carrier update done:08/07/2017 23:40:03
+reps update started:08/08/2017 23:38:00
+reps update done:08/08/2017 23:38:28\r\ncarriers start @ 08/08/17 23:40:01
+carrier update done:08/08/2017 23:40:04
+reps update started:08/09/2017 23:38:01
+reps update done:08/09/2017 23:38:29\r\ncarriers start @ 08/09/17 23:40:01
+carrier update done:08/09/2017 23:40:04
+reps update started:08/10/2017 23:38:00
+reps update done:08/10/2017 23:38:25\r\ncarriers start @ 08/10/17 23:40:00
+carrier update done:08/10/2017 23:40:03
+reps update started:08/11/2017 23:38:00
+reps update done:08/11/2017 23:38:28\r\ncarriers start @ 08/11/17 23:40:01
+carrier update done:08/11/2017 23:40:04
+reps update started:08/12/2017 23:38:00
+reps update done:08/12/2017 23:38:28\r\ncarriers start @ 08/12/17 23:40:01
+carrier update done:08/12/2017 23:40:04
+reps update started:08/13/2017 23:38:01
+reps update done:08/13/2017 23:38:30\r\ncarriers start @ 08/13/17 23:40:02
+carrier update done:08/13/2017 23:40:05
+reps update started:08/18/2017 23:38:00
+reps update done:08/18/2017 23:38:28\r\ncarriers start @ 08/18/17 23:40:00
+carrier update done:08/18/2017 23:40:03
+reps update started:08/19/2017 23:38:01
+reps update done:08/19/2017 23:38:27\r\ncarriers start @ 08/19/17 23:40:01
+carrier update done:08/19/2017 23:40:04
+reps update started:08/20/2017 23:38:01
+reps update done:08/20/2017 23:38:26\r\ncarriers start @ 08/20/17 23:40:01
+carrier update done:08/20/2017 23:40:04
+reps update started:08/21/2017 23:38:01
+reps update done:08/21/2017 23:38:29\r\ncarriers start @ 08/21/17 23:40:00
+carrier update done:08/21/2017 23:40:03
+reps update started:08/22/2017 23:38:01
+reps update done:08/22/2017 23:38:29\r\ncarriers start @ 08/22/17 23:40:01
+carrier update done:08/22/2017 23:40:04
+reps update started:08/23/2017 23:38:01
+reps update done:08/23/2017 23:38:29\r\ncarriers start @ 08/23/17 23:40:01
+carrier update done:08/23/2017 23:40:04\r\nclaimants start @ 08/24/17 14:27:42\r\nclaimants start @ 08/24/17 14:32:12
+claimants update done:08/24/2017 14:34:30\r\nclaimants start @ 08/24/17 14:37:47
+claimants update done:08/24/2017 14:40:14
+reps update started:08/24/2017 23:38:01
+reps update done:08/24/2017 23:38:26\r\ncarriers start @ 08/24/17 23:40:01
+carrier update done:08/24/2017 23:40:03\r\nclaimants start @ 08/24/17 23:45:01
+claimants update done:08/24/2017 23:47:08
+reps update started:08/25/2017 23:38:01
+reps update done:08/25/2017 23:38:30\r\ncarriers start @ 08/25/17 23:40:01
+carrier update done:08/25/2017 23:40:03\r\nclaimants start @ 08/25/17 23:45:01
+claimants update done:08/25/2017 23:47:32
+reps update started:08/26/2017 23:38:01
+reps update done:08/26/2017 23:38:26\r\ncarriers start @ 08/26/17 23:40:01
+carrier update done:08/26/2017 23:40:03\r\nclaimants start @ 08/26/17 23:45:01
+claimants update done:08/26/2017 23:47:05
+reps update started:08/27/2017 23:38:01
+reps update done:08/27/2017 23:38:29\r\ncarriers start @ 08/27/17 23:40:01
+carrier update done:08/27/2017 23:40:04\r\nclaimants start @ 08/27/17 23:45:00
+claimants update done:08/27/2017 23:47:16
+reps update started:08/28/2017 23:38:00
+reps update done:08/28/2017 23:38:26\r\ncarriers start @ 08/28/17 23:40:01
+carrier update done:08/28/2017 23:40:03\r\nclaimants start @ 08/28/17 23:45:01
+claimants update done:08/28/2017 23:47:24
+reps update started:08/29/2017 23:38:00
+reps update done:08/29/2017 23:38:29\r\ncarriers start @ 08/29/17 23:40:00
+carrier update done:08/29/2017 23:40:03\r\nclaimants start @ 08/29/17 23:45:01
+claimants update done:08/29/2017 23:47:08
+reps update started:08/30/2017 23:38:01
+reps update done:08/30/2017 23:38:28\r\ncarriers start @ 08/30/17 23:40:01
+carrier update done:08/30/2017 23:40:03\r\nclaimants start @ 08/30/17 23:45:02
+claimants update done:08/30/2017 23:47:18
+reps update started:09/05/2017 23:38:00
+reps update done:09/05/2017 23:38:25\r\ncarriers start @ 09/05/17 23:40:00
+carrier update done:09/05/2017 23:40:03\r\nclaimants start @ 09/05/17 23:45:00
+claimants update done:09/05/2017 23:47:31
+reps update started:09/06/2017 23:38:01
+reps update done:09/06/2017 23:38:28\r\ncarriers start @ 09/06/17 23:40:02
+carrier update done:09/06/2017 23:40:05\r\nclaimants start @ 09/06/17 23:45:01
+claimants update done:09/06/2017 23:47:08
+reps update started:09/07/2017 23:38:00
+reps update done:09/07/2017 23:38:29\r\ncarriers start @ 09/07/17 23:40:01
+carrier update done:09/07/2017 23:40:04\r\nclaimants start @ 09/07/17 23:45:00
+claimants update done:09/07/2017 23:47:08
+reps update started:09/08/2017 23:38:00
+reps update done:09/08/2017 23:38:30\r\ncarriers start @ 09/08/17 23:40:01
+carrier update done:09/08/2017 23:40:04\r\nclaimants start @ 09/08/17 23:45:00
+claimants update done:09/08/2017 23:47:07
+reps update started:09/09/2017 23:38:01
+reps update done:09/09/2017 23:38:30\r\ncarriers start @ 09/09/17 23:40:00
+carrier update done:09/09/2017 23:40:03\r\nclaimants start @ 09/09/17 23:45:00
+claimants update done:09/09/2017 23:47:04
+reps update started:09/10/2017 23:38:01
+reps update done:09/10/2017 23:38:26\r\ncarriers start @ 09/10/17 23:40:01
+carrier update done:09/10/2017 23:40:03\r\nclaimants start @ 09/10/17 23:45:01
+claimants update done:09/10/2017 23:47:06
+reps update started:09/11/2017 23:38:00
+reps update done:09/11/2017 23:38:29\r\ncarriers start @ 09/11/17 23:40:00
+carrier update done:09/11/2017 23:40:03\r\nclaimants start @ 09/11/17 23:45:00
+claimants update done:09/11/2017 23:47:21
+reps update started:09/12/2017 23:38:00
+reps update done:09/12/2017 23:38:29\r\ncarriers start @ 09/12/17 23:40:01
+carrier update done:09/12/2017 23:40:04\r\nclaimants start @ 09/12/17 23:45:01
+claimants update done:09/12/2017 23:48:12
+reps update started:09/13/2017 23:38:01
+reps update done:09/13/2017 23:38:25\r\ncarriers start @ 09/13/17 23:40:01
+carrier update done:09/13/2017 23:40:03\r\nclaimants start @ 09/13/17 23:45:01
+claimants update done:09/13/2017 23:47:06
+reps update started:09/14/2017 23:38:00
+reps update done:09/14/2017 23:38:29\r\ncarriers start @ 09/14/17 23:40:00
+carrier update done:09/14/2017 23:40:03\r\nclaimants start @ 09/14/17 23:45:00
+claimants update done:09/14/2017 23:47:13
+reps update started:09/15/2017 23:38:01
+reps update done:09/15/2017 23:38:29\r\ncarriers start @ 09/15/17 23:40:01
+carrier update done:09/15/2017 23:40:03\r\nclaimants start @ 09/15/17 23:45:01
+claimants update done:09/15/2017 23:47:05
+reps update started:09/16/2017 23:38:01
+reps update done:09/16/2017 23:38:27\r\ncarriers start @ 09/16/17 23:40:01
+carrier update done:09/16/2017 23:40:04\r\nclaimants start @ 09/16/17 23:45:01
+claimants update done:09/16/2017 23:47:11
+reps update started:09/17/2017 23:38:01
+reps update done:09/17/2017 23:38:31\r\ncarriers start @ 09/17/17 23:40:01
+carrier update done:09/17/2017 23:40:04\r\nclaimants start @ 09/17/17 23:45:01
+claimants update done:09/17/2017 23:46:59
+reps update started:09/18/2017 23:38:01
+reps update done:09/18/2017 23:38:29\r\ncarriers start @ 09/18/17 23:40:01
+carrier update done:09/18/2017 23:40:04\r\nclaimants start @ 09/18/17 23:45:01
+claimants update done:09/18/2017 23:47:14
+reps update started:09/19/2017 23:38:00
+reps update done:09/19/2017 23:38:29\r\ncarriers start @ 09/19/17 23:40:00
+carrier update done:09/19/2017 23:40:03\r\nclaimants start @ 09/19/17 23:45:00
+claimants update done:09/19/2017 23:47:23
+reps update started:09/20/2017 23:38:01
+reps update done:09/20/2017 23:38:29\r\ncarriers start @ 09/20/17 23:40:01
+carrier update done:09/20/2017 23:40:04\r\nclaimants start @ 09/20/17 23:45:01
+claimants update done:09/20/2017 23:47:05
+reps update started:09/21/2017 23:38:00
+reps update done:09/21/2017 23:38:28\r\ncarriers start @ 09/21/17 23:40:00
+carrier update done:09/21/2017 23:40:04\r\nclaimants start @ 09/21/17 23:45:00
+claimants update done:09/21/2017 23:47:16
+reps update started:09/22/2017 23:38:00
+reps update done:09/22/2017 23:38:25\r\ncarriers start @ 09/22/17 23:40:00
+carrier update done:09/22/2017 23:40:03\r\nclaimants start @ 09/22/17 23:45:00
+claimants update done:09/22/2017 23:47:13
+reps update started:09/23/2017 23:38:01
+reps update done:09/23/2017 23:38:26\r\ncarriers start @ 09/23/17 23:40:01
+carrier update done:09/23/2017 23:40:04\r\nclaimants start @ 09/23/17 23:45:01
+claimants update done:09/23/2017 23:47:22
+reps update started:09/24/2017 23:38:01
+reps update done:09/24/2017 23:38:29\r\ncarriers start @ 09/24/17 23:40:01
+carrier update done:09/24/2017 23:40:04\r\nclaimants start @ 09/24/17 23:45:01
+claimants update done:09/24/2017 23:47:42
+reps update started:09/25/2017 23:38:01
+reps update done:09/25/2017 23:38:29\r\ncarriers start @ 09/25/17 23:40:01
+carrier update done:09/25/2017 23:40:03\r\nclaimants start @ 09/25/17 23:45:00
+reps update started:09/26/2017 23:38:01
+reps update done:09/26/2017 23:38:26\r\ncarriers start @ 09/26/17 23:40:00
+carrier update done:09/26/2017 23:40:03\r\nclaimants start @ 09/26/17 23:45:00
+claimants update done:09/26/2017 23:47:18
+reps update started:09/27/2017 23:38:00
+reps update done:09/27/2017 23:38:26\r\ncarriers start @ 09/27/17 23:40:00
+carrier update done:09/27/2017 23:40:03\r\nclaimants start @ 09/27/17 23:45:00
+claimants update done:09/27/2017 23:47:53
+reps update started:09/28/2017 23:38:01
+reps update done:09/28/2017 23:38:27\r\ncarriers start @ 09/28/17 23:40:01
+carrier update done:09/28/2017 23:40:04\r\nclaimants start @ 09/28/17 23:45:01
+reps update started:09/29/2017 23:38:01
+reps update done:09/29/2017 23:38:26\r\ncarriers start @ 09/29/17 23:40:01
+carrier update done:09/29/2017 23:40:04\r\nclaimants start @ 09/29/17 23:45:01
+reps update started:09/30/2017 23:38:01
+reps update done:09/30/2017 23:38:26\r\ncarriers start @ 09/30/17 23:40:01
+carrier update done:09/30/2017 23:40:03\r\nclaimants start @ 09/30/17 23:45:01
+claimants update done:09/30/2017 23:47:07
+reps update started:10/01/2017 23:38:00
+reps update done:10/01/2017 23:38:26\r\ncarriers start @ 10/01/17 23:40:00
+carrier update done:10/01/2017 23:40:03\r\nclaimants start @ 10/01/17 23:45:01
+claimants update done:10/01/2017 23:47:21
+reps update started:10/09/2017 23:38:01\r\ncarriers start @ 10/09/17 23:40:01
+carrier update done:10/09/2017 23:40:04\r\nclaimants start @ 10/09/17 23:45:00
+claimants update done:10/09/2017 23:47:31
+reps update started:10/10/2017 23:38:01
+reps update done:10/10/2017 23:38:27\r\ncarriers start @ 10/10/17 23:40:00
+carrier update done:10/10/2017 23:40:03\r\nclaimants start @ 10/10/17 23:45:01
+claimants update done:10/10/2017 23:47:18
+reps update started:10/11/2017 23:38:01
+reps update done:10/11/2017 23:38:26\r\ncarriers start @ 10/11/17 23:40:01
+carrier update done:10/11/2017 23:40:03\r\nclaimants start @ 10/11/17 23:45:01
+claimants update done:10/11/2017 23:47:12
+reps update started:10/12/2017 23:38:01
+reps update done:10/12/2017 23:38:26\r\ncarriers start @ 10/12/17 23:40:01
+carrier update done:10/12/2017 23:40:03\r\nclaimants start @ 10/12/17 23:45:01
+claimants update done:10/12/2017 23:47:15
+reps update started:10/13/2017 23:38:00
+reps update done:10/13/2017 23:38:25\r\ncarriers start @ 10/13/17 23:40:00
+carrier update done:10/13/2017 23:40:03\r\nclaimants start @ 10/13/17 23:45:00
+claimants update done:10/13/2017 23:47:12
+reps update started:10/14/2017 23:38:01
+reps update done:10/14/2017 23:38:26\r\ncarriers start @ 10/14/17 23:40:01
+carrier update done:10/14/2017 23:40:03\r\nclaimants start @ 10/14/17 23:45:01
+reps update started:10/15/2017 23:38:00
+reps update done:10/15/2017 23:38:25\r\ncarriers start @ 10/15/17 23:40:01
+carrier update done:10/15/2017 23:40:03\r\nclaimants start @ 10/15/17 23:45:00
+claimants update done:10/15/2017 23:47:15
+reps update started:10/16/2017 23:38:00
+reps update done:10/16/2017 23:38:27\r\ncarriers start @ 10/16/17 23:40:00
+carrier update done:10/16/2017 23:40:03\r\nclaimants start @ 10/16/17 23:45:00
+claimants update done:10/16/2017 23:47:13
+reps update started:10/17/2017 23:38:00
+reps update done:10/17/2017 23:38:25\r\ncarriers start @ 10/17/17 23:40:01
+carrier update done:10/17/2017 23:40:04\r\nclaimants start @ 10/17/17 23:45:00
+claimants update done:10/17/2017 23:47:21
+reps update started:10/18/2017 23:38:01
+reps update done:10/18/2017 23:38:26\r\ncarriers start @ 10/18/17 23:40:00
+carrier update done:10/18/2017 23:40:03\r\nclaimants start @ 10/18/17 23:45:01
+claimants update done:10/18/2017 23:47:12
+reps update started:10/19/2017 23:38:00
+reps update done:10/19/2017 23:38:26\r\ncarriers start @ 10/19/17 23:40:01
+carrier update done:10/19/2017 23:40:04\r\nclaimants start @ 10/19/17 23:45:00
+claimants update done:10/19/2017 23:47:16
+reps update started:10/20/2017 23:38:00
+reps update done:10/20/2017 23:38:26\r\ncarriers start @ 10/20/17 23:40:00
+carrier update done:10/20/2017 23:40:03\r\nclaimants start @ 10/20/17 23:45:00
+reps update started:10/21/2017 23:38:01
+reps update done:10/21/2017 23:38:26\r\ncarriers start @ 10/21/17 23:40:02
+carrier update done:10/21/2017 23:40:04\r\nclaimants start @ 10/21/17 23:45:01
+reps update started:10/22/2017 23:38:01
+reps update done:10/22/2017 23:38:27\r\ncarriers start @ 10/22/17 23:40:01
+carrier update done:10/22/2017 23:40:04\r\nclaimants start @ 10/22/17 23:45:01
+claimants update done:10/22/2017 23:47:04
+reps update started:10/23/2017 23:38:01
+reps update done:10/23/2017 23:38:26\r\ncarriers start @ 10/23/17 23:40:01
+carrier update done:10/23/2017 23:40:03\r\nclaimants start @ 10/23/17 23:45:01
+reps update started:10/24/2017 23:38:00
+reps update done:10/24/2017 23:38:26\r\ncarriers start @ 10/24/17 23:40:01
+carrier update done:10/24/2017 23:40:03\r\nclaimants start @ 10/24/17 23:45:01
+claimants update done:10/24/2017 23:47:24
+reps update started:10/25/2017 23:38:00
+reps update done:10/25/2017 23:38:29\r\ncarriers start @ 10/25/17 23:40:00
+carrier update done:10/25/2017 23:40:03\r\nclaimants start @ 10/25/17 23:45:00
+reps update started:10/26/2017 23:38:01
+reps update done:10/26/2017 23:38:26\r\ncarriers start @ 10/26/17 23:40:01
+carrier update done:10/26/2017 23:40:03\r\nclaimants start @ 10/26/17 23:45:01
+reps update started:10/27/2017 23:38:00
+reps update done:10/27/2017 23:38:26\r\ncarriers start @ 10/27/17 23:40:00
+carrier update done:10/27/2017 23:40:03\r\nclaimants start @ 10/27/17 23:45:00
+claimants update done:10/27/2017 23:47:11
+reps update started:10/28/2017 23:38:01
+reps update done:10/28/2017 23:38:26\r\ncarriers start @ 10/28/17 23:40:01
+carrier update done:10/28/2017 23:40:04
+reps update started:10/29/2017 23:38:01
+reps update done:10/29/2017 23:38:27\r\ncarriers start @ 10/29/17 23:40:01
+carrier update done:10/29/2017 23:40:03\r\nclaimants start @ 10/29/17 23:45:01
+claimants update done:10/29/2017 23:47:15
+reps update started:10/30/2017 23:38:00
+reps update done:10/30/2017 23:38:27\r\ncarriers start @ 10/30/17 23:40:01
+carrier update done:10/30/2017 23:40:03\r\nclaimants start @ 10/30/17 23:45:01
+claimants update done:10/30/2017 23:47:13
+reps update started:11/06/2017 23:38:01
+reps update done:11/06/2017 23:38:27\r\ncarriers start @ 11/06/17 23:40:02
+carrier update done:11/06/2017 23:40:05\r\nclaimants start @ 11/06/17 23:45:01
+claimants update done:11/06/2017 23:47:24
+reps update started:11/07/2017 23:38:00
+reps update done:11/07/2017 23:38:27\r\ncarriers start @ 11/07/17 23:40:01
+carrier update done:11/07/2017 23:40:03\r\nclaimants start @ 11/07/17 23:45:01
+claimants update done:11/07/2017 23:47:32
+reps update started:11/08/2017 23:38:00
+reps update done:11/08/2017 23:38:28\r\ncarriers start @ 11/08/17 23:40:01
+carrier update done:11/08/2017 23:40:04\r\nclaimants start @ 11/08/17 23:45:01
+claimants update done:11/08/2017 23:47:19
+reps update started:11/09/2017 23:38:01
+reps update done:11/09/2017 23:38:27\r\ncarriers start @ 11/09/17 23:40:01
+carrier update done:11/09/2017 23:40:04\r\nclaimants start @ 11/09/17 23:45:01
+claimants update done:11/09/2017 23:47:08
+reps update started:11/10/2017 23:38:01
+reps update done:11/10/2017 23:38:28\r\ncarriers start @ 11/10/17 23:40:01
+carrier update done:11/10/2017 23:40:03\r\nclaimants start @ 11/10/17 23:45:01
+claimants update done:11/10/2017 23:47:07
+reps update started:11/16/2017 23:38:01
+reps update done:11/16/2017 23:38:29\r\ncarriers start @ 11/16/17 23:40:00
+carrier update done:11/16/2017 23:40:03\r\nclaimants start @ 11/16/17 23:45:01
+claimants update done:11/16/2017 23:47:14
+reps update started:11/17/2017 23:38:01
+reps update done:11/17/2017 23:38:28\r\ncarriers start @ 11/17/17 23:40:01
+carrier update done:11/17/2017 23:40:03\r\nclaimants start @ 11/17/17 23:45:00
+claimants update done:11/17/2017 23:47:08
+reps update started:11/18/2017 23:38:00
+reps update done:11/18/2017 23:38:27\r\ncarriers start @ 11/18/17 23:40:01
+carrier update done:11/18/2017 23:40:04
+claimants update done:11/18/2017 23:47:21
+reps update started:11/19/2017 23:38:01
+reps update done:11/19/2017 23:38:27\r\ncarriers start @ 11/19/17 23:40:00
+carrier update done:11/19/2017 23:40:03\r\nclaimants start @ 11/19/17 23:45:01
+claimants update done:11/19/2017 23:47:22
+reps update started:11/20/2017 23:38:01
+reps update done:11/20/2017 23:38:31\r\ncarriers start @ 11/20/17 23:40:00
+carrier update done:11/20/2017 23:40:03\r\nclaimants start @ 11/20/17 23:45:01
+claimants update done:11/20/2017 23:47:11
+reps update started:11/21/2017 23:38:01
+reps update done:11/21/2017 23:38:28\r\ncarriers start @ 11/21/17 23:40:00
+carrier update done:11/21/2017 23:40:03\r\nclaimants start @ 11/21/17 23:45:01
+claimants update done:11/21/2017 23:47:11
+reps update started:11/22/2017 23:38:00
+reps update done:11/22/2017 23:38:27\r\ncarriers start @ 11/22/17 23:40:00
+carrier update done:11/22/2017 23:40:03\r\nclaimants start @ 11/22/17 23:45:01
+claimants update done:11/22/2017 23:47:21
+reps update started:11/23/2017 23:38:01
+reps update done:11/23/2017 23:38:27\r\ncarriers start @ 11/23/17 23:40:01
+carrier update done:11/23/2017 23:40:03\r\nclaimants start @ 11/23/17 23:45:01
+claimants update done:11/23/2017 23:47:21
+reps update started:11/24/2017 23:38:01
+reps update done:11/24/2017 23:38:27\r\ncarriers start @ 11/24/17 23:40:01
+carrier update done:11/24/2017 23:40:03\r\nclaimants start @ 11/24/17 23:45:01
+claimants update done:11/24/2017 23:47:20
+reps update started:11/25/2017 23:38:01
+reps update done:11/25/2017 23:38:28\r\ncarriers start @ 11/25/17 23:40:02
+carrier update done:11/25/2017 23:40:04\r\nclaimants start @ 11/25/17 23:45:02
+claimants update done:11/25/2017 23:47:13
+reps update started:11/26/2017 23:38:00
+reps update done:11/26/2017 23:38:27\r\ncarriers start @ 11/26/17 23:40:01
+carrier update done:11/26/2017 23:40:03\r\nclaimants start @ 11/26/17 23:45:01
+claimants update done:11/26/2017 23:47:14
+reps update started:11/27/2017 23:38:01
+reps update done:11/27/2017 23:38:28\r\ncarriers start @ 11/27/17 23:40:01
+carrier update done:11/27/2017 23:40:04\r\nclaimants start @ 11/27/17 23:45:00
+claimants update done:11/27/2017 23:47:24
+reps update started:11/28/2017 23:38:00
+reps update done:11/28/2017 23:38:27\r\ncarriers start @ 11/28/17 23:40:01
+carrier update done:11/28/2017 23:40:04\r\nclaimants start @ 11/28/17 23:45:00
+claimants update done:11/28/2017 23:47:20
+reps update started:11/29/2017 23:38:01
+reps update done:11/29/2017 23:38:28\r\ncarriers start @ 11/29/17 23:40:01
+carrier update done:11/29/2017 23:40:04\r\nclaimants start @ 11/29/17 23:45:01
+claimants update done:11/29/2017 23:47:18
+reps update started:11/30/2017 23:38:01
+reps update done:11/30/2017 23:38:32\r\ncarriers start @ 11/30/17 23:40:01
+carrier update done:11/30/2017 23:40:03\r\nclaimants start @ 11/30/17 23:45:01
+claimants update done:11/30/2017 23:47:09
+reps update started:12/01/2017 23:38:01
+reps update done:12/01/2017 23:38:27\r\ncarriers start @ 12/01/17 23:40:01
+carrier update done:12/01/2017 23:40:03\r\nclaimants start @ 12/01/17 23:45:01
+claimants update done:12/01/2017 23:47:25
+reps update started:12/02/2017 23:38:01
+reps update done:12/02/2017 23:38:28\r\ncarriers start @ 12/02/17 23:40:00
+carrier update done:12/02/2017 23:40:03\r\nclaimants start @ 12/02/17 23:45:01
+claimants update done:12/02/2017 23:47:21
+reps update started:12/03/2017 23:38:00
+reps update done:12/03/2017 23:38:27\r\ncarriers start @ 12/03/17 23:40:02
+carrier update done:12/03/2017 23:40:05\r\nclaimants start @ 12/03/17 23:45:02
+claimants update done:12/03/2017 23:47:12
+reps update started:12/04/2017 23:38:00
+reps update done:12/04/2017 23:38:27\r\ncarriers start @ 12/04/17 23:40:00
+carrier update done:12/04/2017 23:40:03\r\nclaimants start @ 12/04/17 23:45:01
+reps update started:12/05/2017 23:38:01
+reps update done:12/05/2017 23:38:28\r\ncarriers start @ 12/05/17 23:40:01
+carrier update done:12/05/2017 23:40:04\r\nclaimants start @ 12/05/17 23:45:01
+claimants update done:12/05/2017 23:47:13
+reps update started:12/06/2017 23:38:00
+reps update done:12/06/2017 23:38:27\r\ncarriers start @ 12/06/17 23:40:01
+carrier update done:12/06/2017 23:40:04\r\nclaimants start @ 12/06/17 23:45:00
+claimants update done:12/06/2017 23:47:21
+reps update started:12/28/2017 23:30:01
+reps update done:12/28/2017 23:30:32\r\ncarriers start @ 12/28/17 23:40:01
+carrier update done:12/28/2017 23:40:04\r\nclaimants start @ 12/28/17 23:45:01
+claimants update done:12/28/2017 23:47:14
+reps update started:12/29/2017 23:30:01
+reps update done:12/29/2017 23:30:30\r\ncarriers start @ 12/29/17 23:40:01
+carrier update done:12/29/2017 23:40:03\r\nclaimants start @ 12/29/17 23:45:00
+claimants update done:12/29/2017 23:47:10
+reps update started:12/30/2017 23:30:01
+reps update done:12/30/2017 23:30:32\r\nclaimants start @ 12/30/17 23:45:00
+claimants update done:12/30/2017 23:47:18
+reps update started:01/01/2018 23:30:00
+reps update done:01/01/2018 23:30:29\r\ncarriers start @ 01/01/18 23:40:00
+carrier update done:01/01/2018 23:40:02\r\nclaimants start @ 01/01/18 23:45:01
+claimants update done:01/01/2018 23:47:19
+reps update started:01/02/2018 23:30:00
+reps update done:01/02/2018 23:30:26\r\ncarriers start @ 01/02/18 23:40:00
+carrier update done:01/02/2018 23:40:02\r\nclaimants start @ 01/02/18 23:45:00
+claimants update done:01/02/2018 23:47:21
+reps update started:01/03/2018 23:29:59
+reps update done:01/03/2018 23:30:27\r\ncarriers start @ 01/03/18 23:40:00
+carrier update done:01/03/2018 23:40:02\r\nclaimants start @ 01/03/18 23:45:00
+claimants update done:01/03/2018 23:47:18
+reps update started:01/04/2018 23:30:02
+reps update done:01/04/2018 23:30:30\r\ncarriers start @ 01/04/18 23:40:02
+carrier update done:01/04/2018 23:40:04\r\nclaimants start @ 01/04/18 23:45:02
+claimants update done:01/04/2018 23:47:35
+reps update started:01/05/2018 23:30:01
+reps update done:01/05/2018 23:30:29\r\ncarriers start @ 01/05/18 23:40:01
+carrier update done:01/05/2018 23:40:03\r\nclaimants start @ 01/05/18 23:45:01
+claimants update done:01/05/2018 23:47:39
+reps update started:01/06/2018 23:30:01
+reps update done:01/06/2018 23:30:29\r\ncarriers start @ 01/06/18 23:40:00
+carrier update done:01/06/2018 23:40:03\r\nclaimants start @ 01/06/18 23:45:01
+claimants update done:01/06/2018 23:47:35
+reps update started:01/08/2018 23:30:00
+reps update done:01/08/2018 23:30:28\r\ncarriers start @ 01/08/18 23:40:00
+carrier update done:01/08/2018 23:40:03\r\nclaimants start @ 01/08/18 23:45:01
+claimants update done:01/08/2018 23:47:35
+reps update started:01/09/2018 23:30:00
+reps update done:01/09/2018 23:30:28\r\ncarriers start @ 01/09/18 23:40:00
+carrier update done:01/09/2018 23:40:03\r\nclaimants start @ 01/09/18 23:45:00
+claimants update done:01/09/2018 23:47:30
+reps update started:01/10/2018 23:30:00
+reps update done:01/10/2018 23:30:35\r\ncarriers start @ 01/10/18 23:40:00
+carrier update done:01/10/2018 23:40:03\r\nclaimants start @ 01/10/18 23:45:00
+claimants update done:01/10/2018 23:47:13
+reps update started:01/11/2018 23:30:00
+reps update done:01/11/2018 23:30:31\r\ncarriers start @ 01/11/18 23:40:00
+carrier update done:01/11/2018 23:40:02\r\nclaimants start @ 01/11/18 23:44:59
+claimants update done:01/11/2018 23:47:23
+reps update started:01/12/2018 23:30:00
+reps update done:01/12/2018 23:30:27\r\ncarriers start @ 01/12/18 23:39:59
+carrier update done:01/12/2018 23:40:02\r\nclaimants start @ 01/12/18 23:44:59
+claimants update done:01/12/2018 23:47:12
+reps update started:01/13/2018 23:29:59
+reps update done:01/13/2018 23:30:31\r\ncarriers start @ 01/13/18 23:39:59
+carrier update done:01/13/2018 23:40:02\r\nclaimants start @ 01/13/18 23:44:59
+claimants update done:01/13/2018 23:47:17
+reps update started:01/15/2018 23:30:01
+reps update done:01/15/2018 23:30:28\r\ncarriers start @ 01/15/18 23:40:00
+carrier update done:01/15/2018 23:40:03\r\nclaimants start @ 01/15/18 23:45:01
+claimants update done:01/15/2018 23:47:27
+reps update started:01/16/2018 23:30:01
+reps update done:01/16/2018 23:30:28\r\ncarriers start @ 01/16/18 23:40:00
+carrier update done:01/16/2018 23:40:03\r\nclaimants start @ 01/16/18 23:45:01
+reps update started:01/17/2018 23:30:00
+reps update done:01/17/2018 23:30:28\r\ncarriers start @ 01/17/18 23:40:01
+carrier update done:01/17/2018 23:40:03\r\nclaimants start @ 01/17/18 23:45:01
+claimants update done:01/17/2018 23:47:09
+reps update started:01/18/2018 23:30:01
+reps update done:01/18/2018 23:30:31\r\ncarriers start @ 01/18/18 23:40:01
+carrier update done:01/18/2018 23:40:03\r\nclaimants start @ 01/18/18 23:45:01
+claimants update done:01/18/2018 23:47:10
+reps update started:01/19/2018 23:30:01
+reps update done:01/19/2018 23:30:28\r\ncarriers start @ 01/19/18 23:40:01
+carrier update done:01/19/2018 23:40:04\r\nclaimants start @ 01/19/18 23:45:01
+claimants update done:01/19/2018 23:47:20
+reps update started:01/20/2018 23:30:01
+reps update done:01/20/2018 23:30:34\r\ncarriers start @ 01/20/18 23:40:01
+carrier update done:01/20/2018 23:40:04\r\nclaimants start @ 01/20/18 23:45:01
+claimants update done:01/20/2018 23:47:15
+reps update started:01/22/2018 23:30:00
+reps update done:01/22/2018 23:30:31\r\ncarriers start @ 01/22/18 23:40:01
+carrier update done:01/22/2018 23:40:03\r\nclaimants start @ 01/22/18 23:45:01
+reps update started:01/23/2018 23:30:01
+reps update done:01/23/2018 23:30:33\r\ncarriers start @ 01/23/18 23:40:00
+carrier update done:01/23/2018 23:40:03\r\nclaimants start @ 01/23/18 23:45:00
+claimants update done:01/23/2018 23:47:21
+reps update started:01/24/2018 23:29:59
+reps update done:01/24/2018 23:30:27\r\ncarriers start @ 01/24/18 23:40:00
+carrier update done:01/24/2018 23:40:02\r\nclaimants start @ 01/24/18 23:45:00
+claimants update done:01/24/2018 23:47:20
+reps update started:01/25/2018 23:30:00
+reps update done:01/25/2018 23:30:28\r\ncarriers start @ 01/25/18 23:40:00
+carrier update done:01/25/2018 23:40:03\r\nclaimants start @ 01/25/18 23:45:00
+claimants update done:01/25/2018 23:47:44
+reps update started:01/26/2018 23:30:00
+reps update done:01/26/2018 23:30:33\r\ncarriers start @ 01/26/18 23:40:00
+carrier update done:01/26/2018 23:40:03\r\nclaimants start @ 01/26/18 23:45:00
+claimants update done:01/26/2018 23:47:38
+reps update started:01/27/2018 23:29:59
+reps update done:01/27/2018 23:30:31\r\ncarriers start @ 01/27/18 23:40:00
+carrier update done:01/27/2018 23:40:03\r\nclaimants start @ 01/27/18 23:45:00
+claimants update done:01/27/2018 23:48:14
+reps update started:01/29/2018 23:30:01
+reps update done:01/29/2018 23:30:32\r\ncarriers start @ 01/29/18 23:40:01
+carrier update done:01/29/2018 23:40:03\r\nclaimants start @ 01/29/18 23:45:01
+claimants update done:01/29/2018 23:47:42
+reps update started:01/30/2018 23:30:01
+reps update done:01/30/2018 23:30:33\r\ncarriers start @ 01/30/18 23:40:01
+carrier update done:01/30/2018 23:40:03\r\nclaimants start @ 01/30/18 23:45:01
+reps update started:01/31/2018 23:30:00
+reps update done:01/31/2018 23:30:34\r\ncarriers start @ 01/31/18 23:40:00
+carrier update done:01/31/2018 23:40:04\r\nclaimants start @ 01/31/18 23:45:01
+claimants update done:01/31/2018 23:48:08
+reps update started:02/01/2018 23:30:00
+reps update done:02/01/2018 23:30:29\r\ncarriers start @ 02/01/18 23:40:00
+carrier update done:02/01/2018 23:40:03\r\nclaimants start @ 02/01/18 23:45:00
+claimants update done:02/01/2018 23:48:21
+reps update started:02/02/2018 23:30:01
+reps update done:02/02/2018 23:30:33\r\ncarriers start @ 02/02/18 23:40:00
+carrier update done:02/02/2018 23:40:03\r\nclaimants start @ 02/02/18 23:45:01
+claimants update done:02/02/2018 23:47:09
+reps update started:02/03/2018 23:30:00
+reps update done:02/03/2018 23:30:27\r\ncarriers start @ 02/03/18 23:40:00
+carrier update done:02/03/2018 23:40:03\r\nclaimants start @ 02/03/18 23:45:00
+claimants update done:02/03/2018 23:47:34
+reps update started:02/05/2018 23:29:59
+reps update done:02/05/2018 23:30:27\r\ncarriers start @ 02/05/18 23:40:00
+carrier update done:02/05/2018 23:40:02\r\nclaimants start @ 02/05/18 23:44:59
+claimants update done:02/05/2018 23:47:16
+reps update started:02/06/2018 23:29:59
+reps update done:02/06/2018 23:30:29\r\ncarriers start @ 02/06/18 23:40:00
+carrier update done:02/06/2018 23:40:03\r\nclaimants start @ 02/06/18 23:45:00
+claimants update done:02/06/2018 23:47:15
+reps update started:02/23/2018 23:29:55
+reps update done:02/23/2018 23:30:24\r\ncarriers start @ 02/23/18 23:39:55
+carrier update done:02/23/2018 23:39:58\r\nclaimants start @ 02/23/18 23:44:55
+claimants update done:02/23/2018 23:47:13
+reps update started:02/24/2018 23:29:55
+reps update done:02/24/2018 23:30:22\r\ncarriers start @ 02/24/18 23:39:54
+carrier update done:02/24/2018 23:39:57\r\nclaimants start @ 02/24/18 23:44:55
+claimants update done:02/24/2018 23:47:05\r\ncarriers start @ 02/26/18 16:07:46
+carrier update done:02/26/2018 16:07:49
+reps update started:02/26/2018 23:29:54
+reps update done:02/26/2018 23:30:22\r\ncarriers start @ 02/26/18 23:39:53
+carrier update done:02/26/2018 23:39:56\r\nclaimants start @ 02/26/18 23:44:53
+claimants update done:02/26/2018 23:47:20\r\ncarriers start @ 02/27/18 08:25:09
+carrier update done:02/27/2018 08:25:11
+reps update started:02/27/2018 09:56:34
+reps update done:02/27/2018 09:57:04\r\nclaimants start @ 02/27/18 09:57:50\r\ncarriers start @ 02/27/18 10:00:08
+carrier update done:02/27/2018 10:00:10
+reps update started:02/27/2018 15:30:02
+reps update done:02/27/2018 15:30:32\r\ncarriers start @ 02/27/18 15:40:04
+carrier update done:02/27/2018 15:40:06\r\nclaimants start @ 02/27/18 15:45:02
+reps update started:02/28/2018 15:30:04
+reps update done:02/28/2018 15:30:33\r\ncarriers start @ 02/28/18 15:40:03
+carrier update done:02/28/2018 15:40:05\r\nclaimants start @ 02/28/18 15:45:02
+claimants update done:02/28/2018 15:47:47
+reps update started:03/01/2018 15:30:02
+reps update done:03/01/2018 15:30:31\r\ncarriers start @ 03/01/18 15:40:03
+carrier update done:03/01/2018 15:40:05\r\nclaimants start @ 03/01/18 15:45:02
+claimants update done:03/01/2018 15:47:43
+reps update started:03/02/2018 15:30:02
+reps update done:03/02/2018 15:30:31\r\ncarriers start @ 03/02/18 15:40:03
+carrier update done:03/02/2018 15:40:05\r\nclaimants start @ 03/02/18 15:45:02
+claimants update done:03/02/2018 15:47:48
+reps update started:03/03/2018 15:30:05
+reps update done:03/03/2018 15:30:32\r\ncarriers start @ 03/03/18 15:40:05
+carrier update done:03/03/2018 15:40:07
+reps update started:03/04/2018 15:30:04
+reps update done:03/04/2018 15:30:32\r\ncarriers start @ 03/04/18 15:40:04
+carrier update done:03/04/2018 15:40:07\r\nclaimants start @ 03/04/18 15:45:05
+claimants update done:03/04/2018 15:47:09
+reps update started:03/05/2018 15:30:04
+reps update done:03/05/2018 15:30:36\r\ncarriers start @ 03/05/18 15:40:04
+carrier update done:03/05/2018 15:40:07\r\nclaimants start @ 03/05/18 15:45:04
+reps update started:03/06/2018 15:30:05
+reps update done:03/06/2018 15:30:36\r\ncarriers start @ 03/06/18 15:40:04
+carrier update done:03/06/2018 15:40:07\r\nclaimants start @ 03/06/18 15:45:03
+reps update started:03/07/2018 15:30:04
+reps update done:03/07/2018 15:30:36\r\ncarriers start @ 03/07/18 15:40:04
+carrier update done:03/07/2018 15:40:07\r\nclaimants start @ 03/07/18 15:45:03
+reps update started:03/08/2018 15:30:04
+reps update done:03/08/2018 15:30:34\r\ncarriers start @ 03/08/18 15:40:03
+carrier update done:03/08/2018 15:40:05\r\nclaimants start @ 03/08/18 15:45:03
+claimants update done:03/08/2018 15:48:03
+reps update started:03/09/2018 15:30:03
+reps update done:03/09/2018 15:30:33\r\ncarriers start @ 03/09/18 15:40:03
+carrier update done:03/09/2018 15:40:06\r\nclaimants start @ 03/09/18 15:45:03
+claimants update done:03/09/2018 15:47:45
+reps update started:03/10/2018 15:30:04
+reps update done:03/10/2018 15:30:31\r\ncarriers start @ 03/10/18 15:40:03
+carrier update done:03/10/2018 15:40:05\r\nclaimants start @ 03/10/18 15:45:03
+claimants update done:03/10/2018 15:47:11
+reps update started:03/11/2018 16:30:03
+reps update done:03/11/2018 16:30:32\r\ncarriers start @ 03/11/18 16:40:03
+carrier update done:03/11/2018 16:40:05\r\nclaimants start @ 03/11/18 16:45:03
+claimants update done:03/11/2018 16:47:10
+reps update started:03/12/2018 16:30:03
+reps update done:03/12/2018 16:30:32\r\ncarriers start @ 03/12/18 16:40:04
+carrier update done:03/12/2018 16:40:06\r\nclaimants start @ 03/12/18 16:45:03
+reps update started:03/13/2018 16:30:03
+reps update done:03/13/2018 16:30:35\r\ncarriers start @ 03/13/18 16:40:02
+carrier update done:03/13/2018 16:40:05\r\nclaimants start @ 03/13/18 16:45:02
+claimants update done:03/13/2018 16:47:51
+reps update started:03/14/2018 16:30:02
+reps update done:03/14/2018 16:30:34\r\ncarriers start @ 03/14/18 16:40:03
+carrier update done:03/14/2018 16:40:05\r\nclaimants start @ 03/14/18 16:45:02
+reps update started:03/15/2018 16:30:03
+reps update done:03/15/2018 16:30:33\r\ncarriers start @ 03/15/18 16:41:08
+carrier update done:03/15/2018 16:41:11\r\nclaimants start @ 03/15/18 16:45:02
+reps update started:03/16/2018 16:30:02
+reps update done:03/16/2018 16:30:32\r\ncarriers start @ 03/16/18 16:40:01
+carrier update done:03/16/2018 16:40:04\r\nclaimants start @ 03/16/18 16:45:02
+reps update started:03/17/2018 16:30:05
+reps update done:03/17/2018 16:30:33\r\ncarriers start @ 03/17/18 16:40:04
+carrier update done:03/17/2018 16:40:06\r\nclaimants start @ 03/17/18 16:45:04
+claimants update done:03/17/2018 16:47:14
+reps update started:03/18/2018 16:30:04
+reps update done:03/18/2018 16:30:36\r\ncarriers start @ 03/18/18 16:40:04
+carrier update done:03/18/2018 16:40:06\r\nclaimants start @ 03/18/18 16:45:04
+claimants update done:03/18/2018 16:47:07
+reps update started:03/19/2018 16:30:04
+reps update done:03/19/2018 16:30:34\r\ncarriers start @ 03/19/18 16:40:03
+carrier update done:03/19/2018 16:40:06\r\nclaimants start @ 03/19/18 16:45:04
+reps update started:03/20/2018 16:30:04
+reps update done:03/20/2018 16:30:36\r\ncarriers start @ 03/20/18 16:40:04
+carrier update done:03/20/2018 16:40:06\r\nclaimants start @ 03/20/18 16:45:04
+reps update started:03/21/2018 16:30:03
+reps update done:03/21/2018 16:30:35\r\ncarriers start @ 03/21/18 16:40:03
+carrier update done:03/21/2018 16:40:06\r\nclaimants start @ 03/21/18 16:45:04
+claimants update done:03/21/2018 16:47:29
+reps update started:03/22/2018 16:30:03
+reps update done:03/22/2018 16:30:34\r\ncarriers start @ 03/22/18 16:40:03
+carrier update done:03/22/2018 16:40:06\r\nclaimants start @ 03/22/18 16:45:03
+claimants update done:03/22/2018 16:48:37
+reps update started:03/23/2018 16:30:03
+reps update done:03/23/2018 16:30:36\r\ncarriers start @ 03/23/18 16:40:03
+carrier update done:03/23/2018 16:40:06\r\nclaimants start @ 03/23/18 16:45:03
+claimants update done:03/23/2018 16:48:10
+reps update started:03/24/2018 16:30:03
+reps update done:03/24/2018 16:30:38\r\ncarriers start @ 03/24/18 16:40:04
+carrier update done:03/24/2018 16:40:06\r\nclaimants start @ 03/24/18 16:45:03
+claimants update done:03/24/2018 16:47:24
+reps update started:03/25/2018 16:30:03
+reps update done:03/25/2018 16:30:32\r\ncarriers start @ 03/25/18 16:40:03
+carrier update done:03/25/2018 16:40:05\r\nclaimants start @ 03/25/18 16:45:02
+claimants update done:03/25/2018 16:47:24
+reps update started:03/26/2018 16:30:03
+reps update done:03/26/2018 16:30:51\r\ncarriers start @ 03/26/18 16:40:02
+carrier update done:03/26/2018 16:40:12\r\nclaimants start @ 03/26/18 16:45:03
+claimants update done:03/26/2018 16:49:55
+reps update started:03/27/2018 16:30:06
+reps update done:03/27/2018 16:30:35\r\ncarriers start @ 03/27/18 16:40:04
+carrier update done:03/27/2018 16:40:07\r\nclaimants start @ 03/27/18 16:45:04
+claimants update done:03/27/2018 16:49:31
+reps update started:03/28/2018 16:30:03
+reps update done:03/28/2018 16:30:31\r\ncarriers start @ 03/28/18 16:40:05
+carrier update done:03/28/2018 16:40:07\r\nclaimants start @ 03/28/18 16:45:04
+claimants update done:03/28/2018 16:48:17
+reps update started:03/29/2018 13:49:09
+reps update started:03/29/2018 13:50:44
+reps update done:03/29/2018 13:51:13
+reps update started:03/29/2018 16:30:04
+reps update done:03/29/2018 16:30:32\r\ncarriers start @ 03/29/18 16:40:05
+carrier update done:03/29/2018 16:40:07\r\nclaimants start @ 03/29/18 16:45:04
+claimants update done:03/29/2018 16:48:36
+reps update started:03/30/2018 16:30:03
+reps update done:03/30/2018 16:30:31\r\ncarriers start @ 03/30/18 16:40:03
+carrier update done:03/30/2018 16:40:05\r\nclaimants start @ 03/30/18 16:45:03
+claimants update done:03/30/2018 16:48:11
+reps update started:03/31/2018 16:30:03
+reps update done:03/31/2018 16:30:32\r\ncarriers start @ 03/31/18 16:40:04
+carrier update done:03/31/2018 16:40:06\r\nclaimants start @ 03/31/18 16:45:04
+claimants update done:03/31/2018 16:48:08
+reps update started:04/01/2018 16:30:03
+reps update done:04/01/2018 16:30:30\r\ncarriers start @ 04/01/18 16:40:03
+carrier update done:04/01/2018 16:40:05\r\nclaimants start @ 04/01/18 16:45:04
+claimants update done:04/01/2018 16:48:21
+reps update started:04/02/2018 16:30:03
+reps update done:04/02/2018 16:30:32\r\ncarriers start @ 04/02/18 16:40:03
+carrier update done:04/02/2018 16:40:06\r\nclaimants start @ 04/02/18 16:45:03
+reps update started:04/03/2018 16:30:03
+reps update done:04/03/2018 16:30:32\r\ncarriers start @ 04/03/18 16:40:02
+carrier update done:04/03/2018 16:40:05\r\nclaimants start @ 04/03/18 16:45:03
+reps update started:04/04/2018 16:30:02
+reps update done:04/04/2018 16:30:31\r\ncarriers start @ 04/04/18 16:40:02
+carrier update done:04/04/2018 16:40:05\r\nclaimants start @ 04/04/18 16:45:03
+reps update started:04/05/2018 16:30:03
+reps update done:04/05/2018 16:30:30\r\ncarriers start @ 04/05/18 16:40:03
+carrier update done:04/05/2018 16:40:05\r\nclaimants start @ 04/05/18 16:45:03
+reps update started:04/06/2018 16:30:05
+reps update done:04/06/2018 16:30:34\r\ncarriers start @ 04/06/18 16:40:06
+carrier update done:04/06/2018 16:40:08\r\nclaimants start @ 04/06/18 16:45:02
+claimants update done:04/06/2018 16:47:28
+reps update started:04/07/2018 16:30:04
+reps update done:04/07/2018 16:30:32\r\ncarriers start @ 04/07/18 16:40:05
+carrier update done:04/07/2018 16:40:07\r\nclaimants start @ 04/07/18 16:45:04
+claimants update done:04/07/2018 16:47:09
+reps update started:04/08/2018 16:30:05
+reps update done:04/08/2018 16:30:34\r\ncarriers start @ 04/08/18 16:40:04
+carrier update done:04/08/2018 16:40:06\r\nclaimants start @ 04/08/18 16:45:03
+claimants update done:04/08/2018 16:47:17
+reps update started:04/09/2018 16:30:05
+reps update done:04/09/2018 16:30:33\r\ncarriers start @ 04/09/18 16:40:04
+carrier update done:04/09/2018 16:40:06\r\nclaimants start @ 04/09/18 16:45:07
+reps update started:04/10/2018 16:30:04
+reps update done:04/10/2018 16:30:32\r\ncarriers start @ 04/10/18 16:40:08
+carrier update done:04/10/2018 16:40:11\r\nclaimants start @ 04/10/18 16:45:07
+reps update started:04/11/2018 16:30:03
+reps update done:04/11/2018 16:30:30\r\ncarriers start @ 04/11/18 16:40:04
+carrier update done:04/11/2018 16:40:06\r\nclaimants start @ 04/11/18 16:45:05
+reps update started:04/12/2018 16:30:04
+reps update done:04/12/2018 16:30:32\r\ncarriers start @ 04/12/18 16:40:03
+carrier update done:04/12/2018 16:40:06\r\nclaimants start @ 04/12/18 16:45:03
+reps update started:04/13/2018 16:30:05
+reps update done:04/13/2018 16:30:33\r\ncarriers start @ 04/13/18 16:40:03
+carrier update done:04/13/2018 16:40:06\r\nclaimants start @ 04/13/18 16:45:05
+reps update started:04/14/2018 16:30:03
+reps update done:04/14/2018 16:30:31\r\ncarriers start @ 04/14/18 16:40:02
+carrier update done:04/14/2018 16:40:05\r\nclaimants start @ 04/14/18 16:45:04
+claimants update done:04/14/2018 16:47:18
+reps update started:04/15/2018 16:30:03
+reps update done:04/15/2018 16:30:31\r\ncarriers start @ 04/15/18 16:40:03
+carrier update done:04/15/2018 16:40:05\r\nclaimants start @ 04/15/18 16:45:02
+claimants update done:04/15/2018 16:47:09
+reps update started:04/16/2018 16:30:02
+reps update done:04/16/2018 16:30:30\r\ncarriers start @ 04/16/18 16:40:02
+carrier update done:04/16/2018 16:40:04\r\nclaimants start @ 04/16/18 16:45:02
+reps update started:04/17/2018 16:30:02
+reps update done:04/17/2018 16:30:31\r\ncarriers start @ 04/17/18 16:40:02
+carrier update done:04/17/2018 16:40:04\r\nclaimants start @ 04/17/18 16:45:02
+claimants update done:04/17/2018 16:48:24
+reps update started:04/18/2018 16:30:04
+reps update done:04/18/2018 16:30:12\r\ncarriers start @ 04/18/18 16:40:04
+carrier update done:04/18/2018 16:40:06\r\nclaimants start @ 04/18/18 16:45:03
+reps update started:04/19/2018 16:30:05
+reps update done:04/19/2018 16:30:13
+reps update started:04/20/2018 16:30:03
+reps update done:04/20/2018 16:30:11\r\ncarriers start @ 04/20/18 16:40:03
+carrier update done:04/20/2018 16:40:05\r\nclaimants start @ 04/20/18 16:45:04
+claimants update done:04/20/2018 16:48:31
+reps update started:04/21/2018 16:30:04
+reps update done:04/21/2018 16:30:12\r\ncarriers start @ 04/21/18 16:40:04
+carrier update done:04/21/2018 16:40:06\r\nclaimants start @ 04/21/18 16:45:03
+claimants update done:04/21/2018 16:48:04
+reps update started:04/22/2018 16:30:03
+reps update done:04/22/2018 16:30:11\r\ncarriers start @ 04/22/18 16:40:03
+carrier update done:04/22/2018 16:40:05\r\nclaimants start @ 04/22/18 16:45:05
+claimants update done:04/22/2018 16:48:32
+reps update started:04/23/2018 16:30:03
+reps update done:04/23/2018 16:30:11\r\ncarriers start @ 04/23/18 16:40:04
+carrier update done:04/23/2018 16:40:06\r\nclaimants start @ 04/23/18 16:45:03
+claimants update done:04/23/2018 16:49:06
+reps update started:04/24/2018 16:30:02
+reps update done:04/24/2018 16:30:10\r\ncarriers start @ 04/24/18 16:40:01
+carrier update done:04/24/2018 16:40:04\r\nclaimants start @ 04/24/18 16:45:03
+claimants update done:04/24/2018 16:48:44
+reps update started:04/25/2018 16:30:02
+reps update done:04/25/2018 16:30:10\r\ncarriers start @ 04/25/18 16:40:02
+carrier update done:04/25/2018 16:40:04\r\nclaimants start @ 04/25/18 16:45:02
+claimants update done:04/25/2018 16:48:24
+reps update started:04/26/2018 16:30:02
+reps update done:04/26/2018 16:30:11\r\ncarriers start @ 04/26/18 16:40:03
+carrier update done:04/26/2018 16:40:05\r\nclaimants start @ 04/26/18 16:45:02
+claimants update done:04/26/2018 16:49:27
+reps update started:04/27/2018 16:30:02
+reps update done:04/27/2018 16:30:11\r\ncarriers start @ 04/27/18 16:40:02
+carrier update done:04/27/2018 16:40:04\r\nclaimants start @ 04/27/18 16:45:02
+claimants update done:04/27/2018 16:48:43
+reps update started:04/28/2018 16:30:06
+reps update done:04/28/2018 16:30:14\r\ncarriers start @ 04/28/18 16:40:04
+carrier update done:04/28/2018 16:40:06\r\nclaimants start @ 04/28/18 16:45:05
+claimants update done:04/28/2018 16:48:13
+reps update started:04/29/2018 16:30:05
+reps update done:04/29/2018 16:30:13\r\ncarriers start @ 04/29/18 16:40:04
+carrier update done:04/29/2018 16:40:06\r\nclaimants start @ 04/29/18 16:45:04
+claimants update done:04/29/2018 16:48:27
+reps update started:04/30/2018 16:30:03
+reps update done:04/30/2018 16:30:11\r\ncarriers start @ 04/30/18 16:40:04
+carrier update done:04/30/2018 16:40:06\r\nclaimants start @ 04/30/18 16:45:05
+claimants update done:04/30/2018 16:49:11
+reps update started:05/01/2018 16:30:03
+reps update done:05/01/2018 16:30:12\r\ncarriers start @ 05/01/18 16:40:04
+carrier update done:05/01/2018 16:40:07\r\nclaimants start @ 05/01/18 16:45:03
+claimants update done:05/01/2018 16:48:48
+reps update started:05/02/2018 16:30:04
+reps update done:05/02/2018 16:30:11\r\ncarriers start @ 05/02/18 16:40:05
+carrier update done:05/02/2018 16:40:07\r\nclaimants start @ 05/02/18 16:45:02
+claimants update done:05/02/2018 16:48:45
+reps update started:05/03/2018 16:30:03
+reps update done:05/03/2018 16:30:11\r\ncarriers start @ 05/03/18 16:40:02
+carrier update done:05/03/2018 16:40:04\r\nclaimants start @ 05/03/18 16:45:03
+claimants update done:05/03/2018 16:48:39
+reps update started:05/04/2018 16:30:02
+reps update done:05/04/2018 16:30:11\r\ncarriers start @ 05/04/18 16:40:04
+carrier update done:05/04/2018 16:40:06\r\nclaimants start @ 05/04/18 16:45:03
+claimants update done:05/04/2018 16:48:37
+reps update started:05/05/2018 16:30:02
+reps update done:05/05/2018 16:30:10\r\ncarriers start @ 05/05/18 16:40:03
+carrier update done:05/05/2018 16:40:06\r\nclaimants start @ 05/05/18 16:45:03
+claimants update done:05/05/2018 16:48:10
+reps update started:05/06/2018 16:30:04
+reps update done:05/06/2018 16:30:13\r\ncarriers start @ 05/06/18 16:40:02
+carrier update done:05/06/2018 16:40:05\r\nclaimants start @ 05/06/18 16:45:02
+claimants update done:05/06/2018 16:48:18
+reps update started:05/07/2018 16:30:03
+reps update done:05/07/2018 16:30:14\r\ncarriers start @ 05/07/18 16:40:03
+carrier update done:05/07/2018 16:40:07\r\nclaimants start @ 05/07/18 16:45:02
+claimants update done:05/07/2018 16:48:32
+reps update started:05/08/2018 16:30:02
+reps update done:05/08/2018 16:30:11\r\ncarriers start @ 05/08/18 16:40:02
+carrier update done:05/08/2018 16:40:05\r\nclaimants start @ 05/08/18 16:45:02
+claimants update done:05/08/2018 16:48:52
+reps update started:05/09/2018 16:30:02
+reps update done:05/09/2018 16:30:11\r\ncarriers start @ 05/09/18 16:40:03
+carrier update done:05/09/2018 16:40:06\r\nclaimants start @ 05/09/18 16:45:01
+claimants update done:05/09/2018 16:48:40
+reps update started:05/10/2018 16:30:04
+reps update done:05/10/2018 16:30:13\r\ncarriers start @ 05/10/18 16:40:05
+carrier update done:05/10/2018 16:40:07\r\nclaimants start @ 05/10/18 16:45:04
+reps update started:05/11/2018 16:30:03
+reps update done:05/11/2018 16:30:12\r\ncarriers start @ 05/11/18 16:40:03
+carrier update done:05/11/2018 16:40:06\r\nclaimants start @ 05/11/18 16:45:04
+claimants update done:05/11/2018 16:47:32
+reps update started:05/12/2018 16:30:03
+reps update done:05/12/2018 16:30:12\r\ncarriers start @ 05/12/18 16:40:04
+carrier update done:05/12/2018 16:40:09\r\nclaimants start @ 05/12/18 16:45:03
+reps update started:05/13/2018 16:30:03
+reps update done:05/13/2018 16:30:12\r\ncarriers start @ 05/13/18 16:40:04
+carrier update done:05/13/2018 16:40:07\r\nclaimants start @ 05/13/18 16:45:03
+claimants update done:05/13/2018 16:47:10
+reps update started:05/14/2018 16:30:03
+reps update done:05/14/2018 16:30:14\r\ncarriers start @ 05/14/18 16:40:04
+carrier update done:05/14/2018 16:40:06\r\nclaimants start @ 05/14/18 16:45:02
+reps update started:05/15/2018 16:30:02
+reps update done:05/15/2018 16:30:11\r\ncarriers start @ 05/15/18 16:40:02
+carrier update done:05/15/2018 16:40:05\r\nclaimants start @ 05/15/18 16:45:02
+claimants update done:05/15/2018 16:48:20
+reps update started:05/16/2018 16:30:03
+reps update done:05/16/2018 16:30:11\r\ncarriers start @ 05/16/18 16:40:02
+carrier update done:05/16/2018 16:40:05\r\nclaimants start @ 05/16/18 16:45:02
+claimants update done:05/16/2018 16:48:08
+reps update started:05/17/2018 16:30:03
+reps update done:05/17/2018 16:30:12\r\ncarriers start @ 05/17/18 16:40:02
+carrier update done:05/17/2018 16:40:04\r\nclaimants start @ 05/17/18 16:45:03
+claimants update done:05/17/2018 16:48:24
+reps update started:05/18/2018 16:30:01
+reps update done:05/18/2018 16:30:11\r\ncarriers start @ 05/18/18 16:40:01
+carrier update done:05/18/2018 16:40:04\r\nclaimants start @ 05/18/18 16:45:01
+claimants update done:05/18/2018 16:48:29
+reps update started:05/19/2018 16:30:04
+reps update done:05/19/2018 16:30:13\r\ncarriers start @ 05/19/18 16:40:04
+carrier update done:05/19/2018 16:40:06\r\nclaimants start @ 05/19/18 16:45:05
+claimants update done:05/19/2018 16:48:27
+reps update started:05/20/2018 16:30:04
+reps update done:05/20/2018 16:30:13\r\ncarriers start @ 05/20/18 16:40:06
+carrier update done:05/20/2018 16:40:08
+reps update started:05/21/2018 16:30:04
+reps update done:05/21/2018 16:30:16\r\ncarriers start @ 05/21/18 16:40:03
+carrier update done:05/21/2018 16:40:06\r\nclaimants start @ 05/21/18 16:45:05
+reps update started:05/22/2018 16:30:04
+reps update done:05/22/2018 16:30:13\r\ncarriers start @ 05/22/18 16:40:05
+carrier update done:05/22/2018 16:40:07\r\nclaimants start @ 05/22/18 16:45:04
+reps update started:05/23/2018 16:30:04
+reps update done:05/23/2018 16:30:13\r\ncarriers start @ 05/23/18 16:40:03
+carrier update done:05/23/2018 16:40:06\r\nclaimants start @ 05/23/18 16:45:06
+claimants update done:05/23/2018 16:47:42
+reps update started:05/24/2018 16:40:01
+reps update done:05/24/2018 16:40:10\r\ncarriers start @ 05/24/18 16:40:43
+carrier update done:05/24/2018 16:40:46
+reps update started:05/24/2018 16:40:53
+reps update done:05/24/2018 16:41:01
+reps update started:05/24/2018 16:41:06
+reps update started:05/24/2018 16:41:13
+reps update done:05/24/2018 16:41:14
+reps update started:05/24/2018 16:41:21
+reps update done:05/24/2018 16:41:21
+reps update done:05/24/2018 16:41:29
+reps update started:05/24/2018 16:42:08
+reps update started:05/24/2018 16:42:09
+reps update started:05/24/2018 16:42:12
+reps update started:05/24/2018 16:42:12
+reps update started:05/24/2018 16:42:16
+reps update done:05/24/2018 16:42:18
+reps update started:05/24/2018 16:42:18
+reps update done:05/24/2018 16:42:20
+reps update started:05/24/2018 16:42:20
+reps update started:05/24/2018 16:42:21
+reps update done:05/24/2018 16:42:22
+reps update done:05/24/2018 16:42:23
+reps update started:05/24/2018 16:42:24
+reps update started:05/24/2018 16:42:26
+reps update done:05/24/2018 16:42:26
+reps update done:05/24/2018 16:42:28
+reps update done:05/24/2018 16:42:30
+reps update done:05/24/2018 16:42:31
+reps update done:05/24/2018 16:42:34
+reps update done:05/24/2018 16:42:35
+reps update started:05/24/2018 16:42:44
+reps update done:05/24/2018 16:42:53
+reps update started:05/24/2018 16:42:56
+reps update started:05/24/2018 16:42:57
+reps update done:05/24/2018 16:43:05
+reps update done:05/24/2018 16:43:06
+reps update started:05/24/2018 16:43:10
+reps update done:05/24/2018 16:43:18
+reps update started:05/24/2018 16:43:34
+reps update done:05/24/2018 16:43:43
+reps update started:05/24/2018 16:43:49
+reps update started:05/24/2018 16:43:52
+reps update started:05/24/2018 16:43:53
+reps update started:05/24/2018 16:43:53
+reps update done:05/24/2018 16:43:58
+reps update done:05/24/2018 16:44:01
+reps update done:05/24/2018 16:44:02
+reps update done:05/24/2018 16:44:02
+reps update started:05/24/2018 16:44:19
+reps update started:05/24/2018 16:44:24
+reps update done:05/24/2018 16:44:27
+reps update done:05/24/2018 16:44:32
+reps update started:05/24/2018 16:44:43
+reps update started:05/24/2018 16:44:48
+reps update started:05/24/2018 16:44:50
+reps update started:05/24/2018 16:44:51
+reps update done:05/24/2018 16:44:52
+reps update done:05/24/2018 16:44:58
+reps update done:05/24/2018 16:44:59
+reps update done:05/24/2018 16:45:01
+reps update started:05/24/2018 16:45:11\r\nclaimants start @ 05/24/18 16:45:11
+reps update done:05/24/2018 16:45:21
+reps update started:05/24/2018 16:45:24
+reps update started:05/24/2018 16:45:24
+reps update started:05/24/2018 16:45:32
+reps update done:05/24/2018 16:45:33
+reps update done:05/24/2018 16:45:33
+reps update done:05/24/2018 16:45:41
+reps update started:05/24/2018 16:45:43
+reps update started:05/24/2018 16:45:43
+reps update done:05/24/2018 16:45:52
+reps update done:05/24/2018 16:45:53
+reps update started:05/24/2018 16:46:06
+reps update done:05/24/2018 16:46:15
+reps update started:05/24/2018 16:46:23
+reps update done:05/24/2018 16:46:33
+reps update started:05/24/2018 16:46:37
+reps update started:05/24/2018 16:46:42
+reps update started:05/24/2018 16:46:43
+reps update done:05/24/2018 16:46:46
+reps update started:05/24/2018 16:46:48
+reps update done:05/24/2018 16:46:51
+reps update done:05/24/2018 16:46:52
+reps update done:05/24/2018 16:46:56
+reps update started:05/24/2018 16:47:13
+reps update done:05/24/2018 16:47:21
+reps update started:05/24/2018 16:47:23
+reps update started:05/24/2018 16:47:23
+reps update done:05/24/2018 16:47:32
+reps update done:05/24/2018 16:47:32
+reps update started:05/24/2018 16:47:45
+reps update started:05/24/2018 16:47:47
+reps update started:05/24/2018 16:47:47
+reps update done:05/24/2018 16:47:55
+reps update done:05/24/2018 16:47:56
+reps update done:05/24/2018 16:47:56
+claimants update done:05/24/2018 16:48:00
+reps update started:05/24/2018 16:48:08
+reps update done:05/24/2018 16:48:17
+reps update started:05/24/2018 16:48:23
+reps update started:05/24/2018 16:48:28
+reps update started:05/24/2018 16:48:32
+reps update done:05/24/2018 16:48:32
+reps update done:05/24/2018 16:48:37
+reps update done:05/24/2018 16:48:41
+reps update started:05/24/2018 16:48:45
+reps update started:05/24/2018 16:48:45
+reps update done:05/24/2018 16:48:54
+reps update done:05/24/2018 16:48:54\r\ncarriers start @ 05/24/18 16:50:24
+carrier update done:05/24/2018 16:50:27\r\ncarriers start @ 05/24/18 16:50:33
+carrier update done:05/24/2018 16:50:36\r\ncarriers start @ 05/24/18 16:50:39
+carrier update done:05/24/2018 16:50:42\r\ncarriers start @ 05/24/18 16:50:42\r\ncarriers start @ 05/24/18 16:50:44
+carrier update done:05/24/2018 16:50:44
+carrier update done:05/24/2018 16:50:47\r\ncarriers start @ 05/24/18 16:51:09
+carrier update done:05/24/2018 16:51:11\r\ncarriers start @ 05/24/18 16:51:23
+carrier update done:05/24/2018 16:51:26\r\ncarriers start @ 05/24/18 16:51:34
+carrier update done:05/24/2018 16:51:37\r\ncarriers start @ 05/24/18 16:51:39
+carrier update done:05/24/2018 16:51:41\r\ncarriers start @ 05/24/18 16:51:43\r\ncarriers start @ 05/24/18 16:51:44
+carrier update done:05/24/2018 16:51:46
+carrier update done:05/24/2018 16:51:47\r\ncarriers start @ 05/24/18 16:52:06
+carrier update done:05/24/2018 16:52:08\r\ncarriers start @ 05/24/18 16:52:23
+carrier update done:05/24/2018 16:52:26\r\ncarriers start @ 05/24/18 16:52:43\r\ncarriers start @ 05/24/18 16:52:44
+carrier update done:05/24/2018 16:52:45
+carrier update done:05/24/2018 16:52:46\r\ncarriers start @ 05/24/18 16:52:51\r\ncarriers start @ 05/24/18 16:52:51
+carrier update done:05/24/2018 16:52:54
+carrier update done:05/24/2018 16:52:54\r\ncarriers start @ 05/24/18 16:53:05
+carrier update done:05/24/2018 16:53:07\r\ncarriers start @ 05/24/18 16:53:27
+carrier update done:05/24/2018 16:53:29\r\ncarriers start @ 05/24/18 16:53:34\r\ncarriers start @ 05/24/18 16:53:35
+carrier update done:05/24/2018 16:53:37
+carrier update done:05/24/2018 16:53:38\r\ncarriers start @ 05/24/18 16:53:55\r\ncarriers start @ 05/24/18 16:53:56
+carrier update done:05/24/2018 16:53:58
+carrier update done:05/24/2018 16:53:59\r\ncarriers start @ 05/24/18 16:54:05
+carrier update done:05/24/2018 16:54:08\r\ncarriers start @ 05/24/18 16:54:24\r\ncarriers start @ 05/24/18 16:54:26
+carrier update done:05/24/2018 16:54:27
+carrier update done:05/24/2018 16:54:28\r\ncarriers start @ 05/24/18 16:54:34
+carrier update done:05/24/2018 16:54:36\r\ncarriers start @ 05/24/18 16:54:44
+carrier update done:05/24/2018 16:54:47\r\ncarriers start @ 05/24/18 16:54:59
+carrier update done:05/24/2018 16:55:01\r\ncarriers start @ 05/24/18 16:55:24
+carrier update done:05/24/2018 16:55:27\r\ncarriers start @ 05/24/18 16:55:35\r\nclaimants start @ 05/24/18 16:55:35
+carrier update done:05/24/2018 16:55:37\r\ncarriers start @ 05/24/18 16:55:44\r\nclaimants start @ 05/24/18 16:55:44\r\ncarriers start @ 05/24/18 16:55:44\r\nclaimants start @ 05/24/18 16:55:44\r\ncarriers start @ 05/24/18 16:55:45\r\nclaimants start @ 05/24/18 16:55:45
+carrier update done:05/24/2018 16:55:47
+carrier update done:05/24/2018 16:55:47
+carrier update done:05/24/2018 16:55:48\r\ncarriers start @ 05/24/18 16:55:53\r\nclaimants start @ 05/24/18 16:55:53
+carrier update done:05/24/2018 16:55:55\r\nclaimants start @ 05/24/18 16:56:07\r\ncarriers start @ 05/24/18 16:56:07
+carrier update done:05/24/2018 16:56:10\r\nclaimants start @ 05/24/18 16:56:26\r\ncarriers start @ 05/24/18 16:56:26
+carrier update done:05/24/2018 16:56:29\r\nclaimants start @ 05/24/18 16:56:43\r\ncarriers start @ 05/24/18 16:56:43
+carrier update done:05/24/2018 16:56:45\r\ncarriers start @ 05/24/18 16:56:47\r\nclaimants start @ 05/24/18 16:56:47
+carrier update done:05/24/2018 16:56:50\r\nclaimants start @ 05/24/18 16:56:53\r\ncarriers start @ 05/24/18 16:56:53\r\nclaimants start @ 05/24/18 16:56:54\r\ncarriers start @ 05/24/18 16:56:54
+carrier update done:05/24/2018 16:56:56
+carrier update done:05/24/2018 16:56:56\r\nclaimants start @ 05/24/18 16:57:07\r\ncarriers start @ 05/24/18 16:57:07
+carrier update done:05/24/2018 16:57:10\r\nclaimants start @ 05/24/18 16:57:23\r\ncarriers start @ 05/24/18 16:57:23
+carrier update done:05/24/2018 16:57:25\r\nclaimants start @ 05/24/18 16:57:34\r\ncarriers start @ 05/24/18 16:57:34
+carrier update done:05/24/2018 16:57:36\r\nclaimants start @ 05/24/18 16:57:43\r\ncarriers start @ 05/24/18 16:57:43
+carrier update done:05/24/2018 16:57:46\r\ncarriers start @ 05/24/18 16:57:57\r\nclaimants start @ 05/24/18 16:57:57
+carrier update done:05/24/2018 16:57:59\r\nclaimants start @ 05/24/18 16:57:59\r\ncarriers start @ 05/24/18 16:57:59
+carrier update done:05/24/2018 16:58:02\r\ncarriers start @ 05/24/18 16:58:09\r\nclaimants start @ 05/24/18 16:58:09
+carrier update done:05/24/2018 16:58:12\r\nclaimants start @ 05/24/18 16:58:27\r\ncarriers start @ 05/24/18 16:58:27
+carrier update done:05/24/2018 16:58:30\r\ncarriers start @ 05/24/18 16:58:36\r\nclaimants start @ 05/24/18 16:58:36
+carrier update done:05/24/2018 16:58:39\r\ncarriers start @ 05/24/18 16:58:52\r\nclaimants start @ 05/24/18 16:58:52\r\ncarriers start @ 05/24/18 16:58:54\r\nclaimants start @ 05/24/18 16:58:54
+carrier update done:05/24/2018 16:58:55
+carrier update done:05/24/2018 16:58:56\r\ncarriers start @ 05/24/18 16:59:12\r\nclaimants start @ 05/24/18 16:59:12
+carrier update done:05/24/2018 16:59:14\r\ncarriers start @ 05/24/18 16:59:19\r\nclaimants start @ 05/24/18 16:59:19
+carrier update done:05/24/2018 16:59:22\r\ncarriers start @ 05/24/18 16:59:24\r\nclaimants start @ 05/24/18 16:59:24\r\ncarriers start @ 05/24/18 16:59:25\r\nclaimants start @ 05/24/18 16:59:25
+carrier update done:05/24/2018 16:59:26
+carrier update done:05/24/2018 16:59:27\r\ncarriers start @ 05/24/18 16:59:39\r\nclaimants start @ 05/24/18 16:59:39
+carrier update done:05/24/2018 16:59:41\r\ncarriers start @ 05/24/18 16:59:45\r\nclaimants start @ 05/24/18 16:59:45\r\ncarriers start @ 05/24/18 16:59:45\r\nclaimants start @ 05/24/18 16:59:45
+carrier update done:05/24/2018 16:59:47
+carrier update done:05/24/2018 16:59:47\r\nclaimants start @ 05/24/18 17:00:23\r\nclaimants start @ 05/24/18 17:00:32\r\nclaimants start @ 05/24/18 17:00:32\r\nclaimants start @ 05/24/18 17:00:34\r\nclaimants start @ 05/24/18 17:01:02\r\nclaimants start @ 05/24/18 17:01:03\r\nclaimants start @ 05/24/18 17:01:15\r\nclaimants start @ 05/24/18 17:01:23\r\nclaimants start @ 05/24/18 17:01:24\r\nclaimants start @ 05/24/18 17:01:39\r\nclaimants start @ 05/24/18 17:01:45\r\nclaimants start @ 05/24/18 17:01:54\r\nclaimants start @ 05/24/18 17:02:10\r\nclaimants start @ 05/24/18 17:02:23\r\nclaimants start @ 05/24/18 17:02:42\r\nclaimants start @ 05/24/18 17:02:44\r\nclaimants start @ 05/24/18 17:02:49\r\nclaimants start @ 05/24/18 17:02:49\r\nclaimants start @ 05/24/18 17:03:06\r\nclaimants start @ 05/24/18 17:03:28\r\nclaimants start @ 05/24/18 17:03:33\r\nclaimants start @ 05/24/18 17:03:36\r\nclaimants start @ 05/24/18 17:03:45\r\nclaimants start @ 05/24/18 17:03:52\r\nclaimants start @ 05/24/18 17:04:06\r\nclaimants start @ 05/24/18 17:04:33\r\nclaimants start @ 05/24/18 17:04:39\r\nclaimants start @ 05/24/18 17:04:40\r\nclaimants start @ 05/24/18 17:04:46\r\nclaimants start @ 05/24/18 17:04:46\r\nclaimants start @ 05/24/18 17:05:06\r\nclaimants start @ 05/24/18 17:05:34\r\nclaimants start @ 05/24/18 17:05:41\r\nclaimants start @ 05/24/18 17:05:42\r\nclaimants start @ 05/24/18 17:05:43\r\nclaimants start @ 05/24/18 17:05:54\r\nclaimants start @ 05/24/18 17:06:15\r\nclaimants start @ 05/24/18 17:06:27\r\nclaimants start @ 05/24/18 17:06:28\r\nclaimants start @ 05/24/18 17:06:32\r\nclaimants start @ 05/24/18 17:06:46\r\nclaimants start @ 05/24/18 17:06:47\r\nclaimants start @ 05/24/18 17:07:08\r\nclaimants start @ 05/24/18 17:07:23\r\nclaimants start @ 05/24/18 17:07:31\r\nclaimants start @ 05/24/18 17:07:41\r\nclaimants start @ 05/24/18 17:07:44\r\nclaimants start @ 05/24/18 17:07:46\r\nclaimants start @ 05/24/18 17:08:10
+reps update started:05/25/2018 16:30:03
+reps update done:05/25/2018 16:30:11\r\ncarriers start @ 05/25/18 16:40:05
+carrier update done:05/25/2018 16:40:07\r\nclaimants start @ 05/25/18 16:45:03
+reps update started:05/26/2018 16:30:04
+reps update done:05/26/2018 16:30:04\r\ncarriers start @ 05/26/18 16:40:04
+carrier update done:05/26/2018 16:40:04\r\nclaimants start @ 05/26/18 16:45:02
+claimants update done:05/26/2018 16:45:02
+reps update started:05/27/2018 16:30:03
+reps update done:05/27/2018 16:30:03\r\ncarriers start @ 05/27/18 16:40:02
+carrier update done:05/27/2018 16:40:02\r\nclaimants start @ 05/27/18 16:45:03
+claimants update done:05/27/2018 16:45:03
+reps update started:05/28/2018 16:30:01
+reps update done:05/28/2018 16:30:09\r\ncarriers start @ 05/28/18 16:40:01
+carrier update done:05/28/2018 16:40:04\r\nclaimants start @ 05/28/18 16:45:02
+claimants update done:05/28/2018 16:47:18
+reps update started:05/29/2018 16:30:02
+reps update done:05/29/2018 16:30:13\r\ncarriers start @ 05/29/18 16:40:03
+carrier update done:05/29/2018 16:40:06\r\nclaimants start @ 05/29/18 16:45:02
+reps update started:05/30/2018 16:30:01
+reps update done:05/30/2018 16:30:10\r\ncarriers start @ 05/30/18 16:40:03
+carrier update done:05/30/2018 16:40:06\r\nclaimants start @ 05/30/18 16:45:01
+reps update started:05/31/2018 16:30:00
+reps update done:05/31/2018 16:30:08\r\ncarriers start @ 05/31/18 16:40:03
+carrier update done:05/31/2018 16:40:05\r\nclaimants start @ 05/31/18 16:45:00
+reps update started:06/01/2018 16:30:00
+reps update done:06/01/2018 16:30:08\r\ncarriers start @ 06/01/18 16:40:00
+carrier update done:06/01/2018 16:40:02\r\nclaimants start @ 06/01/18 16:45:01
+claimants update done:06/01/2018 16:47:33
+reps update started:06/02/2018 16:30:04
+reps update done:06/02/2018 16:30:13\r\ncarriers start @ 06/02/18 16:40:04
+carrier update done:06/02/2018 16:40:08\r\nclaimants start @ 06/02/18 16:45:05
+claimants update done:06/02/2018 16:47:15
+reps update started:06/03/2018 16:30:03
+reps update done:06/03/2018 16:30:13\r\ncarriers start @ 06/03/18 16:40:04
+carrier update done:06/03/2018 16:40:07\r\nclaimants start @ 06/03/18 16:45:02
+claimants update done:06/03/2018 16:49:23
+reps update started:06/04/2018 16:30:03
+reps update done:06/04/2018 16:30:12\r\ncarriers start @ 06/04/18 16:40:03
+carrier update done:06/04/2018 16:40:06\r\nclaimants start @ 06/04/18 16:45:06
+reps update started:06/05/2018 16:30:02
+reps update done:06/05/2018 16:30:11\r\ncarriers start @ 06/05/18 16:40:02
+carrier update done:06/05/2018 16:40:06\r\nclaimants start @ 06/05/18 16:45:02
+reps update started:06/06/2018 16:30:02
+reps update done:06/06/2018 16:30:11\r\ncarriers start @ 06/06/18 16:40:03
+carrier update done:06/06/2018 16:40:06\r\nclaimants start @ 06/06/18 16:45:03
+claimants update done:06/06/2018 16:48:33
+reps update started:06/07/2018 16:30:04
+reps update done:06/07/2018 16:30:13\r\ncarriers start @ 06/07/18 16:40:03
+carrier update done:06/07/2018 16:40:06\r\nclaimants start @ 06/07/18 16:45:02
+claimants update done:06/07/2018 16:48:44
+reps update started:06/08/2018 16:30:03
+reps update done:06/08/2018 16:30:12\r\ncarriers start @ 06/08/18 16:40:04
+carrier update done:06/08/2018 16:40:07\r\nclaimants start @ 06/08/18 16:45:04
+claimants update done:06/08/2018 16:48:35
+reps update started:06/09/2018 16:30:02
+reps update done:06/09/2018 16:30:10\r\ncarriers start @ 06/09/18 16:40:02
+carrier update done:06/09/2018 16:40:06\r\nclaimants start @ 06/09/18 16:45:02
+claimants update done:06/09/2018 16:48:08
+reps update started:06/10/2018 16:30:03
+reps update done:06/10/2018 16:30:11\r\ncarriers start @ 06/10/18 16:40:07
+carrier update done:06/10/2018 16:40:11\r\nclaimants start @ 06/10/18 16:45:01
+claimants update done:06/10/2018 16:48:25
+reps update started:06/11/2018 16:30:02
+reps update done:06/11/2018 16:30:11\r\ncarriers start @ 06/11/18 16:40:02
+carrier update done:06/11/2018 16:40:05\r\nclaimants start @ 06/11/18 16:45:03
+claimants update done:06/11/2018 16:48:30
+reps update started:06/12/2018 16:30:02
+reps update done:06/12/2018 16:30:11\r\ncarriers start @ 06/12/18 16:40:05
+carrier update done:06/12/2018 16:40:08\r\nclaimants start @ 06/12/18 16:45:01
+claimants update done:06/12/2018 16:48:58
+reps update started:06/13/2018 16:30:01
+reps update done:06/13/2018 16:30:11\r\ncarriers start @ 06/13/18 16:40:06
+carrier update done:06/13/2018 16:40:09\r\nclaimants start @ 06/13/18 16:45:02
+claimants update done:06/13/2018 16:48:31
+reps update started:06/14/2018 16:30:04
+reps update done:06/14/2018 16:30:13\r\ncarriers start @ 06/14/18 16:40:01
+carrier update done:06/14/2018 16:40:04\r\nclaimants start @ 06/14/18 16:45:02
+claimants update done:06/14/2018 16:48:52
+reps update started:06/15/2018 16:30:04
+reps update done:06/15/2018 16:30:12\r\ncarriers start @ 06/15/18 16:40:03
+carrier update done:06/15/2018 16:40:06\r\nclaimants start @ 06/15/18 16:45:05
+claimants update done:06/15/2018 16:47:43
+reps update started:06/16/2018 16:30:03
+reps update done:06/16/2018 16:30:12\r\ncarriers start @ 06/16/18 16:40:05
+carrier update done:06/16/2018 16:40:09\r\nclaimants start @ 06/16/18 16:45:03
+claimants update done:06/16/2018 16:47:17
+reps update started:06/17/2018 16:30:03
+reps update done:06/17/2018 16:30:11\r\ncarriers start @ 06/17/18 16:40:03
+carrier update done:06/17/2018 16:40:06\r\nclaimants start @ 06/17/18 16:45:03
+claimants update done:06/17/2018 16:47:23
+reps update started:06/18/2018 16:30:03
+reps update done:06/18/2018 16:30:11\r\ncarriers start @ 06/18/18 16:40:03
+carrier update done:06/18/2018 16:40:06\r\nclaimants start @ 06/18/18 16:45:03
+reps update started:06/19/2018 16:30:03
+reps update done:06/19/2018 16:30:12\r\ncarriers start @ 06/19/18 16:40:02
+carrier update done:06/19/2018 16:40:05\r\nclaimants start @ 06/19/18 16:45:03
+claimants update done:06/19/2018 16:48:47
+reps update started:06/20/2018 16:30:04
+reps update done:06/20/2018 16:30:13\r\ncarriers start @ 06/20/18 16:40:04
+carrier update done:06/20/2018 16:40:07\r\nclaimants start @ 06/20/18 16:45:05
+claimants update done:06/20/2018 16:48:55
+reps update started:06/21/2018 16:30:04
+reps update done:06/21/2018 16:30:13\r\ncarriers start @ 06/21/18 16:40:04
+carrier update done:06/21/2018 16:40:07\r\nclaimants start @ 06/21/18 16:45:03
+claimants update done:06/21/2018 16:49:35
+reps update started:06/22/2018 16:30:04
+reps update done:06/22/2018 16:30:14\r\ncarriers start @ 06/22/18 16:40:03
+carrier update done:06/22/2018 16:40:06\r\nclaimants start @ 06/22/18 16:45:03
+claimants update done:06/22/2018 16:48:48
+reps update started:06/23/2018 16:30:03
+reps update done:06/23/2018 16:30:12\r\ncarriers start @ 06/23/18 16:40:05
+carrier update done:06/23/2018 16:40:08\r\nclaimants start @ 06/23/18 16:45:03
+claimants update done:06/23/2018 16:48:03
+reps update started:06/24/2018 16:30:03
+reps update done:06/24/2018 16:30:12\r\ncarriers start @ 06/24/18 16:40:02
+carrier update done:06/24/2018 16:40:06\r\nclaimants start @ 06/24/18 16:45:04
+claimants update done:06/24/2018 16:48:01
+reps update started:06/25/2018 16:30:02
+reps update done:06/25/2018 16:30:11\r\ncarriers start @ 06/25/18 16:40:02
+carrier update done:06/25/2018 16:40:05\r\nclaimants start @ 06/25/18 16:45:02
+claimants update done:06/25/2018 16:48:21
+reps update started:06/26/2018 16:30:03
+reps update done:06/26/2018 16:30:13\r\ncarriers start @ 06/26/18 16:40:03
+carrier update done:06/26/2018 16:40:06\r\nclaimants start @ 06/26/18 16:45:02
+claimants update done:06/26/2018 16:48:44
+reps update started:06/27/2018 16:30:03
+reps update done:06/27/2018 16:30:12\r\ncarriers start @ 06/27/18 16:40:03
+carrier update done:06/27/2018 16:40:06\r\nclaimants start @ 06/27/18 16:45:01
+claimants update done:06/27/2018 16:48:20
+reps update started:06/28/2018 16:30:01
+reps update done:06/28/2018 16:30:10\r\ncarriers start @ 06/28/18 16:40:00
+carrier update done:06/28/2018 16:40:03\r\nclaimants start @ 06/28/18 16:44:59
+claimants update done:06/28/2018 16:49:32
+reps update started:06/29/2018 16:30:00
+reps update done:06/29/2018 16:30:09\r\ncarriers start @ 06/29/18 16:40:00
+carrier update done:06/29/2018 16:40:03\r\nclaimants start @ 06/29/18 16:45:00
+claimants update done:06/29/2018 16:48:26
+reps update started:06/30/2018 16:30:02
+reps update done:06/30/2018 16:30:11\r\ncarriers start @ 06/30/18 16:40:02
+carrier update done:06/30/2018 16:40:05\r\nclaimants start @ 06/30/18 16:45:04
+claimants update done:06/30/2018 16:48:29
+reps update started:07/01/2018 16:30:04
+reps update done:07/01/2018 16:30:12\r\ncarriers start @ 07/01/18 16:40:02
+carrier update done:07/01/2018 16:40:05\r\nclaimants start @ 07/01/18 16:45:04
+claimants update done:07/01/2018 16:47:59
+reps update started:07/02/2018 16:30:02
+reps update done:07/02/2018 16:30:12\r\ncarriers start @ 07/02/18 16:40:02
+carrier update done:07/02/2018 16:40:05\r\nclaimants start @ 07/02/18 16:45:04
+claimants update done:07/02/2018 16:48:33
+reps update started:07/03/2018 16:30:02
+reps update done:07/03/2018 16:30:11\r\ncarriers start @ 07/03/18 16:40:03
+carrier update done:07/03/2018 16:40:06\r\nclaimants start @ 07/03/18 16:45:02
+claimants update done:07/03/2018 16:48:17
+reps update started:07/04/2018 16:30:02
+reps update done:07/04/2018 16:30:11\r\ncarriers start @ 07/04/18 16:40:02
+carrier update done:07/04/2018 16:40:05\r\nclaimants start @ 07/04/18 16:45:01
+claimants update done:07/04/2018 16:48:09
+reps update started:07/05/2018 16:30:04
+reps update done:07/05/2018 16:30:13\r\ncarriers start @ 07/05/18 16:40:02
+carrier update done:07/05/2018 16:40:05\r\nclaimants start @ 07/05/18 16:45:02
+claimants update done:07/05/2018 16:48:47
+reps update started:07/06/2018 16:30:01
+reps update done:07/06/2018 16:30:09\r\ncarriers start @ 07/06/18 16:40:03
+carrier update done:07/06/2018 16:40:06\r\nclaimants start @ 07/06/18 16:45:02
+reps update started:07/07/2018 16:30:02
+reps update done:07/07/2018 16:30:10\r\ncarriers start @ 07/07/18 16:40:04
+carrier update done:07/07/2018 16:40:08\r\nclaimants start @ 07/07/18 16:45:02
+reps update started:07/08/2018 16:30:01
+reps update done:07/08/2018 16:30:10\r\ncarriers start @ 07/08/18 16:40:01
+carrier update done:07/08/2018 16:40:04\r\nclaimants start @ 07/08/18 16:45:02
+claimants update done:07/08/2018 16:47:17
+reps update started:07/09/2018 16:30:01
+reps update done:07/09/2018 16:30:11\r\ncarriers start @ 07/09/18 16:40:01
+carrier update done:07/09/2018 16:40:04\r\nclaimants start @ 07/09/18 16:45:01
+reps update started:07/10/2018 16:30:01
+reps update done:07/10/2018 16:30:09\r\ncarriers start @ 07/10/18 16:40:02
+carrier update done:07/10/2018 16:40:04\r\nclaimants start @ 07/10/18 16:45:00
+reps update started:07/11/2018 16:30:01
+reps update done:07/11/2018 16:30:10\r\ncarriers start @ 07/11/18 16:40:02
+carrier update done:07/11/2018 16:40:04\r\nclaimants start @ 07/11/18 16:45:01
+reps update started:07/12/2018 16:30:00
+reps update done:07/12/2018 16:30:09\r\ncarriers start @ 07/12/18 16:40:01
+carrier update done:07/12/2018 16:40:03\r\nclaimants start @ 07/12/18 16:45:00
+claimants update done:07/12/2018 16:48:33
+reps update started:07/13/2018 16:30:01
+reps update done:07/13/2018 16:30:09\r\ncarriers start @ 07/13/18 16:40:00
+carrier update done:07/13/2018 16:40:03\r\nclaimants start @ 07/13/18 16:45:02
+reps update started:07/14/2018 16:30:03
+reps update done:07/14/2018 16:30:11\r\ncarriers start @ 07/14/18 16:40:02
+carrier update done:07/14/2018 16:40:06\r\nclaimants start @ 07/14/18 16:45:03
+claimants update done:07/14/2018 16:47:22
+reps update started:07/15/2018 16:30:04
+reps update done:07/15/2018 16:30:12\r\ncarriers start @ 07/15/18 16:40:03
+carrier update done:07/15/2018 16:40:06\r\nclaimants start @ 07/15/18 16:45:03
+claimants update done:07/15/2018 16:47:22
+reps update started:07/16/2018 16:30:02
+reps update done:07/16/2018 16:30:11\r\ncarriers start @ 07/16/18 16:40:04
+carrier update done:07/16/2018 16:40:07\r\nclaimants start @ 07/16/18 16:45:02
+claimants update done:07/16/2018 16:47:35
+reps update started:07/17/2018 16:30:01
+reps update done:07/17/2018 16:30:10\r\ncarriers start @ 07/17/18 16:40:02
+carrier update done:07/17/2018 16:40:05\r\nclaimants start @ 07/17/18 16:45:02
+reps update started:07/19/2018 16:30:01
+reps update done:07/19/2018 16:30:10\r\ncarriers start @ 07/19/18 16:40:03
+carrier update done:07/19/2018 16:40:06\r\nclaimants start @ 07/19/18 16:45:01
+reps update started:07/20/2018 16:30:01
+reps update done:07/20/2018 16:30:10\r\ncarriers start @ 07/20/18 16:40:02
+carrier update done:07/20/2018 16:40:05\r\nclaimants start @ 07/20/18 16:45:01
+claimants update done:07/20/2018 16:48:55
+reps update started:07/21/2018 16:30:04
+reps update done:07/21/2018 16:30:12\r\ncarriers start @ 07/21/18 16:40:03
+carrier update done:07/21/2018 16:40:06\r\nclaimants start @ 07/21/18 16:45:01
+claimants update done:07/21/2018 16:47:12
+reps update started:07/22/2018 16:30:01
+reps update done:07/22/2018 16:30:10\r\ncarriers start @ 07/22/18 16:40:04
+carrier update done:07/22/2018 16:40:07\r\nclaimants start @ 07/22/18 16:45:04
+claimants update done:07/22/2018 16:47:33
+reps update started:07/23/2018 16:30:03
+reps update done:07/23/2018 16:30:11\r\ncarriers start @ 07/23/18 16:40:01
+carrier update done:07/23/2018 16:40:04\r\nclaimants start @ 07/23/18 16:45:02
+reps update started:07/24/2018 16:30:02
+reps update done:07/24/2018 16:30:10\r\ncarriers start @ 07/24/18 16:40:04
+carrier update done:07/24/2018 16:40:06\r\nclaimants start @ 07/24/18 16:45:00\r\ncarriers start @ 07/25/18 09:14:39
+carrier update done:07/25/2018 09:14:41
+reps update started:07/25/2018 09:17:46
+reps update done:07/25/2018 09:17:54\r\nclaimants start @ 07/25/18 09:18:37
+reps update started:07/25/2018 16:30:02
+reps update done:07/25/2018 16:30:10\r\ncarriers start @ 07/25/18 16:40:00
+carrier update done:07/25/2018 16:40:03\r\nclaimants start @ 07/25/18 16:45:01
+reps update started:07/26/2018 16:30:02
+reps update done:07/26/2018 16:30:10\r\ncarriers start @ 07/26/18 16:40:03
+carrier update done:07/26/2018 16:40:06\r\nclaimants start @ 07/26/18 16:45:00
+reps update started:07/27/2018 16:30:00
+reps update done:07/27/2018 16:30:08\r\ncarriers start @ 07/27/18 16:40:00
+carrier update done:07/27/2018 16:40:03\r\nclaimants start @ 07/27/18 16:45:01
+reps update started:07/28/2018 16:30:03
+reps update done:07/28/2018 16:30:12\r\ncarriers start @ 07/28/18 16:40:03
+carrier update done:07/28/2018 16:40:06\r\nclaimants start @ 07/28/18 16:45:03
+claimants update done:07/28/2018 16:47:20
+reps update started:07/29/2018 16:30:04
+reps update done:07/29/2018 16:30:12\r\ncarriers start @ 07/29/18 16:40:01
+carrier update done:07/29/2018 16:40:04\r\nclaimants start @ 07/29/18 16:45:04
+claimants update done:07/29/2018 16:47:17
+reps update started:07/30/2018 16:30:02
+reps update done:07/30/2018 16:30:10\r\ncarriers start @ 07/30/18 16:40:01
+carrier update done:07/30/2018 16:40:04\r\nclaimants start @ 07/30/18 16:45:03
+reps update started:07/31/2018 16:30:04
+reps update done:07/31/2018 16:30:13\r\ncarriers start @ 07/31/18 16:40:03
+carrier update done:07/31/2018 16:40:06\r\nclaimants start @ 07/31/18 16:45:02
+claimants update done:07/31/2018 16:48:56
+reps update started:08/01/2018 16:30:02
+reps update done:08/01/2018 16:30:10\r\ncarriers start @ 08/01/18 16:40:03
+carrier update done:08/01/2018 16:40:05\r\nclaimants start @ 08/01/18 16:45:01
+claimants update done:08/01/2018 16:47:34
+reps update started:08/02/2018 16:30:02
+reps update done:08/02/2018 16:30:11\r\ncarriers start @ 08/02/18 16:40:00
+carrier update done:08/02/2018 16:40:03\r\nclaimants start @ 08/02/18 16:45:01
+reps update started:08/03/2018 16:30:03
+reps update done:08/03/2018 16:30:11\r\ncarriers start @ 08/03/18 16:40:01
+carrier update done:08/03/2018 16:40:04\r\nclaimants start @ 08/03/18 16:45:01
+claimants update done:08/03/2018 16:47:40
+reps update started:08/04/2018 16:30:03
+reps update done:08/04/2018 16:30:12\r\ncarriers start @ 08/04/18 16:40:02
+carrier update done:08/04/2018 16:40:04\r\nclaimants start @ 08/04/18 16:45:03
+claimants update done:08/04/2018 16:47:31
+reps update started:08/05/2018 16:30:03
+reps update done:08/05/2018 16:30:12\r\ncarriers start @ 08/05/18 16:40:02
+carrier update done:08/05/2018 16:40:04\r\nclaimants start @ 08/05/18 16:45:02
+claimants update done:08/05/2018 16:47:13
+reps update started:08/06/2018 16:30:02
+reps update done:08/06/2018 16:30:10\r\ncarriers start @ 08/06/18 16:40:02
+carrier update done:08/06/2018 16:40:04\r\nclaimants start @ 08/06/18 16:45:02
+reps update started:08/07/2018 16:30:01
+reps update done:08/07/2018 16:30:10\r\ncarriers start @ 08/07/18 16:40:01
+carrier update done:08/07/2018 16:40:04\r\nclaimants start @ 08/07/18 16:45:00
+reps update started:08/08/2018 16:30:01
+reps update done:08/08/2018 16:30:10\r\ncarriers start @ 08/08/18 16:40:01
+carrier update done:08/08/2018 16:40:04\r\nclaimants start @ 08/08/18 16:45:02
+reps update started:08/09/2018 16:30:01
+reps update done:08/09/2018 16:30:09\r\ncarriers start @ 08/09/18 16:40:00
+carrier update done:08/09/2018 16:40:03\r\nclaimants start @ 08/09/18 16:45:03
+reps update started:08/10/2018 16:30:02
+reps update done:08/10/2018 16:30:11\r\ncarriers start @ 08/10/18 16:40:00
+carrier update done:08/10/2018 16:40:03\r\nclaimants start @ 08/10/18 16:45:01
+reps update started:08/11/2018 16:30:03
+reps update done:08/11/2018 16:30:12\r\ncarriers start @ 08/11/18 16:40:04
+carrier update done:08/11/2018 16:40:07\r\nclaimants start @ 08/11/18 16:45:05
+claimants update done:08/11/2018 16:47:17
+reps update started:08/12/2018 16:30:03
+reps update done:08/12/2018 16:30:12\r\ncarriers start @ 08/12/18 16:40:01
+carrier update done:08/12/2018 16:40:04\r\nclaimants start @ 08/12/18 16:45:02
+claimants update done:08/12/2018 16:47:36
+reps update started:08/13/2018 16:30:03
+reps update done:08/13/2018 16:30:15\r\ncarriers start @ 08/13/18 16:40:02
+carrier update done:08/13/2018 16:40:05\r\nclaimants start @ 08/13/18 16:45:02
+claimants update done:08/13/2018 16:48:21
+reps update started:08/14/2018 16:30:01
+reps update done:08/14/2018 16:30:10\r\ncarriers start @ 08/14/18 16:40:01
+carrier update done:08/14/2018 16:40:04\r\nclaimants start @ 08/14/18 16:45:02
+claimants update done:08/14/2018 16:49:18
+reps update started:08/15/2018 16:30:02
+reps update done:08/15/2018 16:30:11\r\ncarriers start @ 08/15/18 16:40:03
+carrier update done:08/15/2018 16:40:06\r\nclaimants start @ 08/15/18 16:45:02
+claimants update done:08/15/2018 16:49:18
+reps update started:08/16/2018 16:30:04
+reps update done:08/16/2018 16:30:13\r\ncarriers start @ 08/16/18 16:40:04
+carrier update done:08/16/2018 16:40:07\r\nclaimants start @ 08/16/18 16:45:03
+claimants update done:08/16/2018 16:48:07
+reps update started:08/17/2018 16:30:02
+reps update done:08/17/2018 16:30:11\r\ncarriers start @ 08/17/18 16:40:02
+carrier update done:08/17/2018 16:40:05\r\nclaimants start @ 08/17/18 16:45:02
+claimants update done:08/17/2018 16:48:39
+reps update started:08/18/2018 16:30:01
+reps update done:08/18/2018 16:30:10\r\ncarriers start @ 08/18/18 16:40:02
+carrier update done:08/18/2018 16:40:05\r\nclaimants start @ 08/18/18 16:45:02
+claimants update done:08/18/2018 16:48:03
+reps update started:08/19/2018 16:30:04
+reps update done:08/19/2018 16:30:12\r\ncarriers start @ 08/19/18 16:40:05
+carrier update done:08/19/2018 16:40:08\r\nclaimants start @ 08/19/18 16:45:03
+claimants update done:08/19/2018 16:48:21
+reps update started:08/20/2018 16:30:04
+reps update done:08/20/2018 16:30:14\r\ncarriers start @ 08/20/18 16:40:02
+carrier update done:08/20/2018 16:40:05\r\nclaimants start @ 08/20/18 16:45:01
+claimants update done:08/20/2018 16:49:15
+reps update started:08/21/2018 16:30:05
+reps update done:08/21/2018 16:30:18\r\ncarriers start @ 08/21/18 16:40:03
+carrier update done:08/21/2018 16:40:07\r\nclaimants start @ 08/21/18 16:45:02
+reps update started:08/22/2018 16:30:04
+reps update done:08/22/2018 16:30:14\r\ncarriers start @ 08/22/18 16:40:02
+carrier update done:08/22/2018 16:40:05\r\nclaimants start @ 08/22/18 16:45:01
+claimants update done:08/22/2018 16:48:16
+reps update started:08/23/2018 16:30:03
+reps update done:08/23/2018 16:30:12\r\ncarriers start @ 08/23/18 16:40:02
+carrier update done:08/23/2018 16:40:04\r\nclaimants start @ 08/23/18 16:45:01
+claimants update done:08/23/2018 16:47:46
+reps update started:08/24/2018 16:30:01
+reps update done:08/24/2018 16:30:11\r\ncarriers start @ 08/24/18 16:40:03
+carrier update done:08/24/2018 16:40:06\r\nclaimants start @ 08/24/18 16:45:01
+claimants update done:08/24/2018 16:47:57
+reps update started:08/25/2018 16:30:00
+reps update done:08/25/2018 16:30:08\r\ncarriers start @ 08/25/18 16:40:01
+carrier update done:08/25/2018 16:40:04\r\nclaimants start @ 08/25/18 16:45:01
+claimants update done:08/25/2018 16:47:19
+reps update started:08/26/2018 16:30:01
+reps update done:08/26/2018 16:30:10\r\ncarriers start @ 08/26/18 16:40:01
+carrier update done:08/26/2018 16:40:04\r\nclaimants start @ 08/26/18 16:45:00
+claimants update done:08/26/2018 16:47:16
+reps update started:08/27/2018 16:30:04
+reps update done:08/27/2018 16:30:15\r\ncarriers start @ 08/27/18 16:40:12
+carrier update done:08/27/2018 16:40:16\r\nclaimants start @ 08/27/18 16:45:02
+claimants update done:08/27/2018 16:49:27
+reps update started:08/28/2018 16:30:01
+reps update done:08/28/2018 16:30:10\r\ncarriers start @ 08/28/18 16:40:03
+carrier update done:08/28/2018 16:40:06\r\nclaimants start @ 08/28/18 16:45:00
+claimants update done:08/28/2018 16:49:02
+reps update started:08/29/2018 16:30:02
+reps update done:08/29/2018 16:30:11\r\ncarriers start @ 08/29/18 16:40:02
+carrier update done:08/29/2018 16:40:05\r\nclaimants start @ 08/29/18 16:45:03
+claimants update done:08/29/2018 16:48:26
+reps update started:08/30/2018 16:30:02
+reps update done:08/30/2018 16:30:11\r\ncarriers start @ 08/30/18 16:40:04
+carrier update done:08/30/2018 16:40:07\r\nclaimants start @ 08/30/18 16:45:03
+reps update started:08/31/2018 16:30:03
+reps update done:08/31/2018 16:30:12\r\ncarriers start @ 08/31/18 16:40:02
+carrier update done:08/31/2018 16:40:05\r\nclaimants start @ 08/31/18 16:45:02
+claimants update done:08/31/2018 16:47:51
+reps update started:09/01/2018 16:30:04
+reps update done:09/01/2018 16:30:12\r\ncarriers start @ 09/01/18 16:40:02
+carrier update done:09/01/2018 16:40:06\r\nclaimants start @ 09/01/18 16:45:00
+claimants update done:09/01/2018 16:47:53
+reps update started:09/02/2018 16:30:02
+reps update done:09/02/2018 16:30:10\r\ncarriers start @ 09/02/18 16:40:02
+carrier update done:09/02/2018 16:40:05\r\nclaimants start @ 09/02/18 16:45:01
+claimants update done:09/02/2018 16:47:54
+reps update started:09/03/2018 16:30:03
+reps update done:09/03/2018 16:30:12\r\ncarriers start @ 09/03/18 16:40:01
+carrier update done:09/03/2018 16:40:04\r\nclaimants start @ 09/03/18 16:45:02
+claimants update done:09/03/2018 16:47:49
+reps update started:09/04/2018 16:30:00
+reps update done:09/04/2018 16:30:09\r\ncarriers start @ 09/04/18 16:40:00
+carrier update done:09/04/2018 16:40:03\r\nclaimants start @ 09/04/18 16:44:59
+claimants update done:09/04/2018 16:48:22
+reps update started:09/05/2018 16:30:01
+reps update done:09/05/2018 16:30:11\r\ncarriers start @ 09/05/18 16:39:59
+carrier update done:09/05/2018 16:40:02\r\nclaimants start @ 09/05/18 16:45:01
+claimants update done:09/05/2018 16:48:47
+reps update started:09/06/2018 16:30:00
+reps update done:09/06/2018 16:30:11\r\ncarriers start @ 09/06/18 16:40:01
+carrier update done:09/06/2018 16:40:04\r\nclaimants start @ 09/06/18 16:44:59
+claimants update done:09/06/2018 16:48:56
+reps update started:09/07/2018 16:29:58
+reps update done:09/07/2018 16:30:07\r\ncarriers start @ 09/07/18 16:39:59
+carrier update done:09/07/2018 16:40:02\r\nclaimants start @ 09/07/18 16:44:58
+claimants update done:09/07/2018 16:48:12
+reps update started:09/08/2018 16:30:01
+reps update done:09/08/2018 16:30:11\r\ncarriers start @ 09/08/18 16:40:01
+carrier update done:09/08/2018 16:40:04\r\nclaimants start @ 09/08/18 16:45:01
+claimants update done:09/08/2018 16:49:22
+reps update started:09/09/2018 16:30:03
+reps update done:09/09/2018 16:30:12\r\ncarriers start @ 09/09/18 16:40:01
+carrier update done:09/09/2018 16:40:04\r\nclaimants start @ 09/09/18 16:45:02
+claimants update done:09/09/2018 16:48:03
+reps update started:09/10/2018 16:30:01
+reps update done:09/10/2018 16:30:11\r\ncarriers start @ 09/10/18 16:40:02
+carrier update done:09/10/2018 16:40:05\r\nclaimants start @ 09/10/18 16:45:00
+claimants update done:09/10/2018 16:48:19
+reps update started:09/11/2018 16:30:00
+reps update done:09/11/2018 16:30:09\r\ncarriers start @ 09/11/18 16:40:01
+carrier update done:09/11/2018 16:40:04\r\nclaimants start @ 09/11/18 16:45:02
+claimants update done:09/11/2018 16:48:22
+reps update started:09/12/2018 16:30:01
+reps update done:09/12/2018 16:30:10\r\ncarriers start @ 09/12/18 16:40:01
+carrier update done:09/12/2018 16:40:05\r\nclaimants start @ 09/12/18 16:45:00
+claimants update done:09/12/2018 16:48:23
+reps update started:09/13/2018 16:30:00
+reps update done:09/13/2018 16:30:09\r\ncarriers start @ 09/13/18 16:40:01
+carrier update done:09/13/2018 16:40:06\r\nclaimants start @ 09/13/18 16:44:59
+claimants update done:09/13/2018 16:48:28
+reps update started:09/14/2018 16:29:59
+reps update done:09/14/2018 16:30:09\r\ncarriers start @ 09/14/18 16:40:02
+carrier update done:09/14/2018 16:40:05\r\nclaimants start @ 09/14/18 16:44:59
+claimants update done:09/14/2018 16:48:32
+reps update started:09/15/2018 16:30:00
+reps update done:09/15/2018 16:30:09\r\ncarriers start @ 09/15/18 16:40:00
+carrier update done:09/15/2018 16:40:03\r\nclaimants start @ 09/15/18 16:45:01
+claimants update done:09/15/2018 16:47:36
+reps update started:09/16/2018 16:30:01
+reps update done:09/16/2018 16:30:09\r\ncarriers start @ 09/16/18 16:40:00
+carrier update done:09/16/2018 16:40:03\r\nclaimants start @ 09/16/18 16:45:02
+claimants update done:09/16/2018 16:47:31
+reps update started:09/17/2018 16:30:03
+reps update done:09/17/2018 16:30:12\r\ncarriers start @ 09/17/18 16:40:03
+carrier update done:09/17/2018 16:40:07\r\nclaimants start @ 09/17/18 16:45:02
+claimants update done:09/17/2018 16:48:34
+reps update started:09/18/2018 16:30:02
+reps update done:09/18/2018 16:30:11\r\ncarriers start @ 09/18/18 16:40:01
+carrier update done:09/18/2018 16:40:04\r\nclaimants start @ 09/18/18 16:45:00
+claimants update done:09/18/2018 16:48:20
+reps update started:09/19/2018 16:30:00
+reps update done:09/19/2018 16:30:09\r\ncarriers start @ 09/19/18 16:40:00
+carrier update done:09/19/2018 16:40:03\r\nclaimants start @ 09/19/18 16:45:02
+claimants update done:09/19/2018 16:48:04
+reps update started:09/20/2018 16:30:01
+reps update done:09/20/2018 16:30:10\r\ncarriers start @ 09/20/18 16:40:06
+carrier update done:09/20/2018 16:40:08\r\nclaimants start @ 09/20/18 16:45:02
+claimants update done:09/20/2018 16:48:13
+reps update started:09/21/2018 16:30:01
+reps update done:09/21/2018 16:30:10\r\ncarriers start @ 09/21/18 16:40:01
+carrier update done:09/21/2018 16:40:04\r\nclaimants start @ 09/21/18 16:45:02
+claimants update done:09/21/2018 16:48:25
+reps update started:09/22/2018 16:30:02
+reps update done:09/22/2018 16:30:10\r\ncarriers start @ 09/22/18 16:40:02
+carrier update done:09/22/2018 16:40:05\r\nclaimants start @ 09/22/18 16:45:02
+claimants update done:09/22/2018 16:47:58
+reps update started:09/23/2018 16:30:02
+reps update done:09/23/2018 16:30:10\r\ncarriers start @ 09/23/18 16:40:01
+carrier update done:09/23/2018 16:40:04\r\nclaimants start @ 09/23/18 16:45:02
+claimants update done:09/23/2018 16:47:46
+reps update started:09/24/2018 16:30:01
+reps update done:09/24/2018 16:30:11\r\ncarriers start @ 09/24/18 16:40:00
+carrier update done:09/24/2018 16:40:03\r\nclaimants start @ 09/24/18 16:45:00
+claimants update done:09/24/2018 16:48:24
+reps update started:09/25/2018 16:30:02
+reps update done:09/25/2018 16:30:12\r\ncarriers start @ 09/25/18 16:40:00
+carrier update done:09/25/2018 16:40:03\r\nclaimants start @ 09/25/18 16:45:01
+claimants update done:09/25/2018 16:48:36
+reps update started:09/26/2018 16:30:02
+reps update done:09/26/2018 16:30:11\r\ncarriers start @ 09/26/18 16:40:01
+carrier update done:09/26/2018 16:40:03\r\nclaimants start @ 09/26/18 16:45:11
+claimants update done:09/26/2018 16:49:10
+reps update started:09/27/2018 16:30:01
+reps update done:09/27/2018 16:30:11\r\ncarriers start @ 09/27/18 16:40:02
+carrier update done:09/27/2018 16:40:04\r\nclaimants start @ 09/27/18 16:45:02
+claimants update done:09/27/2018 16:48:40
+reps update started:09/28/2018 16:29:59
+reps update done:09/28/2018 16:30:11\r\ncarriers start @ 09/28/18 16:39:59
+carrier update done:09/28/2018 16:40:04\r\nclaimants start @ 09/28/18 16:44:59
+claimants update done:09/28/2018 16:48:19
+reps update started:09/29/2018 16:29:59
+reps update done:09/29/2018 16:30:01\r\ncarriers start @ 09/29/18 16:39:59
+carrier update done:09/29/2018 16:40:00\r\nclaimants start @ 09/29/18 16:44:59
+claimants update done:09/29/2018 16:47:39
+reps update started:09/30/2018 16:30:01
+reps update done:09/30/2018 16:30:09\r\ncarriers start @ 09/30/18 16:40:02
+carrier update done:09/30/2018 16:40:04\r\nclaimants start @ 09/30/18 16:45:02
+claimants update done:09/30/2018 16:47:33
+reps update started:10/01/2018 16:30:01
+reps update done:10/01/2018 16:30:10\r\ncarriers start @ 10/01/18 16:40:02
+carrier update done:10/01/2018 16:40:05\r\nclaimants start @ 10/01/18 16:45:02
+claimants update done:10/01/2018 16:48:22
+reps update started:10/02/2018 16:30:02
+reps update done:10/02/2018 16:30:11\r\ncarriers start @ 10/02/18 16:40:02
+carrier update done:10/02/2018 16:40:05\r\nclaimants start @ 10/02/18 16:45:02
+claimants update done:10/02/2018 16:48:02
+reps update started:10/03/2018 16:30:00
+reps update done:10/03/2018 16:30:09\r\ncarriers start @ 10/03/18 16:40:01
+carrier update done:10/03/2018 16:40:04\r\nclaimants start @ 10/03/18 16:45:00
+claimants update done:10/03/2018 16:48:11
+reps update started:10/04/2018 16:30:02
+reps update done:10/04/2018 16:30:11\r\ncarriers start @ 10/04/18 16:40:01
+carrier update done:10/04/2018 16:40:04\r\nclaimants start @ 10/04/18 16:45:05
+claimants update done:10/04/2018 16:48:07
+reps update started:10/05/2018 16:30:00
+reps update done:10/05/2018 16:30:10\r\ncarriers start @ 10/05/18 16:40:01
+carrier update done:10/05/2018 16:40:04\r\nclaimants start @ 10/05/18 16:45:01
+claimants update done:10/05/2018 16:48:30
+reps update started:10/06/2018 16:29:59
+reps update done:10/06/2018 16:30:08\r\ncarriers start @ 10/06/18 16:40:00
+carrier update done:10/06/2018 16:40:02\r\nclaimants start @ 10/06/18 16:45:01
+claimants update done:10/06/2018 16:48:23
+reps update started:10/07/2018 16:30:01
+reps update done:10/07/2018 16:30:10\r\ncarriers start @ 10/07/18 16:40:03
+carrier update done:10/07/2018 16:40:07\r\nclaimants start @ 10/07/18 16:45:00
+claimants update done:10/07/2018 16:47:56
+reps update started:10/08/2018 16:30:00
+reps update done:10/08/2018 16:30:09\r\ncarriers start @ 10/08/18 16:40:00
+carrier update done:10/08/2018 16:40:03\r\nclaimants start @ 10/08/18 16:44:59
+claimants update done:10/08/2018 16:48:14
+reps update started:10/09/2018 16:30:00
+reps update done:10/09/2018 16:30:09\r\ncarriers start @ 10/09/18 16:39:59
+carrier update done:10/09/2018 16:40:02\r\nclaimants start @ 10/09/18 16:45:00
+reps update started:10/10/2018 16:29:59
+reps update done:10/10/2018 16:30:08\r\ncarriers start @ 10/10/18 16:40:00
+carrier update done:10/10/2018 16:40:03\r\nclaimants start @ 10/10/18 16:45:00
+reps update started:10/11/2018 16:30:00
+reps update done:10/11/2018 16:30:10\r\ncarriers start @ 10/11/18 16:39:58
+carrier update done:10/11/2018 16:40:03\r\nclaimants start @ 10/11/18 16:44:59
+claimants update done:10/11/2018 16:49:53
+reps update started:10/12/2018 16:30:00
+reps update done:10/12/2018 16:30:09\r\ncarriers start @ 10/12/18 16:40:01
+carrier update done:10/12/2018 16:40:03\r\nclaimants start @ 10/12/18 16:45:01
+claimants update done:10/12/2018 16:48:22
+reps update started:10/13/2018 16:30:04
+reps update done:10/13/2018 16:30:12\r\ncarriers start @ 10/13/18 16:40:01
+carrier update done:10/13/2018 16:40:04\r\nclaimants start @ 10/13/18 16:45:02
+claimants update done:10/13/2018 16:47:40
+reps update started:10/14/2018 16:30:01
+reps update done:10/14/2018 16:30:10\r\ncarriers start @ 10/14/18 16:40:00
+carrier update done:10/14/2018 16:40:03\r\nclaimants start @ 10/14/18 16:44:59
+claimants update done:10/14/2018 16:48:32
+reps update started:10/15/2018 16:30:03
+reps update done:10/15/2018 16:30:12\r\ncarriers start @ 10/15/18 16:40:01
+carrier update done:10/15/2018 16:40:03\r\nclaimants start @ 10/15/18 16:45:01
+claimants update done:10/15/2018 16:48:22
+reps update started:10/16/2018 16:30:02
+reps update done:10/16/2018 16:30:11\r\ncarriers start @ 10/16/18 16:40:01
+carrier update done:10/16/2018 16:40:05\r\nclaimants start @ 10/16/18 16:45:02
+claimants update done:10/16/2018 16:48:18
+reps update started:10/17/2018 16:30:01
+reps update done:10/17/2018 16:30:10\r\ncarriers start @ 10/17/18 16:40:02
+carrier update done:10/17/2018 16:40:05\r\nclaimants start @ 10/17/18 16:45:01
+claimants update done:10/17/2018 16:48:27
+reps update started:10/18/2018 16:30:02
+reps update done:10/18/2018 16:30:11\r\ncarriers start @ 10/18/18 16:40:02
+carrier update done:10/18/2018 16:40:05\r\nclaimants start @ 10/18/18 16:45:01
+claimants update done:10/18/2018 16:48:13
+reps update started:10/19/2018 16:30:01
+reps update done:10/19/2018 16:30:10\r\ncarriers start @ 10/19/18 16:40:02
+carrier update done:10/19/2018 16:40:04\r\nclaimants start @ 10/19/18 16:45:03
+claimants update done:10/19/2018 16:48:04
+reps update started:10/20/2018 16:30:01
+reps update done:10/20/2018 16:30:09\r\ncarriers start @ 10/20/18 16:40:01
+carrier update done:10/20/2018 16:40:04\r\nclaimants start @ 10/20/18 16:45:00
+claimants update done:10/20/2018 16:47:59
+reps update started:10/21/2018 16:30:00
+reps update done:10/21/2018 16:30:09\r\ncarriers start @ 10/21/18 16:39:59
+carrier update done:10/21/2018 16:40:03\r\nclaimants start @ 10/21/18 16:45:00
+claimants update done:10/21/2018 16:48:00
+reps update started:10/22/2018 16:30:02
+reps update done:10/22/2018 16:30:10\r\ncarriers start @ 10/22/18 16:40:01
+carrier update done:10/22/2018 16:40:04\r\nclaimants start @ 10/22/18 16:44:59
+claimants update done:10/22/2018 16:48:34
+reps update started:10/23/2018 16:30:00
+reps update done:10/23/2018 16:30:09\r\ncarriers start @ 10/23/18 16:39:59
+carrier update done:10/23/2018 16:40:02\r\nclaimants start @ 10/23/18 16:44:59
+claimants update done:10/23/2018 16:48:21
+reps update started:10/24/2018 16:30:02
+reps update done:10/24/2018 16:30:11\r\ncarriers start @ 10/24/18 16:40:00
+carrier update done:10/24/2018 16:40:03\r\nclaimants start @ 10/24/18 16:44:58
+claimants update done:10/24/2018 16:48:29
+reps update started:10/25/2018 16:29:59
+reps update done:10/25/2018 16:30:08\r\ncarriers start @ 10/25/18 16:39:59
+carrier update done:10/25/2018 16:40:02\r\nclaimants start @ 10/25/18 16:44:59
+claimants update done:10/25/2018 16:48:17
+reps update started:10/26/2018 16:29:58
+reps update done:10/26/2018 16:30:07\r\ncarriers start @ 10/26/18 16:39:58
+carrier update done:10/26/2018 16:40:01\r\nclaimants start @ 10/26/18 16:44:59
+claimants update done:10/26/2018 16:48:19
+reps update started:10/27/2018 16:30:03
+reps update done:10/27/2018 16:30:12\r\ncarriers start @ 10/27/18 16:40:01
+carrier update done:10/27/2018 16:40:05\r\nclaimants start @ 10/27/18 16:45:01
+claimants update done:10/27/2018 16:47:54
+reps update started:10/28/2018 16:30:02
+reps update done:10/28/2018 16:30:10\r\ncarriers start @ 10/28/18 16:40:01
+carrier update done:10/28/2018 16:40:03\r\nclaimants start @ 10/28/18 16:45:02
+claimants update done:10/28/2018 16:47:59
+reps update started:10/29/2018 16:30:01
+reps update done:10/29/2018 16:30:24\r\ncarriers start @ 10/29/18 16:40:00
+carrier update done:10/29/2018 16:40:03\r\nclaimants start @ 10/29/18 16:45:02
+reps update started:10/30/2018 16:30:02
+reps update done:10/30/2018 16:30:11\r\ncarriers start @ 10/30/18 16:40:01
+carrier update done:10/30/2018 16:40:05\r\nclaimants start @ 10/30/18 16:45:02
+claimants update done:10/30/2018 16:48:35
+reps update started:10/31/2018 16:30:02
+reps update done:10/31/2018 16:30:11\r\ncarriers start @ 10/31/18 16:40:06
+carrier update done:10/31/2018 16:40:09\r\nclaimants start @ 10/31/18 16:45:01
+claimants update done:10/31/2018 16:48:00
+reps update started:11/01/2018 16:30:01
+reps update done:11/01/2018 16:30:10\r\ncarriers start @ 11/01/18 16:40:01
+carrier update done:11/01/2018 16:40:04\r\nclaimants start @ 11/01/18 16:45:01
+claimants update done:11/01/2018 16:48:30
+reps update started:11/02/2018 16:30:00
+reps update done:11/02/2018 16:30:09\r\ncarriers start @ 11/02/18 16:40:00
+carrier update done:11/02/2018 16:40:03\r\nclaimants start @ 11/02/18 16:45:00
+reps update started:11/03/2018 16:30:01
+reps update done:11/03/2018 16:30:10\r\ncarriers start @ 11/03/18 16:40:02
+carrier update done:11/03/2018 16:40:05\r\nclaimants start @ 11/03/18 16:44:59
+reps update started:11/04/2018 15:30:00
+reps update done:11/04/2018 15:30:08\r\ncarriers start @ 11/04/18 15:39:59
+carrier update done:11/04/2018 15:40:01\r\nclaimants start @ 11/04/18 15:45:01
+reps update started:11/05/2018 15:30:01
+reps update done:11/05/2018 15:30:11\r\ncarriers start @ 11/05/18 15:40:04
+carrier update done:11/05/2018 15:40:08\r\nclaimants start @ 11/05/18 15:45:00
+reps update started:11/06/2018 15:30:02
+reps update done:11/06/2018 15:30:14\r\ncarriers start @ 11/06/18 15:40:01
+carrier update done:11/06/2018 15:40:05\r\nclaimants start @ 11/06/18 15:45:00
+reps update started:11/07/2018 15:30:00
+reps update done:11/07/2018 15:30:09\r\ncarriers start @ 11/07/18 15:40:01
+carrier update done:11/07/2018 15:40:04\r\nclaimants start @ 11/07/18 15:45:00
+reps update started:11/08/2018 15:30:02
+reps update done:11/08/2018 15:30:11\r\ncarriers start @ 11/08/18 15:40:00
+carrier update done:11/08/2018 15:40:03\r\nclaimants start @ 11/08/18 15:45:00
+claimants update done:11/08/2018 15:48:41
+reps update started:11/09/2018 15:29:59
+reps update done:11/09/2018 15:30:08\r\ncarriers start @ 11/09/18 15:39:59
+carrier update done:11/09/2018 15:40:03\r\nclaimants start @ 11/09/18 15:45:00
+claimants update done:11/09/2018 15:48:34
+reps update started:11/10/2018 15:29:59
+reps update done:11/10/2018 15:30:09\r\ncarriers start @ 11/10/18 15:39:59
+carrier update done:11/10/2018 15:40:02\r\nclaimants start @ 11/10/18 15:45:00
+claimants update done:11/10/2018 15:47:41
+reps update started:11/11/2018 15:30:00
+reps update done:11/11/2018 15:30:08\r\ncarriers start @ 11/11/18 15:39:59
+carrier update done:11/11/2018 15:40:02\r\nclaimants start @ 11/11/18 15:44:59
+claimants update done:11/11/2018 15:47:37
+reps update started:11/12/2018 15:30:00
+reps update done:11/12/2018 15:30:09\r\ncarriers start @ 11/12/18 15:39:59
+carrier update done:11/12/2018 15:40:02\r\nclaimants start @ 11/12/18 15:45:01
+claimants update done:11/12/2018 15:48:24
+reps update started:11/13/2018 15:29:59
+reps update done:11/13/2018 15:30:08\r\ncarriers start @ 11/13/18 15:39:59
+carrier update done:11/13/2018 15:40:02\r\nclaimants start @ 11/13/18 15:44:58
+claimants update done:11/13/2018 15:48:31
+reps update started:11/14/2018 15:29:59
+reps update done:11/14/2018 15:30:10\r\ncarriers start @ 11/14/18 15:39:58
+carrier update done:11/14/2018 15:40:01\r\nclaimants start @ 11/14/18 15:45:00
+claimants update done:11/14/2018 15:48:54
+reps update started:11/15/2018 15:30:01
+reps update done:11/15/2018 15:30:11\r\ncarriers start @ 11/15/18 15:39:58
+carrier update done:11/15/2018 15:40:02\r\nclaimants start @ 11/15/18 15:44:59
+claimants update done:11/15/2018 15:49:08
+reps update started:11/16/2018 15:29:58
+reps update done:11/16/2018 15:30:06\r\ncarriers start @ 11/16/18 15:39:58
+carrier update done:11/16/2018 15:40:01\r\nclaimants start @ 11/16/18 15:44:58
+claimants update done:11/16/2018 15:49:09
+reps update started:11/17/2018 15:30:01
+reps update done:11/17/2018 15:30:10\r\ncarriers start @ 11/17/18 15:40:02
+carrier update done:11/17/2018 15:40:05\r\nclaimants start @ 11/17/18 15:45:00
+claimants update done:11/17/2018 15:47:34
+reps update started:11/18/2018 15:30:00
+reps update done:11/18/2018 15:30:08\r\ncarriers start @ 11/18/18 15:40:02
+carrier update done:11/18/2018 15:40:05\r\nclaimants start @ 11/18/18 15:45:00
+claimants update done:11/18/2018 15:48:07
+reps update started:11/19/2018 15:30:02
+reps update done:11/19/2018 15:30:12\r\ncarriers start @ 11/19/18 15:40:00
+carrier update done:11/19/2018 15:40:03\r\nclaimants start @ 11/19/18 15:45:01
+claimants update done:11/19/2018 15:49:27
+reps update started:11/20/2018 15:30:00
+reps update done:11/20/2018 15:30:09\r\ncarriers start @ 11/20/18 15:40:00
+carrier update done:11/20/2018 15:40:04\r\nclaimants start @ 11/20/18 15:45:00
+claimants update done:11/20/2018 15:49:19
+reps update started:11/21/2018 15:30:00
+reps update done:11/21/2018 15:30:09\r\ncarriers start @ 11/21/18 15:39:59
+carrier update done:11/21/2018 15:40:02\r\nclaimants start @ 11/21/18 15:45:01
+claimants update done:11/21/2018 15:48:33
+reps update started:11/22/2018 15:30:00
+reps update done:11/22/2018 15:30:08\r\ncarriers start @ 11/22/18 15:40:01
+carrier update done:11/22/2018 15:40:04\r\nclaimants start @ 11/22/18 15:45:01
+claimants update done:11/22/2018 15:49:16
+reps update started:11/23/2018 15:30:02
+reps update done:11/23/2018 15:30:10\r\ncarriers start @ 11/23/18 15:39:59
+carrier update done:11/23/2018 15:40:02\r\nclaimants start @ 11/23/18 15:45:00
+claimants update done:11/23/2018 15:48:24
+reps update started:11/24/2018 15:29:59
+reps update done:11/24/2018 15:30:08\r\ncarriers start @ 11/24/18 15:40:00
+carrier update done:11/24/2018 15:40:03\r\nclaimants start @ 11/24/18 15:44:58
+claimants update done:11/24/2018 15:48:09
+reps update started:11/25/2018 15:30:02
+reps update done:11/25/2018 15:30:11\r\ncarriers start @ 11/25/18 15:40:01
+carrier update done:11/25/2018 15:40:05\r\nclaimants start @ 11/25/18 15:45:02
+claimants update done:11/25/2018 15:48:45
+reps update started:11/26/2018 15:30:00
+reps update done:11/26/2018 15:30:09\r\ncarriers start @ 11/26/18 15:40:02
+carrier update done:11/26/2018 15:40:05\r\nclaimants start @ 11/26/18 15:45:02
+claimants update done:11/26/2018 15:49:28
+reps update started:11/27/2018 15:30:02
+reps update done:11/27/2018 15:30:30\r\ncarriers start @ 11/27/18 15:40:01
+carrier update done:11/27/2018 15:40:05\r\nclaimants start @ 11/27/18 15:45:01
+reps update started:11/28/2018 15:30:01
+reps update done:11/28/2018 15:30:11\r\ncarriers start @ 11/28/18 15:40:00
+carrier update done:11/28/2018 15:40:04\r\nclaimants start @ 11/28/18 15:45:00
+claimants update done:11/28/2018 15:49:14
+reps update started:11/29/2018 15:30:02
+reps update done:11/29/2018 15:30:11\r\ncarriers start @ 11/29/18 15:40:00
+carrier update done:11/29/2018 15:40:03\r\nclaimants start @ 11/29/18 15:45:01
+claimants update done:11/29/2018 15:48:34
+reps update started:11/30/2018 15:30:01
+reps update done:11/30/2018 15:30:11\r\ncarriers start @ 11/30/18 15:40:00
+carrier update done:11/30/2018 15:40:03\r\nclaimants start @ 11/30/18 15:45:00
+reps update started:12/01/2018 15:30:01
+reps update done:12/01/2018 15:30:10\r\ncarriers start @ 12/01/18 15:40:01
+carrier update done:12/01/2018 15:40:04\r\nclaimants start @ 12/01/18 15:45:02
+claimants update done:12/01/2018 15:47:51
+reps update started:12/02/2018 15:30:01
+reps update done:12/02/2018 15:30:11\r\ncarriers start @ 12/02/18 15:40:01
+carrier update done:12/02/2018 15:40:05\r\nclaimants start @ 12/02/18 15:45:01
+claimants update done:12/02/2018 15:47:35
+reps update started:12/03/2018 15:30:02
+reps update done:12/03/2018 15:30:14\r\ncarriers start @ 12/03/18 15:40:00
+carrier update done:12/03/2018 15:40:03\r\nclaimants start @ 12/03/18 15:45:00
+claimants update done:12/03/2018 15:48:35
+reps update started:12/04/2018 15:30:02
+reps update done:12/04/2018 15:30:12\r\ncarriers start @ 12/04/18 15:40:00
+carrier update done:12/04/2018 15:40:04\r\nclaimants start @ 12/04/18 15:45:02
+claimants update done:12/04/2018 15:49:24
+reps update started:12/05/2018 15:29:59
+reps update done:12/05/2018 15:30:09\r\ncarriers start @ 12/05/18 15:40:01
+carrier update done:12/05/2018 15:40:05\r\nclaimants start @ 12/05/18 15:45:00
+claimants update done:12/05/2018 15:48:38
+reps update started:12/06/2018 15:29:59
+reps update done:12/06/2018 15:30:10\r\ncarriers start @ 12/06/18 15:39:59
+carrier update done:12/06/2018 15:40:04\r\nclaimants start @ 12/06/18 15:45:01
+reps update started:12/07/2018 15:29:59
+reps update done:12/07/2018 15:30:09\r\ncarriers start @ 12/07/18 15:40:00
+carrier update done:12/07/2018 15:40:04\r\nclaimants start @ 12/07/18 15:45:00
+claimants update done:12/07/2018 15:49:53
+reps update started:12/08/2018 15:29:58
+reps update done:12/08/2018 15:30:08\r\ncarriers start @ 12/08/18 15:40:01
+carrier update done:12/08/2018 15:40:05\r\nclaimants start @ 12/08/18 15:45:00
+claimants update done:12/08/2018 15:49:20
+reps update started:12/09/2018 15:30:02
+reps update done:12/09/2018 15:30:11\r\ncarriers start @ 12/09/18 15:40:00
+carrier update done:12/09/2018 15:40:04\r\nclaimants start @ 12/09/18 15:45:01
+claimants update done:12/09/2018 15:49:40
+reps update started:12/10/2018 15:30:00
+reps update done:12/10/2018 15:30:15\r\ncarriers start @ 12/10/18 15:40:01
+carrier update done:12/10/2018 15:40:05\r\nclaimants start @ 12/10/18 15:45:01
+claimants update done:12/10/2018 15:48:44
+reps update started:12/11/2018 15:30:00
+reps update done:12/11/2018 15:30:09\r\ncarriers start @ 12/11/18 15:40:00
+carrier update done:12/11/2018 15:40:03\r\nclaimants start @ 12/11/18 15:45:02
+reps update started:12/12/2018 15:30:00
+reps update done:12/12/2018 15:30:10\r\ncarriers start @ 12/12/18 15:40:00
+carrier update done:12/12/2018 15:40:03\r\nclaimants start @ 12/12/18 15:45:01
+reps update started:12/13/2018 15:30:01
+reps update done:12/13/2018 15:30:13\r\ncarriers start @ 12/13/18 15:40:00
+carrier update done:12/13/2018 15:40:03\r\nclaimants start @ 12/13/18 15:45:01
+reps update started:12/14/2018 15:30:01
+reps update done:12/14/2018 15:30:10\r\ncarriers start @ 12/14/18 15:40:00
+carrier update done:12/14/2018 15:40:03\r\nclaimants start @ 12/14/18 15:44:59
+reps update started:12/15/2018 15:30:01
+reps update done:12/15/2018 15:30:09\r\ncarriers start @ 12/15/18 15:39:59
+carrier update done:12/15/2018 15:40:03\r\nclaimants start @ 12/15/18 15:44:59
+claimants update done:12/15/2018 15:47:58
+reps update started:12/16/2018 15:30:01
+reps update done:12/16/2018 15:30:10\r\ncarriers start @ 12/16/18 15:40:00
+carrier update done:12/16/2018 15:40:05\r\nclaimants start @ 12/16/18 15:45:02
+claimants update done:12/16/2018 15:48:26
+reps update started:12/17/2018 15:30:01
+reps update done:12/17/2018 15:30:10\r\ncarriers start @ 12/17/18 15:40:00
+carrier update done:12/17/2018 15:40:04\r\nclaimants start @ 12/17/18 15:45:02
+claimants update done:12/17/2018 15:48:38
+reps update started:12/18/2018 15:30:00
+reps update done:12/18/2018 15:30:09\r\ncarriers start @ 12/18/18 15:40:00
+carrier update done:12/18/2018 15:40:04\r\nclaimants start @ 12/18/18 15:45:00
+claimants update done:12/18/2018 15:48:39
+reps update started:12/19/2018 15:30:00
+reps update done:12/19/2018 15:30:09\r\ncarriers start @ 12/19/18 15:40:00
+carrier update done:12/19/2018 15:40:04\r\nclaimants start @ 12/19/18 15:45:00
+reps update started:12/20/2018 15:30:00
+reps update done:12/20/2018 15:30:10\r\ncarriers start @ 12/20/18 15:40:00
+carrier update done:12/20/2018 15:40:04\r\nclaimants start @ 12/20/18 15:44:59
+reps update started:12/21/2018 15:30:01
+reps update done:12/21/2018 15:30:10\r\ncarriers start @ 12/21/18 15:40:00
+carrier update done:12/21/2018 15:40:04\r\nclaimants start @ 12/21/18 15:45:00
+claimants update done:12/21/2018 15:48:06
+reps update started:12/22/2018 15:30:01
+reps update done:12/22/2018 15:30:10\r\ncarriers start @ 12/22/18 15:40:00
+carrier update done:12/22/2018 15:40:03\r\nclaimants start @ 12/22/18 15:44:59
+claimants update done:12/22/2018 15:47:39
+reps update started:12/23/2018 15:30:00
+reps update done:12/23/2018 15:30:09\r\ncarriers start @ 12/23/18 15:39:58
+carrier update done:12/23/2018 15:40:02\r\nclaimants start @ 12/23/18 15:45:00
+claimants update done:12/23/2018 15:49:15
+reps update started:12/24/2018 15:29:58
+reps update done:12/24/2018 15:30:07\r\ncarriers start @ 12/24/18 15:39:58
+carrier update done:12/24/2018 15:40:02\r\nclaimants start @ 12/24/18 15:44:59
+claimants update done:12/24/2018 15:47:49
+reps update started:12/25/2018 15:29:58
+reps update done:12/25/2018 15:30:07\r\ncarriers start @ 12/25/18 15:39:59
+carrier update done:12/25/2018 15:40:03\r\nclaimants start @ 12/25/18 15:44:58
+claimants update done:12/25/2018 15:47:46
+reps update started:12/26/2018 15:29:58
+reps update done:12/26/2018 15:30:08\r\ncarriers start @ 12/26/18 15:39:58
+carrier update done:12/26/2018 15:40:01\r\nclaimants start @ 12/26/18 15:44:58
+reps update started:12/27/2018 15:29:58
+reps update done:12/27/2018 15:30:08\r\ncarriers start @ 12/27/18 15:39:58
+carrier update done:12/27/2018 15:40:01\r\nclaimants start @ 12/27/18 15:45:05
+reps update started:12/28/2018 15:29:58
+reps update done:12/28/2018 15:30:07\r\ncarriers start @ 12/28/18 15:39:58
+carrier update done:12/28/2018 15:40:02\r\nclaimants start @ 12/28/18 15:44:59
+claimants update done:12/28/2018 15:48:32
+reps update started:12/29/2018 15:30:01
+reps update done:12/29/2018 15:30:11\r\ncarriers start @ 12/29/18 15:40:02
+carrier update done:12/29/2018 15:40:06\r\nclaimants start @ 12/29/18 15:45:00
+claimants update done:12/29/2018 15:47:50
+reps update started:12/30/2018 15:30:01
+reps update done:12/30/2018 15:30:10\r\ncarriers start @ 12/30/18 15:40:01
+carrier update done:12/30/2018 15:40:04\r\nclaimants start @ 12/30/18 15:45:01
+claimants update done:12/30/2018 15:47:46
+reps update started:12/31/2018 15:30:00
+reps update done:12/31/2018 15:30:09\r\ncarriers start @ 12/31/18 15:40:00
+carrier update done:12/31/2018 15:40:04\r\nclaimants start @ 12/31/18 15:45:00
+claimants update done:12/31/2018 15:48:04
+reps update started:01/01/2019 15:30:00
+reps update done:01/01/2019 15:30:09\r\ncarriers start @ 01/01/19 15:40:02
+carrier update done:01/01/2019 15:40:05\r\nclaimants start @ 01/01/19 15:45:00
+claimants update done:01/01/2019 15:47:44
+reps update started:01/02/2019 15:30:02
+reps update done:01/02/2019 15:30:11\r\ncarriers start @ 01/02/19 15:40:00
+carrier update done:01/02/2019 15:40:03\r\nclaimants start @ 01/02/19 15:45:01
+reps update started:01/03/2019 15:29:59
+reps update done:01/03/2019 15:30:08\r\ncarriers start @ 01/03/19 15:39:59
+carrier update done:01/03/2019 15:40:03\r\nclaimants start @ 01/03/19 15:45:00
+reps update started:01/04/2019 15:29:59
+reps update done:01/04/2019 15:30:08\r\ncarriers start @ 01/04/19 15:40:00
+carrier update done:01/04/2019 15:40:03\r\nclaimants start @ 01/04/19 15:45:00
+claimants update done:01/04/2019 15:48:38
+reps update started:01/05/2019 15:29:59
+reps update done:01/05/2019 15:30:07\r\ncarriers start @ 01/05/19 15:39:59
+carrier update done:01/05/2019 15:40:02\r\nclaimants start @ 01/05/19 15:45:00
+claimants update done:01/05/2019 15:48:15
+reps update started:01/06/2019 15:30:02
+reps update done:01/06/2019 15:30:11\r\ncarriers start @ 01/06/19 15:40:00
+carrier update done:01/06/2019 15:40:04\r\nclaimants start @ 01/06/19 15:45:00
+claimants update done:01/06/2019 15:47:57
+reps update started:01/07/2019 15:30:01
+reps update done:01/07/2019 15:30:11\r\ncarriers start @ 01/07/19 15:40:01
+carrier update done:01/07/2019 15:40:04\r\nclaimants start @ 01/07/19 15:45:02
+reps update started:01/08/2019 15:30:01
+reps update done:01/08/2019 15:30:13\r\ncarriers start @ 01/08/19 15:40:00
+carrier update done:01/08/2019 15:40:04\r\nclaimants start @ 01/08/19 15:45:00
+reps update started:01/09/2019 15:30:01
+reps update done:01/09/2019 15:30:10\r\ncarriers start @ 01/09/19 15:40:00
+carrier update done:01/09/2019 15:40:04\r\nclaimants start @ 01/09/19 15:45:01
+reps update started:01/10/2019 15:29:59
+reps update done:01/10/2019 15:30:09\r\ncarriers start @ 01/10/19 15:39:59
+carrier update done:01/10/2019 15:40:03\r\nclaimants start @ 01/10/19 15:45:00
+reps update started:01/11/2019 15:29:59
+reps update done:01/11/2019 15:30:09\r\ncarriers start @ 01/11/19 15:40:00
+carrier update done:01/11/2019 15:40:04\r\nclaimants start @ 01/11/19 15:44:59
+reps update started:01/12/2019 15:29:59
+reps update done:01/12/2019 15:30:09\r\ncarriers start @ 01/12/19 15:39:59
+carrier update done:01/12/2019 15:40:02\r\nclaimants start @ 01/12/19 15:44:59
+claimants update done:01/12/2019 15:47:19
+reps update started:01/13/2019 15:29:59
+reps update done:01/13/2019 15:30:08\r\ncarriers start @ 01/13/19 15:40:00
+carrier update done:01/13/2019 15:40:03\r\nclaimants start @ 01/13/19 15:44:59
+claimants update done:01/13/2019 15:47:28
+reps update started:01/14/2019 15:29:59
+reps update done:01/14/2019 15:30:08\r\ncarriers start @ 01/14/19 15:40:00
+carrier update done:01/14/2019 15:40:04\r\nclaimants start @ 01/14/19 15:45:00
+reps update started:01/15/2019 15:29:58
+reps update done:01/15/2019 15:30:13\r\ncarriers start @ 01/15/19 15:39:58
+carrier update done:01/15/2019 15:40:04\r\nclaimants start @ 01/15/19 15:44:58
+reps update started:01/16/2019 15:29:58
+reps update done:01/16/2019 15:30:09\r\ncarriers start @ 01/16/19 15:39:59
+carrier update done:01/16/2019 15:40:03\r\nclaimants start @ 01/16/19 15:44:58
+reps update started:01/17/2019 15:29:58
+reps update done:01/17/2019 15:30:09\r\ncarriers start @ 01/17/19 15:39:58
+carrier update done:01/17/2019 15:40:02\r\nclaimants start @ 01/17/19 15:44:58
+reps update started:01/18/2019 15:29:58
+reps update done:01/18/2019 15:30:08\r\ncarriers start @ 01/18/19 15:39:58
+carrier update done:01/18/2019 15:40:01\r\nclaimants start @ 01/18/19 15:44:57
+reps update started:01/19/2019 15:30:01
+reps update done:01/19/2019 15:30:11\r\ncarriers start @ 01/19/19 15:40:01
+carrier update done:01/19/2019 15:40:04\r\nclaimants start @ 01/19/19 15:45:00
+claimants update done:01/19/2019 15:47:39
+reps update started:01/20/2019 15:30:00
+reps update done:01/20/2019 15:30:09\r\ncarriers start @ 01/20/19 15:40:01
+carrier update done:01/20/2019 15:40:04\r\nclaimants start @ 01/20/19 15:45:01
+claimants update done:01/20/2019 15:47:32
+reps update started:01/21/2019 15:30:02
+reps update done:01/21/2019 15:30:11\r\ncarriers start @ 01/21/19 15:40:01
+carrier update done:01/21/2019 15:40:04\r\nclaimants start @ 01/21/19 15:45:01
+claimants update done:01/21/2019 15:48:43
+reps update started:01/22/2019 15:30:00
+reps update done:01/22/2019 15:30:12\r\ncarriers start @ 01/22/19 15:40:02
+carrier update done:01/22/2019 15:40:06\r\nclaimants start @ 01/22/19 15:45:01
+reps update started:01/23/2019 15:30:01
+reps update done:01/23/2019 15:30:11\r\ncarriers start @ 01/23/19 15:40:00
+carrier update done:01/23/2019 15:40:04\r\nclaimants start @ 01/23/19 15:45:00
+reps update started:01/24/2019 15:30:01
+reps update done:01/24/2019 15:30:12\r\ncarriers start @ 01/24/19 15:40:00
+carrier update done:01/24/2019 15:40:05\r\nclaimants start @ 01/24/19 15:45:02
+reps update started:01/25/2019 15:30:01
+reps update done:01/25/2019 15:30:11\r\ncarriers start @ 01/25/19 15:40:00
+carrier update done:01/25/2019 15:40:03\r\nclaimants start @ 01/25/19 15:45:00
+reps update started:01/26/2019 15:30:00
+reps update done:01/26/2019 15:30:09\r\ncarriers start @ 01/26/19 15:39:59
+carrier update done:01/26/2019 15:40:03\r\nclaimants start @ 01/26/19 15:45:01
+claimants update done:01/26/2019 15:47:42
+reps update started:01/27/2019 15:29:59
+reps update done:01/27/2019 15:30:08\r\ncarriers start @ 01/27/19 15:40:01
+carrier update done:01/27/2019 15:40:06\r\nclaimants start @ 01/27/19 15:45:00
+claimants update done:01/27/2019 15:47:26
+reps update started:01/28/2019 15:30:00
+reps update done:01/28/2019 15:30:13\r\ncarriers start @ 01/28/19 15:40:00
+carrier update done:01/28/2019 15:40:05\r\nclaimants start @ 01/28/19 15:44:59
+claimants update done:01/28/2019 15:49:31
+reps update started:01/29/2019 15:30:01
+reps update done:01/29/2019 15:30:11\r\ncarriers start @ 01/29/19 15:39:59
+carrier update done:01/29/2019 15:40:03\r\nclaimants start @ 01/29/19 15:44:59
+reps update started:01/30/2019 15:30:01
+reps update done:01/30/2019 15:30:11\r\ncarriers start @ 01/30/19 15:39:59
+carrier update done:01/30/2019 15:40:02\r\nclaimants start @ 01/30/19 15:44:59
+reps update started:01/31/2019 15:29:59
+reps update done:01/31/2019 15:30:08\r\ncarriers start @ 01/31/19 15:39:58
+carrier update done:01/31/2019 15:40:03\r\nclaimants start @ 01/31/19 15:44:59
+reps update started:02/01/2019 15:29:58
+reps update done:02/01/2019 15:30:08\r\ncarriers start @ 02/01/19 15:39:58
+carrier update done:02/01/2019 15:40:03\r\nclaimants start @ 02/01/19 15:44:58
+reps update started:02/02/2019 15:30:02
+reps update done:02/02/2019 15:30:11\r\ncarriers start @ 02/02/19 15:40:01
+carrier update done:02/02/2019 15:40:04\r\nclaimants start @ 02/02/19 15:45:02
+claimants update done:02/02/2019 15:48:11
+reps update started:02/03/2019 15:30:00
+reps update done:02/03/2019 15:30:09\r\ncarriers start @ 02/03/19 15:40:01
+carrier update done:02/03/2019 15:40:04\r\nclaimants start @ 02/03/19 15:45:00
+claimants update done:02/03/2019 15:48:03
+reps update started:02/04/2019 15:30:01
+reps update done:02/04/2019 15:30:11\r\ncarriers start @ 02/04/19 15:40:00
+carrier update done:02/04/2019 15:40:04\r\nclaimants start @ 02/04/19 15:45:00
+reps update started:02/05/2019 15:30:00
+reps update done:02/05/2019 15:30:09\r\ncarriers start @ 02/05/19 15:40:00
+carrier update done:02/05/2019 15:40:04\r\nclaimants start @ 02/05/19 15:45:01
+reps update started:02/06/2019 15:29:59
+reps update done:02/06/2019 15:30:09\r\ncarriers start @ 02/06/19 15:40:00
+carrier update done:02/06/2019 15:40:04\r\nclaimants start @ 02/06/19 15:45:01
+reps update started:02/07/2019 15:30:01
+reps update done:02/07/2019 15:30:11\r\ncarriers start @ 02/07/19 15:39:59
+carrier update done:02/07/2019 15:40:03\r\nclaimants start @ 02/07/19 15:44:59
+reps update started:02/08/2019 15:30:00
+reps update done:02/08/2019 15:30:09\r\ncarriers start @ 02/08/19 15:39:59
+carrier update done:02/08/2019 15:40:03\r\nclaimants start @ 02/08/19 15:45:01
+claimants update done:02/08/2019 15:49:01
+reps update started:02/09/2019 15:30:01
+reps update done:02/09/2019 15:30:11\r\ncarriers start @ 02/09/19 15:39:59
+carrier update done:02/09/2019 15:40:02\r\nclaimants start @ 02/09/19 15:44:59
+claimants update done:02/09/2019 15:48:02
+reps update started:02/10/2019 15:30:02
+reps update done:02/10/2019 15:30:12\r\ncarriers start @ 02/10/19 15:40:01
+carrier update done:02/10/2019 15:40:04\r\nclaimants start @ 02/10/19 15:45:01
+claimants update done:02/10/2019 15:47:22
+reps update started:02/11/2019 15:30:01
+reps update done:02/11/2019 15:30:18\r\ncarriers start @ 02/11/19 15:40:00
+carrier update done:02/11/2019 15:42:41\r\nclaimants start @ 02/11/19 15:45:00
+reps update started:02/12/2019 15:30:00
+reps update done:02/12/2019 15:30:09\r\ncarriers start @ 02/12/19 15:40:01
+carrier update done:02/12/2019 15:40:04\r\nclaimants start @ 02/12/19 15:45:00
+reps update started:02/13/2019 15:30:01
+reps update done:02/13/2019 15:30:10\r\ncarriers start @ 02/13/19 15:40:01
+carrier update done:02/13/2019 15:40:05\r\nclaimants start @ 02/13/19 15:45:00
+reps update started:02/14/2019 15:30:01
+reps update done:02/14/2019 15:30:11\r\ncarriers start @ 02/14/19 15:40:00
+carrier update done:02/14/2019 15:40:03\r\nclaimants start @ 02/14/19 15:45:02
+reps update started:02/15/2019 15:30:00
+reps update done:02/15/2019 15:30:10\r\ncarriers start @ 02/15/19 15:40:01
+carrier update done:02/15/2019 15:40:04\r\nclaimants start @ 02/15/19 15:45:01
+reps update started:02/16/2019 15:30:00
+reps update done:02/16/2019 15:30:09\r\ncarriers start @ 02/16/19 15:40:01
+carrier update done:02/16/2019 15:40:05\r\nclaimants start @ 02/16/19 15:45:02
+claimants update done:02/16/2019 15:48:35
+reps update started:02/17/2019 15:30:00
+reps update done:02/17/2019 15:30:09\r\ncarriers start @ 02/17/19 15:40:00
+carrier update done:02/17/2019 15:40:04\r\nclaimants start @ 02/17/19 15:45:00
+claimants update done:02/17/2019 15:47:56
+reps update started:02/18/2019 15:30:01
+reps update done:02/18/2019 15:30:10\r\ncarriers start @ 02/18/19 15:40:00
+carrier update done:02/18/2019 15:40:03\r\nclaimants start @ 02/18/19 15:45:01
+claimants update done:02/18/2019 15:48:12
+reps update started:02/19/2019 15:30:00
+reps update done:02/19/2019 15:30:11\r\ncarriers start @ 02/19/19 15:39:59
+carrier update done:02/19/2019 15:40:03\r\nclaimants start @ 02/19/19 15:44:59
+reps update started:02/20/2019 15:30:00
+reps update done:02/20/2019 15:30:10\r\ncarriers start @ 02/20/19 15:39:59
+carrier update done:02/20/2019 15:40:03\r\nclaimants start @ 02/20/19 15:44:59
+reps update started:02/21/2019 15:30:02
+reps update done:02/21/2019 15:30:12\r\ncarriers start @ 02/21/19 15:39:58
+carrier update done:02/21/2019 15:40:02\r\nclaimants start @ 02/21/19 15:45:01
+reps update started:02/22/2019 15:29:58
+reps update done:02/22/2019 15:30:10\r\ncarriers start @ 02/22/19 15:39:58
+carrier update done:02/22/2019 15:40:02\r\nclaimants start @ 02/22/19 15:44:58
+reps update started:02/23/2019 15:30:01
+reps update done:02/23/2019 15:30:09\r\ncarriers start @ 02/23/19 15:40:01
+carrier update done:02/23/2019 15:40:04\r\nclaimants start @ 02/23/19 15:45:02
+claimants update done:02/23/2019 15:48:18
+reps update started:02/24/2019 15:30:02
+reps update done:02/24/2019 15:30:11\r\ncarriers start @ 02/24/19 15:40:00
+carrier update done:02/24/2019 15:40:04\r\nclaimants start @ 02/24/19 15:45:01
+claimants update done:02/24/2019 15:48:00
+reps update started:02/25/2019 15:30:00
+reps update done:02/25/2019 15:30:10\r\ncarriers start @ 02/25/19 15:40:00
+carrier update done:02/25/2019 15:40:03\r\nclaimants start @ 02/25/19 15:45:02
+reps update started:02/26/2019 15:30:00
+reps update done:02/26/2019 15:30:18\r\ncarriers start @ 02/26/19 15:40:00
+carrier update done:02/26/2019 15:40:04\r\nclaimants start @ 02/26/19 15:45:00
+reps update started:02/27/2019 15:30:00
+reps update done:02/27/2019 15:30:11\r\ncarriers start @ 02/27/19 15:40:01
+carrier update done:02/27/2019 15:40:05\r\nclaimants start @ 02/27/19 15:45:01
+reps update started:02/28/2019 15:29:59
+reps update done:02/28/2019 15:30:09\r\ncarriers start @ 02/28/19 15:39:59
+carrier update done:02/28/2019 15:40:09\r\nclaimants start @ 02/28/19 15:45:00
+reps update started:03/01/2019 15:30:00
+reps update done:03/01/2019 15:30:09\r\ncarriers start @ 03/01/19 15:40:00
+carrier update done:03/01/2019 15:40:04\r\nclaimants start @ 03/01/19 15:45:01
+reps update started:03/02/2019 15:30:02
+reps update done:03/02/2019 15:30:11\r\ncarriers start @ 03/02/19 15:40:00
+carrier update done:03/02/2019 15:40:04\r\nclaimants start @ 03/02/19 15:45:03
+claimants update done:03/02/2019 15:47:49
+reps update started:03/03/2019 15:30:01
+reps update done:03/03/2019 15:30:10\r\ncarriers start @ 03/03/19 15:40:02
+carrier update done:03/03/2019 15:40:06\r\nclaimants start @ 03/03/19 15:45:02
+claimants update done:03/03/2019 15:48:18
+reps update started:03/04/2019 15:30:05
+reps update done:03/04/2019 15:33:08\r\ncarriers start @ 03/04/19 15:40:01
+carrier update done:03/04/2019 15:40:04\r\nclaimants start @ 03/04/19 15:45:00
+claimants update done:03/04/2019 15:49:30
+reps update started:03/05/2019 15:30:02
+reps update done:03/05/2019 15:30:11\r\ncarriers start @ 03/05/19 15:40:00
+carrier update done:03/05/2019 15:40:04\r\nclaimants start @ 03/05/19 15:45:00
+reps update started:03/06/2019 15:30:02
+reps update done:03/06/2019 15:30:11\r\ncarriers start @ 03/06/19 15:40:00
+carrier update done:03/06/2019 15:40:03\r\nclaimants start @ 03/06/19 15:45:01
+reps update started:03/07/2019 15:30:02
+reps update done:03/07/2019 15:30:12\r\ncarriers start @ 03/07/19 15:40:00
+carrier update done:03/07/2019 15:40:04\r\nclaimants start @ 03/07/19 15:45:03
+reps update started:03/08/2019 15:30:02
+reps update done:03/08/2019 15:30:12\r\ncarriers start @ 03/08/19 15:40:00
+carrier update done:03/08/2019 15:40:04\r\nclaimants start @ 03/08/19 15:45:00
+claimants update done:03/08/2019 15:49:42
+reps update started:03/09/2019 15:30:02
+reps update done:03/09/2019 15:30:12\r\ncarriers start @ 03/09/19 15:40:03
+carrier update done:03/09/2019 15:40:06\r\nclaimants start @ 03/09/19 15:45:00
+claimants update done:03/09/2019 15:49:22
+reps update started:03/10/2019 16:30:00
+reps update done:03/10/2019 16:30:08\r\ncarriers start @ 03/10/19 16:40:01
+carrier update done:03/10/2019 16:40:05\r\nclaimants start @ 03/10/19 16:45:02
+claimants update done:03/10/2019 16:48:54
+reps update started:03/11/2019 16:29:59
+reps update done:03/11/2019 16:30:08\r\ncarriers start @ 03/11/19 16:39:59
+carrier update done:03/11/2019 16:40:03\r\nclaimants start @ 03/11/19 16:45:00
+reps update started:03/12/2019 16:30:00
+reps update done:03/12/2019 16:30:09\r\ncarriers start @ 03/12/19 16:39:59
+carrier update done:03/12/2019 16:40:03\r\nclaimants start @ 03/12/19 16:44:59
+reps update started:03/13/2019 16:29:59
+reps update done:03/13/2019 16:30:11\r\ncarriers start @ 03/13/19 16:39:59
+carrier update done:03/13/2019 16:40:03\r\nclaimants start @ 03/13/19 16:44:59
+reps update started:03/14/2019 16:30:00
+reps update done:03/14/2019 16:30:12\r\ncarriers start @ 03/14/19 16:40:00
+carrier update done:03/14/2019 16:40:04\r\nclaimants start @ 03/14/19 16:45:00
+reps update started:03/15/2019 16:29:59
+reps update done:03/15/2019 16:30:08\r\ncarriers start @ 03/15/19 16:39:58
+carrier update done:03/15/2019 16:40:02\r\nclaimants start @ 03/15/19 16:45:00
+claimants update done:03/15/2019 16:49:56
+reps update started:03/16/2019 16:29:59
+reps update done:03/16/2019 16:30:08\r\ncarriers start @ 03/16/19 16:39:59
+carrier update done:03/16/2019 16:40:02\r\nclaimants start @ 03/16/19 16:44:58
+claimants update done:03/16/2019 16:48:13
+reps update started:03/17/2019 16:30:49
+reps update done:03/17/2019 16:30:58\r\ncarriers start @ 03/17/19 16:40:00
+carrier update done:03/17/2019 16:40:04\r\nclaimants start @ 03/17/19 16:45:00
+claimants update done:03/17/2019 16:48:42
+reps update started:03/18/2019 16:30:01
+reps update done:03/18/2019 16:30:10\r\ncarriers start @ 03/18/19 16:40:00
+carrier update done:03/18/2019 16:40:03\r\nclaimants start @ 03/18/19 16:45:00
+reps update started:03/19/2019 16:30:00
+reps update done:03/19/2019 16:30:09\r\ncarriers start @ 03/19/19 16:40:00
+carrier update done:03/19/2019 16:40:04\r\nclaimants start @ 03/19/19 16:45:00
+reps update started:03/20/2019 16:29:59
+reps update done:03/20/2019 16:30:11\r\ncarriers start @ 03/20/19 16:39:59
+carrier update done:03/20/2019 16:40:03\r\nclaimants start @ 03/20/19 16:45:02
+claimants update done:03/20/2019 16:49:08
+reps update started:03/21/2019 16:29:59
+reps update done:03/21/2019 16:30:09\r\ncarriers start @ 03/21/19 16:39:59
+carrier update done:03/21/2019 16:40:03\r\nclaimants start @ 03/21/19 16:44:59
+reps update started:03/22/2019 16:30:01
+reps update done:03/22/2019 16:30:10\r\ncarriers start @ 03/22/19 16:39:59
+carrier update done:03/22/2019 16:40:02\r\nclaimants start @ 03/22/19 16:45:00
+claimants update done:03/22/2019 16:49:00
+reps update started:03/23/2019 16:30:01
+reps update done:03/23/2019 16:30:10\r\ncarriers start @ 03/23/19 16:40:01
+carrier update done:03/23/2019 16:40:05\r\nclaimants start @ 03/23/19 16:45:01
+claimants update done:03/23/2019 16:47:51
+reps update started:03/24/2019 16:30:02
+reps update done:03/24/2019 16:30:10\r\ncarriers start @ 03/24/19 16:40:02
+carrier update done:03/24/2019 16:40:05\r\nclaimants start @ 03/24/19 16:45:02
+claimants update done:03/24/2019 16:48:18
+reps update started:03/25/2019 16:30:00
+reps update done:03/25/2019 16:30:09\r\ncarriers start @ 03/25/19 16:40:00
+carrier update done:03/25/2019 16:40:03\r\nclaimants start @ 03/25/19 16:45:02
+reps update started:03/26/2019 16:30:01
+reps update done:03/26/2019 16:30:11\r\ncarriers start @ 03/26/19 16:40:02
+carrier update done:03/26/2019 16:40:05\r\nclaimants start @ 03/26/19 16:45:00
+claimants update done:03/26/2019 16:49:16
+reps update started:03/27/2019 16:29:59
+reps update done:03/27/2019 16:30:09\r\ncarriers start @ 03/27/19 16:40:01
+carrier update done:03/27/2019 16:40:04\r\nclaimants start @ 03/27/19 16:45:00
+reps update started:03/28/2019 16:29:59
+reps update done:03/28/2019 16:30:09\r\ncarriers start @ 03/28/19 16:40:01
+carrier update done:03/28/2019 16:40:04\r\nclaimants start @ 03/28/19 16:45:00
+claimants update done:03/28/2019 16:48:51
+reps update started:03/29/2019 16:30:00
+reps update done:03/29/2019 16:30:08\r\ncarriers start @ 03/29/19 16:39:59
+carrier update done:03/29/2019 16:40:03\r\nclaimants start @ 03/29/19 16:45:01
+claimants update done:03/29/2019 16:48:38
+reps update started:03/30/2019 16:30:00
+reps update done:03/30/2019 16:30:09\r\ncarriers start @ 03/30/19 16:39:59
+carrier update done:03/30/2019 16:40:02\r\nclaimants start @ 03/30/19 16:45:00
+claimants update done:03/30/2019 16:48:32
+reps update started:03/31/2019 16:30:01
+reps update done:03/31/2019 16:30:09\r\ncarriers start @ 03/31/19 16:40:01
+carrier update done:03/31/2019 16:40:04\r\nclaimants start @ 03/31/19 16:45:01
+claimants update done:03/31/2019 16:47:55
+reps update started:04/01/2019 16:30:00
+reps update done:04/01/2019 16:30:10\r\ncarriers start @ 04/01/19 16:40:02
+carrier update done:04/01/2019 16:40:05\r\nclaimants start @ 04/01/19 16:45:02
+reps update started:04/02/2019 16:30:00
+reps update done:04/02/2019 16:30:09\r\ncarriers start @ 04/02/19 16:39:59
+carrier update done:04/02/2019 16:40:03\r\nclaimants start @ 04/02/19 16:45:02
+reps update started:04/03/2019 16:30:01
+reps update done:04/03/2019 16:30:11\r\ncarriers start @ 04/03/19 16:40:01
+carrier update done:04/03/2019 16:40:04\r\nclaimants start @ 04/03/19 16:45:00
+reps update started:04/04/2019 16:30:01
+reps update done:04/04/2019 16:30:11\r\ncarriers start @ 04/04/19 16:40:00
+carrier update done:04/04/2019 16:40:04\r\nclaimants start @ 04/04/19 16:45:00
+reps update started:04/05/2019 16:30:01
+reps update done:04/05/2019 16:30:08\r\ncarriers start @ 04/05/19 16:40:00
+carrier update done:04/05/2019 16:40:03\r\nclaimants start @ 04/05/19 16:45:01
+reps update started:04/06/2019 16:30:00
+reps update done:04/06/2019 16:30:07\r\ncarriers start @ 04/06/19 16:40:00
+carrier update done:04/06/2019 16:40:03\r\nclaimants start @ 04/06/19 16:45:00
+reps update started:04/07/2019 16:30:00
+reps update done:04/07/2019 16:30:07\r\ncarriers start @ 04/07/19 16:40:02
+carrier update done:04/07/2019 16:40:05\r\nclaimants start @ 04/07/19 16:45:01
+claimants update done:04/07/2019 16:47:56
+reps update started:04/08/2019 16:30:00
+reps update done:04/08/2019 16:30:07\r\ncarriers start @ 04/08/19 16:39:59
+carrier update done:04/08/2019 16:40:02\r\nclaimants start @ 04/08/19 16:45:00
+reps update started:04/09/2019 16:29:57
+reps update done:04/09/2019 16:30:05\r\ncarriers start @ 04/09/19 16:39:58
+carrier update done:04/09/2019 16:40:01\r\nclaimants start @ 04/09/19 16:44:58
+reps update started:04/10/2019 16:29:57
+reps update done:04/10/2019 16:30:07\r\ncarriers start @ 04/10/19 16:39:55
+carrier update done:04/10/2019 16:39:58\r\nclaimants start @ 04/10/19 16:44:55
+reps update started:04/11/2019 16:29:53
+reps update done:04/11/2019 16:30:00\r\ncarriers start @ 04/11/19 16:39:55
+carrier update done:04/11/2019 16:39:57\r\nclaimants start @ 04/11/19 16:44:54
+reps update started:04/12/2019 16:29:51
+reps update done:04/12/2019 16:29:59\r\ncarriers start @ 04/12/19 16:39:50
+carrier update done:04/12/2019 16:39:53\r\nclaimants start @ 04/12/19 16:44:51
+reps update started:04/13/2019 16:29:59
+reps update done:04/13/2019 16:30:06\r\ncarriers start @ 04/13/19 16:40:01
+carrier update done:04/13/2019 16:40:04\r\nclaimants start @ 04/13/19 16:45:00
+reps update started:04/14/2019 16:30:00
+reps update done:04/14/2019 16:30:06\r\ncarriers start @ 04/14/19 16:39:59
+carrier update done:04/14/2019 16:40:03\r\nclaimants start @ 04/14/19 16:45:00
+reps update started:04/15/2019 16:29:59
+reps update done:04/15/2019 16:30:07\r\ncarriers start @ 04/15/19 16:40:00
+carrier update done:04/15/2019 16:40:03\r\nclaimants start @ 04/15/19 16:44:59
+reps update started:04/16/2019 16:29:57
+reps update done:04/16/2019 16:30:04\r\ncarriers start @ 04/16/19 16:39:58
+carrier update done:04/16/2019 16:40:00\r\nclaimants start @ 04/16/19 16:44:57
+reps update started:04/17/2019 16:29:54
+reps update done:04/17/2019 16:30:02\r\ncarriers start @ 04/17/19 16:39:54
+carrier update done:04/17/2019 16:39:57\r\nclaimants start @ 04/17/19 16:44:55
+reps update started:04/18/2019 16:29:52
+reps update done:04/18/2019 16:30:00\r\ncarriers start @ 04/18/19 16:39:52
+carrier update done:04/18/2019 16:39:55\r\nclaimants start @ 04/18/19 16:44:54
+reps update started:04/19/2019 16:29:50
+reps update done:04/19/2019 16:29:57\r\ncarriers start @ 04/19/19 16:39:50
+carrier update done:04/19/2019 16:39:53\r\nclaimants start @ 04/19/19 16:44:51
+reps update started:04/20/2019 16:30:00
+reps update done:04/20/2019 16:30:07\r\ncarriers start @ 04/20/19 16:40:01
+carrier update done:04/20/2019 16:40:03\r\nclaimants start @ 04/20/19 16:45:00
+claimants update done:04/20/2019 16:47:34
+reps update started:04/21/2019 16:30:00
+reps update done:04/21/2019 16:30:08\r\ncarriers start @ 04/21/19 16:39:59
+carrier update done:04/21/2019 16:40:02\r\nclaimants start @ 04/21/19 16:45:00
+reps update started:04/22/2019 16:29:58
+reps update done:04/22/2019 16:30:06\r\ncarriers start @ 04/22/19 16:39:58
+carrier update done:04/22/2019 16:40:01\r\nclaimants start @ 04/22/19 16:45:00
+reps update started:04/23/2019 16:29:55
+reps update done:04/23/2019 16:30:03\r\ncarriers start @ 04/23/19 16:39:55
+carrier update done:04/23/2019 16:39:57\r\nclaimants start @ 04/23/19 16:44:55
+reps update started:04/24/2019 16:29:55
+reps update done:04/24/2019 16:30:03\r\ncarriers start @ 04/24/19 16:39:53
+carrier update done:04/24/2019 16:39:56\r\nclaimants start @ 04/24/19 16:44:53
+reps update started:04/25/2019 16:29:51
+reps update done:04/25/2019 16:30:00\r\ncarriers start @ 04/25/19 16:39:50
+carrier update done:04/25/2019 16:39:53\r\nclaimants start @ 04/25/19 16:44:50
+reps update started:04/26/2019 16:29:49
+reps update done:04/26/2019 16:29:58\r\ncarriers start @ 04/26/19 16:39:48
+carrier update done:04/26/2019 16:39:51\r\nclaimants start @ 04/26/19 16:44:48
+reps update started:04/27/2019 16:30:00
+reps update done:04/27/2019 16:30:09\r\ncarriers start @ 04/27/19 16:40:00
+carrier update done:04/27/2019 16:40:03\r\nclaimants start @ 04/27/19 16:45:00
+claimants update done:04/27/2019 16:47:36
+reps update started:04/28/2019 16:29:59
+reps update done:04/28/2019 16:30:08\r\ncarriers start @ 04/28/19 16:40:00
+carrier update done:04/28/2019 16:40:04\r\nclaimants start @ 04/28/19 16:45:00
+claimants update done:04/28/2019 16:48:11
+reps update started:04/29/2019 16:29:58
+reps update done:04/29/2019 16:30:06\r\ncarriers start @ 04/29/19 16:39:57
+carrier update done:04/29/2019 16:40:00\r\nclaimants start @ 04/29/19 16:44:58
+reps update started:04/30/2019 16:29:56
+reps update done:04/30/2019 16:30:03\r\ncarriers start @ 04/30/19 16:39:56
+carrier update done:04/30/2019 16:39:59\r\nclaimants start @ 04/30/19 16:44:55
+reps update started:05/01/2019 16:29:53
+reps update done:05/01/2019 16:30:01\r\ncarriers start @ 05/01/19 16:39:53
+carrier update done:05/01/2019 16:39:56\r\nclaimants start @ 05/01/19 16:44:53
+reps update started:05/02/2019 16:29:52
+reps update done:05/02/2019 16:29:59\r\ncarriers start @ 05/02/19 16:39:51
+carrier update done:05/02/2019 16:39:53\r\nclaimants start @ 05/02/19 16:44:51
+reps update started:05/03/2019 16:29:48
+reps update done:05/03/2019 16:29:56\r\ncarriers start @ 05/03/19 16:40:25
+carrier update done:05/03/2019 16:40:27\r\nclaimants start @ 05/03/19 16:44:48
+reps update started:05/04/2019 16:29:46
+reps update done:05/04/2019 16:29:54\r\ncarriers start @ 05/04/19 16:39:46
+carrier update done:05/04/2019 16:39:50\r\nclaimants start @ 05/04/19 16:44:46
+claimants update done:05/04/2019 16:47:09
+reps update started:05/05/2019 16:29:45
+reps update done:05/05/2019 16:29:53\r\ncarriers start @ 05/05/19 16:39:44
+carrier update done:05/05/2019 16:39:47\r\nclaimants start @ 05/05/19 16:44:44
+reps update started:05/06/2019 16:29:41
+reps update done:05/06/2019 16:29:49\r\ncarriers start @ 05/06/19 16:39:43
+carrier update done:05/06/2019 16:39:45\r\nclaimants start @ 05/06/19 16:44:41
+reps update started:05/07/2019 16:29:39
+reps update done:05/07/2019 16:29:47\r\ncarriers start @ 05/07/19 16:39:39
+carrier update done:05/07/2019 16:39:42\r\nclaimants start @ 05/07/19 16:44:39
+reps update started:05/08/2019 16:29:37
+reps update done:05/08/2019 16:29:45\r\ncarriers start @ 05/08/19 16:39:37
+carrier update done:05/08/2019 16:39:40\r\nclaimants start @ 05/08/19 16:44:36
+reps update started:05/09/2019 16:29:37
+reps update done:05/09/2019 16:29:45\r\ncarriers start @ 05/09/19 16:39:35
+carrier update done:05/09/2019 16:39:38\r\nclaimants start @ 05/09/19 16:44:37
+reps update started:05/10/2019 16:29:32
+reps update done:05/10/2019 16:29:40\r\ncarriers start @ 05/10/19 16:39:33
+carrier update done:05/10/2019 16:39:37\r\nclaimants start @ 05/10/19 16:44:33
+reps update started:05/11/2019 16:30:00
+reps update done:05/11/2019 16:30:08\r\ncarriers start @ 05/11/19 16:40:00
+carrier update done:05/11/2019 16:40:03\r\nclaimants start @ 05/11/19 16:45:00
+reps update started:05/12/2019 16:29:59
+reps update done:05/12/2019 16:30:08\r\ncarriers start @ 05/12/19 16:39:57
+carrier update done:05/12/2019 16:40:00\r\nclaimants start @ 05/12/19 16:44:57
+reps update started:05/13/2019 16:29:57
+reps update done:05/13/2019 16:30:04\r\ncarriers start @ 05/13/19 16:39:56
+carrier update done:05/13/2019 16:39:59\r\nclaimants start @ 05/13/19 16:44:55
+reps update started:05/14/2019 16:29:54
+reps update done:05/14/2019 16:30:02\r\ncarriers start @ 05/14/19 16:39:53
+carrier update done:05/14/2019 16:39:56\r\nclaimants start @ 05/14/19 16:44:54
+reps update started:05/15/2019 16:30:01
+reps update done:05/15/2019 16:30:09\r\ncarriers start @ 05/15/19 16:39:59
+carrier update done:05/15/2019 16:40:02\r\nclaimants start @ 05/15/19 16:45:00
+reps update started:05/16/2019 16:29:59
+reps update done:05/16/2019 16:30:07\r\ncarriers start @ 05/16/19 16:39:59
+carrier update done:05/16/2019 16:40:03\r\nclaimants start @ 05/16/19 16:44:59
+reps update started:05/17/2019 16:29:56
+reps update done:05/17/2019 16:30:03\r\ncarriers start @ 05/17/19 16:39:55
+carrier update done:05/17/2019 16:39:58\r\nclaimants start @ 05/17/19 16:44:56
+reps update started:05/18/2019 16:29:59
+reps update done:05/18/2019 16:30:09\r\ncarriers start @ 05/18/19 16:39:59
+carrier update done:05/18/2019 16:40:03\r\nclaimants start @ 05/18/19 16:45:00
+claimants update done:05/18/2019 16:47:42
+reps update started:05/19/2019 16:30:02
+reps update done:05/19/2019 16:30:10\r\ncarriers start @ 05/19/19 16:40:01
+carrier update done:05/19/2019 16:40:04\r\nclaimants start @ 05/19/19 16:45:00
+claimants update done:05/19/2019 16:47:43
+reps update started:05/20/2019 16:29:58
+reps update done:05/20/2019 16:30:06\r\ncarriers start @ 05/20/19 16:39:58
+carrier update done:05/20/2019 16:40:01\r\nclaimants start @ 05/20/19 16:44:58
+reps update started:05/21/2019 16:29:55
+reps update done:05/21/2019 16:30:03\r\ncarriers start @ 05/21/19 16:39:56
+carrier update done:05/21/2019 16:39:59\r\nclaimants start @ 05/21/19 16:44:57
+reps update started:05/22/2019 16:29:52
+reps update done:05/22/2019 16:30:00\r\ncarriers start @ 05/22/19 16:39:53
+carrier update done:05/22/2019 16:39:56\r\nclaimants start @ 05/22/19 16:44:54
+reps update started:05/23/2019 16:29:50
+reps update done:05/23/2019 16:29:59\r\ncarriers start @ 05/23/19 16:39:51
+carrier update done:05/23/2019 16:39:54\r\nclaimants start @ 05/23/19 16:44:50
+reps update started:05/24/2019 16:29:49
+reps update done:05/24/2019 16:29:57\r\ncarriers start @ 05/24/19 16:39:49
+carrier update done:05/24/2019 16:39:52\r\nclaimants start @ 05/24/19 16:44:49
+reps update started:05/25/2019 16:29:59
+reps update done:05/25/2019 16:30:07\r\ncarriers start @ 05/25/19 16:40:01
+carrier update done:05/25/2019 16:40:04\r\nclaimants start @ 05/25/19 16:45:00
+reps update started:05/26/2019 16:30:01
+reps update done:05/26/2019 16:30:09\r\ncarriers start @ 05/26/19 16:40:01
+carrier update done:05/26/2019 16:40:04\r\nclaimants start @ 05/26/19 16:44:59
+claimants update done:05/26/2019 16:48:03
+reps update started:05/27/2019 16:29:58
+reps update done:05/27/2019 16:30:06\r\ncarriers start @ 05/27/19 16:39:58
+carrier update done:05/27/2019 16:40:01\r\nclaimants start @ 05/27/19 16:44:57
+claimants update done:05/27/2019 16:47:17
+reps update started:05/28/2019 16:29:55
+reps update done:05/28/2019 16:30:03\r\ncarriers start @ 05/28/19 16:39:55
+carrier update done:05/28/2019 16:39:58\r\nclaimants start @ 05/28/19 16:44:57
+reps update started:05/29/2019 16:29:53
+reps update done:05/29/2019 16:30:03\r\ncarriers start @ 05/29/19 16:39:53
+carrier update done:05/29/2019 16:39:56\r\nclaimants start @ 05/29/19 16:44:52
+reps update started:05/30/2019 16:29:51
+reps update done:05/30/2019 16:29:59\r\ncarriers start @ 05/30/19 16:39:51
+carrier update done:05/30/2019 16:39:54\r\nclaimants start @ 05/30/19 16:44:51
+reps update started:05/31/2019 16:29:48
+reps update done:05/31/2019 16:29:56\r\ncarriers start @ 05/31/19 16:39:52
+carrier update done:05/31/2019 16:39:55\r\nclaimants start @ 05/31/19 16:44:48
+reps update started:06/01/2019 16:30:00
+reps update done:06/01/2019 16:30:08\r\ncarriers start @ 06/01/19 16:39:59
+carrier update done:06/01/2019 16:40:03\r\nclaimants start @ 06/01/19 16:45:01
+claimants update done:06/01/2019 16:47:20
+reps update started:06/02/2019 16:30:00
+reps update done:06/02/2019 16:30:08\r\ncarriers start @ 06/02/19 16:40:00
+carrier update done:06/02/2019 16:40:03\r\nclaimants start @ 06/02/19 16:45:00
+claimants update done:06/02/2019 16:47:37
+reps update started:06/03/2019 16:29:57
+reps update done:06/03/2019 16:30:05\r\ncarriers start @ 06/03/19 16:39:57
+carrier update done:06/03/2019 16:40:00\r\nclaimants start @ 06/03/19 16:44:59
+reps update started:06/04/2019 16:29:56
+reps update done:06/04/2019 16:30:05\r\ncarriers start @ 06/04/19 16:39:55
+carrier update done:06/04/2019 16:39:58\r\nclaimants start @ 06/04/19 16:44:55
+reps update started:06/05/2019 16:29:54
+reps update done:06/05/2019 16:30:02\r\ncarriers start @ 06/05/19 16:39:53
+carrier update done:06/05/2019 16:39:56\r\nclaimants start @ 06/05/19 16:44:53
+reps update started:06/06/2019 16:29:51
+reps update done:06/06/2019 16:29:59\r\ncarriers start @ 06/06/19 16:39:51
+carrier update done:06/06/2019 16:39:54\r\nclaimants start @ 06/06/19 16:44:50
+reps update started:06/07/2019 16:29:48
+reps update done:06/07/2019 16:29:56\r\ncarriers start @ 06/07/19 16:39:49
+carrier update done:06/07/2019 16:39:52\r\nclaimants start @ 06/07/19 16:44:48
+reps update started:06/08/2019 16:30:00
+reps update done:06/08/2019 16:30:09\r\ncarriers start @ 06/08/19 16:40:00
+carrier update done:06/08/2019 16:40:03\r\nclaimants start @ 06/08/19 16:45:00
+reps update started:06/09/2019 16:30:00
+reps update done:06/09/2019 16:30:07\r\ncarriers start @ 06/09/19 16:40:01
+carrier update done:06/09/2019 16:40:04\r\nclaimants start @ 06/09/19 16:44:59
+reps update started:06/10/2019 16:29:58
+reps update done:06/10/2019 16:30:07\r\ncarriers start @ 06/10/19 16:39:57
+carrier update done:06/10/2019 16:40:01\r\nclaimants start @ 06/10/19 16:44:58
+reps update started:06/11/2019 16:29:55
+reps update done:06/11/2019 16:30:03\r\ncarriers start @ 06/11/19 16:39:56
+carrier update done:06/11/2019 16:39:59\r\nclaimants start @ 06/11/19 16:44:57
+reps update started:06/12/2019 16:29:52
+reps update done:06/12/2019 16:30:00\r\ncarriers start @ 06/12/19 16:39:53
+carrier update done:06/12/2019 16:39:57\r\nclaimants start @ 06/12/19 16:44:54
+reps update started:06/13/2019 16:29:52
+reps update done:06/13/2019 16:30:00\r\ncarriers start @ 06/13/19 16:39:50
+carrier update done:06/13/2019 16:39:55\r\nclaimants start @ 06/13/19 16:44:51
+reps update started:06/14/2019 16:29:48
+reps update done:06/14/2019 16:29:56\r\ncarriers start @ 06/14/19 16:39:48
+carrier update done:06/14/2019 16:39:51\r\nclaimants start @ 06/14/19 16:44:48
+reps update started:06/15/2019 16:29:59
+reps update done:06/15/2019 16:30:08\r\ncarriers start @ 06/15/19 16:39:59
+carrier update done:06/15/2019 16:40:03\r\nclaimants start @ 06/15/19 16:45:00
+claimants update done:06/15/2019 16:47:14
+reps update started:06/16/2019 16:30:00
+reps update done:06/16/2019 16:30:08\r\ncarriers start @ 06/16/19 16:40:02
+carrier update done:06/16/2019 16:40:05\r\nclaimants start @ 06/16/19 16:45:00
+claimants update done:06/16/2019 16:47:23
+reps update started:06/17/2019 16:29:58
+reps update done:06/17/2019 16:30:06\r\ncarriers start @ 06/17/19 16:39:58
+carrier update done:06/17/2019 16:40:02\r\nclaimants start @ 06/17/19 16:44:57
+reps update started:06/18/2019 16:30:23
+reps update done:06/18/2019 16:30:30\r\ncarriers start @ 06/18/19 16:40:21
+carrier update done:06/18/2019 16:40:24\r\nclaimants start @ 06/18/19 16:45:22
+reps update started:06/19/2019 16:30:44
+reps update done:06/19/2019 16:30:51\r\ncarriers start @ 06/19/19 16:40:43
+carrier update done:06/19/2019 16:40:46\r\nclaimants start @ 06/19/19 16:45:45
+reps update started:06/20/2019 16:30:05
+reps update done:06/20/2019 16:30:13\r\ncarriers start @ 06/20/19 16:40:06
+carrier update done:06/20/2019 16:40:08\r\nclaimants start @ 06/20/19 16:45:04
+reps update started:06/21/2019 16:30:25
+reps update done:06/21/2019 16:30:33\r\ncarriers start @ 06/21/19 16:40:25
+carrier update done:06/21/2019 16:40:28\r\nclaimants start @ 06/21/19 16:45:26
+reps update started:06/22/2019 16:30:14
+reps update done:06/22/2019 16:30:21\r\ncarriers start @ 06/22/19 16:40:14
+carrier update done:06/22/2019 16:40:17\r\nclaimants start @ 06/22/19 16:45:15
+reps update started:06/23/2019 16:30:14
+reps update done:06/23/2019 16:30:21\r\ncarriers start @ 06/23/19 16:40:14
+carrier update done:06/23/2019 16:40:18\r\nclaimants start @ 06/23/19 16:45:15
+claimants update done:06/23/2019 16:47:46
+reps update started:06/24/2019 16:30:00
+reps update done:06/24/2019 16:30:07\r\ncarriers start @ 06/24/19 16:40:00
+carrier update done:06/24/2019 16:40:03\r\nclaimants start @ 06/24/19 16:45:01
+reps update started:06/26/2019 16:29:56
+reps update done:06/26/2019 16:30:05\r\ncarriers start @ 06/26/19 16:39:56
+carrier update done:06/26/2019 16:39:59\r\nclaimants start @ 06/26/19 16:44:57
+reps update started:06/27/2019 16:29:54
+reps update done:06/27/2019 16:30:04\r\ncarriers start @ 06/27/19 16:39:55
+carrier update done:06/27/2019 16:39:58\r\nclaimants start @ 06/27/19 16:44:55
+reps update started:06/28/2019 16:29:52
+reps update done:06/28/2019 16:30:00\r\ncarriers start @ 06/28/19 16:39:51
+carrier update done:06/28/2019 16:39:54\r\nclaimants start @ 06/28/19 16:44:51
+reps update started:06/29/2019 16:29:51
+reps update done:06/29/2019 16:29:59\r\ncarriers start @ 06/29/19 16:39:51
+carrier update done:06/29/2019 16:39:54\r\nclaimants start @ 06/29/19 16:44:49
+claimants update done:06/29/2019 16:47:07
+reps update started:06/30/2019 16:30:00
+reps update done:06/30/2019 16:30:08\r\ncarriers start @ 06/30/19 16:40:00
+carrier update done:06/30/2019 16:40:02\r\nclaimants start @ 06/30/19 16:45:00
+claimants update done:06/30/2019 16:48:52
+reps update started:07/01/2019 16:30:00
+reps update done:07/01/2019 16:30:09\r\ncarriers start @ 07/01/19 16:39:57
+carrier update done:07/01/2019 16:40:00\r\nclaimants start @ 07/01/19 16:44:58
+reps update started:07/02/2019 16:29:57
+reps update done:07/02/2019 16:30:05\r\ncarriers start @ 07/02/19 16:39:55
+carrier update done:07/02/2019 16:39:58\r\nclaimants start @ 07/02/19 16:44:55
+reps update started:07/03/2019 16:29:56
+reps update done:07/03/2019 16:30:09\r\ncarriers start @ 07/03/19 16:39:53
+carrier update done:07/03/2019 16:39:56\r\nclaimants start @ 07/03/19 16:44:53
+reps update started:07/04/2019 16:29:51
+reps update done:07/04/2019 16:30:00\r\ncarriers start @ 07/04/19 16:39:51
+carrier update done:07/04/2019 16:39:53\r\nclaimants start @ 07/04/19 16:44:51
+reps update started:07/05/2019 16:29:49
+reps update done:07/05/2019 16:29:57\r\ncarriers start @ 07/05/19 16:39:48
+carrier update done:07/05/2019 16:39:51\r\nclaimants start @ 07/05/19 16:44:48
+reps update started:07/06/2019 16:30:00
+reps update done:07/06/2019 16:30:07\r\ncarriers start @ 07/06/19 16:39:59
+carrier update done:07/06/2019 16:40:02\r\nclaimants start @ 07/06/19 16:45:01
+claimants update done:07/06/2019 16:47:50
+reps update started:07/07/2019 16:29:59
+reps update done:07/07/2019 16:30:07\r\ncarriers start @ 07/07/19 16:40:00
+carrier update done:07/07/2019 16:40:03\r\nclaimants start @ 07/07/19 16:45:01
+reps update started:07/08/2019 17:06:21
+reps update done:07/08/2019 17:06:28\r\nclaimants start @ 07/08/19 17:07:39\r\ncarriers start @ 07/08/19 17:10:26
+carrier update done:07/08/2019 17:10:28
+reps update started:07/09/2019 16:29:58
+reps update done:07/09/2019 16:30:06\r\ncarriers start @ 07/09/19 16:39:58
+carrier update done:07/09/2019 16:40:00\r\nclaimants start @ 07/09/19 16:44:58
+reps update started:07/10/2019 16:29:56
+reps update done:07/10/2019 16:30:04\r\ncarriers start @ 07/10/19 16:39:55
+carrier update done:07/10/2019 16:39:58\r\nclaimants start @ 07/10/19 16:44:56
+reps update started:07/11/2019 16:29:52
+reps update done:07/11/2019 16:30:00\r\ncarriers start @ 07/11/19 16:39:54
+carrier update done:07/11/2019 16:39:56\r\nclaimants start @ 07/11/19 16:44:52
+reps update started:07/12/2019 16:29:50
+reps update done:07/12/2019 16:29:58\r\ncarriers start @ 07/12/19 16:39:49
+carrier update done:07/12/2019 16:39:52\r\nclaimants start @ 07/12/19 16:44:49
+reps update started:07/13/2019 16:30:00
+reps update done:07/13/2019 16:30:07\r\ncarriers start @ 07/13/19 16:39:59
+carrier update done:07/13/2019 16:40:02\r\nclaimants start @ 07/13/19 16:45:00
+claimants update done:07/13/2019 16:47:36
+reps update started:07/14/2019 16:30:00
+reps update done:07/14/2019 16:30:07\r\ncarriers start @ 07/14/19 16:39:59
+carrier update done:07/14/2019 16:40:02\r\nclaimants start @ 07/14/19 16:45:00
+reps update started:07/15/2019 16:30:00
+reps update done:07/15/2019 16:30:08\r\ncarriers start @ 07/15/19 16:39:59
+carrier update done:07/15/2019 16:40:02\r\nclaimants start @ 07/15/19 16:45:00
+reps update started:07/16/2019 16:29:57
+reps update done:07/16/2019 16:30:04\r\ncarriers start @ 07/16/19 16:39:56
+carrier update done:07/16/2019 16:40:00\r\nclaimants start @ 07/16/19 16:44:57
+reps update started:07/17/2019 16:29:55
+reps update done:07/17/2019 16:30:03\r\ncarriers start @ 07/17/19 16:39:55
+carrier update done:07/17/2019 16:39:59\r\nclaimants start @ 07/17/19 16:44:55
+reps update started:07/18/2019 16:29:53
+reps update done:07/18/2019 16:30:01\r\ncarriers start @ 07/18/19 16:39:52
+carrier update done:07/18/2019 16:39:55\r\nclaimants start @ 07/18/19 16:44:52
+reps update started:07/19/2019 16:29:50
+reps update done:07/19/2019 16:29:58\r\ncarriers start @ 07/19/19 16:39:49
+carrier update done:07/19/2019 16:39:52\r\nclaimants start @ 07/19/19 16:44:50
+reps update started:07/20/2019 16:30:02
+reps update done:07/20/2019 16:30:09\r\ncarriers start @ 07/20/19 16:40:01
+carrier update done:07/20/2019 16:40:04\r\nclaimants start @ 07/20/19 16:45:01
+claimants update done:07/20/2019 16:47:19
+reps update started:07/21/2019 16:30:00
+reps update done:07/21/2019 16:30:07\r\ncarriers start @ 07/21/19 16:40:00
+carrier update done:07/21/2019 16:40:02\r\nclaimants start @ 07/21/19 16:44:59
+claimants update done:07/21/2019 16:47:20
+reps update started:07/22/2019 16:29:58
+reps update done:07/22/2019 16:30:05\r\ncarriers start @ 07/22/19 16:39:57
+carrier update done:07/22/2019 16:40:00\r\nclaimants start @ 07/22/19 16:44:58
+reps update started:07/23/2019 16:29:56
+reps update done:07/23/2019 16:30:03\r\ncarriers start @ 07/23/19 16:39:55
+carrier update done:07/23/2019 16:39:58\r\nclaimants start @ 07/23/19 16:44:55
+reps update started:07/24/2019 16:29:53
+reps update done:07/24/2019 16:30:01\r\ncarriers start @ 07/24/19 16:39:54
+carrier update done:07/24/2019 16:39:57\r\nclaimants start @ 07/24/19 16:44:53
+reps update started:07/25/2019 16:29:51
+reps update done:07/25/2019 16:29:58\r\ncarriers start @ 07/25/19 16:39:50
+carrier update done:07/25/2019 16:39:53\r\nclaimants start @ 07/25/19 16:44:52
+reps update started:07/26/2019 16:29:49
+reps update done:07/26/2019 16:29:56\r\ncarriers start @ 07/26/19 16:39:48
+carrier update done:07/26/2019 16:39:51\r\nclaimants start @ 07/26/19 16:44:48
+reps update started:07/27/2019 16:30:01
+reps update done:07/27/2019 16:30:09\r\ncarriers start @ 07/27/19 16:40:01
+carrier update done:07/27/2019 16:40:04\r\nclaimants start @ 07/27/19 16:45:01
+reps update started:07/28/2019 16:30:01
+reps update done:07/28/2019 16:30:09\r\ncarriers start @ 07/28/19 16:40:00
+carrier update done:07/28/2019 16:40:03\r\nclaimants start @ 07/28/19 16:45:01
+claimants update done:07/28/2019 16:47:54
+reps update started:07/29/2019 16:29:59
+reps update done:07/29/2019 16:30:06\r\ncarriers start @ 07/29/19 16:39:57
+carrier update done:07/29/2019 16:40:00\r\nclaimants start @ 07/29/19 16:44:58
+reps update started:07/30/2019 16:29:56
+reps update done:07/30/2019 16:30:04\r\ncarriers start @ 07/30/19 16:39:55
+carrier update done:07/30/2019 16:39:58\r\nclaimants start @ 07/30/19 16:44:57
+reps update started:07/31/2019 16:29:53
+reps update done:07/31/2019 16:30:01\r\ncarriers start @ 07/31/19 16:39:53
+carrier update done:07/31/2019 16:39:55\r\nclaimants start @ 07/31/19 16:44:54
+reps update started:08/01/2019 16:29:52
+reps update done:08/01/2019 16:29:59\r\ncarriers start @ 08/01/19 16:39:50
+carrier update done:08/01/2019 16:39:53\r\nclaimants start @ 08/01/19 16:44:52
+reps update started:08/02/2019 16:29:49
+reps update done:08/02/2019 16:29:56\r\ncarriers start @ 08/02/19 16:39:47
+carrier update done:08/02/2019 16:39:50\r\nclaimants start @ 08/02/19 16:44:48
+reps update started:08/03/2019 16:30:01
+reps update done:08/03/2019 16:30:09\r\ncarriers start @ 08/03/19 16:40:01
+carrier update done:08/03/2019 16:40:05\r\nclaimants start @ 08/03/19 16:45:01
+reps update started:08/04/2019 16:30:00
+reps update done:08/04/2019 16:30:08\r\ncarriers start @ 08/04/19 16:39:59
+carrier update done:08/04/2019 16:40:03\r\nclaimants start @ 08/04/19 16:45:00
+reps update started:08/05/2019 16:29:58
+reps update done:08/05/2019 16:30:06\r\ncarriers start @ 08/05/19 16:39:57
+carrier update done:08/05/2019 16:40:00\r\nclaimants start @ 08/05/19 16:44:59
+reps update started:08/06/2019 16:29:55
+reps update done:08/06/2019 16:30:03\r\ncarriers start @ 08/06/19 16:39:56
+carrier update done:08/06/2019 16:40:00\r\nclaimants start @ 08/06/19 16:44:56
+reps update started:08/07/2019 16:29:54
+reps update done:08/07/2019 16:30:03\r\ncarriers start @ 08/07/19 16:39:53
+carrier update done:08/07/2019 16:39:56\r\nclaimants start @ 08/07/19 16:44:54
+reps update started:08/08/2019 16:29:50
+reps update done:08/08/2019 16:29:58\r\ncarriers start @ 08/08/19 16:39:52
+carrier update done:08/08/2019 16:39:55\r\nclaimants start @ 08/08/19 16:44:51
+reps update started:08/09/2019 16:29:48
+reps update done:08/09/2019 16:29:56\r\ncarriers start @ 08/09/19 16:39:48
+carrier update done:08/09/2019 16:39:50\r\nclaimants start @ 08/09/19 16:44:48
+reps update started:08/10/2019 16:30:00
+reps update done:08/10/2019 16:30:08\r\ncarriers start @ 08/10/19 16:40:00
+carrier update done:08/10/2019 16:40:03\r\nclaimants start @ 08/10/19 16:45:01
+claimants update done:08/10/2019 16:47:31
+reps update started:08/11/2019 16:30:00
+reps update done:08/11/2019 16:30:07\r\ncarriers start @ 08/11/19 16:40:01
+carrier update done:08/11/2019 16:40:03\r\nclaimants start @ 08/11/19 16:45:00
+claimants update done:08/11/2019 16:47:22
+reps update started:08/12/2019 16:29:58
+reps update done:08/12/2019 16:30:06\r\ncarriers start @ 08/12/19 16:40:00
+carrier update done:08/12/2019 16:40:03\r\nclaimants start @ 08/12/19 16:44:59
+reps update started:08/13/2019 16:29:57
+reps update done:08/13/2019 16:30:05\r\ncarriers start @ 08/13/19 16:39:55
+carrier update done:08/13/2019 16:39:59\r\nclaimants start @ 08/13/19 16:44:57
+reps update started:08/14/2019 16:30:00
+reps update done:08/14/2019 16:30:08\r\ncarriers start @ 08/14/19 16:40:00
+carrier update done:08/14/2019 16:40:02\r\nclaimants start @ 08/14/19 16:45:00
+reps update started:08/15/2019 16:29:58
+reps update done:08/15/2019 16:30:06\r\ncarriers start @ 08/15/19 16:39:58
+carrier update done:08/15/2019 16:40:00\r\nclaimants start @ 08/15/19 16:44:58
+reps update started:08/16/2019 16:29:56
+reps update done:08/16/2019 16:30:04\r\ncarriers start @ 08/16/19 16:39:56
+carrier update done:08/16/2019 16:39:59\r\nclaimants start @ 08/16/19 16:44:56
+claimants update done:08/16/2019 16:49:19
+reps update started:08/17/2019 16:30:02
+reps update done:08/17/2019 16:30:10\r\ncarriers start @ 08/17/19 16:40:01
+carrier update done:08/17/2019 16:40:04\r\nclaimants start @ 08/17/19 16:45:02
+reps update started:08/18/2019 16:30:02
+reps update done:08/18/2019 16:30:09\r\ncarriers start @ 08/18/19 16:40:02
+carrier update done:08/18/2019 16:40:05\r\nclaimants start @ 08/18/19 16:45:02
+reps update started:08/19/2019 16:30:01
+reps update done:08/19/2019 16:30:10\r\ncarriers start @ 08/19/19 16:40:01
+carrier update done:08/19/2019 16:40:03\r\nclaimants start @ 08/19/19 16:45:01
+reps update started:08/20/2019 16:29:59
+reps update done:08/20/2019 16:30:07\r\ncarriers start @ 08/20/19 16:39:59
+carrier update done:08/20/2019 16:40:01\r\nclaimants start @ 08/20/19 16:45:00
+reps update started:08/21/2019 16:29:58
+reps update done:08/21/2019 16:30:05\r\ncarriers start @ 08/21/19 16:39:56
+carrier update done:08/21/2019 16:39:58\r\nclaimants start @ 08/21/19 16:44:57
+reps update started:08/22/2019 16:29:54
+reps update done:08/22/2019 16:30:01\r\ncarriers start @ 08/22/19 16:39:54
+carrier update done:08/22/2019 16:39:57\r\nclaimants start @ 08/22/19 16:44:55
+reps update started:08/23/2019 16:29:52
+reps update done:08/23/2019 16:30:00\r\ncarriers start @ 08/23/19 16:39:51
+carrier update done:08/23/2019 16:39:54\r\nclaimants start @ 08/23/19 16:44:52
+reps update started:08/24/2019 16:30:00
+reps update done:08/24/2019 16:30:08\r\ncarriers start @ 08/24/19 16:40:01
+carrier update done:08/24/2019 16:40:04\r\nclaimants start @ 08/24/19 16:45:00
+claimants update done:08/24/2019 16:47:37
+reps update started:08/25/2019 16:30:01
+reps update done:08/25/2019 16:30:08\r\ncarriers start @ 08/25/19 16:40:00
+carrier update done:08/25/2019 16:40:03\r\nclaimants start @ 08/25/19 16:45:01
+reps update started:08/26/2019 16:30:03
+reps update done:08/26/2019 16:30:12\r\ncarriers start @ 08/26/19 16:40:02
+carrier update done:08/26/2019 16:40:04\r\nclaimants start @ 08/26/19 16:45:01
+reps update started:08/27/2019 16:30:00
+reps update done:08/27/2019 16:30:07\r\ncarriers start @ 08/27/19 16:40:00
+carrier update done:08/27/2019 16:40:02\r\nclaimants start @ 08/27/19 16:45:00
+reps update started:08/28/2019 16:29:58
+reps update done:08/28/2019 16:30:05\r\ncarriers start @ 08/28/19 16:39:57
+carrier update done:08/28/2019 16:39:59\r\nclaimants start @ 08/28/19 16:44:57
+reps update started:08/29/2019 16:29:54
+reps update done:08/29/2019 16:30:02\r\ncarriers start @ 08/29/19 16:39:55
+carrier update done:08/29/2019 16:39:58\r\nclaimants start @ 08/29/19 16:45:59
+reps update started:08/30/2019 16:29:52
+reps update done:08/30/2019 16:30:00\r\ncarriers start @ 08/30/19 16:39:52
+carrier update done:08/30/2019 16:39:55\r\nclaimants start @ 08/30/19 16:44:50
+reps update started:08/31/2019 16:30:01
+reps update done:08/31/2019 16:30:10\r\ncarriers start @ 08/31/19 16:40:01
+carrier update done:08/31/2019 16:40:05\r\nclaimants start @ 08/31/19 16:45:01
+reps update started:09/01/2019 16:30:07
+reps update done:09/01/2019 16:30:15\r\ncarriers start @ 09/01/19 16:40:08
+carrier update done:09/01/2019 16:40:11\r\nclaimants start @ 09/01/19 16:45:05
+claimants update done:09/01/2019 16:47:24
+reps update started:09/02/2019 16:30:03
+reps update done:09/02/2019 16:30:11\r\ncarriers start @ 09/02/19 16:40:00
+carrier update done:09/02/2019 16:40:04\r\nclaimants start @ 09/02/19 16:45:00
+claimants update done:09/02/2019 16:47:29
+reps update started:09/03/2019 16:29:55
+reps update done:09/03/2019 16:30:05\r\ncarriers start @ 09/03/19 16:39:56
+carrier update done:09/03/2019 16:39:59\r\nclaimants start @ 09/03/19 16:44:58
+reps update started:09/04/2019 16:30:03
+reps update done:09/04/2019 16:30:11\r\ncarriers start @ 09/04/19 16:40:03
+carrier update done:09/04/2019 16:40:05\r\nclaimants start @ 09/04/19 16:45:03
+reps update started:09/05/2019 16:29:59
+reps update done:09/05/2019 16:30:08\r\ncarriers start @ 09/05/19 16:40:00
+carrier update done:09/05/2019 16:40:03\r\nclaimants start @ 09/05/19 16:45:00
+reps update started:09/06/2019 16:31:08
+reps update done:09/06/2019 16:31:16\r\ncarriers start @ 09/06/19 16:40:02
+carrier update done:09/06/2019 16:40:05\r\nclaimants start @ 09/06/19 16:45:02
+reps update started:09/07/2019 16:29:59
+reps update done:09/07/2019 16:30:06\r\ncarriers start @ 09/07/19 16:39:59
+carrier update done:09/07/2019 16:40:02\r\nclaimants start @ 09/07/19 16:44:59
+claimants update done:09/07/2019 16:47:56
+reps update started:09/08/2019 16:30:01
+reps update done:09/08/2019 16:30:08\r\ncarriers start @ 09/08/19 16:40:02
+carrier update done:09/08/2019 16:40:05\r\nclaimants start @ 09/08/19 16:45:02
+reps update started:09/09/2019 16:30:02
+reps update done:09/09/2019 16:30:10\r\ncarriers start @ 09/09/19 16:40:02
+carrier update done:09/09/2019 16:40:05\r\nclaimants start @ 09/09/19 16:45:01
+reps update started:09/10/2019 16:30:02
+reps update done:09/10/2019 16:30:10\r\ncarriers start @ 09/10/19 16:40:06
+carrier update done:09/10/2019 16:40:08\r\nclaimants start @ 09/10/19 16:45:02
+reps update started:09/11/2019 16:30:02
+reps update done:09/11/2019 16:30:10\r\ncarriers start @ 09/11/19 16:40:08
+carrier update done:09/11/2019 16:40:11\r\nclaimants start @ 09/11/19 16:45:07
+reps update started:09/12/2019 16:30:07
+reps update done:09/12/2019 16:30:15\r\ncarriers start @ 09/12/19 16:40:02
+carrier update done:09/12/2019 16:40:05\r\nclaimants start @ 09/12/19 16:45:02
+reps update started:09/13/2019 16:30:00
+reps update done:09/13/2019 16:30:08\r\ncarriers start @ 09/13/19 16:39:58
+carrier update done:09/13/2019 16:40:01\r\nclaimants start @ 09/13/19 16:45:00
+reps update started:09/14/2019 16:30:00
+reps update done:09/14/2019 16:30:07\r\ncarriers start @ 09/14/19 16:40:22
+carrier update done:09/14/2019 16:40:25\r\nclaimants start @ 09/14/19 16:45:02
+reps update started:09/15/2019 16:30:02
+reps update done:09/15/2019 16:30:10\r\ncarriers start @ 09/15/19 16:40:02
+carrier update done:09/15/2019 16:40:05\r\nclaimants start @ 09/15/19 16:45:02
+reps update started:09/16/2019 16:30:00
+reps update done:09/16/2019 16:30:08\r\ncarriers start @ 09/16/19 16:40:02
+carrier update done:09/16/2019 16:40:05\r\nclaimants start @ 09/16/19 16:45:04
+reps update started:09/17/2019 16:29:58
+reps update done:09/17/2019 16:30:06\r\ncarriers start @ 09/17/19 16:39:59
+carrier update done:09/17/2019 16:40:01\r\nclaimants start @ 09/17/19 16:44:59
+reps update started:09/18/2019 16:29:57
+reps update done:09/18/2019 16:30:05\r\ncarriers start @ 09/18/19 16:39:54
+carrier update done:09/18/2019 16:39:57\r\nclaimants start @ 09/18/19 16:44:54
+reps update started:09/19/2019 16:30:04
+reps update done:09/19/2019 16:30:11\r\ncarriers start @ 09/19/19 16:40:01
+carrier update done:09/19/2019 16:40:05\r\nclaimants start @ 09/19/19 16:45:02
+reps update started:09/20/2019 16:30:15
+reps update done:09/20/2019 16:30:23\r\ncarriers start @ 09/20/19 16:40:15
+carrier update done:09/20/2019 16:40:18\r\nclaimants start @ 09/20/19 16:45:14
+reps update started:09/21/2019 16:30:01
+reps update done:09/21/2019 16:30:09\r\ncarriers start @ 09/21/19 16:40:00
+carrier update done:09/21/2019 16:40:03\r\nclaimants start @ 09/21/19 16:45:01
+claimants update done:09/21/2019 16:47:48
+reps update started:09/22/2019 16:30:02
+reps update done:09/22/2019 16:30:09\r\ncarriers start @ 09/22/19 16:40:01
+carrier update done:09/22/2019 16:40:04\r\nclaimants start @ 09/22/19 16:45:00
+claimants update done:09/22/2019 16:47:53
+reps update started:09/23/2019 16:30:14
+reps update done:09/23/2019 16:30:22\r\ncarriers start @ 09/23/19 16:40:13
+carrier update done:09/23/2019 16:40:16\r\nclaimants start @ 09/23/19 16:45:13
+reps update started:09/24/2019 16:30:01
+reps update done:09/24/2019 16:30:09\r\ncarriers start @ 09/24/19 16:40:01
+carrier update done:09/24/2019 16:40:04\r\nclaimants start @ 09/24/19 16:45:01
+reps update started:09/25/2019 16:30:02
+reps update done:09/25/2019 16:30:10\r\ncarriers start @ 09/25/19 16:40:07
+carrier update done:09/25/2019 16:40:10\r\nclaimants start @ 09/25/19 16:45:01
+reps update started:09/26/2019 16:30:02
+reps update done:09/26/2019 16:30:10\r\ncarriers start @ 09/26/19 16:40:03
+carrier update done:09/26/2019 16:40:06\r\nclaimants start @ 09/26/19 16:44:59

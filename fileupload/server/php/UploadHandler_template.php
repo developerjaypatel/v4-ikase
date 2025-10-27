@@ -1774,7 +1774,7 @@ class UploadHandler
      */
 	function getConnection() {
 		
-		if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == "D:\\iKase.org") {
+		if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == "D:\\ikase.org") {
             return DB::conn(DB::DB_LOCALHOST, true);
         }
 

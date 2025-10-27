@@ -131,7 +131,7 @@
 				
 				stack.thumb_description = stack.document_name + " - Pages " + stack.description;
 			} else {
-				var href = "uploads/" + customer_id + "/" + stack.case_id + "/" + stack.document_filename.replace("#", "%23");
+				var href = "D:/uploads/" + customer_id + "/" + stack.case_id + "/" + stack.document_filename.replace("#", "%23");
 				blnBatchscan3 = false;
 				if (!isNaN(stack.thumbnail_folder) && stack.document_extension!="docx") {
 					//final check
@@ -142,9 +142,9 @@
 						}
 					}
 					if (stack.type=="batchscan3" || blnBatchscan3) {
-						href = "uploads/" + customer_id + "/imports/" + stack.thumbnail_folder + "/" + stack.document_filename;
+						href = "D:/uploads/" + customer_id + "/imports/" + stack.thumbnail_folder + "/" + stack.document_filename;
 					} else {
-						href = "uploads/" + customer_id + "/imports/" + stack.document_filename;
+						href = "D:/uploads/" + customer_id + "/imports/" + stack.document_filename;
 					}
 				}
 			}

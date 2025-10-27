@@ -4,7 +4,7 @@
 	//error_reporting(E_ALL);
 	//ini_set('display_errors', '1');	
 	
-	$filename = "C:\\inetpub\\wwwroot\\iKase.org\\api\\chain.config";
+	$filename = "C:\\inetpub\\wwwroot\\ikase.org\\api\\chain.config";
 	
 	$handle = fopen($filename, "r");
 	$contents = fread($handle, filesize($filename));

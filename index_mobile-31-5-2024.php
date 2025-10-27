@@ -3,7 +3,7 @@
 //die("mobile");
 
 if($_SERVER["HTTPS"]=="off") {
-	header("location:https://v2.ikase.org");
+	header("location:https://v4.ikase.org");
 }
 //include ("text_editor/ed/datacon.php");
 //include("api/connection.php");
@@ -294,7 +294,7 @@ $version_number = 8;
 					$("#button_holder").html("&nbsp;<br><span class='white_text'>A password reset link has been sent to your email.  Please check your inbox and follow the instructions.</span>");
 					emptyBuffer(data.success.text);
 					setTimeout(function() {
-						//document.location.href = "https://v2.ikase.org/";
+						//document.location.href = "https://v4.ikase.org/";
 					}, 5500);
 				}
 			}

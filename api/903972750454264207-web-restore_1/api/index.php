@@ -521,7 +521,7 @@ if ($user_logon=="nancy@ryon"){
 }
 */
 						$session_id = session_id();
-						$filename = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\data_' . $session_id  . '.txt';
+						$filename = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\data_' . $session_id  . '.txt';
 						$_SESSION["time_stamp"] = date("m/d/y H:i:s");
 						$_SESSION["login_type"] = "regular_user";
 						$fp = fopen($filename, 'w');
@@ -587,7 +587,7 @@ if ($user_logon=="nancy@ryon"){
 							$php_session_id = session_id();
 							$_SESSION["time_stamp"] = date("m/d/y H:i:s");
 							$_SESSION["login_type"] = "owner";
-							$filename = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\data_' . $session_id  . '.txt';
+							$filename = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\data_' . $session_id  . '.txt';
 							$fp = fopen($filename, 'w');
 							fwrite($fp, json_encode($_SESSION));
 							fclose($fp);
@@ -718,7 +718,7 @@ function login_master() {
 						$stmt->execute();
 						
 						$session_id = session_id();
-						$filename = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\data_' . $session_id  . '.txt';
+						$filename = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\data_' . $session_id  . '.txt';
 						$_SESSION["time_stamp"] = date("m/d/y H:i:s");
 						$_SESSION["login_type"] = "master";
 						$fp = fopen($filename, 'w');
@@ -920,7 +920,7 @@ function reLogin() {
 						$stmt->execute();
 						
 						$session_id = session_id();
-						$filename = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\data_' . $session_id  . '.txt';
+						$filename = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\data_' . $session_id  . '.txt';
 						$_SESSION["time_stamp"] = date("m/d/y H:i:s");
 						$_SESSION["login_type"] = "user";
 						$fp = fopen($filename, 'w');
@@ -992,7 +992,7 @@ function logout() {
 	$_SESSION = array();
 	
 	
-	$filename = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\data_' . $session_id  . '.txt';
+	$filename = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\data_' . $session_id  . '.txt';
 	$fp = fopen($filename, 'w');
 	fwrite($fp, "");
 	fclose($fp);

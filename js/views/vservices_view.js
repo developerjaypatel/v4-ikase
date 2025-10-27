@@ -63,7 +63,7 @@ window.vservices_view = Backbone.View.extend({
 			}
 			
 			//brochure
-			vservice.brochure = "<a href='uploads/vservices/" + vservice.vservice_id + "/brochure.pdf' target='_blank' title='Click to open " + vservice.name + " brochure'><img src='uploads/vservices/" + vservice.vservice_id + "/thumbnail.jpg'></a>";
+			vservice.brochure = "<a href='D:/uploads/vservices/" + vservice.vservice_id + "/brochure.pdf' target='_blank' title='Click to open " + vservice.name + " brochure'><img src='D:/uploads/vservices/" + vservice.vservice_id + "/thumbnail.jpg'></a>";
 			
 			_.each(kase_dois , function(doi) {
 				var start_date = doi.get("start_date");

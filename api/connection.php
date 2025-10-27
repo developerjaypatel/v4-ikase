@@ -1443,14 +1443,15 @@ function findDocumentFolder($customer_id, $case_id, $file, $type, $thumbnail_fol
 	$blnJPG = (strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "jpg" || strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "png");
 	$blnDocx = (strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "docx");
 	$blnSound = (strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "wma" || strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "mp3");
+	$blnMsg = (strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "msg");
 	
-	if (!$blnPDF && !$blnJPG && !$blnDocx && !$blnSound) {
+	if (!$blnPDF && !$blnJPG && !$blnDocx && !$blnSound && !$blnMsg) {
 		$extension = "docx";
 		$file .= "." . $extension;
 	}
 	//https://www.localhost/uploads/1042/6843/letters/1002%201ST%20THANK%20YOU%20LTR%20(1)_6843_0.docx
 	
-	$path = "../uploads/" . $customer_id . "/" . $case_id . "/" .  $file;
+	$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/" .  $file;
 	//die($path);
 	if (file_exists($path)) {
 		return $path;
@@ -1461,20 +1462,20 @@ function findDocumentFolder($customer_id, $case_id, $file, $type, $thumbnail_fol
 	
 	if ($type=="jetfile" || $type=="DOR" || $type=="DORE" || $type=="LIEN") {
 		
-		$path = "../uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $filename;
+		$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $filename;
 	}
 	if ($type=="eams_form") {
-		$path = "../uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
+		$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
 	}
 	if (is_numeric($thumbnail_folder) && $extension!="docx" && $thumbnail_folder!="") {
-		$path = "../uploads/" . $customer_id . "/imports/" . $file;
+		$path = "D:/uploads/" . $customer_id . "/imports/" . $file;
 	}
 	if ($type == "abacus") {
 		//FIXME: non-existing variable
 		$path = "https://www.ikase.xyz/ikase/abacus/" . $customer_data_source . "/" . $thumbnail_folder . "/" . $file;
 	}
 	
-	if (strpos($file, "iKase.org\\scans") > -1) {
+	if (strpos($file, "ikase.org\\scans") > -1) {
 		$arrFile = explode("\\", $file);
 		$filename = $arrFile[count($arrFile) - 1];
 		$path = "../scans/" . $customer_id . "/" . $thumbnail_folder . "/imports/" . $filename;
@@ -1486,25 +1487,25 @@ function findDocumentFolder($customer_id, $case_id, $file, $type, $thumbnail_fol
 		die();
 	} else {
 		//probably on the main customer folder
-		$path = "../uploads/" . $customer_id . "/" .  $file;
+		$path = "D:/uploads/" . $customer_id . "/" .  $file;
 		if (file_exists($path)) {
 			return $path;
 			die();
 		} 
 		//maybe it's a jetfile
-		$path = "../uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $file;
+		$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $file;
 		if (file_exists($path)) {
 			return $path;
 			die();
 		} else {
 			//might be a jetfiler form?
-			$path = "../uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
+			$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
 			if (file_exists($path)) {
 				return $path;
 				die();
 			} else {
 				//try for batchscan3
-				$path = "../uploads/" . $customer_id . "/" . $case_id . "/" . $file;
+				$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/" . $file;
 				if (file_exists($path)) {
 					return $path;
 					die();
@@ -1547,7 +1548,7 @@ function findDocumentFolder($customer_id, $case_id, $file, $type, $thumbnail_fol
 					$path = "../scans/" . $customer_id . "/" . $date . "/" . $file;
 					*/
 					
-					$path = "../uploads/" . $customer_id . "/imports/" . $thumbnail_folder . "/" . $file;
+					$path = "D:/uploads/" . $customer_id . "/imports/" . $thumbnail_folder . "/" . $file;
 					
 					//die($path);
 					if (file_exists($path)) {
@@ -1555,7 +1556,7 @@ function findDocumentFolder($customer_id, $case_id, $file, $type, $thumbnail_fol
 						die();
 					} else {
 						//try for letters
-						$path = "../uploads/" . $customer_id . "/" . $case_id . "/letters/" . $file;
+						$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/letters/" . $file;
 						//echo $path . "<br />";
 						//die();
 						if (file_exists($path)) {
@@ -1585,7 +1586,7 @@ function findDocumentThumbnail($customer_id, $case_id, $document) {
 	if ($thumbnail_folder!="") {
 		$filepath = str_replace(".pdf", ".jpg", $filename);
 		$filepath = str_replace(".PDF", ".jpg", $filepath);
-		$path = "../uploads/" . $customer_id . "/" . $thumbnail_folder . "/" . $filepath;
+		$path = "D:/uploads/" . $customer_id . "/" . $thumbnail_folder . "/" . $filepath;
 		
 		if (file_exists($path)) {
 			return $path;
@@ -1603,7 +1604,7 @@ function findDocumentThumbnail($customer_id, $case_id, $document) {
 	}
 	$document_date = $new_date;
 	
-	$preview = "uploads/" . $customer_id . "/";
+	$preview = "D:/uploads/" . $customer_id . "/";
 	
 	
 	if ($thumbnail_folder=="0" || strpos($thumbnail_folder, "pdfimage")!==false) {
@@ -1658,7 +1659,7 @@ function findDocumentThumbnail($customer_id, $case_id, $document) {
 			array_pop($arrFileName);
 			array_pop($arrFileName);
 			$filename = implode("_", $arrFileName) . "-" . $first_page . ".png";
-			$preview = "uploads/" . $customer_id . "/imports/" . $thumbnail_folder . "/";	
+			$preview = "D:/uploads/" . $customer_id . "/imports/" . $thumbnail_folder . "/";	
 		}
 		//identify batshcanned files
 		if ($parent_document_uuid!="") {
@@ -1699,7 +1700,7 @@ function findDocumentThumbnail($customer_id, $case_id, $document) {
 				}
 			}
 			$filename = str_replace(".png", ".jpg", $filename);
-			$preview = "scans/" . $customer_id . "/" . date("Ymd", strtotime($document_date)) . "/";
+			$preview = "../scans/" . $customer_id . "/" . date("Ymd", strtotime($document_date)) . "/";
 		}
 	}
 	$preview .= $filename;

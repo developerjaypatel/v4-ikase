@@ -14,7 +14,7 @@ function getPDOConnection() {
 	return $dbh;
 	/*	
 	if (isset($_SERVER['DOCUMENT_ROOT'])) {
-		if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\iKase.org") {
+		if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\ikase.org") {
 			//$dbhost="54.149.211.191";
 			//$dbhost="52.34.166.217";
 			$dbhost="ikase.org";

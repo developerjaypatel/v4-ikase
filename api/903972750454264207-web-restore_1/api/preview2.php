@@ -89,17 +89,17 @@ if (!$path) {
 	}
 }
 /*
-$path = "../uploads/" . $customer_id . "/" . $case_id . "/" .  $file;
+$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/" .  $file;
 if ($type=="jetfile" || $type=="DOR" || $type=="DORE" || $type=="LIEN") {
 	$arrFile = explode("/", $file);
 	$filename = $arrFile[count($arrFile) - 1];
-	$path = "../uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $filename;
+	$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $filename;
 }
 if ($type=="eams_form") {
-	$path = "../uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
+	$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
 }
 if (is_numeric($thumbnail_folder) && $extension!="docx" && $thumbnail_folder!="") {
-	$path = "../uploads/" . $customer_id . "/imports/" . $file;
+	$path = "D:/uploads/" . $customer_id . "/imports/" . $file;
 }
 if ($type == "abacus") {
 	$path = "https://www.ikase.xyz/ikase/abacus/" . $customer_data_source + "/" . $thumbnail_folder . "/" . $file;
@@ -110,13 +110,13 @@ if (file_exists($path)) {
 	die();
 } else {
 	//maybe it's a jetfile
-	$path = "../uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $file;
+	$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $file;
 	if (file_exists($path)) {
 		header("location:" . $path);
 		die();
 	} else {
 		//might be a jetfiler form?
-		$path = "../uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
+		$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
 		if (file_exists($path)) {
 			header("location:" . $path);
 			die();

@@ -27,7 +27,7 @@ try {
 	echo $sql_truncate . "\r\n\r\n";
 	$stmt = DB::run($sql_truncate);
 	
-	$sql_truncate = "TRUNCATE  `ikase`.`cse_job` ";
+	$sql_truncate = "TRUNCATE `ikase_".$data_source."`.`cse_job` ";
 	
 	echo $sql_truncate . "\r\n\r\n";
 	$stmt = DB::run($sql_truncate);
@@ -36,11 +36,28 @@ try {
 	$time = explode(' ', $time);
 	$time = $time[1] + $time[0];
 	$row_start_time = $time;
-	
-	$sql =  "INSERT INTO `ikase`.`cse_job` (`job_uuid`, `job`, `blurb`, `color`)";
-	$sql .= " SELECT DISTINCT `TITLE`, `TITLE`, LOWER(REPLACE(`TITLE`, ' ', '_')) blurb, '' color
-	FROM `" . $GLOBALS['GEN_DB_NAME'] . "`.`staff`
-	WHERE `TITLE` IS NOT NULL";
+	// $sql =  "INSERT INTO `ikase`.`cse_job` (`job_uuid`, `job`, `blurb`, `color`)";
+	// $sql .= " SELECT DISTINCT `TITLE`, `TITLE`, LOWER(REPLACE(`TITLE`, ' ', '_')) blurb, '' color
+	// FROM `" . $GLOBALS['GEN_DB_NAME'] . "`.`staff`
+	// WHERE `TITLE` IS NOT NULL AND `TITLE` COLLATE utf8_unicode_ci NOT IN (SELECT job_uuid COLLATE utf8_unicode_ci FROM `ikase`.`cse_job`)";
+	$sql="INSERT INTO `ikase`.`cse_job` (`job_uuid`, `job`, `blurb`, `color`)
+SELECT DISTINCT 
+    s.`TITLE`,
+    s.`TITLE`,
+    LOWER(REPLACE(s.`TITLE`, ' ', '_')) AS blurb,
+    '' AS color
+FROM `".$GLOBALS['GEN_DB_NAME']."`.`staff` s
+WHERE s.`TITLE` IS NOT NULL
+  AND s.`TITLE` COLLATE utf8_unicode_ci NOT IN (
+      SELECT j.job_uuid COLLATE utf8_unicode_ci
+      FROM `ikase`.`cse_job` j
+      WHERE j.job_uuid IS NOT NULL
+  )
+  AND LOWER(REPLACE(s.`TITLE`, ' ', '_')) COLLATE utf8_unicode_ci NOT IN (
+      SELECT j.blurb COLLATE utf8_unicode_ci
+      FROM `ikase`.`cse_job` j
+      WHERE j.blurb IS NOT NULL
+  );";
 	
 	echo $sql . "\r\n\r\n";
 	$stmt = DB::run($sql);
@@ -124,7 +141,7 @@ try {
 	$sql = "INSERT INTO `ikase`.`cse_user_job` (
 	`user_job_uuid`, `user_uuid`, `job_uuid`, `attribute`, `last_updated_date`, `last_update_user`, `customer_id`)
 	SELECT CONCAT(`user_uuid`,`user_id`), user_uuid, job, 'main', '" . date("Y-m-d H:i:s") . "', 'system', '" . $customer_id . "'
-	FROM `ikase`.`cse_user`";
+	FROM `ikase`.`cse_user` where customer_id = '".$customer_id."'";
 	
 	echo $sql . "\r\n\r\n";
 	$stmt = DB::run($sql);

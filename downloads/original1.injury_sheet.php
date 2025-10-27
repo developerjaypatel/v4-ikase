@@ -368,7 +368,7 @@ var openSendForm = function() {
 <body style="color:#EDEDED;">
 <table width="900" border="0" align="center" cellpadding="3" cellspacing="0" style="margin-top:0px">
   <tr>
-  	<td width="20%" valign="top"><img src="https://v2.ikase.org/img/ikase_logo_login.png" height="32" width="77"></td>
+  	<td width="20%" valign="top"><img src="https://v4.ikase.org/img/ikase_logo_login.png" height="32" width="77"></td>
     <td colspan="3" align="left" style="font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:1.5em">
     	DEMOGRAPHICS COVER PAGE
     </td>

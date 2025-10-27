@@ -54,8 +54,8 @@ die(json_encode($list));
 
 //passthru('whoami');
 
-$cmd = "PowerShell.exe -ExecutionPolicy Bypass -File c:\\bat\\topdf.ps1 'C:\\inetpub\\wwwroot\\iKase.org\\uploads\\1033\\invoices\\kase_bill__20180705103030.docx'";
-$fp = fopen('C:\\inetpub\\wwwroot\\iKase.org\\uploads\invoices\\pdf.ps1', 'w');
+$cmd = "PowerShell.exe -ExecutionPolicy Bypass -File c:\\bat\\topdf.ps1 'C:\\inetpub\\wwwroot\\ikase.org\\uploads\\1033\\invoices\\kase_bill__20180705103030.docx'";
+$fp = fopen('C:\\inetpub\\wwwroot\\ikase.org\\uploads\invoices\\pdf.ps1', 'w');
 fwrite($fp, $cmd);
 fclose($fp);
 
@@ -76,7 +76,7 @@ $targetFile = "C:\\inetpub\\wwwroot\\ikase\\uploads\\1033\\42\\f132_16011294321.
 $thumbFile = "C:\\inetpub\\wwwroot\\ikase\\pdfimage\\1033\\42\\f132_16011294321.jpg";
 $thumbnail_path = "C:\\inetpub\\wwwroot\\ikase\\uploads\\1033\\42\\medium\\f132_16011294321.jpg";
 
-$targetFile = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\1094\\6235\\jetfiler\\eams_combine_appcover_24815.pdf";
+$targetFile = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\1094\\6235\\jetfiler\\eams_combine_appcover_24815.pdf";
 //echo "from " . $targetFile . " to " . $thumbFile;	// . "<br>" . $thumbnail_path . "<br />";
 
 

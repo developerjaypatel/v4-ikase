@@ -1,7 +1,7 @@
 <?php
 
 $imageOptions = array(
-'src' => '../uploads/1042/templates/letterhead_060717.png', 
+'src' => 'D:/uploads/1042/templates/letterhead_060717.png', 
 'dpi' => 72,  
 'scaling' => 30
 );

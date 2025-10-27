@@ -5,7 +5,7 @@ ini_set('display_errors', '1');
 require_once('../../shared/legacy_session.php');
 set_time_limit(3000);
 if (!isset($_SESSION["user_id"])) {
-	header("location:https://v2.ikase.org/");
+	header("location:https://v4.ikase.org/");
 }
 $time = microtime();
 $time = explode(' ', $time);
@@ -104,9 +104,9 @@ var setFeedback = function(msg) {
   <li>Move the data to F://customer_name/clients from  CLIENTS directory</li>
   <li>Update inetpub/wwwroot/a1_import/settings with  directory where injury content is and the import database name</li>
   <li>Run folders.php script <br />
-    localhost/a1_import/folders.php?db=customer_name</li>
-  <li>Run extract.php?db=customer_name</li>
-  <li>Run extract_activity.php?db=customer_name (can  run in parallel), much slower</li>
+    localhost/a1_import/folders.php?db=customer_name&source=v4.ikase.org</li>
+  <li>Run localhost/a1_import/extract.php?db=customer_name&source=v4.ikase.org</li>
+  <li>Run localhost/a1_import/extract_activity.php?db=customer_name&source=v4.ikase.org (can  run in parallel), much slower</li>
   <li>Enter the archives folder in ikase.cse_customer  for documents</li>
   <li>Read <a href="../../api/A1 Protocol.docx">Protocol</a>, run queries to prep database</li>
   <li>Run through Main Data and below, then Transfer section</li>

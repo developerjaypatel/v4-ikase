@@ -22,7 +22,7 @@ if (isset($_POST['upload_dir'])) {
 }
 if ($upload_dir=="") {
 	// Set the upload directory
-	$uploadDir = '\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
+	$uploadDir = 'D:\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
 	if ($case_id != "") {
 		$uploadDir .= $case_id . '\\';
 	}
@@ -31,24 +31,24 @@ if ($upload_dir=="") {
 }
 $uploadThumbDir = str_replace("uploads", "pdf_image", $uploadDir);
 
-//die($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "<br />" . is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir));
-if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir)) {
-	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir, 0755, true);
+//die($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "<br />" . is_dir($uploadDir));
+if (!is_dir($uploadDir)) {
+	mkdir($uploadDir, 0755, true);
 }
-if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadThumbDir)) {
-	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadThumbDir, 0755, true);
+if (!is_dir($uploadThumbDir)) {
+	mkdir($uploadThumbDir, 0755, true);
 }
-if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "medium")) {
-	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "medium", 0755, true);
+if (!is_dir($uploadDir . "medium")) {
+	mkdir($uploadDir . "medium", 0755, true);
 }
-if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadThumbDir . "medium")) {
-	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadThumbDir . "medium", 0755, true);
+if (!is_dir($uploadThumbDir . "medium")) {
+	mkdir($uploadThumbDir . "medium", 0755, true);
 }
-if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "thumbnail")) {
-	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "thumbnail", 0755, true);
+if (!is_dir($uploadDir . "thumbnail")) {
+	mkdir($uploadDir . "thumbnail", 0755, true);
 }
-if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadThumbDir . "thumbnail")) {
-	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadThumbDir . "thumbnail", 0755, true);
+if (!is_dir($uploadThumbDir . "thumbnail")) {
+	mkdir($uploadThumbDir . "thumbnail", 0755, true);
 }
 
 //die($_SERVER['DOCUMENT_ROOT'] . $uploadDir);

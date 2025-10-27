@@ -28,7 +28,7 @@ $batchscan_id = "";
 include("customer_lookup.php");
 $stmt = null; $db = null;
 
-$path = "../uploads/" . $customer_id . "/" . $file;
+$path = "D:/uploads/" . $customer_id . "/" . $file;
 
 
 if (file_exists($path)) {
@@ -36,45 +36,45 @@ if (file_exists($path)) {
 	die();
 } else {
 	//maybe it's a webmail_previews
-	$path = "../uploads/" . $customer_id . "/webmail_previews/" . $_SESSION["user_plain_id"] . "/" . $file;
+	$path = "D:/uploads/" . $customer_id . "/webmail_previews/" . $_SESSION["user_plain_id"] . "/" . $file;
 	if (file_exists($path)) {
 		header("location:" . $path);
 		die();
 	} else {
 		//might be on the main customer folder
-		$path = "../uploads/" . $customer_id . "/" .  $file;
+		$path = "D:/uploads/" . $customer_id . "/" .  $file;
 		if (file_exists($path)) {
 			return $path;
 			die();
 		}
 		if ($case_id!="") {
-			$path = "../uploads/" . $customer_id . "/" . $case_id . "/" .  $file;
+			$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/" .  $file;
 			//die($path);
 			if (file_exists($path)) {
 				header("location:" . $path);
 				die();
 			} else {
 				//maybe it's a jetfile
-				$path = "../uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $file;
+				$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $file;
 				if (file_exists($path)) {
 					header("location:" . $path);
 					die();
 				} else {
 					//might be a jetfiler form?
-					$path = "../uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
+					$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/eams_forms/" .  $file;
 					if (file_exists($path)) {
 						header("location:" . $path);
 						die();
 					} else {
 						//might just be in the customer folder
-						$path = "../uploads/" . $customer_id . "/" .  $file;
+						$path = "D:/uploads/" . $customer_id . "/" .  $file;
 						if (file_exists($path)) {
 							header("location:" . $path);
 							die();
 						} else {
 							//might just be in the customer folder
 							$user_id = $_SESSION["user_plain_id"];
-							$path = "../uploads/" . $customer_id . "/webmail_previews/" . $user_id . "/" . $file;
+							$path = "D:/uploads/" . $customer_id . "/webmail_previews/" . $user_id . "/" . $file;
 							if (file_exists($path)) {
 								header("location:" . $path);
 								die();

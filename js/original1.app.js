@@ -8175,7 +8175,7 @@ function copySync() {
 		$('.copy_sync').removeClass("btn-success");
 	}, 2500);
 	
-	return "https://v2.ikase.org/api/ikase_sync3.php?" + subscription_string;
+	return "https://v4.ikase.org/api/ikase_sync3.php?" + subscription_string;
 }
 $(function() {
     // create listener

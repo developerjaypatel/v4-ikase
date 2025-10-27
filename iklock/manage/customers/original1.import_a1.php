@@ -5,7 +5,7 @@ ini_set('display_errors', '1');
 include("../../api/manage_session.php");
 set_time_limit(3000);
 if (!isset($_SESSION["user_id"])) {
-	header("location:https://v2.ikase.org/");
+	header("location:https://v4.ikase.org/");
 }
 $time = microtime();
 $time = explode(' ', $time);

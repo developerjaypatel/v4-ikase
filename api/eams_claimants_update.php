@@ -36,6 +36,8 @@ try {
 			$stmt = DB::run($query);
 			$result_claimant = $stmt->fetchObject();
             $numbs = is_object($result_claimant)? count($result_claimant) : 0;
+			// $numbs = is_object($result_claimant) ? count(get_object_vars($result_claimant)) : 0; added by jay 
+
 			if ($numbs==0) {
 				//print_r($arrRow);
 				//no street_2 6/19/2017

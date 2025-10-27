@@ -8,6 +8,15 @@ ini_set('sendmail_from', 'admin@ikase.website');
 require_once('../shared/legacy_session.php');
 session_write_close();
 
+if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
+{
+  $application_logo = "logo-starlinkcms.png";
+}
+else
+{
+  $application_logo = "ikase_logo_login.png";
+}
+
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
 	header("location:../index.php");
 	die();
@@ -425,7 +434,7 @@ var openSendForm = function() {
 <body style="color:#EDEDED;">
 <table width="97%" border="0" align="center" cellpadding="3" cellspacing="0" style="margin-top:0px">
   <tr>
-  	<td width="16%" valign="top"><img src="https://www.ikase.website/img/ikase_logo_login.png" height="32" width="77"></td>
+  	<td width="16%" valign="top"><img src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/img/<?php echo $application_logo; ?>" height="35" /></td>
     <td colspan="3" align="left" style="font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:1.5em">
     	DEMOGRAPHICS  PAGE
     </td>
@@ -515,11 +524,28 @@ var openSendForm = function() {
   </tr>
   <tr>
     <td valign="top" nowrap>&nbsp;</td>
-    <td colspan="3"><?php echo ($arrComm && is_array($arrComm))?implode(" | ",$arrComm):$arrComm; ?></td>
+    <td colspan="3">
+    	<?php 
+    	//echo ($arrComm && is_array($arrComm))?implode(" | ",$arrComm):$arrComm; 
+    		if(isset($arrComm) && count($arrComm) > 0)
+    		{
+    			echo implode(" | ",$arrComm);
+    		}
+    	?>
+    	</td>
   </tr>
   <tr>
     <td valign="top" nowrap>&nbsp;</td>
-    <td colspan="3"><?php echo ($arrLanguageOccupation && is_array($arrLanguageOccupation))?implode("&nbsp;|&nbsp;", $arrLanguageOccupation):$arrLanguageOccupation; ?></td>
+    <td colspan="3">
+    	<?php 
+    	//echo ($arrLanguageOccupation && is_array($arrLanguageOccupation))?implode("&nbsp;|&nbsp;", $arrLanguageOccupation):$arrLanguageOccupation; 
+    		if(isset($arrLanguageOccupation) && count($arrLanguageOccupation) > 0)
+    		{
+    			echo implode(" | ",$arrLanguageOccupation);
+    		}
+    	?>
+    		
+    	</td>
   </tr>
   <tr>
     <td valign="top" nowrap><strong>Venue</strong></td>
@@ -843,7 +869,7 @@ if ($emailit!="y") {
 if ($emailit=="y") {
 	$content = str_replace('display:none" id="matrix_holder"', 'display:" id="matrix_holder"', $content);
 	//now output to a text file
-	$upload_dir_config = '../uploads/' . $_SESSION['user_customer_id'] . '/' . $case_id;
+	$upload_dir_config = 'D:/uploads/' . $_SESSION['user_customer_id'] . '/' . $case_id;
 	if (!is_dir($upload_dir_config)) {
 		mkdir($upload_dir_config, 0755, true);
 	}

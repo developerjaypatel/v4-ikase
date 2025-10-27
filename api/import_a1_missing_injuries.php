@@ -174,9 +174,9 @@ try {
 				if ($injury->DOI=="") {
 					$injury->DOI = "0000-00-00";
 				} else {
-					$injury->DOI = date("Y-m-d", strtotime($injury->DOI)); 
+					$injury->DOI = date("Y-m-d", strtotime($injury->DOI));
 				}
-				if ($injury->DOI2=="") {
+				if ($injury->DOI2=="" || $injury->DOI2=="0000-00-00") {
 					$injury->DOI2 = "0000-00-00";
 				} else {
 					$injury->DOI2 = date("Y-m-d", strtotime($injury->DOI2)); 

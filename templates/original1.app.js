@@ -3789,9 +3789,9 @@ var showPreview = function(event, filename, time_stamp, pages, customer_id) {
 		first_page = pages.split("-")[0] - 1;
 	}
 	if (time_stamp!="") {
-		var preview = "uploads/" + customer_id + "/" + time_stamp + "/" + filename + "_" + first_page + ".png";
+		var preview = "D:/uploads/" + customer_id + "/" + time_stamp + "/" + filename + "_" + first_page + ".png";
 	} else {
-		var preview = "uploads/" + customer_id + "/thumbnails/" + filename + "_" + first_page + ".png";
+		var preview = "D:/uploads/" + customer_id + "/thumbnails/" + filename + "_" + first_page + ".png";
 	}
 	//console.log(preview);
 	
@@ -3859,7 +3859,7 @@ var showAttachmentPreview = function(form_name, event, filename, case_id, custom
 		//elementTop = scrollTop - 20;
 		elementLeft = rect.left+scrollLeft - 300;
 		//console.log("top", rect.top + " + " + scrollTop);
-		filename = filename.replaceAll("uploads/" + customer_id + "/", "");
+		filename = filename.replaceAll("D:/uploads/" + customer_id + "/", "");
 		var arrFiles = filename.split("|");
 		var arrayLength = arrFiles.length;
 		var panel_html;
@@ -3889,7 +3889,7 @@ var documentPreview = function(event, filename, customer_id, thumbnail_folder) {
 	if (typeof thumbnail_folder == "undefined") {
 		thumbnail_folder = "";
 	}
-	var preview = "uploads/" + customer_id + "/";
+	var preview = "D:/uploads/" + customer_id + "/";
 	if (thumbnail_folder!="") {
 		if (filename.indexOf("_") > -1 && thumbnail_folder.indexOf("/") == -1) {
 			//var arrExtension = filename.split(".");
@@ -3941,7 +3941,7 @@ var documentThumbnail = function(filename, customer_id, thumbnail_folder, case_i
 	if (typeof case_id == "undefined") {
 		case_id = "";
 	}
-	var preview = "uploads/" + customer_id + "/";
+	var preview = "D:/uploads/" + customer_id + "/";
 	if (case_id!="" && thumbnail_folder=="") {
 		preview += case_id + "/";
 	}

@@ -11,7 +11,7 @@
         <div id="settlement_checkrequests_holder" class="holders" style="display:none"></div>
     </div>
     <div class="gridster settlement_list_view settlement" id="gridster_settlement_list" style="display:">
-         <div style="background:url(img/glass_info.png) left top; padding:5px; width:1028px;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px;" class="col-md-6">
+         <div style="background:url(img/glass_info.png) left top; padding:5px; width:1028px;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; float:none;" class="col-md-6">
         <form id="settlement_form" parsley-validate>
             <input id="table_name" name="table_name" type="hidden" value="settlement" />
             <input id="table_id" name="table_id" type="hidden" value="<%= settlement_id %>" />
@@ -145,7 +145,7 @@
 </div>
 <div style="height:20px; width:20px">&nbsp;</div>
 <div class="settlement_list_fees settlement_fees" id="settlement_fees" style="display:">
-     <div style="background:url(img/glass_dark.png) left top; padding:5px; width:1028px;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px;" class="col-md-6">
+     <div style="background:url(img/glass_dark.png) left top; padding:5px; width:1028px;-moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px;" class="">
      	<div style="margin-top:0px; margin-right:10px; padding-top:5px">            
 			<?php 
             $form_name = "settlement_fees"; 

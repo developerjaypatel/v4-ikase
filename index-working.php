@@ -1,5 +1,5 @@
 <?php
-setcookie('samesite-test', '1', 0, '/', 'v2.ikase.org', 'SameSite=Lax; Secure'); //change SameSite=None to Lax for CWE-1275, 352 : 12-7-2023
+setcookie('samesite-test', '1', 0, '/', 'v4.ikase.org', 'SameSite=Lax; Secure'); //change SameSite=None to Lax for CWE-1275, 352 : 12-7-2023
 
 if ($_SERVER['REMOTE_ADDR'] == "47.153.49.83") {
 	//phpinfo();
@@ -10,11 +10,11 @@ include("browser_detect.php");
 //$blnDebug = ($_SERVER['REMOTE_ADDR']=='47.153.51.181');
 $blnDebug = false;
 if($blnMobile) {
-	header("location:https://v2.ikase.org/index_mobile.php");
+	header("location:https://v4.ikase.org/index_mobile.php");
 }
 
 if($_SERVER["HTTPS"]=="off") {
-	header("location:https://v2.ikase.org");
+	header("location:https://v4.ikase.org");
 }
 
 $sixo = strtotime("2017-09-01 18:00:00");

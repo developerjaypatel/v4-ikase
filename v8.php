@@ -22,7 +22,7 @@ else
 {
   $application = "iKase";
   $application_logo = "favicon.png";
-  $application_url = "https://v2.ikase.org/";  
+  $application_url = "https://v4.ikase.org/";  
 }
 
 //if($_SERVER['REMOTE_ADDR']=='47.153.59.9') {
@@ -37,7 +37,7 @@ require_once('shared/legacy_session.php');
 require_once('rootdata.php');
 
 if($_SERVER["HTTPS"]=="off") {
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']);
 }
 
 if ($_SESSION["need_password"]) {
@@ -117,7 +117,7 @@ if (isset($_GET["gtok"])) {
 	
 	//update the user gmail info
 	//ALREADY DONE IN ikase.xyz/ikase/gmail/ui/index.php 
-	//$url = "https://v2.ikase.org/api/gmail/settoken";
+	//$url = "https://v4.ikase.org/api/gmail/settoken";
 	try {
 		/*
 		$user_id = $_SESSION["user_plain_id"];
@@ -159,7 +159,7 @@ if (isset($_GET["gtok"])) {
 }
 
 if($blnMobile) {
-	header("location:https://v2.ikase.org/mobilev1.php");
+	header("location:https://". $_SERVER['SERVER_NAME'] ."/mobilev1.php");
 }
 
 if ($blnDebug) {
@@ -174,7 +174,8 @@ if ($blnDebug) {
 }
 $dbname = "gtg_thecase";
 //FIXME: what's this supposed to do? it should always be true, unless it's running from CLI
-if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == $document_root_dir) {
+// if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == $document_root_dir) {
+if (isset($_SERVER['DOCUMENT_ROOT']) && (strtolower($_SERVER['DOCUMENT_ROOT']) == strtolower($document_root_dir) || strtolower($_SERVER['DOCUMENT_ROOT']) == strtolower($document_root_dir_alternate))) {
 	$dbname = "ikase";
 	if (isset($_SESSION['user_data_source']) && $_SESSION['user_data_source'] != "") {
 		$dbname .= "_" . $_SESSION['user_data_source'];
@@ -238,7 +239,7 @@ try {
 			inj.adj_number, ccase.rating, ccase.injury_type, ccase.sub_in, inj.`type` main_injury_type,
 			IF (DATE_FORMAT(ccase.case_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.case_date, '%m/%d/%Y')) `case_date`, 
 			IF (DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.terminated_date, '%m/%d/%Y')) `terminated_date`,
-ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
+ccase.case_type, ccase.case_sub_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims, 
 			venue.venue_uuid, IF(venue.venue IS NULL, '', venue.venue) venue, venue.address1 venue_street, venue.address2 venue_suite, venue.city venue_city, venue.zip venue_zip, venue_abbr, ccase.case_status, ccase.case_substatus, ccase.case_subsubstatus, ccase.submittedOn, ccase.supervising_attorney,
     ccase.supervising_attorney,
     ccase.attorney, 
@@ -616,6 +617,7 @@ if (strpos($_SESSION['user_role'], "admin") !== false) {
 }
 
 $customer_calendars = null;
+
 $sql = "SELECT *
 		FROM `" . $dbname . "`.cse_calendar 
 		WHERE 1
@@ -829,7 +831,7 @@ if ($blnDebug) {
 $sql = "SELECT DISTINCT 
 		inj.injury_id id, ccase.case_id, inj.injury_number, ccase.case_uuid uuid, IF(ccase.case_number='UNKNOWN' AND ccase.file_number!='', '', ccase.case_number) case_number, ccase.file_number, ccase.cpointer,inj.injury_number, inj.adj_number, ccase.rating, 
 			IF (DATE_FORMAT(ccase.case_date, '%m/%d/%Y') IS NULL, '', DATE_FORMAT(ccase.case_date, '%m/%d/%Y')) case_date , 
-			ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
+			ccase.case_type, ccase.case_sub_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 			venue.venue_uuid, IFNULL(venue.venue, '') venue, IFNULL(venue_abbr, '') venue_abbr, ccase.case_status, ccase.case_substatus, ccase.case_subsubstatus, ccase.submittedOn, ccase.supervising_attorney,
     ccase.attorney, ccase.worker, ccase.interpreter_needed, ccase.file_location, ccase.case_language `case_language`,  
 			app.person_id applicant_id, app.person_uuid applicant_uuid,
@@ -1866,13 +1868,14 @@ if ($blnDebug) {
 
     <script src="js/views/webmail_listing.js?version=<?php echo $version; ?>"></script>
     <script src="js/views/workflow_sheet_details.js?version=<?php echo $version; ?>"></script>
-    
+    <script src="js/views/customer_support_view.js?version=<?php echo $version; ?>"></script>
     <!--modules-->
     <?php if (!$blnNewWindow) { ?>
 		<script src="js/chat_module.js?version=<?php echo $version; ?>"></script>
         <script src="js/event_module.js?version=<?php echo $version; ?>"></script>
         <script src="js/kase_module.js?version=<?php echo $version; ?>"></script>
         <script src="js/phone_message_module.js?version=<?php echo $version; ?>"></script>
+        <script src="js/customer_support.js?version=<?php echo $version; ?>"></script>
         <script src="js/setting_module.js?version=<?php echo $version; ?>"></script>
         <script src="js/coa_module.js?version=<?php echo $version; ?>"></script>
         <script src="js/batchscan_module.js?version=<?php echo $version; ?>"></script>
@@ -1882,6 +1885,7 @@ if ($blnDebug) {
 		<script async src="js/event_module.js?version=<?php echo $version; ?>"></script>
         <script async src="js/kase_module.js?version=<?php echo $version; ?>"></script>
         <script async src="js/phone_message_module.js?version=<?php echo $version; ?>"></script>
+        <script async src="js/customer_support.js?version=<?php echo $version; ?>"></script>
         <script async src="js/setting_module.js?version=<?php echo $version; ?>"></script>
         <script async src="js/coa_module.js?version=<?php echo $version; ?>"></script>
         <script async src="js/batchscan_module.js?version=<?php echo $version; ?>"></script>
@@ -1946,7 +1950,7 @@ if ($blnDebug) {
 		
 		<?php if (isset($_SESSION['subscription_string'])) { ?>
 		subscription_string = '<?php echo $_SESSION['subscription_string']; ?>';
-		subscription_bitly_link = '<?php echo make_bitly_url("https://v2.ikase.org/api/sync_calendar_kase.php?" . $_SESSION['subscription_string']); ?>';
+		subscription_bitly_link = '<?php echo make_bitly_url("https://". $_SERVER['SERVER_NAME'] ."/api/sync_calendar_kase.php?" . $_SESSION['subscription_string']); ?>';
 		<?php } ?>
 		var hrefHost = '<?php echo $_SERVER['HTTP_HOST']; ?>';
 		//bootstrapping background data, some of these need to be moved to indexedDB
@@ -2466,5 +2470,52 @@ if ($blnDebug) {
    		}, 5000);
 		});
     </script>
+
+    <?php
+    if(!isset($_COOKIE["video_play"]))
+    {
+    	?>
+    	<div id="video_popup">
+    		<div style="text-align:right;"><input type="button" value="Close Video" onclick="closeVideo()" /></div>
+    		<video width="100%" controls>
+			  <source src="Ikase-Report-Issue-Feuture.mp4" type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
+				<div style="text-align:right;"><input type="button" value="Close Video" onclick="closeVideo()" /></div>
+    	</div>
+    	<style type="text/css">
+    		#video_popup{
+    			position: absolute;
+			    z-index: 111111;
+			    top: 50px;
+			    width: 80%;
+			    left: 10%;
+			    display: none;
+    		}
+    	</style>
+    	<script type="text/javascript">
+    		function closeVideo()
+    		{
+    			document.getElementById("video_popup").style.display = "none";
+    		}
+
+    		function playVideo()
+    		{
+    			if (localStorage.playvideo) {
+					  localStorage.playvideo = Number(localStorage.playvideo) + 1;
+					} else {
+					  localStorage.playvideo = 1;
+					  document.getElementById("video_popup").style.display = "block";
+					}
+    		}
+    		playVideo();
+    	</script>
+    	<?php
+		}
+		else
+		{
+    	setcookie("video_play", "1", time() + (86400 * 180), "/");
+		}
+    ?>
   </body>
 </html>

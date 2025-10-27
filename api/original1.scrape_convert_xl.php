@@ -41,7 +41,7 @@ require_once '../PHPExcel-1.8/Classes/PHPExcel/IOFactory.php';
 //echo date('H:i:s') , " Load from Excel2007 file" , EOL;
 $callStartTime = microtime(true);
 
-$objPHPExcel = PHPExcel_IOFactory::load("../uploads/courtcalendar/courtcalendar.xlsx");
+$objPHPExcel = PHPExcel_IOFactory::load("D:/uploads/courtcalendar/courtcalendar.xlsx");
 
 $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;
@@ -55,7 +55,7 @@ $callStartTime = microtime(true);
 
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');
 //$objWriter->save(str_replace('.php', '.csv', __FILE__));
-$objWriter->save("../uploads/courtcalendar/courtcalendar.csv");
+$objWriter->save("D:/uploads/courtcalendar/courtcalendar.csv");
 
 $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;

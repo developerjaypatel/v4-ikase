@@ -19,7 +19,7 @@ if($_SERVER['SERVER_NAME']=="starlinkcms.com")
 else
 {
   $application = "iKase";
-  $application_url = "https://v2.ikase.org/";
+  $application_url = "https://v4.ikase.org/";
   $application_logo = "ikase_logo_login.png";
   $new_customer_instruction_url = "new_customer_procedure.html";
 }
@@ -709,7 +709,7 @@ var init = function() {
 						myNoteDataSource, {height:form_height_med});
 						
 	var formatUpload = function(elCell, oRecord, oColumn, sData) {
-		var upload = "<a href='../../uploads/<?php echo $cus_id; ?>/" + oRecord.getData("upload_type") + "/" + oRecord.getData("upload") + "' target='_blank' title='Click to review uploaded document'>" + oRecord.getData("upload") + "</a>";
+		var upload = "<a href='../D:/uploads/<?php echo $cus_id; ?>/" + oRecord.getData("upload_type") + "/" + oRecord.getData("upload") + "' target='_blank' title='Click to review uploaded document'>" + oRecord.getData("upload") + "</a>";
 		elCell.innerHTML = upload;
 	}
 	

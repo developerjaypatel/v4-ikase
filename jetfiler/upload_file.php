@@ -10,10 +10,11 @@ header("strict-transport-security: max-age=600");
 header('X-Frame-Options: SAMEORIGIN');
 header("X-XSS-Protection: 1; mode=block");
 
-error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
-ini_set('display_errors', '1');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL); 
 
-
+//print_r($_REQUEST);//die;
 require_once('../shared/legacy_session.php');
 include("../api/connection.php");
 include("functions.php");
@@ -21,7 +22,7 @@ include("functions.php");
 session_write_close();
 if($_SERVER["HTTPS"]=="off") {
 	
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org" . $_SERVER['REQUEST_URI']);
 }
 
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
@@ -42,21 +43,23 @@ $jetfile_id = passed_var("jetfile_id");
 
 //what did we get
 require("cls_fileupload.php");
-$uploadDir = '\\uploads\\' . $_SESSION['user_customer_id'] . '\\' . $case_id . '\\jetfiler\\';
+$uploadDir = 'D:\\uploads\\' . $_SESSION['user_customer_id'] . '\\' . $case_id . '\\jetfiler\\';
 
 //die($_SERVER['DOCUMENT_ROOT'] . $uploadDir);
-if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir)) {
-	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir, 0755, true);
+if (!is_dir($uploadDir)) {
+	mkdir($uploadDir, 0755, true);
 }
-//$path = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/jetfiler/";
-$path = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
-
+//$path = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/jetfiler/";
+//$path = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
+$path = $uploadDir;
+//die($path);
 $acceptable_file_types = "application/pdf";
 $arrUploads = array();
 $arrNames = array();
 $arrKaseDocs = array();
 $arrKaseNames = array();
 //die(print_r($_POST));
+//die(print_r($uploads));
 for ($int=1;$int<($uploads+1);$int++) {
 	$my_uploader = new uploader($_POST['en']);
 	$my_uploader->max_filesize(50000000); // 20000 kb
@@ -93,7 +96,7 @@ for ($int=1;$int<($uploads+1);$int++) {
 		$arrKaseDocs[] = $stored_file_name;
 		/*
 		if (!is_numeric($stored_file_name)) {
-			$arrUploads[] = str_replace("../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $stored_file_name);
+			$arrUploads[] = str_replace("D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/", "", $stored_file_name);
 			$arrNames[] = $upload_file_name;
 		} else {
 			$arrKaseNames[] = $upload_file_name;

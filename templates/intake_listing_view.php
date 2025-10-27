@@ -55,8 +55,8 @@ if (!additional_rows) { %>
                     </select>
                     &nbsp;
                     <select id="intake_status_filter">
-                        <option value="">Select Status from List</option>
-                        <option value="pending" selected="selected">Pending</option>
+                        <option value="" selected="selected">Select Status from List</option>
+                        <option value="pending">Pending</option>
                         <option value="accepted">Accepted</option>
                         <option value="rejected">Rejected</option>
                     </select>

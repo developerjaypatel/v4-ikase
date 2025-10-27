@@ -11,7 +11,7 @@ if ($_SERVER['REMOTE_ADDR']=='47.153.51.181') {
 		
 	$today  = mktime(0, 0, 0, date("m")  , date("d"), date("Y"));
 	//check on session files
-	$dir = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\';
+	$dir = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\';
 	$session_files = scandir($dir);
 	
 	foreach($session_files as $filename) {

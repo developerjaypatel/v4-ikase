@@ -4691,3 +4691,696 @@ reps update started:06/02/2024 16:29:59
 reps update done:06/02/2024 16:30:13\r\nclaimants start @ 06/02/24 16:45:00
 reps update started:06/03/2024 16:29:59
 reps update done:06/03/2024 16:30:13\r\nclaimants start @ 06/03/24 16:44:59
+reps update started:06/04/2024 16:29:59
+reps update done:06/04/2024 16:30:13\r\nclaimants start @ 06/04/24 16:44:59
+reps update started:06/25/2025 16:54:26\r\nclaimants start @ 06/25/25 16:54:26
+reps update done:06/25/2025 16:54:54
+claimants update done:06/25/2025 16:55:09
+reps update started:06/26/2025 16:30:04
+reps update done:06/26/2025 16:30:23\r\nclaimants start @ 06/26/25 16:45:03
+claimants update done:06/26/2025 16:45:34
+reps update started:06/27/2025 03:29:04
+reps update done:06/27/2025 03:29:24
+reps update started:06/27/2025 03:32:01
+reps update done:06/27/2025 03:32:22
+reps update started:06/27/2025 03:45:22
+reps update done:06/27/2025 03:45:43
+reps update started:06/27/2025 03:45:53
+reps update done:06/27/2025 03:46:13
+reps update started:06/27/2025 04:29:55\r\nclaimants start @ 06/27/25 04:29:55\r\nclaimants start @ 06/27/25 04:29:55
+reps update started:06/27/2025 04:29:55
+reps update done:06/27/2025 04:30:33
+reps update done:06/27/2025 04:30:33
+claimants update done:06/27/2025 04:30:51
+claimants update done:06/27/2025 04:30:52\r\nclaimants start @ 06/27/25 04:33:23
+reps update started:06/27/2025 04:33:37
+claimants update done:06/27/2025 04:34:05
+reps update done:06/27/2025 04:34:07\r\nclaimants start @ 06/27/25 04:37:32
+claimants update done:06/27/2025 04:38:02\r\nclaimants start @ 06/27/25 04:59:37
+claimants update done:06/27/2025 05:00:08\r\nclaimants start @ 06/27/25 05:02:20
+claimants update done:06/27/2025 05:02:52\r\nclaimants start @ 06/27/25 06:05:30
+claimants update done:06/27/2025 06:06:00\r\nclaimants start @ 06/27/25 06:06:23\r\nclaimants start @ 06/27/25 06:06:48\r\nclaimants start @ 06/27/25 06:41:18\r\nclaimants start @ 06/27/25 06:41:31\r\nclaimants start @ 06/27/25 06:41:42\r\nclaimants start @ 06/27/25 06:42:06\r\nclaimants start @ 06/27/25 06:43:03\r\nclaimants start @ 06/27/25 06:43:08\r\nclaimants start @ 06/27/25 06:43:47\r\nclaimants start @ 06/27/25 06:44:28\r\nclaimants start @ 06/27/25 06:44:34\r\nclaimants start @ 06/27/25 06:44:35\r\nclaimants start @ 06/27/25 06:44:44\r\nclaimants start @ 06/27/25 06:44:45\r\nclaimants start @ 06/27/25 06:49:30\r\nclaimants start @ 06/27/25 06:50:14\r\nclaimants start @ 06/27/25 06:52:36\r\nclaimants start @ 06/27/25 06:52:42\r\nclaimants start @ 06/27/25 06:53:35\r\nclaimants start @ 06/27/25 06:54:02\r\nclaimants start @ 06/27/25 07:05:50\r\nclaimants start @ 06/27/25 07:07:41\r\nclaimants start @ 06/27/25 07:08:19\r\nclaimants start @ 06/27/25 07:09:59
+claimants update done:06/27/2025 07:09:59\r\nclaimants start @ 06/27/25 07:10:12
+claimants update done:06/27/2025 07:10:42\r\nclaimants start @ 06/27/25 07:11:24
+claimants update done:06/27/2025 07:11:55\r\nclaimants start @ 06/27/25 07:12:32\r\nclaimants start @ 06/27/25 07:13:25
+claimants update done:06/27/2025 07:13:56\r\nclaimants start @ 06/27/25 07:25:23\r\nclaimants start @ 06/27/25 07:25:50\r\nclaimants start @ 06/27/25 07:25:52\r\nclaimants start @ 06/27/25 07:27:26\r\nclaimants start @ 06/27/25 07:30:53\r\nclaimants start @ 06/27/25 07:31:10\r\nclaimants start @ 06/27/25 07:31:33\r\nclaimants start @ 06/27/25 07:32:39\r\nclaimants start @ 06/27/25 07:34:28\r\nclaimants start @ 06/27/25 07:34:53\r\nclaimants start @ 06/27/25 07:35:36\r\nclaimants start @ 06/27/25 07:38:26
+claimants update done:06/27/2025 07:38:56\r\nclaimants start @ 06/27/25 07:39:10
+claimants update done:06/27/2025 07:39:42\r\nclaimants start @ 06/27/25 07:40:26\r\nclaimants start @ 06/27/25 07:40:32\r\nclaimants start @ 06/27/25 07:40:45\r\nclaimants start @ 06/27/25 07:40:49\r\nclaimants start @ 06/27/25 07:43:02\r\nclaimants start @ 06/27/25 07:43:44\r\nclaimants start @ 06/27/25 07:43:52
+claimants update done:06/27/2025 07:44:21\r\nclaimants start @ 06/27/25 12:12:46
+claimants update done:06/27/2025 12:13:19
+reps update started:06/27/2025 16:30:04
+reps update started:06/27/2025 16:30:04
+reps update done:06/27/2025 16:30:35
+reps update done:06/27/2025 16:30:40\r\nclaimants start @ 06/27/25 16:45:03\r\nclaimants start @ 06/27/25 16:45:03
+claimants update done:06/27/2025 16:45:35
+reps update started:06/28/2025 16:30:04
+reps update started:06/28/2025 16:30:05
+reps update done:06/28/2025 16:30:38
+reps update done:06/28/2025 16:30:39\r\nclaimants start @ 06/28/25 16:45:03\r\nclaimants start @ 06/28/25 16:45:04
+claimants update done:06/28/2025 16:45:45
+claimants update done:06/28/2025 16:45:46
+reps update started:06/29/2025 16:30:05
+reps update started:06/29/2025 16:30:05
+reps update done:06/29/2025 16:30:40
+reps update done:06/29/2025 16:30:40\r\nclaimants start @ 06/29/25 16:45:04\r\nclaimants start @ 06/29/25 16:45:04
+claimants update done:06/29/2025 16:45:46
+claimants update done:06/29/2025 16:45:46\r\nclaimants start @ 06/30/25 02:38:28\r\nclaimants start @ 06/30/25 02:38:48
+reps update started:06/30/2025 02:38:56
+claimants update done:06/30/2025 02:39:05
+reps update started:06/30/2025 02:39:16
+claimants update done:06/30/2025 02:39:38
+reps update started:06/30/2025 10:01:51\r\nclaimants start @ 06/30/25 10:01:52
+reps update started:06/30/2025 10:02:11
+claimants update done:06/30/2025 10:02:40
+reps update started:06/30/2025 10:04:52
+reps update done:06/30/2025 10:05:13\r\ncarriers start @ 06/30/25 10:55:19
+carrier update done:06/30/2025 10:55:22\r\ncarriers start @ 06/30/25 11:03:28
+carrier update done:06/30/2025 11:03:30\r\ncarriers start @ 06/30/25 11:06:42
+carrier update done:06/30/2025 11:06:44\r\ncarriers start @ 06/30/25 11:06:47
+carrier update done:06/30/2025 11:06:49\r\ncarriers start @ 06/30/25 11:09:19
+carrier update done:06/30/2025 11:09:21
+reps update started:06/30/2025 16:30:04
+reps update started:06/30/2025 16:30:04
+reps update done:06/30/2025 16:30:39
+reps update done:06/30/2025 16:30:39\r\nclaimants start @ 06/30/25 16:45:04\r\nclaimants start @ 06/30/25 16:45:04
+claimants update done:06/30/2025 16:45:48
+claimants update done:06/30/2025 16:45:48
+reps update started:07/01/2025 16:30:04
+reps update started:07/01/2025 16:30:04
+reps update done:07/01/2025 16:30:37
+reps update done:07/01/2025 16:30:38\r\nclaimants start @ 07/01/25 16:45:03
+claimants update done:07/01/2025 16:45:35\r\nclaimants start @ 07/02/25 06:13:29
+reps update started:07/02/2025 06:13:29\r\nclaimants start @ 07/02/25 06:13:36\r\nclaimants start @ 07/02/25 06:13:45
+reps update started:07/02/2025 06:13:49
+reps update done:07/02/2025 06:14:22\r\ncarriers start @ 07/02/25 06:19:10
+carrier update done:07/02/2025 06:19:12\r\ncarriers start @ 07/02/25 09:44:10
+carrier update done:07/02/2025 09:44:13\r\ncarriers start @ 07/02/25 10:50:58
+carrier update done:07/02/2025 10:51:00\r\ncarriers start @ 07/02/25 11:28:40
+carrier update done:07/02/2025 11:28:42\r\ncarriers start @ 07/02/25 11:53:25
+carrier update done:07/02/2025 11:53:27
+reps update started:07/02/2025 16:30:04
+reps update started:07/02/2025 16:30:06
+reps update done:07/02/2025 16:30:37
+reps update done:07/02/2025 16:30:38\r\ncarriers start @ 07/02/25 16:40:04
+carrier update done:07/02/2025 16:40:06\r\nclaimants start @ 07/02/25 16:45:05\r\nclaimants start @ 07/02/25 16:45:05
+claimants update done:07/02/2025 16:45:52
+claimants update done:07/02/2025 16:45:52
+reps update started:07/03/2025 07:59:22\r\nclaimants start @ 07/03/25 07:59:22\r\ncarriers start @ 07/03/25 07:59:22
+carrier update done:07/03/2025 07:59:25
+reps update started:07/03/2025 07:59:42
+claimants update done:07/03/2025 08:00:09\r\ncarriers start @ 07/03/25 08:00:14
+carrier update done:07/03/2025 08:00:16
+reps update started:07/03/2025 08:11:01
+reps update started:07/03/2025 08:11:31
+reps update done:07/03/2025 08:11:50
+reps update started:07/03/2025 16:30:03
+reps update started:07/03/2025 16:30:04
+reps update done:07/03/2025 16:30:38
+reps update done:07/03/2025 16:30:39\r\ncarriers start @ 07/03/25 16:40:04
+carrier update done:07/03/2025 16:40:06
+reps update started:07/04/2025 16:30:03
+reps update started:07/04/2025 16:30:04
+reps update done:07/04/2025 16:30:37
+reps update done:07/04/2025 16:30:37\r\ncarriers start @ 07/04/25 16:40:02
+carrier update done:07/04/2025 16:40:04\r\nclaimants start @ 07/04/25 16:45:04\r\nclaimants start @ 07/04/25 16:45:04
+claimants update done:07/04/2025 16:45:48
+claimants update done:07/04/2025 16:45:49
+reps update started:07/05/2025 16:30:03
+reps update started:07/05/2025 16:30:04
+reps update done:07/05/2025 16:30:38
+reps update done:07/05/2025 16:30:38\r\ncarriers start @ 07/05/25 16:40:03
+carrier update done:07/05/2025 16:40:05
+reps update started:07/06/2025 16:30:05
+reps update started:07/06/2025 16:30:05
+reps update done:07/06/2025 16:30:39
+reps update done:07/06/2025 16:30:40\r\ncarriers start @ 07/06/25 16:40:03
+carrier update done:07/06/2025 16:40:05\r\nclaimants start @ 07/06/25 16:45:03\r\nclaimants start @ 07/06/25 16:45:04
+claimants update done:07/06/2025 16:45:46
+claimants update done:07/06/2025 16:45:47
+reps update started:07/07/2025 16:30:04
+reps update started:07/07/2025 16:30:05
+reps update done:07/07/2025 16:30:35
+reps update done:07/07/2025 16:30:37\r\ncarriers start @ 07/07/25 16:40:03
+carrier update done:07/07/2025 16:40:05
+reps update started:07/08/2025 16:30:03
+reps update started:07/08/2025 16:30:04
+reps update done:07/08/2025 16:30:37
+reps update done:07/08/2025 16:30:37\r\ncarriers start @ 07/08/25 16:40:01
+carrier update done:07/08/2025 16:40:03\r\nclaimants start @ 07/08/25 16:45:03\r\nclaimants start @ 07/08/25 16:45:03
+claimants update done:07/08/2025 16:45:47
+claimants update done:07/08/2025 16:45:47
+reps update started:07/09/2025 16:30:03
+reps update started:07/09/2025 16:30:04
+reps update done:07/09/2025 16:30:36
+reps update done:07/09/2025 16:30:37\r\ncarriers start @ 07/09/25 16:40:02
+carrier update done:07/09/2025 16:40:04
+reps update started:07/10/2025 16:30:03
+reps update started:07/10/2025 16:30:05
+reps update done:07/10/2025 16:30:36
+reps update done:07/10/2025 16:30:39\r\ncarriers start @ 07/10/25 16:40:01
+carrier update done:07/10/2025 16:40:03\r\nclaimants start @ 07/10/25 16:45:02\r\nclaimants start @ 07/10/25 16:45:02
+claimants update done:07/10/2025 16:45:45
+claimants update done:07/10/2025 16:45:45
+reps update started:07/11/2025 16:30:04
+reps update started:07/11/2025 16:30:04
+reps update done:07/11/2025 16:30:37
+reps update done:07/11/2025 16:30:38\r\ncarriers start @ 07/11/25 16:40:03
+carrier update done:07/11/2025 16:40:05
+reps update started:07/12/2025 16:30:04
+reps update started:07/12/2025 16:30:05
+reps update done:07/12/2025 16:30:37
+reps update done:07/12/2025 16:30:37\r\ncarriers start @ 07/12/25 16:40:01
+carrier update done:07/12/2025 16:40:03\r\nclaimants start @ 07/12/25 16:45:04
+claimants update done:07/12/2025 16:45:35
+reps update started:07/13/2025 16:30:05
+reps update started:07/13/2025 16:30:05
+reps update done:07/13/2025 16:30:39
+reps update done:07/13/2025 16:30:40\r\ncarriers start @ 07/13/25 16:40:04
+carrier update done:07/13/2025 16:40:06\r\nclaimants start @ 07/14/25 06:45:40
+reps update started:07/14/2025 06:45:40
+claimants update done:07/14/2025 06:46:18\r\ncarriers start @ 07/14/25 06:46:54
+carrier update done:07/14/2025 06:46:56
+reps update started:07/14/2025 16:30:04
+reps update started:07/14/2025 16:30:04
+reps update done:07/14/2025 16:30:39
+reps update done:07/14/2025 16:30:39\r\ncarriers start @ 07/14/25 16:40:01
+carrier update done:07/14/2025 16:40:04
+reps update started:07/15/2025 16:30:04
+reps update started:07/15/2025 16:30:04
+reps update done:07/15/2025 16:30:38
+reps update done:07/15/2025 16:30:38\r\ncarriers start @ 07/15/25 16:40:03
+carrier update done:07/15/2025 16:40:05
+reps update started:07/16/2025 16:30:04
+reps update started:07/16/2025 16:30:05
+reps update done:07/16/2025 16:30:39
+reps update done:07/16/2025 16:30:39\r\ncarriers start @ 07/16/25 16:40:03
+carrier update done:07/16/2025 16:40:05
+reps update started:07/17/2025 16:30:03
+reps update started:07/17/2025 16:30:04
+reps update done:07/17/2025 16:30:38
+reps update done:07/17/2025 16:30:38\r\ncarriers start @ 07/17/25 16:40:01
+carrier update done:07/17/2025 16:40:03
+reps update started:07/18/2025 16:30:03
+reps update started:07/18/2025 16:30:04
+reps update done:07/18/2025 16:30:37
+reps update done:07/18/2025 16:30:37\r\ncarriers start @ 07/18/25 16:40:01
+carrier update done:07/18/2025 16:40:03
+reps update started:07/19/2025 16:30:04
+reps update started:07/19/2025 16:30:04
+reps update done:07/19/2025 16:30:38
+reps update done:07/19/2025 16:30:38\r\ncarriers start @ 07/19/25 16:40:01
+carrier update done:07/19/2025 16:40:02
+reps update started:07/20/2025 16:30:03
+reps update started:07/20/2025 16:30:03
+reps update done:07/20/2025 16:30:39
+reps update done:07/20/2025 16:30:39\r\ncarriers start @ 07/20/25 16:40:01
+carrier update done:07/20/2025 16:40:03
+reps update started:07/21/2025 16:30:03
+reps update started:07/21/2025 16:30:04
+reps update done:07/21/2025 16:30:37
+reps update done:07/21/2025 16:30:37\r\ncarriers start @ 07/21/25 16:40:01
+carrier update done:07/21/2025 16:40:03
+reps update started:07/22/2025 16:30:03
+reps update started:07/22/2025 16:30:04
+reps update done:07/22/2025 16:30:38
+reps update done:07/22/2025 16:30:38\r\ncarriers start @ 07/22/25 16:40:01
+carrier update done:07/22/2025 16:40:03
+reps update started:07/23/2025 16:30:03
+reps update started:07/23/2025 16:30:04
+reps update done:07/23/2025 16:30:39
+reps update done:07/23/2025 16:30:39\r\ncarriers start @ 07/23/25 16:40:01
+carrier update done:07/23/2025 16:40:03
+reps update started:07/24/2025 16:30:04
+reps update started:07/24/2025 16:30:04
+reps update done:07/24/2025 16:30:38
+reps update done:07/24/2025 16:30:39\r\ncarriers start @ 07/24/25 16:40:01
+carrier update done:07/24/2025 16:40:03
+reps update started:07/25/2025 16:30:03
+reps update started:07/25/2025 16:30:05
+reps update done:07/25/2025 16:30:37
+reps update done:07/25/2025 16:30:38\r\ncarriers start @ 07/25/25 16:40:01
+carrier update done:07/25/2025 16:40:03
+reps update started:07/26/2025 16:30:03
+reps update started:07/26/2025 16:30:04
+reps update done:07/26/2025 16:30:38
+reps update done:07/26/2025 16:30:38\r\ncarriers start @ 07/26/25 16:40:01
+carrier update done:07/26/2025 16:40:03
+reps update started:07/27/2025 16:30:04
+reps update started:07/27/2025 16:30:05
+reps update done:07/27/2025 16:30:38
+reps update done:07/27/2025 16:30:39\r\ncarriers start @ 07/27/25 16:40:02
+carrier update done:07/27/2025 16:40:04
+reps update started:07/28/2025 16:30:04
+reps update started:07/28/2025 16:30:05
+reps update done:07/28/2025 16:30:39
+reps update done:07/28/2025 16:30:39\r\ncarriers start @ 07/28/25 16:40:01
+carrier update done:07/28/2025 16:40:03
+reps update started:07/29/2025 16:30:04
+reps update started:07/29/2025 16:30:04
+reps update done:07/29/2025 16:30:38
+reps update done:07/29/2025 16:30:39\r\ncarriers start @ 07/29/25 16:40:01
+carrier update done:07/29/2025 16:40:03
+reps update started:07/30/2025 16:30:04
+reps update started:07/30/2025 16:30:04
+reps update done:07/30/2025 16:30:37
+reps update done:07/30/2025 16:30:38\r\ncarriers start @ 07/30/25 16:40:01
+carrier update done:07/30/2025 16:40:03
+reps update started:07/31/2025 16:30:03
+reps update started:07/31/2025 16:30:04
+reps update done:07/31/2025 16:30:37
+reps update done:07/31/2025 16:30:38\r\ncarriers start @ 07/31/25 16:40:03
+carrier update done:07/31/2025 16:40:05
+reps update started:08/01/2025 16:30:03
+reps update started:08/01/2025 16:30:04
+reps update done:08/01/2025 16:30:37
+reps update done:08/01/2025 16:30:38\r\ncarriers start @ 08/01/25 16:40:02
+carrier update done:08/01/2025 16:40:04
+reps update started:08/02/2025 16:30:03
+reps update started:08/02/2025 16:30:03
+reps update done:08/02/2025 16:30:40
+reps update done:08/02/2025 16:30:41\r\ncarriers start @ 08/02/25 16:40:01
+carrier update done:08/02/2025 16:40:03
+reps update started:08/03/2025 16:30:03
+reps update started:08/03/2025 16:30:04
+reps update done:08/03/2025 16:30:38
+reps update done:08/03/2025 16:30:38\r\ncarriers start @ 08/03/25 16:40:02
+carrier update done:08/03/2025 16:40:04
+reps update started:08/04/2025 16:30:04
+reps update started:08/04/2025 16:30:04
+reps update done:08/04/2025 16:30:37
+reps update done:08/04/2025 16:30:38\r\ncarriers start @ 08/04/25 16:40:02
+carrier update done:08/04/2025 16:40:04
+reps update started:08/05/2025 16:30:04
+reps update started:08/05/2025 16:30:04
+reps update done:08/05/2025 16:30:39
+reps update done:08/05/2025 16:30:39\r\ncarriers start @ 08/05/25 16:40:03
+carrier update done:08/05/2025 16:40:05
+reps update started:08/06/2025 16:30:03
+reps update started:08/06/2025 16:30:04
+reps update done:08/06/2025 16:30:39
+reps update done:08/06/2025 16:30:39\r\ncarriers start @ 08/06/25 16:40:01
+carrier update done:08/06/2025 16:40:03
+reps update started:08/07/2025 16:30:03
+reps update started:08/07/2025 16:30:04
+reps update done:08/07/2025 16:30:37
+reps update done:08/07/2025 16:30:38\r\ncarriers start @ 08/07/25 16:40:01
+carrier update done:08/07/2025 16:40:03
+reps update started:08/08/2025 16:30:03
+reps update started:08/08/2025 16:30:04
+reps update done:08/08/2025 16:30:37
+reps update done:08/08/2025 16:30:39\r\ncarriers start @ 08/08/25 16:40:01
+carrier update done:08/08/2025 16:40:03
+reps update started:08/09/2025 16:30:04
+reps update started:08/09/2025 16:30:05
+reps update done:08/09/2025 16:30:37
+reps update done:08/09/2025 16:30:37\r\ncarriers start @ 08/09/25 16:40:01
+carrier update done:08/09/2025 16:40:03
+reps update started:08/10/2025 16:30:03
+reps update started:08/10/2025 16:30:04
+reps update done:08/10/2025 16:30:37
+reps update done:08/10/2025 16:30:37\r\ncarriers start @ 08/10/25 16:40:01
+carrier update done:08/10/2025 16:40:03
+reps update started:08/11/2025 16:30:04
+reps update started:08/11/2025 16:30:04
+reps update done:08/11/2025 16:30:38
+reps update done:08/11/2025 16:30:39\r\ncarriers start @ 08/11/25 16:40:01
+carrier update done:08/11/2025 16:40:03
+reps update started:08/12/2025 16:30:04
+reps update started:08/12/2025 16:30:06
+reps update done:08/12/2025 16:30:36
+reps update done:08/12/2025 16:30:39\r\ncarriers start @ 08/12/25 16:40:01
+carrier update done:08/12/2025 16:40:03
+reps update started:08/13/2025 16:30:03
+reps update started:08/13/2025 16:30:04
+reps update done:08/13/2025 16:30:38
+reps update done:08/13/2025 16:30:38\r\ncarriers start @ 08/13/25 16:40:01
+carrier update done:08/13/2025 16:40:03
+reps update started:08/14/2025 16:30:03
+reps update started:08/14/2025 16:30:03
+reps update done:08/14/2025 16:30:38
+reps update done:08/14/2025 16:30:38\r\ncarriers start @ 08/14/25 16:40:01
+carrier update done:08/14/2025 16:40:03
+reps update started:08/15/2025 16:30:03
+reps update started:08/15/2025 16:30:03
+reps update done:08/15/2025 16:30:39
+reps update done:08/15/2025 16:30:40\r\ncarriers start @ 08/15/25 16:40:01
+carrier update done:08/15/2025 16:40:03
+reps update started:08/16/2025 16:30:03
+reps update started:08/16/2025 16:30:03
+reps update done:08/16/2025 16:30:38
+reps update done:08/16/2025 16:30:38\r\ncarriers start @ 08/16/25 16:40:01
+carrier update done:08/16/2025 16:40:03
+reps update started:08/17/2025 16:30:04
+reps update started:08/17/2025 16:30:04
+reps update done:08/17/2025 16:30:38
+reps update done:08/17/2025 16:30:38\r\ncarriers start @ 08/17/25 16:40:01
+carrier update done:08/17/2025 16:40:03
+reps update started:08/18/2025 16:30:04
+reps update started:08/18/2025 16:30:04
+reps update done:08/18/2025 16:30:39
+reps update done:08/18/2025 16:30:39\r\ncarriers start @ 08/18/25 16:40:01
+carrier update done:08/18/2025 16:40:03
+reps update started:08/19/2025 16:30:04
+reps update started:08/19/2025 16:30:04
+reps update done:08/19/2025 16:30:37
+reps update done:08/19/2025 16:30:37\r\ncarriers start @ 08/19/25 16:40:03
+carrier update done:08/19/2025 16:40:05
+reps update started:08/20/2025 16:30:04
+reps update started:08/20/2025 16:30:04
+reps update done:08/20/2025 16:30:38
+reps update done:08/20/2025 16:30:38\r\ncarriers start @ 08/20/25 16:40:01
+carrier update done:08/20/2025 16:40:03
+reps update started:08/21/2025 16:30:04
+reps update done:08/21/2025 16:30:39
+reps update done:08/21/2025 16:30:39\r\ncarriers start @ 08/21/25 16:40:01
+carrier update done:08/21/2025 16:40:03
+reps update started:08/22/2025 16:30:04
+reps update started:08/22/2025 16:30:04
+reps update done:08/22/2025 16:30:40
+reps update done:08/22/2025 16:30:40\r\ncarriers start @ 08/22/25 16:40:01
+carrier update done:08/22/2025 16:40:03
+reps update started:08/23/2025 16:30:03
+reps update started:08/23/2025 16:30:03
+reps update done:08/23/2025 16:30:37
+reps update done:08/23/2025 16:30:37\r\ncarriers start @ 08/23/25 16:40:01
+carrier update done:08/23/2025 16:40:03
+reps update started:08/24/2025 16:30:03
+reps update started:08/24/2025 16:30:03
+reps update done:08/24/2025 16:30:38
+reps update done:08/24/2025 16:30:38\r\ncarriers start @ 08/24/25 16:40:01
+carrier update done:08/24/2025 16:40:03
+reps update started:08/25/2025 16:30:04
+reps update started:08/25/2025 16:30:04
+reps update done:08/25/2025 16:30:38
+reps update done:08/25/2025 16:30:38\r\ncarriers start @ 08/25/25 16:40:01
+carrier update done:08/25/2025 16:40:03
+reps update started:08/26/2025 16:30:04
+reps update started:08/26/2025 16:30:04
+reps update done:08/26/2025 16:30:39
+reps update done:08/26/2025 16:30:40\r\ncarriers start @ 08/26/25 16:40:01
+carrier update done:08/26/2025 16:40:03
+reps update started:08/27/2025 16:30:04
+reps update started:08/27/2025 16:30:04
+reps update done:08/27/2025 16:30:37
+reps update done:08/27/2025 16:30:37\r\ncarriers start @ 08/27/25 16:40:03
+carrier update done:08/27/2025 16:40:05
+reps update started:08/28/2025 16:30:04
+reps update started:08/28/2025 16:30:04
+reps update done:08/28/2025 16:30:37
+reps update done:08/28/2025 16:30:37\r\ncarriers start @ 08/28/25 16:40:03
+carrier update done:08/28/2025 16:40:05
+reps update started:08/29/2025 16:30:00
+reps update started:08/29/2025 16:30:00
+reps update done:08/29/2025 16:30:33
+reps update done:08/29/2025 16:30:34\r\ncarriers start @ 08/29/25 16:40:00
+carrier update done:08/29/2025 16:40:02
+reps update started:08/30/2025 16:30:03
+reps update started:08/30/2025 16:30:03
+reps update done:08/30/2025 16:30:38
+reps update done:08/30/2025 16:30:38\r\ncarriers start @ 08/30/25 16:40:00
+carrier update done:08/30/2025 16:40:02
+reps update started:08/31/2025 16:30:04
+reps update started:08/31/2025 16:30:04
+reps update done:08/31/2025 16:30:39
+reps update done:08/31/2025 16:30:39\r\ncarriers start @ 08/31/25 16:40:01
+carrier update done:08/31/2025 16:40:03
+reps update started:09/01/2025 16:30:03
+reps update started:09/01/2025 16:30:03
+reps update done:09/01/2025 16:30:38
+reps update done:09/01/2025 16:30:38\r\ncarriers start @ 09/01/25 16:40:00
+carrier update done:09/01/2025 16:40:02
+reps update started:09/02/2025 16:30:04
+reps update started:09/02/2025 16:30:04
+reps update done:09/02/2025 16:30:37
+reps update done:09/02/2025 16:30:38\r\ncarriers start @ 09/02/25 16:40:00
+carrier update done:09/02/2025 16:40:03
+reps update started:09/03/2025 16:30:03
+reps update started:09/03/2025 16:30:03
+reps update done:09/03/2025 16:30:37
+reps update done:09/03/2025 16:30:37\r\ncarriers start @ 09/03/25 16:40:02
+carrier update done:09/03/2025 16:40:04
+reps update started:09/04/2025 16:30:03
+reps update started:09/04/2025 16:30:03
+reps update done:09/04/2025 16:30:38
+reps update done:09/04/2025 16:30:38\r\ncarriers start @ 09/04/25 16:40:01
+carrier update done:09/04/2025 16:40:03
+reps update started:09/05/2025 16:30:02
+reps update started:09/05/2025 16:30:03
+reps update done:09/05/2025 16:30:35
+reps update done:09/05/2025 16:30:36\r\ncarriers start @ 09/05/25 16:40:01
+carrier update done:09/05/2025 16:40:03
+reps update started:09/06/2025 16:30:03
+reps update started:09/06/2025 16:30:03
+reps update done:09/06/2025 16:30:36
+reps update done:09/06/2025 16:30:36\r\ncarriers start @ 09/06/25 16:40:00
+carrier update done:09/06/2025 16:40:02
+reps update started:09/07/2025 16:30:01
+reps update started:09/07/2025 16:30:03
+reps update done:09/07/2025 16:30:35
+reps update done:09/07/2025 16:30:36\r\ncarriers start @ 09/07/25 16:40:00
+carrier update done:09/07/2025 16:40:03
+reps update started:09/08/2025 16:30:03
+reps update started:09/08/2025 16:30:03
+reps update done:09/08/2025 16:30:38
+reps update done:09/08/2025 16:30:38\r\ncarriers start @ 09/08/25 16:40:00
+carrier update done:09/08/2025 16:40:02
+reps update started:09/09/2025 16:30:03
+reps update started:09/09/2025 16:30:03
+reps update done:09/09/2025 16:30:38
+reps update done:09/09/2025 16:30:38\r\ncarriers start @ 09/09/25 16:40:00
+carrier update done:09/09/2025 16:40:03
+reps update started:09/10/2025 16:30:03
+reps update started:09/10/2025 16:30:03
+reps update done:09/10/2025 16:30:39
+reps update done:09/10/2025 16:30:39\r\ncarriers start @ 09/10/25 16:40:00
+carrier update done:09/10/2025 16:40:03
+reps update started:09/11/2025 16:30:02
+reps update started:09/11/2025 16:30:04
+reps update done:09/11/2025 16:30:35
+reps update done:09/11/2025 16:30:37\r\ncarriers start @ 09/11/25 16:40:01
+carrier update done:09/11/2025 16:40:03
+reps update started:09/12/2025 16:30:03
+reps update started:09/12/2025 16:30:03
+reps update done:09/12/2025 16:30:36
+reps update done:09/12/2025 16:30:37\r\ncarriers start @ 09/12/25 16:40:03
+carrier update done:09/12/2025 16:40:05
+reps update started:09/13/2025 16:30:02
+reps update started:09/13/2025 16:30:03
+reps update done:09/13/2025 16:30:36
+reps update done:09/13/2025 16:30:37\r\ncarriers start @ 09/13/25 16:40:02
+carrier update done:09/13/2025 16:40:04
+reps update started:09/14/2025 16:30:03
+reps update started:09/14/2025 16:30:04
+reps update done:09/14/2025 16:30:39
+reps update done:09/14/2025 16:30:40\r\ncarriers start @ 09/14/25 16:40:00
+carrier update done:09/14/2025 16:40:02
+reps update started:09/15/2025 16:30:03
+reps update started:09/15/2025 16:30:03
+reps update done:09/15/2025 16:30:37
+reps update done:09/15/2025 16:30:37\r\ncarriers start @ 09/15/25 16:40:00
+carrier update done:09/15/2025 16:40:03
+reps update started:09/16/2025 16:30:03
+reps update started:09/16/2025 16:30:03
+reps update done:09/16/2025 16:30:38
+reps update done:09/16/2025 16:30:38\r\ncarriers start @ 09/16/25 16:40:01
+carrier update done:09/16/2025 16:40:03
+reps update started:09/17/2025 16:30:03
+reps update started:09/17/2025 16:30:04
+reps update done:09/17/2025 16:30:37
+reps update done:09/17/2025 16:30:37\r\ncarriers start @ 09/17/25 16:40:01
+carrier update done:09/17/2025 16:40:03
+reps update started:09/18/2025 16:30:03
+reps update started:09/18/2025 16:30:03
+reps update done:09/18/2025 16:30:36
+reps update done:09/18/2025 16:30:37\r\ncarriers start @ 09/18/25 16:40:00
+carrier update done:09/18/2025 16:40:02
+reps update started:09/19/2025 16:30:01
+reps update started:09/19/2025 16:30:02
+reps update done:09/19/2025 16:30:36
+reps update done:09/19/2025 16:30:36\r\ncarriers start @ 09/19/25 16:40:00
+carrier update done:09/19/2025 16:40:02
+reps update started:09/20/2025 16:30:02
+reps update started:09/20/2025 16:30:02
+reps update done:09/20/2025 16:30:39
+reps update done:09/20/2025 16:30:40\r\ncarriers start @ 09/20/25 16:40:01
+carrier update done:09/20/2025 16:40:03
+reps update started:09/21/2025 16:30:02
+reps update started:09/21/2025 16:30:03
+reps update done:09/21/2025 16:30:37
+reps update done:09/21/2025 16:30:37\r\ncarriers start @ 09/21/25 16:40:00
+carrier update done:09/21/2025 16:40:02
+reps update started:09/22/2025 16:30:01
+reps update started:09/22/2025 16:30:01
+reps update done:09/22/2025 16:30:36
+reps update done:09/22/2025 16:30:36\r\ncarriers start @ 09/22/25 16:40:01
+carrier update done:09/22/2025 16:40:03
+reps update started:09/23/2025 16:30:01
+reps update started:09/23/2025 16:30:02
+reps update done:09/23/2025 16:30:35
+reps update done:09/23/2025 16:30:36\r\ncarriers start @ 09/23/25 16:40:00
+carrier update done:09/23/2025 16:40:02
+reps update started:09/24/2025 16:30:02
+reps update started:09/24/2025 16:30:03
+reps update done:09/24/2025 16:30:35
+reps update done:09/24/2025 16:30:36\r\ncarriers start @ 09/24/25 16:40:00
+carrier update done:09/24/2025 16:40:03
+reps update started:09/25/2025 16:30:02
+reps update started:09/25/2025 16:30:02
+reps update done:09/25/2025 16:30:36
+reps update done:09/25/2025 16:30:36\r\ncarriers start @ 09/25/25 16:40:00
+carrier update done:09/25/2025 16:40:02
+reps update started:09/26/2025 16:30:02
+reps update started:09/26/2025 16:30:03
+reps update done:09/26/2025 16:30:38
+reps update done:09/26/2025 16:30:38\r\ncarriers start @ 09/26/25 16:40:00
+carrier update done:09/26/2025 16:40:03
+reps update started:09/27/2025 16:30:02
+reps update started:09/27/2025 16:30:02
+reps update done:09/27/2025 16:30:38
+reps update done:09/27/2025 16:30:38\r\ncarriers start @ 09/27/25 16:40:00
+carrier update done:09/27/2025 16:40:02
+reps update started:09/28/2025 16:30:02
+reps update started:09/28/2025 16:30:03
+reps update done:09/28/2025 16:30:39
+reps update done:09/28/2025 16:30:40\r\ncarriers start @ 09/28/25 16:40:00
+carrier update done:09/28/2025 16:40:02
+reps update started:09/29/2025 16:30:03
+reps update started:09/29/2025 16:30:03
+reps update done:09/29/2025 16:30:37
+reps update done:09/29/2025 16:30:37\r\ncarriers start @ 09/29/25 16:40:00
+carrier update done:09/29/2025 16:40:02
+reps update started:09/30/2025 16:30:03
+reps update started:09/30/2025 16:30:03
+reps update done:09/30/2025 16:30:38
+reps update done:09/30/2025 16:30:38\r\ncarriers start @ 09/30/25 16:40:00
+carrier update done:09/30/2025 16:40:02
+reps update started:10/01/2025 16:30:01
+reps update started:10/01/2025 16:30:02
+reps update done:10/01/2025 16:30:37
+reps update done:10/01/2025 16:30:37\r\ncarriers start @ 10/01/25 16:40:00
+carrier update done:10/01/2025 16:40:02
+reps update started:10/02/2025 16:30:02
+reps update started:10/02/2025 16:30:03
+reps update done:10/02/2025 16:30:36
+reps update done:10/02/2025 16:30:36\r\ncarriers start @ 10/02/25 16:40:00
+carrier update done:10/02/2025 16:40:02
+reps update started:10/03/2025 16:30:01
+reps update started:10/03/2025 16:30:01
+reps update done:10/03/2025 16:30:34
+reps update done:10/03/2025 16:30:35\r\ncarriers start @ 10/03/25 16:40:00
+carrier update done:10/03/2025 16:40:02
+reps update started:10/04/2025 16:30:02
+reps update started:10/04/2025 16:30:03
+reps update done:10/04/2025 16:30:38
+reps update done:10/04/2025 16:30:38\r\ncarriers start @ 10/04/25 16:40:00
+carrier update done:10/04/2025 16:40:02
+reps update started:10/05/2025 16:30:02
+reps update started:10/05/2025 16:30:03
+reps update done:10/05/2025 16:30:36
+reps update done:10/05/2025 16:30:37\r\ncarriers start @ 10/05/25 16:40:02
+carrier update done:10/05/2025 16:40:04
+reps update started:10/06/2025 16:30:03
+reps update started:10/06/2025 16:30:04
+reps update done:10/06/2025 16:30:38
+reps update done:10/06/2025 16:30:39\r\ncarriers start @ 10/06/25 16:40:02
+carrier update done:10/06/2025 16:40:04
+reps update started:10/07/2025 16:30:03
+reps update started:10/07/2025 16:30:04
+reps update done:10/07/2025 16:30:38
+reps update done:10/07/2025 16:30:39\r\ncarriers start @ 10/07/25 16:40:00
+carrier update done:10/07/2025 16:40:03
+reps update started:10/08/2025 16:30:02
+reps update started:10/08/2025 16:30:03
+reps update done:10/08/2025 16:30:37
+reps update done:10/08/2025 16:30:37\r\ncarriers start @ 10/08/25 16:40:00
+carrier update done:10/08/2025 16:40:02
+reps update started:10/09/2025 16:30:03
+reps update started:10/09/2025 16:30:04
+reps update done:10/09/2025 16:30:36
+reps update done:10/09/2025 16:30:38\r\ncarriers start @ 10/09/25 16:40:01
+carrier update done:10/09/2025 16:40:03
+reps update started:10/10/2025 16:30:03
+reps update started:10/10/2025 16:30:05
+reps update done:10/10/2025 16:30:35
+reps update done:10/10/2025 16:30:36\r\ncarriers start @ 10/10/25 16:40:00
+carrier update done:10/10/2025 16:40:03
+reps update started:10/11/2025 16:30:03
+reps update started:10/11/2025 16:30:03
+reps update done:10/11/2025 16:30:36
+reps update done:10/11/2025 16:30:37\r\ncarriers start @ 10/11/25 16:40:00
+carrier update done:10/11/2025 16:40:02
+reps update started:10/12/2025 16:30:03
+reps update started:10/12/2025 16:30:05
+reps update done:10/12/2025 16:30:36
+reps update done:10/12/2025 16:30:38\r\ncarriers start @ 10/12/25 16:40:00
+carrier update done:10/12/2025 16:40:02
+reps update started:10/13/2025 16:30:02
+reps update started:10/13/2025 16:30:03
+reps update done:10/13/2025 16:30:35
+reps update done:10/13/2025 16:30:37\r\ncarriers start @ 10/13/25 16:40:00
+carrier update done:10/13/2025 16:40:02
+reps update started:10/14/2025 16:30:03
+reps update started:10/14/2025 16:30:04
+reps update done:10/14/2025 16:30:37
+reps update done:10/14/2025 16:30:38\r\ncarriers start @ 10/14/25 16:40:01
+carrier update done:10/14/2025 16:40:03
+reps update started:10/15/2025 16:30:03
+reps update started:10/15/2025 16:30:04
+reps update done:10/15/2025 16:30:36
+reps update done:10/15/2025 16:30:37\r\ncarriers start @ 10/15/25 16:40:00
+carrier update done:10/15/2025 16:40:03
+reps update started:10/16/2025 16:30:03
+reps update started:10/16/2025 16:30:03
+reps update done:10/16/2025 16:30:37
+reps update done:10/16/2025 16:30:37\r\ncarriers start @ 10/16/25 16:40:01
+carrier update done:10/16/2025 16:40:03
+reps update started:10/17/2025 16:30:03
+reps update started:10/17/2025 16:30:04
+reps update done:10/17/2025 16:30:36
+reps update done:10/17/2025 16:30:37\r\ncarriers start @ 10/17/25 16:40:00
+carrier update done:10/17/2025 16:40:02
+reps update started:10/18/2025 16:30:02
+reps update started:10/18/2025 16:30:03
+reps update done:10/18/2025 16:30:37
+reps update done:10/18/2025 16:30:38\r\ncarriers start @ 10/18/25 16:40:01
+carrier update done:10/18/2025 16:40:02
+reps update started:10/19/2025 16:30:01
+reps update started:10/19/2025 16:30:03
+reps update done:10/19/2025 16:30:36
+reps update done:10/19/2025 16:30:38\r\ncarriers start @ 10/19/25 16:40:00
+carrier update done:10/19/2025 16:40:03
+reps update started:10/20/2025 16:30:03
+reps update started:10/20/2025 16:30:03
+reps update done:10/20/2025 16:30:38
+reps update done:10/20/2025 16:30:38\r\ncarriers start @ 10/20/25 16:40:00
+carrier update done:10/20/2025 16:40:03
+reps update started:10/21/2025 16:30:03
+reps update started:10/21/2025 16:30:04
+reps update done:10/21/2025 16:30:37
+reps update done:10/21/2025 16:30:38\r\ncarriers start @ 10/21/25 16:40:00
+carrier update done:10/21/2025 16:40:02
+reps update started:10/22/2025 16:30:04
+reps update started:10/22/2025 16:30:05
+reps update done:10/22/2025 16:30:38
+reps update done:10/22/2025 16:30:39\r\ncarriers start @ 10/22/25 16:40:01
+carrier update done:10/22/2025 16:40:03
+reps update started:10/23/2025 16:30:03
+reps update started:10/23/2025 16:30:04
+reps update done:10/23/2025 16:30:37
+reps update done:10/23/2025 16:30:38\r\ncarriers start @ 10/23/25 16:40:02
+carrier update done:10/23/2025 16:40:04
+reps update started:10/24/2025 16:30:03
+reps update started:10/24/2025 16:30:03
+reps update done:10/24/2025 16:30:37
+reps update done:10/24/2025 16:30:37\r\ncarriers start @ 10/24/25 16:40:01
+carrier update done:10/24/2025 16:40:03
+reps update started:10/25/2025 16:30:01
+reps update started:10/25/2025 16:30:03
+reps update done:10/25/2025 16:30:34
+reps update done:10/25/2025 16:30:36\r\ncarriers start @ 10/25/25 16:40:02
+carrier update done:10/25/2025 16:40:05
+reps update started:10/26/2025 16:30:01
+reps update started:10/26/2025 16:30:03
+reps update done:10/26/2025 16:30:35
+reps update done:10/26/2025 16:30:37\r\ncarriers start @ 10/26/25 16:40:01
+carrier update done:10/26/2025 16:40:03

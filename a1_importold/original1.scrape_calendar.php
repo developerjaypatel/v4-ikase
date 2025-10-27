@@ -62,8 +62,8 @@ $timeout = 5;
 // file handler
 //$outputfilename = '../xlsx2csv/courtcalendar.xlsx';
 
-$outputfilename = "../uploads/courtcalendar/courtcalendar.xlsx";
-$archivefilename = "../uploads/courtcalendar/" . date("Ymd") . ".xlsx";
+$outputfilename = "D:/uploads/courtcalendar/courtcalendar.xlsx";
+$archivefilename = "D:/uploads/courtcalendar/" . date("Ymd") . ".xlsx";
 
 if (file_exists($outputfilename)) {
 	rename($outputfilename, $archivefilename);
@@ -71,7 +71,7 @@ if (file_exists($outputfilename)) {
 //clear out old files
 $yesterday  = mktime(0, 0, 0, date("m") , date("d") - 3, date("Y"));
 
-$check_dir = '../uploads/courtcalendar';
+$check_dir = 'D:/uploads/courtcalendar';
 $wdir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\courtcalendar";
 $ccals = scandir($check_dir);
 foreach($ccals as $ccal_index=>$ccal) {

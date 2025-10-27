@@ -65,8 +65,8 @@ try {
 		}
 		$sql = "INSERT INTO `ikase_" . $data_source . "`.`cse_partie_type`
 		(`partie_type`, `employee_title`, `blurb`, `color`, `sort_order`)
-		VALUES ('" . addslashes(ucwords($type->type_name)) . "', '', '" . $type->ctype . "', '" . $color . "', 60)";
-		//die($sql);
+		VALUES ('" . addslashes(ucwords($type->type_name)) . "', '', '" . addslashes($type->ctype) . "', '" . $color . "', 60)";
+		// die($sql);
 		$stmt = DB::run($sql);
 	}
 	

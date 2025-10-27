@@ -14,7 +14,7 @@ $targetFile = "C:\\inetpub\\wwwroot\\ikase\\uploads\\1033\\42\\f132_16011294321.
 $thumbFile = "C:\\inetpub\\wwwroot\\ikase\\pdfimage\\1033\\42\\f132_16011294321.jpg";
 $thumbnail_path = "C:\\inetpub\\wwwroot\\ikase\\uploads\\1033\\42\\medium\\f132_16011294321.jpg";
 
-$targetFile = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\1094\\6235\\jetfiler\\eams_combine_appcover_24815.pdf";
+$targetFile = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\1094\\6235\\jetfiler\\eams_combine_appcover_24815.pdf";
 //echo "from " . $targetFile . " to " . $thumbFile;	// . "<br>" . $thumbnail_path . "<br />";
 
 

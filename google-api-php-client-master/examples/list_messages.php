@@ -88,7 +88,7 @@ require_once realpath(dirname(__FILE__) . '/../src/Google/autoload.php');
  ************************************************/
 $client_id = '136098397658-eh1819rrc1nie49mrfljsbd5obnt6rlu.apps.googleusercontent.com';
 $client_secret = 'mU50PLlQPFTyrz1tBKilnFTZ';
-$redirect_uri = 'https://v2.ikase.org/google-api-php-client-master/examples/get_token.php';
+$redirect_uri = 'https://v4.ikase.org/google-api-php-client-master/examples/get_token.php';
 
 /************************************************
   Make an API request on behalf of a user. In
@@ -200,7 +200,7 @@ foreach($messageList as $mlist){
 			fclose($fp);
 			
 			//if it has been processed, then every thing before it is also in
-			$url = "https://v2.ikase.org/api/messages/check_email";
+			$url = "https://v4.ikase.org/api/messages/check_email";
 			$fields = array("id"=>$thread_message->id, 'customer_id'=>$customer_id, 'user_id'=>$user_id);
 		
 			$result = post_curl($url, $fields);
@@ -317,7 +317,7 @@ foreach($messageList as $mlist){
 			$inboxMessage[] = $arrMessage;
 			
 			//print_r($arrMessage);
-			$url = "https://v2.ikase.org/api/messages/add_email";
+			$url = "https://v4.ikase.org/api/messages/add_email";
 			$fields = $arrMessage;
 		
 			$result = post_curl($url, $fields);
@@ -337,7 +337,7 @@ foreach($messageList as $mlist){
 		fclose($fp);
 	
 		//if it has been processed, then every thing before it is also in
-		$url = "https://v2.ikase.org/api/messages/check_email";
+		$url = "https://v4.ikase.org/api/messages/check_email";
 		$fields = array("id"=>$mlist->id, 'customer_id'=>$customer_id, 'user_id'=>$user_id);;
 	
 		$result = post_curl($url, $fields);
@@ -464,7 +464,7 @@ foreach($messageList as $mlist){
 		
 		print_r($arrMessage);
 		$inboxMessage[] = $arrMessage;
-		$url = "https://v2.ikase.org/api/messages/add_email";
+		$url = "https://v4.ikase.org/api/messages/add_email";
 		$fields = $arrMessage;
 	
 		$result = post_curl($url, $fields);
@@ -473,7 +473,7 @@ foreach($messageList as $mlist){
 	}
 	foreach($arrAttachments as $name) {
 		//transfer attachments
-		$url = "https://v2.ikase.org/api/webmail/transferattach";	
+		$url = "https://v4.ikase.org/api/webmail/transferattach";	
 		$fields = array("customer_id"=>$customer_id, "authorize_key"=>urlencode($authorize_key), "filename"=>$name);
 		//die(print_r($fields));
 		$fields_string = "";

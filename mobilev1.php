@@ -8,7 +8,7 @@ header("Pragma: no-cache");
 require_once 'shared/legacy_session.php';
 
 if ($_SERVER["HTTPS"] == "off") {
-	header("location:https://v2.ikase.org".$_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org".$_SERVER['REQUEST_URI']);
 }
 
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
@@ -45,7 +45,7 @@ if ($blnDebug) {
 }
 $dbname = "gtg_thecase";
 //FIXME: what's this supposed to do? it should always be true, unless it's running from CLI
-if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == "C:\\inetpub\\wwwroot\\iKase.org") {
+if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == "C:\\inetpub\\wwwroot\\ikase.org") {
 	$dbname = "ikase";
 	if (isset($_SESSION['user_data_source']) && $_SESSION['user_data_source'] != "") {
 		$dbname .= "_" . $_SESSION['user_data_source'];
@@ -312,7 +312,7 @@ try {
 	$customer_calendars = $stmt->fetchAll(PDO::FETCH_OBJ);
 } catch(PDOException $e) {
 	$error = array("error4"=> array("text"=>$e->getMessage()));
-	echo json_encode($error);
+	//echo json_encode($error);
 }
 if ($blnDebug) {
 	$time = microtime();

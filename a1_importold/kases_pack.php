@@ -729,7 +729,7 @@ ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 		}
 		if ($output=="csv") {
 			// Create the csv file
-			$csv_dir = '\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
+			$csv_dir = 'D:\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
 			if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $csv_dir)) {
 				//die($_SERVER['DOCUMENT_ROOT'] . $csv_dir);
 				mkdir($_SERVER['DOCUMENT_ROOT'] . $csv_dir, 0777, true);
@@ -6264,7 +6264,7 @@ $sql .= " app ON ccapp.person_uuid = app.person_uuid
 }
 function writeQuery($sql) {
 	//write to a text file
-	$session_save_path = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\';
+	$session_save_path = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\';
 	$filename = $session_save_path . 'current_query_' . $_SESSION['user_plain_id'] . '.txt';
 	$somecontent = $sql;
 	if ($_SERVER['REMOTE_ADDR'] == "47.156.103.17") { 
@@ -6287,7 +6287,7 @@ function writeQuery($sql) {
 }
 function lastKaseQuery() {
 	//write to a text file
-	$session_save_path = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\';
+	$session_save_path = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\';
 	$filename = $session_save_path . 'current_query_' . $_SESSION['user_plain_id'] . '.txt';
 	
 	$sql = "";
@@ -6302,7 +6302,7 @@ function lastKaseQuery() {
 }
 function writeSearchTerms($terms) {
 	//write to a text file
-	$session_save_path = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\';
+	$session_save_path = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\';
 	$filename = $session_save_path . 'search_terms_' . $_SESSION['user_plain_id'] . '.txt';
 	$somecontent = $terms;
 	

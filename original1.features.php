@@ -2,11 +2,11 @@
 include("browser_detect.php");
 
 if($blnMobile) {
-	header("location:https://v2.ikase.org/index_mobile.php");
+	header("location:https://v4.ikase.org/index_mobile.php");
 }
 
 if($_SERVER["HTTPS"]=="off") {
-	header("location:https://v2.ikase.org");
+	header("location:https://v4.ikase.org");
 }
 //include ("text_editor/ed/datacon.php");
 //include("api/connection.php");

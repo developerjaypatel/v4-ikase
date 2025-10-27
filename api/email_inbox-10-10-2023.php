@@ -1501,7 +1501,7 @@ function assignGmail() {
 					$thumb_file = $attach_file;
 				}
 								
-				array_push($arrAttachedFiles, "<a href='https://www.ikase.org/uploads/" . $attachment . "' target='_blank' onmouseover='showImportedPreview(this, \"uploads/" . $attachment . "\", \"\", \"\", " . $attach_customer_id . ", \"activity_\")' onmouseout='hidePreview()'>" . $attach_file . "</a>");
+				array_push($arrAttachedFiles, "<a href='https://www.ikase.org/uploads/" . $attachment . "' target='_blank' onmouseover='showImportedPreview(this, \"D:/uploads/" . $attachment . "\", \"\", \"\", " . $attach_customer_id . ", \"activity_\")' onmouseout='hidePreview()'>" . $attach_file . "</a>");
 				
 			} else {
 				array_push($arrAttachedFiles, "<a href='https://www.ikase.xyz/ikase/gmail/ui/" . $attachment . "' target='_blank' style='background:yellow;color:black'>" . $attach_file . "</a>");
@@ -1536,7 +1536,7 @@ function assignGmail() {
 				if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir)) {
 					mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir, 0755, true);
 				}
-				$dest = "../uploads/" . $attach_customer_id . "/" . $case_id . "/" . $attach_file;
+				$dest = "D:/uploads/" . $attach_customer_id . "/" . $case_id . "/" . $attach_file;
 				
 				//move thumbnails if any
 				$arrExt = explode(".", $attach_file);
@@ -1546,11 +1546,11 @@ function assignGmail() {
 				$thumb_dest = "";
 				if($extension=="pdf") {
 					$thumbnail = str_replace(".pdf", ".jpg", $attachment);
-					$thumb_dest = "../uploads/" . $attach_customer_id . "/" . $case_id . "/medium/" . str_replace(".pdf", ".jpg", $attach_file);
+					$thumb_dest = "D:/uploads/" . $attach_customer_id . "/" . $case_id . "/medium/" . str_replace(".pdf", ".jpg", $attach_file);
 				}
 				if($extension=="jpg" || $extension=="png") {
 					$thumbnail = $attachment;
-					$thumb_dest = "../uploads/" . $attach_customer_id . "/" . $case_id . "/medium/" . $attach_file;
+					$thumb_dest = "D:/uploads/" . $attach_customer_id . "/" . $case_id . "/medium/" . $attach_file;
 				}
 				if ($thumbnail!="") {
 					$thumbnail = "../" . $thumbnail;

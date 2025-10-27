@@ -1655,7 +1655,7 @@ class UploadHandler
 	}
 	function getConnection() {
 		if (isset($_SERVER['DOCUMENT_ROOT'])) {
-			if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\iKase.org") {
+			if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\ikase.org") {
 				//$dbhost="54.149.211.191";
 				$dbhost="ikase.org";
 				$dbuser="root";

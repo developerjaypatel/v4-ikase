@@ -692,7 +692,7 @@ var init = function() {
 						myNoteDataSource, {height:form_height_med});
 						
 	var formatUpload = function(elCell, oRecord, oColumn, sData) {
-		var upload = "<a href='../../uploads/<?php echo $cus_id; ?>/" + oRecord.getData("upload_type") + "/" + oRecord.getData("upload") + "' target='_blank' title='Click to review uploaded document'>" + oRecord.getData("upload") + "</a>";
+		var upload = "<a href='../D:/uploads/<?php echo $cus_id; ?>/" + oRecord.getData("upload_type") + "/" + oRecord.getData("upload") + "' target='_blank' title='Click to review uploaded document'>" + oRecord.getData("upload") + "</a>";
 		elCell.innerHTML = upload;
 	}
 	

@@ -2,14 +2,14 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$cmd = 'java -jar C:\\inetpub\\wwwroot\\iKase.org\\phpdocx_pro\\lib\\openoffice\\jodconverter-2.2.2\\lib\\jodconverter-cli-2.2.2.jar C:\\inetpub\\wwwroot\\iKase.org\\phpdocx_pro\\examples\\nicks_word1_docx.docx C:\\inetpub\\wwwroot\\iKase.org\\phpdocx_pro\\examples\\test.pdf';
+$cmd = 'java -jar C:\\inetpub\\wwwroot\\ikase.org\\phpdocx_pro\\lib\\openoffice\\jodconverter-2.2.2\\lib\\jodconverter-cli-2.2.2.jar C:\\inetpub\\wwwroot\\ikase.org\\phpdocx_pro\\examples\\nicks_word1_docx.docx C:\\inetpub\\wwwroot\\ikase.org\\phpdocx_pro\\examples\\test.pdf';
 
 die($cmd);
 
 require_once '../phpdocx_pro/classes/CreateDocx.inc';
 $docx = new TransformDoc();
 
-$dir = 'C:\\inetpub\\wwwroot\\iKase.org\\phpdocx_pro\\examples\\';
+$dir = 'C:\\inetpub\\wwwroot\\ikase.org\\phpdocx_pro\\examples\\';
 $filename = $dir . 'nicks_word2_docx';
 $destination = str_replace(".docx", ".pdf", $filename);
 

@@ -24,7 +24,7 @@ require_once('shared/legacy_session.php');
 require_once('rootdata.php');
 
 if($_SERVER["HTTPS"]=="off") {
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org" . $_SERVER['REQUEST_URI']);
 }
 
 if ($_SESSION["need_password"]) {
@@ -104,7 +104,7 @@ if (isset($_GET["gtok"])) {
 	
 	//update the user gmail info
 	//ALREADY DONE IN ikase.xyz/ikase/gmail/ui/index.php 
-	//$url = "https://v2.ikase.org/api/gmail/settoken";
+	//$url = "https://v4.ikase.org/api/gmail/settoken";
 	try {
 		/*
 		$user_id = $_SESSION["user_plain_id"];
@@ -146,7 +146,7 @@ if (isset($_GET["gtok"])) {
 }
 
 if($blnMobile) {
-	header("location:https://v2.ikase.org/mobilev1.php");
+	header("location:https://v4.ikase.org/mobilev1.php");
 }
 
 if ($blnDebug) {
@@ -1933,7 +1933,7 @@ if ($blnDebug) {
 		
 		<?php if (isset($_SESSION['subscription_string'])) { ?>
 		subscription_string = '<?php echo $_SESSION['subscription_string']; ?>';
-		subscription_bitly_link = '<?php echo make_bitly_url("https://v2.ikase.org/api/sync_calendar_kase.php?" . $_SESSION['subscription_string']); ?>';
+		subscription_bitly_link = '<?php echo make_bitly_url("https://v4.ikase.org/api/sync_calendar_kase.php?" . $_SESSION['subscription_string']); ?>';
 		<?php } ?>
 		var hrefHost = '<?php echo $_SERVER['HTTP_HOST']; ?>';
 		//bootstrapping background data, some of these need to be moved to indexedDB

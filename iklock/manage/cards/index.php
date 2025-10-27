@@ -42,7 +42,7 @@ $administrator = passed_var("administrator");
         	<a href="../../index.html">Logout</a>&nbsp;|&nbsp;
             <a href="../owner/index.php?suid=<?php echo $suid; ?>">List of Administrators</a>&nbsp;|&nbsp;
             <a href="javascript:getEmails()">Export Emails</a>&nbsp;|&nbsp;
-            <a href="http://ikase.org/manage/cards/card_list.php?suid=<?php echo $suid; ?>&labels=y" target="_blank">Export Labels</a>
+            <a href="http://v4.ikase.org/manage/cards/card_list.php?suid=<?php echo $suid; ?>&labels=y" target="_blank">Export Labels</a>
         </div>
         <strong>List of Cards</strong>    </td>
   </tr>

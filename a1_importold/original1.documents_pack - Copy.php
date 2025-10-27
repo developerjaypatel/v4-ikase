@@ -274,7 +274,7 @@ function getDocuments($case_id, $attribute = "") {
 					
 					$doc_filename = implode(".", $arrFile);
 					
-					$preview_path = "uploads/" . $customer_id . "/" . str_replace("medium", "thumbnail", $doc->thumbnail_folder) . "/" . $doc_filename;
+					$preview_path = "D:/uploads/" . $customer_id . "/" . str_replace("medium", "thumbnail", $doc->thumbnail_folder) . "/" . $doc_filename;
 				} else {
 					$preview_path = findDocumentThumbnail($customer_id, $case_id, $doc);
 				}
@@ -1649,7 +1649,7 @@ function deleteDocument() {
 	
 	foreach($arrIDs as $id) {
 		$document = getDocumentInfo($id);
-		//$document_path = "uploads/1033/templates/1000%20General%20Letter.docx";
+		//$document_path = "D:/uploads/1033/templates/1000%20General%20Letter.docx";
 		
 		$sql = "UPDATE cse_document 
 				SET deleted = 'Y'
@@ -2655,8 +2655,8 @@ function processFTP() {
 					if (is_object($kase)) {					
 						//die(print_r($kase));
 						//look for document
-						//'../uploads/1033/3062/letters/10111 notice rep with claimform_3062_0'
-						$document_filename = '../uploads/' . $customer_id . '/' . $case_id . '/letters/' . str_replace(".docx", "", $original_upload);
+						//'D:/uploads/1033/3062/letters/10111 notice rep with claimform_3062_0'
+						$document_filename = 'D:/uploads/' . $customer_id . '/' . $case_id . '/letters/' . str_replace(".docx", "", $original_upload);
 						//see if the file exists
 						$customer_dir = $_SERVER["DOCUMENT_ROOT"] . "\\uploads\\" . $customer_id . "\\" . $case_id . "\\letters";
 						$upload_path = $customer_dir . "\\" . $original_upload;
@@ -2832,7 +2832,7 @@ function trackDocument($operation, $document_id = "", $document_uuid = "", $blnR
 			$destination = $arrDestination[count($arrDestination) - 1];
 			
 			//now rebuild
-			$prefix = "../uploads/" . $_SESSION["user_customer_id"];
+			$prefix = "D:/uploads/" . $_SESSION["user_customer_id"];
 			if ($case_id!="") {
 				$prefix .= "/" . $case_id;
 			}
@@ -3008,7 +3008,7 @@ function referVocation() {
 				die(json_encode(array("success"=> false, "error"=>"PDF Only")));
 			}
 			
-			$case_dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id . "\\" . $case_id . "\\";
+			$case_dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id . "\\" . $case_id . "\\";
 			if (!is_dir($case_dir)) {
 				mkdir($case_dir, 0755, true);
 			}
@@ -3078,7 +3078,7 @@ function referVocation() {
 				$plain_params = json_encode(array("activity_id"=>$activity_id, "customer_id"=>$customer_id));
 				$params = base64_encode($plain_params);
 				*/
-				$path = "../uploads/" . $customer_id . "/" . $case_id . "/refervocational/" . $targetFile;
+				$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/refervocational/" . $targetFile;
 				$key = md5(microtime());
 				$sql = "INSERT INTO ikase.cse_downloads (`downloadkey`, `sent_by`, `injury_id`, `file`, `expires`, `customer_id`) 
 				VALUES ('" . $key . "', '" . $_SESSION['user_plain_id'] . "', '" . $injury_id . "', '" . $path . "', '" . date("Y-m-d H:i:s", (time()+(60*60*24*7))) ."', '" . $customer_id ."')";
@@ -3278,7 +3278,7 @@ function letterFileupload(){
 
 
 		if (curl_getinfo($curl, CURLINFO_HTTP_CODE) == 200) {
-			file_put_contents("../uploads/".$_SESSION['user_customer_id']."/".$document_id.".pdf", $result);
+			file_put_contents("D:/uploads/".$_SESSION['user_customer_id']."/".$document_id.".pdf", $result);
 		} else {
 			//print("Server returned error:\n".$result."\n");
 			$vendor = "Pdf Conversion Server error";
@@ -3294,7 +3294,7 @@ function letterFileupload(){
 
 
 
-		$file = "../uploads/".$_SESSION['user_customer_id']."/".$document_id.".pdf";
+		$file = "D:/uploads/".$_SESSION['user_customer_id']."/".$document_id.".pdf";
 		$api_key = getCustomerDocucentsAPIKey($cusid);
 		if(!file_exists($file)){
 			$vendor = file_exists($file);

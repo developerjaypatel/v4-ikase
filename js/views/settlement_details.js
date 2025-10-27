@@ -1444,41 +1444,63 @@ window.settlementsheet_view = Backbone.View.extend({
 		parties.fetch({
 			success: function(data) {
 				var carriers = data.toJSON();
-				
+		
+				// Always show subro holder
+				$("#settlement_subro_holder").show().empty();
+		
+				// Update the button count (even if zero)
+				$("#settlement_subro_button").html("Subrogation (" + carriers.length + ")");
+		
 				if (carriers.length > 0) {
-					setTimeout(function() {
-						$("#settlement_subro_button").html("Subrogation (" + carriers.length + ")");
-					}, 2000);
-				}
-				_.each( carriers, function(carrier) {	
-					//create a div for it
-					$("#settlement_subro_holder").append("<div id='carrier_financial_" + carrier.corporation_id + "'></div>");	
-					
-					//get the financials			
-					var financial = new Financial({"case_id": current_case_id, "corporation_id": carrier.corporation_id});
-					var corp_claim_number = carrier.claim_number;
-					financial.set("glass", "card_dark_7");
-					financial.set("trust_options", arrOptions);
-					financial.set("company_name", carrier.company_name);
-					financial.fetch({
-					success: function(datum) {
-							var holder_id = "#carrier_financial_" + datum.get("corporation_id");
-							financial.set("holder", holder_id);
-							var section_title = datum.get("company_name");
-							
-							section_title = '<div style="float:right"><button id="partie_edit_' + datum.get("corporation_id") + '" class="partie_edit Carrier btn btn-transparent border-blue" style="border:0px solid; width:20px" title="Click to Edit ' + section_title + ' financials"><i class="glyphicon glyphicon-edit" style="color:#0033FF">&nbsp;</i></button></div>' + section_title;
-							if (corp_claim_number!="") {
-								section_title += " :: Claim # " + corp_claim_number;
+					// Loop through each carrier
+					_.each(carriers, function(carrier) {
+						// Create a div for each carrier
+						$("#settlement_subro_holder").append("<div id='carrier_financial_" + carrier.corporation_id + "'></div>");
+		
+						// Get financials
+						var financial = new Financial({
+							case_id: current_case_id,
+							corporation_id: carrier.corporation_id
+						});
+		
+						var corp_claim_number = carrier.claim_number;
+						financial.set("glass", "card_dark_7");
+						financial.set("trust_options", arrOptions);
+						financial.set("company_name", carrier.company_name);
+		
+						financial.fetch({
+							success: function(datum) {
+								var holder_id = "#carrier_financial_" + datum.get("corporation_id");
+								financial.set("holder", holder_id);
+		
+								var section_title = datum.get("company_name");
+								section_title = '<div style="float:right"><button id="partie_edit_' + datum.get("corporation_id") + '" class="partie_edit Carrier btn btn-transparent border-blue" style="border:0px solid; width:20px" title="Click to Edit ' + section_title + ' financials"><i class="glyphicon glyphicon-edit" style="color:#0033FF">&nbsp;</i></button></div>' + section_title;
+		
+								if (corp_claim_number !== "") {
+									section_title += " :: Claim # " + corp_claim_number;
+								}
+		
+								datum.set("section_title", section_title);
+		
+								$(holder_id).html(new carrier_financial_view({ model: datum }).render().el);
+								$(holder_id).fadeIn(function() {
+									$(holder_id).css("width", "50%");
+								});
 							}
-							datum.set("section_title", section_title);
-							$(holder_id).html(new carrier_financial_view({model: datum}).render().el);
-							//now show 
-							$(holder_id).fadeIn(function() {
-								$(holder_id).css("width", "50%");
-							});
-						}
+						});
 					});
-				});
+				} else {
+					// Handle the case when there are no carriers
+					$("#settlement_subro_holder").html(
+						"<div class='no-carriers text-muted' style='padding: 10px; color: #fff;text-align: center;   font-size: 15px;'>No carriers found for this case.</div>"
+					);
+				}
+			},
+		
+			error: function() {
+				$("#settlement_subro_holder").html(
+					"<div class='error text-danger' style='padding:10px;'>Error fetching carrier data.</div>"
+				);
 			}
 		});
 		/*

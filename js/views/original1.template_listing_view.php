@@ -76,7 +76,7 @@ if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) 
             	<?php if (strpos($_SESSION['user_role'], "admin") !== false ) { ?>
                 <input id="document_name_<%=template.document_id%>" name="document_name_<%=template.document_id%>" type="text" class="document_input" value="<%=template.document_name%>" style="width:350px" /><br />
                 <?php } ?>
-              <a id="thumbnail_<%=template.document_id%>" href="uploads/<?php echo $_SESSION['user_customer_id']; ?>/templates/<%= template.document_filename %>" target="_blank" class="list_link">
+              <a id="thumbnail_<%=template.document_id%>" href="D:/uploads/<?php echo $_SESSION['user_customer_id']; ?>/templates/<%= template.document_filename %>" target="_blank" class="list_link">
                 <span class="search_template_item"><%= template.document_name %></span>
                 </a>
                 <input id="document_id_<%=template.document_id%>" name="document_id_<%=template.document_id%>" type="hidden" class="document_input" value="<%=template.document_id%>" />

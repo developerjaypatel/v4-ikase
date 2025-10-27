@@ -20,7 +20,7 @@ include("functions.php");
 
 if($_SERVER["HTTPS"]=="off") {
 	
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org" . $_SERVER['REQUEST_URI']);
 }
 
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
@@ -53,7 +53,7 @@ if ($case_id != "") {
 if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir)) {
 	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir, 0755, true);
 }
-$path = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/jetfiler/";
+$path = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $case_id . "/jetfiler/";
 
 $acceptable_file_types = "";
 $arrUploads = array();
@@ -87,7 +87,7 @@ for ($int=$start;$int<($uploads+1);$int++) {
 	} else {
 		//echo "could not upload ".$upload_file_name . "<br />";
 		//put in the name of the file from form
-		$arrUploads[] = str_replace("uploads/", "", $stored_file_name);
+		$arrUploads[] = str_replace("D:/uploads/", "", $stored_file_name);
 		$arrNames[] = $upload_file_name;
 	}
 }

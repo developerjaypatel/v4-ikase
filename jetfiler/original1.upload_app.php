@@ -18,7 +18,7 @@ include("../api/connection.php");
 
 if($_SERVER["HTTPS"]=="off") {
 	
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org" . $_SERVER['REQUEST_URI']);
 }
 
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
@@ -117,10 +117,10 @@ if (count($documents) > 0) {
 			//check if uploaded or just part of ikase
 			$actual_path = $_SERVER['DOCUMENT_ROOT'] . "\\uploads\\" . $cus_id . "\\" . $case_id . "\\jetfiler\\" . $filepath;
 			if (!file_exists($actual_path)) {
-				$actual_path = "../uploads/" . $cus_id . "/" . $case_id . "/" . $filepath;
+				$actual_path = "D:/uploads/" . $cus_id . "/" . $case_id . "/" . $filepath;
 				
 			} else {
-				$actual_path = "../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath;
+				$actual_path = "D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath;
 			}
 			$arrFiles[$name] = $actual_path;
 			$arrFilesID[$name] = $document->id;
@@ -291,7 +291,7 @@ input {
                     $required = "";
                     $link_text = "";
                     if (!isset($arrFiles["10770.5 Verification"])) {
-                      $arrFiles["10770.5 Verification"] = "uploads/memo_07242012.pdf";
+                      $arrFiles["10770.5 Verification"] = "D:/uploads/memo_07242012.pdf";
                       $link_text = "Default ";
                     }			  
                     if (isset($arrFiles["10770.5 Verification"])) {
@@ -447,7 +447,7 @@ var writePOS = function() {
 			setDisplayStyle("writepos_holder", "display", "none");
 			setDisplayStyle("pos_review_holder", "display", "none");
 			var writtenpos_link = document.getElementById("writtenpos_link");
-			writtenpos_link.innerHTML = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='../uploads/<?php echo $cus_id; ?>/<?php echo $case_id; ?>/jetfiler/" + response + "' title='Click to review generated POS' target='_blank'>Review Generated POS</a>&nbsp;Click the Upload Button to finish";
+			writtenpos_link.innerHTML = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='D:/uploads/<?php echo $cus_id; ?>/<?php echo $case_id; ?>/jetfiler/" + response + "' title='Click to review generated POS' target='_blank'>Review Generated POS</a>&nbsp;Click the Upload Button to finish";
 			var file_stored = document.getElementById("file_stored_3");
 			file_stored.value = response;
 			//show the link

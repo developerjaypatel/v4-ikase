@@ -430,3 +430,8 @@ if ($_SESSION["user_customer_id"]==1075) {
 <script language="javascript">
 $( "#task_listing_all_done" ).trigger( "click" );
 </script>
+<style>
+    .description_row span.copyLink-534.copyLink-782 {
+        display: none !important;
+    }
+</style>

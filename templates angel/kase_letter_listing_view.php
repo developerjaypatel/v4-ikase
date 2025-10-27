@@ -139,7 +139,7 @@ try {
             </td>
             <td align="left" nowrap="nowrap" style="border:0px solid red">
             	<div style="float:right; padding-right:3px; border:0px solid green">
-                <a id="thumbnail_<%=template.document_id%>" href="uploads/<?php echo $_SESSION['user_customer_id']; ?>/templates/<%= template.document_filename.replace("#", "%23") %>" target="_blank" class="list_link" style="font-size:1em">
+                <a id="thumbnail_<%=template.document_id%>" href="D:/uploads/<?php echo $_SESSION['user_customer_id']; ?>/templates/<%= template.document_filename.replace("#", "%23") %>" target="_blank" class="list_link" style="font-size:1em">
                 <i class='glyphicon glyphicon-fullscreen' style='color:white;'>&nbsp;</i>
                 </a>
                 </div>
@@ -163,7 +163,7 @@ try {
             </td>
             <td>
                 <input type="hidden" name="caseid_<%=template.document_id%>" value="<%=case_id%>">
-                <input type="hidden" name="letterpath_<%=template.document_id%>" value="uploads/<?php echo $_SESSION['user_customer_id']; ?>/templates/<%= template.document_filename.replace("#", "%23") %>">
+                <input type="hidden" name="letterpath_<%=template.document_id%>" value="D:/uploads/<?php echo $_SESSION['user_customer_id']; ?>/templates/<%= template.document_filename.replace("#", "%23") %>">
                 <input type="hidden" name="cusid_<%=template.document_id%>" value="<?=$_SESSION['user_customer_id']?>">
                 <!-- Solulab code start 19-06-2019 -->
                 <!-- <% 

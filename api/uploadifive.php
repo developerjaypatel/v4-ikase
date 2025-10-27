@@ -19,7 +19,7 @@ if (isset($_POST['upload_dir'])) {
 }
 if ($upload_dir=="") {
 	// Set the upload directory
-	$uploadDir = '\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
+	$uploadDir = 'D:\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
 	if ($case_id != "") {
 		$uploadDir .= $case_id . '\\';
 	}
@@ -28,24 +28,24 @@ if ($upload_dir=="") {
 }
 $uploadThumbDir = str_replace("uploads", "pdf_image", $uploadDir);
 
-//die($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "<br />" . is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir));
-if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir)) {
-	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir, 0755, true);
+//die($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "<br />" . is_dir($uploadDir));
+if (!is_dir($uploadDir)) {
+	mkdir($uploadDir, 0755, true);
 }
-if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadThumbDir)) {
-	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadThumbDir, 0755, true);
+if (!is_dir($uploadThumbDir)) {
+	mkdir($uploadThumbDir, 0755, true);
 }
-if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "medium")) {
-	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "medium", 0755, true);
+if (!is_dir($uploadDir . "medium")) {
+	mkdir($uploadDir . "medium", 0755, true);
 }
-if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadThumbDir . "medium")) {
-	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadThumbDir . "medium", 0755, true);
+if (!is_dir($uploadThumbDir . "medium")) {
+	mkdir($uploadThumbDir . "medium", 0755, true);
 }
-if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "thumbnail")) {
-	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadDir . "thumbnail", 0755, true);
+if (!is_dir($uploadDir . "thumbnail")) {
+	mkdir($uploadDir . "thumbnail", 0755, true);
 }
-if (!is_dir($_SERVER['DOCUMENT_ROOT'] . $uploadThumbDir . "thumbnail")) {
-	mkdir($_SERVER['DOCUMENT_ROOT'] . $uploadThumbDir . "thumbnail", 0755, true);
+if (!is_dir($uploadThumbDir . "thumbnail")) {
+	mkdir($uploadThumbDir . "thumbnail", 0755, true);
 }
 
 //die($_SERVER['DOCUMENT_ROOT'] . $uploadDir);
@@ -62,7 +62,9 @@ $verifyToken = md5('ikase_system' . $_POST['timestamp']);
 // && $_POST['token'] == $verifyToken
 if (!empty($_FILES)) {
 	$tempFile   = $_FILES['Filedata']['tmp_name'];
-	$uploadDir  = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
+	// Facing D:\ikase.orgD:\uploads\1033\testing.pdf file issue during upload so removed root folder path
+	// $uploadDir  = $_SERVER['DOCUMENT_ROOT'] . $uploadDir;
+	$uploadDir  = $uploadDir;
 	$targetFile = $_FILES['Filedata']['name'];
 	
 	$document_counter = 1;
@@ -110,9 +112,9 @@ if (!empty($_FILES)) {
 	$fileParts = pathinfo($_FILES['Filedata']['name']);
 	if (in_array(strtolower($fileParts['extension']), $fileTypes)) {
 		// Save the file
-		if($_SERVER['REMOTE_ADDR'] == "47.146.250.221") {
-			die($tempFile);
-		}
+		// if($_SERVER['REMOTE_ADDR'] == "103.238.107.229") {
+		// 	die($tempFile);
+		// }
 		$fileTmpNm = file_get_contents($tempFile);
 		if(move_uploaded_file($tempFile, $targetFile))
 		{
@@ -161,6 +163,7 @@ if (!empty($_FILES)) {
 	    	//exec("convert \"{$targetFile}[0]\" -background white -colorspace RGB -geometry 625 \"$thumbFile\"");
 			
 			$image_magick = new imagick(); 
+			
 			$image_magick->readImage($targetFile . "[0]");
 			//$image_magick = $image_magick->flattenImages();
 			$image_magick = $image_magick->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);
@@ -177,6 +180,7 @@ if (!empty($_FILES)) {
 				$thumbnail_path = str_replace($case_id. DC, $case_id. "\\medium\\", $thumbnail_path);
 				//die($thumbnail_path);
 			}
+			$thumbnail_path = str_replace("d:\\pdfimage\\", "d:\\ikase.org\\pdfimage\\", $thumbnail_path);
 			$image_magick->writeImage($thumbnail_path);
 			
 			//thumbnail

@@ -205,7 +205,7 @@ window.note_listing_view = Backbone.View.extend({
 				attach_indicator = "visible";
 				
 				//clean up if necessary
-				var arrAttach = note.attachments.split("uploads/");
+				var arrAttach = note.attachments.split("D:/uploads/");
 				if (arrAttach.length==2) {
 					//secondary check
 					var arrFiles = arrAttach[1].split("/");
@@ -216,7 +216,7 @@ window.note_listing_view = Backbone.View.extend({
 							arrAttach[1] = arrFiles.join("/");
 						}
 					}
-					note.attachments = "uploads/" + arrAttach[1];
+					note.attachments = "D:/uploads/" + arrAttach[1];
 				}
 			}
 			//length
@@ -592,9 +592,9 @@ window.red_flag_note_listing_view = Backbone.View.extend({
 				attach_indicator = "visible";
 				
 				//clean up if necessary
-				var arrAttach = note.attachments.split("uploads/");
+				var arrAttach = note.attachments.split("D:/uploads/");
 				if (arrAttach.length==2) {
-					note.attachments = "uploads/" + arrAttach[1];
+					note.attachments = "D:/uploads/" + arrAttach[1];
 				}
 			}
 			//removing link for edit of inter office added to notes	
@@ -843,7 +843,7 @@ window.note_listing_pane = Backbone.View.extend({
 				attach_indicator = "visible";
 				
 				//clean up if necessary
-				var arrAttach = note.attachments.split("uploads/");
+				var arrAttach = note.attachments.split("D:/uploads/");
 				if (arrAttach.length==2) {
 					//secondary check
 					var arrFiles = arrAttach[1].split("/");
@@ -854,7 +854,7 @@ window.note_listing_pane = Backbone.View.extend({
 							arrAttach[1] = arrFiles.join("/");
 						}
 					}
-					note.attachments = "uploads/" + arrAttach[1];
+					note.attachments = "D:/uploads/" + arrAttach[1];
 				}
 			}
 			//length

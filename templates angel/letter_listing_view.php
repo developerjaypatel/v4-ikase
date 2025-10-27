@@ -96,7 +96,7 @@ try {
             </td>
             <td align="left">
             test
-              <a id="thumbnail_<%=template.document_id%>" href="uploads/<?php echo $_SESSION['user_customer_id']; ?>/templates/<%= template.document_filename.replace("#", "%23") %>" target="_blank" class="list_link">
+              <a id="thumbnail_<%=template.document_id%>" href="D:/uploads/<?php echo $_SESSION['user_customer_id']; ?>/templates/<%= template.document_filename.replace("#", "%23") %>" target="_blank" class="list_link">
                 <%= template.document_name %>
                 </a>
                 <input id="document_id_<%=template.document_id%>" name="document_id_<%=template.document_id%>" type="hidden" class="document_input" value="<%=template.document_id%>" />

@@ -73,7 +73,7 @@ if ($api!="") {
 	if ($arrAPI[2]=="advancesearch") {
 		//$sql = $_SESSION["recent_query"];
 		//die($sql);
-		$session_save_path = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\';
+		$session_save_path = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\';
 		$filename = $session_save_path . 'current_query_' . $_SESSION['user_plain_id'] . '.txt';
 		$handle = fopen($filename, "r");
 		$sql = fread($handle, filesize($filename));
@@ -100,7 +100,7 @@ else {
 */
 if ($sql=="") {
 	//$sql = $_SESSION["current_kase_query"];
-	$session_save_path = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\';
+	$session_save_path = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\';
 	$filename = $session_save_path . 'current_query_' . $_SESSION['user_plain_id'] . '.txt';
 	$handle = fopen($filename, "r");
 	$sql = fread($handle, filesize($filename));
@@ -253,7 +253,7 @@ foreach ($cases_clean as $row) {
 }
 
 //output file
-$filename = '../uploads/' . $customer_id . '/exports/cases_' . date('mdy') . '.csv';
+$filename = 'D:/uploads/' . $customer_id . '/exports/cases_' . date('mdy') . '.csv';
 $fp = fopen($filename, 'w');
 
 foreach ($list as $ferow) {

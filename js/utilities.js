@@ -8,7 +8,7 @@ window.templateLoader = {
         $.each(views, function(index, view) {
 			if (window[view]) {
 				extension = 'html';
-				if (view=="webmail_listing_view" || view=="thread_listing" || view=="check_form" || view=="costs_view" || view=="check_listing_view" || view=="home_medical_view" || view=="activity_listing_view" || view=="archive_listing_view" || view=="partie_listing_choose" || view=="partie_listing_event" || view=="chat_view" || view=="kase_list_category_view" || view=="kase_list_report" || view=="kase_list_applicant_report" || view=="calendar_view" || view=="import_view" || view=="applicant_view" || view=="dialog_view" || view=="dashboard_view" || view=="dashboard_settlement_view" || view=="dashboard_injury_view" || view=="dashboard_user_view" || view=="document_listing_view" || view=="document_listing_search" || view=="document_listing_message" || view=="document_upload_view" || view=="eams_applicant_view" || view=="eams_previouscases_view" || view=="eams_bodyparts_view" || view=="eams_parties_view" || view=="eams_events_view" || view=="eams_hearings_view" || view=="eams_scrape_view" || view=="eams_view" || view=="eams_form_listing" || view=="eams_form_view" || view=="eams_form_attach" || view=="eams_listing_view" || view=="injury_view" || view=="bodyparts_view" || view=="person_view" || view=="kai_view" || view=="notes_view" || view=="parties_view" || view=="partie_cards_view" || view=="parties_new_view" || view=="partie_view" || view=="kase_listing_view" || view=="kase_header_view" || view=="kase_edit_view" || view=="kase_summary_view" || view=="kase_nav_bar_view" || view=="kase_nav_left_view" || view=="search_kase_view" || view=="email_view" || view=="signature_view" || view=="user_view" || view=="dashboard_person_view"  || view=="dashboard_home_view" || view=="person_image" || view=="injury_number_view" || view=="injury_add_view" || view=="message_view" || view=="message_listing" || view=="note_listing_view" || view=="message_attach" || view=="interoffice_view" || view=="stack_listing_view" || view=="task_view" || view=="task_listing" || view=="task_print_stack_listing" || view=="new_kase_view" || view=="new_note_view" || view=="chatting_view" || view=="event_view" || view=="event_listing" || view=="setting_view" || view=="letter_view" || view=="letter_listing_view" || view=="letter_attach" || view=="setting_attach" || view=="kase_list_task_view" || view=="template_listing_view" || view=="template_upload_view" || view=="note_print_view" || view=="task_print_view" || view=="task_print_listing" || view=="message_print_view" || view=="message_print_view1" || view=="message_print_listing" || view=="rolodex_listing_view" || view=="user_listing_view" || view=="user_setting_listing" || view=="parties_new_rolodex" || view=="kase_control_panel" || view=="form_listing" || view=="kase_letter_listing_view" || view=="prior_treatment_listing_view" || view=="kase_occurences_print_view" || view=="event_listing_print" || view=="settlement_view" || view=="prior_referral_view" || view=="exam_view" || view=="exam_listing" || view=="document_search" || view=="lien_view" || view=="kases_report" || view=="clients_report" || view=="referrals_report" || view =="vservice_view" || view =="vservices_view" || view =="dashboard_accident_view" || view =="accident_view" || view=="medical_specialties_select" || view=="payments_print_listing" || view=="rental_view" || view=="multichat" || view=="multichat_messages" || view=="reset_password_view" || view=="property_damage_view" || view=="car_passenger_view" || view=="accident_new_view" || view=="accident_new_view" || view=="dashboard_slipandfall_view" || view=="dashboard_motorcycle_view" || view=="dashboard_naturalcause_view" || view=="bulk_webmail_assign_view" || view=="bulk_import_assign_view" || view=="dashboard_email_view" || view=="red_flag_note_listing_view" || view=="dashboard_related_cases_view" || view=="bulk_date_change_view" || view=="contact_listing_view" || view=="contact_view" || view=="personal_injury_view" || view=="activity_print_listing_view" || view=="activity_print_summary_view" || view=="note_print_listing_view" || view=="med_index_report" || view=="personal_injury_general_view" || view=="personal_injury_dogbite_view" || view=="personal_injury_slipandfall_view" || view=="financial_view" || view=="personal_injury_image" || view=="new_legal_view" || view=="coa_view" || view=="coa_listing_view" || view=="partie_kai_view" || view=="billing_listing_view" || view=="activity_view" || view=="invoice_listing_view" || view=="invoice_print_listing_view" || view=="user_listing_print_view" || view=="billing_view" || view=="activity_bill_view") {
+				if (view=="customer_support_view" || view=="webmail_listing_view" || view=="thread_listing" || view=="check_form" || view=="costs_view" || view=="check_listing_view" || view=="home_medical_view" || view=="activity_listing_view" || view=="archive_listing_view" || view=="partie_listing_choose" || view=="partie_listing_event" || view=="chat_view" || view=="kase_list_category_view" || view=="kase_list_report" || view=="kase_list_applicant_report" || view=="calendar_view" || view=="import_view" || view=="applicant_view" || view=="dialog_view" || view=="dashboard_view" || view=="dashboard_settlement_view" || view=="dashboard_injury_view" || view=="dashboard_user_view" || view=="document_listing_view" || view=="document_listing_search" || view=="document_listing_message" || view=="document_upload_view" || view=="eams_applicant_view" || view=="eams_previouscases_view" || view=="eams_bodyparts_view" || view=="eams_parties_view" || view=="eams_events_view" || view=="eams_hearings_view" || view=="eams_scrape_view" || view=="eams_view" || view=="eams_form_listing" || view=="eams_form_view" || view=="eams_form_attach" || view=="eams_listing_view" || view=="injury_view" || view=="bodyparts_view" || view=="person_view" || view=="kai_view" || view=="notes_view" || view=="parties_view" || view=="partie_cards_view" || view=="parties_new_view" || view=="partie_view" || view=="kase_listing_view" || view=="kase_header_view" || view=="kase_edit_view" || view=="kase_summary_view" || view=="kase_nav_bar_view" || view=="kase_nav_left_view" || view=="search_kase_view" || view=="email_view" || view=="signature_view" || view=="user_view" || view=="dashboard_person_view"  || view=="dashboard_home_view" || view=="person_image" || view=="injury_number_view" || view=="injury_add_view" || view=="message_view" || view=="message_listing" || view=="note_listing_view" || view=="message_attach" || view=="interoffice_view" || view=="stack_listing_view" || view=="task_view" || view=="task_listing" || view=="task_print_stack_listing" || view=="new_kase_view" || view=="new_note_view" || view=="chatting_view" || view=="event_view" || view=="event_listing" || view=="setting_view" || view=="letter_view" || view=="letter_listing_view" || view=="letter_attach" || view=="setting_attach" || view=="kase_list_task_view" || view=="template_listing_view" || view=="template_upload_view" || view=="note_print_view" || view=="task_print_view" || view=="task_print_listing" || view=="message_print_view" || view=="message_print_view1" || view=="message_print_listing" || view=="rolodex_listing_view" || view=="user_listing_view" || view=="user_setting_listing" || view=="parties_new_rolodex" || view=="kase_control_panel" || view=="form_listing" || view=="kase_letter_listing_view" || view=="prior_treatment_listing_view" || view=="kase_occurences_print_view" || view=="event_listing_print" || view=="settlement_view" || view=="prior_referral_view" || view=="exam_view" || view=="exam_listing" || view=="document_search" || view=="lien_view" || view=="kases_report" || view=="clients_report" || view=="referrals_report" || view =="vservice_view" || view =="vservices_view" || view =="dashboard_accident_view" || view =="accident_view" || view=="medical_specialties_select" || view=="payments_print_listing" || view=="rental_view" || view=="multichat" || view=="multichat_messages" || view=="reset_password_view" || view=="property_damage_view" || view=="car_passenger_view" || view=="accident_new_view" || view=="accident_new_view" || view=="dashboard_slipandfall_view" || view=="dashboard_motorcycle_view" || view=="dashboard_naturalcause_view" || view=="bulk_webmail_assign_view" || view=="bulk_import_assign_view" || view=="dashboard_email_view" || view=="red_flag_note_listing_view" || view=="dashboard_related_cases_view" || view=="bulk_date_change_view" || view=="contact_listing_view" || view=="contact_view" || view=="personal_injury_view" || view=="activity_print_listing_view" || view=="activity_print_summary_view" || view=="note_print_listing_view" || view=="med_index_report" || view=="personal_injury_general_view" || view=="personal_injury_dogbite_view" || view=="personal_injury_slipandfall_view" || view=="financial_view" || view=="personal_injury_image" || view=="new_legal_view" || view=="coa_view" || view=="coa_listing_view" || view=="partie_kai_view" || view=="billing_listing_view" || view=="activity_view" || view=="invoice_listing_view" || view=="invoice_print_listing_view" || view=="user_listing_print_view" || view=="billing_view" || view=="activity_bill_view") {
 					extension = 'php';
 				}				
 				// || view=="billing_listing_view"
@@ -620,7 +620,7 @@ function emptyBuffer(customer_id) {
 	});
 }
 function emptyReminderBuffer(customer_id) { 
-	var url = 'https://v2.ikase.org/api/reminders/buffer?customer_id=' + customer_id;
+	var url = 'https://v4.ikase.org/api/reminders/buffer?customer_id=' + customer_id;
 	
 	$.ajax({
 		url:url,
@@ -1492,7 +1492,7 @@ var showAttachmentPreview = function(form_name, event, filename, case_id, custom
 				//console.log(element); 
 				element = element.trim();
 				element = element.replace("https:///uploads", "uploads");
-				var uppos = element.indexOf("uploads/" + customer_id);
+				var uppos = element.indexOf("D:/uploads/" + customer_id);
 				if (uppos < 0) {
 					var strpos = element.indexOf("attachments");
 					if (strpos < 0) {
@@ -1503,7 +1503,7 @@ var showAttachmentPreview = function(form_name, event, filename, case_id, custom
 						var attach_link = "https://www.ikase.xyz/ikase/gmail/ui/" + element;
 					}
 				} else {
-					var attach_link = "https://v2.ikase.org/" + element;
+					var attach_link = "https://v4.ikase.org/" + element;
 				}
 				
 				var arrLink = element.split("/");
@@ -1527,12 +1527,12 @@ var showAttachmentPreview = function(form_name, event, filename, case_id, custom
 		} else {
 			//clean up
 			filename = filename.replaceAll("https:///uploads", "../uploads");
-			filename = filename.replaceAll("../uploads/", "uploads/");
-			filename = filename.replaceAll("https:uploads/", "uploads/");
+			filename = filename.replaceAll("D:/uploads/", "D:/uploads/");
+			filename = filename.replaceAll("https:uploads/", "D:/uploads/");
 			if (case_id!="" && case_id!="-1") {
-				filename = filename.replaceAll("uploads/" + customer_id + "/" + case_id + "/", "");
+				filename = filename.replaceAll("D:/uploads/" + customer_id + "/" + case_id + "/", "");
 			}
-			filename = filename.replaceAll("uploads/" + customer_id + "/", "");
+			filename = filename.replaceAll("D:/uploads/" + customer_id + "/", "");
 			filename = filename.replaceAll(";", "|");
 			filename = filename.replaceAll(",", "|");
 			var arrFiles = filename.split("|");
@@ -1551,7 +1551,7 @@ var showAttachmentPreview = function(form_name, event, filename, case_id, custom
 					var arrFileStructure = filename.split("/");
 					display_filename = arrFileStructure[arrFileStructure.length - 1];
 				} else {
-					panel_html = "<div id='note_attachment_holder_" + note_id + "_" + i + "' class='note_attachment_holder'><a href='uploads/preview.php?file=uploads/" + customer_id + "/";
+					panel_html = "<div id='note_attachment_holder_" + note_id + "_" + i + "' class='note_attachment_holder'><a href='D:/uploads/preview.php?file=uploads/" + customer_id + "/";
 					
 					if (case_id!="" && case_id!="-1") {
 						panel_html += case_id + "/";
@@ -1611,7 +1611,8 @@ var showPreviewThumbnail = function(event, filename) {
 		filename = filename.replace("/thumbnail/", "/medium/");
 		
 		//console.log("top", rect.top + " + " + scrollTop);
-		$("#preview_panel").html("<img src='" + filename + "' style='border:1px solid black'>");
+		// $("#preview_panel").html("<img src='" + filename + "' style='border:1px solid black'>");
+		$("#preview_panel").html("<img src='https://v4.ikase.org/document_read.php?file=" + filename + "' style='border:1px solid black'>");
 		$("#preview_panel").css({display: "", top: elementTop, left: elementLeft, position:'absolute'});
 		$("#preview_panel").css("margin-left", "250px");
 	}
@@ -1633,7 +1634,7 @@ var documentPreview = function(event, filename, customer_id, thumbnail_folder, d
 	}
 	document_date = new_date;
 	
-	var preview = "uploads/" + customer_id + "/";
+	var preview = "D:/uploads/" + customer_id + "/";
 	if (thumbnail_folder=="0" || thumbnail_folder.indexOf("pdfimage")==0) {
 		preview = "pdfimage/" + customer_id + "/";
 		var arrFileName = filename.split(".");
@@ -1702,7 +1703,7 @@ var documentPreview = function(event, filename, customer_id, thumbnail_folder, d
 				arrFileName.pop();
 				arrFileName.pop();
 				filename = arrFileName.join("_") + "-" + first_page + ".png";
-				var preview = "uploads/" + customer_id + "/imports/" + thumbnail_folder + "/";	
+				var preview = "D:/uploads/" + customer_id + "/imports/" + thumbnail_folder + "/";	
 			}
 		}
 		
@@ -1810,14 +1811,29 @@ var showImportedPreview = function(element, src, u1, u2, customer_id, qualifier)
 	}
 }
 function imageExists(image_url){
+	if(image_url.includes("D:/")){
+		let url = "check_file_exist.php";
+		let formValues = "file=" + image_url;
+		$.ajax({
+			url:url,
+			type:'GET',
+			dataType:"json",
+			data: formValues,
+			success:function (data) {
+				return data.status;
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				return false;
+			}
+		});
+	}else{
+		var http = new XMLHttpRequest();
 
-    var http = new XMLHttpRequest();
+		http.open('HEAD', image_url, false);
+		http.send();
 
-    http.open('HEAD', image_url, false);
-    http.send();
-
-    return http.status != 404;
-
+		return http.status != 404;
+	}
 }
 var documentThumbnail = function(filename, customer_id, thumbnail_folder, case_id, document_type, document_date, parent_document_uuid) {
 	if (typeof thumbnail_folder == "undefined") {
@@ -1826,7 +1842,7 @@ var documentThumbnail = function(filename, customer_id, thumbnail_folder, case_i
 	if (typeof case_id == "undefined") {
 		case_id = "";
 	}
-	var preview = "uploads/" + customer_id + "/";
+	var preview = "D:/uploads/" + customer_id + "/";
 	if (case_id!="" && thumbnail_folder=="") {
 		preview += case_id + "/";
 	}
@@ -1929,7 +1945,7 @@ var documentThumbnail = function(filename, customer_id, thumbnail_folder, case_i
 					arrFileName.pop();
 					arrFileName.pop();
 					filename = arrFileName.join("_") + "-" + first_page + ".png";
-					var preview = "uploads/" + customer_id + "/imports/" + thumbnail_folder + "/";	
+					var preview = "D:/uploads/" + customer_id + "/imports/" + thumbnail_folder + "/";	
 				}
 			}
 		}
@@ -1938,7 +1954,7 @@ var documentThumbnail = function(filename, customer_id, thumbnail_folder, case_i
 	preview += filename;
 	
 	if (preview.indexOf("eams_app") > -1) {
-			preview = "uploads/" + customer_id + "/" + case_id + "/jetfiler/" + filename;	
+			preview = "D:/uploads/" + customer_id + "/" + case_id + "/jetfiler/" + filename;	
 	}
 	if (preview.indexOf(".jpg") < 0 && preview.indexOf(".png") < 0) {
 		//try just the thumbnail folder
@@ -1958,7 +1974,7 @@ var documentThumbnail = function(filename, customer_id, thumbnail_folder, case_i
 		//default
 		preview = "img/no_preview.gif";
 		//it could be that an actual image was uploaded to the main customer folder
-		var new_preview = "uploads/" + customer_id + "/" + filename;	
+		var new_preview = "D:/uploads/" + customer_id + "/" + filename;	
 		var blnExists = (imageExists(new_preview));
 		if (blnExists) {
 			preview = new_preview;
@@ -2000,14 +2016,14 @@ var showPreview = function(event, filename, time_stamp, pages, customer_id, prev
 		first_page = pages.split("-")[0] - 1;
 	}
 	if (time_stamp!="") {
-		var preview = "uploads/" + customer_id + "/" + time_stamp + "/" + filename + "_" + first_page + ".png";
+		var preview = "D:/uploads/" + customer_id + "/" + time_stamp + "/" + filename + "_" + first_page + ".png";
 	} else {
-		var preview = "uploads/" + customer_id + "/thumbnails/" + filename + "_" + first_page + ".png";
+		var preview = "D:/uploads/" + customer_id + "/thumbnails/" + filename + "_" + first_page + ".png";
 		/*
 		if (first_page != "-1") {
-			var preview = "uploads/" + customer_id + "/thumbnail/" + filename + "_" + first_page + ".png";
+			var preview = "D:/uploads/" + customer_id + "/thumbnail/" + filename + "_" + first_page + ".png";
 		} else {
-			var preview = "uploads/" + customer_id + "/thumbnail/" + filename.replace(".pdf", ".jpg");
+			var preview = "D:/uploads/" + customer_id + "/thumbnail/" + filename.replace(".pdf", ".jpg");
 		}
 		*/
 	}
@@ -2609,6 +2625,7 @@ function lookupPIBingMaps(event) {
 	lookupBingMaps(className, data_output, address);
 }
 function lookupBingMaps (className, data_output, address) {
+	
 	if (typeof data_output == "undefined") {
 		data_output = "bing_results";
 	}
@@ -2641,44 +2658,77 @@ function lookupBingMaps (className, data_output, address) {
 			type:'POST',
 			data: formValues,
 			dataType:"json",
-			success:function (data) {
+			success:function (data) { 
 				if(data.error) {  // If there is an error, show the error messages
 					saveFailed(data.error.text);
 				} else {
-					var arrLength = data.length;
+					//var arrLength = data.length;
+					var arrLength = data.results.length;
+					//console.log("2666" + arrLength);
 					if (arrLength > 0) {
 						var arrRows = [];
 						for(var i = 0; i < arrLength; i++) {
-							var datum = data[i];
-							var row = "<div id='bing_address_name_" + i + "' class='bing_address' style='cursor:pointer; text-decoration:underline; color:blue'>" + datum.name + "</div><textarea id='bing_address_data_" + i + "'style='display:none'>" + JSON.stringify(datum.address) + "</textarea>";
-							arrRows.push(row);
+							//var datum = data[i];
+							var datum = data.results[i];
+							//console.log(datum);
+
+							var address = safeValue(datum.freeformAddress);
+							var street  = safeValue(datum.streetNumber) + (datum.streetName ? " " + datum.streetName : "");
+							var suiteInput = ""; // if Bing doesn’t provide it
+							var city    = safeValue(datum.localName);
+							var state   = safeValue(datum.countrySubdivisionCode);
+							var zip     = safeValue(datum.postalCode);
+
+							var row = "<div id='bing_address_name_" + i + "' class='bing_address' style='cursor:pointer; text-decoration:underline; color:blue'>" + address + "</div><textarea id='bing_address_data_" + i + "'style='display:none'>" + JSON.stringify(datum.freeformAddress) + "</textarea><input type='hidden' id='bing_street_new_" + i + "' value='"+street+"' style='display:none'/><input type='hidden' id='bing_suiteInput_new_" + i + "' value='"+suiteInput+"' style='display:none' /><input type='hidden' id='bing_city_new_" + i + "' value='"+city+"' style='display:none' /><input type='hidden' id='bing_state_new_" + i + "' value='"+state+"' style='display:none' /><input type='hidden' id='bing_zip_new_" + i + "' value='"+zip+"' style='display:none'/>";
+							arrRows.push(row);							
 						}
+						
 						$(className + " #" + data_output).html(arrRows.join(""));
 						$(className + " #" + data_output).show();
 						
 						$(className + " #manual_address").html("no&nbsp;lookup");
+						
 					}
 				}
 			}
 		});
 	}, 1500);
 }
+function safeValue(val) {
+    return (typeof val !== "undefined") ? val : "";
+}
+/* function safeValue(val, fieldName) {
+	if (typeof val === "undefined" || val === null) {
+		console.warn("⚠️ Missing value for:", fieldName);
+		return "";
+	}
+	return val;
+} */
 function selectBingAddress(event, partie, data_output) {
 	if (typeof data_output == "undefined") {
 		data_output = "bing_results";
 	}
 	var element = event.currentTarget;
 	var address_id = element.id.replace("bing_address_name_", "");
-	var bing_address_data = $("#bing_address_data_" + address_id).val();
+	var bing_address_data = $("#bing_address_new_data_" + address_id).val();
+	var bing_street_data = $("#bing_street_new_" + address_id).val();
+	var bing_suiteInput_data = $("#bing_suiteInput_new_" + address_id).val();
+	var bing_city_data = $("#bing_city_new_" + address_id).val();
+	var bing_state_data = $("#bing_state_new_" + address_id).val();
+	var bing_zip_data = $("#bing_zip_new_" + address_id).val();
+	
+	//console.log(bing_address_data);
 	if (bing_address_data!="") {
-		var jdata = JSON.parse(bing_address_data);
+		//var jdata = JSON.parse(bing_address_data);
+		//console.log(jdata);
+		//var jdata1 = searchNewAddress(datum);console.log(jdata1);
+		$("#street_" + partie).val(bing_street_data, "street");
+		$("#suiteInput").val(bing_suiteInput_data, "suit");
+		$("#city_" + partie).val(bing_city_data, "city");
+		$("#administrative_area_level_1_" + partie).val(bing_state_data, "state");
+		$("#postal_code_" + partie).val(bing_zip_data, "zip");
 		
-		$("#street_" + partie).val(jdata.addressLine);
-		$("#city_" + partie).val(jdata.locality);
-		$("#administrative_area_level_1_" + partie).val(jdata.adminDistrict);
-		$("#postal_code_" + partie).val(jdata.postalCode);
-		
-		$("#" + partie + "_form #full_addressInput").val(jdata.formattedAddress);
+		//$("#" + partie + "_form #full_addressInput").val(jdata.formattedAddress);
 	}
 	
 	$("#" + partie + "_form #" + data_output).hide();
@@ -2689,6 +2739,7 @@ function selectBingAddress(event, partie, data_output) {
 	}
 }
 function searchAddress(className) {
+	//console.log(className);
 	clearTimeout(search_timeoutid);
 	hideResults();
 	
@@ -2699,7 +2750,7 @@ function searchAddress(className) {
 		return;
 	}
 	search_timeoutid = setTimeout(function() {
-		if (!blnBingSearch) {
+		if (!blnBingSearch) { 
 			getGoogleAddresses(className);
 		} else {
 			//selectBingAddress(event, className, "map_results_holder");
@@ -3046,12 +3097,14 @@ function showKaseAbstract(the_model) {
 	}
 	the_model.set("panel_title", "Kase Summary");
 	var kase_type = kase.get("case_type");
+	//var kase_subtype = kase.get("case_sub_type");
 	//var kase_adj = this.model.get("adj_number");
 	
 	var blnWCAB = ((kase_type.indexOf("Worker") > -1) || (kase_type.indexOf("WC") > -1) || (kase_type.indexOf("W/C") > -1));
 	var blnWCABDefense = (kase_type.indexOf("WCAB_Defense") == 0);
 	
 	the_model.set("case_type", kase_type);
+	//the_model.set("case_sub_type", kase_subtype);
 					
 	var claims = kase.get("claims").replace("Claims: ", "");
 	var arrClaims = claims.split("|");

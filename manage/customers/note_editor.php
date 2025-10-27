@@ -14,7 +14,7 @@ if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
 else
 {
   $application = "iKase";
-  $application_url = "https://v2.ikase.org/";
+  $application_url = "https://v4.ikase.org/";
   $application_logo = "ikase_logo.png";
 }
 

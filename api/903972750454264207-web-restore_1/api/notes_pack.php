@@ -786,9 +786,9 @@ function addNote() {
 					$arrAttachedCaseDocuments[] = $attach_document;
 					
 					if ($attachment_case=="") {
-						$attachment_case = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $attach_document->document_filename;
+						$attachment_case = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $attach_document->document_filename;
 					} else {
-						$attachment_case .= "|../uploads/" . $_SESSION['user_customer_id'] . "/" . $attach_document->document_filename;
+						$attachment_case .= "|D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $attach_document->document_filename;
 					}
 				}
 			}
@@ -1150,9 +1150,9 @@ function updateNote() {
 					$arrAttachedCaseDocuments[] = $attach_document;
 					
 					if ($attachment_case=="") {
-						$attachment_case = "../uploads/" . $_SESSION['user_customer_id'] . "/" . $attach_document->document_filename;
+						$attachment_case = "D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $attach_document->document_filename;
 					} else {
-						$attachment_case .= "|../uploads/" . $_SESSION['user_customer_id'] . "/" . $attach_document->document_filename;
+						$attachment_case .= "|D:/uploads/" . $_SESSION['user_customer_id'] . "/" . $attach_document->document_filename;
 					}
 				}
 			}
@@ -1320,12 +1320,12 @@ function trackNote($operation, $notes_id) {
 					$document_name = $attachment;
 					$document_name = explode("/", $document_name);
 					$document_name = $document_name[count($document_name) - 1];
-					$root = "uploads/" . $_SESSION['user_customer_id'] . "/";
+					$root = "D:/uploads/" . $_SESSION['user_customer_id'] . "/";
 					
 					if ($case_id!="" && $case_id!="-1") {
 						$root .= $case_id . "/";
 					}
-					$activity .= "\r\n<a href='uploads/preview.php?file=" . urlencode($root . $document_name) . "' style='background:yellow;color:black' target='_blank'>" . $document_name . "</a>";
+					$activity .= "\r\n<a href='D:/uploads/preview.php?file=" . urlencode($root . $document_name) . "' style='background:yellow;color:black' target='_blank'>" . $document_name . "</a>";
 				}
 			}
 			$billing_time = 0;

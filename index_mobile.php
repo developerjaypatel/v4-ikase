@@ -7,16 +7,18 @@ if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
   $application = "StarLinkCMS";
   $application_url = "https://starlinkcms.com/";
   $application_fevicon = "logo-starlinkcms.png";
+  $glyficon = '<img src="img/logo-starlinkcms.png" width="45px" align="middle" alt="StarLinkCMS" />';
 }
 else
 {
   $application = "iKase";
-  $application_url = "https://v2.ikase.org/";
+  $application_url = "https://v4.ikase.org/";
   $application_fevicon = "favicon.png";
+  $glyficon = '<i class="glyphicon glyphicon-briefcase"></i>';
 }
 
 if($_SERVER["HTTPS"]=="off") {
-	header("location:https://v2.ikase.org");
+	header("location:https://v4.ikase.org");
 }
 
 $token = array("","312#3","6$213","23!45","43%23","3*233","8@!54","1921&","87%4","977@3","65@15");
@@ -110,7 +112,7 @@ $version_number = 8;
     <div class="container">
     	<div style="background:url(img/translucent_med.png) repeat-y top left; padding-left:0px; padding-top:20px; height:100%; width:100%; margin-left:-50.5%; border:0px solid white;">
             <div class="form-signin-heading" style="color:white; font-size:2.9em; font-weight:lighter; margin-left:14px">
-                <p><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Welcome to <?php echo $application; ?></p>
+                <p><?php echo $glyficon; ?>&nbsp;Welcome to <?php echo $application; ?></p>
                 <p style="color:red; display:none; font-size:1.2em">DO NOT USE RIGHT NOW</p>
         </div>
             <!--<div>
@@ -312,7 +314,7 @@ $version_number = 8;
 					$("#button_holder").html("&nbsp;<br><span class='white_text'>A password reset link has been sent to your email.  Please check your inbox and follow the instructions.</span>");
 					emptyBuffer(data.success.text);
 					setTimeout(function() {
-						//document.location.href = "https://v2.ikase.org/";
+						//document.location.href = "https://v4.ikase.org/";
 					}, 5500);
 				}
 			}

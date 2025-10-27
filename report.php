@@ -16,14 +16,14 @@ else
 {
   $application = "iKase";
   $application_logo = "favicon.png";
-  $application_url = "https://v2.ikase.org/";
+  $application_url = "https://v4.ikase.org/";
 }
 
 include("api/connection.php");
 $db = getConnection();
 $dbname = "gtg_thecase";
 //FIXME: what's this supposed to do? it should always be true, unless it's running from CLI
-if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == "C:\\inetpub\\wwwroot\\iKase.org") {
+if (isset($_SERVER['DOCUMENT_ROOT']) && $_SERVER['DOCUMENT_ROOT'] == "C:\\inetpub\\wwwroot\\ikase.org") {
 	$dbname = "ikase";
 	if (isset($_SESSION['user_data_source']) && $_SESSION['user_data_source'] != "") {
 		$dbname .= "_" . $_SESSION['user_data_source'];

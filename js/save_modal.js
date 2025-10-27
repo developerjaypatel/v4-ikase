@@ -1754,7 +1754,7 @@ function saveModalActual() {
 			type: 'POST',
 			dataType: "json",
 			data: formValues,
-			success: function (data) {
+			success: function (data) { console.log(data);
 				blnSaving = false;
 				if (data.error) {  // If there is an error, show the error messages
 					saveFailed(data.error.text);
@@ -1806,8 +1806,10 @@ function saveModalActual() {
 					$(".eams #fields_holder").show();
 					$(".eams #loading").hide();
 					var arrFile = data.file.split("/");
+					var fullPath = data.file;
+					var fileName = fullPath.split(/[\\/]/).pop(); 
 					//arrFile[arrFile.length - 1]
-					$("#eams_form_name_holder").html("&#8658;&nbsp;<a href='" + data.file + "' title='Click to preview PDF in your browser.  You cannot make changes to the document' class='white_text' target='_blank'>Preview PDF</a>&nbsp;&#8656;&nbsp;&nbsp;&nbsp;&nbsp;&#8658;&nbsp;<a href='" + data.file + "' title='Click to download document to your computer' class='white_text' download style='cursor:pointer'>Download PDF</a>&nbsp;&#8656;&nbsp;&nbsp;&nbsp;&nbsp;&#8658;&nbsp;<a href='" + data.file + "' title='Click to send document to your docusents' class='white_text sent_to_docusents' id='casefile_"+arrFile[3]+"_appfullpdf_"+ arrFile[2] + "' style='cursor:pointer'>Send to Docucents</a>&nbsp;&#8656;");
+					$("#eams_form_name_holder").html("&#8658;&nbsp;<a href='api/preview.php?case_id="+ case_id +"&file=" + encodeURIComponent(fileName) + "' title='Click to preview PDF in your browser.  You cannot make changes to the document' class='white_text' target='_blank'>Preview PDF</a>&nbsp;&#8656;&nbsp;&nbsp;&nbsp;&nbsp;&#8658;&nbsp;<a href='api/download.php?file=" + encodeURIComponent(data.file).replace("#", "%23") + "' title='Click to download document to your computer' class='white_text' download style='cursor:pointer'>Download PDF</a>&nbsp;&#8656;&nbsp;&nbsp;&nbsp;&nbsp;&#8658;&nbsp;<a href='" + data.file + "' title='Click to send document to your docusents' class='white_text sent_to_docusents' id='casefile_"+arrFile[3]+"_appfullpdf_"+ arrFile[2] + "' style='cursor:pointer'>Send to Docucents</a>&nbsp;&#8656;");
 
 					$("#eams_form_name_holder").css("border", "2px solid white");
 					$("#eams_form_name_holder").css("background", "green");
@@ -2068,7 +2070,7 @@ function saveModalActual() {
 
 		if ($("#kinvoice_id").val() != "") {
 			//we are sending an invoice
-			formValues += "&attachments=../uploads/" + customer_id + "/invoices/kase_bill__" + $("#kinvoice_path").val() + ".pdf";
+			formValues += "&attachments=D:/uploads/" + customer_id + "/invoices/kase_bill__" + $("#kinvoice_path").val() + ".pdf";
 			formValues += "&attach_document_id=" + $("#kinvoice_document_id").val();
 			formValues += "&kinvoice_id=" + $("#kinvoice_id").val();
 		} else {
@@ -3101,7 +3103,7 @@ $(document).on('click', '.sent_to_docusents', function (e) {
 		var fileDetails = {
 			jetfile_case_id : case_id,
 			jetfile_id : jetfile_id,
-			file:"C:/inetpub/wwwroot/iKase.org/uploads/"+custo_id+"/"+case_id+"/eams_forms/app_cover_final.pdf",
+			file:"C:/inetpub/wwwroot/ikase.org/uploads/"+custo_id+"/"+case_id+"/eams_forms/app_cover_final.pdf",
 			customer_id:custo_id
 		};
 		$.ajax({

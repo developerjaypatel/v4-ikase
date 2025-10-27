@@ -1,5 +1,5 @@
 <?php
-setcookie('samesite-test', '1', 0, '/', 'v2.ikase.org', 'SameSite=None; Secure');
+setcookie('samesite-test', '1', 0, '/', 'v4.ikase.org', 'SameSite=None; Secure');
 
 if ($_SERVER['REMOTE_ADDR'] == "47.153.49.83") {
 	//phpinfo();
@@ -10,11 +10,11 @@ include("browser_detect.php");
 //$blnDebug = ($_SERVER['REMOTE_ADDR']=='47.153.51.181');
 $blnDebug = false;
 if($blnMobile) {
-	header("location:https://v2.ikase.org/index_mobile.php");
+	header("location:https://v4.ikase.org/index_mobile.php");
 }
 
 if($_SERVER["HTTPS"]=="off") {
-	header("location:https://v2.ikase.org");
+	header("location:https://v4.ikase.org");
 }
 
 $sixo = strtotime("2017-09-01 18:00:00");

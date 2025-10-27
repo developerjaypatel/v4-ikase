@@ -81,7 +81,7 @@ parent.setFeedback("activity reset completed");
 		SELECT '" . $case->case_uuid . "', '" . $case->case_uuid . "', 
 		CONCAT(`CASENO`, 'ex', `ACTNO`, 'ex', @curRow := @curRow + 1) AS `activity_uuid`, 
 		'main', 
-		`DATE` activitydate, 
+		IFNULL(`DATE`, '0000-00-00 00:00:00') AS activitydate, 
 		'system', 'N', " . $customer_id . "
 		FROM `" . $GLOBALS['GEN_DB_NAME'] . "`.`caseact`
 		JOIN    (SELECT @curRow := 0) r

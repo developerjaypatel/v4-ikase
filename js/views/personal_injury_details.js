@@ -1058,7 +1058,7 @@ window.personal_injury_view = Backbone.View.extend({
 						document_type_norm = document_type.replace("_", " ");
 						document_type_norm = document_type_norm.charAt(0).toUpperCase() + document_type_norm.slice(1);
 						if (document_filename!="") {
-							$('#picture_holder').html("<img src='uploads/" + customer_id + "/" + current_case_id + "/" + document_filename + "' class='personal_injury_img " + document_type + "' id='personal_injury_img'><br><span style='font-size:0.8em; color:white'>" + document_type_norm + "&nbsp;<a id='deleteimage_" + data.toJSON()[0].document_id + "' class='delete_image' style='cursor:pointer'><i class='glyphicon glyphicon-trash' style='color:#FA1616;'></i></span></a>");
+							$('#picture_holder').html("<img src='D:/uploads/" + customer_id + "/" + current_case_id + "/" + document_filename + "' class='personal_injury_img " + document_type + "' id='personal_injury_img'><br><span style='font-size:0.8em; color:white'>" + document_type_norm + "&nbsp;<a id='deleteimage_" + data.toJSON()[0].document_id + "' class='delete_image' style='cursor:pointer'><i class='glyphicon glyphicon-trash' style='color:#FA1616;'></i></span></a>");
 							/*
 							if (customer_id == "1033") {
 								var url = 'api/image_rotate.php';
@@ -1090,7 +1090,7 @@ window.personal_injury_view = Backbone.View.extend({
 						document_type_norm = document_type.replace("_", " ");
 						document_type_norm = document_type_norm.charAt(0).toUpperCase() + document_type_norm.slice(1);
 						if (document_filename!="") {
-							$('#picture_holder_2').html("<img src='uploads/" + customer_id + "/" + current_case_id + "/" + document_filename + "' class='personal_injury_img_2 " + document_type + "' id='personal_injury_img_2'><br><span style='font-size:0.8em; color:white'>" + document_type_norm + "&nbsp;<a id='deleteimage_" + data.toJSON()[1].document_id + "' class='delete_image' style='cursor:pointer'><i class='glyphicon glyphicon-trash' style='color:#FA1616;'></i></span></a>");
+							$('#picture_holder_2').html("<img src='D:/uploads/" + customer_id + "/" + current_case_id + "/" + document_filename + "' class='personal_injury_img_2 " + document_type + "' id='personal_injury_img_2'><br><span style='font-size:0.8em; color:white'>" + document_type_norm + "&nbsp;<a id='deleteimage_" + data.toJSON()[1].document_id + "' class='delete_image' style='cursor:pointer'><i class='glyphicon glyphicon-trash' style='color:#FA1616;'></i></span></a>");
 						}
 					}
 					
@@ -1100,7 +1100,7 @@ window.personal_injury_view = Backbone.View.extend({
 						document_type_norm = document_type.replace("_", " ");
 						document_type_norm = document_type_norm.charAt(0).toUpperCase() + document_type_norm.slice(1);
 						if (document_filename!="") {
-							$('#picture_holder_3').html("<img src='uploads/" + customer_id + "/" + current_case_id + "/" + document_filename + "' class='personal_injury_img_2 " + document_type + "' id='personal_injury_img_2'><br><span style='font-size:0.8em; color:white'>" + document_type_norm + "&nbsp;<a id='deleteimage_" + data.toJSON()[2].document_id + "' class='delete_image' style='cursor:pointer'><i class='glyphicon glyphicon-trash' style='color:#FA1616;'></i></span></a>");
+							$('#picture_holder_3').html("<img src='D:/uploads/" + customer_id + "/" + current_case_id + "/" + document_filename + "' class='personal_injury_img_2 " + document_type + "' id='personal_injury_img_2'><br><span style='font-size:0.8em; color:white'>" + document_type_norm + "&nbsp;<a id='deleteimage_" + data.toJSON()[2].document_id + "' class='delete_image' style='cursor:pointer'><i class='glyphicon glyphicon-trash' style='color:#FA1616;'></i></span></a>");
 						}
 					}
 					

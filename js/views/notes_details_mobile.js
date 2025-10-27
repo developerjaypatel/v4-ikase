@@ -55,9 +55,9 @@ window.note_listing_view_mobile = Backbone.View.extend({
 				attach_indicator = "visible";
 				
 				//clean up if necessary
-				var arrAttach = note.attachments.split("uploads/");
+				var arrAttach = note.attachments.split("D:/uploads/");
 				if (arrAttach.length==2) {
-					note.attachments = "uploads/" + arrAttach[1];
+					note.attachments = "D:/uploads/" + arrAttach[1];
 				}
 			}
 			//removing link for edit of inter office added to notes	

@@ -6261,7 +6261,7 @@ $sql .= " app ON ccapp.person_uuid = app.person_uuid
 }
 function writeQuery($sql) {
 	//write to a text file
-	$session_save_path = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\';
+	$session_save_path = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\';
 	$filename = $session_save_path . 'current_query_' . $_SESSION['user_plain_id'] . '.txt';
 	$somecontent = $sql;
 	
@@ -6282,7 +6282,7 @@ function writeQuery($sql) {
 }
 function lastKaseQuery() {
 	//write to a text file
-	$session_save_path = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\';
+	$session_save_path = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\';
 	$filename = $session_save_path . 'current_query_' . $_SESSION['user_plain_id'] . '.txt';
 	
 	$sql = "";
@@ -6297,7 +6297,7 @@ function lastKaseQuery() {
 }
 function writeSearchTerms($terms) {
 	//write to a text file
-	$session_save_path = 'C:\\inetpub\\wwwroot\\iKase.org\\sessions\\';
+	$session_save_path = 'C:\\inetpub\\wwwroot\\ikase.org\\sessions\\';
 	$filename = $session_save_path . 'search_terms_' . $_SESSION['user_plain_id'] . '.txt';
 	$somecontent = $terms;
 	

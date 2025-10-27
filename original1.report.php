@@ -12,7 +12,7 @@ include("api/connection.php");
 $db = getConnection();
 $dbname = "gtg_thecase";
 if (isset($_SERVER['DOCUMENT_ROOT'])) {
-	if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\iKase.org") {
+	if ($_SERVER['DOCUMENT_ROOT']=="C:\\inetpub\\wwwroot\\ikase.org") {
 		$dbname = "ikase";	
 		if (isset($_SESSION['user_data_source'])){
 			if ($_SESSION['user_data_source']!="") {
@@ -63,7 +63,7 @@ if (isset($_SESSION["current_kase_search_terms"])) {
 	//unset($_SESSION["current_kase_search_terms"]);
 }
 
-$filename = "C:\\inetpub\\wwwroot\\iKase.org\\sessions\\search_terms_" . $_SESSION["user_plain_id"] . ".txt";
+$filename = "C:\\inetpub\\wwwroot\\ikase.org\\sessions\\search_terms_" . $_SESSION["user_plain_id"] . ".txt";
 if (file_exists($filename)) {
 	$arrSearch = array();
 	$handle = fopen($filename, "r");

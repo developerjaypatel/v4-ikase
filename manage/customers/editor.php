@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL); 
 require_once('../../shared/legacy_session.php');
 session_write_close();
 
@@ -19,14 +21,14 @@ if($_SERVER['SERVER_NAME']=="v2.starlinkcms.com")
 else
 {
   $application = "iKase";
-  $application_url = "https://v2.ikase.org/";
+  $application_url = "https://v4.ikase.org/";
   $application_logo = "ikase_logo_login.png";
   $new_customer_instruction_url = "new_customer_procedure.html";
 }
 
 $cus_id = passed_var("cus_id");
 $admin_client = passed_var("admin_client");
-// die($cus_id);
+//die($cus_id);
 if ($cus_id>0) {
 	$query = "SELECT  `customer_id` cus_id, `parent_customer_id` parent_cus_id, `eams_no`, 
 	`cus_barnumber`, `letter_name`, 
@@ -102,6 +104,9 @@ if ($cus_id>0) {
 } else {
 	
 }
+
+
+//echo "data <br />";
 $blnRead = (strpos($permissions, "r")!==false || $cus_id=="");
 $blnWrite = (strpos($permissions, "w")!==false || $cus_id=="");
 $blnExport = (strpos($permissions, "e")!==false || $cus_id=="");
@@ -709,7 +714,7 @@ var init = function() {
 						myNoteDataSource, {height:form_height_med});
 						
 	var formatUpload = function(elCell, oRecord, oColumn, sData) {
-		var upload = "<a href='../../uploads/<?php echo $cus_id; ?>/" + oRecord.getData("upload_type") + "/" + oRecord.getData("upload") + "' target='_blank' title='Click to review uploaded document'>" + oRecord.getData("upload") + "</a>";
+		var upload = "<a href='../D:/uploads/<?php echo $cus_id; ?>/" + oRecord.getData("upload_type") + "/" + oRecord.getData("upload") + "' target='_blank' title='Click to review uploaded document'>" + oRecord.getData("upload") + "</a>";
 		elCell.innerHTML = upload;
 	}
 	

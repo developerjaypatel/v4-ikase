@@ -222,7 +222,7 @@ window.webmail_listing_view = Backbone.View.extend({
 			dataType:"text",
 			data: data,
 				success:function (data) {
-					window.open("uploads/" + customer_id + "/webmail_previews/" + filename);
+					window.open("D:/uploads/" + customer_id + "/webmail_previews/" + filename);
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) { 
 					$("#webmail_body_" + id).html("Error: " + errorThrown); 

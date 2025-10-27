@@ -737,7 +737,7 @@ ccase.case_type, ccase.medical, ccase.td, ccase.rehab,  ccase.edd, ccase.claims,
 		}
 		if ($output=="csv") {
 			// Create the csv file
-			$csv_dir = '\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
+			$csv_dir = 'D:\\uploads\\' . $_SESSION['user_customer_id'] . '\\';
 			if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $csv_dir)) {
 				//die($_SERVER['DOCUMENT_ROOT'] . $csv_dir);
 				mkdir($_SERVER['DOCUMENT_ROOT'] . $csv_dir, 0777, true);

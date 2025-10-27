@@ -118,7 +118,7 @@ pdfReplacement("DESTINATION", "http://" . $host . "/eams_forms/", $somecontent, 
 	
 //print_r($arrReplace);
 
-$destination_folder = "../uploads/" . $customer_id . "/" . $case_id . "/eams_forms/";
+$destination_folder = "D:/uploads/" . $customer_id . "/" . $case_id . "/eams_forms/";
 $filename = $destination_folder . $form_name . ".fdf";
 $filename_output =  $destination_folder . $document_path;
 $source_dir = $_SERVER['DOCUMENT_ROOT'] . '\\eams_forms\\';
@@ -137,8 +137,8 @@ if (fwrite($handle, $somecontent) === FALSE) {
    exit;
 }
 
-$filename = $_SERVER['DOCUMENT_ROOT'] . "\\uploads\\" . $customer_id . "\\" . $case_id . "\\eams_forms\\" . $form_name . ".fdf";
-$pdftk_output =  $_SERVER['DOCUMENT_ROOT'] . "\\uploads\\" . $customer_id . "\\" . $case_id . "\\eams_forms\\" . $original_filename;
+$filename = "D:\\uploads\\" . $customer_id . "\\" . $case_id . "\\eams_forms\\" . $form_name . ".fdf";
+$pdftk_output =  "D:\\uploads\\" . $customer_id . "\\" . $case_id . "\\eams_forms\\" . $original_filename;
 
 $pdftk = "pdftk " . $source_dir . $form_name . ".pdf fill_form " . $filename. " output " . $pdftk_output;
 

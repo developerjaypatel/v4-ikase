@@ -105,7 +105,7 @@ window.message_attach = Backbone.View.extend({
 						
 						kase_document.preview_href = "api/preview.php?case_id=" + current_case_id + "&id=" + kase_document.document_id + "&file=" + encodeURIComponent(kase_document.document_filename) + "&type=" + kase_document.type + "&thumbnail_folder=" + kase_document.thumbnail_folder;
 						
-						//$("#send_queue").html("<a href='../uploads/" + customer_id + "/" + data.get("document_filename") + "' target='_blank' title='Click to review attached document' class='white_text'>" + data.get("document_filename") + "</a>");
+						//$("#send_queue").html("<a href='D:/uploads/" + customer_id + "/" + data.get("document_filename") + "' target='_blank' title='Click to review attached document' class='white_text'>" + data.get("document_filename") + "</a>");
 						$("#send_queue").append("<div><a href='" + kase_document.preview_href + "' target='_blank' title='Click to review attached document' class='white_text'>" + kase_document.document_filename + "</a></div>");
 						
 						if (self.model.get("reaction")=="sendstack") {

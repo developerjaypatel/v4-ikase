@@ -1602,12 +1602,13 @@ function scrapeEams($adj_number) {
 			$result = json_encode(array("error"=>"Here"));
 			die($result);
 		}*/
-		if ($headers["http_code"]==302) {
+		if ($headers["http_code"]==302 || $headers["http_code"]==200) {
 		   //redirect
 			//die($headers["redirect_url"]);
 			//$url = $headers["redirect_url"];
 			
 			$url = "https://eams.dwc.ca.gov/WebEnhancement/InjuredWorkerFinder";
+			$url = "matrixdocuments.com/eams-import/eams-import1.php?adj_number=" . $adj_number;
 			$fields = array("caseNumber"=>$adj_number, "firstName"=>$search_first_name, "lastName"=>$search_last_name, "dateOfBirth"=>$search_dob, "city"=>$search_city, "zipCode"=>$search_zip_code);
 			//die(print_r($fields));
 			$fields_string = "";
@@ -1663,10 +1664,12 @@ function scrapeEams($adj_number) {
 				  if ($match[3] == "View cases") {
 					  //that's the one that leads to the actual data
 					  $url = "https://eams.dwc.ca.gov/WebEnhancement/" . str_replace("'", "", $match[2]);
+					  $url = "matrixdocuments.com/eams-import/eams-import2.php?adj_number=" . $adj_number;
 					  break;
 				  }
 				}
 			}
+			$url = "matrixdocuments.com/eams-import/eams-import2.php?adj_number=" . $adj_number;
 			if ($url == "") {
 				die(json_encode(array("error"=>"Not Found")));
 			}
@@ -1706,6 +1709,7 @@ function scrapeEams($adj_number) {
 			
 			//get page 1
 			$url = "https://eams.dwc.ca.gov/WebEnhancement/CaseDetailFinder?arrayIndex=0&startIndex=0";
+			$url = "matrixdocuments.com/eams-import/eams-import3.php?adj_number=" . $adj_number;
 			
 			$timeout = 5;
 			curl_setopt($ch, CURLOPT_URL, $url);
@@ -1785,6 +1789,7 @@ function scrapeEams($adj_number) {
 					continue;
 				}
 				$url = "https://eams.dwc.ca.gov/WebEnhancement/CaseDetailFinder?arrayIndex=0&startIndex=" . $startIndex;
+				$url = "matrixdocuments.com/eams-import/eams-import3.php?adj_number=" . $adj_number;
 				
 				$timeout = 5;
 				curl_setopt($ch, CURLOPT_URL, $url);
@@ -2142,6 +2147,7 @@ $sql_cases .= " rolodex ON (app.parent_person_uuid = rolodex.person_uuid AND rol
 			//die(print_r($arrRoleCount));
 			//events
 			$url = "https://eams.dwc.ca.gov/WebEnhancement/CaseEventFinder?arrayIndex=0&startIndex=0";
+			$url = "matrixdocuments.com/eams-import/eams-import4.php?adj_number=" . $adj_number;
 			
 			$timeout = 5;
 			curl_setopt($ch, CURLOPT_URL, $url);

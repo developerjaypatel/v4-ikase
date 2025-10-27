@@ -1,5 +1,5 @@
 <?php
-$session_save_path = 'C:\\inetpub\\wwwroot\\iKase.org\\iklock\\sessions\\';
+$session_save_path = 'C:\\inetpub\\wwwroot\\ikase.org\\iklock\\sessions\\';
 session_save_path($session_save_path);
 $lifetime = 8*60*60; // 8 hours
 
@@ -27,7 +27,7 @@ if (isset($_GET["session_id"])) {
 }
 
 if ($current_session_id!="") {
-	$filename = 'C:\\inetpub\\wwwroot\\iKase.org\\iklock\\sessions\\data_' . $current_session_id . '.txt';
+	$filename = 'C:\\inetpub\\wwwroot\\ikase.org\\iklock\\sessions\\data_' . $current_session_id . '.txt';
 	if (!file_exists($filename)) {
 		$fp = fopen($filename, 'w');
 		fwrite($fp, json_encode($_SESSION));
@@ -43,7 +43,7 @@ if ($current_session_id!="") {
 }
 if (isset($_GET["old_session_id"])) {
 	if ($_GET["old_session_id"]!="") {
-		$filename = 'C:\\inetpub\\wwwroot\\iKase.org\\iklock\\sessions\\data_' . $_GET["old_session_id"] . '.txt';
+		$filename = 'C:\\inetpub\\wwwroot\\ikase.org\\iklock\\sessions\\data_' . $_GET["old_session_id"] . '.txt';
 		
 		$fp = fopen($filename, 'w');
 		fwrite($fp, json_encode($_SESSION));

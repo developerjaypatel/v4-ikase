@@ -24,7 +24,7 @@ function checkReadyLetter() {
 	$path =  passed_var("path", "post");
 	$customer_id =  $_SESSION['user_customer_id'];
 	
-	$destination_folder = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id . "\\" . $case_id . "\\letters\\";
+	$destination_folder = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id . "\\" . $case_id . "\\letters\\";
 	
 	$filepath = $destination_folder . $path . ".pdf";
 	if (file_exists($filepath)) {
@@ -58,7 +58,7 @@ function createLetterEnvelope() {
 	//die(print_r($letter_partie));
 	
 	$customer = getCustomerInfo();
-	$destination_folder = "../uploads/" . $customer_id . "/envelopes/";
+	$destination_folder = "D:/uploads/" . $customer_id . "/envelopes/";
 	if (!is_dir($destination_folder)) {
 		mkdir($destination_folder, 0755, true);
 	}
@@ -165,12 +165,12 @@ function createLetterEnvelope() {
 	$variables = $arrReplace;
 	
 	require_once '../phpdocx_pro/classes/CreateDocx.inc';
-	$template_path = '../uploads/envelope_info.docx';
+	$template_path = 'D:/uploads/envelope_info.docx';
 	if ($_SESSION["user_customer_id"]==1042) {
-		$template_path = '../uploads/envelope_info_bold.docx';
+		$template_path = 'D:/uploads/envelope_info_bold.docx';
 	}
 	if ($_SESSION["user_customer_id"]==1134) {
-		$template_path = '../uploads/envelope_info_1134.docx';
+		$template_path = 'D:/uploads/envelope_info_1134.docx';
 	}
 	
 	$docx = new CreateDocxFromTemplate($template_path);
@@ -179,7 +179,7 @@ function createLetterEnvelope() {
 	
 	$docx->createDocx($destination); 
 	
-	//die("<a href='" . $destination . ".docx' target='_blank'>" . str_replace("../uploads/", "", $destination) . ".docx</a>");
+	//die("<a href='" . $destination . ".docx' target='_blank'>" . str_replace("D:/uploads/", "", $destination) . ".docx</a>");
 	echo json_encode(array("file"=>$destination . ".docx"));
 }
 function createLetterEnvelopeByPartieType() {
@@ -299,7 +299,7 @@ function createLetterEnvelopeByPartieType() {
 	
 	require_once '../phpdocx_pro/classes/CreateDocx.inc';
 	$customer = getCustomerInfo();
-	$destination_folder = "../uploads/" . $customer_id . "/envelopes/";
+	$destination_folder = "D:/uploads/" . $customer_id . "/envelopes/";
 	if (!is_dir($destination_folder)) {
 		mkdir($destination_folder, 0755, true);
 	}
@@ -407,7 +407,7 @@ function createLetterEnvelopeByPartieType() {
 		//die(print_r($arrReplace));
 		$variables = $arrReplace;
 		
-		$docx = new CreateDocxFromTemplate('../uploads/envelope_parties.docx');
+		$docx = new CreateDocxFromTemplate('D:/uploads/envelope_parties.docx');
 		$options = array('parseLineBreaks' =>true);
 		$docx->replaceVariableByText($variables, $options);
 		
@@ -433,7 +433,7 @@ function createLetterEnvelopeByPartieType() {
 	/*
 	sleep(5);
 	
-	$destination_folder = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id . "\\envelopes\\";
+	$destination_folder = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id . "\\envelopes\\";
 	foreach($arrCorporationIDs as $corporation_id) {
 		$destination = $destination_folder . 'envelope_' . $corporation_id . ".docx";
 		
@@ -446,7 +446,7 @@ function createLetterEnvelopeByPartieType() {
 function unlinkIt() {
 	/*
 	try {
-		$filename = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\1111\\envelopes\\envelope_1034.docx";
+		$filename = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\1111\\envelopes\\envelope_1034.docx";
 		unlink($filename);
 		die($filename . " unlinked");
 	} catch(PDOException $e) {
@@ -608,11 +608,11 @@ function createHeader() {
 	
 	$variables = $arrReplace;
 	require_once '../phpdocx_pro/classes/CreateDocx.inc';
-	$docx = new CreateDocxFromTemplate('../uploads/1042/New Letterhead_17064202823.docx');
-	$destination = '../uploads/1042/headers/letterhead_' . date("YmdHis");
+	$docx = new CreateDocxFromTemplate('D:/uploads/1042/New Letterhead_17064202823.docx');
+	$destination = 'D:/uploads/1042/headers/letterhead_' . date("YmdHis");
 	/*
 	if ($template->source!="no_letterhead" && $template->source!="clientname_letterhead") {
-		$docx ->importHeadersAndFooters('../uploads/' . $customer_id . "/" . $letterhead->value);
+		$docx ->importHeadersAndFooters('D:/uploads/' . $customer_id . "/" . $letterhead->value);
 		
 	}
 	*/
@@ -664,7 +664,7 @@ function cleanCustomerLetter() {
 	
 	$customer_id = passed_var("customer_id", "post");;
 	
-	$dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id . "\\announce\\";
+	$dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id . "\\announce\\";
 	
 	$files = scandir($dir);
 	$prefix =  date("Ymd");
@@ -684,7 +684,7 @@ function createCustomerLetter() {
 	
 	$letter = passed_var("letter", "post");
 	$customer_id = $_SESSION["user_customer_id"];
-	$dir = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id . "\\announce\\";
+	$dir = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id . "\\announce\\";
 	
 	$customer = getCustomerInfo();
 	
@@ -789,7 +789,7 @@ function createCustomerLetter() {
 					$case_id = str_replace(" ", "_", strtolower($app->last_name));
 					$filename = str_replace(".docx", "", $template->document_filename);
 					
-					$destination = '../uploads/' . $customer_id . '/announce/' . $case_id . '_' . $filename;
+					$destination = 'D:/uploads/' . $customer_id . '/announce/' . $case_id . '_' . $filename;
 					$destination_local = $dir .  $case_id . "_" . $filename . ".docx";
 					
 					if (file_exists($destination)) {
@@ -804,7 +804,7 @@ function createCustomerLetter() {
 						$arrReplace['SENDTO'] = "";
 					}
 					
-					$env_destination =  '../uploads/' . $customer_id . '/announce/envelope_' . $case_id . '_' . $filename;
+					$env_destination =  'D:/uploads/' . $customer_id . '/announce/envelope_' . $case_id . '_' . $filename;
 					$destination_env = $dir .  'envelope_' . $case_id . '_' . $filename . '.docx';
 					
 					/*
@@ -825,7 +825,7 @@ function createCustomerLetter() {
 					//die(print_r($arrReplace));
 					$variables = $arrReplace;
 					
-					$docx = new CreateDocxFromTemplate('../uploads/' . $customer_id . '/templates/' . $template->document_filename);
+					$docx = new CreateDocxFromTemplate('D:/uploads/' . $customer_id . '/templates/' . $template->document_filename);
 					$docx->replaceVariableByText($variables, $options);
 					
 					
@@ -834,7 +834,7 @@ function createCustomerLetter() {
 					$arrDestination[$int][$language][] = $destination_local;
 					
 					
-					$docx = new CreateDocxFromTemplate('../uploads/envelope_info_noheader.docx');
+					$docx = new CreateDocxFromTemplate('D:/uploads/envelope_info_noheader.docx');
 					$options = array('parseLineBreaks' =>true);
 					$docx->replaceVariableByText($variables, $options);
 					
@@ -855,7 +855,7 @@ function createCustomerLetter() {
 				echo "merging " . $final_destination . "\r\n\r\n";
 				
 				$merge = new MultiMerge();
-				$merge->mergeDocx($file1, $destination, '../uploads/' . $customer_id . '/announce/' . $final_destination, array());
+				$merge->mergeDocx($file1, $destination, 'D:/uploads/' . $customer_id . '/announce/' . $final_destination, array());
 			}
 			
 			foreach($arrDestinationEnv[$int] as $language=>$destination) {		
@@ -866,7 +866,7 @@ function createCustomerLetter() {
 				echo "merging env " . $final_destination . "\r\n\r\n";
 				
 				$merge = new MultiMerge();
-				$merge->mergeDocx($file1, $destination, '../uploads/' . $customer_id . '/announce/' . $final_destination, array());
+				$merge->mergeDocx($file1, $destination, 'D:/uploads/' . $customer_id . '/announce/' . $final_destination, array());
 			}
 		
 		} catch(PDOException $e) {
@@ -1552,14 +1552,14 @@ function createLetter() {
 	$destination = str_replace(".docx", "", $destination);
 	$destination .= "_" . $case_id;
 
-	$destination_folder = '../uploads/' . $customer_id . '/' . $case_id . '/letters/';
+	$destination_folder = 'D:/uploads/' . $customer_id . '/' . $case_id . '/letters/';
 	if (!is_dir($destination_folder)) {
 		mkdir($destination_folder, 0755, true);
 	}
 	if ($kinv_data!="") {
 		//invoices go somewhere else
-		$destination_folder = '../uploads/' . $customer_id . '/invoices/';
-		$destination_folder_path = 'C:\\inetpub\\wwwroot\\iKase.org\\uploads\\' . $customer_id . '\\invoices\\';
+		$destination_folder = 'D:/uploads/' . $customer_id . '/invoices/';
+		$destination_folder_path = 'C:\\inetpub\\wwwroot\\ikase.org\\uploads\\' . $customer_id . '\\invoices\\';
 		if (!is_dir($destination_folder)) {
 			mkdir($destination_folder, 0755, true);
 		}
@@ -1597,7 +1597,7 @@ function createLetter() {
 	$destination = $final_destination;
 	if ($kinv_data!="") {
 		$destination_path = $destination_folder_path . $destination;
-		$destination_path = str_replace("../uploads/" . $customer_id . "/invoices/", "", $destination_path);
+		$destination_path = str_replace("D:/uploads/" . $customer_id . "/invoices/", "", $destination_path);
 	}
 	$arrReplace = array();
 	
@@ -3258,7 +3258,7 @@ function createLetter() {
 	//die("<html><body><pre>" . print_r($arrReplace) . "</pre></body></html>");
 	$variables = $arrReplace;
 	
-	$docx = new CreateDocxFromTemplate('../uploads/' . $customer_id . $prefix . '/' . $template->document_filename);
+	$docx = new CreateDocxFromTemplate('D:/uploads/' . $customer_id . $prefix . '/' . $template->document_filename);
 	
 	$arrExamAttach = array();
 	
@@ -3424,7 +3424,7 @@ function createLetter() {
 		
 		$arrSelectedExams = explode("|", $exam_ids);
 		//die(print_r($arrSelectedExams));
-		$zip_dir = "../uploads/" . $customer_id . "/zips";
+		$zip_dir = "D:/uploads/" . $customer_id . "/zips";
 		if (!file_exists($zip_dir)) {
 			mkdir($zip_dir, 0777);
 		}
@@ -3433,9 +3433,9 @@ function createLetter() {
 			mkdir($zip_dir, 0777);
 		}
 		//$zip_path = $zip_dir . "/med_index_" . date("YmdHi") . ".zip";
-		$zip_source_path = 'C:\\inetpub\\wwwroot\\iKase.org\\uploads\\' . $customer_id . '\\' . $case_id . '\\';
-		$zip_source_path = '../uploads/' . $customer_id . '/' . $case_id . '/';
-		$zip_folder_path = 'C:\\inetpub\\wwwroot\\iKase.org\\uploads\\' . $customer_id . '\\zips\\' . $case_id . '\\';
+		$zip_source_path = 'C:\\inetpub\\wwwroot\\ikase.org\\uploads\\' . $customer_id . '\\' . $case_id . '\\';
+		$zip_source_path = 'D:/uploads/' . $customer_id . '/' . $case_id . '/';
+		$zip_folder_path = 'C:\\inetpub\\wwwroot\\ikase.org\\uploads\\' . $customer_id . '\\zips\\' . $case_id . '\\';
 		$zip_path = $zip_folder_path . "med_index_" . date("Ymd") . ".zip";
 		
 		//print_r($arrSelectedExams);
@@ -3508,12 +3508,12 @@ function createLetter() {
 	
 	if ($template->source!="no_letterhead" && $template->source!="clientname_letterhead") {
 		//if ($customer_id!=1042) {
-			$docx ->importHeadersAndFooters('../uploads/' . $customer_id . "/" . $letterhead->value);
+			$docx ->importHeadersAndFooters('D:/uploads/' . $customer_id . "/" . $letterhead->value);
 		/*
 		} else {			
 			//patel has 2-part header
 			include_once("patel_header.php");
-			$docx ->importHeadersAndFooters('../uploads/' . $customer_id . "/" . $letterhead->value, 'footer');
+			$docx ->importHeadersAndFooters('D:/uploads/' . $customer_id . "/" . $letterhead->value, 'footer');
 		}
 		*/
 	}
@@ -3565,7 +3565,7 @@ function createLetter() {
 	
 	if ($signature_img!="") {
 		//die($signature_img);
-		$signature_img = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id . "\\" . $signature_img;
+		$signature_img = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id . "\\" . $signature_img;
 		if (file_exists($signature_img)) {
 			//die(print_r($_SERVER));
 			$docx->replacePlaceholderImage('SIGNATURE_IMAGE', $signature_img);
@@ -3782,7 +3782,7 @@ function createLetter() {
 		
 		//convert to pdf when the invoices folder changes. c:\bat\invoices_monitor.ps1 needs to run upon startup			
 		$cmd = "PowerShell.exe -ExecutionPolicy Bypass -File c:\\bat\\topdf.ps1 '" . $destination_path . ".docx'";
-		$ps_file = 'C:\\inetpub\\wwwroot\\iKase.org\\uploads\\invoices\\pdf_' . $_SESSION["user_plain_id"] . '.ps1';
+		$ps_file = 'C:\\inetpub\\wwwroot\\ikase.org\\uploads\\invoices\\pdf_' . $_SESSION["user_plain_id"] . '.ps1';
 		if (file_exists($ps_file)) {
 			unlink($ps_file);
 		}
@@ -3800,13 +3800,13 @@ function createLetter() {
 		} else {
 			$activity_id = recordActivity("create", "Med Index Report [<a href='" . $destination . ".pdf' class='white_text' target='_blank'>Review Report</a>] generated by " . $_SESSION['user_name'], $kase->uuid, 0, "Med Index", "");
 			
-			$destination_folder_path = 'C:\\inetpub\\wwwroot\\iKase.org\\uploads\\' . $customer_id . '\\' . $case_id . '\\letters\\';
+			$destination_folder_path = 'C:\\inetpub\\wwwroot\\ikase.org\\uploads\\' . $customer_id . '\\' . $case_id . '\\letters\\';
 			$destination_path = $destination_folder_path . $destination;
-			$destination_path = str_replace("../uploads/" . $customer_id . "/" . $case_id . "/letters/", "", $destination_path);
+			$destination_path = str_replace("D:/uploads/" . $customer_id . "/" . $case_id . "/letters/", "", $destination_path);
 			
 			//convert to pdf when the invoices folder changes. c:\bat\invoices_monitor.ps1 needs to run upon startup			
 			$cmd = "PowerShell.exe -ExecutionPolicy Bypass -File c:\\bat\\topdf.ps1 '" . $destination_path . ".docx'";
-			$ps_file = 'C:\\inetpub\\wwwroot\\iKase.org\\uploads\\invoices\\pdf_' . $_SESSION["user_plain_id"] . '.ps1';
+			$ps_file = 'C:\\inetpub\\wwwroot\\ikase.org\\uploads\\invoices\\pdf_' . $_SESSION["user_plain_id"] . '.ps1';
 			if (file_exists($ps_file)) {
 				unlink($ps_file);
 			}
@@ -4048,7 +4048,7 @@ function createLetterByPartieType() {
 	
 	$blnSignatureExists = false;
 	if ($signature_img!="") {
-			$signature_img = "C:\\inetpub\\wwwroot\\iKase.org\\uploads\\" . $customer_id . "\\" . $signature_img;
+			$signature_img = "C:\\inetpub\\wwwroot\\ikase.org\\uploads\\" . $customer_id . "\\" . $signature_img;
 			if (file_exists($signature_img)) {
 				$blnSignatureExists = true;
 			}
@@ -4223,7 +4223,7 @@ function createLetterByPartieType() {
 		$destination = str_replace("templates/", "", $destination);
 		$destination = str_replace(".docx", "", $destination);
 		$destination .= "_" . $corporation_id;
-		$destination_folder = '../uploads/' . $customer_id . '/letters/';
+		$destination_folder = 'D:/uploads/' . $customer_id . '/letters/';
 		if (!is_dir($destination_folder)) {
 			mkdir($destination_folder, 0755, true);
 		}
@@ -4313,18 +4313,18 @@ function createLetterByPartieType() {
 		}
 		//die(print_r($arrReplace));
 		$variables = $arrReplace;
-		//die('../uploads/' . $customer_id . $prefix . '/' . $template->document_filename);
-		$docx = new CreateDocxFromTemplate('../uploads/' . $customer_id . $prefix . '/' . $template->document_filename);
+		//die('D:/uploads/' . $customer_id . $prefix . '/' . $template->document_filename);
+		$docx = new CreateDocxFromTemplate('D:/uploads/' . $customer_id . $prefix . '/' . $template->document_filename);
 		
 		if ($template->source!="no_letterhead" && $template->source!="clientname_letterhead") {
 			//if ($customer_id!=1042) {
-				$docx ->importHeadersAndFooters('../uploads/' . $customer_id . "/" . $letterhead->value);
+				$docx ->importHeadersAndFooters('D:/uploads/' . $customer_id . "/" . $letterhead->value);
 			/*
 			//turned off per new letterhead 5/31/2018
 			} else {			
 				//patel has 2-part header
 				include_once("patel_header.php");
-				$docx ->importHeadersAndFooters('../uploads/' . $customer_id . "/" . $letterhead->value, 'footer');
+				$docx ->importHeadersAndFooters('D:/uploads/' . $customer_id . "/" . $letterhead->value, 'footer');
 			}
 			*/
 		}

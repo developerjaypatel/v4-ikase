@@ -68,7 +68,7 @@ body {
 				},
 				'onUploadSuccess' : function(file, data, response) {
 						if (data!="Invalid file type.") {
-							var message = "<span><a href='../uploads/<?php echo $cus_id;?>/" + $("#folder_name").val() + "/" + data + "' target='_blank' title='Click to view uploaded file'>Review&nbsp;Upload</a>&nbsp;|&nbsp;<a id='indicator_link' href='javascript:parent.saveUpload(\"" + $("#folder_name").val() + "\")' title='Click here to save the upload'>Save</a></span>";
+							var message = "<span><a href='D:/uploads/<?php echo $cus_id;?>/" + $("#folder_name").val() + "/" + data + "' target='_blank' title='Click to view uploaded file'>Review&nbsp;Upload</a>&nbsp;|&nbsp;<a id='indicator_link' href='javascript:parent.saveUpload(\"" + $("#folder_name").val() + "\")' title='Click here to save the upload'>Save</a></span>";
 							//var message = data;
 							$("#message_panel").html(message);
 							parent.storeRecords(data, "<?php echo $fieldname; ?>");

@@ -349,7 +349,7 @@ function requestReset() {
 			$email_message .= "\r\n\r\nhttps://". $_SERVER['SERVER_NAME'] ."/account.php#reset/" . $key;
 			
 			//die($email_message);
-			$from_address = "donotreply@". $application;
+			$from_address = "donotreply@". $application_domain;
 			$from_name = $application. " System";
 			$subject = "Password Reset Request :: ". $application;
 			$arrRecipients[] = $email;
@@ -687,7 +687,7 @@ function getUsers() {
 			AND user.customer_id = " . $_SESSION['user_customer_id'];
 	$sql .= "
 	ORDER BY IF(user.user_first_name='', user.user_name, user.user_first_name),  user.user_last_name";
-	
+	//echo $sql;die;
 	try {
 		$db = getConnection();
 		$stmt = $db->query($sql);
@@ -1106,7 +1106,7 @@ function getTaskUsers($task_id, $type) {
 		$stmt->bindParam("type", $type);
 		$stmt->execute();
 		$users = $stmt->fetchAll(PDO::FETCH_OBJ);
-		//die(print_r($kases));
+		die(print_r($kases));
         // Include support for JSONP requests
         echo json_encode($users);
 		

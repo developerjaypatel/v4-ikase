@@ -18,7 +18,7 @@ include("../api/connection.php");
 
 if($_SERVER["HTTPS"]=="off") {
 	
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org" . $_SERVER['REQUEST_URI']);
 }
 
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
@@ -1741,7 +1741,7 @@ var getPDF = function(form, doc, blnSingleForm) {
 					requestPDF(form, main_document, blnSingleForm);
 					//alert("request");
 				} else {
-					var url = "../uploads/<?php echo $_SESSION['user_customer_id']; ?>/<?php echo $case_id; ?>/jetfiler/" + data.document_filename;
+					var url = "D:/uploads/<?php echo $_SESSION['user_customer_id']; ?>/<?php echo $case_id; ?>/jetfiler/" + data.document_filename;
 					//window.open(url);
 					
 					requestPDF(form, main_document, blnSingleForm);
@@ -1785,7 +1785,7 @@ var requestPDF = function(form, main_document, blnSingleForm) {
 					console.log(data);
 					return;
 					
-					var url = "../uploads/<?php echo $_SESSION['user_customer_id']; ?>/<?php echo $case_id; ?>/jetfiler/" + data.filename;
+					var url = "D:/uploads/<?php echo $_SESSION['user_customer_id']; ?>/<?php echo $case_id; ?>/jetfiler/" + data.filename;
 					window.open(url);
 				
 			}

@@ -15,7 +15,7 @@ else
 {
   $application = "iKase";
   $application_logo = "favicon.png";
-  $application_url = "https://v2.ikase.org/";  
+  $application_url = "https://v4.ikase.org/";  
 }
 
 include ("../api/connection.php");
@@ -397,7 +397,8 @@ if (!$blnAccountsEdit) {
                 <!--remote search eams cases -->
                 <li class="kases-list-menu" style="text-align:left"><a id="eams_search" href="#eams_search" style="width:100%">EAMS Case Search</a></li>
                 <li class="kases-list-menu" style="text-align:left"><a id="eams_lookup" href="api/request_eams_information.php" style="width:100%" target="_blank">EAMS Case Lookup</a></li>
-                
+                <li class="kases-list-menu" style="text-align:left"><a id="eams_chrome_extension" href="eams-chrome-extension/index.php" style="width:100%;font-size: 13px;" target="_blank">EAMS Chrome Extension</a></li>
+
                 <!--
                 <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
@@ -562,6 +563,11 @@ if (!$blnAccountsEdit) {
                 <a href="#batchscans/dateassigned/<?php echo date("Y-m") . "-01"; ?>/<?php echo date("Y-m-t"); ?>" style="width:100%" title="Click here to review the assigned batschscan documents">Assigned Batchscans</a>
                 </li>
                 <?php } ?>
+                <li class="divider"></li>
+                <li class="kases-list-menu" style="text-align:left; width:100%">
+                <div style="float:right; color:black; padding: 1px"><span id="new_my_document" class="new_my_document" style="background:white; color:black; padding-left:2px; padding-right:2px; font-weight:bold; display:none"></span></div>
+                    <a href="#mydocuments" style="width:100%;display: unset;" title="Click here to review my documents">My Documents</a>
+                </li>
                 <li class="divider"></li>
                 <li class="kases-list-menu" style="text-align:left; width:100%">
                 	<a id="letter_templates" style="width:100%; cursor:pointer">Letter Templates</a>
@@ -927,6 +933,20 @@ if (!$blnAccountsEdit) {
 				</li>
             </ul>
         </li>
+
+        <li class="tools-list-menu dropdown" style="display:">
+        	<div id="reported_issue_indicator" class="reported_issue_indicator" style="cursor:pointer; position:absolute; z-index:1039; left:0px; top:5px; font-size:0.75em; background:#06F; color:white; border:1px solid white; height:16px; width:18px; text-align:center; vertical-align:bottom; display:none; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; margin-bottom:10px" title="New Update for Reported Issue"></div>
+        	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Report Issue<b class="caret"></b></a>
+            <ul class="dropdown-menu" style="width:140px;">
+                <li class="kases-reports-menu"><a onclick="composeCustomersupport()" id="customer_support" style="cursor:pointer;" title="Click here to report new issue">New Issue</a></li>
+                <li class="kases-reports-menu" title="Click here to show reported issues list"><a target="_blank" href="manage/customers/reported-issues-list.php" style="cursor:pointer;">Reported Issues List</a></li>
+                <li></li>
+            </ul>
+        </li>
+
+        <li style="padding-top:15px; padding-left:3px">
+        	<div style="display:inline-block">&nbsp;<a class="blinkme" style="color:#ff0000;font-size: 18px;" href="eams-chrome-extension/index.php" target="_blank" style="display:;" title="New EAMS Solution">New EAMS Solution</a></div>
+        </li>
         
         <li class="search" style="margin-right: 10px;margin-left: 10px;">
         	<div class="input-group" style="margin-top:10px; margin-left:0px; border:#00FF00 0px solid">
@@ -1157,3 +1177,14 @@ if (!$blnAccountsEdit) {
       
     </div>
   </div>
+  <style>
+  	.blinkme {
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+  </style>

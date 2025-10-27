@@ -19,7 +19,7 @@ include("functions.php");
 
 if($_SERVER["HTTPS"]=="off") {
 	
-	header("location:https://v2.ikase.org" . $_SERVER['REQUEST_URI']);
+	header("location:https://v4.ikase.org" . $_SERVER['REQUEST_URI']);
 }
 
 if ($_SESSION['user_customer_id']=="" || !isset($_SESSION['user_customer_id'])) {
@@ -118,8 +118,8 @@ if (count($documents) > 0) {
 		$name = $document->name;
 		$filepath = $document->filepath;
 		if ($filepath!="") {
-			$arrExists[$name] = (file_exists("../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath));
-			$arrFiles[$name] = "../uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath;
+			$arrExists[$name] = (file_exists("D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath));
+			$arrFiles[$name] = "D:/uploads/" . $cus_id . "/" . $case_id . "/jetfiler/" . $filepath;
 			$arrFilesID[$name] = $document->id;
 		}
 	}
@@ -323,7 +323,7 @@ var writePOS = function() {
 			setDisplayStyle("writepos_holder", "display", "none");
 			setDisplayStyle("pos_review_holder", "display", "none");
 			var writtenpos_link = document.getElementById("writtenpos_link");
-			writtenpos_link.innerHTML = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='../uploads/<?php echo $cus_id; ?>/<?php echo $case_id; ?>/jetfiler/" + response + "' title='Click to review generated POS' target='_blank'>Review Generated POS</a>&nbsp;Click the Upload Button to finish";
+			writtenpos_link.innerHTML = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href='D:/uploads/<?php echo $cus_id; ?>/<?php echo $case_id; ?>/jetfiler/" + response + "' title='Click to review generated POS' target='_blank'>Review Generated POS</a>&nbsp;Click the Upload Button to finish";
 			var file_stored = document.getElementById("file_stored_2");
 			file_stored.value = response;
 			//show the link
