@@ -77,6 +77,13 @@ window.CalendarFilters = Backbone.Collection.extend({
 		return "api/calendarfilters";
 	}
 });
+window.SubTypeFilters = Backbone.Model.extend({
+	url:function() {
+		return "api/subtypefilters";
+	},
+	initialize: function() {	
+	}
+});
 window.StatusFilters = Backbone.Model.extend({
 	url:function() {
 		return "api/statusfilters";

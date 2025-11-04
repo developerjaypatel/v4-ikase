@@ -351,17 +351,18 @@ $version_number = 8;
 					setTimeout(function() {
 						 $('.alert-danger').fadeOut();
 					 }, 1500);
-					 return;
+					 //return;
                 }
-				$('.alert-danger').text("Logout successful.").show();
+				/* $('.alert-danger1').text("Logout successful.").show();
 				setTimeout(function() {
-					 $('.alert-danger').fadeOut();
-				 }, 1500);
+					 $('.alert-danger1').fadeOut();
+				 }, 1500); */
+				
             },
 			error: function(XMLHttpRequest, textStatus, errorThrown) { 
-				 $('.alert-danger').text("Logout failed.").show();
+				 $('.alert-danger2').text("Logout failed.").show();
 				 setTimeout(function() {
-					 $('.alert-danger').fadeOut();
+					 $('.alert-danger2').fadeOut();
 				 }, 1500);
 			} 
         });
@@ -464,7 +465,7 @@ $version_number = 8;
                 }
             },
 			error: function(XMLHttpRequest, textStatus, errorThrown) { 
-				 $('.alert-danger').text("Logon failed.").show();
+				 //$('.alert-danger').text("Logon failed.").show();
 				 //$('#inputPassword').focus();
 				 //$('#inputPassword').select();
 				 logoutCurrentUser();

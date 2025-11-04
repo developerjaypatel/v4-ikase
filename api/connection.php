@@ -1438,14 +1438,16 @@ function getSpanishMonth($month) {
 function findDocumentFolder($customer_id, $case_id, $file, $type, $thumbnail_folder, $document_id) {
 	$file = urldecode($file);
 	$arrFileInfo = explode(".", $file);
-	
+
+	$blnEML = (strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "eml");
+	$blnMSG = (strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "msg");
 	$blnPDF = (strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "pdf");
 	$blnJPG = (strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "jpg" || strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "png");
 	$blnDocx = (strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "docx");
 	$blnSound = (strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "wma" || strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "mp3");
 	$blnMsg = (strtolower($arrFileInfo[count($arrFileInfo) - 1]) == "msg");
 	
-	if (!$blnPDF && !$blnJPG && !$blnDocx && !$blnSound && !$blnMsg) {
+	if (!$blnPDF && !$blnJPG && !$blnDocx && !$blnSound && !$blnEML && !$blnMSG) {
 		$extension = "docx";
 		$file .= "." . $extension;
 	}
@@ -1460,6 +1462,9 @@ function findDocumentFolder($customer_id, $case_id, $file, $type, $thumbnail_fol
 	
 	//does it have an extension
 	
+	if ($type=="outlookmail") {
+		$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/" . $thumbnail_folder . "/" .  $file;
+	}
 	if ($type=="jetfile" || $type=="DOR" || $type=="DORE" || $type=="LIEN") {
 		
 		$path = "D:/uploads/" . $customer_id . "/" . $case_id . "/jetfiler/" .  $filename;

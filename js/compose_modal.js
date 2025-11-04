@@ -2876,6 +2876,45 @@ function composeNewNote(element_id) {
 		$("#myModal4").modal("toggle");
 	}
 }
+function composeNewMail(element_id){
+	var partieArray = element_id.split("_");
+	var case_id =  partieArray[2];
+	var modalName = '#myModal4';
+	$(`${modalName} #gifsave`).hide();
+	$(`${modalName} #myModalLabel`).html("<span id='form_title_label'>Drag & Drop Mail</span>");
+	$(`${modalName} #modal_type`).val("mail");
+
+	$(`${modalName} .modal-body`).html(`
+		<div class="card dropzone-card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Drag & Drop Outlook Email(s)</h5>
+                <p style="margin-bottom:10px;">
+                    Drop one or more <strong>.msg</strong> or <strong>.eml</strong> files here. They will be saved in database.
+                </p>
+                <form action="upload.php" class="dropzone" id="emailDropzone" enctype="multipart/form-data">
+					<input type='hidden' name='case_id' value="${case_id}">
+                    <div class="dz-message" data-dz-message>
+                        <span>Drop .msg / .eml files here or click to browse</span>
+                    </div>
+                </form>
+                <div style="margin-top:10px;">
+                    <button id="clearAllBtn" class="btn btn-sm btn-outline-secondary">Clear Queue</button>
+                </div>
+                <div id="outlook-alerts"></div>
+            </div>
+        </div>	
+	`);
+	
+	$(`${modalName} .modal-header`).css("background-image", "url('img/glass_info.png')");
+	$(`${modalName} .modal-header .close`).css({"background": "white", "color":"black", "opacity":"100", "padding-left":"2px", "padding-right":"2px"});
+	$(`${modalName} #myModalBody`).css("background-image", "url('img/glass_info.png')");
+	$(`${modalName} .modal-footer`).css("background-image", "url('img/glass_info.png')");
+	$(`${modalName} .modal-body`).css("overflow-x", "hidden"); 
+	$(`${modalName} .modal-dialog`).css({"width": "620px", "background-image": "url('img/glass_info.png')"});
+	$(`${modalName} .modal-content`).css("background-image", "url('img/glass_info.png')");
+	$(`${modalName}`).modal("toggle");
+
+}
 function showNoteModal() {
 	$("#yes_note").hide();
 	$("#modal_save_holder .save").show();

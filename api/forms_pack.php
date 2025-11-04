@@ -33,6 +33,18 @@ function getForms() {
 		WHERE 1
 		AND customer_id = 0
 		AND deleted = 'N'";
+
+		/* $sql = "SELECT *, eams_form_id AS id, '' AS ikasedb_eamsformid, '1' AS customer_id
+		FROM `cse_eams_forms`
+		WHERE (customer_id = " . $_SESSION['user_customer_id'] . " OR customer_id = 0)
+		AND deleted = 'N'";
+
+		$sql .= " SELECT *, eams_form_id AS id, '' AS ikasedb_eamsformid, '-1' AS customer_id
+		FROM `ikase`.`cse_eams_forms`
+		WHERE customer_id = 0
+		AND deleted = 'N'"; */
+
+		
 	}
 	//die($sql);
 	try {

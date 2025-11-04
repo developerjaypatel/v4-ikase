@@ -641,7 +641,7 @@ if (!$blnAccountsEdit) {
               <li class="kases-subscribe-menu" style="text-align:left; width:100%">
 	            <a href="#subscribekalendar" style="text-align:left; width:100%">Sync Link</a>
               </li>
-              <?php if ($_SESSION['user_role']=="admin" ) { ?>
+              <?php if ($_SESSION['user_role']=="admin" || $_SESSION['user_role']=="masteradmin" ) { ?>
               <li class="kases-manage-kalendars-menu" style="text-align:left; width:100%">
 	            <a href="#kalendars" style="text-align:left; width:100%">Manage Calendars</a>
               </li>

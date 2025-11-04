@@ -469,12 +469,12 @@ if (is_object($app_picture)) {
 
 $query_noemp = "SELECT DISTINCT partie.corporation_id, partie.type corporation_type, partie.corporation_uuid, partie.company_name, partie.preferred_name, partie.full_address, cpt.partie_type, partie.phone partie_phone, partie.fax partie_fax, partie.full_name partie_full_name, partie.company_site partie_company_site, partie.email partie_email, cpt.employee_title partie_employee_title, partie.employee_phone partie_employee_phone,
     partie.employee_email partie_employee_email,
-    partie.employee_fax partie_employee_fax, ccase.adj_number, cdoc.adhoc_value `doctor_type`, edoc.adhoc_value `primary_secondary`
+    partie.employee_fax partie_employee_fax, ccase.adj_number, ccase.case_type, cdoc.adhoc_value `doctor_type`, edoc.adhoc_value `primary_secondary`
 FROM cse_case ccase
 INNER JOIN `cse_case_corporation` ccorp
 ON (ccase.case_uuid = ccorp.case_uuid AND ccorp.deleted = 'N')
 INNER JOIN `cse_corporation` partie
-ON ccorp.corporation_uuid = partie.corporation_uuid
+ON ccorp.corporation_uucse_caseid = partie.corporation_uuid
 INNER JOIN `cse_partie_type` cpt
 ON partie.type = cpt.blurb
 LEFT OUTER JOIN `cse_corporation_adhoc` cdoc
@@ -511,98 +511,122 @@ $arrPartieInfo = array();
 
 $arrCompanies = array();
 
-foreach($kase_parties as $int=>$partie) {
+foreach($kase_parties as $int=>$partie) { //print_r($partie);
 	$arrPartieComm = array();
 	$arrPartieEmployeeComm = array();
 	$partie_id = $partie->corporation_id;
 	$partie_type = $partie->partie_type;
-	if (!isset($arrCompanies[$partie_type])) {
-		$arrCompanies[$partie_type] = 0;
-	}
-	$arrCompanies[$partie_type]++;
-	if ($partie_id == $person->employer_id) {
-		
-		continue;
-	}
-	$partie_uuid = $partie->corporation_uuid;
+	$case_type = $partie->case_type;
+
+	$excluded_types = [
+		'Beneficiary',
+		'Child',
+		'Defendant',
+		'Expert',
+		'Home Medical',
+		'IMR',
+		'Law Enforcement',
+		'Lien Holder',
+		'Other',
+		'Petitioner',
+		'Plaintiff',
+		'REFERAL SOURCE',
+		'Refered Out Attorney',
+		'Respondent',
+		'Sponsor Joint Sponsor',
+		'Witness'
+	];
+
+	if (!in_array($partie_type, $excluded_types) && $case_type != 'WCAB') {
 	
-	$doctor_type = $partie->doctor_type;
-	$primary_secondary = $partie->primary_secondary;
-	
-	$primary_secondary_display = "";
-	if ($primary_secondary=="primary") {
-		$primary_secondary_display = "&nbsp;(P)";
-	}
-	
-	if ($primary_secondary=="secondary") {
-		$primary_secondary_display = "&nbsp;(S)";
-	}
-	
-	$partie_name = $partie->company_name;
-	$partie_preferred_name = $partie->preferred_name;
-	$partie_address = $partie->full_address;
-	$partie_phone = $partie->partie_phone;
-	$partie_fax = $partie->partie_fax;
-	$partie_full_name = $partie->partie_full_name;
-	$partie_company_site = $partie->partie_company_site;
-	$partie_email = $partie->partie_email;
-	$partie_employee_title = $partie->partie_employee_title;
-	$partie_employee_email = $partie->partie_employee_email;
-	$partie_employee_phone = $partie->partie_employee_phone;
-	$partie_employee_fax = $partie->partie_employee_fax;
-	
-	if ($partie_phone!=""){
-		$arrPartieComm[] = "<strong>Phone:</strong> " . $partie_phone;
-	}
-	if ($partie_fax!=""){
-		$arrPartieComm[] = "<strong>Fax:</strong> " . $partie_fax;
-	}
-	if ($partie_company_site!=""){
-		$arrPartieComm[] = '<strong>Website:</strong> <a href="http://' . str_replace("http://", "", $partie_company_site) . '" target="_blank">' . $partie_company_site . '</a>';
-	}
-	if ($partie_email!=""){
-		$arrPartieComm[] = "<strong>Email:</strong> <a href='mailto:" . $partie_email . "'>" . $partie_email . "</a>";
-	}
-	
-	if ($partie_employee_phone!=""){
-		$arrPartieEmployeeComm[] = "<strong>Phone:</strong> " . $partie_employee_phone;
-	}
-	if ($partie_employee_fax!=""){
-		$arrPartieEmployeeComm[] = "<strong>Fax:</strong> " . $partie_employee_fax;
-	}
-	if ($partie_employee_email!=""){
-		$arrPartieEmployeeComm[] = "<strong>Email:</strong> <a href='mailto:" . $partie_employee_email . "'>" . $partie_employee_email . "</a>";
-	}
-	
-	
-	$partie_injury_uuid = "";
-	if ($partie_type=="Insurance Carrier") {
-		//check for injury
-		$query_carrier = "SELECT injury_uuid
-		FROM cse_case_corporation 
-		WHERE corporation_uuid = :corporation_uuid
-		AND customer_id = :customer_id";
-		
-		//die($query_carrier . "\r\n");
-		//$result_carrier = mysql_query($query_carrier, $link) or die("unable to get inj corp<br>" . $query_carrier);
-		//$numbs_carrier = mysql_numrows($result_carrier);
-		try {
-			$db = getConnection();
-			$stmt = $db->prepare($query_carrier);
-			$stmt->bindParam("customer_id", $customer_id);
-			$stmt->bindParam("corporation_uuid", $partie_uuid);
-			$stmt->execute();
-			$partie_injury = $stmt->fetchObject();
-			$stmt->closeCursor(); $stmt = null; $db = null; 
-		} catch(PDOException $e) {
-			$error = array("error"=> array("text"=>$e->getMessage(), "sql"=>$sql));
-			echo json_encode($error);
+		if (!isset($arrCompanies[$partie_type])) {
+			$arrCompanies[$partie_type] = 0;
 		}
-		if (is_object($partie_injury)) {
-			$partie_injury_uuid = $partie_injury->injury_uuid;
+		$arrCompanies[$partie_type]++;
+		if ($partie_id == $person->employer_id) {
+			
+			continue;
 		}
+		$partie_uuid = $partie->corporation_uuid;
+		
+		$doctor_type = $partie->doctor_type;
+		$primary_secondary = $partie->primary_secondary;
+		
+		$primary_secondary_display = "";
+		if ($primary_secondary=="primary") {
+			$primary_secondary_display = "&nbsp;(P)";
+		}
+		
+		if ($primary_secondary=="secondary") {
+			$primary_secondary_display = "&nbsp;(S)";
+		}
+		
+		$partie_name = $partie->company_name;
+		$partie_preferred_name = $partie->preferred_name;
+		$partie_address = $partie->full_address;
+		$partie_phone = $partie->partie_phone;
+		$partie_fax = $partie->partie_fax;
+		$partie_full_name = $partie->partie_full_name;
+		$partie_company_site = $partie->partie_company_site;
+		$partie_email = $partie->partie_email;
+		$partie_employee_title = $partie->partie_employee_title;
+		$partie_employee_email = $partie->partie_employee_email;
+		$partie_employee_phone = $partie->partie_employee_phone;
+		$partie_employee_fax = $partie->partie_employee_fax;
+		
+		if ($partie_phone!=""){
+			$arrPartieComm[] = "<strong>Phone:</strong> " . $partie_phone;
+		}
+		if ($partie_fax!=""){
+			$arrPartieComm[] = "<strong>Fax:</strong> " . $partie_fax;
+		}
+		if ($partie_company_site!=""){
+			$arrPartieComm[] = '<strong>Website:</strong> <a href="http://' . str_replace("http://", "", $partie_company_site) . '" target="_blank">' . $partie_company_site . '</a>';
+		}
+		if ($partie_email!=""){
+			$arrPartieComm[] = "<strong>Email3:</strong> <a href='mailto:" . $partie_email . "'>" . $partie_email . "</a>";
+		}
+		
+		if ($partie_employee_phone!=""){
+			$arrPartieEmployeeComm[] = "<strong>Phone:</strong> " . $partie_employee_phone;
+		}
+		if ($partie_employee_fax!=""){
+			$arrPartieEmployeeComm[] = "<strong>Fax:</strong> " . $partie_employee_fax;
+		}
+		if ($partie_employee_email!=""){
+			$arrPartieEmployeeComm[] = "<strong>Email:</strong> <a href='mailto:" . $partie_employee_email . "'>" . $partie_employee_email . "</a>";
+		}
+		
+		
+		$partie_injury_uuid = "";
+		if ($partie_type=="Insurance Carrier") {
+			//check for injury
+			$query_carrier = "SELECT injury_uuid
+			FROM cse_case_corporation 
+			WHERE corporation_uuid = :corporation_uuid
+			AND customer_id = :customer_id";
+			
+			//die($query_carrier . "\r\n");
+			//$result_carrier = mysql_query($query_carrier, $link) or die("unable to get inj corp<br>" . $query_carrier);
+			//$numbs_carrier = mysql_numrows($result_carrier);
+			try {
+				$db = getConnection();
+				$stmt = $db->prepare($query_carrier);
+				$stmt->bindParam("customer_id", $customer_id);
+				$stmt->bindParam("corporation_uuid", $partie_uuid);
+				$stmt->execute();
+				$partie_injury = $stmt->fetchObject();
+				$stmt->closeCursor(); $stmt = null; $db = null; 
+			} catch(PDOException $e) {
+				$error = array("error"=> array("text"=>$e->getMessage(), "sql"=>$sql));
+				echo json_encode($error);
+			}
+			if (is_object($partie_injury)) {
+				$partie_injury_uuid = $partie_injury->injury_uuid;
+			}
+		}
+		$arrPartieInfo[] = array("partie_id"=>$partie_id, "partie_uuid"=>$partie_uuid, "partie_type"=>$partie_type, "doctor_type"=>$doctor_type, "partie_name"=>$partie_name . $primary_secondary_display, "partie_address"=>$partie_address, "partie_phone"=>$partie_phone, "partie_fax"=>$partie_fax, "partie_full_name"=>$partie_full_name, "partie_preferred_name"=>$partie_preferred_name, "partie_company_site"=>$partie_company_site, "partie_email"=>$partie_email, "partie_employee_title"=>$partie_employee_title, "partie_comm"=>implode(" | ", $arrPartieComm), "partie_employee_comm"=>implode(" | ", $arrPartieEmployeeComm), "partie_injury_uuid"=>$partie_injury_uuid);	
 	}
-	$arrPartieInfo[] = array("partie_id"=>$partie_id, "partie_uuid"=>$partie_uuid, "partie_type"=>$partie_type, "doctor_type"=>$doctor_type, "partie_name"=>$partie_name . $primary_secondary_display, "partie_address"=>$partie_address, "partie_phone"=>$partie_phone, "partie_fax"=>$partie_fax, "partie_full_name"=>$partie_full_name, "partie_preferred_name"=>$partie_preferred_name, "partie_company_site"=>$partie_company_site, "partie_email"=>$partie_email, "partie_employee_title"=>$partie_employee_title, "partie_comm"=>implode(" | ", $arrPartieComm), "partie_employee_comm"=>implode(" | ", $arrPartieEmployeeComm), "partie_injury_uuid"=>$partie_injury_uuid);	
 }
 
 
@@ -1347,11 +1371,11 @@ var openSendForm = function() {
 	if ($party_info["partie_type"]=="Defendant") {
 		continue;
 	}
-	/*
-	if ($party_info["partie_type"]=="Medical Provider" && $party_info["doctor_type"]!="PTP") {
+	
+	/* if ($party_info["partie_type"]=="Medical Provider" && $party_info["doctor_type"]=="PTP") {
 		continue;
-	}
-	*/
+	} */
+	
 	$specialty = "";
 	if ($party_info["partie_type"]=="Medical Provider") {
 		//need to see if there is a specialty
@@ -1367,12 +1391,13 @@ var openSendForm = function() {
 	$tr_class = "";
 	if ($party_info["partie_type"]=="Medical Provider") {
 		$tr_class = "medical_row";
-		if ($party_info["doctor_type"]!="PTP") {
+		//if ($party_info["doctor_type"]!="PTP") {
 			$tr_class .= " noprint_row";
-		}
+		//}
 	}
 	?>
-  <tr class="<?php echo $tr_class; ?>">
+ <?php if($_SESSION["user_customer_id"] == '1308' && $party_info["partie_type"] != 'Court_reporter' && $party_info["partie_type"] !='Records' && $party_info["partie_type"] !='Bsn,_rn' && $party_info["partie_type"] !='Rn'){ ?>
+ <tr class="<?php echo $tr_class; ?>">
     <td valign="top" nowrap><strong><?php echo $party_info["partie_type"]; ?></strong>
     	<?php if ($party_info["partie_type"]=="Medical Provider") {
 				if ($party_info["doctor_type"]!="") { ?>
@@ -1398,34 +1423,43 @@ var openSendForm = function() {
 		?>
     </td>
   </tr>
-  <?php if (trim($party_info["partie_full_name"])!="") { ?>
+  <?php } ?>
+  <?php if (trim($party_info["partie_full_name"])!="") { 
+	if($_SESSION["user_customer_id"] == '1308' && $party_info["partie_type"] != 'Court_reporter' && $party_info["partie_type"] !='Records' && $party_info["partie_type"] !='Bsn,_rn' && $party_info["partie_type"] !='Rn'){?>
    <tr class="<?php echo $tr_class; ?>">
     <td valign="top" nowrap>&nbsp;</td>
     <td colspan="3"><?php echo $party_info["partie_employee_title"]; ?>: <?php echo $party_info["partie_full_name"]; ?></td>
   </tr>
-  <?php } ?>
-  <?php if ($party_info["partie_address"]!="") { ?>
+  <?php }
+  } ?>
+  <?php if ($party_info["partie_address"]!="") { 
+		if($_SESSION["user_customer_id"] == '1308' && $party_info["partie_type"] != 'Court_reporter' && $party_info["partie_type"] !='Records' && $party_info["partie_type"] !='Bsn,_rn' && $party_info["partie_type"] !='Rn'){ ?>
    <tr class="<?php echo $tr_class; ?>">
     <td valign="top" nowrap>&nbsp;</td>
     <td colspan="3"><?php echo $party_info["partie_address"]; ?></td>
   </tr>
-  <?php } ?>
-  <?php if ($party_info["partie_comm"]!="") { ?>
+  <?php }
+  } ?>
+  <?php if ($party_info["partie_comm"]!="") {
+	if($_SESSION["user_customer_id"] == '1308' && $party_info["partie_type"] != 'Court_reporter' && $party_info["partie_type"] !='Records' && $party_info["partie_type"] !='Bsn,_rn' && $party_info["partie_type"] !='Rn'){ ?>
   <tr class="<?php echo $tr_class; ?>">
     <td valign="top" nowrap>&nbsp;</td>
     <td colspan="3"><?php echo $party_info["partie_comm"]; ?></td>  
   </tr>
-  <?php } ?>
+  <?php }
+  } ?>
   <?php if ($specialty!="") { ?>
   <tr class="<?php echo $tr_class; ?>">
     <td valign="top" nowrap><strong>Specialty</strong></td>
     <td colspan="3"><?php echo $specialty; ?></td>  
   </tr>
   <?php } ?>
+  <?php if($_SESSION["user_customer_id"] == '1308' && $party_info["partie_type"] != 'Court_reporter' && $party_info["partie_type"] !='Records' && $party_info["partie_type"] !='Bsn,_rn' && $party_info["partie_type"] !='Rn'){ ?>
   <tr class="<?php echo $tr_class; ?>">
     <td colspan="4"><hr /></td>
   </tr>
   <?php 
+  }
   	}
   } ?>
   <?php

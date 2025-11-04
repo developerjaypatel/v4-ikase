@@ -7416,7 +7416,7 @@ function updateKase() {
 	$file_number = passed_var("file_number", "post");
 	$adj_number = passed_var("adj_number", "post");
 	$case_type = passed_var("case_type", "post");
-	$case_sub_type = passed_var("case_sub_type", "post");
+	$case_sub_type = passed_var("case_subtype", "post");//die($case_sub_type);
 	$venue = passed_var("venue", "post");
 	$case_status = passed_var("case_status", "post");
 	

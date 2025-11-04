@@ -79,7 +79,7 @@ var case_id = kase.get('case_id');
                 <% if (blnWCAB || blnImm) { %>
                 <span class='black_text'>&nbsp;|&nbsp;</span><%= kase.get("adj_number") %><span class='black_text'>&nbsp;|&nbsp;</span>
                 <% } %>
-                <%= kase.get("case_type").replaceAll("_", " ").capitalizeWords().replace("Wcab", "WCAB") %><span class='white_text'>&nbsp;/&nbsp;</span><%= kase.get("case_sub_type") %>
+                <%= kase.get("case_type").replaceAll("_", " ").capitalizeWords().replace("Wcab", "WCAB") %><span         class='white_text'>&nbsp;/&nbsp;</span><%= kase.get("case_sub_type") %>
                 <span class='black_text'>&nbsp;|&nbsp;</span>Case&nbsp;Date:&nbsp;<%= kase.get("case_date") %><span class='black_text'>&nbsp;|&nbsp;</span>Claim&nbsp;#:&nbsp;<%= kase.get("claim_number") %>
                 <br />
                 <% if (kase.get("sub_in")=="Y") { %>Sub-In<span class='black_text'>&nbsp;|&nbsp;</span><% } %>

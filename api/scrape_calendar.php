@@ -1,5 +1,6 @@
 <?php
 //scrape court calendar
+error_reporting(E_ALL);
 include("connection.php");
 
 $first_name = "THOMAS";
@@ -48,14 +49,14 @@ $headers = curl_getinfo($ch);
 
 $url = 'https://www.dir.ca.gov/DWC/CourtCalendar/gf.asp';
 $fields = array("Submit"=>"Download", "filename"=>"Court-Calendar.xlsx");
-//die(print_r($fields));
+die(print_r($fields));
 $fields_string = "";
 foreach($fields as $key=>$value) { 
 	$fields_string .= $key.'='.$value.'&'; 
 }
 rtrim($fields_string, '&');
 $timeout = 5;
-
+die("angel");
 // file handler
 //$outputfilename = '../xlsx2csv/courtcalendar.xlsx';
 

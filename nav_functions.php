@@ -116,7 +116,7 @@ function getWeather(city, state) {
 		} 
 	});
 }
-function logoutCurrentUser() {
+function logoutCurrentUser2() {
 	var url = 'api/logout';
 	$.ajax({
 		url:url,

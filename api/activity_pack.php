@@ -1,5 +1,7 @@
 <?php
 use Slim\Routing\RouteCollectorProxy;
+use Hfig\MAPI\OLE\Pear\DocumentFactory;
+use Hfig\MAPI\MapiMessageFactory;
 
 $app->group('', function (RouteCollectorProxy $app) {
 	$app->group('/activity', function (RouteCollectorProxy $app) {
@@ -36,6 +38,9 @@ $app->group('', function (RouteCollectorProxy $app) {
 		$app->post('/update_activity', 'updateActivity');
 		$app->post('/insert_activity', 'insertActivity');
 		$app->post('/delete', 'deleteActivity');
+
+		// outlook email drag and drop routes
+		$app->post('/outlookdrag', 'outlookDrag');
 	});
 	$app->get('/activities/demographics', 'getActivityDemographics');
 	$app->get('/lastactivity', 'lastActivity');
@@ -2694,4 +2699,224 @@ function hasVocationReferral($case_id) {
        	echo json_encode($error);
 	}
 	die();
+}
+function outlookDrag(){
+	require __DIR__ . '/outlookdrag/vendor/autoload.php';
+	
+	// ==== CHECK FILE ====
+	if (!isset($_FILES['emailFile'])) {
+		die(json_encode(array("status"=> false, "message"=>"No file uploaded")));
+	}
+	if (!isset($_POST['case_id'])) {
+		die(json_encode(array("status"=> false, "message"=>"Kase id not found")));
+	}
+
+	$fileTmp  = $_FILES['emailFile']['tmp_name'];
+	$fileName = $_FILES['emailFile']['name'];
+	$ext      = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+	$customer_id = $_SESSION['user_customer_id'];
+	$case_id = passed_var("case_id", "post");
+
+	// ==== CREATE UPLOAD DIRECTORY ====
+	$case_dir = UPLOADS_PATH. $customer_id . DC . $case_id . DC;
+ 
+	if (!is_dir($case_dir)) {
+		mkdir($case_dir, 0755, true);
+	}
+	
+	$uploadDir = $case_dir . "outlookmail" . DIRECTORY_SEPARATOR;
+	if (!is_dir($uploadDir)) {
+		mkdir($uploadDir, 0755, true);
+	}
+
+	// ==== CREATE UNIQUE FILE NAME ====
+	$uniqueName = uniqid('mail_', true) . '.' . $ext;
+	$uploadPath = $uploadDir . $uniqueName;
+  
+	// Move uploaded file to permanent folder
+	if (!move_uploaded_file($fileTmp, $uploadPath)) {
+		die(json_encode(array("status"=> false, "message"=>"Failed to move uploaded file.")));
+	}
+
+ 
+	// ==== PARSE FILE ====
+	$subject = '';
+	$body    = '';
+	$headers = '';
+
+	if ($ext === 'eml') {
+		$content = file_get_contents($uploadPath);
+
+		// === Split headers and body ===
+		$parts = preg_split("/\r?\n\r?\n/", $content, 2);
+		$rawHeaders = trim($parts[0] ?? '');
+		$rawBody    = $parts[1] ?? '';
+
+		// === Normalize folded headers ===
+		$rawHeaders = preg_replace("/\r?\n[ \t]+/", ' ', $rawHeaders);
+
+		// === Parse headers ===
+		$headersArr = [];
+		foreach (preg_split("/\r?\n/", $rawHeaders) as $line) {
+			if (preg_match('/^([^:]+):\s*(.*)$/', $line, $m)) {
+				$name  = ucfirst(strtolower(trim($m[1])));
+				$value = trim($m[2]);
+				$headersArr[$name] = iconv_mime_decode($value, 0, 'UTF-8');
+			}
+		}
+
+		// === Build header HTML exactly like .msg ===
+		$headers = '';
+		if (!empty($headersArr['From']))    $headers .= "From: {$headersArr['From']}<br>";
+		if (!empty($headersArr['Date']))    $headers .= "Sent: {$headersArr['Date']}<br>";
+		if (!empty($headersArr['To']))      $headers .= "To: {$headersArr['To']}<br>";
+		if (!empty($headersArr['Cc']))      $headers .= "Cc: {$headersArr['Cc']}<br>";
+		if (!empty($headersArr['Subject'])) $headers .= "Subject: {$headersArr['Subject']}";
+
+		// === Detect and decode plain or HTML body ===
+		$decodedBody = '';
+		if (preg_match('/Content-Type:\s*text\/plain;.*?\r\n\r\n(.*?)(?=\r\n--|$)/si', $content, $plainMatch)) {
+			$decodedBody = $plainMatch[1];
+		} elseif (preg_match('/Content-Type:\s*text\/html;.*?\r\n\r\n(.*?)(?=\r\n--|$)/si', $content, $htmlMatch)) {
+			$decodedBody = $htmlMatch[1];
+		} else {
+			$decodedBody = $rawBody;
+		}
+
+		// === Handle encoding ===
+		if (preg_match('/Content-Transfer-Encoding:\s*base64/i', $content)) {
+			$decodedBody = base64_decode($decodedBody);
+		} elseif (preg_match('/Content-Transfer-Encoding:\s*quoted-printable/i', $content)) {
+			$decodedBody = quoted_printable_decode($decodedBody);
+		}
+
+		// === Convert HTML to plain readable text ===
+		if (stripos($content, 'Content-Type: text/html') !== false) {
+			// Remove <style>, <script>, and <head>
+			$decodedBody = preg_replace('/<style\b[^>]*>.*?<\/style>/is', '', $decodedBody);
+			$decodedBody = preg_replace('/<script\b[^>]*>.*?<\/script>/is', '', $decodedBody);
+			$decodedBody = preg_replace('/<head\b[^>]*>.*?<\/head>/is', '', $decodedBody);
+			// Replace <br>, <p> with line breaks
+			$decodedBody = preg_replace('/<(br|p)[^>]*>/i', "\n", $decodedBody);
+			// Remove all other tags
+			$decodedBody = strip_tags($decodedBody);
+		}
+
+		// === Clean and normalize ===
+		$decodedBody = preg_replace("/[ \t]+/", " ", $decodedBody);
+		$decodedBody = preg_replace("/(\r?\n){2,}/", "\n", $decodedBody);
+		$decodedBody = trim($decodedBody);
+
+		$body = $decodedBody;
+		$subject = $headersArr['Subject'] ?? '';
+	}
+ 	elseif ($ext === 'msg') {
+    try {
+        $docFactory = new DocumentFactory();
+        $ole = $docFactory->createFromFile($uploadPath);
+
+        $msgFactory = new MapiMessageFactory();
+        $message = $msgFactory->parseMessage($ole);
+        $props = $message->properties;
+
+        // --- Extract actual message fields (reply info) ---
+        $fromName  = $props->get('sender_name') ?? '';
+        $fromEmail = $props->get('sender_email') ?? '';
+        $to        = $props->get('display_to') ?? '';
+        $cc        = $props->get('display_cc') ?? '';
+        $subject   = $props->get('subject') ?? '';
+        $sentRaw   = $props->get('client_submit_time') ?? '';
+
+        // --- Format sent time ---
+        $sent = '';
+        if (!empty($sentRaw)) {
+            if (is_numeric($sentRaw)) {
+                $sent = date('l, F j, Y g:i A', $sentRaw);
+            } else {
+                $sent = date('l, F j, Y g:i A', strtotime($sentRaw));
+            }
+        }
+
+        // --- Get the raw body ---
+        $rawBody = $props->get('body') ?? '';
+
+        // --- Detect the first original email header inside the body ---
+        // Pattern matches "From: ... Sent: ... To: ... Subject: ..."
+        if (preg_match('/From:\s*(.*?)\r?\nSent:\s*(.*?)\r?\nTo:\s*(.*?)\r?\nCc:\s*(.*?)\r?\nSubject:\s*(.*?)\r?\n/i', $rawBody, $matches)) {
+            $origFrom = trim($matches[1]);
+            $origSent = trim($matches[2]);
+            $origTo   = trim($matches[3]);
+            $origCc   = trim($matches[4]);
+            $origSubj = trim($matches[5]);
+
+            // --- Build header using original email ---
+            $headers  = "From: {$origFrom}<br>";
+            $headers .= "Sent: {$origSent}<br>";
+            $headers .= "To: {$origTo}<br>";
+            $headers .= "Cc: {$origCc}<br>";
+            $headers .= "Subject: {$origSubj}";
+
+            // --- Remove that original header from body ---
+            $cleanBody = preg_replace('/From:.*?Subject:.*?\r?\n/smi', '', $rawBody, 1);
+        } else {
+            // Fallback to the actual message headers if no quoted email is found
+            $fromDisplay = trim("{$fromName} <{$fromEmail}>");
+            $headers  = "From: {$fromDisplay}<br>";
+            if ($sent) $headers .= "Sent: {$sent}<br>";
+            if ($to)   $headers .= "To: {$to}<br>";
+            if ($cc)   $headers .= "Cc: {$cc}<br>";
+            $headers .= "Subject: {$subject}";
+
+            $cleanBody = $rawBody;
+        }
+
+        // --- Clean and normalize body ---
+        $body = strip_tags($cleanBody);
+        $body = preg_replace("/[\r\n]{2,}/", "\n", $body);
+        $body = trim($body);
+
+    } catch (Exception $e) {
+        die(json_encode(["status"=> false, "message"=>"MSG parse error: " . $e->getMessage()]));
+    }
+}
+
+	else {
+			die(json_encode(array("status"=> false, "message"=>"Unsupported file type")));
+		}
+
+		
+	// ==== SAVE TO DATABASE ====
+	$kase = getKaseInfo($case_id);
+	$case_uuid = $kase->uuid;
+	
+	$operation = "Outlook Mail";
+	// Construct formatted activity
+	$activity  = "{$headers}<br><br>";
+	$activity .= "<a href=\"api/preview.php?type=outlookmail&thumbnail_folder=outlookmail&case_id={$case_id}&file=" . urlencode($uniqueName) . "\" target=\"_blank\" class=\"white_text\">Open in outlook & download</a>";
+
+	if (!empty($body)) {
+		$bodySafe = htmlspecialchars($body, ENT_QUOTES, 'UTF-8');
+		$bodySafe = nl2br($bodySafe); // single <br> between lines
+		$activity .= "<br><br><strong>Message:</strong><br>" . $bodySafe;
+	}
+
+	// Remove emojis / invalid UTF-8
+	$activity = preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $activity);
+
+	$track_id = "-1";
+	$billing_time = 0;
+	$category = "Mail";
+
+	// Remove 4-byte UTF-8 characters (emojis, etc.) before saving
+	$activity = preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $activity);
+
+	$activityId = recordActivity($operation, $activity, $case_uuid, $track_id, $category, $billing_time);
+
+	if ($activityId) {
+		die(json_encode(array("status"=> true, "message"=>"Saved successfully: <b>{$subject}</b> (file: {$uniqueName})")));
+	} else {
+		die(json_encode(array("status"=> false, "message"=>"Failed to save email record.")));
+	}
+
 }

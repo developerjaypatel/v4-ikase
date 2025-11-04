@@ -129,6 +129,7 @@ var blnQuickNotes = false;
                     <span class='black_text'>&nbsp;|&nbsp;</span><%= kase.get("adj_number") %><span class='black_text'>&nbsp;|&nbsp;</span>
                     <% } %>
                     <%= kase.get("case_type").replaceAll("_", " ").capitalizeWords().replace("Wcab", "WCAB") %>
+                    <span class='black_text'>&nbsp;/&nbsp;</span><%= kase.get("case_sub_type") %>
                     <span class='black_text'>&nbsp;|&nbsp;</span>
                     Case&nbsp;Date:&nbsp;<%= kase.get("case_date") %>
                     <span class='black_text'>&nbsp;|&nbsp;</span>

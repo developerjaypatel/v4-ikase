@@ -78,7 +78,7 @@ if (!in_array("social_security", $arrCaseTypes)){
   $case_type_options .= "" . $option;
 }
 
-$query_case_sub_type = "SELECT DISTINCT case_sub_type `case_sub_type` 
+/* $query_case_sub_type = "SELECT DISTINCT case_sub_type `case_sub_type` 
 FROM " . $list_reference . "cse_case
 WHERE case_type != ''
 AND case_sub_type != '' 
@@ -100,7 +100,7 @@ ORDER BY case_sub_type ASC");
 $case_subtype_options = "<option value='' class='defaultselected'>Select from List</option>";
 while ($row = $result->fetch()) { //die(print_r($row->case_sub_type));
     $case_subtype_options .= "" ."<option value='" .$row->case_sub_type. "'>" .$row->case_sub_type. "</option>";
-}
+} */
 
 
 
@@ -248,12 +248,40 @@ while ($row = $result_sub->fetch()) {
       $arrDeletedKaseStatus[] = $casesubsubstatus;
   }
 }
+
+/* case sub type list */
+$option_sub_type = "<option value='' class='defaultselected'>Select from List</option>";
+$casesubtype_options = "" . $option_sub_type;
+
+$order_by = "ORDER BY casesubtype";
+if ($_SESSION["user_customer_id"]=="1070") {
+  $order_by = "ORDER BY abbr";
+}
+
+$query_sub = "SELECT * 
+  FROM `" . $db_name . "`.cse_casesubtype csubtype
+  WHERE 1
+  AND deleted = 'N'
+  " . $order_by;
+//die($query_sub);
+$result_sub = DB::runOrDie($query_sub);
+
+while ($row = $result_sub->fetch()) {
+  $casesubtype_id = $row->casesubtype_id;
+  
+  $casesubtype = $row->casesubtype;
+  $deleted = $row->deleted;
+  $law =$row->law;
+  
+    $option_sub_type = "<option value='" . str_replace("'", "`", $casesubtype) . "' class='" . $law . "_substatus_option'>" . $casesubtype . "</option>";
+    $casesubtype_options .= "" . $option_sub_type;
+}
 //die($casestatus_options);
 ?>
 
 <% var venue_options = "<?php echo $venue_options; ?>"; %>
 <% var case_type_options = "<?php echo $case_type_options; ?>"; %>
-<% var case_subtype_options = "<?php echo $case_subtype_options; ?>"; %>
+<% var casesubtype_options = "<?php echo $casesubtype_options; ?>"; %>
 <% var casestatus_options = "<?php echo $casestatus_options; ?>"; %>
 <% var casesubstatus_options = "<?php echo $casesubstatus_options; ?>"; %>
 <% var casesubsubstatus_options = "<?php echo $casesubsubstatus_options; ?>"; %>
@@ -261,6 +289,7 @@ while ($row = $result_sub->fetch()) {
 
 <script type="application/javascript" language="javascript">
 var casestatus_options = "<?php echo $casestatus_options; ?>";
+var casesubtype_options = "<?php echo $casesubtype_options; ?>";
 var casesubstatus_options = "<?php echo $casesubstatus_options; ?>";
 var casesubsubstatus_options = "<?php echo $casesubsubstatus_options; ?>";
 arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"];
@@ -380,18 +409,14 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
                    
                     <option value="ARM" <?php if($case_sub_type=="ARM") echo "selected"; ?>>ARM</option>
                 </select-->
-                <select name="case_subtypeInput" id="case_subtypeInput" class="kase input_class" style="width:510px" >
-                  <% var subtype = (typeof case_sub_type !== 'undefined') ? case_sub_type : ''; %>
-                  <% var subtype_select_options = case_subtype_options;
-                    subtype_select_options = subtype_select_options.replace(
-                        new RegExp("value=['\"]" + subtype + "['\"]"), 
-                        "value='" + subtype + "' selected"
-                    );
-                  %>
-                  <%= subtype_select_options %>
-                     
+                 <select name="case_subtypeInput" id="case_subtypeInput" class="kase input_class" style="width:450px">
+                      <% var subtype_select_options = casesubtype_options;
+                      subtype_select_options = subtype_select_options.replace("value='" + case_sub_type + "'",  "value='" + case_sub_type + "' selected");
+                      %>
+                      <%= subtype_select_options %>
                       
-                  </select>
+                  </select>  <span id="case_subtypeSpan"></span>
+                  &nbsp;<button id="manage_sub_type" class="btn btn-xs btn-primary manage_sub_type">manage</button>
                         
                 </td>
             </tr>
@@ -483,7 +508,6 @@ arrDeletedKaseStatus = ["<?php echo implode('", "', $arrDeletedKaseStatus); ?>"]
                         }
                       status_options = status_options.replace("value='" + case_status.replace("'", "`") + "'",  "value='" + case_status.replace("'", "`") + "' selected");
                       %>
-                      <% console.log(status_options); %>
                   <%= status_options %>
                 </select>
                 &nbsp;<button id="manage_status" class="btn btn-xs btn-primary manage_status hidden">manage</button>

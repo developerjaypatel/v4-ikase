@@ -40,7 +40,12 @@
 /vendor
 /wreck
 /jay
+/sms/tracking - Copy.txt
+/sms/tracking.txt
 /*.jpg
 /*.jpeg
 /*.png
 /*.pdf
+/api/outlookdrag/vendor
+/api/outlookdrag/uploads
+/api/trigger_data.txt

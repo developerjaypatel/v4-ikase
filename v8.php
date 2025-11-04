@@ -1185,125 +1185,178 @@ if ($blnDebug) {
     <link href="css/calendar/css/my-style.css" rel="stylesheet">
     <link href="css/calendar/css/media.css" rel="stylesheet">
 	<!-- Solulab code end 26-07-2019 -->
-
+	<!-- dropzone css (file drage and drop) -->
+	<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" />
 	<!-- For hover effect in full calendare -> upcoming event day/week view, start-->
-<style>
+	<style>
 
-    .popper,
-    .tooltip1 {
-      position: absolute;
-      z-index: 9999;
-      background: "white";
-      color: black;
-      width: 150px;
-      border-radius: 3px;
-      box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-      padding: 10px;
-      text-align: left;
-    }
+		.popper,
+		.tooltip1 {
+		position: absolute;
+		z-index: 9999;
+		background: "white";
+		color: black;
+		width: 150px;
+		border-radius: 3px;
+		box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+		padding: 10px;
+		text-align: left;
+		}
 
-    .style5 .tooltip1 {
-      background: #1E252B;
-      color: #FFFFFF;
-      max-width: 200px;
-      width: auto;
-      font-size: .8rem;
-      padding: .5em 1em;
-    }
+		.style5 .tooltip1 {
+		background: #1E252B;
+		color: #FFFFFF;
+		max-width: 200px;
+		width: auto;
+		font-size: .8rem;
+		padding: .5em 1em;
+		}
 
-    .popper .popper__arrow,
-    .tooltip1 .tooltip1-arrow {
-      width: 0;
-      height: 0;
-      border-style: solid;
-      position: absolute;
-      margin: 5px;
-    }
+		.popper .popper__arrow,
+		.tooltip1 .tooltip1-arrow {
+		width: 0;
+		height: 0;
+		border-style: solid;
+		position: absolute;
+		margin: 5px;
+		}
 
-    .tooltip1 .tooltip1-arrow,
-    .popper .popper__arrow {
-      border-color: "";
-    }
+		.tooltip1 .tooltip1-arrow,
+		.popper .popper__arrow {
+		border-color: "";
+		}
 
-    .style5 .tooltip1 .tooltip1-arrow {
-      border-color: #1E252B;
-    }
+		.style5 .tooltip1 .tooltip1-arrow {
+		border-color: #1E252B;
+		}
 
-    .popper[x-placement^="top"],
-    .tooltip1[x-placement^="top"] {
-      margin-bottom: 5px;
-    }
+		.popper[x-placement^="top"],
+		.tooltip1[x-placement^="top"] {
+		margin-bottom: 5px;
+		}
 
-    .popper[x-placement^="top"] .popper__arrow,
-    .tooltip1[x-placement^="top"] .tooltip1-arrow {
-      border-width: 5px 5px 0 5px;
-      border-left-color: transparent;
-      border-right-color: transparent;
-      border-bottom-color: transparent;
-      bottom: -5px;
-      left: calc(50% - 5px);
-      margin-top: 0;
-      margin-bottom: 0;
-    }
+		.popper[x-placement^="top"] .popper__arrow,
+		.tooltip1[x-placement^="top"] .tooltip1-arrow {
+		border-width: 5px 5px 0 5px;
+		border-left-color: transparent;
+		border-right-color: transparent;
+		border-bottom-color: transparent;
+		bottom: -5px;
+		left: calc(50% - 5px);
+		margin-top: 0;
+		margin-bottom: 0;
+		}
 
-    .popper[x-placement^="bottom"],
-    .tooltip1[x-placement^="bottom"] {
-      margin-top: 5px;
-    }
+		.popper[x-placement^="bottom"],
+		.tooltip1[x-placement^="bottom"] {
+		margin-top: 5px;
+		}
 
-    .tooltip1[x-placement^="bottom"] .tooltip1-arrow,
-    .popper[x-placement^="bottom"] .popper__arrow {
-      border-width: 0 5px 5px 5px;
-      border-left-color: transparent;
-      border-right-color: transparent;
-      border-top-color: transparent;
-      top: -5px;
-      left: calc(50% - 5px);
-      margin-top: 0;
-      margin-bottom: 0;
-    }
+		.tooltip1[x-placement^="bottom"] .tooltip1-arrow,
+		.popper[x-placement^="bottom"] .popper__arrow {
+		border-width: 0 5px 5px 5px;
+		border-left-color: transparent;
+		border-right-color: transparent;
+		border-top-color: transparent;
+		top: -5px;
+		left: calc(50% - 5px);
+		margin-top: 0;
+		margin-bottom: 0;
+		}
 
-    .tooltip1[x-placement^="right"],
-    .popper[x-placement^="right"] {
-      margin-left: 5px;
-    }
+		.tooltip1[x-placement^="right"],
+		.popper[x-placement^="right"] {
+		margin-left: 5px;
+		}
 
-    .popper[x-placement^="right"] .popper__arrow,
-    .tooltip1[x-placement^="right"] .tooltip1-arrow {
-      border-width: 5px 5px 5px 0;
-      border-left-color: transparent;
-      border-top-color: transparent;
-      border-bottom-color: transparent;
-      left: -5px;
-      top: calc(50% - 5px);
-      margin-left: 0;
-      margin-right: 0;
-    }
+		.popper[x-placement^="right"] .popper__arrow,
+		.tooltip1[x-placement^="right"] .tooltip1-arrow {
+		border-width: 5px 5px 5px 0;
+		border-left-color: transparent;
+		border-top-color: transparent;
+		border-bottom-color: transparent;
+		left: -5px;
+		top: calc(50% - 5px);
+		margin-left: 0;
+		margin-right: 0;
+		}
 
-    .popper[x-placement^="left"],
-    .tooltip1[x-placement^="left"] {
-      margin-right: 5px;
-    }
+		.popper[x-placement^="left"],
+		.tooltip1[x-placement^="left"] {
+		margin-right: 5px;
+		}
 
-    .popper[x-placement^="left"] .popper__arrow,
-    .tooltip1[x-placement^="left"] .tooltip1-arrow {
-      border-width: 5px 0 5px 5px;
-      border-top-color: transparent;
-      border-right-color: transparent;
-      border-bottom-color: transparent;
-      right: -5px;
-      top: calc(50% - 5px);
-      margin-left: 0;
-      margin-right: 0;
-	}
+		.popper[x-placement^="left"] .popper__arrow,
+		.tooltip1[x-placement^="left"] .tooltip1-arrow {
+		border-width: 5px 0 5px 5px;
+		border-top-color: transparent;
+		border-right-color: transparent;
+		border-bottom-color: transparent;
+		right: -5px;
+		top: calc(50% - 5px);
+		margin-left: 0;
+		margin-right: 0;
+		}
 
-	
-	#email_signature > .MsoNormal > a{
-		color : white !important;
-	}
+		
+		#email_signature > .MsoNormal > a{
+			color : white !important;
+		}
 
+		.dropzone-card { 
+			padding: 1rem;
+			z-index: 2;
+		}
 
-  </style>
+		.dz-message { 
+			color: #6c757d;
+		}
+
+		#outlook-alerts {
+			margin-top: 10px;
+			font-family: Arial, sans-serif;
+		}
+
+		.outlook-alert-box {
+			position: relative;
+			padding: 10px 40px 10px 15px;
+			margin-bottom: 8px;
+			border-radius: 4px;
+			color: #fff;
+			font-size: 14px;
+			animation: fadeIn 0.3s ease-in;
+		}
+
+		/* Success */
+		.outlook-alert-success {
+			background-color: #28a745; /* green */
+		}
+
+		/* Danger */
+		.outlook-alert-danger {
+			background-color: #dc3545; /* red */
+		}
+
+		/* Close button */
+		.outlook-alert-close {
+			position: absolute;
+			right: 10px;
+			top: 6px;
+			color: #fff;
+			font-weight: bold;
+			cursor: pointer;
+			background: transparent;
+			border: none;
+			font-size: 18px;
+			line-height: 1;
+		}
+
+		/* Simple fade-in animation */
+		@keyframes fadeIn {
+			from { opacity: 0; transform: translateY(-5px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+	</style>
   <!-- For hover effect in full calendare -> upcoming event day/week view, end-->
   
 </head>
@@ -2279,17 +2332,18 @@ if ($blnDebug) {
 	$header_start_time = $time;
 		}
 		?>
-		var dois = new InjuryCollection();
+		var dois = new InjuryCollection(); 
 		<?php if (!$blnNewWindow) { ?>
 			dois.reset(<?php echo json_encode($dois); ?>);
 		<?php } else { ?>
-			setTimeout(function() {
+			setTimeout(function() { //console.log("2339 "+data);
 				dois.fetch({
 					success: function (data) {
 					}
 				});
 			}, 711);
 		<?php } ?>
+		console.log("2346 "+ dois);
 		<?php 
 		if ($blnDebug) {
 			$time = microtime();
@@ -2470,7 +2524,105 @@ if ($blnDebug) {
    		}, 5000);
 		});
     </script>
+	<!-- dropzone js -->
+	<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+	<script>
+		Dropzone.autoDiscover = false;
+		let dz = null; // make global so other functions can access it
+		
+		$('#myModal4').on('shown.bs.modal', function() {
+			const dropzoneElement = document.querySelector("#myModal4 .modal-body #emailDropzone");
+			if (!dropzoneElement) return;
 
+			// Clean up old instance if exists
+			if (dz) {
+				dz.destroy();
+				dz = null;
+			}
+			 
+			dz = new Dropzone(dropzoneElement, {
+				clickable: dropzoneElement.querySelector('.dz-message'),
+				url: "api/activity/outlookdrag",
+				paramName: "emailFile",
+				maxFilesize: 10, // MB
+				maxFiles: 5,
+				acceptedFiles: ".eml,.msg",
+				dictDefaultMessage: 'Drop .msg / .eml files here or click to upload',
+
+				init: function() {
+
+					const myDropzone = this;
+
+					// Append extra data (case_id) before upload
+					this.on("sending", function (file, xhr, formData) {
+						const caseId = dropzoneElement.querySelector('input[name="case_id"]').value;
+						formData.append("case_id", caseId);
+					});
+					
+					this.on("success", function(file, response) {
+						let res;
+						try { res = typeof response === "string" ? JSON.parse(response) : response; } 
+						catch(e) { res = { status: false, message: response }; }
+						
+						const type = res.status ? 'success' : 'danger';
+						showAlert(type, res.message);
+						const caseId = dropzoneElement.querySelector('input[name="case_id"]').value;
+						window.Router.prototype.kaseActivity(caseId);
+
+						//  Keeps Dropzone clickable
+      					this.removeFile(file);
+					});
+
+					this.on("error", function(file, errMsg, xhr) {
+						showAlert('danger', xhr ? xhr.responseText : errMsg);
+						this.removeFile(file); // also remove errored file
+					});
+				}
+			}); 
+		})
+
+		// Clean up when modal closes
+		$('#myModal4').on('hidden.bs.modal', function() {
+			if (dz) {
+				dz.destroy();
+				dz = null;
+			}
+			$("#myModal4 .modal-body").empty(); // clear HTML
+		});
+
+		// Use event delegation so this works for dynamically injected button
+		$(document).on('click', '#myModal4 .modal-body #clearAllBtn', function() {
+			if (dz) dz.removeAllFiles(true);
+			$('#myModal4 .modal-body #outlook-alerts').empty();
+		});
+
+		function showAlert(type, message) {
+			// Ensure only 'success' or 'danger' are used
+			const alertType = type === 'success' ? 'success' : 'danger';
+
+			// Build alert element
+			const alertHTML = `
+				<div class="outlook-alert-box outlook-alert-${alertType}">
+				${message}
+				<button type="button" class="outlook-alert-close" aria-label="Close">&times;</button>
+				</div>
+			`;
+
+			const alertContainer = document.querySelector('#outlook-alerts');
+			if (!alertContainer) return;
+
+			// Add new alert to top
+			alertContainer.insertAdjacentHTML('afterbegin', alertHTML);
+		}
+
+		// Event delegation to close alert
+		$(document).on('click', '.outlook-alert-close', function() {
+			$(this).closest('.outlook-alert-box').fadeOut(200, function() {
+				$(this).remove();
+			});
+		});
+	
+	</script>
     <?php
     if(!isset($_COOKIE["video_play"]))
     {

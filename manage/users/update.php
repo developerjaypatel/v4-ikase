@@ -14,6 +14,8 @@ $user_last_name = passed_var("user_last_name");
 
 //die("cus:" . $user_name);
 $user_email = passed_var("user_email");
+$barno = passed_var("barno");
+//die($barno . " - barno");
 $nickname = passed_var("nickname");
 $password = passed_var("password");
 $pwd = "";
@@ -60,8 +62,8 @@ $query = "";
 if ($user_id=="") {
 	$uuid = uniqid("TS");
     //FIXME: this is quite redundant and mixes the somewhat-legacy $db connection with the legacy-legacy $db name. Most certainly can be dropped, but if it's necessary, it should be brought back appropriately in the relevant settings.php
-	$query = "INSERT INTO `" . $db . "`.`cse_user` (`user_uuid`, `customer_id`, `user_name`,`user_email`, `nickname`, `pwd`, `level`, `job`, `day_start`, `day_end`, `days_of_week`, `dow_times`, `user_logon`, `user_first_name`, `user_last_name`, `user_type`, `activated`)
-	VALUES ('" . $uuid . "','" . $cus_id . "', '" . addslashes($user_name) . "', '" . addslashes($user_email) . "', '" . addslashes($nickname) . "', '" . addslashes($pwd) . "','" . addslashes($level) . "','" . addslashes($job) . "','" . addslashes($day_start) . "','" . addslashes($day_end) . "','" . addslashes($days_of_week) . "','" . addslashes($dow_times) . "','" . addslashes($user_logon) . "','" . addslashes($user_first_name) . "','" . addslashes($user_last_name) . "', " . $user_type . ", '" . $activated . "')";
+	$query = "INSERT INTO `" . $db . "`.`cse_user` (`user_uuid`, `customer_id`, `user_name`,`user_email`, `nickname`, `pwd`, `level`, `job`, `day_start`, `day_end`, `days_of_week`, `dow_times`, `user_logon`, `user_first_name`, `user_last_name`, `user_type`, `activated, barno`)
+	VALUES ('" . $uuid . "','" . $cus_id . "', '" . addslashes($user_name) . "', '" . addslashes($user_email) . "', '" . addslashes($nickname) . "', '" . addslashes($pwd) . "','" . addslashes($level) . "','" . addslashes($job) . "','" . addslashes($day_start) . "','" . addslashes($day_end) . "','" . addslashes($days_of_week) . "','" . addslashes($dow_times) . "','" . addslashes($user_logon) . "','" . addslashes($user_first_name) . "','" . addslashes($user_last_name) . "', " . $user_type . ", '" . $activated . "', '" . $activated . "')";
 } else {
 	$query = "UPDATE `" . $db . "`.`cse_user`
 	SET user_name = '" . addslashes($user_name) . "',
@@ -80,7 +82,8 @@ if ($user_id=="") {
 	user_logon= '" . addslashes($user_logon) . "',
 	user_first_name= '" . addslashes($user_first_name) . "',
 	user_last_name= '" . addslashes($user_last_name) . "',
-	`activated` = '" . $activated . "'
+	`activated` = '" . $activated . "',
+	`barno` = '" . $barno . "'
 	WHERE `user_id` = " . $user_id . "
 	AND `customer_id` = " . $cus_id;
 }

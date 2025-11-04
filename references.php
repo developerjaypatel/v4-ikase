@@ -154,7 +154,7 @@ $page_title = "References";
 			} 
         });
 	}
-	function logoutCurrentUser() {
+	function logoutCurrentUser3() {
 		var url = 'api/logout';
 		$.ajax({
             url:url,

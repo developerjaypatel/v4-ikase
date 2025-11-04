@@ -125,6 +125,8 @@ $blnGlauber = ($_SESSION["user_customer_id"]=='1049');
             &nbsp;
             <button id="compose_note_<%= case_id %>" class="compose_button compose_new_note btn btn-sm btn-primary" title="Click to create a new note" style="margin-top:-5px">New Note</button> 
             &nbsp;
+            <button id="compose_mail_<%= case_id %>" class="compose_button compose_new_mail btn btn-sm btn-primary" title="Click to drag a new mail" style="margin-top:-5px">Mail Entry</button> 
+            &nbsp;
             <button id="invoice_activities" title='Click to invoice activities' class="btn btn-sm btn-primary" style="margin-top:-5px; <% if (!blnBillable) { %>display:none<% } %>">Invoice Activities <%=total_billed %></button>
              &nbsp;
             <button id="bill_activities" title='Click to automatically add billing hours for Letters and Forms' class="btn btn-sm btn-primary" style="margin-top:-5px;">Auto Bill </button>

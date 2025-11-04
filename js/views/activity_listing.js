@@ -35,6 +35,7 @@ window.activity_listing_pane = Backbone.View.extend({
 		"click .compose_new_activity": "newActivity",
 		"click .compose_task": "composeTask",
 		"click .compose_new_note": "composeNote",
+		"click .compose_new_mail": "composeMail",
 		"click .compose_event": "composeEvent",
 		"click #hide_file_access": "hideFileAccess",
 		//"blur .activity_input":						"saveActivity",
@@ -1794,6 +1795,11 @@ window.activity_listing_pane = Backbone.View.extend({
 		event.preventDefault();
 		$("#myModal4").modal("toggle");
 		composeNewNote(element.id);
+	},
+	composeMail: function (event) { 
+		var element = event.currentTarget;
+		event.preventDefault();  
+		composeNewMail(element.id);
 	},
 	composeTask: function (event) {
 		var element = event.currentTarget;

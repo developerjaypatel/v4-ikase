@@ -94,10 +94,28 @@ if (!$path || !$extension) {
 
 
 } else {
-	// Some filetypes preview not possible so added this for user understanding
-	if (strpos($path, ".msg") == true)
-	{
-		die("<span style='background:red; color:white; padding:2px'>Preview of the file " . $file . " is not possible, please download it instead.</span>");
+	
+	if (strpos($path, ".msg") !== false || strpos($path, ".eml") !== false) {
+
+		if (!file_exists($path)) {
+			die("<span style='background:red; color:white; padding:2px'>File not found: {$file}</span>");
+		}
+
+		$filename = basename($path);
+		$mime = (strpos($path, ".msg") !== false)
+			? 'application/vnd.ms-outlook'
+			: 'message/rfc822';
+
+		header('Content-Description: File Transfer');
+		header('Content-Type: ' . $mime);
+		header('Content-Disposition: inline; filename="' . $filename . '"');
+		header('Content-Transfer-Encoding: binary');
+		header('Content-Length: ' . filesize($path));
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+
+		readfile($path);
+		exit;
 	}
 	
 	if (strpos($path, ".pdf") !== false || strpos($path, ".png") !== false || strpos($path, ".wma") !== false || strpos($path, ".wav") !== false || strpos($path, ".mp3") !== false || strpos($path, ".jpg") !== false) {

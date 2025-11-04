@@ -24,7 +24,7 @@ $cus_id = passed_var("cus_id");
 $user_id = passed_var("user_id");
 if ($user_id!="") {
 	$query = "SELECT  `user_id`,`user_name`, `user_email`, `nickname`, `day_start`, `day_end`, `level`, `job`, `days_of_week`, `dow_times`,
-	`user_logon`, `user_first_name`, `user_last_name`, `user_type`, activated
+	`user_logon`, `user_first_name`, `user_last_name`, `user_type`, activated, barno
 	FROM cse_user 
 	WHERE 1";
 	$query .= " AND user_id = '" . $user_id . "'";
@@ -37,6 +37,7 @@ $user_name = "";
 $days_of_week = "";
 $dow_times = "";
 $user_email = "";
+$barno = "";
 $nickname = "";
 $level = "";
 $job = "";
@@ -51,6 +52,7 @@ if (isset($row)) {
 	$user_name = $row->user_name;
 	$user_type = $row->user_type;
 	$user_email = $row->user_email;
+	$barno = $row->barno;
 	$nickname = $row->nickname;
 	$level = $row->level;
 	$job = $row->job;
@@ -146,6 +148,14 @@ Last Name</td>
         <td align="left" valign="bottom" nowrap="nowrap"><input name="user_email" type="text" id="user_email" value="<?php echo $user_email; ?>" size="50" tabindex="2" />
           <br />
 Email</td>
+        <td align="left" valign="bottom" nowrap="nowrap">&nbsp;</td>
+        <td align="left" valign="bottom" nowrap="nowrap">&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="left" valign="bottom" nowrap="nowrap"><input name="barno" type="number" id="barno" value="<?php echo $barno; ?>" size="50" tabindex="2" />
+          <br /> 
+          Bar No.
+</td>
         <td width="113" align="left" valign="bottom" nowrap="nowrap"><select name="level" id="level" tabindex="3">
           <option value="1"<?php if ($level=="admin" || $user_type==1) { echo " selected"; } ?>>Admin</option>
           <option value="2"<?php if ($level=="user" || $level=="" || $user_type==2) { echo " selected"; } ?>>User</option>
@@ -306,8 +316,9 @@ Job</td>
 var checkPassword = function(){
   if(form1.password.value.length < 5)
   {
-    alert("Password must be at least 5 characters in length");
-    form1.password.focus();
+    //alert("Password must be at least 5 characters in length");
+    //form1.password.focus();
+	  document.form1.submit();
   }
   else
   {

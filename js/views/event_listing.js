@@ -124,7 +124,8 @@ window.event_listing = Backbone.View.extend({
 					occurence.assignee = occurence.attorney;
 				}
 			}
-			occurence.assignee = occurence.assignee.toLowerCase();
+			//occurence.assignee = occurence.assignee.toLowerCase();
+			occurence.assignee = occurence.assignee;
 			
 			if (occurence.case_stored_name != "") {
 				occurence.case_name = occurence.case_stored_name;

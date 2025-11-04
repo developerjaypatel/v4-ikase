@@ -6070,6 +6070,7 @@ window.Router = Backbone.Router.extend({
 		if (typeof blnKaseTemplates == "undefined") {
 			var type = "";
 			var kase_type = kase.get("case_type");
+			var kase_sub_type = kase.get("case_sub_type")
 			var blnWCAB = isWCAB(kase_type);
 			if (blnWCAB) {
 				type = "WCAB";
@@ -6106,6 +6107,7 @@ window.Router = Backbone.Router.extend({
 		
 		var type = "";
 		var kase_type = kase.get("case_type");
+		var kase_sub_type = kase.get("case_sub_type");
 		if (isWCAB(kase_type)) {
 			type = "WCAB";
 		}
@@ -6762,6 +6764,7 @@ window.Router = Backbone.Router.extend({
 			}
 			case_id = kase.get("case_id");
 			kase_type = kase.get("case_type");
+			kase_sub_type = kase.get("case_sub_type");
 			uuid = kase.get("case_uuid");
 			var display_corporation_type = corporation_type.replaceAll("_", " ").toLowerCase().capitalizeWords();
 			$(document).attr('title', display_corporation_type + " :: " + kase.name() + " :: iKase");

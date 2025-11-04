@@ -277,6 +277,7 @@ window.new_kase_view = Backbone.View.extend({
 		"click #third_partyInput": "addThirdPartyInstructions",
 		"click .claims": "inhouseClaim",
 		"click .yes_no_link": "setInHouse",
+		"click .manage_sub_type": "manageSubType",
 		"click .manage_status": "manageStatus",
 		"click .manage_status1": "manageStatus1",
 		"click .manage_status2": "manageStatus2",
@@ -1663,6 +1664,41 @@ window.new_kase_view = Backbone.View.extend({
 		$("#" + element_id + ".yes_no_selected").css("color", "#40FF40");
 		$("#" + choice_id).val(element.innerHTML);
 
+	},
+	manageSubType: function (event) {
+		//console.log(event);
+		event.preventDefault();
+		var element = event.currentTarget;
+		var element_id = element.id;
+
+		var status_level = "subtype";
+		
+		$('.modal-dialog').animate({ width: 1050, marginLeft: "-500px" }, 1100, 'easeInSine',
+			function () {
+				//run this after animation
+				/* if (status_level == "") {
+					var subtypefilters = new SubTypeFilters();
+				} else { */
+					var subtypefilters = new SubTypeFilters();
+					/* status_indicator = "subtype ";
+				}  */
+				//console.log(subtypefilters);
+
+				subtypefilters.fetch({
+					success: function (collection, response, options) {						
+						//var mymodel = new Backbone.Model();
+						var mymodel = new Backbone.Model({ status_level: status_level });
+						$("#side_holder").show();
+						$('#manage_status_holder').show();
+						mymodel.set("holder", "manage_status_holder");
+						//mymodel.set("status_level",status_level);
+						$('#manage_status_holder').html(new kase_subtype_listing({ collection: collection, model: mymodel }).render().el);
+					}
+				});
+
+				
+			}
+		);
 	},
 	manageStatus: function (event) {
 		console.log(event);
@@ -3165,6 +3201,291 @@ window.kase_header_view = Backbone.View.extend({
 
 		$(".button_row.applicant").toggleClass("hidden");
 		$(".edit_row.applicant").toggleClass("hidden");
+	}
+});
+window.kase_subtype_listing = Backbone.View.extend({
+	initialize: function () {
+		// re-render automatically when collection loads or resets
+		this.listenTo(this.collection, "sync reset", this.render);
+	  },
+	events: {
+		/*"click #select_all_filters":		"selectAll",*/
+		"click #new_kase_subtype_button": "newKaseSubtype",
+		"click #save_kase_status": "saveKaseSubtype",
+		"click .kase_status_checkbox": "activateKaseSubtype",
+		"click .kase_status_cell": "editKaseSubtype",
+		"click .kase_status_save": "updateKaseSubtype",
+		"click #show_all_status": "showAllSubtype"
+	},
+	render: function () {
+		if (typeof this.template != "function") {
+			this.model.set("holder", "manage_status_holder");
+			var view = "kase_subtype_listing";
+			var extension = "php";
+
+			loadTemplate(view, extension, this);
+			return "";
+		}		
+
+		var self = this;
+		//$(this.el).html(this.template(this.model.toJSON()));
+		//what are we looking for?
+
+		//let's cycle through the types
+		var mymodel = this.model.toJSON();
+		var status_level = mymodel.status_level;
+		//console.log("3240 "+this.collection);
+		var arrFilters = this.collection.toJSON();
+		//var arrFilters = this.collection.toJSON();
+
+		/* _.each(arrFilters, function (kase_status) {
+		console.log("3243", kase_status.id, kase_status);
+		}); */
+		var arrRows = [];
+		var current_status = $("#case_subtype").val();
+
+		var arrOptions = [];
+		var option_selected = "";
+		if (current_status == "") {
+			option_selected = " selected";
+		}
+		var option = '<option value="" class="wcab_status_option"' + option_selected + '>Select from List</option>';
+		arrOptions.push(option);
+
+		//arrFilters.forEach(function(element, index, array) {
+		selected_case_type = $("#case_typeInput :selected").val();
+		
+		_.each(arrFilters, function (kase_status) { //console.log("3254 "+kase_status.casesubtype);
+			if (typeof kase_status.casesubtype_id != "undefined") {
+				if (kase_status.law.toLowerCase() == selected_case_type.toLowerCase() || ((kase_status.law.toLowerCase() == "pi" || kase_status.law.toLowerCase() == "newpi") && (selected_case_type.toLowerCase() == "newpi" || selected_case_type.toLowerCase() == "pi"))) {
+					var index = kase_status.casesubtype_id
+					var checked = " checked";
+					var row_display = "";
+					var cell_display = "color:white";
+					var row_class = "active_filter";
+					if (kase_status.deleted == "Y") {
+						checked = "";
+						row_display = "display:none";
+						cell_display = "color:red; text-decoration:line-through;";
+						row_class = "deleted_filter";
+					}
+					//console.log('ds');
+
+					if (kase_status.law.toLowerCase() == "wcab") {
+						var input = "<input class='hidden' type='text' id='kase_status_value_" + index + "' value='" + kase_status.casesubtype + "' />&nbsp;<select name='caseTypeInput" + index + "' id='caseTypeInput" + index + "' required='' class='hidden'>				<option value=''>Select from List</option>				<option value='wcab' selected=''>WCAB</option>				<option value='NewPI'>DUI</option>				<option value='civil'>Civil</option>				<option value='employment_law'>Employment Law</option>				<option value='immigration'>Immigration</option>				<option value='pi'>Personal Injury</option>				<option value='social_security'>Social Security</option>				<option value='WCAB_Defense'>WCAB Defense</option>				<option value='class_action'>Class Action</option></select><button class='btn btn-xs btn-success kase_status_save hidden' id='kase_status_save_" + index + "'>Save</button>";
+					} else if (kase_status.law.toLowerCase() == "NewPI") {
+						var input = "<input class='hidden' type='text' id='kase_status_value_" + index + "' value='" + kase_status.casesubtype + "' />&nbsp;<select name='caseTypeInput" + index + "' id='caseTypeInput" + index + "' required='' class='hidden'>				<option value=''>Select from List</option>				<option value='wcab' >WCAB</option>				<option value='NewPI' selected=''>DUI</option>				<option value='civil'>Civil</option>				<option value='employment_law'>Employment Law</option>				<option value='immigration'>Immigration</option>				<option value='pi'>Personal Injury</option>				<option value='social_security'>Social Security</option>				<option value='WCAB_Defense'>WCAB Defense</option>				<option value='class_action'>Class Action</option></select><button class='btn btn-xs btn-success kase_status_save hidden' id='kase_status_save_" + index + "'>Save</button>";
+					} else if (kase_status.law.toLowerCase() == "civil") {
+						var input = "<input class='hidden' type='text' id='kase_status_value_" + index + "' value='" + kase_status.casesubtype + "' />&nbsp;<select name='caseTypeInput" + index + "' id='caseTypeInput" + index + "' required='' class='hidden'>				<option value=''>Select from List</option>				<option value='wcab' >WCAB</option>				<option value='NewPI'>DUI</option>				<option value='civil' selected=''>Civil</option>				<option value='employment_law'>Employment Law</option>				<option value='immigration'>Immigration</option>				<option value='pi'>Personal Injury</option>				<option value='social_security'>Social Security</option>				<option value='WCAB_Defense'>WCAB Defense</option>				<option value='class_action'>Class Action</option></select><button class='btn btn-xs btn-success kase_status_save hidden' id='kase_status_save_" + index + "'>Save</button>";
+					} else if (kase_status.law.toLowerCase() == "employment_law") {
+						var input = "<input class='hidden' type='text' id='kase_status_value_" + index + "' value='" + kase_status.casesubtype + "' />&nbsp;<select name='caseTypeInput" + index + "' id='caseTypeInput" + index + "' required='' class='hidden'>				<option value=''>Select from List</option>				<option value='wcab' >WCAB</option>				<option value='NewPI'>DUI</option>				<option value='civil'>Civil</option>				<option value='employment_law' selected=''>Employment Law</option>				<option value='immigration'>Immigration</option>				<option value='pi'>Personal Injury</option>				<option value='social_security'>Social Security</option>				<option value='WCAB_Defense'>WCAB Defense</option>				<option value='class_action'>Class Action</option></select><button class='btn btn-xs btn-success kase_status_save hidden' id='kase_status_save_" + index + "'>Save</button>";
+					} else if (kase_status.law.toLowerCase() == "immigration") {
+						var input = "<input class='hidden' type='text' id='kase_status_value_" + index + "' value='" + kase_status.casesubtype + "' />&nbsp;<select name='caseTypeInput" + index + "' id='caseTypeInput" + index + "' required='' class='hidden'>				<option value=''>Select from List</option>				<option value='wcab' >WCAB</option>				<option value='NewPI'>DUI</option>				<option value='civil'>Civil</option>				<option value='employment_law'>Employment Law</option>				<option value='immigration' selected=''>Immigration</option>				<option value='pi'>Personal Injury</option>				<option value='social_security'>Social Security</option>				<option value='WCAB_Defense'>WCAB Defense</option>				<option value='class_action'>Class Action</option></select><button class='btn btn-xs btn-success kase_status_save hidden' id='kase_status_save_" + index + "'>Save</button>";
+					} else if (kase_status.law.toLowerCase() == "pi") {
+						var input = "<input class='hidden' type='text' id='kase_status_value_" + index + "' value='" + kase_status.casesubtype + "' />&nbsp;<select name='caseTypeInput" + index + "' id='caseTypeInput" + index + "' required='' class='hidden'>				<option value=''>Select from List</option>				<option value='wcab' >WCAB</option>				<option value='NewPI'>DUI</option>				<option value='civil'>Civil</option>				<option value='employment_law'>Employment Law</option>				<option value='immigration'>Immigration</option>				<option value='pi' selected=''>Personal Injury</option>				<option value='social_security'>Social Security</option>				<option value='WCAB_Defense'>WCAB Defense</option>				<option value='class_action'>Class Action</option></select><button class='btn btn-xs btn-success kase_status_save hidden' id='kase_status_save_" + index + "'>Save</button>";
+					} else if (kase_status.law.toLowerCase() == "social_security") {
+						var input = "<input class='hidden' type='text' id='kase_status_value_" + index + "' value='" + kase_status.casesubtype + "' />&nbsp;<select name='caseTypeInput" + index + "' id='caseTypeInput" + index + "' required='' class='hidden'>				<option value=''>Select from List</option>				<option value='wcab' >WCAB</option>				<option value='NewPI'>DUI</option>				<option value='civil'>Civil</option>				<option value='employment_law'>Employment Law</option>				<option value='immigration'>Immigration</option>				<option value='pi'>Personal Injury</option>				<option value='social_security' selected=''>Social Security</option>				<option value='WCAB_Defense'>WCAB Defense</option>				<option value='class_action'>Class Action</option></select><button class='btn btn-xs btn-success kase_status_save hidden' id='kase_status_save_" + index + "'>Save</button>";
+					} else if (kase_status.law.toLowerCase() == "WCAB_Defense") {
+						var input = "<input class='hidden' type='text' id='kase_status_value_" + index + "' value='" + kase_status.casesubtype + "' />&nbsp;<select name='caseTypeInput" + index + "' id='caseTypeInput" + index + "' required='' class='hidden'>				<option value=''>Select from List</option>				<option value='wcab' >WCAB</option>				<option value='NewPI'>DUI</option>				<option value='civil'>Civil</option>				<option value='employment_law'>Employment Law</option>				<option value='immigration'>Immigration</option>				<option value='pi'>Personal Injury</option>				<option value='social_security'>Social Security</option>				<option value='WCAB_Defense' selected=''>WCAB Defense</option>				<option value='class_action'>Class Action</option></select><button class='btn btn-xs btn-success kase_status_save hidden' id='kase_status_save_" + index + "'>Save</button>";
+					} else if (kase_status.law.toLowerCase() == "class_action") {
+						var input = "<input class='hidden' type='text' id='kase_status_value_" + index + "' value='" + kase_status.casesubtype + "' />&nbsp;<select name='caseTypeInput" + index + "' id='caseTypeInput" + index + "' required='' class='hidden'>				<option value=''>Select from List</option>				<option value='wcab' >WCAB</option>				<option value='NewPI'>DUI</option>				<option value='civil'>Civil</option>				<option value='employment_law'>Employment Law</option>				<option value='immigration'>Immigration</option>				<option value='pi'>Personal Injury</option>				<option value='social_security'>Social Security</option>				<option value='WCAB_Defense'>WCAB Defense</option>				<option value='class_action' selected=''>Class Action</option></select><button class='btn btn-xs btn-success kase_status_save hidden' id='kase_status_save_" + index + "'>Save</button>";
+					}
+					else {
+						var input = "<input class='hidden' type='text' id='kase_status_value_" + index + "' value='" + kase_status.casesubtype + "' />&nbsp;<select name='caseTypeInput" + index + "' id='caseTypeInput" + index + "' required='' class='hidden'>				<option value='' selected=''>Select from List</option>				<option value='wcab' >WCAB</option>				<option value='NewPI'>DUI</option>				<option value='civil'>Civil</option>				<option value='employment_law'>Employment Law</option>				<option value='immigration'>Immigration</option>				<option value='pi'>Personal Injury</option>				<option value='social_security'>Social Security</option>				<option value='WCAB_Defense'>WCAB Defense</option>				<option value='class_action' >Class Action</option></select><button class='btn btn-xs btn-success kase_status_save hidden' id='kase_status_save_" + index + "'>Save</button>";
+					}
+					// var input = "<input class='hidden' type='text' id='kase_status_value_" + index + "' value='" + kase_status.status + "' />&nbsp;<button class='btn btn-xs btn-success kase_status_save hidden' id='kase_status_save_" + index + "'>Save</button>";
+					var therow = "<tr class='" + row_class + "' style='" + row_display + "'><td class='kase_status'><input type='checkbox' class='kase_status_checkbox hidden' value='Y' title='Uncheck to stop using this status.  Old records currently using this status will not be affected' id='kase_status_" + index + "' name='kase_status_" + index + "'" + checked + "></td><td class='kase_status' style='" + cell_display + "'><span id='kase_status_span_" + index + "' class='kase_status_cell' style='cursor:pointer' title='Click to edit this status'>" + kase_status.casesubtype + "</span>" + input + "</td></tr>";
+					arrRows.push(therow);
+					//are we using a deleted status
+					var current_status = self.model.get("case_status");
+					var current_status_only_for_cond = $("#case_subtypeInput :selected").val();
+					var blnUsingDeleted = (arrDeletedKaseStatus.indexOf(current_status) > -1);
+					//console.log('current_status' + current_status);
+
+					if (kase_status.deleted != "Y" || blnUsingDeleted) {
+						//the drop down has to match
+						var option_selected = "";
+						if (kase_status.status == current_status_only_for_cond) {
+							option_selected = " selected";
+						}
+						var option = '<option value="' + kase_status.casesubtype + '" class="wcab_status_option"' + option_selected + '>' + kase_status.casesubtype + ' </option>';
+						arrOptions.push(option);
+					}
+				}
+			}
+		});
+		//var html = "<table id='kase_subtype_table'>" + arrRows.join("") + "</table>";
+		/* try {
+			$(this.el).html(this.template({ html: html, status_level: status_level }));
+			if (status_level == "") {
+				$("#case_statusInput").html(arrOptions.join("\r\n"));
+				//reset global
+				casestatus_options = arrOptions.join("\r\n");
+			} else {
+				$("#case_substatusInput").html(arrOptions.join("\r\n"));
+
+				//i have to go through the loop one more time to set the selected for subsub
+				var current_status = $("#case_subsubstatusInput").val();
+				var arrSubOptions = [];
+				if (current_status == "") {
+					option_selected = " selected";
+				}
+				var option = '<option value="" class="wcab_status_option"' + option_selected + '>Select from List</option>';
+				arrSubOptions.push(option);
+				_.each(arrFilters, function (kase_status) {
+					if (kase_status.deleted != "Y") {
+						//the drop down has to match
+						var option_selected = "";
+						if (kase_status.status == current_status) {
+							option_selected = " selected";
+						}
+						var option = '<option value="' + kase_status.status + '" class="wcab_status_option"' + option_selected + '>' + kase_status.status + '</option>';
+						arrSubOptions.push(option);
+					}
+				});
+				$("#case_SubtypeInput").html(arrSubOptions.join("\r\n"));
+			}
+		}
+		catch (err) {
+			alert(err);
+
+			return false;
+		}
+		return this; */
+		var html = "<table id='kase_status_table'>" + arrRows.join("") + "</table>";
+		try {
+			$(this.el).html(this.template({ html: html, status_level: status_level }));
+			/* if (status_level == "") {
+				$("#case_subtypeInput").html(arrOptions.join("\r\n"));
+				//reset global
+				casestatus_options = arrOptions.join("\r\n");
+			} else {
+				$("#case_subtypeInput").html(arrOptions.join("\r\n"));
+			} */
+		}
+		catch (err) {
+			alert(err);
+
+			return false;
+		}
+		return this;	
+	},
+	selectAll: function (event) {
+		var element = event.currentTarget;
+		$(".document_filter_checkbox").prop("checked", element.checked);
+	},
+	editKaseSubtype: function (event) {
+		//console.log('in edit fun');
+
+		event.preventDefault();
+		var element = event.currentTarget;
+
+		var arrID = element.id.split("_");
+		var casesubtype_id = arrID[arrID.length - 1];
+
+		//not open nor closed
+		var current = $("#kase_status_value_" + casesubtype_id).val();
+		if (current == "Open" || current == "Closed") {
+			return;
+		}
+		$("#kase_status_span_" + casesubtype_id).fadeOut();
+		$("#kase_status_value_" + casesubtype_id).toggleClass("hidden");
+		$("#caseTypeInput" + casesubtype_id).toggleClass("hidden");
+		$("#kase_status_save_" + casesubtype_id).toggleClass("hidden");
+		$("#kase_status_" + casesubtype_id).toggleClass("hidden");
+		/* if ($("#new_kase_subtype_holder").is(":hidden")) {
+			$("#new_kase_subtype").prop("disabled", true);
+		} else {
+			$("#new_kase_subtype").prop("disabled", false);
+		} */
+
+	},
+	showAllSubtype: function () {
+		$("#show_all_status").hide();
+		$(".deleted_filter").show();
+	},
+	newKaseSubtype: function (event) {
+		event.preventDefault();
+		$("#new_kase_subtype_button").fadeOut();
+		$("#new_kase_subtype_holder").fadeIn(function () {
+			$("#new_kase_subtype").focus();
+		});
+	},
+	saveKaseSubtype: function (event) {
+		event.preventDefault();
+		var url = 'api/subtypefilter/add';
+		var mymodel = this.model.toJSON();
+		var status_level = mymodel.status_level;
+
+		var casetype = $('#caseTypeInput :selected').val();
+		var casesubtype = $("#new_kase_subtype").val();
+		var formValues = "casesubtype=" + encodeURIComponent(casesubtype) + "&status_level=" + status_level + "&casetype=" + casetype;
+
+		if (casesubtype == "" || casesubtype == null) {
+			alert('Please enter valid value');
+		} else {
+			$.ajax({
+				url: url,
+				type: 'POST',
+				dataType: "json",
+				data: formValues,
+				success: function (data) {
+					if (data.error) {  // If there is an error, show the error messages
+						saveFailed(data.error.text);
+					} else {
+						document.cookie = "changes_need_render_new_kase_view=1";
+						$("#manage_sub_type").trigger("click");
+					}
+				}
+			});
+		}
+		//
+	},
+	activateKaseSubtype: function (event) {
+		var element = event.currentTarget;
+
+		var arrID = element.id.split("_");
+		var casestatus_id = arrID[arrID.length - 1];
+		document.cookie = "changes_need_render_new_kase_view=1";
+		$("#kase_status_save_" + casestatus_id).trigger("click");
+	},
+	updateKaseSubtype: function (event) {
+		event.preventDefault();
+		var element = event.currentTarget;
+
+		var arrID = element.id.split("_");
+		var casesubtype_id = arrID[arrID.length - 1];
+		var checkbox = document.getElementById("kase_status_" + casesubtype_id);
+		var deleted = "Y";
+		if (checkbox.checked) {
+			deleted = "N";
+		}
+		var casetype = $('#caseTypeInput' + casesubtype_id + ' :selected').val();//console.log("case type ".casetype);
+		var casesubtype = $("#kase_status_value_" + casesubtype_id).val();
+		var mymodel = this.model.toJSON();
+		var status_level = mymodel.status_level;
+
+		var url = 'api/subtypefilter/update';
+		var formValues = "casesubtype_id=" + casesubtype_id + "&casesubtype=" + encodeURIComponent(casesubtype) + "&deleted=" + deleted + "&status_level=" + status_level + "&casetype=" + casetype;
+
+		if (casesubtype == "" || casesubtype == null) {
+			alert('Please enter valid value');
+		} else {
+			$.ajax({
+				url: url,
+				type: 'POST',
+				dataType: "json",
+				data: formValues,
+				success: function (data) {
+					if (data.error) {  // If there is an error, show the error messages
+						saveFailed(data.error.text);
+					} else {
+						document.cookie = "changes_need_render_new_kase_view=1";
+						$("#manage_sub_type").trigger("click");
+					}
+				}
+			});
+		}
 	}
 });
 window.kase_status_listing = Backbone.View.extend({

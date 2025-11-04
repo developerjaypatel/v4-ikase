@@ -30,7 +30,8 @@ function getKaseParties($case_id, $title = "", $blnReturn = false, $specific = "
 	
 	//we need some info first
 	$kase = getKaseInfo($case_id);
-	$case_type = $kase->case_type;
+	$case_type = $kase->case_type; 
+	$case_id = $kase->id;
 	$blnWCAB = checkWCAB($case_type);
 	
 	$sql = "SELECT DISTINCT -1 person_id, corp.`corporation_id`, corp.`corporation_uuid` uuid, corp.`parent_corporation_uuid` parent_uuid, corp.`type`, corp.additional_addresses,
@@ -40,13 +41,13 @@ function getKaseParties($case_id, $title = "", $blnReturn = false, $specific = "
 	`full_name`, IF(`company_name`='', `full_name`, `company_name`) `company_name`, `first_name`, `last_name`, `aka`, `preferred_name`, corp.`full_address`, `longitude`, `latitude`, corp.`street`, corp.`city`, corp.`state`, corp.`zip`, corp.`suite`, `phone`, '' `cell_phone`, `email`, `fax`, `ssn`, `dob`, '' `language`, `salutation`, 
 	corp.employee_email, corp.employee_phone, corp.employee_cell, corp.employee_fax, 
 	corp.`last_updated_date`, corp.`last_update_user`, corp.`deleted`, corp.`customer_id`, IFNULL(cpt.partie_type, corp.`type`) partie_type, cpt.employee_title, cpt.color, cpt.blurb, cpt.show_employee, `company_site`, `sort_order`, cse.case_status, cse.case_substatus, cse.file_location, cse.attorney, cse.worker, cse.rating,
-ccad.adhoc_value `claim`, cdoc.adhoc_value `doctor_type`, 
-IFNULL(`ndoc`.`adhoc_value`, '') `claim_number`, IFNULL(`asscad`.`adhoc_value`, '') `assigned_to`,
-IFNULL(inj.injury_id, '') `injury_id`, IFNULL(inj.start_date, '') `start_date`, IFNULL(inj.end_date, '') `end_date`,
-IFNULL(`mpncad`.`adhoc_value`, '') `mpn`, IFNULL(`speccad`.`adhoc_value`, '') `specialty`, 
-IFNULL(`ratcad`.`adhoc_value`, '') `rating`,
-IFNULL(`namecad`.`adhoc_value`, '') `letter_name`,
-IFNULL(cpc.attribute_2, '') medical_prior      
+	ccad.adhoc_value `claim`, cdoc.adhoc_value `doctor_type`, 
+	IFNULL(`ndoc`.`adhoc_value`, '') `claim_number`, IFNULL(`asscad`.`adhoc_value`, '') `assigned_to`,
+	IFNULL(inj.injury_id, '') `injury_id`, IFNULL(inj.start_date, '') `start_date`, IFNULL(inj.end_date, '') `end_date`,
+	IFNULL(`mpncad`.`adhoc_value`, '') `mpn`, IFNULL(`speccad`.`adhoc_value`, '') `specialty`, 
+	IFNULL(`ratcad`.`adhoc_value`, '') `rating`,
+	IFNULL(`namecad`.`adhoc_value`, '') `letter_name`,
+	IFNULL(cpc.attribute_2, '') medical_prior      
 	FROM `cse_corporation` corp 
 	LEFT OUTER JOIN `cse_partie_type` cpt
 	ON corp.type = cpt.blurb
@@ -98,19 +99,26 @@ IFNULL(cpc.attribute_2, '') medical_prior
 	if ($title=="dashboard") {
 		//nothing past Venue
 		$sql .= " 
-		AND (
-		(cpt.sort_order <= 10 AND cpt.sort_order IS NOT NULL) 
-		AND (
-			CONCAT(corp.`type`, IFNULL(cdoc.adhoc_value, '')) = 'medical_providerPTP'
-			OR
-			CONCAT(corp.`type`, IFNULL(cdoc.adhoc_value, '')) = 'medical_providersecondary physician'
-			OR
-			CONCAT(corp.`type`, IFNULL(cdoc.adhoc_value, '')) NOT LIKE 'medical_provider%'
-		)
-	OR IFNULL(dash.setting_value, 'N')='Y') ";
+			AND ( 
+				CONCAT(corp.`type`, IFNULL(cdoc.adhoc_value, '')) = 'medical_providerPTP'
+				OR CONCAT(corp.`type`, IFNULL(cdoc.adhoc_value, '')) = 'medical_providersecondary physician'
+				OR CONCAT(corp.`type`, IFNULL(cdoc.adhoc_value, '')) NOT LIKE 'medical_provider%'
+			)
+			OR IFNULL(dash.setting_value, 'N') = 'Y'";
+
+		/*
+		 Imported A1 Gaylord Customer, In that to by pass parties page redirection in case level dashboard and should work redirection in new case (that's why added case id condition to check old case or new) we added this query part in if condition 
+		*/
+		if (!($_SESSION['user_customer_id'] == 1308 && strtolower($case_type) == 'social_security' && $case_id < 20642)) {
+			$sql .= "
+				AND cpt.sort_order <= 10 
+				AND cpt.sort_order IS NOT NULL
+			";
+		}
+
 		if ($blnWCAB) {
 			$sql .= "
-			AND cpt.blurb != 'plaintiff'
+				AND cpt.blurb != 'plaintiff'
 			";
 		}
 	}

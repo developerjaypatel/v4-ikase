@@ -226,6 +226,7 @@ window.partie_view = Backbone.View.extend({
 		}
 		
 		var kase_type = "";
+		var kase_sub_type = "";
 		var injury_type = "";
 		var blnWCAB = false;
 		if (this.model.get("intake_screen")) {
@@ -233,6 +234,7 @@ window.partie_view = Backbone.View.extend({
 			current_case_id = $("#kase_form #id").val();
 			}
 			kase_type = $("#kase_form #case_typeInput").val();
+			kase_subtype = $("#kase_form #case_subtypeInput").val();
 			injury_type = $("#kase_form #injury_typeInput").val();
 		}
 		if (current_case_id!=-1) {

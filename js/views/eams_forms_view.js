@@ -237,15 +237,16 @@ window.eams_view = Backbone.View.extend({
 		var self = this;
 		//dois
 		var arrDOIs = [];
-		var kase_dois = dois.where({case_id: this.model.get("case_id")});
+		var kase_dois = dois.where({case_id: this.model.get("case_id")}); 
 		var kase = kases.findWhere({case_id: this.model.get("case_id")});
 		
 		var selected = "";
+		//console.log("eams_length 244 "+kase_dois.length);
 		if (kase_dois.length==1) {
 			selected = " selected";
 		}
-		_.each(kase_dois , function(doi) {
-			var start_date = doi.get("start_date");
+		_.each(kase_dois , function(doi) { 
+			var start_date = doi.get("start_date"); //console.log("kase_start_date => " + start_date);
 			if (start_date!="0000-00-00") {
 				var thedoi = moment(start_date).format("MM/DD/YYYY");
 				if (doi.get("end_date") != "0000-00-00") {
@@ -256,6 +257,7 @@ window.eams_view = Backbone.View.extend({
 					thedoi += " :: " + theadj; 
 				}
 				thedoi = "<option value='" + doi.id + "'" + selected + ">" + thedoi + "</option>";
+				console.log("eams 260"+thedoi);
 				arrDOIs[arrDOIs.length] = thedoi;
 			}
 		});

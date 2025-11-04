@@ -3097,14 +3097,14 @@ function showKaseAbstract(the_model) {
 	}
 	the_model.set("panel_title", "Kase Summary");
 	var kase_type = kase.get("case_type");
-	//var kase_subtype = kase.get("case_sub_type");
+	var kase_subtype = kase.get("case_sub_type");
 	//var kase_adj = this.model.get("adj_number");
 	
 	var blnWCAB = ((kase_type.indexOf("Worker") > -1) || (kase_type.indexOf("WC") > -1) || (kase_type.indexOf("W/C") > -1));
 	var blnWCABDefense = (kase_type.indexOf("WCAB_Defense") == 0);
 	
 	the_model.set("case_type", kase_type);
-	//the_model.set("case_sub_type", kase_subtype);
+	the_model.set("case_sub_type", kase_subtype);
 					
 	var claims = kase.get("claims").replace("Claims: ", "");
 	var arrClaims = claims.split("|");

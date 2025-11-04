@@ -20,15 +20,21 @@ $app->group('', function (\Slim\Routing\RouteCollectorProxy $app) {
 	$app->get('/notefilters', 'getNoteFilters');
 	$app->get('/calendarfilters', 'getCalendarFilters');
 	$app->get('/calendaroptions', 'calendarTypesOptions');
+
 	$app->get('/statusfilters', 'getStatusFilters');
 	$app->get('/substatusfilters', 'getSubStatusFilters');
 	$app->get('/subsubstatusfilters', 'getSubSubStatusFilters');
+
+	$app->get('/subtypefilters', 'getSubTypeFilters');
 
 	//posts
 	$app->post('/documentfilters/update', 'updateDocumentFilters');
 	$app->post('/notefilters/update', 'updateNoteFilters');
 	$app->post('/calendarfilter/update', 'updateCalendarFilter');
 	$app->post('/calendarfilters/update', 'updateCalendarFilters');
+
+	$app->post('/subtypefilter/add', 'saveSubTypeFilters');
+	$app->post('/subtypefilter/update', 'updateSubTypeFilters');
 
 	$app->post('/statusfilter/add', 'saveStatusFilters');
 	$app->post('/statusfilter/update', 'updateStatusFilters');
@@ -110,6 +116,23 @@ function getCalendarFilters() {
 		die(json_encode($error));
 	}	
 }
+function getSubTypeFilters() {
+	session_write_close();
+	$sql = "SELECT *
+		FROM `cse_casesubtype` 
+        ORDER by `casesubtype`";
+	//die($sql);
+	try {
+		$db = getConnection();
+		$stmt = $db->query($sql);
+		$casesubtypedata = $stmt->fetchAll(PDO::FETCH_OBJ);
+		//print_r($casesubtypedata);die;
+		echo json_encode($casesubtypedata);
+	} catch(PDOException $e) {
+		$error = array("error3"=> array("text"=>$e->getMessage()));
+		die(json_encode($error));
+	}	
+}
 function getStatusFilters() {
 	session_write_close();
 	$sql = "SELECT casestatus_id id, casestatus `status`, law, deleted
@@ -123,6 +146,48 @@ function getStatusFilters() {
 		$casestatuss = $stmt->fetchAll(PDO::FETCH_OBJ);
 		
 		echo json_encode($casestatuss);
+	} catch(PDOException $e) {
+		$error = array("error3"=> array("text"=>$e->getMessage()));
+		die(json_encode($error));
+	}	
+}
+function saveSubTypeFilters() {
+	session_write_close();
+	$table_uuid = uniqid("SF", false);
+	$user_uuid = $_SESSION["user_id"];
+	$right_now = date("Y-m-d H:i:s");
+	$casetype = passed_var("casetype", "post");
+	$case_subtype = passed_var("casesubtype", "post");
+    $status_level = passed_var("status_level", "post");
+	$table_name = "case" . $status_level . "";
+	
+	/* $sql = "INSERT INTO `cse_" . $table_name . "` (" . $table_name . ", last_change_user, last_change_date, law)
+	SELECT :casesubtype, :user_uuid, :right_now,'" . $casetype . "'
+						FROM dual
+						WHERE NOT EXISTS (
+							SELECT * 
+							FROM `cse_" . $table_name . "` 
+							WHERE " . $table_name . " = :case_subtype AND law = '" . $casetype . "'
+						)"; */
+	$sql = "INSERT INTO `cse_" . $table_name . "` (" . $table_name . ", last_change_user, last_change_date, law)
+	SELECT '" . $case_subtype . "', '" . $user_uuid. "', '".$right_now. "', '" . strtolower($casetype) . "'
+	FROM dual
+	WHERE NOT EXISTS (
+		SELECT * 
+		FROM `cse_" . $table_name . "` 
+		WHERE " . $table_name . " = '" . $case_subtype . "' AND law = '" . strtolower($casetype) . "'
+	)";
+					
+	//die($sql);
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("casesubtype", $case_subtype);		
+		$stmt->bindParam("law", $casetype);
+		$stmt->bindParam("last_change_user", $user_uuid);
+		$stmt->execute();
+		
+		echo json_encode(array("success"=>true));
 	} catch(PDOException $e) {
 		$error = array("error3"=> array("text"=>$e->getMessage()));
 		die(json_encode($error));
@@ -221,6 +286,48 @@ function saveSubSubStatusFilters() {
 		$stmt = $db->prepare($sql);
 		$stmt->bindParam("casestatus", $casestatus);
 		$stmt->bindParam("user_uuid", $user_uuid);
+		$stmt->bindParam("right_now", $right_now);
+		$stmt->execute();
+		
+		echo json_encode(array("success"=>true));
+	} catch(PDOException $e) {
+		$error = array("error3"=> array("text"=>$e->getMessage()));
+		die(json_encode($error));
+	}	
+}
+
+function updateSubtypeFilters() {
+	session_write_close();
+	$table_uuid = uniqid("SF", false);
+	$user_uuid = $_SESSION["user_id"];
+	$right_now = date("Y-m-d H:i:s");
+	$id = passed_var("casesubtype_id", "post");
+	$deleted = passed_var("deleted", "post");
+	$casesubtype = passed_var("casesubtype", "post");
+	$status_level = passed_var("status_level", "post");
+	$casetype = passed_var("casetype", "post");//die;
+	$table_name = "case" . $status_level;
+	
+	$sql = "UPDATE `cse_" . $table_name . "` 
+	SET `" . $table_name . "`= '".$casesubtype."',
+	`deleted` = '".$deleted."', 
+	`last_change_user` = '".$user_uuid."', 
+	`last_change_date` = '".$right_now."'";
+	if($casetype!="" && $casetype!=null){
+		$sql = $sql.", `law` = '".$casetype."'";
+	}
+	$sql = $sql." WHERE `" . $table_name . "_id` = '".$id."'";
+	//die($sql);
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("id", $id);
+		$stmt->bindParam("casesubtype", $casesubtype);
+		$stmt->bindParam("deleted", $deleted);
+		$stmt->bindParam("user_uuid", $user_uuid);
+		if($casetype!="" && $casetype!=null){
+			$stmt->bindParam("casetype", $casetype);
+		}
 		$stmt->bindParam("right_now", $right_now);
 		$stmt->execute();
 		
