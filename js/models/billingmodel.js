@@ -84,6 +84,53 @@ window.MedicalBillingCollection = Backbone.Collection.extend({
 		}
 	}
 });
+window.OtherBilling = Backbone.Model.extend({
+	url: function() {
+		return "api/otherbilling/" + this.id;
+	},
+	initialize: function(options) {
+		this.id = options.otherbilling_id;
+	  },
+	defaults : {
+		"otherbilling_id":"",
+		"otherbilling_uuid":"",
+		"corporation_uuid":"",
+		"user_uuid":"",
+		"bill_date":"",
+		"billed":0,
+		"paid":0,
+		"adjusted":0,
+		"balance":0,
+		"override":0,
+		"finalized":"0000-00-00",
+		"still_treating":"N",
+		"prior":"N",
+		"lien":"N",
+		"user_id":-1, 
+		"user_name":"", 
+		"nickname":"",
+		"corporation_id":-1,
+		"company_name":"",
+		"deleted":"N"
+	}
+});
+window.OtherBillingCollection = Backbone.Collection.extend({
+	initialize: function(options) {
+		this.case_id = options.case_id;
+		this.corporation_id = "";
+		if (typeof options.corporation_id != "undefined") {
+			this.corporation_id = options.corporation_id;
+		}
+	},
+	model: MedicalBilling,
+	url: function() {
+		if (this.corporation_id=="") {
+			return "api/otherbillings/" + this.case_id;
+		} else {
+			return "api/corpotherbillings/" + this.case_id + "/" + this.corporation_id;
+		}
+	}
+});
 window.MedicalSummary = Backbone.Model.extend({
 	url: function() {
 		return "";

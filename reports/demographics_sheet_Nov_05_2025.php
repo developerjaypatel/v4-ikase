@@ -520,7 +520,7 @@ foreach($kase_parties as $int=>$partie) { //print_r($partie);
 	$excluded_types = array();
 	if($case_type == 'WCAB'){
 		$excluded_types = [
-			/* 'Beneficiary',
+			'Beneficiary',
 			'Child',
 			'Defendant',
 			'Expert',
@@ -535,19 +535,11 @@ foreach($kase_parties as $int=>$partie) { //print_r($partie);
 			'Refered Out Attorney',
 			'Respondent',
 			'Sponsor Joint Sponsor',
-			'Witness' */
-			'Applicant',
-			'Employer',
-			'Carrier',
-			'Insurance Carrier',
-			'Claims Examiner',
-			'Adjuster',
-			'Defense Attorney',
-			'Medical Provider'
+			'Witness'
 		];
 	}
 
-	if (in_array($partie_type, $excluded_types)) {
+	if (!in_array($partie_type, $excluded_types)) {
 		//echo $partie_type;
 	
 		if (!isset($arrCompanies[$partie_type])) {
@@ -1388,7 +1380,7 @@ var openSendForm = function() {
 	} */
 	
 	$specialty = "";
-	if ($party_info["partie_type"]=="Medical Provider" && $party_info["doctor_type"]=="PTP" ) {
+	if ($party_info["partie_type"]=="Medical Provider") {
 		//need to see if there is a specialty
         $resultspec = DB::runOrDie("SELECT adhoc_value  FROM `cse_corporation_adhoc` 
         WHERE `adhoc` = 'specialty'
@@ -1400,17 +1392,17 @@ var openSendForm = function() {
 	?>
     <?php 
 	$tr_class = "";
-	if ($party_info["partie_type"]=="Medical Provider" && $party_info["doctor_type"]=="PTP") {
+	if ($party_info["partie_type"]=="Medical Provider") {
 		$tr_class = "medical_row";
-		if ($party_info["doctor_type"]=="PTP") {
+		//if ($party_info["doctor_type"]!="PTP") {
 			$tr_class .= " noprint_row";
-		}
+		//}
 	}
 	?>
  <?php if($_SESSION["user_customer_id"] == '1308' && $party_info["partie_type"] != 'Court_reporter' && $party_info["partie_type"] !='Records' && $party_info["partie_type"] !='Bsn,_rn' && $party_info["partie_type"] !='Rn'){ ?>
  <tr class="<?php echo $tr_class; ?>">
     <td valign="top" nowrap><strong><?php echo $party_info["partie_type"]; ?></strong>
-    	<?php if ($party_info["partie_type"]=="Medical Provider" && $party_info["doctor_type"]=="PTP") {
+    	<?php if ($party_info["partie_type"]=="Medical Provider") {
 				if ($party_info["doctor_type"]!="") { ?>
         <div style="position:absolute; z-index:2; margin-top:3px; font-weight:bold">
         	Type:&nbsp;<?php echo $party_info["doctor_type"]; ?>
@@ -1424,7 +1416,7 @@ var openSendForm = function() {
     <td nowrap>&nbsp;</td>
     <td nowrap align="right">
     	<?php
-		if ($party_info["partie_type"]=="Medical Provider" && $party_info["doctor_type"]=="PTP") {
+		if ($party_info["partie_type"]=="Medical Provider") {
 			if (!$blnShowRemoveMedical) {
 				$blnShowRemoveMedical = true;
 			?>

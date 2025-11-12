@@ -6,6 +6,7 @@ $app->group('', function (\Slim\Routing\RouteCollectorProxy $app) {
 	$app->get('/rolodex', 'getRolodex');
 	$app->get('/rolodex/search/{search_term}', 'searchRolodex');
 	$app->get('/dashboard/{id}/{title}', 'getKaseParties');
+	$app->get('/settlement/{id}/{title}/{attorney_id}', 'getPriorPayments');
 	//$app->get('/parties/{id}', 'getPartie');
 	$app->get('/parties/type/', 'typeParties');
 
@@ -290,48 +291,48 @@ function searchRolodex($search_term) {
 		//eams rep
 		$sql .= " UNION 
 		SELECT  -1 person_id,
- corp.`rep_id`,
- corp.`rep_uuid` uuid,
- 'rep',
- '' `full_name`,
- `firm_name` `company_name`,
- '' `first_name`,
- '' `last_name`,
- UPPER(SUBSTRING(`firm_name`, 1, 1)) as first_letter,
- `eams_ref_number` `aka`,
- ''	`preferred_name`,
- CONCAT(`street_1`, ' ', `street_2`, ', ', `city`, ', ', `state`, ' ', `zip_code`) `full_address`,
- '0' longitude,
- '0' latitude,
- `street_1` `street`,
- `city`,
-`state`,
- `zip_code`,
- `street_2` `suite`,
- `phone`,
- '' `cell_phone`,
- '' `email`,
- '' `fax`,
- '' `ssn`,
- '' `dob`,
- '' `language`,
- '' `salutation`,
- '' `employee_phone`,
- '' `employee_cell`,
- '' `employee_fax`,
- '' `last_updated_date`, 
- '' `last_update_user`,
- 'N' `deleted`,
- '" . $_SESSION['user_customer_id'] . "' `customer_id`,
- 'eams_rep' `partie_type`,
- '' `employee_title`,
- '' `blurb`,
- 'eams_rep',
- 'N' `show_employee`,
- '' `company_site`,
- 200 `sort_order`,
- `firm_name` AS display_name,
- 'rep' AS rolo_partie, 'N' related
+		corp.`rep_id`,
+		corp.`rep_uuid` uuid,
+		'rep',
+		'' `full_name`,
+		`firm_name` `company_name`,
+		'' `first_name`,
+		'' `last_name`,
+		UPPER(SUBSTRING(`firm_name`, 1, 1)) as first_letter,
+		`eams_ref_number` `aka`,
+		''	`preferred_name`,
+		CONCAT(`street_1`, ' ', `street_2`, ', ', `city`, ', ', `state`, ' ', `zip_code`) `full_address`,
+		'0' longitude,
+		'0' latitude,
+		`street_1` `street`,
+		`city`,
+		`state`,
+		`zip_code`,
+		`street_2` `suite`,
+		`phone`,
+		'' `cell_phone`,
+		'' `email`,
+		'' `fax`,
+		'' `ssn`,
+		'' `dob`,
+		'' `language`,
+		'' `salutation`,
+		'' `employee_phone`,
+		'' `employee_cell`,
+		'' `employee_fax`,
+		'' `last_updated_date`, 
+		'' `last_update_user`,
+		'N' `deleted`,
+		'" . $_SESSION['user_customer_id'] . "' `customer_id`,
+		'eams_rep' `partie_type`,
+		'' `employee_title`,
+		'' `blurb`,
+		'eams_rep',
+		'N' `show_employee`,
+		'' `company_site`,
+		200 `sort_order`,
+		`firm_name` AS display_name,
+		'rep' AS rolo_partie, 'N' related
 		FROM `ikase`.`cse_eams_reps` corp 
 		WHERE 1 
 		AND (
@@ -347,48 +348,48 @@ function searchRolodex($search_term) {
 		
 		$sql .= " UNION 
 		SELECT  -1 person_id,
- corp.`carrier_id`,
- corp.`carrier_uuid` uuid,
- 'carrier',
- '' `full_name`,
- `firm_name` `company_name`,
- '' `first_name`,
- '' `last_name`,
- UPPER(SUBSTRING(`firm_name`, 1, 1)) as first_letter,
- `eams_ref_number` `aka`,
- ''	`preferred_name`,
- CONCAT(`street_1`, ' ', `street_2`, ', ', `city`, ', ', `state`, ' ', `zip_code`) `full_address`,
- '0' longitude,
- '0' latitude,
- `street_1` `street`,
- `city`,
-`state`,
- `zip_code`,
- `street_2` `suite`,
- `phone`,
- '' `cell_phone`,
-  '' `email`,
- '' `fax`,
- '' `ssn`,
- '' `dob`,
- '' `language`,
- '' `salutation`,
- '' `employee_phone`,
- '' `employee_cell`, 
- '' `employee_fax`,
- '' `last_updated_date`, 
- '' `last_update_user`,
- 'N' `deleted`,
- '" . $_SESSION['user_customer_id'] . "' `customer_id`,
- 'eams_carrier' `partie_type`,
- '' `employee_title`,
- '' `blurb`,
- 'eams_carrier',
- 'N' `show_employee`,
- '' `company_site`,
- 200 `sort_order`,
- `firm_name` AS display_name,
- 'carrier' AS rolo_partie, 'N' related
+	corp.`carrier_id`,
+	corp.`carrier_uuid` uuid,
+	'carrier',
+	'' `full_name`,
+	`firm_name` `company_name`,
+	'' `first_name`,
+	'' `last_name`,
+	UPPER(SUBSTRING(`firm_name`, 1, 1)) as first_letter,
+	`eams_ref_number` `aka`,
+	''	`preferred_name`,
+	CONCAT(`street_1`, ' ', `street_2`, ', ', `city`, ', ', `state`, ' ', `zip_code`) `full_address`,
+	'0' longitude,
+	'0' latitude,
+	`street_1` `street`,
+	`city`,
+	`state`,
+	`zip_code`,
+	`street_2` `suite`,
+	`phone`,
+	'' `cell_phone`,
+	'' `email`,
+	'' `fax`,
+	'' `ssn`,
+	'' `dob`,
+	'' `language`,
+	'' `salutation`,
+	'' `employee_phone`,
+	'' `employee_cell`, 
+	'' `employee_fax`,
+	'' `last_updated_date`, 
+	'' `last_update_user`,
+	'N' `deleted`,
+	'" . $_SESSION['user_customer_id'] . "' `customer_id`,
+	'eams_carrier' `partie_type`,
+	'' `employee_title`,
+	'' `blurb`,
+	'eams_carrier',
+	'N' `show_employee`,
+	'' `company_site`,
+	200 `sort_order`,
+	`firm_name` AS display_name,
+	'carrier' AS rolo_partie, 'N' related
 		FROM `ikase`.`cse_eams_carriers` corp 
 		WHERE 1 
 		AND (
@@ -407,48 +408,48 @@ function searchRolodex($search_term) {
 		//venue
 		$sql .= " UNION 
 		SELECT  -1 person_id,
- corp.`venue_id`,
- corp.`venue_uuid` uuid,
- 'venue',
- `presiding` `full_name`,
- `venue` `company_name`,
- '' `first_name`,
- '' `last_name`,
- UPPER(SUBSTRING(`venue`, 1, 1)) as first_letter,
- `venue_abbr` `aka`,
- ''	`preferred_name`,
- CONCAT(`address1`, ' ', `address2`, ', ', `city`, ', ', 'CA', ' ', `zip`) `full_address`,
- '0' longitude,
- '0' latitude,
- `address1` `street`,
- `city`,
- 'CA' `state`,
- `zip`,
- `address2` `suite`,
- `phone`,
- '' `cell_phone`,
-  '' `email`,
- '' `fax`,
- '' `ssn`,
- '' `dob`,
- '' `language`,
- 'Your Honor' `salutation`,
- '' `employee_phone`,
- '' `employee_cell`,
- '' `employee_fax`,
- '' `last_updated_date`, 
- '' `last_update_user`,
- 'N' `deleted`,
- '" . $_SESSION['user_customer_id'] . "' `customer_id`,
- 'eams_venue' `partie_type`,
- 'Judge' `employee_title`,
- '' `blurb`,
- 'eams_venue',
- 'N' `show_employee`,
- '' `company_site`,
- 100 `sort_order`,
- `venue` AS display_name,
- 'venue' AS rolo_partie, 'N' related
+		corp.`venue_id`,
+		corp.`venue_uuid` uuid,
+		'venue',
+		`presiding` `full_name`,
+		`venue` `company_name`,
+		'' `first_name`,
+		'' `last_name`,
+		UPPER(SUBSTRING(`venue`, 1, 1)) as first_letter,
+		`venue_abbr` `aka`,
+		''	`preferred_name`,
+		CONCAT(`address1`, ' ', `address2`, ', ', `city`, ', ', 'CA', ' ', `zip`) `full_address`,
+		'0' longitude,
+		'0' latitude,
+		`address1` `street`,
+		`city`,
+		'CA' `state`,
+		`zip`,
+		`address2` `suite`,
+		`phone`,
+		'' `cell_phone`,
+		'' `email`,
+		'' `fax`,
+		'' `ssn`,
+		'' `dob`,
+		'' `language`,
+		'Your Honor' `salutation`,
+		'' `employee_phone`,
+		'' `employee_cell`,
+		'' `employee_fax`,
+		'' `last_updated_date`, 
+		'' `last_update_user`,
+		'N' `deleted`,
+		'" . $_SESSION['user_customer_id'] . "' `customer_id`,
+		'eams_venue' `partie_type`,
+		'Judge' `employee_title`,
+		'' `blurb`,
+		'eams_venue',
+		'N' `show_employee`,
+		'' `company_site`,
+		100 `sort_order`,
+		`venue` AS display_name,
+		'venue' AS rolo_partie, 'N' related
 		FROM `ikase`.`cse_venue` corp 
 		WHERE 1 
 		AND (
@@ -817,4 +818,66 @@ function getBingLocation() {
 
 	die(json_encode($response));
 }
+
+function getPriorPayments($id, $title, $attorney_id = null) {
+    session_write_close();
+    try {
+        $db = getConnection();
+
+        // Get case_uuid
+        $caseStmt = $db->prepare("SELECT case_uuid FROM cse_case WHERE case_id = :id LIMIT 1");
+        $caseStmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $caseStmt->execute();
+        $case = $caseStmt->fetch(PDO::FETCH_ASSOC);
+        if (!$case || empty($case['case_uuid'])) {
+            echo json_encode([]);
+            exit();
+        }
+        $case_uuid = $case['case_uuid'];
+
+        // Base SQL
+        $sql = "
+            SELECT 
+                prior_attorney_payments_id,
+                prior_attorney_payments_uuid,
+                case_uuid,
+                prior_attorney_id,
+                payment_amount,
+                payment_status,
+                payment_date,
+                notes,
+                customer_id,
+                deleted,
+                updated_date
+            FROM cse_prior_attorney_payments
+            WHERE case_uuid = :case_uuid
+              AND deleted = 'N'
+        ";
+
+        // Filter by attorney if provided
+        if ($attorney_id) {
+            $sql .= " AND prior_attorney_id = :attorney_id";
+        }
+
+        $sql .= " ORDER BY updated_date DESC";
+
+		// die("attornye id is " . $attorney_id);
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(":case_uuid", $case_uuid);
+        if ($attorney_id) {
+            $stmt->bindParam(":attorney_id", $attorney_id);
+        }
+        $stmt->execute();
+
+        $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($payments);
+
+    } catch (PDOException $e) {
+        echo json_encode(["error" => ["text" => $e->getMessage()]]);
+    }
+    exit();
+}
+
+
 

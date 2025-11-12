@@ -2987,7 +2987,7 @@ function addEvent() {
 			continue;
 		}
 		if ($fieldname=="calendar_drop_down") {
-			$table_name = $value;
+			//$table_name = $value;
 			continue;
 		}
 		if ($fieldname=="billing_time") {
@@ -3286,7 +3286,6 @@ function addEvent() {
 		}
 	}
 	*/
-	//die($table_name);
 	$sql = "INSERT INTO `cse_" . $table_name ."` (`" . $table_name . "_uuid`, " . implode(",", $arrFields) . ") 
 			VALUES('" . $table_uuid . "', " . implode(",", $arrSet) . ")";
 	
@@ -3963,7 +3962,6 @@ function getCourtCalendar($transfer_status = "", $blnMyCases = false) {
 		}
 		$sql .= "
 		ORDER BY event_date ASC ";
-		//die($sql);
 		//die($yesterday);
 		$db = getConnection();
 		$stmt = $db->prepare($sql);

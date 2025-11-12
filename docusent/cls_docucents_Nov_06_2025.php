@@ -4,8 +4,7 @@ class docucents {
 
     var $dev_apikey = "4c56ee9a5d1d4093:e42bca0f386157aae42bca0f386157aa"; //dev
     var $dev_apiurl = "https://staging.api.docucents.com/xmlrpc/"; //dev
-    //var $apikey = "70b5d9ed0de0ca61:0c93b97f3e40685f1f9767809bc0e573"; //live
-    var $apikey = "4c56ee9a5d1d4093:e1f4951c4f6f03a9c1f5dff2cc11d74e"; //live
+    var $apikey = "70b5d9ed0de0ca61:0c93b97f3e40685f1f9767809bc0e573"; //live
     var $apiurl = "https://api.docucents.com/xmlrpc/"; //live
     var $vendor_submittal_id = '';
     var $party_address_id;
@@ -14,19 +13,18 @@ class docucents {
     var $attachment_xml;
     var $attachment_params;
 
-    function __construct($loadtype = "cmd",$api_key,$cusid) {
-        
-        if ($cusid == "1033") {
-            $this->apiurl = $this->dev_apiurl;
+    function __construct($loadtype = "cmd",$api_key) {
+        if (getenv('APPLICATION_ENV') != "production") {
+            if($api_key){}
+            $this->apikey = $api_key;
         }else{
-            $this->apiurl = $this->apiurl;
+            $this->apikey = $this->dev_apikey;
         }
-            //$this->apiurl = $this->dev_apiurl;
+            $this->apiurl = $this->dev_apiurl;
             // print_r($this);die;
-         $this->apikey = $api_key;
     }
 
-    /* public function SetSubmittalStatus($status = "Submitted", $vendor_submittal_id = "") {
+    public function SetSubmittalStatus($status = "Submitted", $vendor_submittal_id = "") {
         $host = $this->buildhost();
         $params = array();
         if ($vendor_submittal_id == "") {
@@ -42,51 +40,12 @@ class docucents {
         $request = xmlrpc_encode_request('Submittals.SetSubmittalStatus', $params);
         $response = $this->do_call($host, $request);
 
-//        die($response);
         $temp = simplexml_load_string($response);
         $retval = isset($temp->params->param->value->string[0]) ? $temp->params->param->value->string[0] : "";
+        // echo "data<br/>";print_r($retval);die;
         $this->submittal_status_id = $retval;
         return $this->submittal_status_id;
-    } */
-
-   public function SetSubmittalStatus($status = "Submitted", $vendor_submittal_id = "") {
-        $host = $this->buildhost();
-        $params = [];
-
-        if ($vendor_submittal_id == "") {
-            $params[] = $this->vendor_submittal_id;
-        } else {
-            $params[] = $vendor_submittal_id;
-        }
-
-        $params[] = $status;
-        $params[] = []; // optional parameters
-
-        //$request = xmlrpc_encode_request('Submittals.SetStatus', $params);
-        $request = xmlrpc_encode_request('Submittals.SetSubmittalStatus', $params);
-        $response = $this->do_call($host, $request);
-
-        // Decode the XML response safely
-        $decoded = @xmlrpc_decode($response);
-
-        // Normalize to plain string or array
-        if ($decoded instanceof SimpleXMLElement) {
-            $decoded = (string)$decoded;
-        } elseif (is_array($decoded)) {
-            $decoded = json_decode(json_encode($decoded), true);
-        }
-
-        return [
-            'success' => true,
-            'message' => "✅ Submittal status successfully updated to '$status'.",
-            'status_response' => $decoded,
-            'submittal_id' => $vendor_submittal_id,
-            'status' => $status,
-            'step' => 'status'
-        ];
-        //die;
     }
-
 
     public function adddoc() {
 
@@ -113,74 +72,32 @@ class docucents {
                 ), false);
     }
 
-    public function AddAttachment($attachment, $duplex = false)
-    {
+    public function AddAttachment($attachment, $duplex) {
         $host = $this->buildhost();
         $params = array();
-        $params = [$this->vendor_submittal_id, $attachment, $duplex];
 
+        $params[] = $this->vendor_submittal_id;
+        $params[] = $attachment;
+        $params[] = $duplex;
         $this->attachment_params = serialize($params);
         $request = xmlrpc_encode_request('Submittals.AddAttachment', $params);
         $response = $this->do_call($host, $request);
-        //echo "<pre>".print_r($response)."</pre>";die;
         $this->attachment_xml = $response;
-
-        if (trim($response) === '') {
-            return [
-                'success' => false,
-                'message' => '❌ Empty response from Docucent API.',
-                'step' => 'attachment'
-            ];
-        }
-
-        // Try to parse XML
-        $temp = @simplexml_load_string($response);
-        //echo "<pre>".print_r($temp)."</pre>";die;
-        // Check for a fault (error)
-        if (isset($temp->fault)) {
-            $faultCode = (string)$temp->fault->value->struct->member[0]->value->int;
-            $faultString = (string)$temp->fault->value->struct->member[1]->value->string;
-
-            return [
-                'success' => false,
-                'message' => "⚠️ Docucent Fault: {$faultString} (Code: {$faultCode})",
-                'code' => $faultCode,
-                'step' => 'attachment'
-            ];
-        }
-
-        // Extract returned value
+        $temp = simplexml_load_string($response);
+        //echo "<pre>".print_r($temp)."</pre>";
         $retval = 0;
         if (isset($temp->params->param->value->int)) {
-            $retval = (int)$temp->params->param->value->int;
+            $retval = (int) $temp->params->param->value->int;
         }
-
-        // ✅ Successful attachment upload
-        $attachment_id = $retval;
-        //die("127".$attachment_id);
-        // OPTIONAL: Immediately update submittal status to "Submitted"
-        $statusResponse = $this->SetSubmittalStatus("Submitted", $this->vendor_submittal_id);
-
-        // Combine results
-        /* return [
-            'success' => true,
-            'message' => "✅ Attachment successfully uploaded to Docucent.",
-            'attachment_id' => $attachment_id,
-            'status_update' => $statusResponse,
-            'step' => 'attachment'
-        ]; */
-        //print_r($statusResponse);die;
-        return [
-            'success' => true,
-            'message' => "✅ Attachment successfully uploaded to Docucent.",
-            'attachment_id' => $attachment_id,
-            'status_update' => $statusResponse['status_response'],
-            'submittal_id' => $statusResponse['submittal_id'] ?? 0,
-            'status' => $statusResponse['status'],
-            'step' => 'attachment'
-        ];
+        if ($retval == 0) {
+            $this->attachment_error = 0;
+            return true;
+        } else {
+            $this->attachment_error = $retval;
+            return false;
+        }
+        return $response;
     }
-
 
     public function PartyData_AddForDelivery($company_name, $first_name, $last_name, $middle_initial, $address1, $address2, $city, $state, $zip, $phone) {
 
@@ -301,7 +218,6 @@ class docucents {
     //private methods
 
     public function buildhost() {
-        //echo $this->apiurl . "?api_key=" . $this->apikey;die;
         return $this->apiurl . "?api_key=" . $this->apikey;
     }
 

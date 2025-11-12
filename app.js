@@ -2772,7 +2772,7 @@ function addForm(event, subform, api_url) {
 	} else {
 		form_name = subform;
 	}
-	
+
 	if (typeof api_url == "undefined") {
 		api_url = form_name.toLowerCase();
 	}
@@ -4074,6 +4074,27 @@ function saveModal() {
 	}
 	$("#modal_save_holder").show();
 	$("#gifsave").hide();
+}
+function docucent_upload_letter_button_click(param_targetid)
+{
+        var targetid=param_targetid;
+        $.ajax({
+            url: '../docucent_upload_letter.php',
+            type: 'POST',
+            data: {
+                caseid: $("input[name='caseid_"+targetid+"']").val(),
+                //letterpath: document.location.hostname+$("input[name='letterpath_"+targetid+"']").val(),
+                letterpath: $("input[name='letterpath_"+targetid+"']").val(),
+                cusid: $("input[name='cusid_"+targetid+"']").val(),
+                document_id: targetid,
+                call_intension:'letter_upload'
+            },
+            dataType : 'json',
+            success: function(res) {
+                console.log(res);
+            }
+        }); 
+// alert(targetid);
 }
 function emptyBuffer() {
 	var url = 'api/buffer';

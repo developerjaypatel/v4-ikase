@@ -12,7 +12,7 @@ window.letter_listing_view = Backbone.View.extend({
 		"click .delete_no":							"canceldeleteLetter",
 		"keyup #letter_searchList":					"findIt",
 		"click #show_generated":					"showGenerated",
-		"click #show_all":							"showAll",		
+		"click #show_all":							"showAll",
 		"click #letter_clear_search":				"clearSearch",
 		"click #label_search_template":				"Vivify",
 		"click #letter_searchList":					"Vivify",
@@ -252,8 +252,6 @@ window.kase_letter_listing_view = Backbone.View.extend({
 		"click .send_icon":							"sendLetter",
 		"click #show_generated":					"showGenerated",
 		"click #show_all":							"showAll",
-		"click .create_docucent":					"newDocucent",
-		"click #partie_docucent_id":				"sendToDocucent",
 		"click #letter_clear_search":				"clearSearch",
 		"click #label_search_letter":				"Vivify",
 		"click #letter_searchList":					"Vivify",
@@ -658,80 +656,7 @@ window.kase_letter_listing_view = Backbone.View.extend({
 		var element = event.currentTarget;
 		event.preventDefault();
 		filterIt(element, "letter_listing", "letter");
-	},
-	newDocucent: function(event) {
-		event.preventDefault();
-		var element = event.currentTarget;
-		var elementArray = element.id.split("_");//console.log(elementArray);
-		var id = elementArray[1];
-		var documentId = id; 
-		var self = this;	
-		var case_id = current_case_id;
-		
-		//if ($("#modal_docucent_holder").length > 0) {
-			//hide the partie rows
-			//$(".letter .partie_row").hide();
-			//var document_extension = self.model.get("document_extension").toLowerCase();
-			var document_extension = self.model.get("document_extension");
-			var kase = kases.findWhere({case_id: case_id});
-			var parties = new Parties([], { case_id: case_id, panel_title: "Parties" });
-			parties.comparator = 'type';
-			parties.fetch({
-				success: function(data) { //console.log("680 " +data);					
-					kase.set("letter_category", self.model.get("document_extension"));
-					$('#modal_docucent_holder').html(new partie_listing_docucent({collection: parties, model: kase}).render().el);
-										
-					//$('.modal-dialog').animate({}, 1100, 'easeInSine');
-					$('.modal-dialog').animate({width:550}, 1100, 'easeInSine', 
-					function() {
-						//run this after animation
-						if (document_extension!="invoice") {
-							$('#modal_docucent_holder').show();
-							
-						}
-					});
-				}
-			});
-		//}
-
-		// Update modal title
-		$("#myModalLabel").html("Parties for Document " + documentId);
-
-		// Show loading message
-		//$("#modal_save_holder").html('<input type="checkbox" id="parties_selectall" class="parties_selectall" name="parties_selectall" value="Y" title="Check this box to Select all Parties" onclick="selectAllParties()" /><span class="white_text parties_selectall" style="padding-right:15px">Select all Parties</span>&nbsp;<a title="Save Letter" id="partie_docucent_id" class="partie_docucents_data save" style="cursor:pointer"><i class="glyphicon glyphicon-saved" style="color:#00FF00; font-size:20px; text-decoration:none">&nbsp;</i></a>');
-		
-
-		// Show the modal
-		$("#myModal4").modal("show");
-		$(".modal-header").css("background-image", "url('../img/glass_info.png')");
-		$("#myModalBody").css("background-image", "url('../img/glass_info.png')");
-		$(".modal-footer").css("background-image", "url('../img/glass_info.png')");
-		$(".modal-body").css("overflow-x", "hidden");
-		$(".modal-dialog").css("background-image", "url('../img/glass_info.png')");
-		$(".modal-dialog").css("width", "600px");
-		 /*  */
-		$(".modal-content").css("background-image", "url('../img/glass_info.png')");
-		$('.modal-header').append('<div id="docucent_modal_save_holder"></div>');
-		$('#myModalBody').append('<div id="modal_docucent_holder"></div>');
-	},
-	sendToDocucent: function(event) {
-        event.preventDefault();
-		console.log("sendToDocucent");
-        var button = $(event.currentTarget);
-        var targetid = button.data('targetid');
-		console.log("725 "+targetid);		
-        // Disable this button while uploading
-        //button.prop('disabled', true).text('Uploading...');
-		
-        // Call the existing upload function
-        docucent_upload_letter_button_click(targetid);
-
-        // Re-enable after AJAX completes (handled in success callback)
-        // Optional: You can trigger a global event to re-enable all if needed
-        setTimeout(function() {
-            button.prop('disabled', false).text('Send to Docucent');
-        }, 4000);
-    },
+	}
 });
 window.letter_view = Backbone.View.extend({
     initialize:function () {

@@ -2565,8 +2565,9 @@ if ($blnDebug) {
 						catch(e) { res = { status: false, message: response }; }
 						
 						const type = res.status ? 'success' : 'danger';
-						showAlert(type, res.message);
+						showAlert(type, res.message, res.activity || null);
 						const caseId = dropzoneElement.querySelector('input[name="case_id"]').value;
+						console.log(caseId);
 						window.Router.prototype.kaseActivity(caseId);
 
 						//  Keeps Dropzone clickable
@@ -2596,22 +2597,40 @@ if ($blnDebug) {
 			$('#myModal4 .modal-body #outlook-alerts').empty();
 		});
 
-		function showAlert(type, message) {
+		function showAlert(type, message, activity = null) {
 			// Ensure only 'success' or 'danger' are used
 			const alertType = type === 'success' ? 'success' : 'danger';
 
 			// Build alert element
-			const alertHTML = `
-				<div class="outlook-alert-box outlook-alert-${alertType}">
-				${message}
-				<button type="button" class="outlook-alert-close" aria-label="Close">&times;</button>
-				</div>
+			let alertHTML = `
+				<div class="outlook-alert-box outlook-alert-${alertType}" style="position: relative; padding: 10px; border: 1px solid #ccc; margin-bottom: 10px; border-radius: 4px;">
+					${message}
+					<button type="button" class="outlook-alert-close" aria-label="Close" style="position:absolute;top:5px;right:10px;">&times;</button>
 			`;
+
+			// Add "Add Note" button only for successful alerts
+			if (type === 'success' && activity && activity.activity_id) {
+				alertHTML += `
+					<div class="add-note-section" style="margin-top:10px;">
+						<button class="btn btn-xs btn-primary add-note-btn" data-case-id="${activity.case_id}" data-activity-id="${activity.activity_id}">
+							Add Note
+						</button>
+						<div class="note-editor" style="display:none; margin-top:10px;">
+							<textarea class="form-control note-text" rows="3" placeholder="Add your note here..."></textarea>
+							<div class="note-actions" style="margin-top:5px;">
+								<button class="btn btn-success btn-xs save-note-btn">Save</button>
+								<button class="btn btn-default btn-xs cancel-note-btn">Cancel</button>
+							</div>
+							<div class="note-status" style="margin-top:5px;"></div>
+						</div>
+					</div>
+				`;
+			}
+
+			alertHTML += `</div>`;
 
 			const alertContainer = document.querySelector('#outlook-alerts');
 			if (!alertContainer) return;
-
-			// Add new alert to top
 			alertContainer.insertAdjacentHTML('afterbegin', alertHTML);
 		}
 
@@ -2621,6 +2640,61 @@ if ($blnDebug) {
 				$(this).remove();
 			});
 		});
+
+		// Event delegation for "Add Note" button
+		$(document).on('click', '.add-note-btn', function() {
+			const $section = $(this).closest('.add-note-section');
+			const $editor = $section.find('.note-editor');
+			$editor.toggle(); // toggle textarea visibility
+		});
+
+		// Cancel button
+		$(document).on('click', '.cancel-note-btn', function() {
+			const $editor = $(this).closest('.note-editor');
+			$editor.hide();
+			$editor.find('.note-text').val('');
+			$editor.find('.note-status').text('');
+		});
+
+		// Save button
+		$(document).on('click', '.save-note-btn', function() {
+			const $editor = $(this).closest('.note-editor');
+			const noteText = $editor.find('.note-text').val().trim();
+			const activityId = $(this).closest('.add-note-section').find('.add-note-btn').data('activity-id');
+			let caseId = $(this).closest('.add-note-section').find('.add-note-btn').data('case-id');
+			const $status = $editor.find('.note-status');
+
+			if (!noteText) {
+				$status.text('Please enter a note before saving.').css('color', 'red');
+				return;
+			}
+
+			$editor.find('.save-note-btn, .cancel-note-btn').hide();
+			$status.text('Saving...').css('color', '#999').css('background', 'white');
+			
+			$.ajax({
+				url: 'api/activity/outlookdrag/update',
+				type: 'POST',
+				data: { activity_id: activityId, case_id: caseId, note: noteText },
+				success: function(resp) {
+					let res;
+					try { res = typeof resp === 'string' ? JSON.parse(resp) : resp; }
+					catch(e) { res = { status: false, message: resp }; }
+					if (res.status) {
+						$status.text('Note saved successfully!').css('color', 'green');
+						$editor.find('.note-text').val('');
+						$editor.find('.save-note-btn, .cancel-note-btn').show();
+					} else {
+						$status.text('Failed to save note: ' + res.message).css('color', 'red');
+						$editor.find('.save-note-btn, .cancel-note-btn').show();
+					}
+				},
+				error: function(xhr) {
+					$status.text('Error saving note: ' + xhr.responseText).css('color', 'red');
+				}
+			});
+		});
+
 	
 	</script>
     <?php

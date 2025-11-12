@@ -20,7 +20,6 @@ $cus_name_first = passed_var("cus_name_first");
 $cus_name_middle = passed_var("cus_name_middle");
 $cus_name_last = passed_var("cus_name_last");
 $cus_barnumber = passed_var("cus_barnumber");
-$cus_docucents_api_key = passed_var("docucents_api_key");
 $cus_street = passed_var("cus_street");
 $cus_city = passed_var("cus_city");
 $cus_county = passed_var("cus_county");
@@ -73,8 +72,8 @@ if ($jetfile_id=="") {
 $permissions = $read . $write . $export . $import . $billing;
 $query = "";
 if ($cus_id=="" || $cus_id==-1) {
-	$query = "INSERT INTO cse_customer (`eams_no`, `docucents_api_key`, `cus_name`, `letter_name`, `cus_name_first`, `cus_name_middle`, `cus_name_last`, `cus_street`, `cus_city`, `cus_county`, `cus_state`, `cus_zip`, `cus_email`, `cus_phone`, `cus_fax`, `cus_type`, `cus_ip`, `pwd`, `admin_client`,`data_source`,`data_path`,`permissions`,`inhouse_id`, `jetfile_id`, `ddl_venue`,`office_manager_first`, `office_manager_last`, `office_manager_middle`, `office_manager_phone`, `office_manager_email`, `cus_fedtax_id`, `cus_uan`, `cus_barnumber`, `user_rate`, `corporation_rate`, `start_date`, `import_db_source`)
-	VALUES ('" . addslashes($eams_no) . "', '" . addslashes($cus_docucents_api_key) . "', '" . addslashes($letter_name) . "', '" . addslashes($cus_name) . "', '" . addslashes($cus_name_first) . "', '" . addslashes($cus_name_middle) . "', '" . addslashes($cus_name_last) . "', '" . addslashes($cus_street) . "', '" . addslashes($cus_city) . "', '" . addslashes($cus_county) . "', '" . addslashes($cus_state) . "', '" . addslashes($cus_zip) . "', '" . addslashes($cus_email) . "', '" . addslashes($cus_phone) . "', '" . addslashes($cus_fax) . "', '" . addslashes($cus_type) . "', '" . addslashes($cus_ip) . "', '" . addslashes($pwd) . "', '" . addslashes($admin_client) . "','" . $data_source . "','" . $data_path . "','" . $permissions . "','" . $inhouse_id . "','" . $jetfile_id . "', '" . $letter_office_code . "','" . addslashes($office_manager_first) . "','" . addslashes($office_manager_last) . "','" . addslashes($office_manager_middle) . "','" . addslashes($office_manager_phone) . "','" . addslashes($office_manager_email) . "','" . addslashes($cus_fedtax_id) . "','" . addslashes($cus_uan) . "','" . addslashes($cus_barnumber) . "','" . addslashes($user_rate) . "','" . addslashes($corporation_rate) . "', '" . date("Y-m-d") . "', '".$import_db_source."')";
+	$query = "INSERT INTO cse_customer (`eams_no`, `cus_name`, `letter_name`, `cus_name_first`, `cus_name_middle`, `cus_name_last`, `cus_street`, `cus_city`, `cus_county`, `cus_state`, `cus_zip`, `cus_email`, `cus_phone`, `cus_fax`, `cus_type`, `cus_ip`, `pwd`, `admin_client`,`data_source`,`data_path`,`permissions`,`inhouse_id`, `jetfile_id`, `ddl_venue`,`office_manager_first`, `office_manager_last`, `office_manager_middle`, `office_manager_phone`, `office_manager_email`, `cus_fedtax_id`, `cus_uan`, `cus_barnumber`, `user_rate`, `corporation_rate`, `start_date`, `import_db_source`)
+	VALUES ('" . addslashes($eams_no) . "', '" . addslashes($letter_name) . "', '" . addslashes($cus_name) . "', '" . addslashes($cus_name_first) . "', '" . addslashes($cus_name_middle) . "', '" . addslashes($cus_name_last) . "', '" . addslashes($cus_street) . "', '" . addslashes($cus_city) . "', '" . addslashes($cus_county) . "', '" . addslashes($cus_state) . "', '" . addslashes($cus_zip) . "', '" . addslashes($cus_email) . "', '" . addslashes($cus_phone) . "', '" . addslashes($cus_fax) . "', '" . addslashes($cus_type) . "', '" . addslashes($cus_ip) . "', '" . addslashes($pwd) . "', '" . addslashes($admin_client) . "','" . $data_source . "','" . $data_path . "','" . $permissions . "','" . $inhouse_id . "','" . $jetfile_id . "', '" . $letter_office_code . "','" . addslashes($office_manager_first) . "','" . addslashes($office_manager_last) . "','" . addslashes($office_manager_middle) . "','" . addslashes($office_manager_phone) . "','" . addslashes($office_manager_email) . "','" . addslashes($cus_fedtax_id) . "','" . addslashes($cus_uan) . "','" . addslashes($cus_barnumber) . "','" . addslashes($user_rate) . "','" . addslashes($corporation_rate) . "', '" . date("Y-m-d") . "', '".$import_db_source."')";
 	//die($query);
 	//$result = DB::runOrDie($query);
 	DB::run($query);
@@ -162,7 +161,6 @@ if ($cus_id=="" || $cus_id==-1) {
 } else {
 	$query = "UPDATE ikase.cse_customer
 	SET eams_no = '" . $eams_no . "',
-	docucents_api_key = '" . $cus_docucents_api_key . "',
 	cus_name = '" . addslashes($cus_name) . "',
 	letter_name = '" . addslashes($letter_name) . "',
 	cus_name_first = '" . addslashes($cus_name_first) . "',

@@ -22,6 +22,21 @@ $app->group('', function (RouteCollectorProxy $app) {
 	$app->get('/medicalcorpsummary/{case_id}', 'getMedicalBillingsSummary');
 	$app->get('/medsum/{case_id}', 'getMedicalSummary');
 	$app->get('/corpbillings/{case_id}/{corporation_id}', 'getCorpMedicalBillings');
+	
+	//other billing api route start
+	$app->group('/otherbilling', function (RouteCollectorProxy $app) {
+		$app->get('/{id}', 'getOtherBilling');
+		$app->post('/add', 'saveOtherBilling');
+		$app->post('/update', 'saveOtherBilling');
+		$app->post('/delete', 'deleteOtherBilling');
+	});
+	
+	$app->get('/otherbillings/{case_id}', 'getOtherBillings');
+	$app->get('/otherbillingsummary/{case_id}', 'getOtherBillingsLossSummary');
+	$app->get('/othercorpsummary/{case_id}', 'getOtherBillingsSummary');
+	$app->get('/otherbilsum/{case_id}', 'getOtherBillSummary');
+	$app->get('/corpotherbillings/{case_id}/{corporation_id}', 'getCorpOtherBillings');
+	//other billing api route end
 
 	$app->group('/deduction', function (RouteCollectorProxy $app) {
 		$app->get('/{id}', 'getDeduction');
@@ -3677,3 +3692,402 @@ function deleteAdjustment() {
 	trackAdjustment("delete", $id);
 }
 
+function getCorpOtherBillings($case_id, $corporation_id) {
+	getOtherBillings($case_id, $corporation_id);
+}
+function getOtherBillings($case_id, $corporation_id = "", $blnSummary = false) {
+	session_write_close();
+	$customer_id = $_SESSION['user_customer_id'];
+		
+	$sql = "SELECT ob.*, 
+	ob.otherbilling_id id, ob.otherbilling_uuid uuid, 
+	usr.user_id, usr.user_name, usr.nickname,
+	corp.corporation_id, corp.company_name  
+	FROM cse_otherbilling ob
+	INNER JOIN cse_corporation corp
+	ON ob.corporation_uuid = corp.corporation_uuid
+	INNER JOIN cse_case_corporation gcc
+	ON corp.corporation_uuid = gcc.corporation_uuid
+	INNER JOIN cse_case ccase
+	ON gcc.case_uuid = ccase.case_uuid
+	LEFT OUTER JOIN ikase.cse_user usr
+	ON ob.user_uuid = usr.user_uuid
+		
+	WHERE ob.customer_id = :customer_id
+	AND ob.deleted = 'N'
+	AND ccase.case_id = :case_id";
+	if ($corporation_id!="") {
+		$sql .= "
+		AND corp.corporation_id = :corporation_id";
+	}
+	//die($sql);
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("case_id", $case_id);
+		$stmt->bindParam("customer_id", $customer_id);
+		if ($corporation_id!="") {
+			$stmt->bindParam("corporation_id", $corporation_id);
+		}
+		$stmt->execute();
+		$billings = $stmt->fetchAll(PDO::FETCH_OBJ);
+		
+		if ($blnSummary) {
+			//get the medical total
+			$sql = "SELECT ccase.case_id, 
+			SUM(chk.amount_due - chk.payment - ABS(chk.adjustment)) totals
+			FROM cse_case ccase
+			
+			LEFT OUTER JOIN cse_case_check ccc
+			ON ccase.case_uuid = ccc.case_uuid AND ccc.deleted = 'N'
+			
+			LEFT OUTER JOIN cse_check chk
+			ON ccc.check_uuid = chk.check_uuid AND chk.deleted = 'N'
+
+			WHERE ccase.case_id = :case_id
+			AND ccase.customer_id = :customer_id
+			AND chk.check_status != 'V'
+			AND chk.ledger = 'OUT'
+			";
+			
+			$db = getConnection();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("case_id", $case_id);
+			$stmt->bindParam("customer_id", $customer_id);
+			
+			$stmt->execute();
+			$costs = $stmt->fetchObject();
+			
+			$arrSummary = array();
+			$billed_total = 0;
+			$paid_total = 0;
+			$adjusted_total = 0;
+			$override_total = 0;
+			foreach($billings as $billing) {
+				$billed_total += $billing->billed;
+				$paid_total += $billing->paid;
+				$adjusted_total += $billing->adjusted;
+				$override_total += $billing->override;
+			}
+			
+			$balance = number_format($billed_total - $paid_total + $adjusted_total, 2);
+			if ($balance > -0.1 && $balance < 0.1) {
+				$balance = 0;
+			}
+			$arrSummary = array(
+				"billed_total"		=>	$billed_total,
+				"paid_total"		=>	$paid_total,
+				"adjusted_total"	=>	$adjusted_total,
+				"override_total"	=>	$override_total,
+				"balance"			=>	$balance,
+				"costs"				=>	$costs->totals
+			);
+			
+			echo json_encode($arrSummary);
+		} else  {
+        	echo json_encode($billings);
+		}
+	} catch(PDOException $e) {
+		$error = array("error"=> array("text"=>$e->getMessage()));
+        	echo json_encode($error);
+	}
+}
+function getOtherBilling($id) {
+	session_write_close();
+	$customer_id = $_SESSION['user_customer_id'];
+		
+	$sql = "SELECT ob.*, 
+	ob.otherbilling_id id, ob.otherbilling_uuid uuid, 
+	usr.user_id, usr.user_name, usr.nickname,
+	corp.corporation_id, corp.company_name, ccase.case_id  
+	FROM cse_otherbilling ob
+	INNER JOIN cse_case_otherbilling ccm
+	ON ob.otherbilling_uuid = ccm.otherbilling_uuid
+	INNER JOIN cse_case ccase
+	ON ccm.case_uuid = ccase.case_uuid
+	INNER JOIN cse_corporation corp
+	ON ob.corporation_uuid = corp.corporation_uuid
+	LEFT OUTER JOIN ikase.cse_user usr
+	ON ob.user_uuid = usr.user_uuid
+	WHERE ob.customer_id = :customer_id
+	AND ob.deleted = 'N'
+	AND ob.otherbilling_id = :id";
+	
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("id", $id);
+		$stmt->bindParam("customer_id", $customer_id);
+		$stmt->execute();
+		$billing = $stmt->fetchObject();
+        echo json_encode($billing);
+	} catch(PDOException $e) {
+		$error = array("error"=> array("text"=>$e->getMessage()));
+        	echo json_encode($error);
+	}
+}
+function saveOtherBilling() {
+	session_write_close();
+	
+	$arrFields = array();
+	$arrSet = array();
+	$case_id = 0;
+	$table_name = "";
+	$table_id = passed_var("table_id", "post");
+	$corporation_uuid = "";
+	$case_uuid = "";
+	$user_uuid = "";
+	//$case_id = passed_var("case_id", "post");
+	//die($table_id);
+	//$table_id = 1;
+	//die(print_r($_POST));
+	$blnUpdate = (is_numeric($table_id) && $table_id!="" && $table_id > 0);
+	
+	foreach($_POST as $fieldname=>$value) {
+		$value = passed_var($fieldname, "post");
+		$fieldname = str_replace("Input", "", $fieldname);
+		
+		if ($fieldname=="table_name") {
+			$table_name = $value;
+			continue;
+		}
+		if ($fieldname=="case_id"){
+			$case_id = $value;
+			$kase = getKaseInfo($case_id);
+			$case_uuid = $kase->uuid;
+			continue;
+		}
+		if ($fieldname=="corporation_id") {
+			if ($value!=-1) {
+				$corporation = getCorporationInfo($value);
+				//die(print_r($corporation));
+				$corporation_uuid = $corporation->uuid;
+			}
+			$fieldname = "corporation_uuid";
+			$value = $corporation_uuid;
+		}
+		if ($fieldname=="user_id") {
+			if ($value!=-1) {
+				$user = getUserInfo($value);
+				$user_uuid = $user->uuid;
+			}
+			$fieldname = "user_uuid";
+			$value = $user_uuid;
+		}
+		if ($fieldname=="table_id") {
+			continue;
+		}
+		if ($fieldname=="finalized") {
+			if ($value!="") {
+				$value = date("Y-m-d H:i:s", strtotime($value));
+			} else {
+				$value = "0000-00-00";
+			}
+		}
+		//die("before");
+		if (!$blnUpdate) {
+			$arrFields[] = "`" . $fieldname . "`";
+			$arrSet[] = "'" . addslashes($value) . "'";
+		} else {
+			$arrSet[] = "`" . $fieldname . "` = " . "'" . addslashes($value) . "'";
+		}
+		//die("after");
+	}	
+	//$case_id = passed_var("case_id", "post");
+	//die("case:" . $case_id);
+	//die("table:" . $table_id);
+	//die(print_r($arrFields));
+	//die(print_r($arrSet));
+	
+	//insert the parent record first
+	if (!$blnUpdate) { 
+		$table_uuid = uniqid("RD", false);
+		$sql = "INSERT INTO `cse_" . $table_name ."` (`" . $table_name . "_uuid`, `customer_id`, " . implode(",", $arrFields) . ") 
+			VALUES('" . $table_uuid . "', '" . $_SESSION['user_customer_id'] . "', " . implode(",", $arrSet) . ")";
+		//die($sql);
+		try {
+			DB::run($sql);
+			$new_id = DB::lastInsertId();
+			
+			//attach to case
+			if ($case_uuid!="") {
+				$last_updated_date = date("Y-m-d H:i:s");
+				$case_otherbilling_uuid = uniqid("KA", false);
+				$attribute = "main";
+				
+				$sql = "INSERT INTO cse_case_otherbilling (`case_otherbilling_uuid`, `case_uuid`, `otherbilling_uuid`, `attribute`, `last_updated_date`, `last_update_user`, `customer_id`)
+				VALUES ('" . $case_otherbilling_uuid . "', '" . $case_uuid . "', '" . $table_uuid . "', '" . $attribute . "', '" . $last_updated_date . "', '" . $_SESSION['user_id'] . "', '" . $_SESSION['user_customer_id'] . "')";
+				//echo $sql . "\r\n";
+				$stmt = DB::run($sql);
+			}
+			echo json_encode(array("success"=>true, "id"=>$new_id));
+			//track now
+			trackOtherBilling("insert", $new_id);	
+		} catch(PDOException $e) {	
+			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		}	
+	} else {
+		//nos if not present
+		$arrYesNo = array("still_treating", "lien", "prior");
+		foreach($arrYesNo as $fieldname) {
+			if (!isset($_POST[$fieldname])) {
+				$arrSet[] = "`" . $fieldname . "` = 'N'";
+			}
+		}
+		//where
+		$where_clause = "= '" . $table_id . "'";
+		$where_clause = "`" . $table_name . "_id`" . $where_clause . "
+		AND `customer_id` = " . $_SESSION['user_customer_id'];
+
+		//actual query
+		$sql = "UPDATE `cse_" . $table_name . "`
+		SET " . implode(",", $arrSet) . "
+		WHERE " . $where_clause;
+		
+		//die(implode(",", $arrSet));
+		
+		if ($_SERVER['REMOTE_ADDR']=='47.153.49.248') {
+		//	die($sql);	
+		}
+		
+		try {
+			$stmt = DB::run($sql);
+			
+			echo json_encode(array("success"=>true, "id"=>$table_id));
+			//track now	
+			trackOtherBilling("update", $table_id);	
+		} catch(PDOException $e) {	
+			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		}	
+	}
+}
+function deleteOtherBilling() {
+	$id = passed_var("id", "post");
+	$customer_id = $_SESSION['user_customer_id'];
+	
+	$sql = "UPDATE `cse_otherbilling` 
+			SET `deleted` = 'Y'
+			WHERE `otherbilling_id` = :id
+			AND customer_id = :customer_id";
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("id", $id);
+		$stmt->bindParam("customer_id", $customer_id);
+		$stmt->execute();
+		echo json_encode(array("success"=>"billing marked as deleted"));
+	} catch(PDOException $e) {
+		$error = array("error"=> array("text"=>$e->getMessage()));
+        	echo json_encode($error);
+	}
+	trackOtherBilling("delete", $id);
+}
+function trackOtherBilling($operation, $otherbilling_id) {
+	$customer_id = $_SESSION['user_customer_id'];
+	
+	$sql = "INSERT INTO `cse_otherbilling_track`
+	(`track_user_uuid`, `user_logon`, `operation`, `time_stamp`, `otherbilling_id`, `otherbilling_uuid`, `corporation_uuid`, `user_uuid`, `billed`, `paid`, `adjusted`, `balance`, `finalized`, `still_treating`, `prior`, `lien`, `deleted`, `customer_id`)
+	SELECT '" . $_SESSION['user_id'] . "', '" . addslashes($_SESSION['user_name']) . "', :operation, '". date("Y-m-d H:i:s") . "', `otherbilling_id`, `otherbilling_uuid`, `corporation_uuid`, `user_uuid`, `billed`, `paid`, `adjusted`, `balance`, `finalized`, `still_treating`, `prior`, `lien`, `deleted`, `customer_id`
+	FROM cse_otherbilling
+	WHERE 1
+	AND otherbilling_id = :otherbilling_id
+	AND customer_id = :customer_id
+	LIMIT 0, 1";
+	//echo $sql;
+	
+
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);  
+		
+		$stmt->bindParam("customer_id", $customer_id);
+		$stmt->bindParam("otherbilling_id", $otherbilling_id);
+		$stmt->bindParam("operation", $operation);
+		
+		$stmt->execute();
+
+        return $db->lastInsertId();
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		return false;
+	}
+}
+function getOtherbillSummary($case_id) {
+	session_write_close();
+	$customer_id = $_SESSION['user_customer_id'];
+	
+	$sql = "SELECT corp.corporation_id, corp.company_name, 
+	SUM(billed) billed, SUM(paid) paid, SUM(adjusted) adjusted
+	FROM cse_otherbilling ob
+	INNER JOIN cse_case_otherbilling ccm
+	ON ob.otherbilling_uuid = ccm.otherbilling_uuid
+	INNER JOIN cse_case ccase
+	ON ccm.case_uuid = ccase.case_uuid
+	INNER JOIN cse_corporation corp
+	ON ob.corporation_uuid = corp.corporation_uuid
+	WHERE ccase.case_id = :case_id
+	AND ccase.customer_id = :customer_id
+	GROUP BY corp.corporation_id";
+	
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("case_id", $case_id);
+		$stmt->bindParam("customer_id", $customer_id);
+		if ($corporation_id!="") {
+			$stmt->bindParam("corporation_id", $corporation_id);
+		}
+		$stmt->execute();
+		$medsum = $stmt->fetchAll(PDO::FETCH_OBJ);
+        echo json_encode($medsum);
+	} catch(PDOException $e) {
+		$error = array("error"=> array("text"=>$e->getMessage()));
+        	echo json_encode($error);
+	}
+}
+function getOtherBillingsSummary($case_id, $blnReturn = false) {
+	session_write_close();
+	
+	$customer_id = $_SESSION["user_customer_id"];
+	
+	$sql = "SELECT corp.corporation_id, corp.corporation_id id, corp.company_name, corp.phone, corp.employee_phone, corp.employee_email, corp.full_name,
+	SUM(IFNULL(billed, 0)) billed, SUM(IFNULL(paid, 0)) paid, SUM(IFNULL(adjusted, 0)) adjusted,
+	SUM(IFNULL(billed, 0) - IFNULL(paid, 0) + IFNULL(adjusted, 0)) balance
+
+	FROM cse_corporation corp
+    LEFT OUTER JOIN cse_otherbilling ob
+	ON corp.corporation_uuid = ob.corporation_uuid AND ob.deleted = 'N'
+	INNER JOIN cse_case_corporation gcc
+	ON corp.corporation_uuid = gcc.corporation_uuid AND attribute = 'other'
+	INNER JOIN cse_case ccase
+	ON gcc.case_uuid = ccase.case_uuid
+		
+	WHERE corp.customer_id = :customer_id
+	AND ccase.case_id = :case_id
+    AND corp.deleted = 'N'
+    GROUP BY corp.corporation_id";
+	
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("case_id", $case_id);
+		$stmt->bindParam("customer_id", $customer_id);
+		
+		$stmt->execute();
+		$billings = $stmt->fetchAll(PDO::FETCH_OBJ);
+		
+		if (!$blnReturn) {
+			echo json_encode($billings);
+		} else {
+			return $billings;
+		}
+		
+	} catch(PDOException $e) {
+		$error = array("error"=> array("text"=>$e->getMessage()));
+        	echo json_encode($error);
+	}
+	exit();
+}
+function getOtherBillingsLossSummary($case_id) {
+	getOtherBillings($case_id, "", true);
+}

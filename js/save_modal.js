@@ -14,6 +14,11 @@ function saveMedicalBillingModal() {
 	$("#medicalbilling save").hide();
 	addForm(event, "medicalbilling");
 }
+function saveOtherBillingModal() {
+	$("#billing_gifsave").show();
+	$("#otherbilling save").hide();
+	addForm(event, "otherbilling");
+}
 function saveFee() {
 	//billed must be positive for now
 	if ($("#fee_billed_div").css("display") != "none") {

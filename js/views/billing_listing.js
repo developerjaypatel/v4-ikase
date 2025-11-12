@@ -646,6 +646,100 @@ window.medical_billing_listing_view = Backbone.View.extend({
 		composeDelete(id, "medicalbilling");
 	}
 });
+window.other_billing_listing_view = Backbone.View.extend({
+    initialize:function () {
+        
+    },
+	events: {
+		"click .edit_otherbilling":		"editOtherBilling",
+		"click .delete_otherbilling":	"confirmdeleteBilling",
+		"click #otherbilling_button":	"newOtherBilling"					
+	},
+    render:function () {	
+		if (typeof this.template != "function") {
+			var view = "other_billing_listing_view";
+			var extension = "php";
+			loadTemplate(view, extension, this);
+			return "";
+	   	}		
+		var self = this;
+		var total_billed = 0;
+        var total_paid = 0;
+        var total_adjusted = 0;
+		var embedded = this.model.get("embedded");
+		
+		var other_billings = this.collection.toJSON();
+		 _.each( other_billings, function(other_billing) {
+			var finalized = other_billing.finalized;
+            if (finalized!="0000-00-00") {
+                finalized = moment(other_billing.finalized).format("MM/DD/YY");
+            } else {
+                finalized = "";
+            }
+			other_billing.finalized = finalized;
+			
+			var bill_date = other_billing.bill_date;
+            if (bill_date!="0000-00-00") {
+                bill_date = moment(other_billing.bill_date).format("MM/DD/YY");
+            } else {
+                bill_date = "";
+            }
+			
+			other_billing.bill_date = bill_date;
+			
+			
+			//override
+			if (other_billing.override!="") {
+				other_billing.override = "<span style='background:red; color:white; padding:2px'>$" + formatDollar(other_billing.override) + "</span>";
+			}
+            total_billed += Number(other_billing.billed);
+            total_paid += Number(other_billing.paid);
+            total_adjusted += Number(other_billing.adjusted);
+		 });
+		 
+		$(this.el).html(this.template({
+			other_billings: other_billings, 
+			case_id: self.model.get("case_id"), 
+			partie_id: self.model.get("partie_id"),
+			total_billed: total_billed,
+			total_paid: total_paid,
+			total_adjusted: total_adjusted,
+			embedded: embedded
+		}));
+		
+		setTimeout(function() {
+			$("#other_billing_listing").css("font-size", "1.1em");
+			
+			if (document.location.hash.indexOf("#othersummary/")==0) {
+				$(".glass_header").hide();
+				$("#other_billing_totals_row").hide();
+				$("#other_billing_listing").css("width", "100%");
+			}
+		}, 700)
+		return this;
+	},
+	newOtherBilling:function(event) {
+		event.preventDefault();
+		composeOtherBilling();
+	},
+	editOtherBilling:function(event) {
+		event.preventDefault();
+		var element_id = event.currentTarget.id;
+		composeOtherBilling(element_id);
+	},
+	confirmdeleteBilling: function(event) {
+		event.preventDefault();
+		var element = event.currentTarget;
+		var elementArray = element.id.split("_");
+		var id = elementArray[2];
+		//check for which box we're in
+		var boxtype = "in";
+		if (element.className.indexOf(" out") > -1) {
+			boxtype = "out";
+		}
+		composeDelete(id, "otherbilling");
+	}
+});
 window.medical_summary_listing_view = Backbone.View.extend({
     initialize:function () {
         

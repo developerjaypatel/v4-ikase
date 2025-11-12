@@ -27,7 +27,7 @@
                 </div>
             </div>          
            <div style="margin-bottom:10px">
-               <div style="float:right;color:white; font-size:1.2em">
+               <div style="float:right;color:white; font-size:1.2em" id="related_doi_div">
                	<%=doi %>
                </div>
                 <span style="color:#FFFFFF; font-size:1.4em; font-weight:lighter; margin-left:10px;">Related Settlement</span>
@@ -68,44 +68,61 @@
             </li>
             <li id="amount_of_settlementGrid" data-row="1" data-col="2" data-sizex="1" data-sizey="1" class="settlement_list gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
             <h6><div class="form_label_vert" style="margin-top:10px;">Amount:</div></h6>
-            <div style="margin-top:-12px" class="save_holder hidden" id="amount_of_settlementSave">
-                <a class="save_field" style="margin-top:0px" title="Click to save this field" id="amount_of_settlementSaveLink">
-                    <i class="glyphicon glyphicon-save"></i>
-                </a>
-            </div>
-              <!--<input type="text" value="<%= amount_of_settlement %>" name="amount_of_settlementInput" id="amount_of_settlementInput" class="kase settlement_list_view input_class hidden" placeholder="Amount of Settlement" style="margin-top:-26px; margin-left:90px; width:125px" />-->
-              <span id="amount_of_settlementSpan" class="kase settlement_list_view span_perm form_span_vert" style="margin-top:-26px; margin-left:90px"><%= amount_of_settlement_span %></span>
+                <div style="margin-top:-12px" class="save_holder hidden" id="amount_of_settlementSave">
+                    <a class="save_field" style="margin-top:0px" title="Click to save this field" id="amount_of_settlementSaveLink">
+                        <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
+                <!--<input type="text" value="<%= amount_of_settlement %>" name="amount_of_settlementInput" id="amount_of_settlementInput" class="kase settlement_list_view input_class hidden" placeholder="Amount of Settlement" style="margin-top:-26px; margin-left:90px; width:125px" />-->
+                <span id="amount_of_settlementSpan" class="kase settlement_list_view span_perm form_span_vert" style="margin-top:-26px; margin-left:90px"><%= amount_of_settlement_span %></span>
             </li>
             <li id="pd_percentGrid" data-row="2" data-col="2" data-sizex="1" data-sizey="1" class="settlement_list gridster_border non_ssi_boxes" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
-            <h6><div class="form_label_vert" style="margin-top:10px;">% PD:</div></h6>
-            <div style="margin-top:-12px" class="save_holder hidden" id="pd_percentSave">
-                <a class="save_field" style="margin-top:0px" title="Click to save this field" id="pd_percentSaveLink">
-                    <i class="glyphicon glyphicon-save"></i>
-                </a>
-            </div>
+                <h6><div class="form_label_vert" style="margin-top:10px;">% PD:</div></h6>
+                <div style="margin-top:-12px" class="save_holder hidden" id="pd_percentSave">
+                    <a class="save_field" style="margin-top:0px" title="Click to save this field" id="pd_percentSaveLink">
+                        <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
                 <!--<input type="number" value="<%= pd_percent %>" name="pd_percentInput" id="pd_percentInput" class="kase settlement_list_view input_class hidden" placeholder="PD Percentage" style="margin-top:-26px; margin-left:90px; width:125px" />-->
-              <span id="pd_percentSpan" class="kase settlement_list_view span_perm form_span_vert" style="margin-top:-26px; margin-left:90px"><%= pd_percent %></span>
+                <span id="pd_percentSpan" class="kase settlement_list_view span_perm form_span_vert" style="margin-top:-26px; margin-left:90px"><%= pd_percent %></span>
             </li>
             
             <li id="future_medicalGrid" data-row="2" data-col="3" data-sizex="1" data-sizey="1" class="settlement_list gridster_border non_ssi_boxes" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
-            <h6><div class="form_label_vert" style="margin-top:10px;">Future Medical:</div></h6>
-            <div style="margin-top:-12px" class="save_holder hidden" id="future_medicalSave">
-                <a class="save_field" style="margin-top:0px" title="Click to save this field" id="future_medicalSaveLink">
-                    <i class="glyphicon glyphicon-save"></i>
-                </a>
-            </div>
+                <h6><div class="form_label_vert" style="margin-top:10px;">Future Medical:</div></h6>
+                <div style="margin-top:-12px" class="save_holder hidden" id="future_medicalSave">
+                    <a class="save_field" style="margin-top:0px" title="Click to save this field" id="future_medicalSaveLink">
+                        <i class="glyphicon glyphicon-save"></i>
+                    </a>
+                </div>
                 <!--<input type="checkbox" value="Y" name="future_medicalInput" id="future_medicalInput" class="kase settlement_list_view input_class hidden" style="margin-top:-26px; margin-left:90px;" <% if (future_medical=="Y") { %>checked<% } %> />-->
-              <span id="future_medicalSpan" class="kase settlement_list_view span_perm form_span_vert" style="margin-top:-26px; margin-left:90px"><%= future_medical %></span>
+                <span id="future_medicalSpan" class="kase settlement_list_view span_perm form_span_vert" style="margin-top:-26px; margin-left:90px"><%= future_medical %></span>
             </li>
-            <li id="amount_of_feeGrid" data-row="1" data-col="3" data-sizex="1" data-sizey="1" class="settlement_list gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
-            <h6><div class="form_label_vert" style="margin-top:10px;">Fee:</div></h6>
-            <div style="margin-top:-12px" class="save_holder hidden" id="amount_of_feeSave">
-                <a class="save_field" style="margin-top:0px" title="Click to save this field" id="amount_of_feeSaveLink">
-                    <i class="glyphicon glyphicon-save"></i>
-                </a>
-            </div>
-              <!--<input type="text" value="<%= amount_of_fee %>" name="amount_of_feeInput" id="amount_of_feeInput" class="kase settlement_list_view input_class hidden" placeholder="Amount of Fee" style="margin-top:-26px; margin-left:90px; width:125px" />-->
-              <span id="amount_of_feeSpan" class="kase settlement_list_view span_perm form_span_vert" style="margin-top:-26px; margin-left:90px"><%= amount_of_fee_span %></span>
+            <li id="amount_of_feeGrid" data-row="1" data-col="3" data-sizex="2" data-sizey="1" class="settlement_list gridster_border" style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF">
+                <h6><div class="form_label_vert" style="margin-top:10px;">Fee:</div></h6>
+                <div style="margin-left:95px; margin-top:-26px">
+                    <table width="98%" cellspacing="0" cellpadding="2">
+                        <tr>
+                            <td align="left" valign="top" width="50%" nowrap="nowrap">
+                                <div style="margin-top:-12px" class="save_holder hidden" id="amount_of_feeSave">
+                                    <a class="save_field" style="margin-top:0px" title="Click to save this field" id="amount_of_feeSaveLink">
+                                        <i class="glyphicon glyphicon-save"></i>
+                                    </a>
+                                </div>
+                                <!-- <input type="text" value="<%= amount_of_fee %>" name="amount_of_feeInput" id="amount_of_feeInput" class="kase settlement_list_view input_class hidden" placeholder="Amount of Fee" style="margin-top:0px; margin-left:-7px; width:125px" /> -->
+                                <span id="amount_of_feeSpan" class="kase settlement_list_view span_class form_span_vert" style="margin-top:0px; margin-left:-7px"><%= amount_of_fee_span %></span>
+                            </td>
+                            <td align="left" valign="top" width="50%">
+                                <span style="color:white;padding-right:5px">Payment Status:&nbsp;</span>
+                                <!-- <select id="fee_payment_statusInput" name="fee_payment_statusInput" class="input_class hidden" style="margin-top: 0px;margin-left: 10px;">
+                                        <option value="">Select Status</option>
+                                        <option value="Paid" <% if (fee_payment_status == "Paid") { %>selected<% } %>>Paid</option>
+                                        <option value="Unpaid" <% if (fee_payment_status == "Unpaid") { %>selected<% } %>>Unpaid</option>
+                                </select>   -->
+                                <span id="fee_payment_statusSpan" class="white_text span_class" style="margin-top: 0px;margin-left: 10px;"><%= fee_payment_status %></span>
+                            </td> 
+                        </tr>
+                    </table>
+                </div>
             </li>
         </ul>
     </form>

@@ -239,8 +239,10 @@ window.settlement_list_view = Backbone.View.extend({
 		"change #doctor_attorney":							"changeInputs",
 		"click .payment":									"newPayment",
 		"click .settlement_button":							"showDiv",
-		
-		"click #settlement_list_all_done":					"doTimeouts"
+		"click #settlement_list_all_done":					"doTimeouts",
+		"keyup #amount_of_feeInput":						"manageFeesPaymentStatus",
+		"click #prior_attorney_container .add-prior":		"addNewPriorAttorneyPayment",
+		"click #prior_attorney_container .delete-prior":	"dltPriorAttorneyPayment",
 	},
 	render: function () {
 		if (typeof this.template != "function") {
@@ -268,6 +270,11 @@ window.settlement_list_view = Backbone.View.extend({
 			}
 		}
 		
+		var fee_payment_status = this.model.get("fee_payment_status");
+		if (fee_payment_status =="") {
+			this.model.set("fee_payment_status", "TBD");
+		}
+
 		var date_submitted = this.model.get("date_submitted");
 		if (date_submitted!="0000-00-00" && date_submitted!="") {
 			this.model.set("date_submitted", moment(date_submitted).format("MM/DD/YYYY"));
@@ -346,12 +353,48 @@ window.settlement_list_view = Backbone.View.extend({
 			var referral_id = $("#referral_id").val();
 			var fee = $("#referral_source_fee").val();
 			$("#referral_source_feeSpan").html(formatDollar($("#referral_source_fee").val()));
+			var referral_fee_payment_status = $("#referral_fee_payment_statusInput").val();
+			$("#referral_fee_payment_statusSpan").html(referral_fee_payment_status || 'TBD');
 			var fee_date = $("#referral_source_date").val();
 			 $("#referral_source_dateSpan").html( moment($("#referral_source_date").val()).format("MM/DD/YYYY"));
-			var arrRef = {referral_id: referral_id, fee: fee, date: fee_date};
+			var arrRef = {referral_id: referral_id, fee: fee, referral_fee_payment_status: referral_fee_payment_status, date: fee_date};
 			var fee_referral = JSON.stringify(arrRef);
 			$("#referral_info").val(fee_referral);
 		}
+
+		 // Collect Prior Attorney Payments
+		var priorPayments = [];
+		$("#prior_attorney_container .prior_attorney_item").each(function() {
+			var prior_attorney_id = $(this).find("input[type='hidden']").val();
+			var payment_amount = $(this).find("input[type='number']").val();
+			var payment_status = $(this).find("select").val();
+			var payment_date = $(this).find("input[type='date']").val();
+			var notes = $(this).find(".prior_notes_input").val() || "";
+
+			// Update spans for this attorney
+			$(this).find(".payment_amountSpan").html(payment_amount ? formatDollar(payment_amount) : 'TBD');
+			$(this).find(".payment_statusSpan").html(payment_status || 'TBD');
+			$(this).find(".payment_dateSpan").html(payment_date ? moment(payment_date).format("MM/DD/YYYY") : 'TBD');
+			$(this).find(".notesSpan").html(notes || '');
+
+			if (prior_attorney_id && (payment_amount || payment_status || payment_date)) {
+				priorPayments.push({
+					prior_attorney_id: prior_attorney_id,
+					payment_amount: payment_amount,
+					payment_status: payment_status,
+					payment_date: payment_date,
+					notes: notes
+				});
+			}
+
+		});
+
+		var prior_attorney_payment_info = JSON.stringify(priorPayments);
+		$("#prior_attorney_payment_info").val(prior_attorney_payment_info);
+
+		// prior_attoryey_payment_info
+
+		console.log("Prior Attorney Payments to Save:", priorPayments);
 	
 		addForm(event, "settlement", "settlement");
 		return;
@@ -605,10 +648,108 @@ window.settlement_list_view = Backbone.View.extend({
 		var kase_parties = new Parties([], { case_id: current_case_id, panel_title: "" });
 		kase_parties.fetch({
 			success: function(data) {
-				var prior_partie = kase_parties.findWhere({"type": "prior_attorney"});
-				if (typeof prior_partie == "undefined") {
+				var prior_parties = kase_parties.where({"type": "prior_attorney"});
+				if (typeof prior_parties == "undefined") {
 					//hide the prior attorney fee
 					$(".referring_settlement_row").hide();
+					$(".prior_attorney_container").hide();
+				}else{
+					  var container = $("#prior_attorney_container");
+						container.html('<input id="prior_attorney_payment_info" name="prior_attorney_payment_info" type="hidden" value="" />'); // clear previous entries if needed
+
+						prior_parties.forEach(function(prior) {
+							var attorneyName = prior.get("company_name") || prior.get("name");
+							var attorneyId = prior.get("corporation_id");
+							
+							// Ensure attorneyId is a number
+							attorneyId = attorneyId ? parseInt(attorneyId, 10) : null;
+							
+							// Fetch payments for this attorney
+							var payments = new Parties([], {
+								case_id: current_case_id,
+								panel_title: "settlementpriorpayment",
+								partie_id: attorneyId
+							});
+
+							payments.fetch({
+								async: false, // ensure payments are loaded before rendering UI
+								success: function(paymentData) {
+									var container = $("#prior_attorney_container");
+
+									// If no payments exist, we still need a blank row
+									var paymentList = paymentData.models.length > 0 ? paymentData.models : [null];
+
+									paymentList.forEach(function(payment) {
+										var fee = payment ? payment.get("payment_amount") : "";
+										var status = payment ? payment.get("payment_status") : "";
+										var date = payment ? payment.get("payment_date") : "";
+
+										// dynamically create a similar UI block for each prior attorney/payment
+										var html = `
+											<li data-row="2" data-col="2" class="prior_attorney_item settlement_list gridster_border non_ssi_boxes"
+												style="background:url(img/glass.png) left top; border:#FFFFFF solid 1px; border-radius:3px;
+												padding:5px; color:#FFFFFF; margin-bottom:4px; font-family:'Open Sans', sans-serif;">
+												<h6>
+													<div class="form_label_vert" style="margin-top: 10px; color: rgb(255, 255, 255); font-size: 1em;">Prior Attorney</div>
+												</h6>
+												<div style="margin-left:95px; margin-top:-26px">
+													<table width="98%" cellspacing="0" cellpadding="2">
+													<tr>
+														<td width="20%">
+															<span class="kase settlement_list_view form_span_vert" style="margin-top:0px;color:white;">
+																<a href="#parties/${current_case_id}/${attorneyId}/prior_attorney"
+																title="Click to review Prior Attorney"
+																style="color:white;">${attorneyName}</a>
+															</span>
+															<input type="hidden" class="prior_attorney_id" value="${attorneyId}" />
+														</td>
+														<td width="20%">
+															<span style="color:white;">Fee:&nbsp;</span>
+															<input type="number" min="0.00" step="0.01"
+																class="kase settlement_list_view input_class hidden prior_fee_input"
+																placeholder="Fee" style="width:115px; margin-top:0px"
+																value="${fee}" />
+															<span class="kase settlement_list_view payment_amountSpan span_class form_span_vert" style="margin-top:0px">${fee}</span>
+														</td>
+														<td width="30%">
+															<span style="color:white;">Payment Status:&nbsp;</span>
+															<select class="input_class hidden prior_status_input" style="margin-top:0px;">
+																<option value="">Select Status</option>
+																<option value="Paid" ${status === "Paid" ? "selected" : ""}>Paid</option>
+																<option value="Unpaid" ${status === "Unpaid" ? "selected" : ""}>Unpaid</option>
+															</select>
+															<span class="white_text span_class payment_statusSpan" style="margin-top:0px;">${status}</span>
+														</td>
+														<td width="20%">
+															<span style="color:white;">Date:&nbsp;</span>
+															<input type="date" class="kase settlement_list_view input_class hidden prior_date_input"
+																style="width:132px; margin-top:0px" value="${date}" />
+															<span class="kase settlement_list_view span_class form_span_vert payment_dateSpan" style="margin-top:0px">${date ? moment(date).format("MM/DD/YYYY") : ''}</span>
+														</td>
+														<td width="10%">
+															<!-- Add/Delete Buttons (hidden by default) -->
+															<div class="prior-actions" style="text-align:right;">
+																<button type="button" title="Add Fees" style="position:relative;width:auto;border:0px;padding-top:10px;" class="btn btn-xs btn-transparent input_class add-prior hidden">
+																	<i class="glyphicon glyphicon-plus" style="color:#0033FF"></i>
+																</button>
+																<button type="button" title="Delete Fees" style="position:relative;width:auto;border:0px;padding-top:10px;" class="btn btn-xs btn-transparent input_class delete-prior hidden">
+																	<i class="glyphicon glyphicon-trash" style="color:#FC221D"></i>
+																</button>
+															</div>
+														</td>
+													</tr>
+													</table>
+												</div>
+
+												
+											</li>
+										`;
+
+										container.append(html);
+									});
+								}
+							});
+						});
 				}
 				var referring_partie = kase_parties.findWhere({"type": "referring"});
 				if (typeof referring_partie == "undefined") {
@@ -626,6 +767,8 @@ window.settlement_list_view = Backbone.View.extend({
 						var jdata = JSON.parse(info);
 						$("#referral_source_fee").val(jdata.fee);
 						$("#referral_source_feeSpan").html(jdata.fee);
+						$("#referral_fee_payment_statusInput").val(jdata.referral_fee_payment_status);
+						$("#referral_fee_payment_statusSpan").html(jdata.referral_fee_payment_status || 'TBD');
 						$("#referral_source_date").val(jdata.date);
 						$("#referral_source_dateSpan").html(moment(jdata.date).format("MM/DD/YYYY"));
 					}
@@ -861,7 +1004,6 @@ window.settlement_list_view = Backbone.View.extend({
 			}
 			$("#row_info_holder_" + fee_type).hide();
 			$("#row_fees_holder_" + fee_type).show();
-			console.log(settlement_id);
 			if (settlement_id!="") {
 				settlement_fees.fetch({
 						success: function(data) {
@@ -931,6 +1073,30 @@ window.settlement_list_view = Backbone.View.extend({
 			}
 		});
 		*/
+	},
+	manageFeesPaymentStatus:function(event){
+		let fee = $(event.currentTarget).val();
+		if(!fee || fee == 0)return;
+		let feeStatus = $('#fee_payment_statusInput').val();
+		if(!feeStatus){
+			$('#fee_payment_statusInput').val('Unpaid');
+		}
+		return;
+	},
+	addNewPriorAttorneyPayment: function(event) {
+		var $currentLi = $(event.currentTarget).closest(".prior_attorney_item");
+		var newLi = $currentLi.clone();
+
+		// Clear input fields for new entry
+		newLi.find("input[type='number'], input[type='date']").val("");
+		newLi.find("select").val("");
+
+		// Insert new block after current one
+		$currentLi.after(newLi);
+	},
+	dltPriorAttorneyPayment: function(event) {
+		console.log("yes");
+		$(event.currentTarget).closest(".prior_attorney_item").remove();
 	}
 });
 window.settlement_list_header = Backbone.View.extend({
@@ -938,9 +1104,9 @@ window.settlement_list_header = Backbone.View.extend({
 	
 	},
 	events:{
-		"click .settlement_hide":										"hideMe",
-		"click .settlement_show":										"showMe",
-		"click #settlement_list_header_all_done":						"doTimeouts"
+		"click .settlement_hide":				   "hideMe",
+		"click .settlement_show":				   "showMe",
+		"click #settlement_list_header_all_done":  "doTimeouts"
 	},
 	render: function () {
 		if (typeof this.template != "function") {
@@ -967,6 +1133,11 @@ window.settlement_list_header = Backbone.View.extend({
 					this.model.set("attorney_full_name", the_atty.get("user_name"));
 				}
 			}
+		}
+
+		var fee_payment_status = this.model.get("fee_payment_status");
+		if (fee_payment_status =="") {
+			this.model.set("fee_payment_status", "TBD");
 		}
 		
 		var date_submitted = this.model.get("date_submitted");
@@ -1022,11 +1193,14 @@ window.settlement_list_header = Backbone.View.extend({
 		datepickIt(".date_input", false);
 		
 		//add a fee drop down
-		var feeOptions = "<option value=''>Select Type</option><option value='C_R'>C & R</option><option value='F_A'>F & A</option><option value='STIP'>STIP</option>";
-		var selectFeeOptions = "<span style='color:white;padding-right:5px'>Type:&nbsp;</span><select id='fee_optionsInput' name='fee_optionsInput' class='input_class hidden'>" + feeOptions + "</select>";
-		var feeSpan = "<span id='fee_optionsSpan' class='white_text span_class'></span>";
-		$("#sub_category_holder_settlement_list").append("<div style='float:right'>" + selectFeeOptions + feeSpan + "</div>")
-		
+		// var feeOptions = "<option value=''>Select Type</option><option value='C_R'>C & R</option><option value='F_A'>F & A</option><option value='STIP'>STIP</option>";
+		// var selectFeeOptions = "<span style='color:white;padding-right:5px'>Type:&nbsp;</span><select id='fee_optionsInput' name='fee_optionsInput' class='input_class hidden'>" + feeOptions + "</select>";
+		// var feeSpan = "<span id='fee_optionsSpan' class='white_text span_class'></span>";
+		// $("#sub_category_holder_settlement_list").append("<div style='float:right'>" + selectFeeOptions + feeSpan + "</div>")
+
+		var feeSpan = `<span id='fee_optionsSpan_${this.model.get("the_doi_id")}' class='white_text'></span>`;
+		$("#related_doi_div").append(feeSpan)
+
 		//what is the option value?
 		var cr = this.model.get("c_and_r");
 		var fa = this.model.get("f_and_a");
@@ -1041,11 +1215,10 @@ window.settlement_list_header = Backbone.View.extend({
 		if (stip!=""  && stip!="N") {
 			optionValue = "STIP";
 		}
-		$("#fee_optionsInput").val(optionValue);
 		if (optionValue!="") {
-			$("#fee_optionsSpan").html(optionValue.replace("_", " & "));
+			$(`#fee_optionsSpan_${this.model.get("the_doi_id")}`).text(` | Type: ${optionValue.replace("_", " & ")}`);
 		} else {
-			$("#fee_optionsSpan").html("TBD");
+			$(`#fee_optionsSpan_${this.model.get("the_doi_id")}`).text("| Type: TBD");
 		}
 		
 		var kase = kases.findWhere({case_id: this.model.get("case_id")});

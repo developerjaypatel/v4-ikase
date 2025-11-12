@@ -2644,6 +2644,60 @@ function composeMedicalBilling(element_id) {
 	
 	$("#myModal4").modal("toggle");
 }
+function composeOtherBilling(element_id) {
+	var otherbilling_id = -1;
+	otherbilling_case_id = current_case_id;
+	if (typeof ledger == "undefined") {
+		ledger = "";
+	} 
+	
+	if (typeof element_id == "undefined") {
+		otherbilling_id = -1;
+	} else {
+		var arrId = element_id.split("_");
+		otherbilling_id = arrId[arrId.length - 1]; 
+	}
+	var otherbilling = new OtherBilling({otherbilling_id: otherbilling_id});
+	otherbilling.set("holder", "#myModalBody");
+	
+	$("#gifsave").hide();
+	if (otherbilling_id < 1) {
+		otherbilling.set("corporation_id", document.location.hash.split("/")[2]);
+		//otherbilling.set("otherbilling_title", "Task Assigned By " + login_username);
+		otherbilling.set("case_id", otherbilling_case_id);	
+		otherbilling.set("ledger", ledger);	
+		var bill_date = moment().format("YYYY-MM-DD");
+		otherbilling.set("bill_date", bill_date);	
+		var title = "Other Billing";
+		$("#myModalLabel").html("New " + title);
+		otherbilling.set("title", title);	
+		$("#myModalBody").html(new other_billing_view({model: otherbilling}).render().el);
+	} else {
+		otherbilling.fetch({
+			success: function (data) {
+				data.set("otherbilling_id", data.id);
+				$("#myModalBody").html(new other_billing_view({model: data}).render().el);
+				$("#myModalLabel").html("Edit Other Billing");
+			}
+		});
+	}
+	
+	$("#modal_type").val("otherbilling");
+	$("#modal_save_holder").html('<a title="Save Billing" class="otherbilling save" onClick="saveOtherBillingModal(event)" style="cursor:pointer"><i class="glyphicon glyphicon-saved" style="color:#00FF00; font-size:20px">&nbsp;</i></a><span id="billing_gifsave" style="display:none; opacity:50%"><i class="icon-spin4 animate-spin"></i></span>');
+	$("#modal_save_holder").show();
+	
+	$(".modal-header").css("background-image", "url('img/glass_info.png')");
+	$(".modal-header .close").css({"background": "white", "color":"black", "opacity":"100", "padding-left":"2px", "padding-right":"2px"});
+	$("#myModalBody").css("background-image", "url('img/glass_info.png')");
+	$(".modal-footer").css("background-image", "url('img/glass_info.png')");
+	$(".modal-body").css("overflow-x", "hidden");
+	
+	$("#myModal4 .modal-dialog").css("width", "720px");
+	$("#myModal4 .modal-dialog").css("background-image", "url('img/glass_info.png')");
+	$(".modal-content").css("background-image", "url('img/glass_info.png')");
+	
+	$("#myModal4").modal("toggle");
+}
 function composeNewNote(element_id) {
 	getCurrentCaseID();
 	

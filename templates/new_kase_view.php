@@ -121,17 +121,18 @@ $data_source = DB::run($query_cus, [$_SESSION["user_customer_id"]])->fetchColumn
 /*
 if ($_SESSION["user_customer_id"]=="1070") {
   $data_source = "_leyva";
-}
-if ($_SESSION["user_customer_id"]=="1075") {
+}*/
+/* if ($_SESSION["user_customer_id"]=="1075") {
   $data_source = "_dordulian3";
-}
-*/
+} */
+
+
 $db_name = "ikase";
 if ($data_source!="") {
   $db_name .= "_" . $data_source;
 }
 $order_by = "ORDER BY casestatus";
-if ($_SESSION["user_customer_id"]=="1070" || $_SESSION["user_customer_id"]=="1075") {
+if ($_SESSION["user_customer_id"]=="1070") {
   $order_by = "ORDER BY casestatus_id";
 }
 $query_status = "SELECT casestatus_id,  casestatus_uuid, casestatus, law, deleted

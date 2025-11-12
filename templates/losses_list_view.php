@@ -4,7 +4,8 @@ $arrLoss = array(
 	"lost_income", 
 	"medical",
 	"misc_costs",
-	"deductions"
+	"deductions",
+    "other"
 );
 ?>
 <div style="background:url(../img/glass_dark.png); margin-bottom:10px; border:1px solid white; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px;">

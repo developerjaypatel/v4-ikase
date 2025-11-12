@@ -1,0 +1,872 @@
+==== REQUEST (2025-11-10 02:47:30) ====
+<?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+<methodName>Submittals.AddForDelivery</methodName>
+<params>
+ <param>
+  <value>
+   <struct>
+    <member>
+     <name>case_number</name>
+     <value>
+      <string>1332691122675</string>
+     </value>
+    </member>
+    <member>
+     <name>billing_code</name>
+     <value>
+      <string>21946911c2c26ca73</string>
+     </value>
+    </member>
+    <member>
+     <name>file_number</name>
+     <value>
+      <string>LETTERID_-21946911c2c26ca76</string>
+     </value>
+    </member>
+    <member>
+     <name>charge</name>
+     <value>
+      <string>None</string>
+     </value>
+    </member>
+    <member>
+     <name>comment</name>
+     <value>
+      <string>comment:6911c2c26ca77</string>
+     </value>
+    </member>
+    <member>
+     <name>pos_wording</name>
+     <value>
+      <string>Document uploaded to docucents</string>
+     </value>
+    </member>
+   </struct>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><params><param><value><string>794CF80FC46E39D6</string></value></param></params></methodResponse>
+
+==== REQUEST (2025-11-10 02:47:31) ====
+<?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+<methodName>PartyData.AddForDelivery</methodName>
+<params>
+ <param>
+  <value>
+   <struct>
+    <member>
+     <name>id_number</name>
+     <value>
+      <string>794CF80FC46E39D6</string>
+     </value>
+    </member>
+    <member>
+     <name>company_name</name>
+     <value>
+      <string>v4.ikase.org</string>
+     </value>
+    </member>
+    <member>
+     <name>first_name</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>last_name</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>middle_initial</name>
+     <value>
+      <string/>
+     </value>
+    </member>
+    <member>
+     <name>address1</name>
+     <value>
+      <string>address1</string>
+     </value>
+    </member>
+    <member>
+     <name>address2</name>
+     <value>
+      <string/>
+     </value>
+    </member>
+    <member>
+     <name>city</name>
+     <value>
+      <string>testSolula2b</string>
+     </value>
+    </member>
+    <member>
+     <name>state</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>zip</name>
+     <value>
+      <string>test</string>
+     </value>
+    </member>
+    <member>
+     <name>phone</name>
+     <value>
+      <string>test</string>
+     </value>
+    </member>
+   </struct>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><params><param><value><string>1637096</string></value></param></params></methodResponse>
+
+==== REQUEST (2025-11-10 02:48:22) ====
+<?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+<methodName>Submittals.AddForDelivery</methodName>
+<params>
+ <param>
+  <value>
+   <struct>
+    <member>
+     <name>case_number</name>
+     <value>
+      <string>13326911264765</string>
+     </value>
+    </member>
+    <member>
+     <name>billing_code</name>
+     <value>
+      <string>21946911c2f64765b</string>
+     </value>
+    </member>
+    <member>
+     <name>file_number</name>
+     <value>
+      <string>LETTERID_-21946911c2f64765d</string>
+     </value>
+    </member>
+    <member>
+     <name>charge</name>
+     <value>
+      <string>None</string>
+     </value>
+    </member>
+    <member>
+     <name>comment</name>
+     <value>
+      <string>comment:6911c2f64765e</string>
+     </value>
+    </member>
+    <member>
+     <name>pos_wording</name>
+     <value>
+      <string>Document uploaded to docucents</string>
+     </value>
+    </member>
+   </struct>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><params><param><value><string>AF3E6E13D886A604</string></value></param></params></methodResponse>
+
+==== REQUEST (2025-11-10 02:48:22) ====
+<?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+<methodName>PartyData.AddForDelivery</methodName>
+<params>
+ <param>
+  <value>
+   <struct>
+    <member>
+     <name>id_number</name>
+     <value>
+      <string>AF3E6E13D886A604</string>
+     </value>
+    </member>
+    <member>
+     <name>company_name</name>
+     <value>
+      <string>v4.ikase.org</string>
+     </value>
+    </member>
+    <member>
+     <name>first_name</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>last_name</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>middle_initial</name>
+     <value>
+      <string/>
+     </value>
+    </member>
+    <member>
+     <name>address1</name>
+     <value>
+      <string>address1</string>
+     </value>
+    </member>
+    <member>
+     <name>address2</name>
+     <value>
+      <string/>
+     </value>
+    </member>
+    <member>
+     <name>city</name>
+     <value>
+      <string>testSolula2b</string>
+     </value>
+    </member>
+    <member>
+     <name>state</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>zip</name>
+     <value>
+      <string>test</string>
+     </value>
+    </member>
+    <member>
+     <name>phone</name>
+     <value>
+      <string>test</string>
+     </value>
+    </member>
+   </struct>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><params><param><value><string>1637096</string></value></param></params></methodResponse>
+
+==== REQUEST (2025-11-10 02:48:23) ====
+<?xml version="1.0" encoding="UTF-8"?>
+<methodCall>
+<methodName>Submittals.AddAttachment</methodName>
+<params>
+ <param>
+  <value>
+   <string>AF3E6E13D886A604</string>
+  </value>
+ </param>
+ <param>
+  <value>
+   <string>Array</string>
+  </value>
+ </param>
+ <param>
+  <value>
+   <boolean>0</boolean>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><fault><value><struct><member><name>faultCode</name><value><int>623</int></value></member><member><name>faultString</name><value><string>Calling parameters do not match signature</string></value></member></struct></value></fault></methodResponse>
+
+==== REQUEST (2025-11-10 02:48:23) ====
+<?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+<methodName>Submittals.SetSubmittalStatus</methodName>
+<params>
+ <param>
+  <value>
+   <string>AF3E6E13D886A604</string>
+  </value>
+ </param>
+ <param>
+  <value>
+   <string>Submitted</string>
+  </value>
+ </param>
+ <param>
+  <value>
+   <array>
+    <data/>
+   </array>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><fault><value><struct><member><name>faultCode</name><value><int>-6</int></value></member><member><name>faultString</name><value><string>submittal must have at least one attachment associated</string></value></member></struct></value></fault></methodResponse>
+
+==== REQUEST (2025-11-10 02:49:11) ====
+<?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+<methodName>Submittals.AddForDelivery</methodName>
+<params>
+ <param>
+  <value>
+   <struct>
+    <member>
+     <name>case_number</name>
+     <value>
+      <string>13326911326172</string>
+     </value>
+    </member>
+    <member>
+     <name>billing_code</name>
+     <value>
+      <string>21946911c326e17c1</string>
+     </value>
+    </member>
+    <member>
+     <name>file_number</name>
+     <value>
+      <string>LETTERID_-21946911c326e17c3</string>
+     </value>
+    </member>
+    <member>
+     <name>charge</name>
+     <value>
+      <string>None</string>
+     </value>
+    </member>
+    <member>
+     <name>comment</name>
+     <value>
+      <string>comment:6911c326e17c4</string>
+     </value>
+    </member>
+    <member>
+     <name>pos_wording</name>
+     <value>
+      <string>Document uploaded to docucents</string>
+     </value>
+    </member>
+   </struct>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><params><param><value><string>E573AE013121D876</string></value></param></params></methodResponse>
+
+==== REQUEST (2025-11-10 02:49:11) ====
+<?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+<methodName>PartyData.AddForDelivery</methodName>
+<params>
+ <param>
+  <value>
+   <struct>
+    <member>
+     <name>id_number</name>
+     <value>
+      <string>E573AE013121D876</string>
+     </value>
+    </member>
+    <member>
+     <name>company_name</name>
+     <value>
+      <string>v4.ikase.org</string>
+     </value>
+    </member>
+    <member>
+     <name>first_name</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>last_name</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>middle_initial</name>
+     <value>
+      <string/>
+     </value>
+    </member>
+    <member>
+     <name>address1</name>
+     <value>
+      <string>address1</string>
+     </value>
+    </member>
+    <member>
+     <name>address2</name>
+     <value>
+      <string/>
+     </value>
+    </member>
+    <member>
+     <name>city</name>
+     <value>
+      <string>testSolula2b</string>
+     </value>
+    </member>
+    <member>
+     <name>state</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>zip</name>
+     <value>
+      <string>test</string>
+     </value>
+    </member>
+    <member>
+     <name>phone</name>
+     <value>
+      <string>test</string>
+     </value>
+    </member>
+   </struct>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><params><param><value><string>1637096</string></value></param></params></methodResponse>
+
+==== REQUEST (2025-11-10 02:49:11) ====
+<?xml version="1.0" encoding="UTF-8"?>
+<methodCall>
+<methodName>Submittals.AddAttachment</methodName>
+<params>
+ <param>
+  <value>
+   <string>E573AE013121D876</string>
+  </value>
+ </param>
+ <param>
+  <value>
+   <string>Array</string>
+  </value>
+ </param>
+ <param>
+  <value>
+   <boolean>0</boolean>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><fault><value><struct><member><name>faultCode</name><value><int>623</int></value></member><member><name>faultString</name><value><string>Calling parameters do not match signature</string></value></member></struct></value></fault></methodResponse>
+
+==== REQUEST (2025-11-10 02:49:11) ====
+<?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+<methodName>Submittals.SetSubmittalStatus</methodName>
+<params>
+ <param>
+  <value>
+   <string>E573AE013121D876</string>
+  </value>
+ </param>
+ <param>
+  <value>
+   <string>Submitted</string>
+  </value>
+ </param>
+ <param>
+  <value>
+   <array>
+    <data/>
+   </array>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><fault><value><struct><member><name>faultCode</name><value><int>-6</int></value></member><member><name>faultString</name><value><string>submittal must have at least one attachment associated</string></value></member></struct></value></fault></methodResponse>
+
+==== REQUEST (2025-11-10 02:49:32) ====
+<?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+<methodName>Submittals.AddForDelivery</methodName>
+<params>
+ <param>
+  <value>
+   <struct>
+    <member>
+     <name>case_number</name>
+     <value>
+      <string>133269113378</string>
+     </value>
+    </member>
+    <member>
+     <name>billing_code</name>
+     <value>
+      <string>21946911c33bda7b6</string>
+     </value>
+    </member>
+    <member>
+     <name>file_number</name>
+     <value>
+      <string>LETTERID_-21946911c33bda7b9</string>
+     </value>
+    </member>
+    <member>
+     <name>charge</name>
+     <value>
+      <string>None</string>
+     </value>
+    </member>
+    <member>
+     <name>comment</name>
+     <value>
+      <string>comment:6911c33bda7ba</string>
+     </value>
+    </member>
+    <member>
+     <name>pos_wording</name>
+     <value>
+      <string>Document uploaded to docucents</string>
+     </value>
+    </member>
+   </struct>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><params><param><value><string>584B9137F828C76A</string></value></param></params></methodResponse>
+
+==== REQUEST (2025-11-10 02:49:32) ====
+<?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+<methodName>PartyData.AddForDelivery</methodName>
+<params>
+ <param>
+  <value>
+   <struct>
+    <member>
+     <name>id_number</name>
+     <value>
+      <string>584B9137F828C76A</string>
+     </value>
+    </member>
+    <member>
+     <name>company_name</name>
+     <value>
+      <string>v4.ikase.org</string>
+     </value>
+    </member>
+    <member>
+     <name>first_name</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>last_name</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>middle_initial</name>
+     <value>
+      <string/>
+     </value>
+    </member>
+    <member>
+     <name>address1</name>
+     <value>
+      <string>address1</string>
+     </value>
+    </member>
+    <member>
+     <name>address2</name>
+     <value>
+      <string/>
+     </value>
+    </member>
+    <member>
+     <name>city</name>
+     <value>
+      <string>testSolula2b</string>
+     </value>
+    </member>
+    <member>
+     <name>state</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>zip</name>
+     <value>
+      <string>test</string>
+     </value>
+    </member>
+    <member>
+     <name>phone</name>
+     <value>
+      <string>test</string>
+     </value>
+    </member>
+   </struct>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><params><param><value><string>1637096</string></value></param></params></methodResponse>
+
+==== REQUEST (2025-11-10 02:49:32) ====
+<?xml version="1.0" encoding="UTF-8"?>
+<methodCall>
+<methodName>Submittals.AddAttachment</methodName>
+<params>
+ <param>
+  <value>
+   <string>584B9137F828C76A</string>
+  </value>
+ </param>
+ <param>
+  <value>
+   <string>Array</string>
+  </value>
+ </param>
+ <param>
+  <value>
+   <boolean>0</boolean>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><fault><value><struct><member><name>faultCode</name><value><int>623</int></value></member><member><name>faultString</name><value><string>Calling parameters do not match signature</string></value></member></struct></value></fault></methodResponse>
+
+==== REQUEST (2025-11-10 02:49:56) ====
+<?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+<methodName>Submittals.AddForDelivery</methodName>
+<params>
+ <param>
+  <value>
+   <struct>
+    <member>
+     <name>case_number</name>
+     <value>
+      <string>1332691135414108</string>
+     </value>
+    </member>
+    <member>
+     <name>billing_code</name>
+     <value>
+      <string>21946911c35414105</string>
+     </value>
+    </member>
+    <member>
+     <name>file_number</name>
+     <value>
+      <string>LETTERID_-21946911c35414109</string>
+     </value>
+    </member>
+    <member>
+     <name>charge</name>
+     <value>
+      <string>None</string>
+     </value>
+    </member>
+    <member>
+     <name>comment</name>
+     <value>
+      <string>comment:6911c3541410a</string>
+     </value>
+    </member>
+    <member>
+     <name>pos_wording</name>
+     <value>
+      <string>Document uploaded to docucents</string>
+     </value>
+    </member>
+   </struct>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><params><param><value><string>DEE56DAA85604FEC</string></value></param></params></methodResponse>
+
+==== REQUEST (2025-11-10 02:49:56) ====
+<?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+<methodName>PartyData.AddForDelivery</methodName>
+<params>
+ <param>
+  <value>
+   <struct>
+    <member>
+     <name>id_number</name>
+     <value>
+      <string>DEE56DAA85604FEC</string>
+     </value>
+    </member>
+    <member>
+     <name>company_name</name>
+     <value>
+      <string>v4.ikase.org</string>
+     </value>
+    </member>
+    <member>
+     <name>first_name</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>last_name</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>middle_initial</name>
+     <value>
+      <string/>
+     </value>
+    </member>
+    <member>
+     <name>address1</name>
+     <value>
+      <string>address1</string>
+     </value>
+    </member>
+    <member>
+     <name>address2</name>
+     <value>
+      <string/>
+     </value>
+    </member>
+    <member>
+     <name>city</name>
+     <value>
+      <string>testSolula2b</string>
+     </value>
+    </member>
+    <member>
+     <name>state</name>
+     <value>
+      <string>testSolulab2</string>
+     </value>
+    </member>
+    <member>
+     <name>zip</name>
+     <value>
+      <string>test</string>
+     </value>
+    </member>
+    <member>
+     <name>phone</name>
+     <value>
+      <string>test</string>
+     </value>
+    </member>
+   </struct>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><params><param><value><string>1637096</string></value></param></params></methodResponse>
+
+==== REQUEST (2025-11-10 02:49:56) ====
+<?xml version="1.0" encoding="UTF-8"?>
+<methodCall>
+<methodName>Submittals.AddAttachment</methodName>
+<params>
+ <param>
+  <value>
+   <string>DEE56DAA85604FEC</string>
+  </value>
+ </param>
+ <param>
+  <value>
+   <string>Array</string>
+  </value>
+ </param>
+ <param>
+  <value>
+   <boolean>0</boolean>
+  </value>
+ </param>
+</params>
+</methodCall>
+
+
+==== RESPONSE ====
+<?xml version="1.0" encoding="ASCII"?>
+<methodResponse><fault><value><struct><member><name>faultCode</name><value><int>623</int></value></member><member><name>faultString</name><value><string>Calling parameters do not match signature</string></value></member></struct></value></fault></methodResponse>
+

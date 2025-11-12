@@ -291,3 +291,61 @@ window.medical_billing_view = Backbone.View.extend({
 		this.setOverride();
 	}
 });
+window.other_billing_view = Backbone.View.extend({
+    initialize:function () {
+        
+    },
+	events: {
+		"keyup .balance_field":					"calculateBalance",
+		"keyup #overrideInput":					"setOverride",
+		"change .balance_field":				"calculateBalance",
+		"click #other_billing_view_done":		"doTimeouts"
+	},
+    render:function () {	
+		if (typeof this.template != "function") {
+			var view = "other_billing_view";
+			var extension = "php";
+			this.model.set("holder", "myModalBody");
+			loadTemplate(view, extension, this);
+			return "";
+	   	}		
+		var self = this;
+		
+		var hash = document.location.hash;
+		//var arrHash = hash.split("/");
+		//this.model.set("corporation_id", arrHash[2]);		
+		//finalized
+		if (this.model.get("finalized")!="0000-00-00") {
+			this.model.set("finalized", moment(this.model.get("finalized")).format("YYYY-MM-DD"));
+		}
+		$(this.el).html(this.template(this.model.toJSON()));
+		
+		return this;
+	},
+	calculateBalance: function() {
+		var billed = $("#billedInput").val();
+		var paid = $("#paidInput").val();
+		var adjusted = $("#adjustedInput").val();
+		
+		var balance = Number(billed) - Number(paid) - Number(adjusted);
+		
+		$("#balanceInput").val(balance);
+	},
+	setOverride: function() {
+		var override = $("#overrideInput").val();
+		var balance = $("#balanceInput").val();
+		
+		if (Number(override) > Number(balance)) {
+			$("#overrideInput").val(balance);
+			override = balance;
+		}
+		if (override!="" && override!=0) {
+			$("#override_indicator").fadeIn();
+		} else {
+			$("#override_indicator").fadeOut();
+		}
+	},
+	doTimeouts: function() {
+		this.setOverride();
+	}
+});

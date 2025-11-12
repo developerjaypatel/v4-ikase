@@ -30,7 +30,7 @@ $cus_id = passed_var("cus_id");
 $admin_client = passed_var("admin_client");
 //die($cus_id);
 if ($cus_id>0) {
-	$query = "SELECT  `customer_id` cus_id, `parent_customer_id` parent_cus_id, `docucents_api_key`, `eams_no`, 
+	$query = "SELECT  `customer_id` cus_id, `parent_customer_id` parent_cus_id, `eams_no`, 
 	`cus_barnumber`, `letter_name`, 
 	`cus_name`, `cus_name_first`, `cus_name_middle`, `cus_name_last`, 
 	`cus_street`, `cus_city`, `cus_state`, `cus_zip`, `cus_county`, 
@@ -41,7 +41,6 @@ if ($cus_id>0) {
 	$cus_id = $row->cus_id;
 	$eams_no = $row->eams_no;
 	$parent_cus_id = $row->parent_cus_id;
-	$cus_docucents_api_key = $row->docucents_api_key;
 	$cus_eams_no = $row->eams_no;
 	$cus_barnumber = $row->cus_barnumber;
 	$cus_name = $row->cus_name;
@@ -284,9 +283,7 @@ Permissions
           <?php echo implode("\r\n", $arrCustomerRows); ?>
         </select>
           <br />
-        Parent Company<br/><br/>
-		<input name="docucents_api_key" type="text" class="insurance_info carrier " id="docucents_api_key" value="<?php echo $cus_docucents_api_key; ?>" size="50" /><br>
-		Docucents API Key</div>
+        Parent Company</div>
             <input name="cus_name" type="text" class="insurance_info carrier " id="cus_name" value="<?php echo $cus_name; ?>" size="50" autocomplete="off" tabindex="2" />&nbsp;<?php if ($cus_id!="") { echo "ID:&nbsp;" . $cus_id; } ?>
           <br />
 Customer Name (Please leave blank spaces between numbers, names or words)</td>
@@ -788,7 +785,7 @@ var saveUpload = function(folder_name) {
 				response = o.responseText;
 				//alert(response);
 				//refresh the search
-				hideRecordsPanel();
+				//hideRecordsPanel();
 				refreshUploadDataSource();
 			},
 		   failure: function(){

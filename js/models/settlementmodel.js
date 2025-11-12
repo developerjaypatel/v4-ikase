@@ -24,6 +24,7 @@ window.Settlement = Backbone.Model.extend({
 		"pd_percent":"",
 		"future_medical":"",
 		"amount_of_fee":"",
+		"fee_payment_status":"",
 		"c_and_r":"",
 		"stip":"",
 		"f_and_a":"",

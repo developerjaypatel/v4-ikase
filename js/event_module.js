@@ -539,7 +539,7 @@ function renderCalendarListByDate(kase, start,  end) {
 		}
 	}
 	occurences.fetch({
-			success: function(occurences) {
+			success: function(occurences) { console.log("542 "+occurences);
 				//empty the content holder
 				$("#kase_content").html("&nbsp;");
 				kase.set("title", "Kase Events: " + display_start);
@@ -584,7 +584,7 @@ function saveEventModal(event) {
 	saveeventmodal_timeout_id = setTimeout(function() {
 		saveActualEventModal(event);
 		console.log('update');
-		// this.render();
+		//this.render();
 		if (typeof current_case_id != "undefined" && current_case_id > 0) {
 			var kase = kases.findWhere({case_id: current_case_id});
 			$("#kase_content").removeClass("glass_header_no_padding");

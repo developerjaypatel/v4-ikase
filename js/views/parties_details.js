@@ -1107,6 +1107,26 @@ window.partie_view = Backbone.View.extend({
 					}
 				});
 			}
+
+			if (blnOtherBilling) {
+				//do we have any other billings
+				var other_billings = new OtherBillingCollection({corporation_id: this.model.get("id"), case_id: current_case_id});
+				other_billings.fetch({
+					success: function(data) {
+						var my_model = new Backbone.Model;
+						my_model.set("holder", "other_billings");
+						my_model.set("case_id", current_case_id);
+						my_model.set("partie_id", self.model.get("id"));
+						my_model.set("embedded", false);
+						$('#other_billings').html(new other_billing_listing_view({collection: data, model: my_model}).render().el);	
+						$('#other_billings').fadeIn(function() {
+							$('#other_billings').css("width", "50%");
+						});
+						//now show 
+						//gridsterById("gridster_" + self.model.get("partie"));					
+					}
+				});
+			}
 			
 			if (blnCarrier) {
 				var arrOptions = [];

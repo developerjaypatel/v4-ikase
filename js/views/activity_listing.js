@@ -347,19 +347,32 @@ window.activity_listing_pane = Backbone.View.extend({
 						activity.activity = "<div class='partialactivity' id='partialactivity_" + activity.id + "'>" + short_activity + "</div>";
 					}else if (activity.activity_category == "Notes") {
 						activity.activity = activity.activity.replaceAll("<div style='font-size:0.7em; margin-top:-5px'>","")
-						activity.activity = activity.activity.replaceAll("<div>","")
-						activity.activity = activity.activity.replaceAll("</div>","")
+						// Step 1: Normalize nested divs (merge <div><div> and </div></div>)
+						activity.activity = activity.activity.replace(/<div>\s*<div>/g, "<div>");
+						activity.activity = activity.activity.replace(/<\/div>\s*<\/div>/g, "</div>");
+
+						// Step 2: Add <br> at the end of any <div> block that has NO <br> inside it
+						activity.activity = activity.activity.replace(/<div>(?!\s*<br)(.*?)<\/div>/gs, (match, inner) => {
+							// If inner contains any <br>, leave it alone
+							if (/<br\s*\/?>/i.test(inner)) {
+								return `<div>${inner}</div>`;
+							} else {
+								return `<div>${inner}<br></div>`;
+							}
+						});
+
+						// Step 3: Remove all <div> tags (keep content + <br>)
+						activity.activity = activity.activity.replace(/<\/?div[^>]*>/g, "");
 						var subpos = 50
 						// var subpos = activity.activity.indexOf("(sent to");
 						short_activity = activity.activity;
-						if (subpos > 0) {
+						if (subpos > 0 && short_activity.length > subpos) {
 							short_activity =activity.activity.substr(0, subpos) + "<br><a id='readmore_" + activity.id + "' style='display:block;max-width:83px;cursor:pointer;font-size: 1em !important;background:white;color:black;padding:2px;' class='read_more white_text' title='Click to read more'>read more ...</a>";
 							activity.full_activity = "<div id='fullactivity_" + activity.id + "' style='display:none'><div style='width:65px; cursor:pointer; background:white; color:black' id='hideactivity_" + activity.id + "' class='hide_activity white_text' title='Click to shrink activity'>close</div>" + activity.activity.replaceAll("\r\n", "<br>") + "<div style='width:65px; cursor:pointer; background:white; color:black' id='hideactivity_" + activity.id + "' class='hide_activity white_text' title='Click to shrink activity'>close</div></div>";
 						}
 						short_activity = notesCleanUp(short_activity);
 						activity.activity = "<div class='partialactivity' id='partialactivity_" + activity.id + "'>" + short_activity + "</div>";
 					}  else {
-
 
 						//length
 						var pure_snippet = activity.activity;
@@ -409,8 +422,22 @@ window.activity_listing_pane = Backbone.View.extend({
 						//find the subject
 						//find the end of the line
 						//apply ...
-						var subpos = activity.activity.indexOf("Subject:");
-						var retpos = activity.activity.indexOf("<br />", subpos);
+						var text = activity.activity;
+
+						// Determine the keyword to search after 
+						// outlook keyword condition is for outlook mail drag & drop
+						var keyword = text.includes("Open in outlook")
+							? "Open in outlook"
+							: "Subject:";
+
+						var subpos = activity.activity.indexOf(keyword);
+						var retpos1 = activity.activity.indexOf("<br>", subpos);
+						var retpos2 = activity.activity.indexOf("<br />", subpos);
+
+						// Pick whichever appears first (if any)
+						var retpos = (retpos1 === -1) ? retpos2 :
+									(retpos2 === -1) ? retpos1 :
+									Math.min(retpos1, retpos2);
 						short_activity = activity.activity;
 						if (retpos > 0) {
 							short_activity = activity.activity.substr(0, retpos) + "<br><a id='readmore_" + activity.id + "' style='cursor:pointer;background:white;color:black;padding:2px' class='read_more white_text' title='Click to read more'>read more ...</a>";

@@ -222,7 +222,7 @@ window.losses_list_view = Backbone.View.extend({
 				self.calculateTotalLosses();
 			}
 		});
-		
+ 
 		//lost wages
 		self.model.set("blnIncome", false);
 		var url = "api/kase/lostincometotal/" + current_case_id;
@@ -245,7 +245,7 @@ window.losses_list_view = Backbone.View.extend({
 		
 		self.model.set("blnDamages", false);
 		var kase = kases.findWhere({case_id: current_case_id});
-		
+		console.log ("find damage case ", kase);
 		var case_type = kase.get("case_type");
 		var injury_type = kase.get("injury_type");
 		var representing = "";
@@ -308,6 +308,30 @@ window.losses_list_view = Backbone.View.extend({
 				self.calculateTotalLosses();
 			}
 		});
+
+		// other bill
+		self.model.set("blnOthers", false);
+		var url = "api/otherbillingsummary/" + current_case_id;
+		$.ajax({
+			url:url,
+			type:'GET',
+			dataType:"json",
+			success:function (data) {
+				
+				if(data.error) {  // If there is an error, show the error messages
+					saveFailed(data.error.text);
+				} else {
+					$("#other_list_amount").html(formatDollar(data.billed_total));
+					data.balance = String(data.balance).numbersOnly();
+					$("#other_list_balance").html(formatDollar(data.balance));
+					
+					$("#misc_costs_list_amount").html(formatDollar(data.costs));
+					$("#misc_costs_list_balance").html(formatDollar(data.costs));
+				}
+				self.model.set("blnMedicals", true);
+				self.calculateTotalLosses();
+			}
+		});
 	},
 	calculateTotalLosses: function() {
 		/*
@@ -325,7 +349,8 @@ window.losses_list_view = Backbone.View.extend({
 			"lost_income", 
 			"medical",
 			"misc_costs",
-			"deductions"
+			"deductions",
+			'other'
 		];
 		var total_loss = 0;
 		var total_due = 0

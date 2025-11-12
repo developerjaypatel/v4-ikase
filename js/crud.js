@@ -27,7 +27,7 @@ function addForm(event, subform, api_url) {
 	} else {
 		form_name = subform;
 	}
-	
+
 	if (typeof api_url == "undefined") {
 		api_url = form_name.toLowerCase();
 	}
@@ -1208,6 +1208,28 @@ function addForm(event, subform, api_url) {
 					
 					window.Router.prototype.editPartie(arrHash[1], arrHash[2], arrHash[3]);
 				}
+				if (form_name == "otherbilling") {
+					if (document.location.hash.indexOf("#settlement")==0) {
+						var medical_billings = new OtherBillingCollection({case_id: current_case_id});
+						medical_billings.fetch({
+							success: function(data) {
+								var my_model = new Backbone.Model;
+								my_model.set("holder", "settlement_med_holder");
+								my_model.set("case_id", current_case_id);
+								my_model.set("partie_id", "");
+								my_model.set("embedded", true);
+								$('#settlement_med_holder').html(new other_billing_listing_view({collection: data, model: my_model}).render().el);	
+							}
+						});
+						$("#myModal4").modal("toggle");
+						return true;
+					}
+					var hash = document.location.hash;
+					var arrHash = hash.split("/");
+					$("#myModal4").modal("toggle");
+					
+					window.Router.prototype.editPartie(arrHash[1], arrHash[2], arrHash[3]);
+				}
 				return true;
 			}
 		}
@@ -1257,7 +1279,6 @@ function updateForm(event, subform, api_url, blnIntake, blnAutoIntake) {
 	if (typeof blnIntake == "undefined") {
 		blnIntake = false;
 	}
-	
 	$('.' + form_name + ' #gifsave').show();
 	if (form_name == "setting") {
 		api_url = "setting/" + $("#setting_type").val();
@@ -1404,6 +1425,35 @@ function updateForm(event, subform, api_url, blnIntake, blnAutoIntake) {
 								my_model.set("partie_id", "");
 								my_model.set("embedded", true);
 								$('#settlement_med_holder').html(new medical_billing_listing_view({collection: data, model: my_model}).render().el);	
+							}
+						});
+						$("#myModal4").modal("toggle");
+						return true;
+					}
+					
+					$("#billing_gifsave").hide();
+					$("#myModalLabel").css("color", "lime");
+					
+					setTimeout(function() {
+						var hash = document.location.hash;
+						var arrHash = hash.split("/");
+						$("#myModal4").modal("toggle");
+						//reload the window
+						window.Router.prototype.editPartie(arrHash[1], arrHash[2], arrHash[3]);
+					}, 1500);
+					return;
+				}
+				if (form_name == "otherbilling") {
+					if (document.location.hash.indexOf("#settlement")==0) {
+						var other_billings = new MedicalBillingCollection({case_id: current_case_id});
+						other_billings.fetch({
+							success: function(data) {
+								var my_model = new Backbone.Model;
+								my_model.set("holder", "settlement_med_holder");
+								my_model.set("case_id", current_case_id);
+								my_model.set("partie_id", "");
+								my_model.set("embedded", true);
+								$('#settlement_med_holder').html(new other_billing_listing_view({collection: data, model: my_model}).render().el);	
 							}
 						});
 						$("#myModal4").modal("toggle");
@@ -1827,7 +1877,7 @@ function updateForm(event, subform, api_url, blnIntake, blnAutoIntake) {
 						}
 					});
 				}
-				
+
 				displaySavedInfo(formValues, form_name);
 				/*
 				// If no errors, go  back to read mode
@@ -2255,7 +2305,7 @@ function deleteElement(event, id, form_name, remove_item) {
 					window.Router.prototype.showSettlement(case_id, injury_id);
 					return true;
 				}
-				if (form_name == "task" || form_name == "check" || form_name == "event" || form_name == "document" || form_name == "letter" || form_name == "notes" || form_name == "webmail" || form_name == "messages" || form_name == "kase" || form_name == "kinvoice" || form_name == "rx" || form_name=="medicalbilling" || form_name=="deduction" || form_name=="negotiation") {
+				if (form_name == "task" || form_name == "check" || form_name == "event" || form_name == "document" || form_name == "letter" || form_name == "notes" || form_name == "webmail" || form_name == "messages" || form_name == "kase" || form_name == "kinvoice" || form_name == "rx" || form_name=="medicalbilling" || form_name=="otherbilling" || form_name=="deduction" || form_name=="negotiation") {
 					if (form_name!="letter" && $("#letter_listing").length==0 && $("#stack_listing").length==0) {
 						if (form_name != "tasking" && form_name != "task") {
 							$('#deleteModal').modal('toggle');
@@ -2320,7 +2370,7 @@ function deleteElement(event, id, form_name, remove_item) {
 					if (form_name=="check") {
 						$(".check_data_row_" + id).css("background", "red");
 					}
-					if (form_name=="medicalbilling") {
+					if (form_name=="medicalbilling" || form_name == "otherbilling") {
 						$(".billing_data_row_" + id).css("background", "red");
 					}
 					if (form_name=="deduction" || form_name=="negotiation") {
@@ -2382,7 +2432,7 @@ function deleteElement(event, id, form_name, remove_item) {
 						if (form_name=="check") {
 							$(".check_data_row_" + id).fadeOut();
 						}
-						if (form_name=="medicalbilling") {
+						if (form_name=="medicalbilling" || form_name == "otherbilling") {
 							$(".billing_data_row_" + id).fadeOut();
 						}
 						if (form_name=="kinvoice") {

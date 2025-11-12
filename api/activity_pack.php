@@ -41,6 +41,7 @@ $app->group('', function (RouteCollectorProxy $app) {
 
 		// outlook email drag and drop routes
 		$app->post('/outlookdrag', 'outlookDrag');
+		$app->post('/outlookdrag/update', 'updateOutlookActivity');
 	});
 	$app->get('/activities/demographics', 'getActivityDemographics');
 	$app->get('/lastactivity', 'lastActivity');
@@ -2812,78 +2813,78 @@ function outlookDrag(){
 		$subject = $headersArr['Subject'] ?? '';
 	}
  	elseif ($ext === 'msg') {
-    try {
-        $docFactory = new DocumentFactory();
-        $ole = $docFactory->createFromFile($uploadPath);
+		try {
+			$docFactory = new DocumentFactory();
+			$ole = $docFactory->createFromFile($uploadPath);
 
-        $msgFactory = new MapiMessageFactory();
-        $message = $msgFactory->parseMessage($ole);
-        $props = $message->properties;
+			$msgFactory = new MapiMessageFactory();
+			$message = $msgFactory->parseMessage($ole);
+			$props = $message->properties;
 
-        // --- Extract actual message fields (reply info) ---
-        $fromName  = $props->get('sender_name') ?? '';
-        $fromEmail = $props->get('sender_email') ?? '';
-        $to        = $props->get('display_to') ?? '';
-        $cc        = $props->get('display_cc') ?? '';
-        $subject   = $props->get('subject') ?? '';
-        $sentRaw   = $props->get('client_submit_time') ?? '';
+			// --- Extract actual message fields (reply info) ---
+			$fromName  = $props->get('sender_name') ?? '';
+			$fromEmail = $props->get('sender_email') ?? '';
+			$to        = $props->get('display_to') ?? '';
+			$cc        = $props->get('display_cc') ?? '';
+			$subject   = $props->get('subject') ?? '';
+			$sentRaw   = $props->get('client_submit_time') ?? '';
 
-        // --- Format sent time ---
-        $sent = '';
-        if (!empty($sentRaw)) {
-            if (is_numeric($sentRaw)) {
-                $sent = date('l, F j, Y g:i A', $sentRaw);
-            } else {
-                $sent = date('l, F j, Y g:i A', strtotime($sentRaw));
-            }
-        }
+			// --- Format sent time ---
+			$sent = '';
+			if (!empty($sentRaw)) {
+				if (is_numeric($sentRaw)) {
+					$sent = date('l, F j, Y g:i A', $sentRaw);
+				} else {
+					$sent = date('l, F j, Y g:i A', strtotime($sentRaw));
+				}
+			}
 
-        // --- Get the raw body ---
-        $rawBody = $props->get('body') ?? '';
+			// --- Get the raw body ---
+			$rawBody = $props->get('body') ?? '';
 
-        // --- Detect the first original email header inside the body ---
-        // Pattern matches "From: ... Sent: ... To: ... Subject: ..."
-        if (preg_match('/From:\s*(.*?)\r?\nSent:\s*(.*?)\r?\nTo:\s*(.*?)\r?\nCc:\s*(.*?)\r?\nSubject:\s*(.*?)\r?\n/i', $rawBody, $matches)) {
-            $origFrom = trim($matches[1]);
-            $origSent = trim($matches[2]);
-            $origTo   = trim($matches[3]);
-            $origCc   = trim($matches[4]);
-            $origSubj = trim($matches[5]);
+			// --- Detect the first original email header inside the body ---
+			// Pattern matches "From: ... Sent: ... To: ... Subject: ..."
+			if (preg_match('/From:\s*(.*?)\r?\nSent:\s*(.*?)\r?\nTo:\s*(.*?)\r?\nCc:\s*(.*?)\r?\nSubject:\s*(.*?)\r?\n/i', $rawBody, $matches)) {
+				$origFrom = trim($matches[1]);
+				$origSent = trim($matches[2]);
+				$origTo   = trim($matches[3]);
+				$origCc   = trim($matches[4]);
+				$origSubj = trim($matches[5]);
 
-            // --- Build header using original email ---
-            $headers  = "From: {$origFrom}<br>";
-            $headers .= "Sent: {$origSent}<br>";
-            $headers .= "To: {$origTo}<br>";
-            $headers .= "Cc: {$origCc}<br>";
-            $headers .= "Subject: {$origSubj}";
+				// --- Build header using original email ---
+				$headers  = "From: {$origFrom}<br>";
+				$headers .= "Sent: {$origSent}<br>";
+				$headers .= "To: {$origTo}<br>";
+				$headers .= "Cc: {$origCc}<br>";
+				$headers .= "Subject: {$origSubj}";
 
-            // --- Remove that original header from body ---
-            $cleanBody = preg_replace('/From:.*?Subject:.*?\r?\n/smi', '', $rawBody, 1);
-        } else {
-            // Fallback to the actual message headers if no quoted email is found
-            $fromDisplay = trim("{$fromName} <{$fromEmail}>");
-            $headers  = "From: {$fromDisplay}<br>";
-            if ($sent) $headers .= "Sent: {$sent}<br>";
-            if ($to)   $headers .= "To: {$to}<br>";
-            if ($cc)   $headers .= "Cc: {$cc}<br>";
-            $headers .= "Subject: {$subject}";
+				// --- Remove that original header from body ---
+				$cleanBody = preg_replace('/From:.*?Subject:.*?\r?\n/smi', '', $rawBody, 1);
+			} else {
+				// Fallback to the actual message headers if no quoted email is found
+				$fromDisplay = trim("{$fromName} <{$fromEmail}>");
+				$headers  = "From: {$fromDisplay}<br>";
+				if ($sent) $headers .= "Sent: {$sent}<br>";
+				if ($to)   $headers .= "To: {$to}<br>";
+				if ($cc)   $headers .= "Cc: {$cc}<br>";
+				$headers .= "Subject: {$subject}";
 
-            $cleanBody = $rawBody;
-        }
+				$cleanBody = $rawBody;
+			}
 
-        // --- Clean and normalize body ---
-        $body = strip_tags($cleanBody);
-        $body = preg_replace("/[\r\n]{2,}/", "\n", $body);
-        $body = trim($body);
+			// --- Clean and normalize body ---
+			$body = strip_tags($cleanBody);
+			$body = preg_replace("/[\r\n]{2,}/", "\n", $body);
+			$body = trim($body);
 
-    } catch (Exception $e) {
-        die(json_encode(["status"=> false, "message"=>"MSG parse error: " . $e->getMessage()]));
-    }
-}
+		} catch (Exception $e) {
+			die(json_encode(["status"=> false, "message"=>"MSG parse error: " . $e->getMessage()]));
+		}
+	}
 
 	else {
-			die(json_encode(array("status"=> false, "message"=>"Unsupported file type")));
-		}
+		die(json_encode(array("status"=> false, "message"=>"Unsupported file type")));
+	}
 
 		
 	// ==== SAVE TO DATABASE ====
@@ -2913,10 +2914,90 @@ function outlookDrag(){
 
 	$activityId = recordActivity($operation, $activity, $case_uuid, $track_id, $category, $billing_time);
 
+	$activityDetails = [
+		'case_id' => $kase->id,
+		'case_uuid' => $kase->uuid,
+		'activity_id' => $activityId
+	];
+
 	if ($activityId) {
-		die(json_encode(array("status"=> true, "message"=>"Saved successfully: <b>{$subject}</b> (file: {$uniqueName})")));
+		die(json_encode(array("status"=> true, "message"=>"Saved successfully: <b>{$subject}</b>", "activity" => $activityDetails)));
 	} else {
 		die(json_encode(array("status"=> false, "message"=>"Failed to save email record.")));
 	}
 
+}
+function updateOutlookActivity(){
+	$activity_id = passed_var("activity_id", "post");
+	$note = passed_var("note", "post");
+
+	if (!$activity_id || !$note) {
+		die(json_encode(["status" => false, "message" => "Missing activity id or note."]));
+	}
+
+	$success = addNoteToActivity($activity_id, $note);
+
+	if ($success) {
+		die(json_encode(["status" => true, "message" => "Note added successfully."]));
+	} else {
+		die(json_encode(["status" => false, "message" => "Failed to add note."]));
+	}
+}
+function addNoteToActivity($activity_id, $note) {
+	try {
+		$customer_id = $_SESSION['user_customer_id'];
+
+		// Fetch existing activity content
+		$sql = "SELECT `activity` 
+				FROM `cse_activity` 
+				WHERE `activity_id` = :activity_id 
+				AND `customer_id` = :customer_id 
+				LIMIT 1";
+		$stmt = DB::run($sql, [
+			':activity_id' => $activity_id,
+			':customer_id' => $customer_id
+		]);
+
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		if (!$row) {
+			return false; // invalid activity or unauthorized
+		}
+
+		$oldActivity = $row['activity'];
+
+		// Sanitize and format the note
+		$noteSafe = htmlspecialchars($note, ENT_QUOTES, 'UTF-8');
+		$noteSafe = nl2br($noteSafe);
+		$noteSafe = @processHTML($noteSafe); // maintain consistency with your HTML handling
+		
+		// Remove <p> and </p> tags while preserving inner text
+		$noteSafe = preg_replace('/<\/?p[^>]*>/i', '', $noteSafe);
+ 
+		// Prepend to existing activity content
+		$updatedActivity = $noteSafe . "<br>" . $oldActivity;
+
+		// die(json_encode(["status" => false, "message" => $updatedActivity]));
+
+		// Update database
+		$updateSql = "UPDATE `cse_activity` 
+					  SET `activity` = :activity 
+					  WHERE `activity_id` = :activity_id 
+					  AND `customer_id` = :customer_id";
+
+		$stmt = DB::run($updateSql, [
+			':activity' => $updatedActivity,
+			':activity_id' => $activity_id,
+			':customer_id' => $customer_id
+		]);
+
+		if ($stmt->rowCount() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+
+	} catch (PDOException $e) {
+		error_log("addNoteToActivity() error: " . $e->getMessage());
+		return false;
+	}
 }

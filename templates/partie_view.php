@@ -1262,6 +1262,9 @@ if (!party.show_buttons) {
     <% if (party.type == "medical_provider") { %>
     <div id="medical_billings" class="<%=party.blurb %> col-md-5" style="display:none; border:0px solid pink; margin-left:100px; margin-top:0px; margin-bottom:20px"></div>
     <% } %>
+    <% if (party.type == "other") { %>
+    <div id="other_billings" class="<%=party.blurb %> col-md-5" style="display:none; border:0px solid pink; margin-left:100px; margin-top:0px; margin-bottom:20px"></div>
+    <% } %>
     <% if (party.type == "referring") { %>
     <div id="referral_fee" class="<%=party.blurb %> col-md-5" style="display:none; background:url(img/glass_dark.png) left top repeat-y; border:#FFFFFF solid 1px ; -moz-border-radius: 3px; -webkit-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; padding:5px; font-family: 'Open Sans', sans-serif; color:#FFFFFF; margin-left:115px; margin-top:0px; margin-bottom:20px">
     <table width="98%" cellspacing="0" cellpadding="2">

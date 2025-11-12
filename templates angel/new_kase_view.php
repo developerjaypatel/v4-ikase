@@ -104,7 +104,7 @@ if ($data_source!="") {
 	$db_name .= "_" . $data_source;
 }
 $order_by = "ORDER BY casestatus";
-if ($_SESSION["user_customer_id"]=="1070" || $_SESSION["user_customer_id"]=="1075") {
+if ($_SESSION["user_customer_id"]=="1070") {
 	$order_by = "ORDER BY casestatus_id";
 }
 $query_status = "SELECT casestatus_id,  casestatus_uuid, casestatus, law, deleted

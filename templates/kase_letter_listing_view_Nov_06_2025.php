@@ -170,16 +170,10 @@ try {
                 <input type="hidden" name="letterpath_<%=template.document_id%>" value="D:/uploads/<?php echo $_SESSION['user_customer_id']; ?>/templates/<%= template.document_filename.replace("#", "%23") %>">
                 <input type="hidden" name="cusid_<%=template.document_id%>" value="<?=$_SESSION['user_customer_id']?>">
                 <!-- Jay code start 19-06-2019 -->
-                <?php if($_SERVER['REMOTE_ADDR'] == '122.175.91.46'){ ?>
-                <a title="Click to compose a new letter" ><button value="<%=template.document_id%>"  name='lettersub' data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="cursor:pointer"  class="create_docucent">Send to docucent</button></a>
+                <!-- <a title="Click to compose a new letter" ><button value="<%=template.document_id%>" onclick="docucent_upload_letter_button_click(<%=template.document_id%>)" name='lettersub'>Send to docucent</button></a>
                 App Created : 08/06/2019
-                <a title="Click for Get POS" >Get POS</a>
-                <script>
-    $("#modal_save_holder").html('<input type="checkbox" id="parties_selectall" class="parties_selectall" name="parties_selectall" value="Y" title="Check this box to Select all Parties" onclick="selectAllParties()" /><span class="white_text parties_selectall" style="padding-right:15px">Select all Parties</span>&nbsp;<a title="Save Letter" id="partie_docucent_id" class="partie_docucents_data save" style="cursor:pointer" onclick="docucent_upload_letter_button_click(<%=template.document_id%>);"><i class="glyphicon glyphicon-saved" style="color:#00FF00; font-size:20px; text-decoration:none">&nbsp;</i></a>');
-                    </script>
-                <?php } ?>
+                <a title="Click for Get POS" >Get POS</a> -->
                 <!-- Jay code end 19-06-2019 -->
-                
             </td>
             <td align="right">
             	<a title="Click to compose a new letter" class="create_letter" id="compose_letter_<%=case_id%>_<%=template.document_id%>" data-toggle="modal" data-target="#myModal4" data-backdrop="static" data-keyboard="false" style="cursor:pointer"><i class="glyphicon glyphicon-file" style="color:#FFFF00">&nbsp;</i></a>
@@ -189,9 +183,7 @@ try {
         </tbody>
     </table>
 </div>
-
 <script>
-    
 function docucent_upload_letter_button_click(param_targetid)
 {
         var targetid=param_targetid;
@@ -200,17 +192,16 @@ function docucent_upload_letter_button_click(param_targetid)
             type: 'POST',
             data: {
                 caseid: $("input[name='caseid_"+targetid+"']").val(),
-                //letterpath: document.location.hostname+$("input[name='letterpath_"+targetid+"']").val(),
-                letterpath: $("input[name='letterpath_"+targetid+"']").val(),
+                letterpath: document.location.hostname+$("input[name='letterpath_"+targetid+"']").val(),
                 cusid: $("input[name='cusid_"+targetid+"']").val(),
                 document_id: targetid,
                 call_intension:'letter_upload'
             },
             dataType : 'json',
             success: function(res) {
-                console.log(res);
+                alert(res);
             }
-        }); 
+        });
 // alert(targetid);
 }
 </script>

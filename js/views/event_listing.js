@@ -52,7 +52,9 @@ window.event_listing = Backbone.View.extend({
 		
 		this.collection.bind("reset", this.render, this);
 		
+		
 		var occurences = this.collection.toJSON();
+		//console.log("56 "+occurences);
 		var arrDayCount = [];
 		var min_date = moment("2100-01-01").format("YYYY-MM-DD");
 		var max_date = moment("2000-01-01").format("YYYY-MM-DD");
@@ -124,8 +126,7 @@ window.event_listing = Backbone.View.extend({
 					occurence.assignee = occurence.attorney;
 				}
 			}
-			//occurence.assignee = occurence.assignee.toLowerCase();
-			occurence.assignee = occurence.assignee;
+			occurence.assignee = occurence.assignee.toLowerCase();
 			
 			if (occurence.case_stored_name != "") {
 				occurence.case_name = occurence.case_stored_name;
